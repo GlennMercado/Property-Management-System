@@ -6,7 +6,8 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <h1>NOVADECI</h1>
+            <img alt="Image placeholder" src="{{ asset('nvdcpics') }}/nvdc-logo.png">
+            <h1 class="text-green">NOVADECI</h1>
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -79,53 +80,44 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                    <a class="nav-link text-default" href="{{ route('home') }}">
+                        <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Laravel Examples') }}</span>
+                        <i class="ni ni-tv-2 text-success"></i>
+                        <span class="nav-link-text text-default">{{ __('RFDM') }}</span>
                     </a>
-
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('User profile') }}
+                                <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
+                                    <i class="text-success">•</i> {{ __('Event Inquiry Form') }}
                                 </a>
                             </li>
+
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('User Management') }}
+                                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                                    <i class="text-success">•</i> {{ __('Commercial Space Form') }}
                                 </a>
                             </li>
+
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
+                                    <i class="text-success">•</i> {{ __('Hotel Reservation Form') }}
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('icons') }}">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('map') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
-                      <i class="ni ni-bullet-list-67 text-default"></i>
-                      <span class="nav-link-text">Tables</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li>
             </ul>
             <!-- Divider -->
             <hr class="my-3">
