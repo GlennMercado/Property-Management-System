@@ -32,5 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('EventInquiryForm', function () {return view('pages.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('pages.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::get('HotelReservationForm', function () {return view('pages.HotelReservationForm');})->name('HotelReservationForm'); 
+	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs'); 
 });
 
