@@ -31,7 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::get('EventInquiryForm', function () {return view('pages.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('pages.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
-	Route::get('HotelReservationForm', function () {return view('pages.HotelReservationForm');})->name('HotelReservationForm'); 
+	Route::get('HotelReservationForm', function () {return view('pages.HotelReservationForm');})->name('HotelReservationForm');
+	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage'); 
 	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs'); 
 });
 

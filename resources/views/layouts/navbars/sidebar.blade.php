@@ -190,6 +190,23 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="navbar-examples3">
+                        <i class="ni ni-tv-2 text-success"></i>
+                        <span class="nav-link-text text-default">{{ __('Housekeeping') }}</span>
+                    </a>
+                    <div class="collapse show" id="navbar-examples3">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('newpage') }}">
+                                    <i class="text-success">•</i> {{ __('New page') }}
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
 
             </ul>
             <!-- Divider -->
