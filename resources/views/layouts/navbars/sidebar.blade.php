@@ -132,7 +132,7 @@
                         </ul>
                     </div>
                 </li>
-                <!--RFDM-->
+                <!--Inventory Management-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="navbar-examples2">
