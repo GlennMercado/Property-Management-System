@@ -32,6 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('EventInquiryForm', function () {return view('pages.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('pages.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::get('HotelReservationForm', function () {return view('pages.HotelReservationForm');})->name('HotelReservationForm');
+	//For HousekeepingandMaintenance
+	Route::get('Dashboard', function () {return view('pages.HousekeepingForms.Dashboard');})->name('Dashboard');
+	Route::get('RoomManagement', function () {return view('pages.HousekeepingForms.RoomManagement');})->name('RoomManagement');
+	Route::get('Maintenance', function () {return view('pages.HousekeepingForms.Maintenance');})->name('Maintenance');
+	Route::get('LostandFound', function () {return view('pages.HousekeepingForms.LostandFound');})->name('LostandFound');
+
 	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage');
 	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs');
 	Route::get('StockCount', function () {return view('pages.StockCount');})->name('StockCount'); 
