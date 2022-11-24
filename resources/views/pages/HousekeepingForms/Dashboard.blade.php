@@ -7,23 +7,27 @@
         <div class="row">
             <!--Available-->
             <div class="col">
-                <div class="card" style="border: 2px solid green;">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/check.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Available</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                <a href="{{ route('RoomManagement') }}">
+                    <div class="card" style="border: 2px solid green;">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ asset('housekeeping-img') }}/check.png" alt="Card image cap" style="width:30%; float:right;"/>
+                            <h5 class="card-title text-uppercase text-muted mb-0">Available</h5>
+                            <span class="h2 font-weight-bold mb-0">2,356</span>         
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <!--Lost and Found-->
             <div class="col-xl">
-                <div class="card" style="border: 2px solid blue;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/lostandfound.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Lost and Found</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                <a href="{{ route('Dashboard') }}">
+                    <div class="card" style="border: 2px solid blue;">
+                        <div class="card-body">
+                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/lostandfound.png" alt="Card image cap" style="width:30%; float:right;"/>
+                            <h5 class="card-title text-uppercase text-muted mb-0">Lost and Found</h5>
+                            <span class="h2 font-weight-bold mb-0">2,356</span>         
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <!--Maintenance-->
             <div class="col-xl">

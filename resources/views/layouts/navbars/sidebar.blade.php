@@ -116,16 +116,16 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
-                                    <i class="text-success">•</i> {{ __('Occupancy') }}
+                                <a class="nav-link text-default" href="{{ route('Maintenance') }}">
+                                    <i class="text-success">•</i> {{ __('Maintenance') }}
                                 </a>
                             </li>
 
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
-                                    <i class="text-success">•</i> {{ __('Departure') }}
+                                <a class="nav-link text-default" href="{{ route('LostandFound') }}">
+                                    <i class="text-success">•</i> {{ __('Lost and Found') }}
                                 </a>
                             </li>
 
