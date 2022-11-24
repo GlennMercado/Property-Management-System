@@ -84,6 +84,7 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
+                <!--Dashboard-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('home') }}">
                         <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Dashboard') }}
@@ -133,6 +134,21 @@
                     </div>
                 </li>
                 
+                <!--Analytics-->
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('home') }}">
+                        <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Analytics') }}
+                    </a>
+                </li>
+                
+                <!--Back Office-->
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('home') }}">
+                        <i class="ni ni-folder-17 text-success"></i> {{ __('Back Office') }}
+                    </a>
+                </li>
+
+                <!--RDFM-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="navbar-examples3">

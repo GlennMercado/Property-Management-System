@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('Maintenance', function () {return view('pages.HousekeepingForms.Maintenance');})->name('Maintenance');
 	Route::get('LostandFound', function () {return view('pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
+	//Back Office
+	Route::get('BackOffice', function () {return view('pages.BackOffice');})->name('BackOffice');
+
 	//Inventory Management
 	Route::get('StockCount', function () {return view('pages.StockCount');})->name('StockCount'); 
 	Route::get('StockAvailability', function () {return view('pages.StockAvailability');})->name('StockAvailability');  
