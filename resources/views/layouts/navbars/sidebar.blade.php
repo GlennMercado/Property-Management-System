@@ -132,10 +132,10 @@
                         </ul>
                     </div>
                 </li>
-                <!--Inventory Management-->
+                
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="navbar-examples2">
+                        aria-expanded="true" aria-controls="navbar-examples3">
                         <i class="ni ni-tv-2 text-success"></i>
                         <span class="nav-link-text text-default">{{ __('RFDM') }}</span>
                     </a>
@@ -162,7 +162,55 @@
                                     <i class="text-success">•</i> {{ __('Hotel Reservation Form') }}
                                 </a>
                             </li>
+                            </ul>
+                    </div>
+                </li>
 
+                <!--Inventory Management-->
+                <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="navbar-examples2">
+                        <i class="ni ni-tv-2 text-success"></i>
+                        <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
+                    </a>
+                    <div class="collapse show" id="navbar-examples2">
+                    <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockCount') }}">
+                                    <i class="text-success">•</i> {{ __('Create Stock Count') }}
+                                </a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
+                                    <i class="text-success">•</i> {{ __('Stock Availability Report') }}
+                                </a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                                    <i class="text-success">•</i> {{ __('Inventory Forecasting Report') }}
+                                </a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockPurchaseReport') }}">
+                                    <i class="text-success">•</i> {{ __('Purchase Order Report') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockReport') }}">
+                                    <i class="text-success">•</i> {{ __('Stock Inventory Report ') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

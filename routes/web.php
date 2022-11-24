@@ -32,7 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('EventInquiryForm', function () {return view('pages.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('pages.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::get('HotelReservationForm', function () {return view('pages.HotelReservationForm');})->name('HotelReservationForm');
-	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage'); 
-	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs'); 
+	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage');
+	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs');
+	Route::get('StockCount', function () {return view('pages.StockCount');})->name('StockCount'); 
+	Route::get('StockAvailability', function () {return view('pages.StockAvailability');})->name('StockAvailability');  
+	Route::get('StockPurchaseReport', function () {return view('pages.StockPurchaseReport');})->name('StockPurchaseReport'); 
+	Route::get('StockReport', function () {return view('pages.StockReport');})->name('StockReport'); 
 });
 
