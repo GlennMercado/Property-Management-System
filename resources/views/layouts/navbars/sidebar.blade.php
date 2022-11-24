@@ -100,7 +100,7 @@
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
+                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
                                     <i class="text-success">•</i> {{ __('Dashboard') }}
                                 </a>
                             </li>
