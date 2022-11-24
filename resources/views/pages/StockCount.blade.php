@@ -10,24 +10,62 @@
                <div class="card">
                     <div class="card-header transparent">
                     <h3 class="mb-0">Create Stock</h3>
+                    <h3></h3>
                     </div> 
                     <!--Fields-->
-                    <table>
-                        <tr><th></th><th></th><th></th></tr>
+                    <table style="align-items:center;justify-content:center">
                         <tr>
-                    <div class="col-md-3">
-                       Product Code : <input type="text" placeholder="Enter here..."></input><br /><br />
-                       Item Name : <input type="text" placeholder="Enter here..."></input>
-                    </div>
-</tr>
-</tr>
-                    <div class="col-md-3">
-                    Product Code : <input type="text" placeholder="Enter here..."></input><br /><br />
-                       Item Name : <input type="text" placeholder="Enter here..."></input>
-                    </div>
-</tr>
-                    <div class="col-md-3">
-                    </div>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <input type="button" value="Input Stock" style="background-color:yellowgreen;foreground-color:white"></input>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
+                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
+                            </td>
+                            <td> 
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                        </tr>
+                        </tr>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
+                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
+                            </td>
+                            <td> 
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
+                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
+                            </td>
+                            <td> 
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                            <td>
+                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
+                                <input type="text" placeholder="Enter here..."></input>
+                            </td>
+                        </tr>
+                    </table>
+                    
                     <!--Table-->
                     <div class="card-body">
                     <table class="table align-items-center table-flush" style="justify-content:center;text-align:center">

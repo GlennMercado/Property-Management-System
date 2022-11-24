@@ -12,6 +12,7 @@
                     <h3 class="mb-0">Stocks</h3>
                     </div> 
                     <div class="card-body">
+                    <!--TABLE-->
                     <table class="table align-items-center table-flush" style="justify-content:center;text-align:center">
                             <thead class="thead-light">
                                 <tr>
