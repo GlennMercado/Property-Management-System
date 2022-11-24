@@ -108,8 +108,8 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
-                                    <i class="text-success">•</i> {{ __('Pre - Arrival') }}
+                                <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
+                                    <i class="text-success">•</i> {{ __('Room Management') }}
                                 </a>
                             </li>
 
