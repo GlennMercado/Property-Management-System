@@ -13,7 +13,6 @@
                                 <div class = "col">
                                     <h2 class="mb-0">Create Inventory</h2>
                                 </div>
-                            
                         </div>
                         <div class = "row" >
                             <div class="col">
@@ -46,8 +45,12 @@
                                     </div>
                             </div>
                         </div>
+                        <!--Buttons-->
                         <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px;">
                             Submit
+                        </a>
+                        <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
+                            Cancel
                         </a>
                     </div>
                     
