@@ -94,11 +94,11 @@
                 <!--Housekeeping-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="navbar-examples">
+                        aria-expanded="false" aria-controls="navbar-examples">
                         <i class="ni ni-tv-2 text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Housekeeping') }}</span>
                     </a>
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Dashboard') }}">
@@ -155,7 +155,7 @@
                         <i class="ni ni-tv-2 text-success"></i>
                         <span class="nav-link-text text-default">{{ __('RFDM') }}</span>
                     </a>
-                    <div class="collapse show" id="navbar-examples2">
+                    <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
@@ -186,10 +186,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="navbar-examples3">
-                        <i class="ni ni-tv-2 text-success"></i>
+                        <i class="bi bi-collection text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
                     </a>
-                    <div class="collapse show" id="navbar-examples3">
+                    <div class="collapse" id="navbar-examples3">
                     <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
@@ -235,10 +235,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples4" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="navbar-examples4">
-                        <i class="ni ni-tv-2 text-success"></i>
+                        <i class="bi bi-person text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Guest Management') }}</span>
                     </a>
-                    <div class="collapse show" id="navbar-examples4">
+                    <div class="collapse" id="navbar-examples4">
                     <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('GuestTicket') }}">
