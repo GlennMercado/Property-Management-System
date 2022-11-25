@@ -45,9 +45,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('BackOffice', function () {return view('pages.BackOffice');})->name('BackOffice');
 
 	//Inventory Management
-	Route::get('StockCount', function () {return view('pages.StockCount');})->name('StockCount'); 
-	Route::get('StockAvailability', function () {return view('pages.StockAvailability');})->name('StockAvailability');  
-	Route::get('StockPurchaseReport', function () {return view('pages.StockPurchaseReport');})->name('StockPurchaseReport'); 
-	Route::get('StockReport', function () {return view('pages.StockReport');})->name('StockReport'); 
+	Route::get('StockCount', function () {return view('pages.Inventory.StockCount');})->name('StockCount'); 
+	Route::get('StockAvailability', function () {return view('pages.Inventory.StockAvailability');})->name('StockAvailability'); 
+	Route::get('StockForecastingReport', function () {return view('pages.Inventory.StockForecastingReport');})->name('StockForecastingReport');  
+	Route::get('StockPurchaseReport', function () {return view('pages.Inventory.StockPurchaseReport');})->name('StockPurchaseReport'); 
+	Route::get('StockReport', function () {return view('pages.Inventory.StockReport');})->name('StockReport'); 
+
+	//GuestManagement
+	
 });
 
