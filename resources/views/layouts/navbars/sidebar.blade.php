@@ -143,7 +143,7 @@
                 
                 <!--Back Office-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('home') }}">
+                    <a class="nav-link text-default" href="{{ route('BackOffice') }}">
                         <i class="ni ni-folder-17 text-success"></i> {{ __('Back Office') }}
                     </a>
                 </li>
