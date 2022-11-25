@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('StockReport', function () {return view('pages.Inventory.StockReport');})->name('StockReport'); 
 
 	//GuestManagement
+	Route::get('GuestTicket', function () {return view('pages.Guestmanage.GuestTicket');})->name('GuestTicket');
+	Route::get('GuestTicketManager', function () {return view('pages.Guestmanage.GuestTicketManager');})->name('GuestTicketManager'); 
 	
 });
 
