@@ -9,62 +9,18 @@
                 <div class="col">
                <div class="card">
                     <div class="card-header transparent">
-                    <h3 class="mb-0">Create Stock</h3>
-                    <h3></h3>
+                    <div class = "row">    
+                    <div class = "col">
+                    <h3 class="mb-0">Stocks</h3>
+                        </div>
+                        <div class = "col">
+                            <a  href="{{ route('CreateInventory') }}" class = "btn btn-primary" style = "float:right;">
+                            Create Inventory
+                        </a>
+                    
+                        </div>
+                    </div>
                     </div> 
-                    <!--Fields-->
-                    <table style="align-items:center;justify-content:center">
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <input type="button" value="Input Stock" style="background-color:yellowgreen;foreground-color:white"></input>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
-                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
-                            </td>
-                            <td> 
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                        </tr>
-                        </tr>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
-                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
-                            </td>
-                            <td> 
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Product Code :</span> 
-                                <input type="text" placeholder="Enter here..."></input><br /><br /> 
-                            </td>
-                            <td> 
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                            <td>
-                                <span class="h3 font-weight-bold mb-0">Item Name :</span> 
-                                <input type="text" placeholder="Enter here..."></input>
-                            </td>
-                        </tr>
-                    </table>
                     
                     <!--Table-->
                     <div class="card-body">
@@ -97,7 +53,7 @@
                                         4
                                     </td>
                                     <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight;foreground-color:white"></input>
+                                        <input type="submit" value="View" class = "btn btn-primary">
                                     </td>
                                 </tr>
                                 <tr>
@@ -117,7 +73,7 @@
                                         50
                                     </td>
                                     <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight"></input>
+                                    <input type="submit" value="View" class = "btn btn-primary">
                                     </td>
                                 </tr>
                                 <tr>
@@ -137,7 +93,7 @@
                                         2
                                     </td>
                                     <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight"></input>
+                                    <input type="submit" value="View" class = "btn btn-primary">
                                     </td>
                                 </tr>
 
