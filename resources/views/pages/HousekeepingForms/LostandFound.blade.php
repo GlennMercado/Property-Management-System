@@ -2,12 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
- 
-<style>
-    .table td{
-        font-size:medium;
-    }    
-</style>   
+   
     <div class="container-fluid mt--7">  
         <div class="row">
                 <div class="col-xl">
@@ -29,14 +24,14 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" style="font-size: medium;">ID</th>
-                                        <th scope="col" style="font-size: medium;">Created On</th>
-                                        <th scope="col" style="font-size: medium;">Status</th>
-                                        <th scope="col" style="font-size: medium;">Room</th>
-                                        <th scope="col" style="font-size: medium;">Location</th>
-                                        <th scope="col" style="font-size: medium;">Item Description</th>
-                                        <th scope="col" style="font-size: medium;">Updated On</th>
-                                        <th scope="col" style="font-size: medium;">
+                                        <th scope="col" >ID</th>
+                                        <th scope="col" >Created On</th>
+                                        <th scope="col" >Status</th>
+                                        <th scope="col" >Room</th>
+                                        <th scope="col" >Location</th>
+                                        <th scope="col" >Item Description</th>
+                                        <th scope="col" >Updated On</th>
+                                        <th scope="col" >
                                             <i class="bi bi-gear"></i>
                                         </th>
                                     </tr>

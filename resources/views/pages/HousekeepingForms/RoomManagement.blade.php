@@ -118,7 +118,9 @@
                 </div>
             </div>
         </div>
-
+        <a href="{{ route('Dashboard') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+            Go Back
+        </a>
         
             @include('layouts.footers.auth')
     
@@ -129,3 +131,4 @@
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush
+

@@ -20,11 +20,16 @@
                         <h1>testing</h1>
                         <h1>testing</h1>
                         <h1>testing</h1>
+                        <a href="{{ route('BackOffice') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+                          Go Back
+                      </a>  
                   </div>
                 </div>
               </div>
             </div>
         @include('layouts.footers.auth')
+
+        
     </div>
 @endsection
 

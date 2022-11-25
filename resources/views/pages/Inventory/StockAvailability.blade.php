@@ -45,7 +45,10 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
+
                                         <a href="#" class="btn btn-primary">View</a>
+                                        </a>
+                                        
                                     </td>
                                 </tr>
                             </tbody>
@@ -54,6 +57,9 @@
                 </div>
             </div>
         </div>
+        <a href="{{ route('Dashboard') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+            Go Back
+        </a>
 
             @include('layouts.footers.auth')
     </div>
