@@ -31,8 +31,19 @@
                                 <input type="text" class = "form-control" placeholder = "Enter Stocks Details   " required>
                             </div>
                             <div class="col">
-                                <h4>Stocks Name</h4>
-                                <input type="text" class = "form-control" placeholder = "Enter Stocks Name" required>
+                                <h4>Stock Types</h4>
+                                <div class="dropdown show">
+                                    <!--Dropdown-content-->
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style = "width: 150%;">
+                                        Stock Sample 1
+                                    </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style = "width: 150%;">
+                                            <a class="dropdown-item" href="#">Stock Sample 1</a>
+                                            <a class="dropdown-item" href="#">Stock Sample 2</a>
+                                            <a class="dropdown-item" href="#">Stock Sample 3</a>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                         <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px;">
