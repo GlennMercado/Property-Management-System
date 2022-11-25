@@ -5,7 +5,7 @@
 
 
     <div class="header py-9 py-lg-7">
-        <div class="container-fluid mt--8 parallax-item">
+        <div class="container-fluid mt--8 nvdcbg">
             <div class="text-center">
                 <h1 class="text-white">WELCOME TO</h1>
                 <h1 class="display-1 text-white">NOVADECI PROPERTIES</h1>
@@ -51,69 +51,55 @@
                     </div>
                 </div>
             </div>
+            
+
 
         </div>
-    </div>
-    <div class="row justify-content-center parallax-item">
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
-        </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
-        </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
-        </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
+        <div class="text-center bg-white" style="width:100%">
+            <div class="row">
+                <div class="col"><span>Column</span></div>
+                <div class="col"><span>Column</span></div>
+              </div>
         </div>
     </div>
 
-    <div class="row justify-content-center parallax-item">
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
+    {{-- <div class="row justify-content-center parallax-item">
+        <div class="card col-md-4 cards1" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                    the card's content.</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+        <div class="card col-md-4 cards1" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                    the card's content.</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+        <div class="card col-md-4 cards1" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                    the card's content.</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+        <div class="card col-md-4 cards1" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                    the card's content.</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
     </div>
 
     <div class="row justify-content-center parallax-item">
@@ -138,6 +124,29 @@
             animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
         </h1>
     </div>
+
+    <div class="row justify-content-center parallax-item">
+        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
+            quia
+            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
+        </h1>
+        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
+            quia
+            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
+        </h1>
+        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
+            quia
+            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
+        </h1>
+        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
+            quia
+            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
+        </h1>
+        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
+            quia
+            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
+        </h1>
+    </div> --}}
 
 
 
@@ -154,16 +163,10 @@
             height: 250px;
         }
 
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
         html {
             scroll-behavior: smooth;
         }
-
-        .parallax-item {
+        .nvdcbg {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -171,38 +174,10 @@
             font-family: Montserrat, sans-serif;
             width: 100%;
             min-height: 100vh;
-        }
-
-        .parallax-item h2 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            background-color: whitesmoke;
-            padding: 1rem;
-            border-radius: 1rem;
-        }
-
-        .parallax-item:first-child {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("nvdcpics/nvdcpic4.png");
             background-size: cover;
         }
-
-        .parallax-item:nth-child(2) {
-            background: whitesmoke;
-        }
-
-        .parallax-item:nth-child(3) {
-            background: url("nvdcpics/nvdcpic1.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            /* Parallax Effect for DIV 3 */
-            min-height: 600px;
-        }
-
-        .parallax-item:nth-child(4) {
-            background: whitesmoke;
-        }
-
+       
         @media screen and (max-width: 768px) {
             .parallax-item h2 {
                 font-size: 1.5rem;
