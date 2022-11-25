@@ -2,29 +2,26 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
-    <div class="container-fluid mt--7">
-        <div class="container-fluid mt--6">
-            <div class="row justify-content-center">
-                <div class="col">
-               <div class="card">
-                    <div class="card-header transparent">
-                    <div class = "row">    
-                    <div class = "col">
-                    <h3 class="mb-0">Stocks</h3>
-                        </div>
-                        <div class = "col">
-                            <a  href="{{ route('CreateInventory') }}" class = "btn btn-primary" style = "float:right;">
-                            Create Inventory
-                        </a>
-                    
+                        <!--<input type="submit" value="View" class = "btn btn-primary">-->
+                        <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class = "col">
+                                    <a  href="{{ route('CreateInventory') }}" class = "btn btn-primary" style = "float:right;">
+                                    Create Inventory
+                                    </a>
+                                </div>
+                                <h3 class="mb-0">Stocks</h3>
+                            </div>
                         </div>
                     </div>
-                    </div> 
-                    
-                    <!--Table-->
-                    <div class="card-body">
-                    <table class="table align-items-center table-flush" style="justify-content:center;text-align:center">
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Product Code</th>
@@ -37,77 +34,36 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">
-                                        Item 1
-                                    </th>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
                                     <td>
-                                        Item Sample Bed
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so far
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="View" class = "btn btn-primary">
+                                    <a href="#" class="btn btn-primary" style = "background:white; border-color:#3FC078"><i class = "bi bi-eye" style = "color:#3FC078;"></i></a>
+                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:black"><i class="bi bi-pencil-square" style = "color:black;"></i></a>
+                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:red"><i class="bi bi-x-circle" style = "color:red;"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">
-                                        Item 2
-                                    </th>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
                                     <td>
-                                        Item Sample Chairs
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so Far
-                                    </td>
-                                    <td>
-                                        50
-                                    </td>
-                                    <td>
-                                    <input type="submit" value="View" class = "btn btn-primary">
+                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:#3FC078"><i class = "bi bi-eye" style = "color:#3FC078;"></i></a>
+                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:black"><i class="bi bi-pencil-square" style = "color:black;"></i></a>
+                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:red"><i class="bi bi-x-circle" style = "color:red;"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Item 3
-                                    </th>
-                                    <td>
-                                        Item Sample Table Glass
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so Far
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                    <input type="submit" value="View" class = "btn btn-primary">
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
+        </div>
 
-
-
-            </div>
-
-            </div>
             @include('layouts.footers.auth')
         </div>
     @endsection
