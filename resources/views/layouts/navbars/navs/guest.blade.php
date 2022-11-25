@@ -1,10 +1,10 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-white">
-    <div class="container px-4">
+    <div class="container px-2">
         <a class="navbar-brand" href="{{ route('home') }}">
             <h1 class="text-success">NOVADECI Properties</h1>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="ni ni-bullet-list-67 text-dark"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <!-- Collapse header -->
@@ -19,7 +19,7 @@
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
                             <span></span>
                             <span></span>
                         </button>
