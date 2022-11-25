@@ -52,6 +52,9 @@
                         <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
                             Cancel
                         </a>
+                        <a href="{{ route('StockCount') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+                            Go Back
+                        </a>
                     </div>
                     
                 </div> 
