@@ -87,7 +87,7 @@
                 <!--Dashboard-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('home') }}">
-                        <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Dashboard') }}
+                    <i class="bi bi-palette text-success"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
