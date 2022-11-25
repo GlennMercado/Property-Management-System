@@ -4,16 +4,19 @@
     @include('layouts.headers.cards')
 
     <div class="container-fluid mt--7">
-        <div class="container-fluid mt--6">
-            <div class="row justify-content-center">
-                <div class="col">
-               <div class="card">
-                    <div class="card-header transparent">
-                    <h3 class="mb-0">Stocks</h3>
-                    </div> 
-                    <div class="card-body">
-                    <!--TABLE-->
-                    <table class="table align-items-center table-flush" style="justify-content:center;text-align:center">
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Stocks</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Product Code</th>
@@ -26,79 +29,34 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">
-                                        Item 1
-                                    </th>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
                                     <td>
-                                        Item Sample Bed
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so far
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight;text-color:white"></input>
+                                        <a href="#" class="btn btn-primary">View</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">
-                                        Item 2
-                                    </th>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
+                                    <td>Sample Data</td>
                                     <td>
-                                        Item Sample Chairs
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so Far
-                                    </td>
-                                    <td>
-                                        50
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight"></input>
+                                        <a href="#" class="btn btn-primary">View</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Item 3
-                                    </th>
-                                    <td>
-                                        Item Sample Table Glass
-                                    </td>
-                                    <td>
-                                        Capstone Example
-                                    </td>
-                                    <td>
-                                        None so Far
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="VIEW" style="background-color:Highlight"></input>
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
-
-
-
-            </div>
-
-            </div>
-            @include('layouts.footers.auth')
         </div>
+
+            @include('layouts.footers.auth')
+    </div>
     @endsection
 
     @push('js')
