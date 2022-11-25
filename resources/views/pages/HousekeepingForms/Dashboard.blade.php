@@ -19,7 +19,7 @@
             </div>
             <!--Lost and Found-->
             <div class="col-xl">
-                <a href="{{ route('Dashboard') }}">
+                <a href="{{ route('LostandFound') }}">
                     <div class="card" style="border: 2px solid blue;">
                         <div class="card-body">
                         <img class="card-img-top" src="{{ asset('housekeeping-img') }}/lostandfound.png" alt="Card image cap" style="width:30%; float:right;"/>
@@ -31,13 +31,15 @@
             </div>
             <!--Maintenance-->
             <div class="col-xl">
-                <div class="card" style="border: 2px solid red;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/maintenance.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Maintenance</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                <a href="{{ route('Maintenance') }}">
+                    <div class="card" style="border: 2px solid red;">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ asset('housekeeping-img') }}/maintenance.png" alt="Card image cap" style="width:30%; float:right;"/>
+                            <h5 class="card-title text-uppercase text-muted mb-0">Maintenance</h5>
+                            <span class="h2 font-weight-bold mb-0">2,356</span>         
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <!--Alerts-->
             <div class="col-xl">

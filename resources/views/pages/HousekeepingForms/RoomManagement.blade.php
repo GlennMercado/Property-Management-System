@@ -2,6 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
+ 
     
     <div class="container-fluid mt--7">                 
         <div class="row">
@@ -10,7 +11,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Sample </h3>
+                                <h3 class="mb-0">Room Management</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -22,29 +23,55 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Sample Field</th>
-                                    <th scope="col">Sample Field</th>
-                                    <th scope="col">Sample Field</th>
-                                    <th scope="col">Sample Field</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Room Type</th>
+                                    <th scope="col">Housekeeping Status</th>
+                                    <th scope="col">Priority</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
+                                    <td>101</td>
+                                    <td>Family Room</td>
                                     <td>
-                                        <!--<i class="fas fa-arrow-up text-success mr-3"></i> 46,53%-->
-                                        Sample Data
+                                        <select class="form-control" value="" style="width:auto;">
+                                            <option value="Available">Available</option>
+                                            <option value="Dirty">Dirty</option>
+                                            <option value="Checked">Checked</option>
+                                            <option value="Cleaning">Cleaning</option>
+                                            <option value="Out of Service">Out of Service</option>
+                                            <option value="Out of Order">Out of Order</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" style="width:auto;">
+                                            <option value="Low">Low</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="High">High</option>
+                                            <option value="Top Priority">Top Priority</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
+                                    <td>102</td>
+                                    <td>Single Room</td>
                                     <td>
-                                        <!--<i class="fas fa-arrow-up text-success mr-3"></i> 46,53%-->
-                                        Sample Data
+                                        <select class="form-control" value="" style="width:auto;">
+                                            <option value="Available">Available</option>
+                                            <option value="Dirty">Dirty</option>
+                                            <option value="Checked">Checked</option>
+                                            <option value="Cleaning">Cleaning</option>
+                                            <option value="Out of Service">Out of Service</option>
+                                            <option value="Out of Order">Out of Order</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" style="width:auto;">
+                                            <option value="Low">Low</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="High">High</option>
+                                            <option value="Top Priority">Top Priority</option>
+                                        </select>
                                     </td>
                                 </tr>
                             </tbody>
