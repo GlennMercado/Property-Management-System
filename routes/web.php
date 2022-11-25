@@ -48,7 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('StockCount', function () {return view('pages.Inventory.StockCount');})->name('StockCount'); 
 	Route::get('CreateInventory', function () {return view('pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 	Route::get('StockAvailability', function () {return view('pages.Inventory.StockAvailability');})->name('StockAvailability'); 
-	Route::get('StockForecastingReport', function () {return view('pages.Inventory.StockForecastingReport');})->name('StockForecastingReport');  
 	Route::get('StockPurchaseReport', function () {return view('pages.Inventory.StockPurchaseReport');})->name('StockPurchaseReport'); 
 	Route::get('StockReport', function () {return view('pages.Inventory.StockReport');})->name('StockReport'); 
 

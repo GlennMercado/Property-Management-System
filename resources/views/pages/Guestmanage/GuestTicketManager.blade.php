@@ -15,7 +15,46 @@
                         </div>
                     </div>
                     </div> 
-                    
+
+                    <!--Filters-->
+                    <div class="row">
+                    <div class="col-mb-3">
+                    <select class="form-control" id="example-category-input" required>
+                        <option>Email A --> G</option>
+                        <option>Hotel</option>
+                        <option>Convention Center</option>
+                        <option>Function Room</option>
+                        <option>Sports Center</option>
+                        <option>Stalls</option>
+                      </select>
+                    </div>
+                    <br />
+                    <div class="col-mb-3">
+                      <select class="form-control" id="example-category-input" required>
+                        <option>Email H -->Z</option>
+                        <option>Hotel</option>
+                        <option>Convention Center</option>
+                        <option>Function Room</option>
+                        <option>Sports Center</option>
+                        <option>Stalls</option>
+                      </select>
+                    </div>
+                    <div class="col-mb-3">
+                      <select class="form-control" id="example-category-input" required>
+                        <option>Pick Category</option>
+                        <option>Hotel</option>
+                        <option>Convention Center</option>
+                        <option>Function Room</option>
+                        <option>Sports Center</option>
+                        <option>Stalls</option>
+                      </select>
+                    </div>
+                    <div class="col-mb-3">
+                        <input type=submit value="Filter" class="btn btn-primary">
+                    </div>
+               </div>
+
+
                     <!--Table-->
                     <div class="card-body">
                     <table class="table align-items-center table-flush" style="justify-content:center;text-align:center">
