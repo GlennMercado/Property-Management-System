@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
+<form>
     <div class="container-fluid mt--7">
         <div class="container-fluid mt--6">
             <div class="row justify-content-center">
@@ -46,9 +46,7 @@
                             </div>
                         </div>
                         <!--Buttons-->
-                        <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px;">
-                            Submit
-                        </a>
+                        <button class="btn btn-primary" type="submit" style = "float:right; margin-top:20px;">Submit</button>
                         <a href="#" class = "btn btn-primary" style = "float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
                             Cancel
                         </a>
@@ -68,7 +66,7 @@
 
 
 
-            
+</form>     
         
             @include('layouts.footers.auth')
     </div>

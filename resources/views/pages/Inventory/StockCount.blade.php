@@ -40,9 +40,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                    <a href="#" class="btn btn-primary" style = "background:white; border-color:#3FC078"><i class = "bi bi-eye" style = "color:#3FC078;"></i></a>
-                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:black"><i class="bi bi-pencil-square" style = "color:black;"></i></a>
-                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:red"><i class="bi bi-x-circle" style = "color:red;"></i></a>
+                                        <i class="bi bi-eye"></i>
+                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-x-circle"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -52,9 +52,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:#3FC078"><i class = "bi bi-eye" style = "color:#3FC078;"></i></a>
-                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:black"><i class="bi bi-pencil-square" style = "color:black;"></i></a>
-                                        <a href="#" class="btn btn-primary" style = "background:white; border-color:red"><i class="bi bi-x-circle" style = "color:red;"></i></a>
+                                        <i class="bi bi-eye"></i>
+                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-x-circle"></i>
                                     </td>
                                 </tr>
                             </tbody>
