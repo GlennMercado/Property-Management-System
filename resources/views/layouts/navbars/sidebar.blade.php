@@ -151,7 +151,7 @@
                 <!--RDFM-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="navbar-examples3">
+                        aria-expanded="false" aria-controls="navbar-examples3">
                         <i class="ni ni-tv-2 text-success"></i>
                         <span class="nav-link-text text-default">{{ __('RFDM') }}</span>
                     </a>
@@ -185,7 +185,7 @@
                 <!--Inventory Management-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="navbar-examples3">
+                        aria-expanded="false" aria-controls="navbar-examples3">
                         <i class="bi bi-collection text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
                     </a>
@@ -226,7 +226,7 @@
                 <!--Guest Management-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples4" data-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="navbar-examples4">
+                        aria-expanded="false" aria-controls="navbar-examples4">
                         <i class="bi bi-person text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Guest Management') }}</span>
                     </a>
