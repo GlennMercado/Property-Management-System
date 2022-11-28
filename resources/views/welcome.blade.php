@@ -164,25 +164,35 @@
         <div class="row d-flex justify-content-center">
             <div class="card col-md-5 cards1">
                 <div class="strike">
-                    <span><h1>MAP</h1></span>
+                    <span>
+                        <h1>MAP</h1>
+                    </span>
                 </div>
-                <div class="mapouter">
-                    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
-                            marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                            href="https://formatjson.org/">format json</a></div>
+                <h3 class="text-center">RAISING COMFORT AND CONVINIENCE</h3>
+                <div class="shadow1">">
+                    <div class="mapouter">
+                        <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
+                                scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+                                href="https://formatjson.org/">format json</a>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="card-body">
                     <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
                 </div>
             </div>
-
         </div>
 
     </div>
 
     <style>
+        .shadow1 {
+            -webkit-box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
+            -moz-box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
+            box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
+        }
+
         .mapouter {
             position: relative;
             text-align: right;
@@ -254,8 +264,8 @@
             position: absolute;
             top: 50%;
             width: 9999px;
-            height: 1px;
-            background: rgb(51, 51, 51);
+            height: 3px;
+            background: rgb(94, 94, 94);
         }
 
         .strike>span:before {
