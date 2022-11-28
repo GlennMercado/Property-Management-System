@@ -75,11 +75,15 @@
                         the card's content.</p>
                 </div>
             </div>
-            <div class="col-md-6 text-center mt-6">
-                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
-                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
-                    possimus provident ullam autem rerum a.
-                </h1>
+            <div class="col-md-6 text-left mt-6 ">
+                <h2>RAISING COMFORT AND CONVINIENCE</h2>
+                <h1>Welcome to NOVADECI Convention Center</h1>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
+                </p>
+                <button type="button" class="btn btn-default shadow1" style="border-radius: 25px;">Read more</button>
 
 
             </div>
@@ -100,10 +104,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-center mt-6">
-                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
-                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
-                    possimus provident ullam autem rerum a.
-                </h1>
+               
 
 
             </div>
