@@ -1,10 +1,10 @@
-<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-white">
+<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-2">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <h1 class="text-success">NOVADECI Properties</h1>
+            <h2 class="text-white">NOVADECI Properties</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="ni ni-bullet-list-67 text-dark"></span>
+            <span class="ni ni-bullet-list-67 text-white"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <!-- Collapse header -->
@@ -29,31 +29,31 @@
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-success" href="{{ route('login') }}">
+                    <a class="nav-link nav-link-icon text-white" href="{{ route('login') }}">
                         <i class="ni ni-key-25"></i>
                         <span class="nav-link-inner--text">{{ __('Login') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-success" href="{{ route('register') }}">
+                    <a class="nav-link nav-link-icon text-white" href="{{ route('register') }}">
                         <i class="ni ni-circle-08"></i>
                         <span class="nav-link-inner--text">{{ __('Register') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-success" href="{{ route('profile.edit') }}">
+                    <a class="nav-link nav-link-icon text-white" href="{{ route('profile.edit') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Profile') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-success" href="{{ route('AboutUs') }}">
+                    <a class="nav-link nav-link-icon text-white" href="{{ route('AboutUs') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('About Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-success" href="{{ route('profile.edit') }}">
+                    <a class="nav-link nav-link-icon text-white" href="{{ route('profile.edit') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
@@ -62,3 +62,8 @@
         </div>
     </div>
 </nav>
+<style>
+    body{
+        overflow-x: hidden;
+    }
+</style>

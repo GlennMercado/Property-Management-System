@@ -4,156 +4,203 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
 
 
-    <div class="header py-9 py-lg-7">
-        <div class="container-fluid mt--8 nvdcbg">
-            <div class="text-center">
-                <h1 class="text-white">WELCOME TO</h1>
+
+    <div class="container-fluid nvdcbg">
+        <div class="text-center mt-7">
+            <div style="text-shadow: black 0.1em 0.1em 0.2em;">
                 <h1 class="display-1 text-white">NOVADECI PROPERTIES</h1>
-                <h3 class="text-white">Hotel | Convention Center | Commercial Spaces | Function Rooms
+                <h3><a href="#hotelRooms" class="text-white">Hotel</a> | <a href="#conventionCenter"
+                        class="text-white">Convention Center</a> | <a href="#commercialSpaces" class="text-white">Commercial
+                        Spaces</a> | <a href="#functionRooms" class="text-white">Function Rooms</a>
                 </h3>
                 <br>
-                <div class="row">
-                    <div class="card-body bg-white" style="border-radius: 15px">
-                        <h1>Book a Hotel Room</h1>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h4 class="text-left">Check In: </h4>
-                                <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
-                                    id="example-datetime-local-input" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <h4 class="text-left">Check Out: </h4>
-                                <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
-                                    id="example-datetime-local-input" required>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                Book Now
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Book a Hotel Room</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="card-body bg-white" style="border-radius: 18px">
+                                    <p class="text-left">Check In: </p>
+                                    <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
+                                        id="example-datetime-local-input" required>
+                                    <p class="text-left">Check Out: </p>
+                                    <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
+                                        id="example-datetime-local-input" required>
+                                    <p class="text-left">Room: </p>
+                                    <input class="form-control" type="number" value="1" id="example-number-input"
+                                        min="0" required>
+                                    <p class="text-left">No. of Adult: </p>
+                                    <input class="form-control" type="number" value="1" id="example-number-input"
+                                        min="0" required>
+                                    <p class="text-left">No. of Child: </p>
+                                    <input class="form-control" type="number" value="1" id="example-number-input"
+                                        min="0" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h4 class="text-left">Room: </h4>
-                                <input class="form-control" type="number" value="1" id="example-number-input"
-                                    min="0" required>
-                            </div>
-                            <div class="col-sm-3">
-                                <h4 class="text-left">No. of Adult: </h4>
-                                <input class="form-control" type="number" value="1" id="example-number-input"
-                                    min="0" required>
-                            </div>
-                            <div class="col-sm-3">
-                                <h4 class="text-left">No. of Child: </h4>
-                                <input class="form-control" type="number" value="1" id="example-number-input"
-                                    min="0" required>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Book now</button>
                         </div>
-
-                        <br>
-                        <button type="button" class="btn btn-success col-sm-5">Book Now</button>
                     </div>
                 </div>
             </div>
-            
-
 
         </div>
-        <div class="text-center bg-white" style="width:100%">
-            <div class="row">
-                <div class="col"><span>Column</span></div>
-                <div class="col"><span>Column</span></div>
-              </div>
+
+
+
+    </div>
+    <div class="container-fluid bg-white" id="#hotelRooms">
+        <div class="row d-flex justify-content-center">
+            <div class="card col-md-5 cards1">
+                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="height: 350px">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="col-md-6 text-center mt-6">
+                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
+                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
+                    possimus provident ullam autem rerum a.
+                </h1>
+
+
+            </div>
+
         </div>
+
     </div>
 
-    {{-- <div class="row justify-content-center parallax-item">
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
+    <div class="container-fluid bg-white" id="conventionCenter">
+        <div class="row d-flex justify-content-center">
+            <div class="card col-md-5 cards1">
+                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="height: 350px">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
             </div>
-        </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
+            <div class="col-md-6 text-center mt-6">
+                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
+                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
+                    possimus provident ullam autem rerum a.
+                </h1>
+
+
             </div>
+
         </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
-        </div>
-        <div class="card col-md-4 cards1" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
-                <a href="#" class="btn btn-primary">View</a>
-            </div>
-        </div>
+
     </div>
 
-    <div class="row justify-content-center parallax-item">
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
+    <div class="container-fluid bg-white" id="commercialSpaces">
+        <div class="row d-flex justify-content-center">
+            <div class="card col-md-5 cards1">
+                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="height: 350px">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="col-md-6 text-center mt-6">
+                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
+                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
+                    possimus provident ullam autem rerum a.
+                </h1>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container-fluid bg-white" id="commercialSpaces">
+        <div class="row d-flex justify-content-center">
+            <div class="card col-md-5 cards1">
+                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="height: 350px">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="col-md-6 text-center mt-6" id="functionRooms">
+                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
+                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
+                    possimus provident ullam autem rerum a.
+                </h1>
+
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="row justify-content-center parallax-item">
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus explicabo quas sunt, magni
-            quia
-            animi at accusantium saepe officia in dolor odio incidunt voluptate eveniet ab dolorem facere eius?
-        </h1>
-    </div> --}}
+    <div class="container-fluid bg-white" id="commercialSpaces">
 
+        <div class="row d-flex justify-content-center">
+            <div class="card col-md-5 cards1">
+                <div class="strike">
+                    <span><h1>MAP</h1></span>
+                </div>
+                <div class="mapouter">
+                    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0"
+                            src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+                            href="https://formatjson.org/">format json</a></div>
+                </div>
 
+                <div class="card-body">
+                    <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
+                </div>
+            </div>
 
+        </div>
 
-
+    </div>
 
     <style>
+        .mapouter {
+            position: relative;
+            text-align: right;
+            width: 100%;
+            height: 369px;
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            width: 100%;
+            height: 369px;
+        }
+
+        .gmap_iframe {
+            height: 369px !important;
+        }
+
         .cards1 {
             margin: 10px;
         }
@@ -166,6 +213,7 @@
         html {
             scroll-behavior: smooth;
         }
+
         .nvdcbg {
             display: flex;
             align-items: center;
@@ -174,10 +222,10 @@
             font-family: Montserrat, sans-serif;
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("nvdcpics/nvdcpic4.png");
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("nvdcpics/nvdcpic4.png");
             background-size: cover;
         }
-       
+
         @media screen and (max-width: 768px) {
             .parallax-item h2 {
                 font-size: 1.5rem;
@@ -187,17 +235,40 @@
         h4 {
             margin-top: 5px;
         }
-    </style>
-    <script>
-        const parallax = document.getElementById("parallax");
 
-        // Parallax Effect for DIV 1
-        window.addEventListener("scroll", function() {
-            let offset = window.pageYOffset;
-            parallax.style.backgroundPositionY = offset * 0.7 + "px";
-            // DIV 1 background will move slower than other elements on scroll.
-        });
-    </script>
+        .strike {
+            display: block;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .strike>span {
+            position: relative;
+            display: inline-block;
+        }
+
+        .strike>span:before,
+        .strike>span:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 1px;
+            background: rgb(51, 51, 51);
+        }
+
+        .strike>span:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+
+        .strike>span:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+    </style>
+
     </div>
     <div class="container mt--10 pb-5"></div>
 @endsection
