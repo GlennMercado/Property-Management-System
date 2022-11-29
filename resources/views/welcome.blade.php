@@ -2,14 +2,11 @@
 
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-
-
-
     <div class="container-fluid nvdcbg">
         <div class="text-center mt-7">
             <div style="text-shadow: black 0.1em 0.1em 0.2em;">
                 <h1 class="display-1 text-white">NOVADECI PROPERTIES</h1>
-                <h3><a href="#hotelRooms" class="text-white">Hotel</a> | <a href="#conventionCenter"
+                <h3 class="text-white"><a href="#hotelRooms" class="text-white">Hotel</a> | <a href="#conventionCenter"
                         class="text-white">Convention Center</a> | <a href="#commercialSpaces" class="text-white">Commercial
                         Spaces</a> | <a href="#functionRooms" class="text-white">Function Rooms</a>
                 </h3>
@@ -61,26 +58,18 @@
             </div>
 
         </div>
-
-
-
     </div>
     <div class="container-fluid bg-white" id="#hotelRooms">
         <div class="row d-flex justify-content-center">
-            <div class="card col-md-5 cards1">
-                <img class="card-img-top mt-5" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
-                    style="height: 350px">
-                <div class="card-body">
-                    <h5 class="card-title">Convention Center</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                </div>
+            <div class="cards1" style="">
+                <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="height: 350px;">
             </div>
             <div class="col-md-6 text-left mt-6 ">
                 <h1>_______</h1>
                 <h3>RAISING COMFORT AND CONVINIENCE</h3>
                 <h1>Welcome to NOVADECI Convention Center</h1>
-                <div style="margin-left: 4%;">
+                <div style="margin-left: 7%;">
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur
                         possimus
@@ -96,7 +85,7 @@
                         ipsum officiis illum quo tempora.
 
                     </p>
-                    <button type="button" class="btn btn-default shadow1" style="border-radius: 25px;">Read more</button>
+                    <button type="button" class="btn btn-default shadow2" style="border-radius: 25px;">Read more</button>
                 </div>
 
             </div>
@@ -107,7 +96,7 @@
 
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
-            <div class="col-md-9 mt-6">
+            <div class="col-md-9 mt-5">
                 <img class="card-img" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="height: 55%">
             </div>
         </div>
@@ -168,7 +157,7 @@
     <div class="container-fluid bg-white" id="commercialSpaces">
 
         <div class="row d-flex justify-content-center">
-            <div class="col-md-5 cards1">
+            <div class="col-md-8 cards1">
                 <div class="strike">
                     <span>
                         <h1>MAP</h1>
@@ -194,9 +183,15 @@
 
     <style>
         .shadow1 {
-            -webkit-box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
-            box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
+            -moz-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
+            box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
+        }
+
+        .shadow2 {
+            -webkit-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
+            -moz-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
+            box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
         }
 
         .mapouter {
@@ -223,7 +218,7 @@
 
         .cards1 img {
             width: 100%;
-            height: 250px;
+            height: 300px;
         }
 
         html {
@@ -234,7 +229,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
             font-family: Montserrat, sans-serif;
             width: 100%;
             min-height: 100vh;

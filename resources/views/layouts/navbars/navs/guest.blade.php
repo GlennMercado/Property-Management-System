@@ -10,18 +10,14 @@
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
-                    <div class="col-6 collapse-brand">
+                    <div class="col-8 collapse-brand">
                         <a href="{{ route('home') }}">
-                             <h1>NOVADECI Properties</h1>
-                             <br>
-                             <br>
-                             <br>
+                             <h3>NOVADECI PROPERTIES</h3>
                         </a>
                     </div>
-                    <div class="col-6 collapse-close">
+                    <div class="col-4 collapse-close">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                            <span></span>
-                            <span></span>
+
                         </button>
                     </div>
                 </div>
@@ -56,6 +52,12 @@
                     <a class="nav-link nav-link-icon text-white" href="{{ route('profile.edit') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon text-white" href="">
+                        <i class="ni ni-single-02"></i>
+                        <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
             </ul>
