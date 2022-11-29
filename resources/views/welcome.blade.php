@@ -16,7 +16,8 @@
                 <br>
             </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal"
+                style="border-radius: 20px;">
                 Book Now
             </button>
             <!-- Modal -->
@@ -67,24 +68,36 @@
     <div class="container-fluid bg-white" id="#hotelRooms">
         <div class="row d-flex justify-content-center">
             <div class="card col-md-5 cards1">
-                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                <img class="card-img-top mt-5" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
                     style="height: 350px">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Convention Center</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                         the card's content.</p>
                 </div>
             </div>
             <div class="col-md-6 text-left mt-6 ">
-                <h2>RAISING COMFORT AND CONVINIENCE</h2>
+                <h1>_______</h1>
+                <h3>RAISING COMFORT AND CONVINIENCE</h3>
                 <h1>Welcome to NOVADECI Convention Center</h1>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur possimus dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam. Exercitationem ipsum officiis illum quo tempora.
-                </p>
-                <button type="button" class="btn btn-default shadow1" style="border-radius: 25px;">Read more</button>
+                <div style="margin-left: 4%;">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur
+                        possimus
+                        dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam.
+                        Exercitationem
+                        ipsum officiis illum quo tempora.
+                        <br>
+                        <br>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam odit asperiores in aspernatur
+                        possimus
+                        dolores dignissimos, sunt voluptas officiis blanditiis iste assumenda, quidem laboriosam.
+                        Exercitationem
+                        ipsum officiis illum quo tempora.
 
+                    </p>
+                    <button type="button" class="btn btn-default shadow1" style="border-radius: 25px;">Read more</button>
+                </div>
 
             </div>
 
@@ -93,31 +106,23 @@
     </div>
 
     <div class="container-fluid bg-white" id="conventionCenter">
-        <div class="row d-flex justify-content-center">
-            <div class="card col-md-5 cards1">
-                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
-                    style="height: 350px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-md-9 mt-6">
+                <img class="card-img" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="height: 55%">
             </div>
-            <div class="col-md-6 text-center mt-6">
-               
-
-
-            </div>
-
         </div>
-
     </div>
-
     <div class="container-fluid bg-white" id="commercialSpaces">
+        <div class="strike col-md-12">
+            <span>
+                <h1>RECENT POSTS</h1>
+            </span>
+        </div>
         <div class="row d-flex justify-content-center">
+
             <div class="card col-md-5 cards1">
-                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
-                    style="height: 350px">
+
+                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of
@@ -163,7 +168,7 @@
     <div class="container-fluid bg-white" id="commercialSpaces">
 
         <div class="row d-flex justify-content-center">
-            <div class="card col-md-5 cards1">
+            <div class="col-md-5 cards1">
                 <div class="strike">
                     <span>
                         <h1>MAP</h1>
@@ -189,9 +194,9 @@
 
     <style>
         .shadow1 {
-            -webkit-box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
-            -moz-box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
-            box-shadow: 14px 11px 18px -9px rgba(92, 92, 92, 1);
+            -webkit-box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 8px 4px -6px rgba(0, 0, 0, 0.5);
         }
 
         .mapouter {
@@ -264,8 +269,8 @@
             content: "";
             position: absolute;
             top: 50%;
-            width: 9999px;
-            height: 3px;
+            width: 200px;
+            height: 5px;
             background: rgb(94, 94, 94);
         }
 
@@ -277,6 +282,10 @@
         .strike>span:after {
             left: 100%;
             margin-left: 15px;
+        }
+
+        .strike span h1 {
+            font-size: 35px;
         }
     </style>
 
