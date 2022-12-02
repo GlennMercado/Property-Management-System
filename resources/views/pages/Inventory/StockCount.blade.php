@@ -15,7 +15,7 @@
                                     Create Inventory
                                     </a>-->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
-                                            Action
+                                            Create Stock
                                         </button>
                                 </div>
                                 <h3 class="mb-0">Stocks</h3>
@@ -29,8 +29,6 @@
                                 <tr>
                                     <th scope="col">Product Code</th>
                                     <th scope="col">Item Name</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Type</th>
                                     <th scope="col">Available Stock</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -40,6 +38,14 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
+                                    <td>
+                                        <a href = "#"><i class="bi bi-eye"></i></a>
+                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
+                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
@@ -52,8 +58,6 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
                                     <td>
                                         <a href = "#"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
@@ -61,20 +65,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                        <a href = "#"><i class="bi bi-eye"></i></a>
-                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
@@ -108,18 +98,25 @@
                             <form class="needs-validation" novalidate>
                                 <p class="text-left">Stock ID: </p>
                                     <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
+
                         <div class="form-group">
                             <label for="Stockname">Stock Name</label>
                                 <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
                         <div class="invalid-feedback">
                         Stock Name empty
                         </div>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="Stockdetails">Stock Details</label>
                                 <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
                                     <div class="invalid-feedback">
                                     Stock Details empty
+                                    </div>
+
+                            <label for="Stockdetails">Quantity</label>
+                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                                    <div class="invalid-feedback">
+                                    Quantity empty
                                     </div>
                 </div>
                     <div class="form-group">
@@ -134,14 +131,14 @@
                                 </div>
                     </div>              
             </div>
+                <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </div>
             </div>
         </div>
     </div>                              
-  
     <!--Validation-->                                 
        <script>
                  
