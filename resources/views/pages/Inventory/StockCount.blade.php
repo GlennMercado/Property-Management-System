@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-                        <!--<input type="submit" value="View" class = "btn btn-primary">-->
+        @include('users.modal.create')
                         <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -11,9 +11,8 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class = "col">
-                                    <!--<a  href="{{ route('CreateInventory') }}" class = "btn btn-primary" style = "float:right;">
-                                    Create Inventory
-                                    </a>-->
+                                    
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                             Create Stock
                                         </button>
@@ -39,7 +38,7 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href = "#"><i class="bi bi-eye"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
                                         <a href = "#"><i class="bi bi-x-circle"></i></a>
                                     </td>
@@ -49,7 +48,7 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href = "#"><i class="bi bi-eye"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
                                         <a href = "#"><i class="bi bi-x-circle"></i></a>
                                     </td>
@@ -59,7 +58,7 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href = "#"><i class="bi bi-eye"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
                                         <a href = "#"><i class="bi bi-x-circle"></i></a>
                                     </td>
@@ -69,7 +68,7 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href = "#"><i class="bi bi-eye"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
                                         <a href = "#"><i class="bi bi-x-circle"></i></a>
                                     </td>
