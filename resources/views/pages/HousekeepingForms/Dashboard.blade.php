@@ -14,7 +14,7 @@
                                 <h3 class="mb-0">Room Assignment </h3>
                             </div>
                             <div class="col text-right">
-                                <!--<a href="#!" class="btn btn-sm btn-primary">See all</a>-->
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>
                     </div>
@@ -54,8 +54,10 @@
             </div>
         </div>
     <br>
+
+        <!--Cardboxes
         <div class="row">
-            <!--Cleaned-->
+           
             <div class="col">
                 <div class="card" style="border: 2px solid green;">
                     <div class="card-body">
@@ -65,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <!--Dirty-->
+           
             <div class="col-xl">
                 <div class="card" style="border: 2px solid;">
                     <div class="card-body">
@@ -75,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <!--Out of Order-->
+           
             <div class="col-xl">
                 <div class="card" style="border: 2px solid yellow;">
                     <div class="card-body">
@@ -85,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <!--Out of Service-->
+
             <div class="col-xl">
                 <div class="card" style="border: 2px solid red;">
                     <div class="card-body">
@@ -95,8 +97,181 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         
+        <br>
+        <!--Cleaned-->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Cleaned</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Date & Time Accomplished</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                    <th scope="col">Check-in</th>
+                                    <th scope="col">Check-out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Cleaned</td>
+                                    <td>Kay</td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>    
+
+        <br><br>
+
+        <!--Dirty-->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Dirty</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                    <th scope="col">Check-in</th>
+                                    <th scope="col">Check-out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Unavailable</td>
+                                    <td>Kay</td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <!--Out of Order-->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Out of Order</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Unavailable</td>
+                                    <td>Kay</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <!--Out of Service-->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Out of Service</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Unavailable</td>
+                                    <td>Kay</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
             @include('layouts.footers.auth')
     
     </div>

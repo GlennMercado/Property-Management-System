@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.cards')
  
-    
+   
     <div class="container-fluid mt--7">    
         <!--Room Management-->             
         <div class="row">
@@ -12,13 +12,18 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Room Management</h3>
+                                <h3 class="mb-0">Rooms</h3>
                             </div>
                             <div class="col text-right">
                                 <!--<a href="#!" class="btn btn-sm btn-primary">See all</a>-->
                             </div>
                         </div>
-                    </div>
+                        <br>    
+                        <div class="row align-items-center">
+                            <button class="btn btn-success active" id="assigned">Assigned</button>
+                            <button class="btn btn-warning" id="unassigned">Unassigned</button>
+                        </div>
+                    </div>    
                     <div class="table-responsive">
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
@@ -29,14 +34,14 @@
                                     <th scope="col">State</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Attendant</th>
-                                    <th scope="col">Arrival</th>
-                                    <th scope="col">Departure</th>
+                                    <th scope="col">Check-in</th>
+                                    <th scope="col">Check-out</th>
                                     <!--<th scope="col">Guest Preference</th>-->
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr id="assign">
                                     <td>101</td>
                                     <td>Family Room</td>
                                     <td>Cleaned</td>
@@ -51,12 +56,12 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>101</td>
+                                <tr id="unassign" style="display:none;">
+                                    <td>102</td>
                                     <td>Family Room</td>
                                     <td>Cleaned</td>
                                     <td>Occupied</td>
-                                    <td>Kay</td>
+                                    <td>Unassigned</td>
                                     <td><?php echo date("M-d-Y");?></td>
                                     <td><?php echo date("M-d-Y");?></td>
                                     <!--<td>Dark Curtains</td>-->
@@ -121,71 +126,6 @@
         </div>
 
         <br><br>
-
-        <!--Unassigned Rooms-->
-        <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Unassigned Rooms</h3>
-                            </div>
-                            <div class="col text-right">
-                                <!--<a href="#!" class="btn btn-sm btn-primary">See all</a>-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Room Type</th>
-                                    <th scope="col">State</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                    <th scope="col">Arrival</th>
-                                    <th scope="col">Departure</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>101</td>
-                                    <td>Family Room</td>
-                                    <td>Cleaned</td>
-                                    <td>Occupied</td>
-                                    <td>Unassigned</td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            Action
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>101</td>
-                                    <td>Family Room</td>
-                                    <td>Cleaned</td>
-                                    <td>Occupied</td>
-                                    <td>Unassigned</td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            Action
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         
         
@@ -198,6 +138,27 @@
             @include('layouts.footers.auth')
     
     </div>
+
+<script>
+    $(document).ready(function(){
+        $('#assigned').click(function(){
+            $('#assigned').addClass(' active'); 
+            $('#unassigned').removeClass(' active'); 
+            $('#unassign').hide();
+            $('#assign').show();
+        });
+    });
+    $(document).ready(function(){
+        $('#unassigned').click(function(){
+            $('#unassigned').addClass(' active'); 
+            $('#assigned').removeClass(' active'); 
+            $('#unassign').show();
+            $('#assign').hide();
+        });
+    });
+</script>   
+    
+
 @endsection
 
 @push('js')
