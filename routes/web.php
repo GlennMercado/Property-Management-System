@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs');
 
 	//For HousekeepingandMaintenance
+	Route::post('Maintenance', 'App\Http\Controllers\MaintenanceController@store');
 	Route::get('Dashboard', function () {return view('pages.HousekeepingForms.Dashboard');})->name('Dashboard');
 	Route::get('RoomManagement', function () {return view('pages.HousekeepingForms.RoomManagement');})->name('RoomManagement');
-	Route::get('Maintenance', function () {return view('pages.HousekeepingForms.Maintenance');})->name('Maintenance');
+	
+	Route::get('Maintenance', function () {
+		$list = DB::select('SELECT * FROM add_maintenances');
+		return view('pages.HousekeepingForms.Maintenance', ['list'=>$list]);})->name('Maintenance');
+	
 	Route::get('LostandFound', function () {return view('pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
 	//Back Office

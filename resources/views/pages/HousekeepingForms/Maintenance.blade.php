@@ -19,9 +19,57 @@
                                     <h3 class="mb-0">Maintenance</h3>
                                 </div>
                                 <div class="col text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#addm">
                                         <i class="bi bi-file-plus"></i> Add
-                                    </a>
+                                    </button>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="addm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">Maintenance</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        <form action="{{ route('Maintenance')}}" method="POST"> 
+                                            
+                                            {{ csrf_field() }}
+
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="card-body bg-white" style="border-radius: 18px">
+                                                        
+                                                        <p class="text-left">Status </p>
+                                                        <select class="form-control" name="status">
+                                                            <option value="Active">Active</option>
+                                                            <option value="Inactive">Inactive</option>
+                                                        </select>
+
+                                                        <p class="text-left">Description: </p>
+                                                        <input class="form-control" type="text" name="desc" required>
+                                                        
+                                                        <p class="text-left">Asset: </p>
+                                                        <input class="form-control" type="text" name="asset" required>
+                                                        
+                                                        <p class="text-left">Location: </p>
+                                                        <input class="form-control" type="text" name="location" required>
+
+                                                        <p class="text-left">Due Date: </p>
+                                                        <input class="form-control" type="date" name="due" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                <input type="submit" class="btn btn-success" value="Submit" />
+                                            </div>
+                                        </form>    
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -40,32 +88,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($list as $lists)
                                     <tr>
-                                        <td>ASD-123-CDA2345</td>
-                                        <td>Active</td>
-                                        <td>Pipes are broken</td>
-                                        <td>Pipes</td>
-                                        <td>Room 101 - Bathroom</td>
-                                        <td>December 21, 2022</td>
+                                        <td>{{ $lists->ID}}</td>
+                                        <td>{{ $lists->Status}}</td>
+                                        <td>{{ $lists->Description}}</td>
+                                        <td>{{ $lists->Asset}}</td>
+                                        <td>{{ $lists->Location}}</td>
+                                        <td>{{ date("F j Y", strtotime($lists->Due_Date))}}</td>
                                         <td>
                                             <i class="bi bi-person"></i>
                                             <i class="bi bi-check-lg"></i>
                                             <i class="bi bi-chevron-right"></i>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>ASD-123-CDA2345</td>
-                                        <td>Active</td>
-                                        <td>Pipes are broken</td>
-                                        <td>Pipes</td>
-                                        <td>Room 101 - Bathroom</td>
-                                        <td>December 21, 2022</td>
-                                        <td>
-                                            <i class="bi bi-person"></i>
-                                            <i class="bi bi-check-lg"></i>
-                                            <i class="bi bi-chevron-right"></i>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
