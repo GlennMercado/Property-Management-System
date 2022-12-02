@@ -14,35 +14,42 @@
                                     <h2 class="mb-0">Create Inventory</h2>
                                 </div>
                         </div>
+                    <form action="" method="post">
                         <div class = "row" >
                             <div class="col">
-                                <h4>Stocks ID</h4>
-                                <input type="text" class = "form-control" placeholder = "Enter Stocks ID" required>
+                                <h4>Product Code</h4>
+                                <input type="text" class = "form-control" placeholder = "Enter Product Code" required>
                             </div>
                             <div class="col">
-                                <h4>Stocks Name</h4>
-                                <input type="text" class = "form-control" placeholder = "Enter Stocks Name" required>
+                                <h4>Product Name</h4>
+                                <input type="text" class = "form-control" placeholder = "Enter Product Name" required>
                             </div>
                         </div>
                         <div class = "row" >
                             <div class="col">
-                                <h4>Stocks Details</h4>
-                                <input type="text" class = "form-control" placeholder = "Enter Stocks Details   " required>
+                                <h4>Product Description</h4>
+                                <input type="text" class = "form-control" placeholder = "Enter Product Details   " required>
                             </div>
                             <div class="col">
-                                <h4>Stock Types</h4>
+                                <h4>Select Supplier </h4>
                                 <div class="dropdown show">
                                     <!--Dropdown-content-->
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         style = "width: 150%;">
-                                        Stock Sample 1
+                                        Suppliers
                                     </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style = "width: 150%;">
-                                            <a class="dropdown-item" href="#">Stock Sample 1</a>
-                                            <a class="dropdown-item" href="#">Stock Sample 2</a>
-                                            <a class="dropdown-item" href="#">Stock Sample 3</a>
+                                            <a class="dropdown-item" href="#">Company Sample 1</a>
+                                            <a class="dropdown-item" href="#">Company Sample 2</a>
+                                            <a class="dropdown-item" href="#">Company Sample 3</a>
                                         </div>
                                     </div>
+                            </div>
+                        </div>
+                        <div class = "row" >
+                            <div class="col-md-6">
+                                <h4>Product Quantity</h4>
+                                <input type="text" class = "form-control" placeholder = "Enter Product Quantity" required>
                             </div>
                         </div>
                         <!--Buttons-->
@@ -56,6 +63,7 @@
                     </div>
                     
                 </div> 
+            </form>
                 <!--Fields-->
                 
             </div>

@@ -208,7 +208,7 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">                          
-                                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                                <a class="nav-link text-default" href="{{ route('StockPurchaseReport') }}">
                                     <i class="text-success">•</i> {{ __('Purchase Order Report') }}
                                 </a>
                             </li>

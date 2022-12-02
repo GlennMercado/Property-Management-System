@@ -40,9 +40,8 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <i class="bi bi-eye"></i>
-                                        <i class="bi bi-pencil-square"></i>
-                                        <i class="bi bi-x-circle"></i>
+                                        <input type="submit" class="bi-eye btn-primary" id=""  value="View"></input> ||
+                                        <input type="submit" class="bi bi-pencil-square btn-primary" id=""  value="Edit"></input>
                                     </td>
                                 </tr>
                                 <tr>
@@ -52,9 +51,8 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <i class="bi bi-eye"></i>
-                                        <i class="bi bi-pencil-square"></i>
-                                        <i class="bi bi-x-circle"></i>
+                                        <input type="submit" class="bi-eye btn-primary" id=""  value="View"></input> ||
+                                        <input type="submit" class="bi bi-pencil-square btn-primary" id=""  value="Edit"></input>
                                     </td>
                                 </tr>
                             </tbody>
