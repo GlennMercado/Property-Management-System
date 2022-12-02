@@ -4,54 +4,6 @@
     @include('layouts.headers.cards')
     
     <div class="container-fluid mt--7">                 
-        <div class="row">
-            <!--Available-->
-            <div class="col">
-                <a href="{{ route('RoomManagement') }}">
-                    <div class="card" style="border: 2px solid green;">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ asset('housekeeping-img') }}/check.png" alt="Card image cap" style="width:30%; float:right;"/>
-                            <h5 class="card-title text-uppercase text-muted mb-0">Available</h5>
-                            <span class="h2 font-weight-bold mb-0">2,356</span>         
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--Lost and Found-->
-            <div class="col-xl">
-                <a href="{{ route('LostandFound') }}">
-                    <div class="card" style="border: 2px solid blue;">
-                        <div class="card-body">
-                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/lostandfound.png" alt="Card image cap" style="width:30%; float:right;"/>
-                            <h5 class="card-title text-uppercase text-muted mb-0">Lost and Found</h5>
-                            <span class="h2 font-weight-bold mb-0">2,356</span>         
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--Maintenance-->
-            <div class="col-xl">
-                <a href="{{ route('Maintenance') }}">
-                    <div class="card" style="border: 2px solid red;">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ asset('housekeeping-img') }}/maintenance.png" alt="Card image cap" style="width:30%; float:right;"/>
-                            <h5 class="card-title text-uppercase text-muted mb-0">Maintenance</h5>
-                            <span class="h2 font-weight-bold mb-0">2,356</span>         
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--Alerts-->
-            <div class="col-xl">
-                <div class="card" style="border: 2px solid yellow;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/alert.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Alerts</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
-                    </div>
-                </div>
-            </div>
-        </div>
     <br>
         <div class="row">
             <div class="col-xl">
@@ -73,8 +25,8 @@
                                 <tr>
                                     <th scope="col">Due Date</th>
                                     <th scope="col">Room</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                    <th scope="col">Booking Status</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Attendant</th>
                                     <th scope="col">Arrival</th>
                                     <th scope="col">Departure</th>
@@ -97,6 +49,49 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+        <div class="row">
+            <!--Cleaned-->
+            <div class="col">
+                <div class="card" style="border: 2px solid green;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/check.png" alt="Card image cap" style="width:30%; float:right;"/>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Cleaned</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                    </div>
+                </div>
+            </div>
+            <!--Dirty-->
+            <div class="col-xl">
+                <div class="card" style="border: 2px solid;">
+                    <div class="card-body">
+                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/dirty.png" alt="Card image cap" style="width:30%; float:right;"/>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Dirty</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                    </div>
+                </div>
+            </div>
+            <!--Out of Order-->
+            <div class="col-xl">
+                <div class="card" style="border: 2px solid yellow;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/outoforder.png" alt="Card image cap" style="width:30%; float:right;"/>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Out of Order</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>         
+                    </div>
+                </div>
+            </div>
+            <!--Out of Service-->
+            <div class="col-xl">
+                <div class="card" style="border: 2px solid red;">
+                    <div class="card-body">
+                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/outofservice.png" alt="Card image cap" style="width:30%; float:right;"/>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Out of Service</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>         
                     </div>
                 </div>
             </div>
