@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.cards')
         @include('users.modal.create')
-                        <div class="container-fluid mt--7">
+    <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
@@ -79,9 +79,7 @@
                 </div>
             </div>
         </div>
-
-            @include('layouts.footers.auth')
-        </div>
+    </div>
     <!-- Modal -->
     
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -158,7 +156,7 @@
         })();
                     
        </script>
-       
+    @include('layouts.footers.auth')
     @endsection
 
     @push('js')

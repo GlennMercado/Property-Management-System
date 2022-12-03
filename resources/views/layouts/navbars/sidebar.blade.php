@@ -152,8 +152,8 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
-                        <i class="ni ni-tv-2 text-success"></i>
-                        <span class="nav-link-text text-default">{{ __('RFDM') }}</span>
+                        <i class="bi bi-calendar-event text-success"></i>
+                        <span class="nav-link-text text-default">{{ __('Reservation') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">

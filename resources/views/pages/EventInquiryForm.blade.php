@@ -9,19 +9,32 @@
                 <div class=" col ">
                     <div class="card">
                         <div class="card-header bg-transparent">
-                            <h3 class="mb-0">Event Inquiry Form</h3>
+                            <h2 class="mb-0">Event Inquiry Form</h2>
                         </div>
+                        <form action="">
                         <div class="card-body">
                             <h3 style="color: #8898aa;">Tell us about you</h3>
-                            <br>
-                            <h4>Client Name: </h4>
-                            <input type="text" class="form-control" placeholder="Enter client name" required>
-                            <h4>Contact Number: </h4>
-                            <input type="text" class="form-control" placeholder="Enter contact no." required>
-                            <h4>Contact Person: </h4>
-                            <input type="text" class="form-control" placeholder="Enter contact person" required>
-                            <h4>Contact Number: </h4>
-                            <input type="text" class="form-control" placeholder="Enter contact no." required>
+                            
+                            <div class = "row">
+                                <div class = "col">
+                                    <h4>Client Name: </h4>
+                                    <input type="text" class="form-control" placeholder="Enter client name" required>
+                                </div>
+                                <div class = "col">
+                                    <h4>Contact Number: </h4>
+                                    <input type="number" class="form-control" placeholder="Enter contact no." required>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col">
+                                    <h4>Contact Person: </h4>
+                                    <input type="text" class="form-control" placeholder="Enter contact person" required>
+                                </div>
+                                <div class = "col">
+                                    <h4>Contact Number: </h4>
+                                    <input type="number" class="form-control" placeholder="Enter contact no." required>
+                                </div>
+                            </div>  
                             <h4>Billing Address: </h4>
                             <input type="text" class="form-control" placeholder="Enter billing address" required>
                             <h4>Contact Email: </h4>
@@ -53,7 +66,6 @@
                             </div>
                             <br>
                             <br>
-                            <h3 style="color: #8898aa;">Tell us about your event</h3>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
@@ -103,34 +115,22 @@
                                             <label class="custom-control-label" for="customRadioInline4">No Specify:
                                             </label>
                                             <input id="others2" class="form-control" type="text" readonly>
-
                                         </div>
                                     </div>
                                     <br>
                                     <br>
                                     <br>
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
-
-
-                                </div>
-
-
-
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block"></button>                                  
+                                </div>  
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
-            @include('layouts.footers.auth')
+              
+           
         </div>
-    @endsection
-
-    @push('js')
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+        </form> 
         <script>
             function enableinput() {
                 $('input[type=radio][name=customRadioInline1]').change(function() {
@@ -155,4 +155,11 @@
                 })
             }
         </script>
+    @include('layouts.footers.auth')
+    @endsection
+
+    @push('js')
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+      
     @endpush
