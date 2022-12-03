@@ -80,6 +80,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.footers.auth')
     <!-- Modal -->
     
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -156,7 +157,7 @@
         })();
                     
        </script>
-    @include('layouts.footers.auth')
+    
     @endsection
 
     @push('js')
