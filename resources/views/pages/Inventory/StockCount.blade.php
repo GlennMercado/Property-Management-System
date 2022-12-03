@@ -38,9 +38,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a> <!-- located in - users > modal-->
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +50,7 @@
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -60,7 +60,7 @@
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -70,7 +70,7 @@
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-x-circle"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -79,8 +79,9 @@
                 </div>
             </div>
         </div>
+        @include('layouts.footers.auth')
     </div>
-    @include('layouts.footers.auth')
+    
     <!-- Modal -->
     
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,27 +95,30 @@
                     </div>
                         <div class="modal-body">
                             <form class="needs-validation" novalidate>
-                                <p class="text-left">Stock ID: </p>
-                                    <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
-
+                                <div class = "row">
+                                    <div class = "col">
+                                        <p class="text-left">Stock ID: </p>
+                                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
+                                    </div>
+                                        <div class = "col">
+                                            <p class="text-left">Stock Name: </p>
+                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                    <div class="invalid-feedback">
+                                                        Stock Name empty
+                                                    </div>       
+                                        </div>
+                                </div>
                         <div class="form-group">
-                            <label for="Stockname">Stock Name</label>
-                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
-                        <div class="invalid-feedback">
-                        Stock Name empty
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="Stockdetails">Stock Details</label>
+                            <label for="Stockdetails">Stock Description</label>
                                 <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
                                     <div class="invalid-feedback">
-                                    Stock Details empty
+                                        Stock Details empty
                                     </div>
 
                             <label for="Stockdetails">Quantity</label>
                                 <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
                                     <div class="invalid-feedback">
-                                    Quantity empty
+                                        Quantity empty
                                     </div>
                 </div>
                     <div class="form-group">
@@ -132,7 +136,7 @@
                 <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>                       
                     </div>
             </div>
         </div>

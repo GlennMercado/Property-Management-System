@@ -77,9 +77,9 @@
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
+                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+                                        <label class="custom-control-label" for="customCheckRegister" >
+                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#ModalPrivacyPolicy" data-toggle = "modal" data-target = "#ModalPrivacyPolicy">Privacy Policy</a></span>
                                         </label>
                                     </div>
                                 </div>
@@ -93,4 +93,61 @@
             </div>
         </div>
     </div>
+</form>
+    <!-- Modal > Privacy Policy -->
+        <div class="modal fade" id="ModalPrivacyPolicy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">Terms of Service</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                        <div class="modal-body">
+                            <p style = "text-align: justify;">
+                            Lorem ipsum dolor sit, amet consectetur 
+                            adipisicing elit. Ullam odit asperiores 
+                            in aspernatur possimus dolores dignissimos, 
+                            sunt voluptas officiis blanditiis iste 
+                            assumenda, quidem laboriosam. Exercitationem 
+                            ipsum officiis illum quo tempora.
+                            </p>
+                            <br>
+                            <h2 class="modal-title" id="exampleModalLongTitle">Authorized Users</h2>
+                            <br>
+                            <p style = "text-align: justify;">
+                            Lorem ipsum dolor sit, amet consectetur 
+                            adipisicing elit. Ullam odit asperiores 
+                            in aspernatur possimus dolores dignissimos, 
+                            sunt voluptas officiis blanditiis iste 
+                            assumenda, quidem laboriosam. Exercitationem 
+                            ipsum officiis illum quo tempora.
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    <script>
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+    </script>
 @endsection
