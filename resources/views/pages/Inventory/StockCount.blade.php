@@ -2,7 +2,8 @@
 
 @section('content')
     @include('layouts.headers.cards')
-        @include('users.modal.create')
+        @include('users.modal.Inventory.create')
+        @include('users.modal.Inventory.update')
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -14,10 +15,11 @@
                                     
                                     </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
-                                            Create Stock
-                                        </button>
+                                            Add Stock
+                                    </button>
                                 </div>
-                                <h3 class="mb-0">Stocks</h3>
+                                <h3 class="mb-0">Inventory Stocks</h3>
+                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
                     </div>
@@ -26,8 +28,8 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Product Code</th>
-                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Item Description</th>
                                     <th scope="col">Available Stock</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -38,9 +40,8 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a> <!-- located in - users > modal-->
-                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye">View</i></a> || <!-- located in - users > modal-->
+                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square">Update</i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +51,6 @@
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
                                         <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
