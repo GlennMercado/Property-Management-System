@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-                        <div class="container-fluid mt--7">
+    <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
@@ -47,7 +47,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
 
@@ -219,10 +219,61 @@
         </div>
     </div>
 </div>
-        @include('layouts.footers.auth')                             
-</div>
-    @endsection
 
+@include('layouts.footers.auth')                            
+    </div>
+<!--Modal 2-->
+<div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class = "col">
+                               
+                                </div>
+                                <h3 class="mb-0">Stocks</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Product Code</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Available Stock</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->description}}</td>
+                                        <td>{{ $lists->unit}}</td>
+                                        <td>{{ $lists->suppliername}}</td>
+                                        <td>{{ $lists->quantity}}</td>
+                                        
+                                            <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                            <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                            <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div> 
+                 
+
+</div> 
+    @endsection
+    
     @push('js')
         <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>

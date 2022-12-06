@@ -24,6 +24,8 @@ return new class extends Migration
             $table->integer('total');
 
             $table->timestamp('date');
+            $table->timestamps();
+
         });
     }
 

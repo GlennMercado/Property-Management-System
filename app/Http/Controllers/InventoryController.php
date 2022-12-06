@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\hotelstock;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InventoryController extends Controller
 {
@@ -13,7 +15,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-    
+    return view('StockCount');
     }
 
     /**
@@ -34,13 +36,13 @@ class InventoryController extends Controller
      */
     public function addstock(Request $request)
     {
-    
         $this->validate($request,[
         'name' => 'required',
         'description' => 'required',
         'quantity' => 'required',
-        'category' => 'required',
-
+        'in' => 'required',
+        'out' => 'required',
+        'category' => 'required'
        ]);
 
        $stock = new hotelstock;
@@ -48,10 +50,13 @@ class InventoryController extends Controller
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->total = $request->input('quantity');
+       $stock->in = $request->input('in');
+       $stock->out = $request->input('out');
        $stock->category = $request->input('category');
 
        $stock->save();
 
+       Alert::Success('Success', 'Stock Successfully Submitted!');
        return redirect('StockCount')->with('Success', 'Data Saved');
     }
 

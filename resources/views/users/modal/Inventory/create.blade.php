@@ -17,7 +17,7 @@
                                     </div>
                                         <div class = "col">
                                             <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" value = "Sample Data" required>
+                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" value = "" required>
                                                     <div class="invalid-feedback">
                                                         Stock Name empty
                                                     </div>       
@@ -26,12 +26,12 @@
                         <div class="form-group">
                             <label for="Stockdetails">Stock Description</label>
                                 <input type="text" class="form-control" id="Stockdetails" value = "Sample Data" required>
-                                    <div class="invalid-feedback">
+                                   <!-- <div class="invalid-feedback">
                                         Stock Details empty
-                                    </div>
+                                    </div>-->
 
                             <label for="Stockdetails">Date :</label>
-                                <input type="date" class="form-control" id="Stockdetails" value = "6-12-2022" required>
+                                <input type="date" class="form-control" id="Stockdetails" required>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
@@ -53,6 +53,7 @@
                                 Stock Details empty
                                 </div>
                     </div>      
+
       
                                     <!--<th scope="col">Product Code:</th>
                                     <th scope="col">Item Name:</th>

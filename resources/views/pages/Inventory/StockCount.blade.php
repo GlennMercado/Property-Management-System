@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{ $lists->name}}</td>
                                         <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->quantity}}</td>
+                                        <td>{{ $lists->total}}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
                                             <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
@@ -79,47 +79,51 @@
                                 </div>
                                     <div class = "col">
                                             <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
-                                                    <div class="invalid-feedback">
+                                                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                    <!--<div class="invalid-feedback">
                                                         Stock Name empty
-                                                    </div>       
+                                                    </div> -->      
                                     </div>
                             </div>
                         <div class="form-group">
                             <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" id="description" name="name" placeholder="Enter details..." required>
-                                    <div class="invalid-feedback">
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                                   <!-- <div class="invalid-feedback">
                                         Stock Details empty
-                                    </div>
+                                    </div>-->
 
                             <label for="Stockdetails">Quantity</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter number..." required>
-                                    <div class="invalid-feedback">
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                                    <!--<div class="invalid-feedback">
                                         Quantity empty
-                                    </div>
+                                    </div>-->
+                        <div>
+                            <input type="number" class="form-control" name="in" value="0" placeholder="Enter number..." hidden>
+                            <input type="number" class="form-control" name="out" value="0" placeholder="Enter number..." hidden>
+                        </div>
                         </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Stock Type</label>
-                            <select class="form-control" required>
-                                <option value="Stock1">Sample 1</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock3">Sample 3</option>
+                        <label for="exampleInputPassword1">Category</label>
+                            <select class="form-control" name = "category" required>
+                                <option value="Stock1">Linens: \n Bed pad - Single</option>
+                                <option value="Stock2">Fitted Sheet - Single</option>
+                                <option value="Stock3">Flat Sheet - Single</option>
                             </select>
-                                <div class="invalid-feedback">
+                                <!--<div class="invalid-feedback">
                                 Stock Details empty
-                                </div>
+                                </div>-->
                     </div>              
             
                 <br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Submit</button>                       
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" class="btn btn-success" name="submit" />                      
                     </div>
             </div>
         </form>
         </div>
     </div>                              
-    <!--Validation-->                                 
+    <!--Validation                               
        <script>
                  
         (function() {
@@ -138,7 +142,7 @@
             }, false);
         })();
                     
-       </script>
+       </script>-->
     
     @endsection
 
