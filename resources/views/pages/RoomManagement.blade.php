@@ -35,7 +35,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{route('RoomManagement')}}" class="prevent_submit" method="POST">
+                                <form action="{{route('RoomManagement')}}" class="prevent_submit" method="POST" enctype="multipart/form-data">
 
                                     {{ csrf_field() }}
 
@@ -105,10 +105,7 @@
                                     <th scope="col">Room Size</th>
                                     <th scope="col">No. of Beds</th>
                                     <th scope="col">Extra Bed</th>
-                                    <th scope="col">No. of Pax <br> per Room</th>
-                                    <th scope="col">Rate per Night</th>
-                                    <th scope="col">Membership</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">No. of Pax per Room</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
                                     <th scope="col">Action</th>
@@ -122,13 +119,54 @@
                                         <td>{{ $lists->No_of_Beds}}</td>
                                         <td>{{ $lists->Extra_Bed}}</td>
                                         <td>{{ $lists->No_Pax_Per_Room}}</td>
-                                        <td>{{ $lists->Rate_per_Night}}</td>
-                                        <td>{{ $lists->Membership}}</td>
-                                        <td>{{ $lists->Status}}</td>
                                         <td>
-                                            <button class="btn btn-primary">Action</button>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#Room_ID{{$lists->Room_No}}">View</button>
                                         </td>
                                     </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="Room_ID{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room {{$lists->Room_No}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                            <p class="text-left">Room No. :</p>
+                                                            <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
+
+                                                            <br>
+
+                                                            <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
+                                                            
+                                                            <br>
+
+                                                            <p class="text-left">Rate per Night: </p>
+                                                            <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
+
+                                                            <p class="text-left">Membership </p>
+                                                            <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
+                                                            
+                                                            <p class="text-left">Status </p>
+                                                            <input class="form-control" type="text" value="{{$lists->Status}}" readonly>
+                                                            
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                                 
                             </tbody>

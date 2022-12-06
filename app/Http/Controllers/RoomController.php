@@ -36,6 +36,7 @@ class RoomController extends Controller
      */
     public function add_rooms(Request $request)
     {
+       
         $this->validate($request,[
             'room_no' => 'required',
             'room_size' => 'required',
@@ -43,14 +44,9 @@ class RoomController extends Controller
             'extra_bed' => 'required',
             'no_of_pax' => 'required',
             'rate_per_night' => 'required',
-            'membership' => 'required',
-            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'membership' => 'required'
         ]);
-
-        $imageName = time().'.'.$request->image->extension();  
-     
-        $request->image->move(public_path('images'), $imageName);
-
+        
         $add_rooms= new novadeci_suites;
 
         $add_rooms->Room_No = $request->input('room_no');
@@ -60,7 +56,15 @@ class RoomController extends Controller
         $add_rooms->No_Pax_Per_Room = $request->input('no_of_pax');
         $add_rooms->Rate_per_Night = $request->input('rate_per_night');
         $add_rooms->Membership = $request->input('membership');
-        $add_rooms->Hotel_Image = $request->input('images');
+
+        if($request->hasfile('images'))
+        {
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Room '.$request->input('room_no').'-.'.$extention;
+            $path = $file->move('hotel_images/', $filename);
+            $add_rooms->Hotel_Image = $path;
+        }
 
         $add_rooms->save();
 
