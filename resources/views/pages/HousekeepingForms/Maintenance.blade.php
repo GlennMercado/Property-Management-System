@@ -19,8 +19,8 @@
                                     <h3 class="mb-0">Maintenance</h3>
                                 </div>
                                 <div class="col text-right">
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#addm">
-                                        <i class="bi bi-file-plus"></i> Add
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#addm" >
+                                        <i class="bi bi-plus"></i> Add
                                     </button>
                                 </div>
 
@@ -109,11 +109,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        
             @include('layouts.footers.auth')
-    
     </div>
 @endsection
 

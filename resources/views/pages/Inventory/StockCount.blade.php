@@ -40,8 +40,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye">View</i></a> || <!-- located in - users > modal-->
-                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square">Update</i></a>
+                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -49,8 +50,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
-                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,9 +60,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
-                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,9 +70,9 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye"></i></a>
-                                        <a href = "#"><i class="bi bi-pencil-square"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

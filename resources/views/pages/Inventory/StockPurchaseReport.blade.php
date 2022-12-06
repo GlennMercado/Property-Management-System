@@ -20,6 +20,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
+
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -40,8 +41,8 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <input type="button" class="btn btn-primary" value="View" data-toggle="modal" data-target="#PurchaseReportModalView" ></input> ||
-                                        <input type="button" class="btn btn-primary" value="Edit" data-toggle="modal" data-target="#PurchaseReportModalEdit" ></input>
+                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalView"><i class="bi bi-eye" style = "padding:2px;"></i></a> 
+                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalEdit"><i class="bi bi-pencil-square" style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -51,16 +52,16 @@
                                     <td>Sample Data</td>
                                     <td>Sample Data</td>
                                     <td>
-                                        <input type="button" class="btn btn-primary" value="View" data-toggle="modal" data-target="#PurchaseReportModalView" ></input> ||
-                                        <input type="button" class="btn btn-primary" value="Edit" data-toggle="modal" data-target="#PurchaseReportModalEdit" ></input>
+                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalView"><i class="bi bi-eye" style = "padding:2px;"></i></a> 
+                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalEdit"><i class="bi bi-pencil-square" style = "padding:2px;"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!--MODAL FOR REPORT-->
-                    <div class="modal fade" id="PurchaseReportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
+
+                                <!--MODAL FOR REPORT-->
+                                <div class="modal fade" id="PurchaseReportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -101,13 +102,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <!--MODAL FOR VIEW-->
-                    <div class="modal fade" id="PurchaseReportModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="PurchaseReportModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">Purchase Report</h5>
+                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">View</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -115,37 +116,31 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
-                                                        <p class="text-left">Product Code : <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
+                                                        <p class="text-left">Product Code : <input class="form-control" type="text" Value = "Sample Data" id="example-datetime-local-input" required></p>
 
                                                         <p class="text-left">Item Name :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
+                                                        <input class="form-control" type="text" Value = "Sample Data" id="example-datetime-local-input" required></p>
                                                         
                                                         <p class="text-left">Product Description :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
+                                                        <input class="form-control" type="text" Value = "Sample Data" id="example-datetime-local-input" required></p>
 
                                                         <p class="text-left">Product Quantity :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
+                                                        <input class="form-control" type="text" Value = "1" id="example-datetime-local-input" required></p>
                                                         
                                                         <p class="text-left">Supplier Name: </p>
                                                         <select class="form-control">
                                                             <option value="Available">Sample Supplier 1</option>
-                                                            <option value="Dirty">Sample Supplier 2</option>
-                                                            <option value="Checked">Sample Supplier 3</option>
                                                         </select>
                                                         
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success">Submit</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <!--MODAL FOR EDIT-->
-                    <div class="modal fade" id="PurchaseReportModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="PurchaseReportModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content" >
                                             <div class="modal-header" >
@@ -154,89 +149,75 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body" style="width:200%">
+                                            <div class="modal-body" style="">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                     <h4>Product Code: </h4>
-                                                    <input type="text" class="form-control" placeholder="Enter product code" required>
+                                                    <input type="text" class="form-control" value = "Sample Data" required>
                                                     <h4>Product Name: </h4>
-                                                    <input type="text" class="form-control" placeholder="Enter product name" required>
+                                                    <input type="text" class="form-control" value = "Sample Data" required>
                                                     <h4>Product Description </h4>
-                                                    <input type="text" class="form-control" placeholder="Enter product description" required>
+                                                    <input type="text" class="form-control" value = "Sample Data" required>
                                                     <h4>Product Quantity: </h4>
-                                                    <input type="number" class="form-control" placeholder="Enter contact no." required>
+                                                    <input type="number" class="form-control" value = "0" required>
                                                     <h4>Date of Start: </h4>
-                                                    <input type="text" class="form-control" placeholder="Enter billing address" readonly>
+                                                    <input type="text" class="form-control" value = "Sample Data" readonly>
                                                     <h4>Product Category: </h4>
-                                                    <input type="text" class="form-control" placeholder="" required>
+                                                    <input type="text" class="form-control" value = "Sample Data" required>
                                                 </div>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <h3 style="color: #8898aa;">Tell us about your event</h3>
+                                            </div>
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h4>Supplier Name </h4>
+                                <h3 style="color: #8898aa;">Tell us about your event</h3><br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h4>Supplier Name </h4>
+                                        </div>
+                                        <div class="col-8">
+                                            <select class="form-control">
+                                                <option value="Available">Sample Supplier 1</option>
+                                                <option value="Dirty">Sample Supplier 2</option>
+                                                <option value="Checked">Sample Supplier 3</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                                        <select class="form-control">
-                                                            <option value="Available">Sample Supplier 1</option>
-                                                            <option value="Dirty">Sample Supplier 2</option>
-                                                            <option value="Checked">Sample Supplier 3</option>
-                                                        </select>
-                                    </div>
-                                    <div class="col-sm">
-                                        <
-                                    </div>
-                                </div>
-                            </div>
+                                </div><br>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
                                         <h4>Caterer</h4>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="custom-control custom-radio custom-control-inline">
-
-                                            <input type="radio" id="customRadioInline3" name="customRadioInline2"
-                                                class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline3">Yes</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="custom-control custom-radio custom-control-inline">
-
-                                            <input type="radio" onclick="enableinput2()" id="customRadioInline4"
-                                                name="customRadioInline2" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline4">No Specify:
-                                            </label>
-                                            <input id="others2" class="form-control" type="text" readonly>
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                                        
+                                            <div class = "row">
+                                                <div class = "col-sm">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="customRadioInline3" name="customRadioInline2" class="custom-control-input">
+                                                            <label class="custom-control-label" for="customRadioInline3">Yes</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success">Update</button>
+                                            <div class = "row">
+                                                <div class = "col-sm">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" onclick="enableinput2()" id="customRadioInline4" name="customRadioInline2" class="custom-control-input">
+                                                            <label class="custom-control-label" for="customRadioInline4" style = "width:70%;">No Specify:</label>
+                                                                <input id="" class="form-control" type="text" style = " margin-left:20px;">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-success">Update</button>
+                                                </div>                    
                                     </div>
-                                </div>
+                                </div>             
+                            </div>
+                        </div>
+                    </div>                       
                 </div>
             </div>
         </div>
-
-            @include('layouts.footers.auth')
-        </div>
+    </div>
+</div>
+        @include('layouts.footers.auth')                             
+</div>
     @endsection
 
     @push('js')

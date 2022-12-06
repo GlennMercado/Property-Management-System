@@ -17,7 +17,7 @@
                                     </div>
                                         <div class = "col">
                                             <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" value = "Sample Data" required>
                                                     <div class="invalid-feedback">
                                                         Stock Name empty
                                                     </div>       
@@ -25,19 +25,19 @@
                                 </div>
                         <div class="form-group">
                             <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
+                                <input type="text" class="form-control" id="Stockdetails" value = "Sample Data" required>
                                     <div class="invalid-feedback">
                                         Stock Details empty
                                     </div>
 
                             <label for="Stockdetails">Date :</label>
-                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                                <input type="date" class="form-control" id="Stockdetails" value = "6-12-2022" required>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
 
                             <label for="Stockdetails">Quantity</label>
-                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                                <input type="number" class="form-control" id="Stockdetails" value = "0" required>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
