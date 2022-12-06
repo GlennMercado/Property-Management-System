@@ -34,48 +34,21 @@
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
-                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
-                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
-                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                    <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
-                                        <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                        <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            
+                                <tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->description}}</td>
+                                        <td>{{ $lists->quantity}}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                            <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                            <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -95,34 +68,35 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                     </div>
+                    <form class="needs-validation" action="{{ route('StockCount') }}" method="POST">
+                            {{ csrf_field() }}
                         <div class="modal-body">
-                            <form class="needs-validation" action="{{ route('products.store') }}" method="POST" novalidate>
-                                <div class = "row">
-                                    <div class = "col">
+                            <div class = "row">
+                                 <div class = "col">
                                         <p class="text-left">Stock ID: </p>
-                                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
-                                    </div>
-                                        <div class = "col">
+                                            <input class="form-control" type="text" value="1" id="id" readonly>
+                                </div>
+                                    <div class = "col">
                                             <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
                                                     <div class="invalid-feedback">
                                                         Stock Name empty
                                                     </div>       
-                                        </div>
-                                </div>
+                                    </div>
+                            </div>
                         <div class="form-group">
                             <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
+                                <input type="text" class="form-control" id="description" name="name" placeholder="Enter details..." required>
                                     <div class="invalid-feedback">
                                         Stock Details empty
                                     </div>
 
                             <label for="Stockdetails">Quantity</label>
-                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter number..." required>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
-                </div>
+                        </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Stock Type</label>
                             <select class="form-control" required>
@@ -134,13 +108,14 @@
                                 Stock Details empty
                                 </div>
                     </div>              
-            </div>
+            
                 <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Submit</button>                       
                     </div>
             </div>
+        </form>
         </div>
     </div>                              
     <!--Validation-->                                 

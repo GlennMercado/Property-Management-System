@@ -64,7 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('BackOffice', function () {return view('pages.BackOffice');})->name('BackOffice');
 
 	//Inventory Management
-	Route::get('StockCount', function () {return view('pages.Inventory.StockCount');})->name('StockCount'); 
+	Route::post('StockCount', 'App\Http\Controllers\InventoryController@addstock');
+	Route::get('StockCount', function () {
+		$list = DB::select('SELECT * FROM hotelstock');
+		return view('pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
 	Route::get('CreateInventory', function () {return view('pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 	Route::get('StockAvailability', function () {return view('pages.Inventory.StockAvailability');})->name('StockAvailability'); 
 	Route::get('StockPurchaseReport', function () {return view('pages.Inventory.StockPurchaseReport');})->name('StockPurchaseReport'); 

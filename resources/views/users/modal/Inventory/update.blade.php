@@ -44,11 +44,18 @@
                                     </div>
                 </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Stock Type</label>
+                        <label for="exampleInputPassword1">Category</label>
                             <select class="form-control" required>
-                                <option value="Stock1">Sample 1</option>
+                                <option value="Stock1">Linen :</option>
                                 <option value="Stock2">Sample 2</option>
                                 <option value="Stock3">Sample 3</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
                             </select>
                                 <div class="invalid-feedback">
                                 Stock Details empty

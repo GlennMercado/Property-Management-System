@@ -213,13 +213,6 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockReport') }}">
-                                    <i class="text-success">•</i> {{ __('Stock Inventory Report ') }}
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </li>
 
