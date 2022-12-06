@@ -76,8 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
 	Route::get('CreateInventory', function () {return view('pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 	Route::get('StockAvailability', function () {return view('pages.Inventory.StockAvailability');})->name('StockAvailability'); 
-	Route::get('StockPurchaseReport', function () {return view('pages.Inventory.StockPurchaseReport');})->name('StockPurchaseReport'); 
-	Route::get('StockReport', function () {return view('pages.Inventory.StockReport');})->name('StockReport'); 
+	Route::post('StockPurchaseReport', 'App\Http\Controllers\PurchaseReportController@report');
+	Route::get('StockPurchaseReport', function () {
+		$list = DB::select('SELECT * FROM purchasereport');
+		return view('pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 
 	//GuestManagement
 	Route::get('GuestTicket', function () {return view('pages.Guestmanage.GuestTicket');})->name('GuestTicket');

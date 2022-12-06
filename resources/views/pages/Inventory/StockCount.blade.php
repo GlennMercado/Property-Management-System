@@ -70,6 +70,7 @@
                     </div>
                     <form class="needs-validation" action="{{ route('StockCount') }}" method="POST">
                             {{ csrf_field() }}
+
                         <div class="modal-body">
                             <div class = "row">
                                  <div class = "col">
