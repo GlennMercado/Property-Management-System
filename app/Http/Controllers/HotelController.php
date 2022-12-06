@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\hotel_reservations;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HotelController extends Controller
 {
@@ -52,7 +53,7 @@ class HotelController extends Controller
         $maintain->mobile_num = $request->input('mobile');
 
         $maintain->save();
-
+        Alert::Success('Success', 'Reservation was successfully submitted!');
         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
     }
 
