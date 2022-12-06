@@ -96,7 +96,7 @@
                             </button>
                     </div>
                         <div class="modal-body">
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" action="{{ route('products.store') }}" method="POST" novalidate>
                                 <div class = "row">
                                     <div class = "col">
                                         <p class="text-left">Stock ID: </p>
