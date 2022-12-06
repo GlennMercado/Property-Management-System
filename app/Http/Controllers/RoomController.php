@@ -43,8 +43,13 @@ class RoomController extends Controller
             'extra_bed' => 'required',
             'no_of_pax' => 'required',
             'rate_per_night' => 'required',
-            'membership' => 'required'
+            'membership' => 'required',
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $imageName = time().'.'.$request->image->extension();  
+     
+        $request->image->move(public_path('images'), $imageName);
 
         $add_rooms= new novadeci_suites;
 
@@ -55,6 +60,7 @@ class RoomController extends Controller
         $add_rooms->No_Pax_Per_Room = $request->input('no_of_pax');
         $add_rooms->Rate_per_Night = $request->input('rate_per_night');
         $add_rooms->Membership = $request->input('membership');
+        $add_rooms->Hotel_Image = $request->input('images');
 
         $add_rooms->save();
 

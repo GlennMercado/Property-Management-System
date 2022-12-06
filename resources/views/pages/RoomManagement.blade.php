@@ -83,6 +83,8 @@
                                                     <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
                                                 </select>
                                                 
+                                                <p class="text-left">Hotel Image: </p>
+                                                <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
                                             </div>
                                         </div>
                                     </div>
