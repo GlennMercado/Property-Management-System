@@ -52,7 +52,6 @@ Route::group(['middleware' => 'auth'], function () {
 	
 
 	Route::get('Dashboard', function () {return view('pages.HousekeepingForms.Dashboard');})->name('Dashboard');
-	Route::get('RoomManagement', function () {return view('pages.HousekeepingForms.RoomManagement');})->name('RoomManagement');
 	
 	Route::get('Maintenance', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');
@@ -60,6 +59,13 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('LostandFound', function () {return view('pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
+	//Room Management
+	Route::get('RoomManagement', function () {
+		$list = DB::select('SELECT * FROM novadeci_suites');
+		return view('pages.RoomManagement',['list'=>$list]);})->name('RoomManagement');
+
+	Route::post('RoomManagement', 'App\Http\Controllers\RoomController@add_rooms');
+	
 	//Back Office
 	Route::get('BackOffice', function () {return view('pages.BackOffice');})->name('BackOffice');
 

@@ -91,6 +91,13 @@
                     </a>
                 </li>
 
+                <!--Back Office-->
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
+                        <i class="ni ni-folder-17 text-success"></i> {{ __('Room Management') }}
+                    </a>
+                </li>
+
                 <!--Housekeeping-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button"
@@ -103,14 +110,6 @@
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Dashboard') }}">
                                     <i class="text-success">•</i> {{ __('Dashboard') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
-                                    <i class="text-success">•</i> {{ __('Room Management') }}
                                 </a>
                             </li>
 

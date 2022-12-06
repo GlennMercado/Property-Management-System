@@ -5,7 +5,7 @@
     <div class="container-fluid nvdcbg">
         <div class="text-center mt-7">
             <div style="text-shadow: black 0.1em 0.1em 0.2em;">
-                <h1 class="display-1 text-white">NOVADECI PROPERTIES</h1>
+                <h1 class="display-1 text-white">NVDC PROPERTIES</h1>
                 <h3 class="text-white"><a href="#hotelRooms" class="text-white">Hotel</a> | <a href="#conventionCenter"
                         class="text-white">Convention Center</a> | <a href="#commercialSpaces" class="text-white">Commercial
                         Spaces</a> | <a href="#functionRooms" class="text-white">Function Rooms</a>
@@ -55,7 +55,7 @@
                                                         <input class="form-control" type="text" name="address" required>
 
                                                         <p class="text-left">Mobile No.: </p>
-                                                        <input class="form-control" type="number" name="mobile" required>
+                                                        <input class="form-control" type="tel" minlength="11" maxlength="12" name="mobile" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +70,8 @@
 
         </div>
     </div>
-    <div class="container-fluid bg-white" id="#hotelRooms">
+    {{-- Convention center intro --}}
+    <div class="container-fluid bg-white" id="hotelRooms">
         <div class="row d-flex justify-content-center">
             <div class="cards1" style="">
                 <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
@@ -96,7 +97,7 @@
                         ipsum officiis illum quo tempora.
 
                     </p>
-                    <button type="button" class="btn btn-default shadow2" style="border-radius: 25px;">Read more</button>
+                    <button type="button" class="btn btn-default shadow2" style="border-radius: 25px;">Reserve now</button>
                 </div>
 
             </div>
@@ -104,65 +105,100 @@
         </div>
 
     </div>
-
+    {{-- Convention center slider --}}
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
             <div class="col-md-9 mt-5">
-                <img class="card-img" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="height: 55%">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img class="d-block w-100"  src="{{ asset('nvdcpics') }}/BCourt1.jpg">
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100"  src="{{ asset('nvdcpics') }}/BCourt2.jpg">
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100"  src="{{ asset('nvdcpics') }}/BCourt3.jpg">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                
             </div>
         </div>
     </div>
+    {{-- Commmercial spaces gallery --}}
     <div class="container-fluid bg-white" id="commercialSpaces">
-        <div class="strike col-md-12">
-            <span>
-                <h1>RECENT POSTS</h1>
-            </span>
-        </div>
+
         <div class="row d-flex justify-content-center">
-
-            <div class="card col-md-5 cards1">
-
-                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                </div>
+            <div class="strike col-md-12 mt-5">
+                <span>
+                    <h1>Commercial Spaces</h1>
+                </span>
             </div>
-            <div class="col-md-6 text-center mt-6">
-                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
-                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
-                    possimus provident ullam autem rerum a.
-                </h1>
-
-
+            <div class="row d-flex justify-content-center" style="height: 50%">
+                <div class="col-md-3">
+                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/cspaces.jpg" alt="Card image cap"
+                        >
+                </div>   
             </div>
-
         </div>
-
     </div>
-    <div class="container-fluid bg-white" id="commercialSpaces">
-        <div class="row d-flex justify-content-center">
-            <div class="card col-md-5 cards1">
-                <img class="card-img-top mt-4" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
-                    style="height: 350px">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                </div>
+    <div class="container-fluid bg-white" id="functionRooms">    
+        <div class="row">
+            <div class="strike col-md-12 mt-5">
+                <span>
+                    <h1>Function Rooms</h1>
+                </span>
             </div>
-            <div class="col-md-6 text-center mt-6" id="functionRooms">
-                <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore, labore eveniet aliquam
-                    doloremque, aliquid quibusdam distinctio tenetur cum voluptatum eos, commodi corporis nobis
-                    possimus provident ullam autem rerum a.
-                </h1>
-
-
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+              <img
+                src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
+          
+              <img
+                 src="{{ asset('nvdcpics') }}/FunctionRoom2.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
             </div>
-
-        </div>
-
+          
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <img
+                 src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
+          
+              <img
+                src="{{ asset('nvdcpics') }}/FunctionRoom4.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
+            </div>
+          
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <img
+                src="{{ asset('nvdcpics') }}/FunctionRoom5.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
+          
+              <img
+                 src="{{ asset('nvdcpics') }}/FunctionRoom6.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+              />
+            </div>
+          </div>
     </div>
 
     <div class="container-fluid bg-white" id="commercialSpaces">
@@ -193,6 +229,9 @@
     </div>
 
     <style>
+        .slide1{
+            height: 13%;
+        }
         .shadow1 {
             -webkit-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
             -moz-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
@@ -243,7 +282,7 @@
             font-family: Montserrat, sans-serif;
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("nvdcpics/nvdcpic4.png");
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("nvdcpics/convention.jpg");
             background-size: cover;
         }
 
