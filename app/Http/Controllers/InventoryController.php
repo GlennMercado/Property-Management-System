@@ -33,20 +33,27 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addstock(Request $request)
     {
-        /*
-       $request->validate([
-        'productname' => 'required',
+    
+        $this->validate($request,[
+        'name' => 'required',
         'description' => 'required',
-        'in' => 'required',
+        'quantity' => 'required',
+        'category' => 'required',
+
        ]);
 
-       Product::create($request->all());
+       $stock = new hotelstock;
 
-       return redirect()->route('products.index')
-                        ->with('Success','Product Added Succesfully ');
-        */
+       $stock->name = $request->input('name');
+       $stock->description = $request->input('description');
+       $stock->total = $request->input('quantity');
+       $stock->category = $request->input('category');
+
+       $stock->save();
+
+       return redirect('StockCount')->with('Success', 'Data Saved');
     }
 
     /**

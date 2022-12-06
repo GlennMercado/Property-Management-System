@@ -35,7 +35,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('HotelReservationForm') }}" method="POST">
+                                        <form action="{{ route('HotelReservationForm') }}" class="prevent_submit" method="POST">
 
                                             {{ csrf_field() }}
 
@@ -60,13 +60,13 @@
                                                         <input class="form-control" type="text" name="address" required>
 
                                                         <p class="text-left">Mobile No.: </p>
-                                                        <input class="form-control" type="number" name="mobile" required>
+                                                        <input class="form-control" type="tel" minlength="11" maxlength="12" name="mobile" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                <input type="submit" class="btn btn-success" value="Submit" />
+                                                <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                             </div>
                                         </form>
                                     </div>
@@ -113,6 +113,12 @@
     </div>
     @include('layouts.footers.auth')
     </div>
+    <script type="text/javascript">
+
+        $('.prevent_submit').on('submit', function(){
+            $('.prevent_submit').attr('disabled','true');
+        });
+    </script>
 @endsection
 
 @push('js')

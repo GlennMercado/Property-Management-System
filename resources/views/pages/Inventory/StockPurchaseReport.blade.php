@@ -70,6 +70,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+                                            <form action="">
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
@@ -97,12 +98,12 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success">Submit</button>
+                                                <button type="submit" class="btn btn-success">Submit</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+                            </form>
                                 <!--MODAL FOR VIEW-->
                                 <div class="modal fade" id="PurchaseReportModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -202,7 +203,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                <div class="modal-footer">
+                                            <br>
+                                                <div class="" style = "float:right;">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="button" class="btn btn-success">Update</button>
                                                 </div>                    

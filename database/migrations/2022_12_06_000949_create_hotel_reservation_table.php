@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('check_out_date');
             $table->string('guest_name');
             $table->string('address');
-            $table->integer('mobile_num');
+            $table->string('mobile_num');
         });
     }
 
