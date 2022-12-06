@@ -13,49 +13,60 @@
                 <br>
             </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal"
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reserve"
                 style="border-radius: 20px;">
                 Book Now
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Book a Hotel Room</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="card-body bg-white" style="border-radius: 18px">
-                                    <p class="text-left">Check In: </p>
-                                    <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
-                                        id="example-datetime-local-input" required>
-                                    <p class="text-left">Check Out: </p>
-                                    <input class="form-control" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
-                                        id="example-datetime-local-input" required>
-                                    <p class="text-left">Room: </p>
-                                    <input class="form-control" type="number" value="1" id="example-number-input"
-                                        min="0" required>
-                                    <p class="text-left">No. of Adult: </p>
-                                    <input class="form-control" type="number" value="1" id="example-number-input"
-                                        min="0" required>
-                                    <p class="text-left">No. of Child: </p>
-                                    <input class="form-control" type="number" value="1" id="example-number-input"
-                                        min="0" required>
+            <div class="modal fade" id="reserve" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Hotel
+                                                Reservation
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('welcome') }}" method="POST">
+
+                                            {{ csrf_field() }}
+
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                        <p class="text-left">Check in Date/Time: </p>
+                                                        <input class="form-control" name="checkIn" type="datetime-local"
+                                                            value="<?php echo date('Y-m-d'); ?>" id="example-datetime-local-input"
+                                                            required>
+
+                                                        <p class="text-left">Check out Date/Time: </p>
+                                                        <input class="form-control" name="checkOut" type="datetime-local"
+                                                            value="<?php echo date('Y-m-d'); ?>" id="example-datetime-local-input"
+                                                            required>
+
+                                                        <p class="text-left">Guest Name: </p>
+                                                        <input class="form-control" type="text" name="gName" required>
+
+                                                        <p class="text-left">Address: </p>
+                                                        <input class="form-control" type="text" name="address" required>
+
+                                                        <p class="text-left">Mobile No.: </p>
+                                                        <input class="form-control" type="number" name="mobile" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                <input type="submit" class="btn btn-success" value="Submit" />
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Book now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
