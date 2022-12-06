@@ -2,7 +2,6 @@
 
 @section('content')
     @include('layouts.headers.cards')
-                        <!--<input type="submit" value="View" class = "btn btn-primary">-->
                         <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -34,29 +33,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalView"><i class="bi bi-eye" style = "padding:2px;"></i></a> 
-                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalEdit"><i class="bi bi-pencil-square" style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalView"><i class="bi bi-eye" style = "padding:2px;"></i></a> 
-                                        <a href="#" data-toggle="modal" data-target="#PurchaseReportModalEdit"><i class="bi bi-pencil-square" style = "padding:2px;"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->description}}</td>
+                                        <td>{{ $lists->unit}}</td>
+                                        <td>{{ $lists->suppliername}}</td>
+                                        <td>{{ $lists->quantity}}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
+                                            <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
+                                            <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                         </table>
                     </div>
 
@@ -70,29 +61,39 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="">
+                                            <form class="needs-validation" action="{{ route('StockPurchaseReport') }}" method="POST">
+                                                {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
-                                                        <p class="text-left">Product Code :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
-
-                                                        <p class="text-left">Item Name :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
-                                                        
-                                                        <p class="text-left">Description :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
-
-                                                        <p class="text-left">Quantity :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
-                                                        
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <p class="text-left">Product Code :
+                                                                    <input class="form-control" type="text" placeholder="Enter Here.." id="example-datetime-local-input" required></p>
+                                                            </div>
+                                                                <div class = "col">
+                                                                    <p class="text-left">Item Name :
+                                                                        <input class="form-control" type="text" id="name" name="name" placeholder="Enter Here.."  required></p>
+                                                                </div>
+                                                            </div>
+                                                        <p class="text-left">Item Description :
+                                                        <input class="form-control" type="text" placeholder="Enter Here.." id="description" name="description" required></p>
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <p class="text-left">Unit :
+                                                                    <input class="form-control" type="number" placeholder="Enter Here.." id="unit" name="unit" required></p>  
+                                                            </div>
+                                                                <div class = "col">
+                                                                    <p class="text-left">Quantity :
+                                                                        <input class="form-control" type="number" placeholder="Enter Here.." id="quantity" name="quantity" required></p>
+                                                                </div>
+                                                        </div>
                                                         <p class="text-left">Supplier Name: </p>
-                                                        <select class="form-control">
-                                                            <option value="Available">Sample Supplier 1</option>
-                                                            <option value="Dirty">Sample Supplier 2</option>
-                                                            <option value="Checked">Sample Supplier 3</option>
-                                                        </select>
-                                                        
+                                                            <select class="form-control">
+                                                                <option value="Available">Sample Supplier 1</option>
+                                                                <option value="Dirty">Sample Supplier 2</option>
+                                                                <option value="Checked">Sample Supplier 3</option>
+                                                            </select>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,10 +101,10 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-success">Submit</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                                 <!--MODAL FOR VIEW-->
                                 <div class="modal fade" id="PurchaseReportModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -227,3 +228,5 @@
         <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
     @endpush
+
+    

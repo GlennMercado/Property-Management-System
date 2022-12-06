@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class InventoryController extends Controller
+class PurchaseReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-    
+        //
     }
 
     /**
@@ -32,27 +32,30 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addstock(Request $request)
+    public function report(Request $request)
     {
-    
+        
         $this->validate($request,[
-        'name' => 'required',
-        'description' => 'required',
-        'quantity' => 'required',
-        'category' => 'required',
-
-       ]);
-
-       $stock = new hotelstock;
-
-       $stock->name = $request->input('name');
-       $stock->description = $request->input('description');
-       $stock->total = $request->input('quantity');
-       $stock->category = $request->input('category');
-
-       $stock->save();
-
-       return redirect('StockCount')->with('Success', 'Data Saved');
+            'name' => 'required',
+            'description' => 'required',
+            'quantity' => 'required',
+            'unit' => 'required',
+            'unit' => 'required',
+            'suppliername' => 'required',
+    
+           ]);
+    
+           $stock = new purchasereport;
+    
+           $stock->name = $request->input('name');
+           $stock->description = $request->input('description');
+           $stock->suppliername = $request->input('suppliername');
+           $stock->quantity = $request->input('quantity');
+           $stock->unit = $request->input('unit');
+    
+           $stock->save();
+    
+           return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
     }
 
     /**
