@@ -38,19 +38,6 @@
                                         <a href="#" class="btn btn-primary">View</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-
-                                        <a href="#" class="btn btn-primary">View</a>
-                                        </a>
-                                        
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
