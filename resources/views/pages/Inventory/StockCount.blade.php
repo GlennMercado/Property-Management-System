@@ -2,8 +2,6 @@
 
 @section('content')
     @include('layouts.headers.cards')
-        @include('users.modal.Inventory.create')
-        @include('users.modal.Inventory.update')
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -42,9 +40,8 @@
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>  <!-- located in - users > modal-->
-                                            <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                            <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
+                                            <button type="button" data-toggle="modal" data-target="#ModalView"><i class="bi bi-eye" style = "padding:2px;">View</i></button>  <!-- located in - users > modal-->
+                                            <button href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;">Edit</i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -58,7 +55,138 @@
     </div>
     
     <!-- Modal -->
-    
+      <!--View-->
+      <div class="modal fade text-left" id="ModalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title text-left display-4" id="exampleModalCreate">View</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>                    
+                </div>
+                <div class="modal-body">
+                            <form class="needs-validation" novalidate>
+                                <div class = "row">
+                                    <div class = "col">
+                                        <p class="text-left">Stock ID: </p>
+                                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
+                                    </div>
+                                        <div class = "col">
+                                            <p class="text-left">Stock Name: </p>
+                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" value = "" required>
+                                                    <div class="invalid-feedback">
+                                                        Stock Name empty
+                                                    </div>       
+                                        </div>
+                                </div>
+                        <div class="form-group">
+                            <label for="Stockdetails">Stock Description</label>
+                                <input type="text" class="form-control" id="Stockdetails" value = "Sample Data" required>
+                                   <!-- <div class="invalid-feedback">
+                                        Stock Details empty
+                                    </div>-->
+
+                            <label for="Stockdetails">Date :</label>
+                                <input type="date" class="form-control" id="Stockdetails" required>
+                                    <div class="invalid-feedback">
+                                        Quantity empty
+                                    </div>
+
+                            <label for="Stockdetails">Quantity</label>
+                                <input type="number" class="form-control" id="Stockdetails" value = "0" required>
+                                    <div class="invalid-feedback">
+                                        Quantity empty
+                                    </div>
+                </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Stock Type</label>
+                            <select class="form-control" required>
+                                <option value="Stock1">Sample 1</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock3">Sample 3</option>
+                            </select>
+                                <div class="invalid-feedback">
+                                Stock Details empty
+                                </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Update-->
+    <div class="modal fade text-left" id="ModalUpdate" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">{{ __('View') }}</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>                    
+                </div>
+                <div class="modal-body">
+                            <form class="needs-validation" novalidate>
+                                <div class = "row">
+                                    <div class = "col">
+                                        <p class="text-left">Stock ID: </p>
+                                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
+                                    </div>
+                                        <div class = "col">
+                                            <p class="text-left">Stock Name: </p>
+                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                    <div class="invalid-feedback">
+                                                        Stock Name empty
+                                                    </div>       
+                                        </div>
+                                </div>
+                        <div class="form-group">
+                            <label for="Stockdetails">Stock Description</label>
+                                <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
+                                    <div class="invalid-feedback">
+                                        Stock Details empty
+                                    </div>
+
+                            <label for="Stockdetails">Date :</label>
+                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." readonly>
+                                    <div class="invalid-feedback">
+                                        Quantity empty
+                                    </div>
+
+                            <label for="Stockdetails">Quantity</label>
+                            <input type="button" class="btn btn-primary" value="IN" id="" style="float:center"><input type="button" class="btn btn-primary" id="" value="OUT"><br>
+                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                                    <div class="invalid-feedback">
+                                        Quantity empty
+                                    </div>
+                </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Category</label>
+                            <select class="form-control" required>
+                                <option value="Stock1">Linen :</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock3">Sample 3</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                                <option value="Stock2">Sample 2</option>
+                            </select>
+                                <div class="invalid-feedback">
+                                Stock Details empty
+                                </div>
+                    </div>      
+      
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-failed" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Update</button>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Add Stock-->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -122,7 +250,16 @@
             </div>
         </form>
         </div>
-    </div>                              
+    </div>     
+    
+            </div>
+        </div>
+    </div>
+   
+
+
+
+    
     <!--Validation                               
        <script>
                  
