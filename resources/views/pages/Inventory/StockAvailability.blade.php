@@ -19,26 +19,25 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Product Code</th>
-                                    <th scope="col">Item Name</th>
-                                    <th scope="col">Supplier</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Item Description</th>
                                     <th scope="col">Available Stock</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>Sample Data</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">View</a>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            
+                                <tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->description}}</td>
+                                        <td>{{ $lists->total}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#ModalView"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                         </table>
                     </div>
                 </div>

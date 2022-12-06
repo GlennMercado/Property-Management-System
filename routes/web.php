@@ -79,7 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
 		$list = DB::select('SELECT * FROM purchasereport');
 		return view('pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 	Route::get('CreateInventory', function () {return view('pages.Inventory.CreateInventory');})->name('CreateInventory'); 
-	Route::get('StockAvailability', function () {return view('pages.Inventory.StockAvailability');})->name('StockAvailability');
+	
+	Route::get('StockAvailability', function () {
+		$list = DB::select('SELECT * FROM hotelstocks');
+		return view('pages.Inventory.StockAvailability', ['list'=>$list]);})->name('StockAvailability');
 
 	//GuestManagement
 	Route::get('GuestTicket', function () {return view('pages.Guestmanage.GuestTicket');})->name('GuestTicket');

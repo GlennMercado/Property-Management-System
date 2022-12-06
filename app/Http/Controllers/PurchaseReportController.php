@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\hotelstock;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PurchaseReportController extends Controller
 {
