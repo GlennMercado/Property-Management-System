@@ -35,7 +35,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                        <form action="{{ route('Maintenance')}}" method="POST"> 
+                                        <form action="{{ route('Maintenance')}}" class="prevent_submit" method="POST"> 
                                             
                                             {{ csrf_field() }}
 
@@ -45,6 +45,7 @@
                                                         
                                                         <p class="text-left">Status </p>
                                                         <select class="form-control" name="status">
+                                                            <option selected="true" disabled="disabled">---Choose Status---</option>
                                                             <option value="Active">Active</option>
                                                             <option value="Inactive">Inactive</option>
                                                         </select>
@@ -65,7 +66,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                <input type="submit" class="btn btn-success" value="Submit" />
+                                                <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                             </div>
                                         </form>    
                                         </div>
@@ -111,6 +112,15 @@
             </div>
             @include('layouts.footers.auth')
     </div>
+   
+<script type="text/javascript">
+
+$('.prevent_submit').on('submit', function(){
+    $('.prevent_submit').attr('disabled','true');
+});
+</script>
+
+
 @endsection
 
 @push('js')

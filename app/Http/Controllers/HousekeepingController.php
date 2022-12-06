@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\add_maintenance;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class MaintenanceController extends Controller
+class HousekeepingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        return view('pages.HousekeepingForms.Maintenance');
+        //
     }
-     
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,6 +36,11 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
+        //
+    }
+
+    public function add_maintenance(Request $request)
+    {
         $this->validate($request,[
             'status' => 'required',
             'desc' => 'required',
@@ -52,11 +57,13 @@ class MaintenanceController extends Controller
         $maintain->Location = $request->input('location');
         $maintain->Due_Date = $request->input('due');
 
+  
+
         $maintain->save();
 
+        Alert::Success('Success', 'Maintenance successfully submitted!');
         return redirect('Maintenance')->with('Success', 'Data Saved');
     }
-
     /**
      * Display the specified resource.
      *

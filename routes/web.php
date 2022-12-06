@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+	
 	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage');
 	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs');
 
@@ -46,13 +47,17 @@ Route::group(['middleware' => 'auth'], function () {
 		$list = DB::select('SELECT * FROM hotel_reservations');
 		return view('pages.Reservations.HotelReservationForm', ['list'=>$list]);})->name('HotelReservationForm');
 
-	//For HousekeepingandMaintenance
-	Route::post('Maintenance', 'App\Http\Controllers\MaintenanceController@store');
+	//For Housekeeping
+	Route::post('Maintenance', 'App\Http\Controllers\HousekeepingController@add_maintenance');
+	
+
 	Route::get('Dashboard', function () {return view('pages.HousekeepingForms.Dashboard');})->name('Dashboard');
 	Route::get('RoomManagement', function () {return view('pages.HousekeepingForms.RoomManagement');})->name('RoomManagement');
+	
 	Route::get('Maintenance', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');
 		return view('pages.HousekeepingForms.Maintenance', ['list'=>$list]);})->name('Maintenance');	
+	
 	Route::get('LostandFound', function () {return view('pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
 	//Back Office
