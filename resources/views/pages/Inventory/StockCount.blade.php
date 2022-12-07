@@ -40,8 +40,8 @@
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#ModalView"><i class="bi bi-eye" style = "padding:2px;">View</i></button>  <!-- located in - users > modal-->
-                                            <button href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;">Edit</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#ModalView"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>  <!-- located in - users > modal-->
+                                            <button href="#" data-toggle="modal" data-target="#ModalUpdate" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -182,66 +182,61 @@
         </div>
     </div>
     <!--Add Stock-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <form class="needs-validation" action="{{ route('StockCount') }}" method="POST">
-                            {{ csrf_field() }}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
+                        {{ csrf_field() }}
 
-                        <div class="modal-body">
-                            <div class = "row">
-                                 <div class = "col">
-                                        <p class="text-left">Stock ID: </p>
-                                            <input class="form-control" type="text" value="1" id="id" readonly>
-                                </div>
-                                    <div class = "col">
-                                            <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
-                                                    <!--<div class="invalid-feedback">
-                                                        Stock Name empty
-                                                    </div> -->      
-                                    </div>
+                    <div class="modal-body">
+                        <div class = "row">
+                            <div class = "col">
+                                    <p class="text-left">Stock ID: </p>
+                                        <input class="form-control" type="text" value="1" id="id" readonly>
                             </div>
-                        <div class="form-group">
-                            <label for="Stockdetails">Stock Description</label>
+                                <div class = "col">
+                                        <p class="text-left">Stock Name: </p>
+                                            <input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                                    
+                                </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Description</label>
                                 <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
-                                   <!-- <div class="invalid-feedback">
-                                        Stock Details empty
-                                    </div>-->
-
-                            <label for="Stockdetails">Quantity</label>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Quantity</label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
-                                    <!--<div class="invalid-feedback">
-                                        Quantity empty
-                                    </div>-->
-                        <div>
-                            <input type="number" class="form-control" name="in" value="0" placeholder="Enter number..." hidden>
-                            <input type="number" class="form-control" name="out" value="0" placeholder="Enter number..." hidden>
+                            </div>
                         </div>
-                        </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Category</label>
+                        <div class = "row">
+                            <div class = "col">
+                            <label for="exampleInputPassword1">Category</label>
                             <select class="form-control" name = "category" required>
-                                <option value="Stock1">Linens: \n Bed pad - Single</option>
+                                <option value="Stock1">Linens: /n Bed pad - Single</option>
                                 <option value="Stock2">Fitted Sheet - Single</option>
                                 <option value="Stock3">Flat Sheet - Single</option>
                             </select>
-                                <!--<div class="invalid-feedback">
-                                Stock Details empty
-                                </div>-->
-                    </div>              
-            
-                <br>
-                    <div class="modal-footer">
+                            </div>
+                            
+                        </div>    
+                        <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success" name="submit" />                      
-                    </div>
+                        <input type="submit" class="btn btn-success" value="submit" />                      
+                    </div>                            
+                            </div>
+                        </div>           
+                <br>
+                    
             </div>
         </form>
         </div>
