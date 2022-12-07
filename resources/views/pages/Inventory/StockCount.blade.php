@@ -202,7 +202,7 @@
                             </div>
                                 <div class = "col">
                                         <p class="text-left">Stock Name: </p>
-                                            <input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                            <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
                                                     
                                 </div>
                         </div>
@@ -220,31 +220,31 @@
                         </div>
                         <div class = "row">
                             <div class = "col">
-                            <label for="exampleInputPassword1">Category</label>
-                            <select class="form-control" name = "category" required>
-                                <option value="Stock1">Linens: /n Bed pad - Single</option>
-                                <option value="Stock2">Fitted Sheet - Single</option>
-                                <option value="Stock3">Flat Sheet - Single</option>
-                            </select>
+                                <label for="exampleInputPassword1">Category</label>
+                                    <select class="form-control" name = "category" required>
+                                        <option value="Stock1">Linens: /n Bed pad - Single</option>
+                                        <option value="Stock2">Fitted Sheet - Single</option>
+                                        <option value="Stock3">Flat Sheet - Single</option>
+                                    </select>
                             </div>
-                            
-                        </div>    
-                        <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success" value="submit" />                      
-                    </div>                            
+
+                        </div>                            
+                    </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                <input type="submit" class="btn btn-success prevent_submit" value="submit" />                      
                             </div>
-                        </div>           
-                <br>
-                    
-            </div>
-        </form>
-        </div>
-    </div>     
-    
+                        </form>
+                </div>             
             </div>
         </div>
     </div>
+</div>
+    <!-- </div>     
+    
+            </div>
+        </div>
+    </div> -->
    
 
 
