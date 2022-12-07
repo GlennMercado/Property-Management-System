@@ -88,7 +88,7 @@
 </div>
 
                             <label for="Stockdetails">Date :</label>
-                                <input type="date" class="form-control" id="Stockdetails" value="{{ $lists->date}}" readonly>
+                                <input type="date" class="form-control" id="Stockdetails" value="{{ date('F j Y', strtotime($lists->date))}}" readonly>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
