@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('Rate_per_Night');
             $table->string('Membership');
             $table->string('Hotel_Image');
+            //$table->binary('DB_Image');
             $table->timestamps();
             //4 State (Cleaned, Dirty, Out of Order, Out of Service)
                         
