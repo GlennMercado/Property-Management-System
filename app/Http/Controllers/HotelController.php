@@ -82,13 +82,16 @@ class HotelController extends Controller
         
     }
 
-    public function update_payment($id)
+    public function update_payment($id, $no)
     {
         $reserveno = $id;
+        $roomno = $no;
         $stats = "Paid";
+        $stats2 = "Reserved";
 
         DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats));
-        
+        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+
         Alert::Success('Success', 'Reservation successfully updated!');
         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
     }

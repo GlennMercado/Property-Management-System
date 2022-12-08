@@ -57,7 +57,7 @@
                                                             <option selected="true" disabled="disabled">Select</option>
                                                             @foreach($room as $rooms)
                                                                 @if($rooms->Status == 'Available')
-                                                                <option value="{{$rooms->Room_No}}">{{$rooms->Room_No}} - {{$rooms->No_of_Beds}} - {{$rooms->Extra_Bed}}</option>
+                                                                    <option value="{{$rooms->Room_No}}">{{$rooms->Room_No}} - {{$rooms->No_of_Beds}} - {{$rooms->Extra_Bed}}</option>
                                                                 @endif
                                                             @endforeach
                                                         </select>
@@ -140,7 +140,9 @@
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
                                             <!--Edit Button-->
+                                            @if($lists->Payment_Status == 'Pending')
                                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Reservation_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                            @endif
                                         </td>
                                     </tr>
                                     <!--View-->
@@ -232,7 +234,7 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update', ['id' => $lists->Reservation_No]) }}" class="btn btn-success">Yes</a>
+                                                    <a href="{{ url('/update', ['id' => $lists->Reservation_No, 'no' => $lists->Room_No]) }}" class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
