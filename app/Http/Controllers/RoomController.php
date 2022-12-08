@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\novadeci_suites;
 use Illuminate\Support\Facades\DB;
+use App\Models\housekeeping;
 
 class RoomController extends Controller
 {
@@ -59,6 +60,7 @@ class RoomController extends Controller
         else
         {
             $add_rooms= new novadeci_suites;
+            $hs = new housekeeping;
 
             $add_rooms->Room_No = $request->input('room_no');
             $add_rooms->Room_Size = $request->input('room_size');
@@ -68,6 +70,8 @@ class RoomController extends Controller
             $add_rooms->Rate_per_Night = $request->input('rate_per_night');
             $add_rooms->Membership = $request->input('membership');
 
+            $hs->Room_No = $request->input('room_no');
+        
             if($request->hasfile('images'))
             {
                 $file = $request->file('images');
@@ -77,7 +81,7 @@ class RoomController extends Controller
                 $add_rooms->Hotel_Image = $path;
             }
 
-            if($add_rooms->save())
+            if($add_rooms->save() && $hs->save())
             {
                 Alert::Success('Success', 'Room Successfully Created!');
                 return redirect('RoomManagement')->with('Success', 'Data Saved');
@@ -135,6 +139,41 @@ class RoomController extends Controller
         }
 
 
+    }
+    
+    public function update_rooms(Request $request)
+    {
+        try{
+            $this->validate($request,[
+                'room_no' => 'required',
+                'stats' => 'required',
+                'hstats' => 'required'
+            ]);
+
+            $room_no = $request->input('room_no');
+            $status = $request->input('stats');
+            $hstatus = $request->input('hstats');
+
+
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+            (
+                'Status' => $status
+            ));
+
+            DB::table('housekeepings')->where('Room_No', $room_no)->update(array
+            (
+                'Housekeeping_Status' => $hstatus
+            ));
+
+            
+            Alert::Success('Success', 'Room Edited Successfully!');
+            return redirect('RoomManagement')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Room Edit Failed!');
+            return redirect('RoomManagement')->with('Failed', 'Data not Updateds');
+        }
     }
 
     /**

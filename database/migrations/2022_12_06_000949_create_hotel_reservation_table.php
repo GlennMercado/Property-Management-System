@@ -14,14 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hotel_reservations', function (Blueprint $table) {
-            $table->id();
+            $table->string('Reservation_No')->primary();
+            $table->string('Guest_Name');
+            $table->string('Mobile_Num');
+            
+            $table->integer('Room_No');
+            $table->integer('No_of_Pax');
+
+            $table->string('Payment_Status')->default('Pending');
+
+            $table->string('Check_In_Date');
+            $table->string('Check_Out_Date');
             $table->timestamps();
-            $table->string('check_in_date');
-            $table->string('check_out_date');
-            $table->string('guest_name');
-            $table->string('pax');
-            $table->string('address');
-            $table->string('mobile_num');
         });
     }
 

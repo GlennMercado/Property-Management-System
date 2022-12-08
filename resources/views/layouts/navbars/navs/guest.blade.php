@@ -38,25 +38,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('profile.edit') }}">
-                        <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('Profile') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link nav-link-icon text-default" href="{{ route('AboutUs') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('About Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('profile.edit') }}">
+                    <a class="nav-link nav-link-icon text-default" href="{{ route('ContactUs') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="">
+                    <a class="nav-link nav-link-icon text-default" href="{{ route('Map')}}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
