@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('Extra_Bed');
             $table->integer('No_Pax_Per_Room');
             $table->string('Status')->default('Available');
-            $table->string('State')->default('Cleaned');
             $table->integer('Rate_per_Night');
             $table->string('Membership');
             $table->string('Hotel_Image');
@@ -30,7 +29,6 @@ return new class extends Migration
             //4 State (Cleaned, Dirty, Out of Order, Out of Service)
                         
         });
-
 
     }
 

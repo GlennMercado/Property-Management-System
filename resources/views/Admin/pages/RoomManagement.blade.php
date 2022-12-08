@@ -53,7 +53,7 @@
                                                         </select>   
                                                     </div>
                                                     <div class = "col">
-                                                        <p class="text-left">Room Size </p>
+                                                        <p class="text-left">Room Size (sq. m.)</p>
                                                         <input class="form-control" type="text" name="room_size" required>
                                                     </div>
                                                 </div>           
@@ -74,13 +74,17 @@
                                                 <div class = "row">
                                                     <div class = "col">
                                                         <p class="text-left">Extra Bed </p>
-                                                            <input class="form-control" type="text" name="extra_bed" required>
+                                                            <select name="extra_bed" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="None">None</option>
+                                                                <option value="One (1)">One (1)</option>
+                                                            </select>
                                                     </div>
                                                     <div class = "col">
                                                         <p class="text-left">No. of Pax per Room </p>
                                                             <select name="no_of_pax" class="form-control"required>
                                                                 <option selected="true" disabled="disabled">Select</option>
-                                                                @for($count = 1; $count <=10; $count++)
+                                                                @for($count = 1; $count <=4; $count++)
                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                 @endfor
                                                             </select> 
@@ -122,7 +126,7 @@
                                     <th scope="col">Room Size</th>
                                     <th scope="col">No. of Beds</th>
                                     <th scope="col">Extra Bed</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
                                     <th scope="col">Action</th>
@@ -205,7 +209,7 @@
                                                                 <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                                 <br><br>
 
-                                                                <p class="text-left">Room Size </p>
+                                                                <p class="text-left">Room Size (sq. m.) </p>
                                                                 <input class="form-control" type="text" name="room_size" value="{{$lists->Room_Size}}" required>
                                                                 
                                                                 <div class = "row">
@@ -224,13 +228,17 @@
                                                                 <div class = "row">
                                                                     <div class = "col">
                                                                         <p class="text-left">Extra Bed </p>
-                                                                            <input class="form-control" type="text" name="extra_bed" value="{{$lists->Extra_Bed}}" required>
+                                                                        <select name="extra_bed" class="form-control" required>
+                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                            <option value="None">None</option>
+                                                                            <option value="One (1)">One (1)</option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class = "col">
                                                                         <p class="text-left">No. of Pax per Room </p>
                                                                             <select name="no_of_pax" class="form-control" required>
                                                                                 <option selected="true" disabled="disabled">Select</option>
-                                                                                @for($count = 1; $count <=10; $count++)
+                                                                                @for($count = 1; $count <=4; $count++)
                                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                                 @endfor
                                                                             </select> 

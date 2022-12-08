@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\hotel_reservations;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class HotelController extends Controller
 {
@@ -36,27 +37,61 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+        // Available alpha caracters
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // generate a pin based on 2 * 7 digits + a random character
+        $pin = mt_rand(1000000, 9999999)
+            . mt_rand(1000000, 9999999)
+            . $characters[rand(0, strlen($characters) - 1)];
+
+        // shuffle the result
+        $randID = str_shuffle($pin);
+
+        
         $this->validate($request,[
             'checkIn' => 'required',
             'checkOut' => 'required',
             'gName' => 'required',
-            'address' => 'required',
-            'mobile' => 'required'
+            'mobile' => 'required',
+            'room_no' => 'required',
+            'pax' => 'required'
         ]);
 
-        $maintain = new hotel_reservations;
+        $reserve = new hotel_reservations;
 
-        $maintain->check_in_date = $request->input('checkIn');
-        $maintain->check_out_date = $request->input('checkOut');
-        $maintain->guest_name = $request->input('gName');
-        $maintain->address = $request->input('address');
-        $maintain->mobile_num = $request->input('mobile');
+        $reserve->Reservation_No = $randID;
+        $reserve->Check_In_Date = $request->input('checkIn');
+        $reserve->Check_Out_Date = $request->input('checkOut');
+        $reserve->Guest_Name = $request->input('gName');
+        $reserve->Mobile_Num = $request->input('mobile');
+        $reserve->No_of_Pax = $request->input('pax');
+        $reserve->Room_No = $request->input('room_no');
 
-        $maintain->save();
-        Alert::Success('Success', 'Reservation was successfully submitted!');
-        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        if($reserve->save())
+        {
+            Alert::Success('Success', 'Reservation was successfully submitted!');
+            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Reservation Failed!');
+            return redirect('HotelReservationForm')->with('Error', 'Failed!');
+        }
+
+        
     }
 
+    public function update_payment($id)
+    {
+        $reserveno = $id;
+        $stats = "Paid";
+
+        DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats));
+        
+        Alert::Success('Success', 'Reservation successfully updated!');
+        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+    }
     /**
      * Display the specified resource.
      *

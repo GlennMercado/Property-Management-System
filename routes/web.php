@@ -55,9 +55,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.Reservations.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
+	Route::get('/update/{id}', 'App\Http\Controllers\HotelController@update_payment');
+	
 	Route::get('HotelReservationForm', function () {
 		$list = DB::select('SELECT * FROM hotel_reservations');
-		return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list]);})->name('HotelReservationForm');
+		$room = DB::select('SELECT * FROM novadeci_suites');
+		return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room]);})->name('HotelReservationForm');
 
 	//For Housekeeping
 	Route::post('Maintenance', 'App\Http\Controllers\HousekeepingController@add_maintenance');
@@ -65,7 +68,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('Housekeeping', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');
-		return view('Admin.pages.HousekeepingForms.Housekeeping',['list' =>$list]);})->name('Dashboard');
+		$list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
+		return view('Admin.pages.HousekeepingForms.Housekeeping',['list' =>$list, 'list2' =>$list2]);})->name('Dashboard');
 
 	Route::get('Maintenance', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');

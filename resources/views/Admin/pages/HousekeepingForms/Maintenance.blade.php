@@ -43,12 +43,8 @@
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <p class="text-left">Status </p>
-                                                                <select class="form-control" name="status">
-                                                                    <option selected="true" disabled="disabled">Select</option>
-                                                                    <option value="Active">Active</option>
-                                                                    <option value="Inactive">Inactive</option>
-                                                                </select>
+                                                                <p class="text-left">Due Date: </p>
+                                                                <input class="form-control due" type="date" name="due" onkeydown="return false" required>
                                                             </div>
                                                             <div class="col">
                                                                 <p class="text-left">Location: </p>
@@ -62,7 +58,6 @@
                                                         </div>
 
                                                         <br>
-
                                                         <p class="text-left">Description: </p>
                                                         <input class="form-control" type="text" name="desc" required>
                                                         
@@ -72,10 +67,6 @@
                                                             <div class="col">
                                                                 <p class="text-left">Asset: </p>
                                                                 <input class="form-control" type="text" name="asset" required><
-                                                            </div>
-                                                            <div class="col">
-                                                                <p class="text-left">Due Date: </p>
-                                                                <input class="form-control due" type="date" name="due" onkeydown="return false" required>
                                                             </div>
                                                         </div>
                                                         
