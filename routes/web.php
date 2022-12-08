@@ -21,12 +21,14 @@ Route::get('/', function () {
 //Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 	
 //Admin
 //Route::group(['middleware' => 'auth'], function () { });
 Route::middleware(['auth', 'Admin'])->group(function(){
+	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
+
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
@@ -95,3 +97,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('GuestTicketManager', function () {return view('Admin.pages.Guestmanage.GuestTicketManager');})->name('GuestTicketManager'); 
 });
 
+
+//Guest
+Route::middleware(['auth', 'Guest'])->group(function(){
+	Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->name('home');
+});
