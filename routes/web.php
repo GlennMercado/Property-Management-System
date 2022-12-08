@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
+
 
 //Homepage	
 Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
@@ -28,8 +28,6 @@ Route::get('welcome', function () {
 	return view('welcome', ['list'=>$list]);})->name('welcome');
 
 
-=======
->>>>>>> a58ec31b09a0362b8046d5172f0c606cec29849a
 //Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
@@ -45,12 +43,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-<<<<<<< HEAD
-=======
+
 
 	Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
 	Route::get('AboutUs', function () {return view('Admin.pages.AboutUs');})->name('AboutUs');
->>>>>>> a58ec31b09a0362b8046d5172f0c606cec29849a
+
 
 
 	//Reservation
