@@ -229,28 +229,7 @@
 
     <div class="container-fluid bg-white" id="commercialSpaces">
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8 cards1">
-                <div class="strike">
-                    <span>
-                        <h1>MAP</h1>
-                    </span>
-                </div>
-                <h3 class="text-center">NVDC Properties Location</h3>
-                <div class="shadow1">
-                    <div class="mapouter">
-                        <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
-                                scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                                href="https://formatjson.org/">format json</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
