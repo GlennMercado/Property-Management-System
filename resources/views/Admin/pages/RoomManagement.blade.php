@@ -16,7 +16,7 @@
                             </div>
                             <div class="col text-right">
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#add_rooms">
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-plus"></i>
                                 </button>           
                             </div>
                         </div>
