@@ -78,7 +78,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Inventory Management
 	Route::post('StockCount', 'App\Http\Controllers\InventoryController@addstock');
 	Route::get('StockCount', function () {
-		$list = DB::select('SELECT * FROM hotelstocks');
+		$list = DB::select('SELECT * FROM hotelstock');
 		return view('Admin.pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
 
 	Route::get('StockPurchaseReport', function () {
