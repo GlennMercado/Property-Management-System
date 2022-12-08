@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -80,6 +81,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
+        //Alert::Success('Success', 'Account Created Successfully!');
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }

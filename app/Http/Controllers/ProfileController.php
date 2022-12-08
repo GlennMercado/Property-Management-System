@@ -13,9 +13,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit()
+    public function admin_edit()
     {
-        return view('profile.edit');
+        return view('Admin.profile.edit');
     }
 
     /**

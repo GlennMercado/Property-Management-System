@@ -31,7 +31,7 @@
                                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                     </div>
                                     <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Name') }}" type="text" pattern="[a-zA-Z]*" name="name"
+                                        placeholder="{{ __('Name') }}" type="text" name="name"
                                         value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))

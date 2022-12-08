@@ -41,7 +41,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
 
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@admin_edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
@@ -97,7 +97,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('CreateInventory', function () {return view('Admin.pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 
 	Route::get('StockAvailability', function () {
-		$list = DB::select('SELECT * FROM hotelstocks');
+		$list = DB::select('SELECT * FROM hotelstock');
 		return view('Admin.pages.Inventory.StockAvailability', ['list'=>$list]);})->name('StockAvailability');
 
 	//GuestManagement
