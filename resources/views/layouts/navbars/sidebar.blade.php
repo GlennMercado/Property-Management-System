@@ -94,30 +94,30 @@
                 <!--Room Management-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
-                        <i class="ni ni-folder-17 text-success"></i> {{ __('Room Management') }}
+                        <i class="ni ni-building text-success"></i> {{ __('Room Management') }}
                     </a>
                 </li>
 
                 <!--Housekeeping-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                        <i class="ni ni-folder-17 text-success"></i> {{ __('Housekeeping') }}
+                        <i class="ni ni-delivery-fast text-success"></i> {{ __('Housekeeping') }}
                     </a>
                 </li>
                 
                 <!--Analytics-->
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('home') }}">
                         <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Analytics') }}
                     </a>
-                </li>
+                </li>-->
                 
                 <!--Back Office-->
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('BackOffice') }}">
                         <i class="ni ni-folder-17 text-success"></i> {{ __('Back Office') }}
                     </a>
-                </li>
+                </li>-->
 
                 <!--RDFM-->
                 <li class="nav-item">

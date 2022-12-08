@@ -85,6 +85,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
+	Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
 
 	//Back Office
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');

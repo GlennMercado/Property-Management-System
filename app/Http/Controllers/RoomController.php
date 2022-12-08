@@ -140,6 +140,41 @@ class RoomController extends Controller
 
 
     }
+    
+    public function update_rooms(Request $request)
+    {
+        try{
+            $this->validate($request,[
+                'room_no' => 'required',
+                'stats' => 'required',
+                'hstats' => 'required'
+            ]);
+
+            $room_no = $request->input('room_no');
+            $status = $request->input('stats');
+            $hstatus = $request->input('hstats');
+
+
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+            (
+                'Status' => $status
+            ));
+
+            DB::table('housekeepings')->where('Room_No', $room_no)->update(array
+            (
+                'Housekeeping_Status' => $hstatus
+            ));
+
+            
+            Alert::Success('Success', 'Room Edited Successfully!');
+            return redirect('RoomManagement')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Room Edit Failed!');
+            return redirect('RoomManagement')->with('Failed', 'Data not Updateds');
+        }
+    }
 
     /**
      * Display the specified resource.

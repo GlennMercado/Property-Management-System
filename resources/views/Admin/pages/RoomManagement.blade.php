@@ -145,6 +145,8 @@
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
+                                            <!--Update Status button-->
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                         </td>
                                     </tr>
 
@@ -265,6 +267,53 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Update Modal-->
+                                    <div class="modal fade" id="update{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room {{$lists->Room_No}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            <form method="POST" class="prevent_submit" action="{{url('/update_rooms')}}" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                            <!--Room No-->
+                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
+                                                            <p class="text-left">Booking Status :</p> 
+                                                            <select name="stats" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Available">Available</option>
+                                                                <option value="Reserved">Reserved</option>
+                                                                <option value="Checked-In">Checked-In</option>
+                                                                <option value="Checked-Out">Checked-Out</option>
+                                                            </select>
+
+                                                            <p class="text-left">Housekeeping Status :</p> 
+                                                            <select name="hstats" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Cleaned">Cleaned</option>
+                                                                <option value="Dirty">Dirty</option>
+                                                                <option value="Out of Order">Out of Order</option>
+                                                                <option value="Out of Service">Out of Service</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Update" />
+                                                </div> 
+                                            </form>
+                                            </div>                     
                                         </div>
                                     </div>
                                 @endforeach
