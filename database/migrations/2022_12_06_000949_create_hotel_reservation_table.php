@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('check_in_date');
             $table->string('check_out_date');
             $table->string('guest_name');
+            $table->string('pax');
             $table->string('address');
             $table->string('mobile_num');
         });

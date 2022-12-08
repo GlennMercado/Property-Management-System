@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Homepage	
+Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
+	
+Route::get('newpage', function () {return view('newpage');})->name('newpage');
+Route::get('AboutUs', function () {return view('AboutUs');})->name('AboutUs');
+Route::get('welcome', function () {
+	$list = DB::select('SELECT * FROM hotel_reservations');
+	return view('welcome', ['list'=>$list]);})->name('welcome');
+
+
 //Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -29,15 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	
-	Route::get('newpage', function () {return view('pages.newpage');})->name('newpage');
-	Route::get('AboutUs', function () {return view('pages.AboutUs');})->name('AboutUs');
 
-	//Homepage
-	Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
-	Route::get('welcome', function () {
-		$list = DB::select('SELECT * FROM hotel_reservations');
-		return view('welcome', ['list'=>$list]);})->name('welcome');
 
 	//Reservation
 	Route::get('EventInquiryForm', function () {return view('pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
