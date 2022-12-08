@@ -50,10 +50,10 @@
                                                         <option value="{{$count}}"> {{ $count }}</option>
                                                     @endfor
                                                 </select>                                                
-                                                                                                
+                                                <br>                                              
                                                 <p class="text-left">Room Size: </p>
                                                 <input class="form-control" type="text" name="room_size" required>
-                                                
+                                                <br>
                                                 <p class="text-left">No. of Beds: </p>
                                                 <select name="no_of_beds" class="form-control" required>
                                                     <option selected="true" disabled="disabled">---Choose Beds---</option>
@@ -61,10 +61,10 @@
                                                     <option value="One (1) queen-sized">One (1) queen-sized</option>
                                                     <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
                                                 </select>
-                                                
+                                                <br>
                                                 <p class="text-left">Extra Bed: </p>
                                                 <input class="form-control" type="text" name="extra_bed" required>
-                                                
+                                                <br>
                                                 <p class="text-left">No. of Pax per Room: </p>
                                                 <select name="no_of_pax" class="form-control"required>
                                                     <option selected="true" disabled="disabled">---Choose Number of Pax---</option>
@@ -72,9 +72,9 @@
                                                         <option value="{{$count}}"> {{ $count }}</option>
                                                     @endfor
                                                 </select> 
-                                                
+                                                <br>
                                                 <p class="text-left">Rate per Night: </p>
-                                                <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" maxlength="10" required>
+                                                <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
                                                 
                                                 <p class="text-left">Membership: </p>
                                                 <select name="membership" class="form-control" required>
@@ -82,7 +82,7 @@
                                                     <option value="Guests">Guests</option>
                                                     <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
                                                 </select>
-                                                
+                                                <br>
                                                 <p class="text-left">Hotel Image: </p>
                                                 <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
                                             </div>
@@ -182,9 +182,9 @@
         
         
         
-        <a href="{{ route('Dashboard') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+        <!--<a href="{{ route('Dashboard') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
             Go Back
-        </a>
+        </a>-->
         
             @include('layouts.footers.auth')
     

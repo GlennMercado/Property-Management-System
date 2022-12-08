@@ -40,8 +40,8 @@
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#ModalView"><i class="bi bi-eye" style = "padding:2px;">View</i></button>  <!-- located in - users > modal-->
-                                            <button href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;">Edit</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#ModalView"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>  <!-- located in - users > modal-->
+                                            <button href="#" data-toggle="modal" data-target="#ModalUpdate" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -88,7 +88,7 @@
 </div>
 
                             <label for="Stockdetails">Date :</label>
-                                <input type="date" class="form-control" id="Stockdetails" value="{{ $lists->date}}" readonly>
+                                <input type="date" class="form-control" id="Stockdetails" value="{{ date('F j Y', strtotime($lists->date))}}" readonly>
                                     <div class="invalid-feedback">
                                         Quantity empty
                                     </div>
@@ -116,140 +116,196 @@
                 <div class="modal-header">
                     <h2 class="modal-title">{{ __('View') }}</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                     </button>                    
                 </div>
                 <div class="modal-body">
-                            <form class="needs-validation" novalidate>
-                                <div class = "row">
-                                    <div class = "col">
-                                        <p class="text-left">Stock ID: </p>
-                                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
-                                    </div>
-                                        <div class = "col">
-                                            <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
-                                                    <div class="invalid-feedback">
-                                                        Stock Name empty
-                                                    </div>       
-                                        </div>
-                                </div>
-                        <div class="form-group">
-                            <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
-                                    <div class="invalid-feedback">
-                                        Stock Details empty
-                                    </div>
+                    <form class="needs-validation" novalidate>
+                        <div class = "row">
+                            <div class = "col">
+                            <p class="text-left">Stock ID: </p>
+                            <input class="form-control" type="text" value="1" id="example-datetime-local-input" readonly>
+                        </div>
+                        <div class = "col">
+                            <p class="text-left">Stock Name: </p>
+                            <input type="text" class="form-control" id="Stockname" aria-describedby="emailHelp" placeholder="Enter name..." required>
+                                <div class="invalid-feedback">
+                                    Stock Name empty
+                                </div>       
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="Stockdetails">Stock Description</label>
+                    <input type="text" class="form-control" id="Stockdetails" placeholder="Enter details..." required>
+                        <div class="invalid-feedback">
+                            Stock Details empty
+                        </div>
 
                             <label for="Stockdetails">Date :</label>
-                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." readonly>
-                                    <div class="invalid-feedback">
-                                        Quantity empty
-                                    </div>
-
+                            <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." readonly>
+                        <div class="invalid-feedback">
+                            Quantity empty
+                        </div>
                             <label for="Stockdetails">Quantity</label>
                             <input type="button" class="btn btn-primary" value="IN" id="" style="float:center"><input type="button" class="btn btn-primary" id="" value="OUT"><br>
-                                <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
-                                    <div class="invalid-feedback">
-                                        Quantity empty
-                                    </div>
+                            <input type="number" class="form-control" id="Stockdetails" placeholder="Enter number..." required>
+                        <div class="invalid-feedback">
+                            Quantity empty
+                        </div>
                 </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Category</label>
-                            <select class="form-control" required>
-                                <option value="Stock1">Linen :</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock3">Sample 3</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                                <option value="Stock2">Sample 2</option>
-                            </select>
-                                <div class="invalid-feedback">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Category</label>
+                    <select class="form-control" required>
+                        <option value="Stock">Linens :</option>
+                        <option value="Stock1">Bed pad - Single</option>
+                        <option value="Stock2">Fitted Sheet - Single</option>
+                        <option value="Stock3">Flat Sheet - Single</option>
+                        <option value="Stock4">Duvet Filler - Single</option>
+                        <option value="Stock5">Duvet Cover - Single</option>
+                        <option value="Stock6">Pillows</option>
+                        <option value="Stock7">Bed pad - Queen</option>
+                        <option value="Stock8">Fitted Sheet - Queen</option>
+                        <option value="Stock9">Flat Sheet - Queen</option>
+                        <option value="Stock10">Duvet Filler - Queen</option>
+                        <option value="Stock11">Duvet Cover - Queen</option>
+                        <option value="Stock12">Pillows Case</option>
+                        <option value="Stock13">Bath Towel</option>
+                        <option value="Stock14">Hand Towel</option>
+                        <option value="Stock15">Bath Mat</option>
+                        <option value="Stock16">Bed Ruuner Queen</option>
+                        <option value="Stock17">Bed Runner Single</option>
+                        <option value="Stock"></option>
+                        <option value="Stock">Guest Supplies :</option>
+                        <option value="Stock18">Bath Soap</option>
+                        <option value="Stock19">Shampoo</option>
+                        <option value="Stock20">Dental Kit</option>
+                        <option value="Stock21">Slippers</option>
+                        <option value="Stock22">Bottled Water</option>
+                        <option value="Stock23">Juice</option>
+                        <option value="Stock24">Coffee</option>
+                        <option value="Stock25">Creamer</option>
+                        <option value="Stock26">Sugar - White</>
+                        <option value="Stock27">Sugar - Brown</option>
+                        <option value="Stock"></option>
+                        <option value="Stock">Amenities : </option>
+                        <option value="Stock28">Kettle</option>
+                        <option value="Stock29">Tray</option>
+                        <option value="Stock30">Dental Glass</option>
+                        <option value="Stock31">Teaspoon</option>
+                        <option value="Stock32">Cup And Saucer</option>
+                        <option value="Stock33">Hanger</option>
+                        <option value="Stock34">Door Hang</option>
+                    </select>
+                <div class="invalid-feedback">
                                 Stock Details empty
-                                </div>
-                    </div>      
-      
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-failed" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">Update</button>                       
-                    </div>
                 </div>
+            </div>      
+            <div class="modal-footer">
+                <button type="button" class="btn btn-failed" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">Update</button>                       
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!--Add Stock-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
+                        {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class = "row">
+                            <div class = "col">
+                                <p class="text-left">Stock ID: </p>
+                                        <input class="form-control" type="text" value="1" id="id" readonly>
+                            </div>
+                            <div class = "col">
+                                <p class="text-left">Stock Name: </p>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
+                                                    
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Description</label>
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Quantity</label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="exampleInputPassword1">Category</label>
+                                    <select class="form-control" name = "category" required>
+                                    <option value="Stock">Linens :</option>
+                        <option value="Stock1">Bed pad - Single</option>
+                        <option value="Stock2">Fitted Sheet - Single</option>
+                        <option value="Stock3">Flat Sheet - Single</option>
+                        <option value="Stock4">Duvet Filler - Single</option>
+                        <option value="Stock5">Duvet Cover - Single</option>
+                        <option value="Stock6">Pillows</option>
+                        <option value="Stock7">Bed pad - Queen</option>
+                        <option value="Stock8">Fitted Sheet - Queen</option>
+                        <option value="Stock9">Flat Sheet - Queen</option>
+                        <option value="Stock10">Duvet Filler - Queen</option>
+                        <option value="Stock11">Duvet Cover - Queen</option>
+                        <option value="Stock12">Pillows Case</option>
+                        <option value="Stock13">Bath Towel</option>
+                        <option value="Stock14">Hand Towel</option>
+                        <option value="Stock15">Bath Mat</option>
+                        <option value="Stock16">Bed Ruuner Queen</option>
+                        <option value="Stock17">Bed Runner Single</option>
+                        <option value="Stock" readonly></option>
+                        <option value="Stock" readonly>Guest Supplies :</option>
+                        <option value="Stock18">Bath Soap</option>
+                        <option value="Stock19">Shampoo</option>
+                        <option value="Stock20">Dental Kit</option>
+                        <option value="Stock21">Slippers</option>
+                        <option value="Stock22">Bottled Water</option>
+                        <option value="Stock23">Juice</option>
+                        <option value="Stock24">Coffee</option>
+                        <option value="Stock25">Creamer</option>
+                        <option value="Stock26">Sugar - White</>
+                        <option value="Stock27">Sugar - Brown</option>
+                        <option value="Stock"></option>
+                        <option value="Stock">Amenities : </option>
+                        <option value="Stock28">Kettle</option>
+                        <option value="Stock29">Tray</option>
+                        <option value="Stock30">Dental Glass</option>
+                        <option value="Stock31">Teaspoon</option>
+                        <option value="Stock32">Cup And Saucer</option>
+                        <option value="Stock33">Hanger</option>
+                        <option value="Stock34">Door Hang</option>
+                                    </select>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" class="btn btn-success prevent_submit" value="submit" />                      
+                    </div>
+                </form>         
             </div>
         </div>
     </div>
-    <!--Add Stock-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <form class="needs-validation" action="{{ route('StockCount') }}" method="POST">
-                            {{ csrf_field() }}
-
-                        <div class="modal-body">
-                            <div class = "row">
-                                 <div class = "col">
-                                        <p class="text-left">Stock ID: </p>
-                                            <input class="form-control" type="text" value="1" id="id" readonly>
-                                </div>
-                                    <div class = "col">
-                                            <p class="text-left">Stock Name: </p>
-                                                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter name..." required>
-                                                    <!--<div class="invalid-feedback">
-                                                        Stock Name empty
-                                                    </div> -->      
-                                    </div>
-                            </div>
-                        <div class="form-group">
-                            <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
-                                   <!-- <div class="invalid-feedback">
-                                        Stock Details empty
-                                    </div>-->
-
-                            <label for="Stockdetails">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
-                                    <!--<div class="invalid-feedback">
-                                        Quantity empty
-                                    </div>-->
-                        <div>
-                            <input type="number" class="form-control" name="in" value="0" placeholder="Enter number..." hidden>
-                            <input type="number" class="form-control" name="out" value="0" placeholder="Enter number..." hidden>
-                        </div>
-                        </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Category</label>
-                            <select class="form-control" name = "category" required>
-                                <option value="Stock1">Linens: \n Bed pad - Single</option>
-                                <option value="Stock2">Fitted Sheet - Single</option>
-                                <option value="Stock3">Flat Sheet - Single</option>
-                            </select>
-                                <!--<div class="invalid-feedback">
-                                Stock Details empty
-                                </div>-->
-                    </div>              
-            
-                <br>
-                    <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success" name="submit" />                      
-                    </div>
-            </div>
-        </form>
-        </div>
-    </div>     
+    <!-- </div>     
     
             </div>
         </div>
-    </div>
+    </div> -->
    
 
 
