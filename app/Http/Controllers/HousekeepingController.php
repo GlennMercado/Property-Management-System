@@ -42,7 +42,6 @@ class HousekeepingController extends Controller
     public function add_maintenance(Request $request)
     {
         $this->validate($request,[
-            'status' => 'required',
             'desc' => 'required',
             'asset' => 'required',
             'location' => 'required',
@@ -51,7 +50,8 @@ class HousekeepingController extends Controller
 
         $maintain = new add_maintenance;
 
-        $maintain->Status = $request->input('status');
+        $stats = 'On-going';
+        $maintain->Status = $stats;
         $maintain->Description = $request->input('desc');
         $maintain->Asset = $request->input('asset');
         $maintain->Location = $request->input('location');
@@ -59,10 +59,18 @@ class HousekeepingController extends Controller
 
   
 
-        $maintain->save();
+        if($maintain->save())
+        {
+            Alert::Success('Success', 'Maintenance successfully submitted!');
+            return redirect('Maintenance')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Maintenance Submission Failed!');
+            return redirect('Maintenance')->with('Error', 'Failed!');
+        }
 
-        Alert::Success('Success', 'Maintenance successfully submitted!');
-        return redirect('Maintenance')->with('Success', 'Data Saved');
+       
     }
     /**
      * Display the specified resource.

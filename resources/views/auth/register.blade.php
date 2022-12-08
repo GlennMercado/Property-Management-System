@@ -118,7 +118,7 @@
 
                     <h2 style="text-align: center;"><b>TERMS AND CONDITIONS</b></h2>
                     <p>Last updated: 2022-12-08</p>
-                    <p>1. <b>Introduction</b></p>
+                    <strong>1. <b>Introduction</b></strong>
                     <p>Welcome to <b>NVDC Properties</b> (“Company”, “we”, “our”, “us”)!</p>
                     <p>These Terms of Service (“Terms”, “Terms of Service”) govern your use of our website located at
                         <b>nvdcproperties.com</b> (together or individually “Service”) operated by <b>NVDC Properties</b>.
@@ -130,20 +130,20 @@
                     <p>If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but
                         please let us know by emailing at <b>nvdcproperties@gmail.com</b> so we can try to find a solution.
                         These Terms apply to all visitors, users and others who wish to access or use Service.</p>
-                    <p>2. <b>Communications</b></p>
+                    <strong>2. <b>Communications</b></strong>
                     <p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and
                         other information we may send. However, you may opt out of receiving any, or all, of these
                         communications from us by following the unsubscribe link or by emailing at nvdcproperties@gmail.com.
                     </p>
 
-                    <p>3. <b>Contests, Sweepstakes and Promotions</b></p>
+                    <strong>3. <b>Contests, Sweepstakes and Promotions</b></strong>
                     <p>Any contests, sweepstakes or other promotions (collectively, “Promotions”) made available through
                         Service may be governed by rules that are separate from these Terms of Service. If you participate
                         in any Promotions, please review the applicable rules as well as our Privacy Policy. If the rules
                         for a Promotion conflict with these Terms of Service, Promotion rules will apply.</p>
 
 
-                    <p>4. <b>Content</b></p>
+                    <strong>4. <b>Content</b></strong>
                     <p>Our Service allows you to post, link, store, share and otherwise make available certain information,
                         text, graphics, videos, or other material (“Content”). You are responsible for Content that you post
                         on or through Service, including its legality, reliability, and appropriateness.</p>
@@ -166,7 +166,7 @@
                         with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use
                         said Content, whether in whole or in part, for commercial purposes or for personal gain, without
                         express advance written permission from us.</p>
-                    <p>5. <b>Prohibited Uses</b></p>
+                    <strong>5. <b>Prohibited Uses</b></strong>
                     <p>You may use Service only for lawful purposes and in accordance with Terms. You agree not to use
                         Service:</p>
                     <p>0.1. In any way that violates any applicable national or international law or regulation.</p>
@@ -199,15 +199,15 @@
                     <p>0.7. Attack Service via a denial-of-service attack or a distributed denial-of-service attack.</p>
                     <p>0.8. Take any action that may damage or falsify Company rating.</p>
                     <p>0.9. Otherwise attempt to interfere with the proper working of Service.</p>
-                    <p>6. <b>Analytics</b></p>
+                    <strong>6. <b>Analytics</b></strong>
                     <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
-                    <p>7. <b>No Use By Minors</b></p>
+                    <strong>7. <b>No Use By Minors</b></strong>
                     <p>Service is intended only for access and use by individuals at least eighteen (18) years old. By
                         accessing or using Service, you warrant and represent that you are at least eighteen (18) years of
                         age and with the full authority, right, and capacity to enter into this agreement and abide by all
                         of the terms and conditions of Terms. If you are not at least eighteen (18) years old, you are
                         prohibited from both the access and usage of Service.</p>
-                    <p>8. <b>Accounts</b></p>
+                    <strong>8. <b>Accounts</b></strong>
                     <p>When you create an account with us, you guarantee that you are above the age of 18, and that the
                         information you provide us is accurate, complete, and current at all times. Inaccurate, incomplete,
                         or obsolete information may result in the immediate termination of your account on Service.</p>
@@ -222,13 +222,13 @@
                         vulgar or obscene.</p>
                     <p>We reserve the right to refuse service, terminate accounts, remove or edit content, or cancel orders
                         in our sole discretion.</p>
-                    <p>9. <b>Intellectual Property</b></p>
+                    <strong>9. <b>Intellectual Property</b></strong>
                     <p>Service and its original content (excluding Content provided by users), features and functionality
                         are and will remain the exclusive property of NVDC Properties and its licensors. Service is
                         protected by copyright, trademark, and other laws of and foreign countries. Our trademarks may not
                         be used in connection with any product or service without the prior written consent of NVDC
                         Properties.</p>
-                    <p>10. <b>Copyright Policy</b></p>
+                    <strong>10. <b>Copyright Policy</b></strong>
                     <p>We respect the intellectual property rights of others. It is our policy to respond to any claim that
                         Content posted on Service infringes on the copyright or other intellectual property rights
                         (“Infringement”) of any person or entity.</p>
@@ -240,7 +240,7 @@
                     <p>You may be held accountable for damages (including costs and attorneys’ fees) for misrepresentation
                         or bad-faith claims on the infringement of any Content found on and/or through Service on your
                         copyright.</p>
-                    <p>11. <b>DMCA Notice and Procedure for Copyright Infringement Claims</b></p>
+                    <strong>11. <b>DMCA Notice and Procedure for Copyright Infringement Claims</b></strong>
                     <p>You may submit a notification pursuant to the Digital Millennium Copyright Act (DMCA) by providing
                         our Copyright Agent with the following information in writing (see 17 U.S.C 512(c)(3) for further
                         detail):</p>
@@ -258,7 +258,7 @@
                         accurate and that you are the copyright owner or authorized to act on the copyright owner’s behalf.
                     </p>
                     <p>You can contact our Copyright Agent via email at nvdcproperties@gmail.com.</p>
-                    <p>12. <b>Error Reporting and Feedback</b></p>
+                    <strong>12. <b>Error Reporting and Feedback</b></strong>
                     <p>You may provide us either directly at nvdcproperties@gmail.com or via third party sites and tools
                         with information and feedback concerning errors, suggestions for improvements, ideas, problems,
                         complaints, and other matters related to our Service (“Feedback”). You acknowledge and agree that:
@@ -271,7 +271,7 @@
                         irrevocable, free-of-charge, sub-licensable, unlimited and perpetual right to use (including copy,
                         modify, create derivative works, publish, distribute and commercialize) Feedback in any manner and
                         for any purpose.</p>
-                    <p>13. <b>Links To Other Web Sites</b></p>
+                    <strong>13. <b>Links To Other Web Sites</b></strong>
                     <p>Our Service may contain links to third party web sites or services that are not owned or controlled
                         by NVDC Properties.</p>
                     <p>NVDC Properties has no control over, and assumes no responsibility for the content, privacy policies,
@@ -289,7 +289,7 @@
                         SERVICES.</p>
                     <p>WE STRONGLY ADVISE YOU TO READ THE TERMS OF SERVICE AND PRIVACY POLICIES OF ANY THIRD PARTY WEB SITES
                         OR SERVICES THAT YOU VISIT.</p>
-                    <p>14. <b>Disclaimer Of Warranty</b></p>
+                    <strong>14. <b>Disclaimer Of Warranty</b></strong>
                     <p>THESE SERVICES ARE PROVIDED BY COMPANY ON AN “AS IS” AND “AS AVAILABLE” BASIS. COMPANY MAKES NO
                         REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THEIR
                         SERVICES, OR THE INFORMATION, CONTENT OR MATERIALS INCLUDED THEREIN. YOU EXPRESSLY AGREE THAT YOUR
@@ -308,7 +308,7 @@
                         FITNESS FOR PARTICULAR PURPOSE.</p>
                     <p>THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE
                         LAW.</p>
-                    <p>15. <b>Limitation Of Liability</b></p>
+                    <strong>15. <b>Limitation Of Liability</b></strong>
                     <p>EXCEPT AS PROHIBITED BY LAW, YOU WILL HOLD US AND OUR OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS
                         HARMLESS FOR ANY INDIRECT, PUNITIVE, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGE, HOWEVER IT ARISES
                         (INCLUDING ATTORNEYS’ FEES AND ALL RELATED COSTS AND EXPENSES OF LITIGATION AND ARBITRATION, OR AT
@@ -322,7 +322,7 @@
                         BE CONSEQUENTIAL OR PUNITIVE DAMAGES. SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF
                         PUNITIVE, INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE PRIOR LIMITATION OR EXCLUSION MAY NOT APPLY TO
                         YOU.</p>
-                    <p>16. <b>Termination</b></p>
+                    <strong>16. <b>Termination</b></strong>
                     <p>We may terminate or suspend your account and bar access to Service immediately, without prior notice
                         or liability, under our sole discretion, for any reason whatsoever and without limitation, including
                         but not limited to a breach of Terms.</p>
@@ -330,7 +330,7 @@
                     <p>All provisions of Terms which by their nature should survive termination shall survive termination,
                         including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations
                         of liability.</p>
-                    <p>17. <b>Governing Law</b></p>
+                    <strong>17. <b>Governing Law</b></strong>
                     <p>These Terms shall be governed and construed in accordance with the laws of Philippines, which
                         governing law applies to agreement without regard to its conflict of law provisions.</p>
                     <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those
@@ -338,12 +338,12 @@
                         remaining provisions of these Terms will remain in effect. These Terms constitute the entire
                         agreement between us regarding our Service and supersede and replace any prior agreements we might
                         have had between us regarding Service.</p>
-                    <p>18. <b>Changes To Service</b></p>
+                    <strong>18. <b>Changes To Service</b></strong>
                     <p>We reserve the right to withdraw or amend our Service, and any service or material we provide via
                         Service, in our sole discretion without notice. We will not be liable if for any reason all or any
                         part of Service is unavailable at any time or for any period. From time to time, we may restrict
                         access to some parts of Service, or the entire Service, to users, including registered users.</p>
-                    <p>19. <b>Amendments To Terms</b></p>
+                    <strong>19. <b>Amendments To Terms</b></strong>
                     <p>We may amend Terms at any time by posting the amended terms on this site. It is your responsibility
                         to review these Terms periodically.</p>
                     <p>Your continued use of the Platform following the posting of revised Terms means that you accept and
@@ -352,7 +352,7 @@
                     <p>By continuing to access or use our Service after any revisions become effective, you agree to be
                         bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to
                         use Service.</p>
-                    <p>20. <b>Waiver And Severability</b></p>
+                    <strong>20. <b>Waiver And Severability</b></strong>
                     <p>No waiver by Company of any term or condition set forth in Terms shall be deemed a further or
                         continuing waiver of such term or condition or a waiver of any other term or condition, and any
                         failure of Company to assert a right or provision under Terms shall not constitute a waiver of such
@@ -361,10 +361,10 @@
                         invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to
                         the minimum extent such that the remaining provisions of Terms will continue in full force and
                         effect.</p>
-                    <p>21. <b>Acknowledgement</b></p>
+                    <strong>21. <b>Acknowledgement</b></strong>
                     <p>BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF
                         SERVICE AND AGREE TO BE BOUND BY THEM.</p>
-                    <p>22. <b>Contact Us</b></p>
+                    <strong>22. <b>Contact Us</b></strong>
                     <p>Please send your feedback, comments, requests for technical support by email:
                         <b>nvdcproperties@gmail.com</b>.</p>
                     <p style="margin-top: 5em; font-size: 0.7em;">These <a
@@ -377,6 +377,12 @@
             </div>
         </div>
     </div>
+    <style>
+        p strong{
+            text-align:justify;
+            font-family:sans-serif;
+        }
+    </style>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {

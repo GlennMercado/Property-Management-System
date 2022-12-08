@@ -16,7 +16,7 @@
                             </div>
                             <div class="col text-right">
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#add_rooms">
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-plus"></i>
                                 </button>           
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                                         </select>   
                                                     </div>
                                                     <div class = "col">
-                                                        <p class="text-left">Room Size </p>
+                                                        <p class="text-left">Room Size (sq. m.)</p>
                                                         <input class="form-control" type="text" name="room_size" required>
                                                     </div>
                                                 </div>           
@@ -74,13 +74,17 @@
                                                 <div class = "row">
                                                     <div class = "col">
                                                         <p class="text-left">Extra Bed </p>
-                                                            <input class="form-control" type="text" name="extra_bed" required>
+                                                            <select name="extra_bed" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="None">None</option>
+                                                                <option value="One (1)">One (1)</option>
+                                                            </select>
                                                     </div>
                                                     <div class = "col">
                                                         <p class="text-left">No. of Pax per Room </p>
                                                             <select name="no_of_pax" class="form-control"required>
                                                                 <option selected="true" disabled="disabled">Select</option>
-                                                                @for($count = 1; $count <=10; $count++)
+                                                                @for($count = 1; $count <=4; $count++)
                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                 @endfor
                                                             </select> 
@@ -122,7 +126,7 @@
                                     <th scope="col">Room Size</th>
                                     <th scope="col">No. of Beds</th>
                                     <th scope="col">Extra Bed</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
                                     <th scope="col">Action</th>
@@ -141,6 +145,8 @@
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
+                                            <!--Update Status button-->
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                         </td>
                                     </tr>
 
@@ -205,7 +211,7 @@
                                                                 <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                                 <br><br>
 
-                                                                <p class="text-left">Room Size </p>
+                                                                <p class="text-left">Room Size (sq. m.) </p>
                                                                 <input class="form-control" type="text" name="room_size" value="{{$lists->Room_Size}}" required>
                                                                 
                                                                 <div class = "row">
@@ -224,13 +230,17 @@
                                                                 <div class = "row">
                                                                     <div class = "col">
                                                                         <p class="text-left">Extra Bed </p>
-                                                                            <input class="form-control" type="text" name="extra_bed" value="{{$lists->Extra_Bed}}" required>
+                                                                        <select name="extra_bed" class="form-control" required>
+                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                            <option value="None">None</option>
+                                                                            <option value="One (1)">One (1)</option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class = "col">
                                                                         <p class="text-left">No. of Pax per Room </p>
                                                                             <select name="no_of_pax" class="form-control" required>
                                                                                 <option selected="true" disabled="disabled">Select</option>
-                                                                                @for($count = 1; $count <=10; $count++)
+                                                                                @for($count = 1; $count <=4; $count++)
                                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                                 @endfor
                                                                             </select> 
@@ -257,6 +267,53 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Update Modal-->
+                                    <div class="modal fade" id="update{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room {{$lists->Room_No}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            <form method="POST" class="prevent_submit" action="{{url('/update_rooms')}}" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                            <!--Room No-->
+                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
+                                                            <p class="text-left">Booking Status :</p> 
+                                                            <select name="stats" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Available">Available</option>
+                                                                <option value="Reserved">Reserved</option>
+                                                                <option value="Checked-In">Checked-In</option>
+                                                                <option value="Checked-Out">Checked-Out</option>
+                                                            </select>
+
+                                                            <p class="text-left">Housekeeping Status :</p> 
+                                                            <select name="hstats" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Cleaned">Cleaned</option>
+                                                                <option value="Dirty">Dirty</option>
+                                                                <option value="Out of Order">Out of Order</option>
+                                                                <option value="Out of Service">Out of Service</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Update" />
+                                                </div> 
+                                            </form>
+                                            </div>                     
                                         </div>
                                     </div>
                                 @endforeach

@@ -61,8 +61,7 @@ class LoginController extends Controller
         }
         else
         {
-            Alert::Error('Failed', 'Login Failed!');
-            return redirect()->route('login')->with('Error', 'Input correct email or password');
+            return back()->withStats(__('Login Failed.'));
         }
     }
 }

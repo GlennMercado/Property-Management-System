@@ -6,55 +6,164 @@
     <div class="container-fluid mt--7">                 
         <br>
 
-        <!--Room Assignment-->
+        <!--Cleaned-->
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Room Assignment </h3>
+                                <h2 class="mb-0">Housekeeping</h3>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-center">
+                            <button class="btn btn-success active" id="btncleaned">Cleaned</button>
+                            <button class="btn btn-primary" id="btndirty">Dirty</button>
+                            <button class="btn btn-danger" id="btnorder">Out of Order</button>
+                            <button class="btn btn-warning" id="btnservice">Out of Service</button>
+                        </div>
+                        <br>
+                        <!--Cleaned-->
+                        <div class="row align-items-center" id="cleaned2">
+                            <div class="col">
+                                <h3 class="mb-0">Cleaned</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                        <!--Dirty-->
+                        <div class="row align-items-center" id="dirty2" style="display:none;">
+                            <div class="col">
+                                <h3 class="mb-0">Dirty</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                        <!--Out of Order-->
+                        <div class="row align-items-center" id="outoforder2" style="display:none;">
+                            <div class="col">
+                                <h3 class="mb-0">Out of Order</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                        <!--Out of Service-->
+                        <div class="row align-items-center" id="outofservice2" style="display:none;">
+                            <div class="col">
+                                <h3 class="mb-0">Out of Service</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <!--Cleaned-->
+                    <div class="table-responsive" id="cleaned">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Room No.</th>
+                                    <th scope="col">Booking Status</th>
+                                    <th scope="col">Housekeeping Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($list2 as $lists2)
+                                <tr>
+                                    @if($lists2->Housekeeping_Status == 'Cleaned')
+                                    <td>{{ $lists2->Room_No }}</td>
+                                    <td>{{ $lists2->Status}}</td>
+                                    <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    @endif
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--Dirty-->
+                    <div class="table-responsive" id="dirty" style="display:none;">
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
                                     <th scope="col">Room</th>
-                                    <th scope="col">State</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Attendant</th>
-                                    <th scope="col">Arrival</th>
-                                    <th scope="col">Departure</th>
-                                    <th scope="col">Guest Preference</th>
+                                    <th scope="col">Check-in</th>
+                                    <th scope="col">Check-out</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><?php echo date("M-d-Y");?></td>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
                                     <td>101</td>
-                                    <td>Cleaned</td>
-                                    <td>Available</td>
+                                    <td>Unavailable</td>
                                     <td>Kay</td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td><?php echo date("M-d-Y");?></td>
-                                    <td>
-                                        <!--<i class="fas fa-arrow-up text-success mr-3"></i> 46,53%-->
-                                        Dark Curtains
-                                    </td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                    <td><?php echo date('M-d-Y');?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--Out of Order-->
+                    <div class="table-responsive" id="outoforder" style="display:none;">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Unavailable</td>
+                                    <td>Kay</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--Out of Service-->
+                    <div class="table-responsive" id="outofservice" style="display:none;">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Attendant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
+                                    <td>101</td>
+                                    <td>Unavailable</td>
+                                    <td>Kay</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
         
         <br>
 
@@ -154,160 +263,7 @@
         </div>
 
         <br>
-        <!--Cleaned-->
-        <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <button class="btn btn-success active" id="btncleaned">Cleaned</button>
-                            <button class="btn btn-primary" id="btndirty">Dirty</button>
-                            <button class="btn btn-danger" id="btnorder">Out of Order</button>
-                            <button class="btn btn-warning" id="btnservice">Out of Service</button>
-                        </div>
-                        <br>
-                        <!--Cleaned-->
-                        <div class="row align-items-center" id="cleaned">
-                            <div class="col">
-                                <h3 class="mb-0">Cleaned</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                        <!--Dirty-->
-                        <div class="row align-items-center" id="dirty" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Dirty</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                        <!--Out of Order-->
-                        <div class="row align-items-center" id="outoforder" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Out of Order</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                        <!--Out of Service-->
-                        <div class="row align-items-center" id="outofservice" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Cleaned</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Cleaned-->
-                    <div class="table-responsive" id="cleaned">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Date & Time Accomplished</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                    <th scope="col">Check-in</th>
-                                    <th scope="col">Check-out</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Cleaned</td>
-                                    <td>Kay</td>
-                                    <td><?php echo date('M-d-Y');?></td>
-                                    <td><?php echo date('M-d-Y');?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!--Dirty-->
-                    <div class="table-responsive" id="dirty" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                    <th scope="col">Check-in</th>
-                                    <th scope="col">Check-out</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
-                                    <td><?php echo date('M-d-Y');?></td>
-                                    <td><?php echo date('M-d-Y');?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!--Out of Order-->
-                    <div class="table-responsive" id="outoforder" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!--Out of Service-->
-                    <div class="table-responsive" id="outofservice" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>    
+        
 
 
 
@@ -319,10 +275,10 @@
             $('#btndirty').removeClass(' active'); 
             $('#btnorder').removeClass(' active'); 
             $('#btnservice').removeClass(' active'); 
-            $('#cleaned').show();
-            $('#dirty').hide();
-            $('#outoforder').hide();
-            $('#outofservice').hide();
+            $('#cleaned, #cleaned2').show();
+            $('#dirty, #dirty2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').hide();
         });
     });
     //dirty btn
@@ -332,10 +288,10 @@
             $('#btncleaned').removeClass(' active'); 
             $('#btnorder').removeClass(' active'); 
             $('#btnservice').removeClass(' active'); 
-            $('#dirty').show();
-            $('#cleaned').hide();
-            $('#outoforder').hide();
-            $('#outofservice').hide();
+            $('#dirty, #dirty2').show();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').hide();
         });
     });
     //outoforder btn
@@ -345,10 +301,10 @@
             $('#btncleaned').removeClass(' active'); 
             $('#btndirty').removeClass(' active'); 
             $('#btnservice').removeClass(' active'); 
-            $('#dirty').hide();
-            $('#cleaned').hide();
-            $('#outoforder').show();
-            $('#outofservice').hide();
+            $('#dirty, #dirty2').hide();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').show();
+            $('#outofservice, #outofservice2').hide();
         });
     });
     //outofservices btn
@@ -358,10 +314,10 @@
             $('#btncleaned').removeClass(' active'); 
             $('#btndirty').removeClass(' active'); 
             $('#btnorder').removeClass(' active'); 
-            $('#dirty').hide();
-            $('#cleaned').hide();
-            $('#outoforder').hide();
-            $('#outofservice').show();
+            $('#dirty, #dirty2').hide();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').show();
         });
     });
 </script>        

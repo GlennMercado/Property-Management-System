@@ -18,9 +18,9 @@
                                 <div class="col">
                                     <h3 class="mb-0">Maintenance</h3>
                                 </div>
-                                <div class="col text-right">
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#addm" >
-                                        <i class="bi bi-plus"></i> Add
+                                <div class="col text-right">                     
+                                    <button class="btn btn-outline-success" data-toggle="modal" data-target="#addm">
+                                        <i class="bi bi-plus"></i>
                                     </button>
                                 </div>
 
@@ -43,12 +43,8 @@
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <p class="text-left">Status </p>
-                                                                <select class="form-control" name="status">
-                                                                    <option selected="true" disabled="disabled">Select</option>
-                                                                    <option value="Active">Active</option>
-                                                                    <option value="Inactive">Inactive</option>
-                                                                </select>
+                                                                <p class="text-left">Due Date: </p>
+                                                                <input class="form-control due" type="date" name="due" onkeydown="return false" required>
                                                             </div>
                                                             <div class="col">
                                                                 <p class="text-left">Location: </p>
@@ -62,7 +58,6 @@
                                                         </div>
 
                                                         <br>
-
                                                         <p class="text-left">Description: </p>
                                                         <input class="form-control" type="text" name="desc" required>
                                                         
@@ -71,11 +66,7 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <p class="text-left">Asset: </p>
-                                                                <input class="form-control" type="text" name="asset" required><
-                                                            </div>
-                                                            <div class="col">
-                                                                <p class="text-left">Due Date: </p>
-                                                                <input class="form-control due" type="date" name="due" onkeydown="return false" required>
+                                                                <input class="form-control" type="text" name="asset" required>
                                                             </div>
                                                         </div>
                                                         
@@ -134,7 +125,18 @@
             </div>
             @include('layouts.footers.auth')
     </div>
-   
+   <!-- style -->
+<style>
+    p{
+        letter-spacing:1px;
+        font-weight:lighter;
+        font-family:sans-serif;
+        color:#909090;
+    }
+    h5{
+        font-family:sans-serif;
+    }
+</style>
 <script type="text/javascript">
 $('.prevent_submit').on('submit', function(){
     $('.prevent_submit').attr('disabled','true');
