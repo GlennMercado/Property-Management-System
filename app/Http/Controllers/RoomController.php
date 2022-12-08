@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\novadeci_suites;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -46,8 +47,17 @@ class RoomController extends Controller
             'rate_per_night' => 'required',
             'membership' => 'required'
         ]);
-        
-        $add_rooms= new novadeci_suites;
+        $roomno = $request->input('room_no');
+        $checkExist = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' ");
+
+        if($checkExist)
+        {
+            Alert::Error('Error', 'Room Already Exist');
+            return redirect('RoomManagement')->with('Error', 'Data Not Saved');
+        }
+        else
+        {
+            $add_rooms= new novadeci_suites;
 
         $add_rooms->Room_No = $request->input('room_no');
         $add_rooms->Room_Size = $request->input('room_size');
@@ -66,10 +76,21 @@ class RoomController extends Controller
             $add_rooms->Hotel_Image = $path;
         }
 
-        $add_rooms->save();
+        if($add_rooms->save())
+        {
+            Alert::Success('Success', 'Room Successfully Created!');
+            return redirect('RoomManagement')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Room Creation Failed');
+            return redirect('RoomManagement')->with('Error', 'Data Not Saved');
+        }
 
-        Alert::Success('Success', 'Room Successfully Created!');
-        return redirect('RoomManagement')->with('Success', 'Data Saved');
+        }
+        
+
+        
     }
 
     /**

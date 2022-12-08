@@ -86,6 +86,15 @@
                                                             </select> 
                                                     </div>
                                                 </div>  
+
+                                                <p class="text-left">No. of Beds: </p>
+                                                <select name="no_of_beds" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">---Choose Beds---</option>
+                                                    <option value="One (1) twin-sized">One (1) twin-sized</option>
+                                                    <option value="One (1) queen-sized">One (1) queen-sized</option>
+                                                    <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
+                                                </select>
+
                                                 <br>
                                                 <p class="text-left">Rate per Night </p>
                                                     <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
@@ -97,8 +106,23 @@
                                                         <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
                                                     </select>
                                                 <br>
+
                                                     <p class="text-left">Hotel Image </p>
                                                         <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
+
+                                                <p class="text-left">Rate per Night: </p>
+                                                <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
+                                                
+                                                <p class="text-left">Membership: </p>
+                                                <select name="membership" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">---Choose Membership---</option>
+                                                    <option value="Guests">Guests</option>
+                                                    <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
+                                                </select>
+                                                <br>
+                                                <p class="text-left">Hotel Image: </p>
+                                                <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
+
                                             </div>
                                                 
                                         </div>
