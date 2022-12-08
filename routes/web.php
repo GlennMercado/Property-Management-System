@@ -51,7 +51,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('Maintenance', 'App\Http\Controllers\HousekeepingController@add_maintenance');
 	
 
-	Route::get('Dashboard', function () {return view('pages.HousekeepingForms.Dashboard');})->name('Dashboard');
+	Route::get('Housekeeping', function () {
+		$list = DB::select('SELECT * FROM novadeci_suites');
+		return view('pages.HousekeepingForms.Housekeeping',['list'=>$list]);})->name('Dashboard');
 	
 	Route::get('Maintenance', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');

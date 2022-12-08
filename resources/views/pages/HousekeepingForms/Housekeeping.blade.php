@@ -4,7 +4,9 @@
     @include('layouts.headers.cards')
     
     <div class="container-fluid mt--7">                 
-    <br>
+        <br>
+
+        <!--Room Assignment-->
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
@@ -53,7 +55,8 @@
                 </div>
             </div>
         </div>
-    <br>
+        
+        <br>
 
         <!--Cardboxes
         <div class="row">
@@ -98,7 +101,58 @@
                 </div>
             </div>
         </div>-->
-        
+
+        <!--Maintenance-->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Maintenance</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" >ID</th>
+                                    <th scope="col" >Status</th>
+                                    <th scope="col" >Description</th>
+                                    <th scope="col" >Asset</th>
+                                    <th scope="col" >Location</th>
+                                    <th scope="col" >Due Date</th>
+                                    <th scope="col" >Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list as $lists)
+                                <tr>
+                                    <td>{{ $lists->ID}}</td>
+                                    <td>{{ $lists->Status}}</td>
+                                    <td>{{ $lists->Description}}</td>
+                                    <td>{{ $lists->Asset}}</td>
+                                    <td>{{ $lists->Location}}</td>
+                                    <td>{{ date("F j Y", strtotime($lists->Due_Date))}}</td>
+                                    <td>
+                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-check-lg"></i>
+                                        <i class="bi bi-chevron-right"></i>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <br>
         <!--Cleaned-->
         <div class="row">
@@ -143,7 +197,7 @@
             </div>
         </div>    
 
-        <br><br>
+        <br>
 
         <!--Dirty-->
         <div class="row">
@@ -189,7 +243,7 @@
             </div>
         </div>
 
-        <br><br>
+        <br>
 
         <!--Out of Order-->
         <div class="row">
@@ -231,7 +285,7 @@
             </div>
         </div>
 
-        <br><br>
+        <br>
 
         <!--Out of Service-->
         <div class="row">
@@ -275,6 +329,9 @@
             @include('layouts.footers.auth')
     
     </div>
+
+
+    
 @endsection
 
 @push('js')

@@ -91,7 +91,7 @@
                     </a>
                 </li>
 
-                <!--Back Office-->
+                <!--Room Management-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
                         <i class="ni ni-folder-17 text-success"></i> {{ __('Room Management') }}
@@ -100,37 +100,9 @@
 
                 <!--Housekeeping-->
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="navbar-examples">
-                        <i class="ni ni-tv-2 text-success"></i>
-                        <span class="nav-link-text text-default">{{ __('Housekeeping') }}</span>
+                    <a class="nav-link text-default" href="{{ route('Dashboard') }}">
+                        <i class="ni ni-folder-17 text-success"></i> {{ __('Housekeeping') }}
                     </a>
-                    <div class="collapse" id="navbar-examples">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                                    <i class="text-success">•</i> {{ __('Dashboard') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Maintenance') }}">
-                                    <i class="text-success">•</i> {{ __('Maintenance') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('LostandFound') }}">
-                                    <i class="text-success">•</i> {{ __('Lost and Found') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
                 
                 <!--Analytics-->
