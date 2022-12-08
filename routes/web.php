@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 
 //Homepage	
-Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
-	
-Route::get('newpage', function () {return view('newpage');})->name('newpage');
 Route::get('AboutUs', function () {return view('AboutUs');})->name('AboutUs');
+Route::get('ContactUs', function () {return view('ContactUs');})->name('ContactUs');
+Route::get('Map', function () {return view('Map');})->name('Map');
+Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
 Route::get('welcome', function () {
 	$list = DB::select('SELECT * FROM hotel_reservations');
 	return view('welcome', ['list'=>$list]);})->name('welcome');
@@ -47,7 +47,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 
 	Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
-	Route::get('AboutUs', function () {return view('Admin.pages.AboutUs');})->name('AboutUs');
+
 
 
 
