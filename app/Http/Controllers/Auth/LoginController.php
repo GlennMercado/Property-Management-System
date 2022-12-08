@@ -56,7 +56,7 @@ class LoginController extends Controller
             }
             elseif(auth()->user()->User_Type == 'Guest')
             {
-                return redirect('home');
+                return redirect('welcome');
             }
         }
         else

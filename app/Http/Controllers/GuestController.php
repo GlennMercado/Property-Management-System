@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class GuestController extends Controller
 {
-    public function index()
+    public function welcome()
     {
-        return view('Guest.guestdashboard');
+        return view('Guest.guest_welcome');
     }
 }

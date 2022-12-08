@@ -34,10 +34,9 @@ Route::get('welcome', function () {
 Auth::routes();
 
 
-
+//Route::group(['middleware' => 'auth'], function () { });
 	
 //Admin
-//Route::group(['middleware' => 'auth'], function () { });
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
 
@@ -109,5 +108,5 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
-	Route::get('/home', [App\Http\Controllers\GuestController::class, 'index'])->name('home');
+	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 });
