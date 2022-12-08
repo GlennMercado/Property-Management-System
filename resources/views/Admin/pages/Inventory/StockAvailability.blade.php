@@ -33,22 +33,12 @@
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
                                         <td>
-                                        <button type="button" data-toggle="modal" data-target="#ModalViews"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                        <button type="button" data-toggle="modal" data-target="#ModalViews{{ $lists->productid}}"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                         </td>
                                     </tr>
-                                    @endforeach
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="{{ route('home') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
-            Go Back
-        </a>
 
         <!--View Modal-->
-        <div class="modal fade" id="ModalViews" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ModalViews{{ $lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -57,8 +47,6 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
-                        {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
                             <div class = "col">
@@ -87,60 +75,68 @@
                             <div class = "col">
                                 <label for="exampleInputPassword1">Category</label>
                                     <select class="form-control" name = "category" value="{{ $lists->category}}" required>
-                                    <option value="Stock">Linens :</option>
-                                    <option value="Stock1">Bed pad - Single</option>
-                                    <option value="Stock2">Fitted Sheet - Single</option>
-                                    <option value="Stock3">Flat Sheet - Single</option>
-                                    <option value="Stock4">Duvet Filler - Single</option>
-                                    <option value="Stock5">Duvet Cover - Single</option>
-                                    <option value="Stock6">Pillows</option>
-                                    <option value="Stock7">Bed pad - Queen</option>
-                                    <option value="Stock8">Fitted Sheet - Queen</option>
-                                    <option value="Stock9">Flat Sheet - Queen</option>
-                                    <option value="Stock10">Duvet Filler - Queen</option>
-                                    <option value="Stock11">Duvet Cover - Queen</option>
-                                    <option value="Stock12">Pillows Case</option>
-                                    <option value="Stock13">Bath Towel</option>
-                                    <option value="Stock14">Hand Towel</option>
-                                    <option value="Stock15">Bath Mat</option>
-                                    <option value="Stock16">Bed Ruuner Queen</option>
-                                    <option value="Stock17">Bed Runner Single</option>
-                                    <option value="Stock" readonly></option>
-                                    <option value="Stock" readonly>Guest Supplies :</option>
-                                    <option value="Stock18">Bath Soap</option>
-                                    <option value="Stock19">Shampoo</option>
-                                    <option value="Stock20">Dental Kit</option>
-                                    <option value="Stock21">Slippers</option>
-                                    <option value="Stock22">Bottled Water</option>
-                                    <option value="Stock23">Juice</option>
-                                    <option value="Stock24">Coffee</option>
-                                    <option value="Stock25">Creamer</option>
-                                    <option value="Stock26">Sugar - White</>
-                                    <option value="Stock27">Sugar - Brown</option>
-                                    <option value="Stock"></option>
-                                    <option value="Stock">Amenities : </option>
-                                    <option value="Stock28">Kettle</option>
-                                    <option value="Stock29">Tray</option>
-                                    <option value="Stock30">Dental Glass</option>
-                                    <option value="Stock31">Teaspoon</option>
-                                    <option value="Stock32">Cup And Saucer</option>
-                                    <option value="Stock33">Hanger</option>
-                                    <option value="Stock34">Door Hang</option>
+                                    <option value="Invalid">Linens :</option>
+                                    <option>Bed pad - Single</option>
+                                    <option>Fitted Sheet - Single</option>
+                                    <option>Flat Sheet - Single</option>
+                                    <option>Duvet Filler - Single</option>
+                                    <option>Duvet Cover - Single</option>
+                                    <option>Pillows</option>
+                                    <option>Bed pad - Queen</option>
+                                    <option>Fitted Sheet - Queen</option>
+                                    <option>Flat Sheet - Queen</option>
+                                    <option>Duvet Filler - Queen</option>
+                                    <option>Duvet Cover - Queen</option>
+                                    <option>Pillows Case</option>
+                                    <option>Bath Towel</option>
+                                    <option>Hand Towel</option>
+                                    <option>Bath Mat</option>
+                                    <option>Bed Ruuner Queen</option>
+                                    <option>Bed Runner Single</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Guest Supplies :</option>
+                                    <option>Bath Soap</option>
+                                    <option>Shampoo</option>
+                                    <option>Dental Kit</option>
+                                    <option>Slippers</option>
+                                    <option>Bottled Water</option>
+                                    <option>Juice</option>
+                                    <option>Coffee</option>
+                                    <option>Creamer</option>
+                                    <option>Sugar - White</>
+                                    <option>Sugar - Brown</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Amenities : </option>
+                                    <option>Kettle</option>
+                                    <option>Tray</option>
+                                    <option>Dental Glass</option>
+                                    <option>Teaspoon</option>
+                                    <option>Cup And Saucer</option>
+                                    <option>Hanger</option>
+                                    <option>Door Hang</option>
                                     </select>
                             </div>
                         </div>                            
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success prevent_submit" value="submit" />                      
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>>                      
                     </div>
                 </form>         
             </div>
+            
+            @endforeach
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <!--<a href="{{ route('home') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
+            Go Back
+        </a>-->
+</div>
 
-            @include('layouts.footers.auth')
-    </div>
+    @include('layouts.footers.auth')
     @endsection
 
     @push('js')

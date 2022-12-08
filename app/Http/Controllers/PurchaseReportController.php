@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\hotelstock;
+use App\Models\purchasereports;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PurchaseReportController extends Controller
@@ -16,6 +16,7 @@ class PurchaseReportController extends Controller
     public function index()
     {
         //
+        return view('StockPurchaseReport');
     }
 
     /**
@@ -40,23 +41,22 @@ class PurchaseReportController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'unit' => 'required',
             'quantity' => 'required',
-            'unit' => 'required',
-            'unit' => 'required',
-            'suppliername' => 'required',
-    
+            'suppliername' => 'required'
            ]);
     
-           $stock = new purchasereport;
+           $stocks = new purchasereports;
+
+           $stocks->name = $request->input('name');
+           $stocks->description = $request->input('description');
+           $stocks->suppliername = $request->input('suppliername');
+           $stocks->quantity = $request->input('quantity');
+           $stocks->unit = $request->input('unit');
     
-           $stock->name = $request->input('name');
-           $stock->description = $request->input('description');
-           $stock->suppliername = $request->input('suppliername');
-           $stock->quantity = $request->input('quantity');
-           $stock->unit = $request->input('unit');
+           $stocks->save();
     
-           $stock->save();
-    
+           Alert::Success('Success', 'Stock Successfully Added!');
            return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
     }
 
