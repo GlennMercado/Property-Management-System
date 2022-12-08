@@ -25,7 +25,7 @@
                         </div>
                     </div>    
 
-                    <!-- Modal -->
+                    <!-- Add Modal -->
                     <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -40,57 +40,72 @@
                                     {{ csrf_field() }}
 
                                     <div class="modal-body">
-                                        <div class="row">
-                                            <div class="card-body bg-white" style="border-radius: 18px">
-                                                <p class="text-left">Room No.: </p>
-                                                <?php $count=1; ?>  
-                                                <select name="room_no" class="form-control">
-                                                    <option selected="true" disabled="disabled">---Choose Room Number---</option>
-                                                    @for($count = 1; $count <=30; $count++)
-                                                        <option value="{{$count}}"> {{ $count }}</option>
-                                                    @endfor
-                                                </select>                                                
-                                                <br>                                              
-                                                <p class="text-left">Room Size: </p>
-                                                <input class="form-control" type="text" name="room_size" required>
+                                        <div class = "row">
+                                            <div class="card-body bg-white" style="border-radius: 18px">                                          
+                                                <div class = "row">
+                                                    <div class = "col">
+                                                        <p class="text-left">Room No. </p>
+                                                            <?php $count=1; ?>  
+                                                                <select name="room_no" class="form-control" required>
+                                                                    <option selected="true" disabled="disabled">Select</option>
+                                                                        @for($count = 1; $count <=30; $count++)
+                                                                    <option value="{{$count}}"> {{ $count }}</option>
+                                                                        @endfor
+                                                                </select>   
+                                                    </div>
+                                                    <div class = "col">
+                                                        <p class="text-left">Room Size </p>
+                                                        <input class="form-control" type="text" name="room_size" required>
+                                                    </div>
+                                                </div>           
+                                                <br>                                 
+                                                <div class = "row">
+                                                    <div class = "col">
+                                                        <p class="text-left">No. of Beds </p>
+                                                        <select name="no_of_beds" class="form-control" required>
+                                                        <option selected="true" disabled="disabled">Select</option>
+                                                        <option value="One (1) twin-sized">One (1) twin-sized</option>
+                                                        <option value="One (1) queen-sized">One (1) twin-sized</option>
+                                                        <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <br>
-                                                <p class="text-left">No. of Beds: </p>
-                                                <select name="no_of_beds" class="form-control" required>
-                                                    <option selected="true" disabled="disabled">---Choose Beds---</option>
-                                                    <option value="One (1) twin-sized">One (1) twin-sized</option>
-                                                    <option value="One (1) queen-sized">One (1) twin-sized</option>
-                                                    <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
-                                                </select>
+                                                <div class = "row">
+                                                    <div class = "col">
+                                                        <p class="text-left">Extra Bed </p>
+                                                            <input class="form-control" type="text" name="extra_bed" required>
+                                                    </div>
+                                                    <div class = "col">
+                                                        <p class="text-left">No. of Pax per Room </p>
+                                                            <select name="no_of_pax" class="form-control"required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                @for($count = 1; $count <=10; $count++)
+                                                                    <option value="{{$count}}"> {{ $count }}</option>
+                                                                @endfor
+                                                            </select> 
+                                                    </div>
+                                                </div>  
                                                 <br>
-                                                <p class="text-left">Extra Bed: </p>
-                                                <input class="form-control" type="text" name="extra_bed" required>
+                                                <p class="text-left">Rate per Night </p>
+                                                    <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
                                                 <br>
-                                                <p class="text-left">No. of Pax per Room: </p>
-                                                <select name="no_of_pax" class="form-control"required>
-                                                    <option selected="true" disabled="disabled">---Choose Number of Pax---</option>
-                                                    @for($count = 1; $count <=10; $count++)
-                                                        <option value="{{$count}}"> {{ $count }}</option>
-                                                    @endfor
-                                                </select> 
+                                                <p class="text-left">Membership </p>
+                                                    <select name="membership" class="form-control" required>
+                                                        <option selected="true" disabled="disabled">Select</option>
+                                                        <option value="Guests">Guests</option>
+                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
+                                                    </select>
                                                 <br>
-                                                <p class="text-left">Rate per Night: </p>
-                                                <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
-                                                <br>
-                                                <p class="text-left">Membership: </p>
-                                                <select name="membership" class="form-control" required>
-                                                    <option selected="true" disabled="disabled">---Choose Membership---</option>
-                                                    <option value="Guests">Guests</option>
-                                                    <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                </select>
-                                                <br>
-                                                <p class="text-left">Hotel Image: </p>
-                                                <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
+                                                    <p class="text-left">Hotel Image </p>
+                                                        <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
                                             </div>
+                                                
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                        <input type="submit" class="btn btn-success prevent_submit" value="Add" name="submit">
+                                        <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Add" name="submit">
+                                                </div>
                                     </div>
                                 </form>
                             </div>
@@ -124,9 +139,8 @@
                                         </td>
                                     </tr>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="Room_ID{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true">
+                                    <!-- View Modal -->
+                                    <div class="modal fade" id="Room_ID{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -138,25 +152,19 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-                                                            <p class="text-left">Room No. :</p>
+                                                            <p class="text-left">Room No. :</p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
-
                                                             <br>
-
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
-                                                            
-                                                            <br>
-
-                                                            <p class="text-left">Rate per Night: </p>
+                                                            <br><br>
+                                                            <p class="text-left">Rate per Night: </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
-
+                                                            <br>
                                                             <p class="text-left">Membership </p>
                                                             <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
-                                                            
+                                                            <br>
                                                             <p class="text-left">Status </p>
                                                             <input class="form-control" type="text" value="{{$lists->Status}}" readonly>
-                                                            
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,7 +185,7 @@
         </div>
 
         <br><br>
-        
+       
         
         
         
@@ -212,7 +220,17 @@
         });
     });
 </script>   
-    
+<style>
+    p{
+        letter-spacing:1px;
+        font-weight:lighter;
+        font-family:sans-serif;
+        color:#909090;
+    }
+    h5{
+        font-family:sans-serif;
+    }
+</style>
 
 @endsection
 
