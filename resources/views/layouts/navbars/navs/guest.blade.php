@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-horizontal bg-white navbar-expand-md">
     <div class="container px-2">
         <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 50px; height: 50px; margin-right:1%;">
-        <a class="navbar-brand" href="{{ route('welcome') }}">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <h2 class="text-default">NVDC Properties</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

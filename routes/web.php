@@ -115,5 +115,5 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
-	Route::post('/guest_book', 'App\Http\Controllers\HotelController@store');
+	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
 });
