@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <div class="container-fluid bg-white">
-        <div class="text-center mt-6">
+        <div class="text-center mt-7">
             <h1 class="display-1">NVDC Properties Location</h1>
             <br>
             <div class="row d-flex justify-content-center">
