@@ -86,14 +86,27 @@ class HotelController extends Controller
     {
         $reserveno = $id;
         $roomno = $no;
+
         $stats = "Paid";
         $stats2 = "Reserved";
 
-        DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats));
-        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+        $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Available'");
+        
+        if($check)
+        {
+            DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats));
+            DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+    
+            Alert::Success('Success', 'Reservation successfully updated!');
+            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Room is already reserved!');
+            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        }
 
-        Alert::Success('Success', 'Reservation successfully updated!');
-        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        
     }
     /**
      * Display the specified resource.

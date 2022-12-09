@@ -183,7 +183,6 @@
                                                     </div>
 
                                                     <br>
-
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="text-left">Guest Name: </p>
@@ -194,6 +193,12 @@
                                                             <input class="form-control" type="text" value="{{$lists->Mobile_Num}}" readonly>
                                                         </div>
                                                     </div>
+
+                                                    @if($lists->Email != null)
+                                                            <br>
+                                                            <p class="text-left">Email Address: </p>
+                                                            <input class="form-control" type="text" value="{{$lists->Email}}" readonly>   
+                                                    @endif
                                                    
                                                     <br>
                                                     <div class="row">
