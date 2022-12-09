@@ -18,10 +18,14 @@
                         </div>
                         <br>
                         <div class="row align-items-center">
-                            <button class="btn btn-success active" id="btncleaned">Cleaned</button>
-                            <button class="btn btn-primary" id="btndirty">Dirty</button>
-                            <button class="btn btn-danger" id="btnorder">Out of Order</button>
-                            <button class="btn btn-warning" id="btnservice">Out of Service</button>
+                            <div class="col-md-4">
+                                <select class="form-control" style="border:2px solid" id="optionselect" >
+                                    <option value="Cleaned" selected="true">Cleaned</option>
+                                    <option value="Dirty">Dirty</option>
+                                    <option value="Out of Order">Out of Order</option>
+                                    <option value="Out of Service">Out of Service</option>
+                                </select>
+                            </div>
                         </div>
                         <br>
                         <!--Cleaned-->
@@ -92,24 +96,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
-                                    <th scope="col">Check-in</th>
-                                    <th scope="col">Check-out</th>
+                                    <th scope="col">Room No.</th>
+                                    <th scope="col">Booking Status</th>
+                                    <th scope="col">Housekeeping Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($list2 as $lists2)
                                 <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
-                                    <td><?php echo date('M-d-Y');?></td>
-                                    <td><?php echo date('M-d-Y');?></td>
+                                    @if($lists2->Housekeeping_Status == 'Dirty')
+                                    <td>{{ $lists2->Room_No }}</td>
+                                    <td>{{ $lists2->Status}}</td>
+                                    <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    @endif
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -120,20 +121,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
+                                    <th scope="col">Room No.</th>
+                                    <th scope="col">Booking Status</th>
+                                    <th scope="col">Housekeeping Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($list2 as $lists2)
                                 <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
+                                    @if($lists2->Housekeeping_Status == 'Out of Order')
+                                    <td>{{ $lists2->Room_No }}</td>
+                                    <td>{{ $lists2->Status}}</td>
+                                    <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    @endif
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -144,20 +146,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Room</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Attendant</th>
+                                    <th scope="col">Room No.</th>
+                                    <th scope="col">Booking Status</th>
+                                    <th scope="col">Housekeeping Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($list2 as $lists2)
                                 <tr>
-                                    <td><?php echo date('M-d-Y h:i:s a', time());?></td>
-                                    <td>101</td>
-                                    <td>Unavailable</td>
-                                    <td>Kay</td>
+                                    @if($lists2->Housekeeping_Status == 'Out of Service')
+                                    <td>{{ $lists2->Room_No }}</td>
+                                    <td>{{ $lists2->Status}}</td>
+                                    <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    @endif
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -268,57 +271,39 @@
 
 
 <script>
-    //cleaned btn
     $(document).ready(function(){
-        $('#btncleaned').click(function(){
-            $('#btncleaned').addClass(' active'); 
-            $('#btndirty').removeClass(' active'); 
-            $('#btnorder').removeClass(' active'); 
-            $('#btnservice').removeClass(' active'); 
+        $("#optionselect").change(function(){
+        var selected = $("option:selected", this).val();
+        if(selected == 'Cleaned')
+        {    
             $('#cleaned, #cleaned2').show();
             $('#dirty, #dirty2').hide();
             $('#outoforder, #outoforder2').hide();
             $('#outofservice, #outofservice2').hide();
-        });
-    });
-    //dirty btn
-    $(document).ready(function(){
-        $('#btndirty').click(function(){
-            $('#btndirty').addClass(' active'); 
-            $('#btncleaned').removeClass(' active'); 
-            $('#btnorder').removeClass(' active'); 
-            $('#btnservice').removeClass(' active'); 
+        }
+        else if(selected == 'Dirty')
+        {
             $('#dirty, #dirty2').show();
             $('#cleaned, #cleaned2').hide();
             $('#outoforder, #outoforder2').hide();
             $('#outofservice, #outofservice2').hide();
-        });
-    });
-    //outoforder btn
-    $(document).ready(function(){
-        $('#btnorder').click(function(){
-            $('#btnorder').addClass(' active'); 
-            $('#btncleaned').removeClass(' active'); 
-            $('#btndirty').removeClass(' active'); 
-            $('#btnservice').removeClass(' active'); 
+        }
+        else if(selected == 'Out of Order')
+        {
             $('#dirty, #dirty2').hide();
             $('#cleaned, #cleaned2').hide();
             $('#outoforder, #outoforder2').show();
             $('#outofservice, #outofservice2').hide();
-        });
-    });
-    //outofservices btn
-    $(document).ready(function(){
-        $('#btnservice').click(function(){
-            $('#btnservice').addClass(' active'); 
-            $('#btncleaned').removeClass(' active'); 
-            $('#btndirty').removeClass(' active'); 
-            $('#btnorder').removeClass(' active'); 
+        }
+        else if(selected == 'Out of Service')
+        {
             $('#dirty, #dirty2').hide();
             $('#cleaned, #cleaned2').hide();
             $('#outoforder, #outoforder2').hide();
             $('#outofservice, #outofservice2').show();
-        });
+        }
+
+    });
     });
 </script>        
         
