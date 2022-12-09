@@ -115,9 +115,9 @@
                                                         </div>
                                                         <p class="text-left">Supplier Name: </p>
                                                             <select class="form-control" name="suppliername" value="{{$lists->productid}}" required>
-                                                                <option value="Available">Sample Supplier 1</option>
-                                                                <option value="Dirty">Sample Supplier 2</option>
-                                                                <option value="Checked">Sample Supplier 3</option>
+                                                                <option>Sample Supplier 1</option>
+                                                                <option>Sample Supplier 2</option>
+                                                                <option>Sample Supplier 3</option>
                                                             </select>  
                                                     </div>
                                                 </div>

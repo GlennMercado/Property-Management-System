@@ -130,10 +130,22 @@
                                                             Stock Details empty
                                                         </div>
                                                             <label for="Stockdetails">Quantity</label>
-                                                            <input type="button" class="btn btn-primary" value="{{$lists->in}}" name="in" style="float:center"><input type="button" class="btn btn-primary" name="out" value="{{$lists->out}}"><br>
                                                             <input type="number" class="form-control" name="total" value="{{$lists->total}}" required>
                                                         <div class="invalid-feedback">
                                                             Quantity empty
+                                                        </div>
+                                                </div>
+                                                <div class = "row">
+                                                            <div class = "col">
+                                                            <p class="text-left">Stock In: </p>
+                                                            <input class="form-control" type="text" value="{{$lists->in}}" >
+                                                        </div>
+                                                        <div class = "col">
+                                                            <p class="text-left">Stock Out: </p>
+                                                            <input type="text" class="form-control" id="Stockname" value="{{$lists->out}}">
+                                                                <div class="invalid-feedback">
+                                                                    Stock Name empty
+                                                                </div>       
                                                         </div>
                                                 </div>
                                                 <div class="form-group">
@@ -236,6 +248,8 @@
                             <div class = "col">
                                 <label for="Stockdetails">Quantity</label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                                <input type="number" class="form-control" name="in" value="0" hidden>
+                                <input type="number" class="form-control" name="out" value="0" hidden>
                             </div>
                         </div>
                         <div class = "row">
@@ -287,7 +301,7 @@
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success prevent_submit" value="submit" />                      
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />                      
                     </div>
                 </form>         
             </div>

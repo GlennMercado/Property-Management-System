@@ -291,7 +291,7 @@
         </div>
     </div>
 
-    <div class="container-fluid bg-white" id="commercialSpaces">
+    <!-- <div class="container-fluid bg-white" id="commercialSpaces">
 
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 cards1">
@@ -316,7 +316,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
     <style>
         .slide1 {
