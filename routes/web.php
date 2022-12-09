@@ -24,8 +24,7 @@ Route::get('ContactUs', function () {return view('ContactUs');})->name('ContactU
 Route::get('Map', function () {return view('Map');})->name('Map');
 Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
 Route::get('welcome', function () {
-	$list = DB::select('SELECT * FROM hotel_reservations');
-	return view('welcome', ['list'=>$list]);})->name('welcome');
+	return view('welcome');})->name('welcome');
 
 
 //Auth::routes();
@@ -93,18 +92,18 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Inventory Management
 	Route::post('StockCount', 'App\Http\Controllers\InventoryController@addstock');
 	Route::get('StockCount', function () {
-		$list = DB::select('SELECT * FROM hotelstocks');
+		$list = DB::select('SELECT * FROM hotelstock');
 		return view('Admin.pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
 
 	Route::post('StockPurchaseReport', 'App\Http\Controllers\PurchaseReportController@report');
 	Route::get('StockPurchaseReport', function () {
-		$list = DB::select('SELECT * FROM purchasereports');
+		$list = DB::select('SELECT * FROM purchasereport');
 		return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 
 	Route::get('CreateInventory', function () {return view('Admin.pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 
 	Route::get('StockAvailability', function () {
-		$list = DB::select('SELECT * FROM hotelstocks');
+		$list = DB::select('SELECT * FROM hotelstock');
 		return view('Admin.pages.Inventory.StockAvailability', ['list'=>$list]);})->name('StockAvailability');
 
 	//GuestManagement
@@ -116,4 +115,5 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
+	Route::post('/guest_book', 'App\Http\Controllers\HotelController@store');
 });

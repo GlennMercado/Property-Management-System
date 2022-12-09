@@ -35,13 +35,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('ContactUS') }}">
+                    <a class="nav-link nav-link-icon text-default" href="{{ route('ContactUs') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{route=('Map')}}">
+                    <a class="nav-link nav-link-icon text-default" href="{{route('Map')}}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>

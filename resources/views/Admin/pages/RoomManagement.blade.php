@@ -145,8 +145,10 @@
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
-                                            <!--Update Status button-->
-                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                            @if($lists->Status != 'Available')
+                                                <!--Update Status button-->
+                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -288,23 +290,27 @@
 
                                                             <!--Room No-->
                                                             <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
-                                                            <p class="text-left">Booking Status :</p> 
-                                                            <select name="stats" class="form-control">
-                                                                <option selected="true" disabled="disabled">Select</option>
-                                                                <option value="Available">Available</option>
-                                                                <option value="Reserved">Reserved</option>
-                                                                <option value="Checked-In">Checked-In</option>
-                                                                <option value="Checked-Out">Checked-Out</option>
-                                                            </select>
+                                                            @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')
+                                                                <p class="text-left">Booking Status :</p> 
+                                                                <select name="stats" class="form-control">
+                                                                    <option selected="true" disabled="disabled">Select</option>
+                                                                    <option value="Available">Available</option>
+                                                                    <option value="Reserved">Reserved</option>
+                                                                    <option value="Checked-In">Checked-In</option>
+                                                                    <option value="Checked-Out">Checked-Out</option>
+                                                                </select>
+                                                            @endif
 
-                                                            <p class="text-left">Housekeeping Status :</p> 
-                                                            <select name="hstats" class="form-control">
-                                                                <option selected="true" disabled="disabled">Select</option>
-                                                                <option value="Cleaned">Cleaned</option>
-                                                                <option value="Dirty">Dirty</option>
-                                                                <option value="Out of Order">Out of Order</option>
-                                                                <option value="Out of Service">Out of Service</option>
-                                                            </select>
+                                                            @if($lists->Status == 'Checked-Out' )
+                                                                <p class="text-left">Housekeeping Status :</p> 
+                                                                <select name="hstats" class="form-control">
+                                                                    <option selected="true" disabled="disabled">Select</option>
+                                                                    <option value="Cleaned">Cleaned</option>
+                                                                    <option value="Dirty">Dirty</option>
+                                                                    <option value="Out of Order">Out of Order</option>
+                                                                    <option value="Out of Service">Out of Service</option>
+                                                                </select>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

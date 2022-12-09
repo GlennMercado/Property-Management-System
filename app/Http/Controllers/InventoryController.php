@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\hotelstocks;
+use App\Models\hotelstock;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class InventoryController extends Controller
@@ -45,7 +45,7 @@ class InventoryController extends Controller
         'category' => 'required'
        ]);
 
-       $stock = new hotelstocks;
+       $stock = new hotelstock;
 
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
