@@ -10,6 +10,7 @@
             </div>
 
             <!-- Modal -->
+
             <!-- Add Reservation -->
             <div class="modal fade" id="reserve" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,7 +24,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url('/guest_book') }}" class="prevent_submit" method="POST">
+                    <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST" enctype="multipart/form-data">
 
                         {{ csrf_field() }}
 
@@ -90,7 +91,10 @@
                                     </div>-->
 
                                     <p class="text-left">Guest Name: </p>
-                                    <input class="form-control" type="text" name="gName" required>
+                                    @foreach($guest as $guests)
+                                        <input type="hidden" name="gName" value="{{$guests->name}}" />
+                                        <input class="form-control" type="text" name="gName" value="{{$guests->name}}" readonly>
+                                    @endforeach
 
                                     
                                 </div>
@@ -427,6 +431,10 @@
             var maxDate = year + '-' + month + '-' + day;
 
             $('.chck').attr('min', maxDate);
+        });
+
+        $('.prevent_submit').on('submit', function(){
+            $('.prevent_submit').attr('disabled','true');
         });
 </script>
     </div>

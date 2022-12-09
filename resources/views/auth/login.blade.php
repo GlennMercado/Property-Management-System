@@ -8,7 +8,7 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-center mt-2 mb-3"><h1>Login</h1></div>
+                        <div class="text-muted text-center mt-2 mb-1"><strong style = "font-size:30px;">Login</strong></div>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <form role="form" method="POST" action="{{ route('login') }}">

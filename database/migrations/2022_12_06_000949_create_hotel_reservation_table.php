@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Reservation_No')->primary();
             $table->string('Guest_Name');
             $table->string('Mobile_Num');
+            $table->string('Email')->nullable();
             
             $table->integer('Room_No');
             $table->integer('No_of_Pax');
@@ -25,6 +26,7 @@ return new class extends Migration
 
             $table->string('Check_In_Date');
             $table->string('Check_Out_Date');
+
             $table->timestamps();
         });
     }
