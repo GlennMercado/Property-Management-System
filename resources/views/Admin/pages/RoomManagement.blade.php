@@ -20,6 +20,17 @@
                                 </button>           
                             </div>
                         </div>
+                        <br>
+                        <!--<div class="row align-items-center">
+                            <div class="col-md-4">
+                                <select class="form-control" style="border:2px solid" id="optionselect" >
+                                    <option value="Available" selected="true">Available</option>
+                                    <option value="Reserved">Reserved</option>
+                                    <option value="Checked-In">Checked-In</option>
+                                    <option value="Checked-Out">Checked-Out</option>
+                                </select>
+                            </div>
+                        </div>-->
                         <br>    
                         <div class="row align-items-center">
                             <!--<button class="btn btn-success active" id="assigned">Assigned</button>
@@ -134,7 +145,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    <tr>
+                    
+                                    <tr id="available">
                                         <td>{{ $lists->Room_No}}</td>
                                         <td>{{ $lists->Room_Size}}</td>
                                         <td>{{ $lists->No_of_Beds}}</td>
@@ -151,6 +163,8 @@
                                             @endif
                                         </td>
                                     </tr>
+        
+
 
                                     <!-- View Modal -->
                                     <div class="modal fade" id="view{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -366,6 +380,42 @@
             $('#assign').hide();
         });
     });*/
+
+    $(document).ready(function(){
+        $("#optionselect").change(function(){
+        var selected = $("option:selected", this).val();
+
+        if(selected == 'Available')
+        {    
+            $('#available').show();
+            $('#reserved').hide();
+            $('#checkedin').hide();
+            $('#checkedout').hide();
+        }
+        else if(selected == 'Reserved')
+        {
+            $('#available').hide();
+            $('#reserved').show();
+            $('#checkedin').hide();
+            $('#checkedout').hide();
+        }
+        else if(selected == 'Checked-In')
+        {
+            $('#available').hide();
+            $('#reserved').hide();
+            $('#checkedin').show();
+            $('#checkedout').hide();
+        }
+        else if(selected == 'Checked-Out')
+        {
+            $('#available').hide();
+            $('#reserved').hide();
+            $('#checkedin').hide();
+            $('#checkedout').show();
+        }
+
+    });
+    });
 </script>   
 <style>
     p{
