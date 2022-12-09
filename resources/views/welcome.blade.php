@@ -9,110 +9,69 @@
 
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Hotel
-                                Reservation
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="{{ route('welcome') }}" method="POST">
-
-                            {{ csrf_field() }}
-
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="card-body bg-white" style="border-radius: 18px">
-
-                                        <p class="text-left">Check in Date/Time: </p>
-                                        <input class="form-control" name="checkIn" type="datetime-local"
-                                            value="<?php echo date('Y-m-d'); ?>" id="example-datetime-local-input" required>
-
-                                        <p class="text-left">Check out Date/Time: </p>
-                                        <input class="form-control" name="checkOut" type="datetime-local"
-                                            value="<?php echo date('Y-m-d'); ?>" id="example-datetime-local-input" required>
-
-                                        <p class="text-left">Guest Name: </p>
-                                        <input class="form-control" type="text" name="gName" required>
-
-                                        <p class="text-left">Address: </p>
-                                        <input class="form-control" type="text" name="address" required>
-
-                                        <p class="text-left">Mobile No.: </p>
-                                        <input class="form-control" type="number" pattern="/^-?\d+\.?\d*$/"
-                                            onKeyPress="if(this.value.length==12) return false;" name="mobile" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                <input type="submit" class="btn btn-success" value="Submit" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
     <div class="container-fluid bg-white">
         <div class="row d-flex justify-content-center">
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Suites</h5>
                     <p class="card-text">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        Book Now
+                    <!-- Button book -->
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Book Now
+                        </a>
                     </button>
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Convention Center</h5>
                     <p class="card-text">Venue for personal and corporate
                         celebrations,
                         training/learning sessions and sports activities.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Inquire Now
+                        </a>
                     </button>
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Function Rooms</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+                    <p class="card-text">Function room basic inclusions for either social event or trainings/seminar or
+                        convention center.</p>
+
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Inquire Now
+                        </a>
                     </button>
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+                    <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC Properties,
+                        we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
+                        month! </p>
+
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Inquire Now
+                        </a>
                     </button>
                 </div>
             </div>

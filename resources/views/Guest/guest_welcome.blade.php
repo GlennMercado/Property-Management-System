@@ -12,109 +12,116 @@
             <!-- Modal -->
 
             <!-- Add Reservation -->
-            <div class="modal fade" id="reserve" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                            Hotel Reservation
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST" enctype="multipart/form-data">
+            <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                Hotel Reservation
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
+                            enctype="multipart/form-data">
 
-                        {{ csrf_field() }}
+                            {{ csrf_field() }}
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="card-body bg-white" style="border-radius: 18px">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="text-left">Check in Date/Time: </p>
-                                            <input class="form-control chck" name="checkIn" type="date" onkeydown="return false" id="example-datetime-local-input" required>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="card-body bg-white" style="border-radius: 18px">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-left">Check in Date/Time: </p>
+                                                <input class="form-control chck" name="checkIn" type="date"
+                                                    onkeydown="return false" id="example-datetime-local-input" required>
+                                            </div>
+                                            <div class="col">
+                                                <p class="text-left">Check out Date/Time: </p>
+                                                <input class="form-control chck" name="checkOut" type="date"
+                                                    onkeydown="return false" id="example-datetime-local-input" required>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <p class="text-left">Check out Date/Time: </p>
-                                            <input class="form-control chck" name="checkOut" type="date" onkeydown="return false" id="example-datetime-local-input" required>
-                                        </div>
-                                    </div>
 
-                                    <p class="text-left">Room No - Beds: </p>
-                                    <select name="room_no" class="form-control" required>
-                                        <option selected="true" disabled="disabled">Select</option>
-                                        @foreach($room as $rooms)
-                                            @if($rooms->Status == 'Available')
-                                                <option value="{{$rooms->Room_No}}">{{$rooms->Room_No}} - {{$rooms->No_of_Beds}} - {{$rooms->Extra_Bed}}</option>
-                                            @endif
+                                        <p class="text-left">Room No - Beds: </p>
+                                        <select name="room_no" class="form-control" required>
+                                            <option selected="true" disabled="disabled">Select</option>
+                                            @foreach ($room as $rooms)
+                                                @if ($rooms->Status == 'Available')
+                                                    <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
+                                                        {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-left">Number of Pax: </p>
+                                                <select name="pax" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">Select</option>
+                                                    @for ($count = 1; $count <= 4; $count++)
+                                                        <option value="{{ $count }}">{{ $count }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <p class="text-left">Mobile No.: </p>
+                                                <input class="form-control" type="tel" minlength="11" maxlength="11"
+                                                    name="mobile" required>
+                                            </div>
+                                        </div>
+
+                                        <!--
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-left">Number of Adult: </p>
+                                                <select name="adult" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">Select</option>
+                                                    @for ($count = 1; $count <= 4; $count++)
+    <option value="{{ $count }}">{{ $count }}</option>
+    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <p class="text-left">Number of Children: </p>
+                                                <select name="child" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">Select</option>
+                                                    @for ($count = 1; $count <= 4; $count++)
+    <option value="{{ $count }}">{{ $count }}</option>
+    @endfor
+                                                </select>
+                                            </div>
+                                        </div>-->
+
+                                        <p class="text-left">Guest Name: </p>
+                                        @foreach ($guest as $guests)
+                                            <input type="hidden" name="gName" value="{{ $guests->name }}" />
+                                            <input class="form-control" type="text" name="gName"
+                                                value="{{ $guests->name }}" readonly>
                                         @endforeach
-                                    </select>
 
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="text-left">Number of Pax: </p>
-                                            <select name="pax" class="form-control" required>
-                                                <option selected="true" disabled="disabled">Select</option>
-                                                @for($count = 1; $count <= 4; $count++)
-                                                <option value="{{$count}}">{{$count}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-left">Mobile No.: </p>
-                                            <input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" required>
-                                        </div>
+
                                     </div>
-
-                                    <!--
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="text-left">Number of Adult: </p>
-                                            <select name="adult" class="form-control" required>
-                                                <option selected="true" disabled="disabled">Select</option>
-                                                @for($count = 1; $count <= 4; $count++)
-                                                <option value="{{$count}}">{{$count}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <p class="text-left">Number of Children: </p>
-                                            <select name="child" class="form-control" required>
-                                                <option selected="true" disabled="disabled">Select</option>
-                                                @for($count = 1; $count <= 4; $count++)
-                                                <option value="{{$count}}">{{$count}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>-->
-
-                                    <p class="text-left">Guest Name: </p>
-                                    @foreach($guest as $guests)
-                                        <input type="hidden" name="gName" value="{{$guests->name}}" />
-                                        <input class="form-control" type="text" name="gName" value="{{$guests->name}}" readonly>
-                                    @endforeach
-
-                                    
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                            <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
-                        </div>
-                    </form>
+                            <div class="modal-footer">
+                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
         </div>
     </div>
     <div class="container-fluid bg-white">
         <div class="row d-flex justify-content-center">
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Suites</h5>
                     <p class="card-text">P2,500.00 per night with breakfast
@@ -127,7 +134,8 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Convention Center</h5>
                     <p class="card-text">Venue for personal and corporate
@@ -141,28 +149,34 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Function Rooms</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+                    <p class="card-text">Function room basic inclusions for either social event or trainings/seminar or
+                        convention center.</p>
+
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Inquire Now
+                        </a>
                     </button>
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap" style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap"
+                    style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+                    <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC
+                        Properties,
+                        we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
+                        month! </p>
+
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ route('login') }}" class="text-white">
+                            Inquire Now
+                        </a>
                     </button>
                 </div>
             </div>
@@ -416,8 +430,8 @@
         }
     </style>
 
-<script>
-    $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+    <script>
+        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
             var dateToday = new Date();
             var month = dateToday.getMonth() + 1;
             var day = dateToday.getDate();
@@ -433,10 +447,10 @@
             $('.chck').attr('min', maxDate);
         });
 
-        $('.prevent_submit').on('submit', function(){
-            $('.prevent_submit').attr('disabled','true');
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
         });
-</script>
+    </script>
     </div>
     <div class="container mt--5 pb-5"></div>
 @endsection
