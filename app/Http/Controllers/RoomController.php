@@ -146,26 +146,30 @@ class RoomController extends Controller
         try{
             $this->validate($request,[
                 'room_no' => 'required',
-                'stats' => 'required',
-                'hstats' => 'required'
+                'stats' => '',
+                'hstats' => ''
             ]);
 
             $room_no = $request->input('room_no');
             $status = $request->input('stats');
             $hstatus = $request->input('hstats');
 
+            if($status != null)
+            {
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+                (
+                    'Status' => $status
+                ));
+            }
 
-            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
-            (
-                'Status' => $status
-            ));
-
-            DB::table('housekeepings')->where('Room_No', $room_no)->update(array
-            (
-                'Housekeeping_Status' => $hstatus
-            ));
-
-            
+            if($hstatus != null)
+            {
+                DB::table('housekeepings')->where('Room_No', $room_no)->update(array
+                (
+                    'Housekeeping_Status' => $hstatus
+                ));
+            }
+         
             Alert::Success('Success', 'Room Edited Successfully!');
             return redirect('RoomManagement')->with('Success', 'Data Updated');
         }
