@@ -103,7 +103,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('CreateInventory', function () {return view('Admin.pages.Inventory.CreateInventory');})->name('CreateInventory'); 
 
 	Route::get('StockAvailability', function () {
-		$list = DB::select('SELECT * FROM hotelstock');
+		$list = DB::select('SELECT * FROM hotelstocks');
 		return view('Admin.pages.Inventory.StockAvailability', ['list'=>$list]);})->name('StockAvailability');
 
 	//GuestManagement
