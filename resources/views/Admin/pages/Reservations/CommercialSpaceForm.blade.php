@@ -12,17 +12,7 @@
                     <h3 class="mb-0">Commercial Space Inquiry and Application Form</h3>
                   </div>
                   <div class="card-body">
-                        <h1>MIC TEST</h1>
-                        <h1>MIC TEST 2</h1>
-                        <h1>testing</h1>
-                        <h1>testing</h1>
-                        <h1>testing</h1>
-                        <h1>testing</h1>
-                        <h1>testing</h1>
-                        <h1>testing</h1>
-                        <a href="{{ route('BackOffice') }}" class = "btn btn-primary" style = " margin-top:20px; margin-right:10px; color:black; background:#ffffff; border-color:#68DBA9;">
-                          Go Back
-                      </a>  
+                      
                   </div>
                 </div>
               </div>

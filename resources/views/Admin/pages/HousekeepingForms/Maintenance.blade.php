@@ -98,7 +98,7 @@
                                         <th scope="col" >Asset</th>
                                         <th scope="col" >Location</th>
                                         <th scope="col" >Due Date</th>
-                                        <th scope="col" >Action</th>
+                                        {{-- <th scope="col" >Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,11 +110,11 @@
                                         <td>{{ $lists->Asset}}</td>
                                         <td>{{ $lists->Location}}</td>
                                         <td>{{ date("F j Y", strtotime($lists->Due_Date))}}</td>
-                                        <td>
+                                        {{-- <td>
                                             <i class="bi bi-person"></i>
                                             <i class="bi bi-check-lg"></i>
                                             <i class="bi bi-chevron-right"></i>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
