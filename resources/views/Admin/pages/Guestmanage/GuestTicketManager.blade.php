@@ -68,24 +68,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Carlo</th>
-                                    <td>Carlo@gmail.com</td>
-                                    <td>Hotel</td>
-                                    <td>None so far</td>
-                                    <td>
-                                        <input type="submit" value="View More" class = "btn btn-primary">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Carla</th>
-                                    <td> Carla@gmail.com</td>
-                                    <td>Function Room</td>
-                                    <td>Broken Chair</td>
-                                    <td>
-                                        <input type="submit" value="View More" class = "btn btn-primary">
-                                    </td>
-                                </tr>
+                            <tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->email}}</td>
+                                        <td>{{ $lists->category}}</td>
+                                        <td>{{ $lists->subject}}</td>
+                                        <td>
+                                        <button type="button" data-toggle="modal" data-target="#ModalViews"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>

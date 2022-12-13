@@ -91,6 +91,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//Inventory Management
 	Route::post('StockCount', 'App\Http\Controllers\InventoryController@addstock');
+	Route::post('StockCount', 'App\Http\Controllers\InventoryController@edit_stockC');
 	Route::get('StockCount', function () {
 		$list = DB::select('SELECT * FROM hotelstocks');
 		return view('Admin.pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
@@ -107,8 +108,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		return view('Admin.pages.Inventory.StockAvailability', ['list'=>$list]);})->name('StockAvailability');
 
 	//GuestManagement
-	Route::get('GuestTicket', function () {return view('Admin.pages.Guestmanage.GuestTicket');})->name('GuestTicket');
-	Route::get('GuestTicketManager', function () {return view('Admin.pages.Guestmanage.GuestTicketManager');})->name('GuestTicketManager'); 
+	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
+	Route::get('GuestTicketManager', function () {
+		$list = DB::select('SELECT * FROM guestticket');
+		return view('Admin.pages.Guestmanage.GuestTicketManager', ['list'=>$list]);})->name('GuestTicketManager');
 });
 
 

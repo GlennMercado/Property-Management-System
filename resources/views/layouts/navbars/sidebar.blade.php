@@ -189,27 +189,9 @@
 
                 <!--Guest Management-->
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples4" data-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="navbar-examples4">
-                        <i class="bi bi-person text-success"></i>
-                        <span class="nav-link-text text-default">{{ __('Guest Management') }}</span>
+                    <a class="nav-link text-default" href="{{ route('GuestTicketManager') }}">
+                        <i class="bi bi-person text-success"></i> {{ __('Guest Ticket Management') }}
                     </a>
-                    <div class="collapse" id="navbar-examples4">
-                    <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('GuestTicket') }}">
-                                    <i class="text-success">•</i> {{ __('Generate Ticket') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('GuestTicketManager') }}">
-                                    <i class="text-success">•</i> {{ __('Guest Ticket Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
             </ul>

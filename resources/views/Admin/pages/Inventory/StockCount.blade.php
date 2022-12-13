@@ -98,108 +98,111 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--Modal Update-->
+                                    <!--Modal Edit-->
                                     <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid}}" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h2 class="modal-title">{{ __('Update Details') }}</h2>
+                                                    <h2 class="modal-title">{{ __('Edit Details') }}</h2>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
+                                                <form method="POST" class="prevent_submit" action="{{ route('StockCount') }}" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
                                                 <div class="modal-body">
-                                                    <form class="needs-validation" novalidate>
                                                         <div class = "row">
                                                             <div class = "col">
-                                                            <p class="text-left">Stock ID: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->productid}}" readonly>
-                                                        </div>
-                                                        <div class = "col">
-                                                            <p class="text-left">Stock Name: </p>
-                                                            <input type="text" class="form-control" id="Stockname" value="{{$lists->name}}" required>
+                                                                <p class="text-left">Stock ID: </p>
+                                                                <input class="form-control" type="text" name="productid" value="{{$lists->productid}}" readonly>
+                                                            </div>
+                                                            <div class = "col">
+                                                                <p class="text-left">Stock Name: </p>
+                                                                <input type="text" class="form-control" name="name" value="{{$lists->name}}" required>
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
+                                                            </div>
                                                         </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Stockdetails">Stock Description</label>
-                                                    <input type="text" class="form-control" id="Stockdetails" value="{{$lists->description}}" required>
-                                                        <div class="invalid-feedback">
-                                                            Stock Details empty
-                                                        </div>
-                                                            <label for="Stockdetails">Quantity</label>
-                                                            <input type="number" class="form-control" name="total" value="{{$lists->total}}" required>
-                                                        <div class="invalid-feedback">
-                                                            Quantity empty
-                                                        </div>
-                                                </div>
-                                                <div class = "row">
-                                                            <div class = "col">
+                                                    <div class="form-group">
+                                                        <label for="Stockdetails">Stock Description</label>
+                                                        <input type="text" class="form-control" name="description" value="{{$lists->description}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Stock Details empty
+                                                            </div>
+                                                                <label for="Stockdetails">Quantity</label>
+                                                                <input type="number" class="form-control" name="quantity" value="{{$lists->total}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Quantity empty
+                                                            </div>
+                                                    </div>
+                                                    <div class = "row">
+                                                        <div class = "col">
                                                             <p class="text-left">Stock In: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->in}}" >
+                                                            <input class="form-control" type="text" name="in" value="{{$lists->in}}" >
                                                         </div>
                                                         <div class = "col">
                                                             <p class="text-left">Stock Out: </p>
-                                                            <input type="text" class="form-control" id="Stockname" value="{{$lists->out}}">
+                                                            <input type="text" class="form-control" name="out" value="{{$lists->out}}">
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
+                                                            </div>
                                                         </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Category</label>
+                                                        <select class="form-control" name="category" value="{{ $lists->category}}" required>
+                                                        <option value="Invalid">Linens :</option>
+                                                        <option>Bed pad - Single</option>
+                                                        <option>Fitted Sheet - Single</option>
+                                                        <option>Flat Sheet - Single</option>
+                                                        <option>Duvet Filler - Single</option>
+                                                        <option>Duvet Cover - Single</option>
+                                                        <option>Pillows</option>
+                                                        <option>Bed pad - Queen</option>
+                                                        <option>Fitted Sheet - Queen</option>
+                                                        <option>Flat Sheet - Queen</option>
+                                                        <option>Duvet Filler - Queen</option>
+                                                        <option>Duvet Cover - Queen</option>
+                                                        <option>Pillows Case</option>
+                                                        <option>Bath Towel</option>
+                                                        <option>Hand Towel</option>
+                                                        <option>Bath Mat</option>
+                                                        <option>Bed Ruuner Queen</option>
+                                                        <option>Bed Runner Single</option>
+                                                        <option value="Invalid"></option>
+                                                        <option value="Invalid">Guest Supplies :</option>
+                                                        <option>Bath Soap</option>
+                                                        <option>Shampoo</option>
+                                                        <option>Dental Kit</option>
+                                                        <option>Slippers</option>
+                                                        <option>Bottled Water</option>
+                                                        <option>Juice</option>
+                                                        <option>Coffee</option>
+                                                        <option>Creamer</option>
+                                                        <option>Sugar - White</>
+                                                        <option>Sugar - Brown</option>
+                                                        <option value="Invalid"></option>
+                                                        <option value="Invalid">Amenities : </option>
+                                                        <option>Kettle</option>
+                                                        <option>Tray</option>
+                                                        <option>Dental Glass</option>
+                                                        <option>Teaspoon</option>
+                                                        <option>Cup And Saucer</option>
+                                                        <option>Hanger</option>
+                                                        <option>Door Hang</option>
+                                                        </select>   
+                                                        <div class="invalid-feedback">
+                                                            Stock Details empty
+                                                        </div>
+                                                    </div> 
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button>
+                                                        <input type="submit"  value="Update" class="btn btn-success" />                      
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword1">Category</label>
-                                                    <select class="form-control" name = "category" value="{{ $lists->category}}" required>
-                                                    <option value="Invalid">Linens :</option>
-                                                    <option>Bed pad - Single</option>
-                                                    <option>Fitted Sheet - Single</option>
-                                                    <option>Flat Sheet - Single</option>
-                                                    <option>Duvet Filler - Single</option>
-                                                    <option>Duvet Cover - Single</option>
-                                                    <option>Pillows</option>
-                                                    <option>Bed pad - Queen</option>
-                                                    <option>Fitted Sheet - Queen</option>
-                                                    <option>Flat Sheet - Queen</option>
-                                                    <option>Duvet Filler - Queen</option>
-                                                    <option>Duvet Cover - Queen</option>
-                                                    <option>Pillows Case</option>
-                                                    <option>Bath Towel</option>
-                                                    <option>Hand Towel</option>
-                                                    <option>Bath Mat</option>
-                                                    <option>Bed Ruuner Queen</option>
-                                                    <option>Bed Runner Single</option>
-                                                    <option value="Invalid"></option>
-                                                    <option value="Invalid">Guest Supplies :</option>
-                                                    <option>Bath Soap</option>
-                                                    <option>Shampoo</option>
-                                                    <option>Dental Kit</option>
-                                                    <option>Slippers</option>
-                                                    <option>Bottled Water</option>
-                                                    <option>Juice</option>
-                                                    <option>Coffee</option>
-                                                    <option>Creamer</option>
-                                                    <option>Sugar - White</>
-                                                    <option>Sugar - Brown</option>
-                                                    <option value="Invalid"></option>
-                                                    <option value="Invalid">Amenities : </option>
-                                                    <option>Kettle</option>
-                                                    <option>Tray</option>
-                                                    <option>Dental Glass</option>
-                                                    <option>Teaspoon</option>
-                                                    <option>Cup And Saucer</option>
-                                                    <option>Hanger</option>
-                                                    <option>Door Hang</option>
-                                                    </select>   
-                                                <div class="invalid-feedback">
-                                                                Stock Details empty
-                                                </div>
-                                            </div>      
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-success">Update</button>                       
+                                                </form>
                                             </div>
-                                            </form>
                                         </div>
                                     </div>
                                     
