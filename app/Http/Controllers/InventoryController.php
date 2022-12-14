@@ -40,6 +40,7 @@ class InventoryController extends Controller
         $this->validate($request,[
         'name' => 'required',
         'description' => 'required',
+        'date' => 'required',
         'quantity' => 'required',
         'in' => 'required',
         'out' => 'required',
@@ -51,6 +52,7 @@ class InventoryController extends Controller
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->total = $request->input('quantity');
+       $stock->date = $request->input('date');
        $stock->in = $request->input('in');
        $stock->out = $request->input('out');
        $stock->category = $request->input('category');
