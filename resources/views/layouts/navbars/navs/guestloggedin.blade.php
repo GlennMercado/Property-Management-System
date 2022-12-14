@@ -53,7 +53,6 @@
                         <span class="nav-link-inner--text">{{ __('Submit a Ticket') }}</span>
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>

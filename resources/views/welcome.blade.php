@@ -14,8 +14,7 @@
     <div class="container-fluid bg-white">
         <div class="row d-flex justify-content-center">
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
-                    style="max-height: 14rem">
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap" style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Suites</h5>
                     <p class="card-text">P2,500.00 per night with breakfast

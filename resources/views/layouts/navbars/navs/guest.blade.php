@@ -55,7 +55,6 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
-                
             </ul>
         </div>
     </div>
