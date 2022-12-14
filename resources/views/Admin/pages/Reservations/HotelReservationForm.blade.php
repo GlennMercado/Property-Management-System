@@ -234,7 +234,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4 class="text-center">Change Payment Status to Paid? </h4>          
+                                                    <h4 class="text-center">Change <span style="color:red;">{{$lists->Guest_Name }}</span> Payment Status to Paid? </h4>          
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>

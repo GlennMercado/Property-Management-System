@@ -153,6 +153,7 @@ class RoomController extends Controller
             $room_no = $request->input('room_no');
             $status = $request->input('stats');
             $hstatus = $request->input('hstats');
+            $stats = "Available";
 
             if($status != null)
             {
@@ -164,10 +165,24 @@ class RoomController extends Controller
 
             if($hstatus != null)
             {
-                DB::table('housekeepings')->where('Room_No', $room_no)->update(array
-                (
-                    'Housekeeping_Status' => $hstatus
-                ));
+                if($hstatus == "Cleaned")
+                { 
+                    DB::table('housekeepings')->where('Room_No', $room_no)->update(array
+                    (
+                        'Housekeeping_Status' => $hstatus
+                    ));
+                    DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+                    (
+                        'Status' => $stats
+                    ));
+                }
+                else
+                {
+                    DB::table('housekeepings')->where('Room_No', $room_no)->update(array
+                    (
+                        'Housekeeping_Status' => $hstatus
+                    ));
+                }
             }
          
             Alert::Success('Success', 'Room Edited Successfully!');
