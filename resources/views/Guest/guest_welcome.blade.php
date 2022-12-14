@@ -2,78 +2,124 @@
 
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <div class="container-fluid nvdcbg">
-        <div class="text-center mt-7">
-            <div style="text-shadow: black 0.1em 0.1em 0.2em;">
-                <h1 class="display-1 text-white">NVDC PROPERTIES</h1>
+
+    <div class="container-fluid bg-white" id="conventionCenter">
+        <div class="row justify-content-center">
+            <div class="col-md-9 mt-7">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
+                            <div class="carousel-caption d-none d-md-block">
+                                <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 20vh; height: 20vh">
+                                <h1 class="display-1 text-white">NVDC PROPERTIES
+                                </h1>
+                                <h1 class="text-white">Convention Center</h1>
+                              </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="display-1 text-white">Suites</h1>
+                              </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="display-1 text-white">Function Roms</h1>
+                              </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="display-1 text-white">Commercial Spaces</h1>
+                              </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
 
             </div>
+        </div>
+    </div>
 
-            <!-- Modal -->
+    <!-- Modal -->
+    <!-- Add Reservation -->
+    <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                        Hotel Reservation
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
+                    enctype="multipart/form-data">
 
-            <!-- Add Reservation -->
-            <div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                Hotel Reservation
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
-                            enctype="multipart/form-data">
+                    {{ csrf_field() }}
 
-                            {{ csrf_field() }}
-
-                            <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="card-body bg-white" style="border-radius: 18px">
                                 <div class="row">
-                                    <div class="card-body bg-white" style="border-radius: 18px">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text-left">Check in Date/Time: </p>
-                                                <input class="form-control chck" name="checkIn" type="date"
-                                                    onkeydown="return false" id="example-datetime-local-input" required>
-                                            </div>
-                                            <div class="col">
-                                                <p class="text-left">Check out Date/Time: </p>
-                                                <input class="form-control chck" name="checkOut" type="date"
-                                                    onkeydown="return false" id="example-datetime-local-input" required>
-                                            </div>
-                                        </div>
+                                    <div class="col">
+                                        <p class="text-left">Check in Date/Time: </p>
+                                        <input class="form-control chck" name="checkIn" type="date"
+                                            onkeydown="return false" id="example-datetime-local-input" required>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-left">Check out Date/Time: </p>
+                                        <input class="form-control chck" name="checkOut" type="date"
+                                            onkeydown="return false" id="example-datetime-local-input" required>
+                                    </div>
+                                </div>
 
-                                        <p class="text-left">Room No - Beds: </p>
-                                        <select name="room_no" class="form-control" required>
+                                <p class="text-left">Room No - Beds: </p>
+                                <select name="room_no" class="form-control" required>
+                                    <option selected="true" disabled="disabled">Select</option>
+                                    @foreach ($room as $rooms)
+                                        @if ($rooms->Status == 'Available')
+                                            <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
+                                                {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-left">Number of Pax: </p>
+                                        <select name="pax" class="form-control" required>
                                             <option selected="true" disabled="disabled">Select</option>
-                                            @foreach ($room as $rooms)
-                                                @if ($rooms->Status == 'Available')
-                                                    <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
-                                                        {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
-                                                @endif
-                                            @endforeach
+                                            @for ($count = 1; $count <= 4; $count++)
+                                                <option value="{{ $count }}">{{ $count }}</option>
+                                            @endfor
                                         </select>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-left">Mobile No.: </p>
+                                        <input class="form-control" type="tel" minlength="11" maxlength="11"
+                                            name="mobile" required>
+                                    </div>
+                                </div>
 
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text-left">Number of Pax: </p>
-                                                <select name="pax" class="form-control" required>
-                                                    <option selected="true" disabled="disabled">Select</option>
-                                                    @for ($count = 1; $count <= 4; $count++)
-                                                        <option value="{{ $count }}">{{ $count }}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <p class="text-left">Mobile No.: </p>
-                                                <input class="form-control" type="tel" minlength="11" maxlength="11"
-                                                    name="mobile" required>
-                                            </div>
-                                        </div>
-
-                                        <!--
+                                <!--
                                         <div class="row">
                                             <div class="col">
                                                 <p class="text-left">Number of Adult: </p>
@@ -95,32 +141,29 @@
                                             </div>
                                         </div>-->
 
-                                        <p class="text-left">Guest Name: </p>
-                                        @foreach ($guest as $guests)
-                                            <input type="hidden" name="gName" value="{{ $guests->name }}" />
-                                            <input class="form-control" type="text" name="gName"
-                                                value="{{ $guests->name }}" readonly>
-                                        @endforeach
+                                <p class="text-left">Guest Name: </p>
+                                @foreach ($guest as $guests)
+                                    <input type="hidden" name="gName" value="{{ $guests->name }}" />
+                                    <input class="form-control" type="text" name="gName"
+                                        value="{{ $guests->name }}" readonly>
+                                @endforeach
 
 
-                                    </div>
-                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                    </div>
+                </form>
             </div>
-
         </div>
     </div>
     <div class="container-fluid bg-white">
         <div class="row d-flex justify-content-center">
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/hotel1.jpg" alt="Card image cap"
                     style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Suites</h5>
@@ -187,7 +230,7 @@
     <div class="container-fluid bg-white" id="hotelRooms">
         <div class="row d-flex justify-content-center">
             <div class="cards1" style="">
-                <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/nvdcpic3.jpg" alt="Card image cap"
+                <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/hotel12.jpg" alt="Card image cap"
                     style="height: 350px;">
             </div>
             <div class="col-md-6 text-left mt-6 ">
@@ -214,52 +257,22 @@
         </div>
 
     </div>
-    {{-- Convention center slider --}}
-    <div class="container-fluid bg-white" id="conventionCenter">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-5 shadow1">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset('nvdcpics') }}/BCourt2.jpg">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset('nvdcpics') }}/BCourt3.jpg">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
     {{-- Commmercial spaces gallery --}}
     <div class="container-fluid bg-white" id="commercialSpaces">
 
         <div class="row d-flex justify-content-center">
-            <div class="strike col-md-12 mt-5">
-                <span>
-                    <h1>Commercial Spaces</h1>
-                </span>
-            </div>
-            <div class="row d-flex justify-content-center" style="height: 50%">
+            <div class="row d-flex justify-content-center mt-5" style="height: 50%">
                 <div class="col-md-3">
-                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/cspaces.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/commercial1.jpg" alt="Card image cap">
+                </div>
+                <div class="col-md-3">
+                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/function1.jpg" alt="Card image cap">
+                </div>
+                <div class="col-md-3">
+                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/convention1.jpg" alt="Card image cap">
+                </div>
+                <div class="col-md-3">
+                    <img class="card-img-top" src="{{ asset('nvdcpics') }}/suite1.jpg" alt="Card image cap">
                 </div>
             </div>
         </div>
@@ -293,30 +306,30 @@
 
     <!-- <div class="container-fluid bg-white" id="commercialSpaces">
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8 cards1">
-                <div class="strike">
-                    <span>
-                        <h1>MAP</h1>
-                    </span>
-                </div>
-                <h3 class="text-center">NVDC Properties Location</h3>
-                <div class="shadow1">
-                    <div class="mapouter">
-                        <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
-                                scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                                href="https://formatjson.org/">format json</a>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-8 cards1">
+                            <div class="strike">
+                                <span>
+                                    <h1>MAP</h1>
+                                </span>
+                            </div>
+                            <h3 class="text-center">NVDC Properties Location</h3>
+                            <div class="shadow1">
+                                <div class="mapouter">
+                                    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
+                                            scrolling="no" marginheight="0" marginwidth="0"
+                                            src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+                                            href="https://formatjson.org/">format json</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
-                </div>
-            </div>
-        </div>
 
-    </div> -->
+                </div> -->
 
     <style>
         .slide1 {
@@ -427,6 +440,16 @@
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .carousel-inner img {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .nvdcbgslider img{
+            width: 100%;
+        }
+        .imgslider{
+            filter: brightness(70%);
         }
     </style>
 
