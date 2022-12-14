@@ -18,23 +18,21 @@ Route::get('/', function () {
 });
 
 
+
+
 //Homepage	
 Route::get('AboutUs', function () {return view('AboutUs');})->name('AboutUs');
-Route::get('ContactUs', function () {return view('ContactUs');})->name('ContactUs');
-Route::get('Map', function () {return view('Map');})->name('Map');
-Route::post('welcome', 'App\Http\Controllers\WelcomeController@store');
-Route::get('welcome', function () {
-	return view('welcome');})->name('welcome');
+
+Route::get('ContactUs', function () { return view('ContactUs');})->name('ContactUs');
+
+Route::get('Map', function () { return view('Map');})->name('Map');
 
 
-//Auth::routes();
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+
+
+
 Auth::routes();
 
-
-//Route::group(['middleware' => 'auth'], function () { });
-	
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
@@ -114,9 +112,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		return view('Admin.pages.Guestmanage.GuestTicketManager', ['list'=>$list]);})->name('GuestTicketManager');
 });
 
-
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
+	Route::get('/about_us', [App\Http\Controllers\GuestController::class, 'about_us'])->name('about_us');
+	Route::get('/contact_us', [App\Http\Controllers\GuestController::class, 'contact_us'])->name('contact_us');
+	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');
+
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
 });

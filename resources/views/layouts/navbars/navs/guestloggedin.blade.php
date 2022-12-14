@@ -29,19 +29,19 @@
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('AboutUs') }}">
+                    <a class="nav-link nav-link-icon text-default" href="{{ url('about_us') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('About Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('ContactUs') }}">
+                    <a class="nav-link nav-link-icon text-default" href="{{ url('contact_us') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{route('Map')}}">
+                    <a class="nav-link nav-link-icon text-default" href="{{ url('map')}}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>

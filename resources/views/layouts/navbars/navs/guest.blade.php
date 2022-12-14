@@ -12,7 +12,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-8 collapse-brand">
-                        <a href="{{ route('welcome') }}">
+                        <a href="{{ url('/') }}">
                              <h3>NVDC Properties</h3>
                         </a>
                     </div>

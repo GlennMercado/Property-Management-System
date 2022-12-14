@@ -23,4 +23,13 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+
+
+
+    //Homepages
+    public function About_Us()
+    {
+        return view('Home.AboutUs');
+    }
 }

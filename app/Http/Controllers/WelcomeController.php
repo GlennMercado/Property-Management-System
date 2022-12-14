@@ -36,7 +36,7 @@ class WelcomeController extends Controller
       */
      public function store(Request $request)
      {
-         $this->validate($request,[
+         /*$this->validate($request,[
              'checkIn' => 'required',
              'checkOut' => 'required',
              'gName' => 'required',
@@ -54,7 +54,7 @@ class WelcomeController extends Controller
  
          $maintain->save();
          Alert::Success('Success', 'Reservation was successfully submitted!');
-         return redirect('welcome')->with('Success', 'Data Saved');
+         return redirect('welcome')->with('Success', 'Data Saved');*/
      }
  
      /**
