@@ -112,24 +112,20 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="card-body bg-white" style="border-radius: 18px">
-                            <form>
                                 <div class="row">
                                     <div class="col">
                                         <label for="example-email-input" class="form-control-label">Name</label>
-                                        <input class="form-control" type="text" placeholder="Enter Here.."
-                                            id="example-text-input" id="validationCustom01" required>
+                                        <input class="form-control" type="text" placeholder="Enter Here.." name="name" required>
                                     </div>
                                     <div class="col">
                                         <label for="example-email-input" class="form-control-label">Email</label>
-                                        <input class="form-control" type="email" placeholder="Enter Here.."
-                                            id="example-email-input" required>
+                                        <input class="form-control" type="email" placeholder="Enter Here.." name="email" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label for="example-text-input" class="form-control-label">Category</label>
-                                        <select class="form-control" id="example-category-input" required>
-                                            <option>Pick Category</option>
+                                        <select class="form-control" name="category" required>
                                             <option>Hotel</option>
                                             <option>Convention Center</option>
                                             <option>Function Room</option>
@@ -139,32 +135,23 @@
                                     </div>
                                     <div class="col">
                                         <label for="example-text-input" class="form-control-label">Subject </label>
-                                        <input class="form-control" type="text" placeholder="Enter Subject Here.."
-                                            id="example-text-input" required>
+                                        <input class="form-control" type="text" placeholder="Enter Subject Here.." name="subject" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Description </label>
-                                    <input class="form-control" type="text" placeholder="Enter Description Here.."
-                                        id="example-text-input" required>
+                                    <input class="form-control" type="text" placeholder="Enter Description Here.." name="description" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Attachment(s) </label>
-                                    <input type="file" class="custom-file-input" id="customFileLang"
-                                        lang="en" required style="width:200px;">
-                                    <input type="file" class="form-control" id="customFile"
-                                        style="width:50%; " />
+                                    <input type="file" class="form-control" name="ticketimages" accept="image/png, image/gif, image/jpeg" value="asd" style="width:50%; " />
                                 </div>
 
                                 <!--Buttons-->
-                                <button class="btn btn-primary" type="submit"
-                                    style="float:right; margin-top:20px;">Submit
-                                    form</button>
-                                <a href="#" class="btn btn-primary"
-                                    style="float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
+                                <button class="btn btn-primary" type="submit" style="float:right; margin-top:20px;">Submit Form</button>
+                                <a href="#" class="btn btn-primary" style="float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
                                     Cancel
                                 </a>
-                            </form>
                         </div>
                     </div>
                 </div>

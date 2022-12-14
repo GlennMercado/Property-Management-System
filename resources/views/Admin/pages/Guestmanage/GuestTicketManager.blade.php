@@ -19,30 +19,8 @@
                     <!--Filters-->
 
                     <div class="row">
-                        <div class="col-2" style = "margin-left:20px;">
-                            <select class="form-control" id="example-category-input" required>
-                                <option>Email A --> G</option>
-                                <option>Hotel</option>
-                                <option>Convention Center</option>
-                                <option>Function Room</option>
-                                <option>Sports Center</option>
-                                <option>Stalls</option>
-                            </select>
-                        </div>
-                            <br />
-                        <div class="col-2">
+                        <div class="col">
                         <select class="form-control" id="example-category-input" required>
-                            <option>Email H -->Z</option>
-                            <option>Hotel</option>
-                            <option>Convention Center</option>
-                            <option>Function Room</option>
-                            <option>Sports Center</option>
-                            <option>Stalls</option>
-                        </select>
-                        </div>
-                        <div class="col-2">
-                        <select class="form-control" id="example-category-input" required>
-                            <option>Pick Category</option>
                             <option>Hotel</option>
                             <option>Convention Center</option>
                             <option>Function Room</option>
@@ -68,24 +46,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Carlo</th>
-                                    <td>Carlo@gmail.com</td>
-                                    <td>Hotel</td>
-                                    <td>None so far</td>
-                                    <td>
-                                        <input type="submit" value="View More" class = "btn btn-primary">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Carla</th>
-                                    <td> Carla@gmail.com</td>
-                                    <td>Function Room</td>
-                                    <td>Broken Chair</td>
-                                    <td>
-                                        <input type="submit" value="View More" class = "btn btn-primary">
-                                    </td>
-                                </tr>
+                            <tbody>
+                                    @foreach ($list as $lists)
+                                    <tr>
+                                        <td>{{ $lists->name}}</td>
+                                        <td>{{ $lists->email}}</td>
+                                        <td>{{ $lists->category}}</td>
+                                        <td>{{ $lists->subject}}</td>
+                                        <td>
+                                        <button type="button" data-toggle="modal" data-target="#ModalViews"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -93,6 +65,43 @@
             </div>
         </div>
     </div>
+
+    <!--<script>
+    $(document).ready(function(){
+        $("#optionselect").change(function(){
+        var selected = $("option:selected", this).val();
+        if(selected == 'Cleaned')
+        {    
+            $('#cleaned, #cleaned2').show();
+            $('#dirty, #dirty2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').hide();
+        }
+        else if(selected == 'Dirty')
+        {
+            $('#dirty, #dirty2').show();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').hide();
+        }
+        else if(selected == 'Out of Order')
+        {
+            $('#dirty, #dirty2').hide();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').show();
+            $('#outofservice, #outofservice2').hide();
+        }
+        else if(selected == 'Out of Service')
+        {
+            $('#dirty, #dirty2').hide();
+            $('#cleaned, #cleaned2').hide();
+            $('#outoforder, #outoforder2').hide();
+            $('#outofservice, #outofservice2').show();
+        }
+
+    });
+    });
+</script>-->
             @include('layouts.footers.auth')
 
     @endsection
