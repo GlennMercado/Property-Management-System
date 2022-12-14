@@ -67,24 +67,40 @@
                                                                         </div>
                                                                 </div>
                                                         <div class="form-group">
-                                                            <label for="Stockdetails">Stock Description</label>
+                                                            <label>Stock Description</label>
                                                                 <input type="text" class="form-control" name="description" value = "{{ $lists->description}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Stock Details empty
                                                                     </div>
 
-                                                            <label for="Stockdetails">Date :</label>
-                                                                <input type="date" class="form-control" name="description" value="{{ date('F j Y', strtotime($lists->date))}}" readonly>
+                                                            <label>Date Quantity Added:</label>
+                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
 
-                                                            <label for="Stockdetails">Quantity</label>
+                                                            <label>Quantity</label>
                                                                 <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
-                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col">
+                                                                    <label class="text-left">Stock In: </label>
+                                                                    <input class="form-control" type="text" name="in" value="{{$lists->in}}" readonly >
+                                                                    <div class="invalid-feedback">
+                                                                            Quantity empty
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col">
+                                                                    <label class="text-left">Stock Out: </label>
+                                                                     <input type="text" class="form-control" name="out" value="{{$lists->out}}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Stock Name empty
+                                                                    </div> 
+                                                                </div>
+                                                            </div>  
+                                                        </div>
                                                         <label for="exampleInputPassword1">Category</label>
                                                         <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
                                                                 <div class="invalid-feedback">
@@ -135,7 +151,6 @@
                                                             <div class="invalid-feedback">
                                                                 Quantity empty
                                                             </div>
-                                                    </div>
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <p class="text-left">Stock In: </p>
@@ -147,8 +162,9 @@
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
-                                                            </div>
                                                         </div>
+                                                    </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Category</label>
                                                         <select class="form-control" name="category" value="{{ $lists->category}}" required>

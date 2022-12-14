@@ -1,15 +1,15 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.registerlogin', ['class' => 'bg-light'])
 
 @section('content')
     @include('layouts.headers.guest')
-
-    <div class="container mt--8 pb-5">
+ <div class="container-fluid nvdcbg">
+    <div class="container mt--9 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-1"><Strong style = "font-size:30px;">{{ __('Sign up') }}</strong></div>
+                        <div class="text-muted text-center mt-2 mb-1"><Strong style = "font-size:30px; letter-spacing:2px;">{{ __('Sign up') }}</strong></div>
                         <!-- <div class="text-center">
                             <a href="#" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img
@@ -377,11 +377,28 @@
             </div>
         </div>
     </div>
+    </div>
     <style>
         p strong{
             text-align:justify;
             font-family:sans-serif;
         }
+        
+    .nvdcbg {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("nvdcpics/convention.jpg");
+        background-size: cover;
+    }
+    .btn {
+        border-radius:10px; 
+        width:100%;
+        letter-spacing:2px;
+    }
+    .bg-secondary{
+        margin-top:80px;
+    }
+    
     </style>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields

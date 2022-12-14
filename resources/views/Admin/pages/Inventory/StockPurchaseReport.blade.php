@@ -63,9 +63,19 @@
                                                         <p class="text-left">Product Description :
                                                         <input class="form-control" type="text" name="description" value="{{$lists->description}}" readonly></p>
 
-                                                        <p class="text-left">Product Quantity :
-                                                        <input class="form-control" type="text" name="quantity" value = "{{$lists->quantity}}" readonly></p>
+                                                        <p class="text-left">Purchased Date :
+                                                        <input class="form-control" type="text" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly></p>
                                                         
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <p class="text-left">Unit :
+                                                                    <input class="form-control" type="number" placeholder="Enter Here.." name="unit" value="{{$lists->unit}}"  readonly></p>  
+                                                            </div>
+                                                                <div class = "col">
+                                                                    <p class="text-left">Quantity :
+                                                                    <input class="form-control" type="text" name="quantity" value = "{{$lists->quantity}}" readonly></p>
+                                                                </div>
+                                                        </div>
                                                         <p class="text-left">Supplier Name :
                                                         <input class="form-control" type="text" name="suppliername" value = "{{$lists->suppliername}}" readonly></p>
         
@@ -172,9 +182,9 @@
                                                         </div>
                                                         <p class="text-left">Supplier Name: </p>
                                                             <select class="form-control" name="suppliername" required>
-                                                                <option value="Available">Sample Supplier 1</option>
-                                                                <option value="Dirty">Sample Supplier 2</option>
-                                                                <option value="Checked">Sample Supplier 3</option>
+                                                                <option>Sample Supplier 1</option>
+                                                                <option>Sample Supplier 2</option>
+                                                                <option>Sample Supplier 3</option>
                                                             </select>  
                                                     </div>
                                                 </div>

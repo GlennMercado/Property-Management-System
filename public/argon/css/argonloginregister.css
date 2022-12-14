@@ -10546,11 +10546,11 @@ button.bg-darker:focus
     padding: 6rem !important;
 }
                                                             /* comment */
-.pt-7,                                                   
+/* .pt-7,                                                   
 .py-7
 {
     padding-top: 6rem !important;
-} 
+}  */
 
 .pr-7,
 .px-7
@@ -13408,22 +13408,22 @@ button.bg-darker:focus
         padding: 8rem !important;
     }
                                                                 /* comment */
-    .pt-lg-8,                                                
+    /* .pt-lg-8,                                                
     .py-lg-8
     {
         padding-top: 8rem !important;
-    } 
+    }  */
     .pr-lg-8,
     .px-lg-8
     {
         padding-right: 8rem !important;
     }
                                                                 /* comment */
-    .pb-lg-8,                                                
+    /* .pb-lg-8,                                                
     .py-lg-8
     {
         padding-bottom: 8rem !important;
-    } 
+    }  */
     .pl-lg-8,
     .px-lg-8
     {
@@ -15141,10 +15141,10 @@ button.bg-lighter:focus
     background: linear-gradient(87deg, #ffd600 0, #beff00 100%) !important;
 }
 
-.bg-gradient-green
+/* .bg-gradient-green
 {
     background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%);
-}
+} */
 
 .bg-gradient-teal
 {
