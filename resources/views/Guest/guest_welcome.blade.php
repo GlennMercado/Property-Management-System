@@ -211,21 +211,19 @@
                     style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC
-                        Properties,
-                        we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
+                    <p class="card-text">We are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
 
                     <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
-                            Inquire Now
+                            Apply Now
                         </a>
                     </button>
                 </div>
             </div>
         </div>
+
     </div>
-    
     {{-- Convention center intro --}}
     <div class="container-fluid bg-white" id="hotelRooms">
         <div class="row d-flex justify-content-center">
@@ -303,33 +301,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="container-fluid bg-white" id="commercialSpaces">
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-8 cards1">
-                            <div class="strike">
-                                <span>
-                                    <h1>MAP</h1>
-                                </span>
-                            </div>
-                            <h3 class="text-center">NVDC Properties Location</h3>
-                            <div class="shadow1">
-                                <div class="mapouter">
-                                    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
-                                            scrolling="no" marginheight="0" marginwidth="0"
-                                            src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                                            href="https://formatjson.org/">format json</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> -->
 
     <style>
         .slide1 {

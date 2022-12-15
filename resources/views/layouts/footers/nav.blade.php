@@ -1,18 +1,17 @@
 <div class="row align-items-center justify-content-xl-between">
     <div class="col-xl-6">
-        <div class="copyright text-center text-xl-left text-muted">
-            &copy; {{ now()->year }} <a href="#" class="font-weight-bold ml-1" target="_blank">NOVADECI Properties</a> &amp;
-            <a href="#" class="font-weight-bold ml-1" target="_blank">InTeractive Solutions</a>
-        </div>
-    </div>
-    <div class="col-xl-6">
-        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+        <ul class="nav nav-footer">
             <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank">InTeractive Solutions</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank">NOVADECI Properties</a>
+                <h1 class="text-white">OFFICE HOUR</h1>
+                <h2 class="text-white">Mon-Sat | 8:00am - 5:00am</h2>
             </li>
         </ul>
+    </div>
+    <div class="col-xl-6">
+        <div class="copyright text-muted">
+            &copy; {{ now()->year }} <a href="https://www.facebook.com/NVDCProperties"
+                class="font-weight-bold ml-1 bi bi-facebook" target="_blank"> NOVADECI Properties</a> &amp;
+            <a href="#" class="font-weight-bold ml-1" target="_blank">InTeractive Solutions</a>
+        </div>
     </div>
 </div>
