@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 06:23 AM
+-- Generation Time: Dec 15, 2022 at 12:42 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -24,16 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `add_maintenances`
+-- Table structure for table `archived_hotel_reservation`
 --
 
-CREATE TABLE `add_maintenances` (
-  `ID` int(10) UNSIGNED NOT NULL,
-  `Status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Asset` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Location` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Due_Date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+CREATE TABLE `archived_hotel_reservation` (
+  `Reservation_No` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Guest_Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Mobile_Num` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Room_No` int(11) NOT NULL,
+  `No_of_Pax` int(11) NOT NULL,
+  `Payment_Status` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Pending',
+  `Booking_Status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Check_In_Date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Check_Out_Date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -52,6 +56,25 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guestticket`
+--
+
+CREATE TABLE `guestticket` (
+  `ID` int(10) UNSIGNED NOT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `DB_Image` blob NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -106,6 +129,8 @@ CREATE TABLE `hotel_reservations` (
   `Room_No` int(11) NOT NULL,
   `No_of_Pax` int(11) NOT NULL,
   `Payment_Status` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Pending',
+  `Booking_Status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Isvalid` tinyint(1) NOT NULL DEFAULT 1,
   `Check_In_Date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Check_Out_Date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -116,9 +141,11 @@ CREATE TABLE `hotel_reservations` (
 -- Dumping data for table `hotel_reservations`
 --
 
-INSERT INTO `hotel_reservations` (`Reservation_No`, `Guest_Name`, `Mobile_Num`, `Email`, `Room_No`, `No_of_Pax`, `Payment_Status`, `Check_In_Date`, `Check_Out_Date`, `created_at`, `updated_at`) VALUES
-('40C216401422574', 'John Rey Lamprea', '09874632541', 'johnreylamprea@gmail.com', 2, 2, 'Paid', '2022-12-10', '2022-12-15', '2022-12-08 19:48:42', '2022-12-08 19:48:42'),
-('548L43530171378', 'Anjelo Candelaria', '09874632541', NULL, 2, 3, 'Pending', '2022-12-10', '2022-12-12', '2022-12-08 19:29:10', '2022-12-08 19:29:10');
+INSERT INTO `hotel_reservations` (`Reservation_No`, `Guest_Name`, `Mobile_Num`, `Email`, `Room_No`, `No_of_Pax`, `Payment_Status`, `Booking_Status`, `Isvalid`, `Check_In_Date`, `Check_Out_Date`, `created_at`, `updated_at`) VALUES
+('1949148451503G0', 'Jenny Kim', '09121316465', NULL, 2, 2, 'Paid', 'Reserved', 1, '2022-12-21', '2022-12-25', '2022-12-15 02:34:10', '2022-12-15 02:34:10'),
+('4505O6321223048', 'Rraine Autor', '09121316465', NULL, 3, 2, 'Paid', 'Checked-Out', 0, '2022-12-16', '2022-12-17', '2022-12-15 02:48:43', '2022-12-15 02:48:43'),
+('6256O4068985478', 'John Lamprea', '09874632541', 'johnreylamprea@gmail.com', 5, 4, 'Pending', NULL, 1, '2022-12-16', '2022-12-20', '2022-12-15 02:23:28', '2022-12-15 02:23:28'),
+('92O724004629780', 'Anjelo Candelaria', '09874632541', NULL, 1, 4, 'Paid', 'Checked-Out', 0, '2022-12-16', '2022-12-17', '2022-12-15 00:57:34', '2022-12-15 00:57:34');
 
 -- --------------------------------------------------------
 
@@ -141,12 +168,13 @@ CREATE TABLE `housekeepings` (
 --
 
 INSERT INTO `housekeepings` (`ID`, `Room_No`, `Housekeeping_Status`, `Room_Attendant`, `Date_Time_Accomplished`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cleaned', 'Unassigned', NULL, '2022-12-08 19:23:04', '2022-12-08 19:23:04'),
-(2, 2, 'Dirty', 'Unassigned', NULL, '2022-12-08 19:25:01', '2022-12-08 19:25:01'),
-(3, 3, 'Cleaned', 'Unassigned', NULL, '2022-12-08 19:27:35', '2022-12-08 19:27:35'),
-(4, 4, 'Cleaned', 'Unassigned', NULL, '2022-12-08 19:27:51', '2022-12-08 19:27:51'),
-(5, 5, 'Cleaned', 'Unassigned', NULL, '2022-12-08 19:28:08', '2022-12-08 19:28:08'),
-(6, 9, 'Cleaned', 'Unassigned', NULL, '2022-12-08 21:21:35', '2022-12-08 21:21:35');
+(1, 1, 'Dirty', 'Mark Delos Santos', NULL, '2022-12-15 00:52:05', '2022-12-15 00:52:05'),
+(2, 2, 'Cleaned', 'Unassigned', NULL, '2022-12-15 00:52:20', '2022-12-15 00:52:20'),
+(3, 3, 'Dirty', 'Jacob Del Rosario', NULL, '2022-12-15 00:54:12', '2022-12-15 00:54:12'),
+(4, 4, 'Cleaned', 'Unassigned', NULL, '2022-12-15 00:54:25', '2022-12-15 00:54:25'),
+(5, 5, 'Cleaned', 'Unassigned', NULL, '2022-12-15 00:54:48', '2022-12-15 00:54:48'),
+(6, 9, 'Cleaned', 'Unassigned', NULL, '2022-12-15 00:55:13', '2022-12-15 00:55:13'),
+(7, 10, 'Cleaned', 'Unassigned', NULL, '2022-12-15 00:56:01', '2022-12-15 00:56:01');
 
 -- --------------------------------------------------------
 
@@ -169,14 +197,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_12_02_165937_create_add_maintenances_table', 1),
-(6, '2022_12_06_000949_create_hotel_reservation_table', 1),
-(7, '2022_12_06_001028_create_hotelstock_table', 1),
-(8, '2022_12_06_140802_create_novadeci_suites_table', 1),
-(9, '2022_12_06_183548_create_purchasereport_table', 1),
-(10, '2022_12_08_145456_create_housekeeping_table', 1),
-(11, '2022_12_08_184157_create_purchasereports_table', 1),
-(12, '2022_12_09_050205_create_hotelstocks_table', 2);
+(5, '2022_12_06_000949_create_hotel_reservation_table', 1),
+(6, '2022_12_06_001028_create_hotelstock_table', 1),
+(7, '2022_12_06_140802_create_novadeci_suites_table', 1),
+(8, '2022_12_06_183548_create_purchasereport_table', 1),
+(9, '2022_12_08_145456_create_housekeeping_table', 1),
+(10, '2022_12_08_184157_create_purchasereports_table', 1),
+(11, '2022_12_09_050205_create_hotelstocks_table', 1),
+(12, '2022_12_12_080347_create_guestticket_table', 1),
+(13, '2022_12_15_080028_create_archived_hotel_reservation_table', 1);
 
 -- --------------------------------------------------------
 
@@ -194,6 +223,7 @@ CREATE TABLE `novadeci_suites` (
   `Rate_per_Night` int(11) NOT NULL,
   `Membership` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Hotel_Image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `DB_Image` blob NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -202,13 +232,14 @@ CREATE TABLE `novadeci_suites` (
 -- Dumping data for table `novadeci_suites`
 --
 
-INSERT INTO `novadeci_suites` (`Room_No`, `Room_Size`, `No_of_Beds`, `Extra_Bed`, `No_Pax_Per_Room`, `Status`, `Rate_per_Night`, `Membership`, `Hotel_Image`, `created_at`, `updated_at`) VALUES
-(1, '37 (corner room)', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1670556184--Room 1-.jpg', '2022-12-08 19:23:04', '2022-12-08 19:23:04'),
-(2, '35', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Checked-Out', 2500, 'Guests', 'hotel_images\\1670556301--Room 2-.jpg', '2022-12-08 19:25:01', '2022-12-08 19:25:01'),
-(3, '37', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1670556455--Room 3-.jpg', '2022-12-08 19:27:35', '2022-12-08 19:27:35'),
-(4, '34', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1670556471--Room 4-.jpg', '2022-12-08 19:27:51', '2022-12-08 19:27:51'),
-(5, '38 (corner room)', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1670556488--Room 5-.jpg', '2022-12-08 19:28:08', '2022-12-08 19:28:08'),
-(9, '36 (corner room)', 'One (1) queen-sized', 'None', 3, 'Available', 2500, 'Guests', 'hotel_images\\1670563295--Room 9-.JPG', '2022-12-08 21:21:35', '2022-12-08 21:21:35');
+INSERT INTO `novadeci_suites` (`Room_No`, `Room_Size`, `No_of_Beds`, `Extra_Bed`, `No_Pax_Per_Room`, `Status`, `Rate_per_Night`, `Membership`, `Hotel_Image`, `DB_Image`, `created_at`, `updated_at`) VALUES
+(1, '37 (corner room)', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Checked-Out', 2500, 'Guests', 'hotel_images\\1671094325--Room 1-.jpg', 0x616e426e, '2022-12-15 00:52:05', '2022-12-15 00:52:05'),
+(2, '35', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Reserved', 2500, 'Guests', 'hotel_images\\1671094340--Room 2-.jpg', 0x616e426e, '2022-12-15 00:52:20', '2022-12-15 00:52:20'),
+(3, '37', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Checked-Out', 2500, 'Guests', 'hotel_images\\1671094452--Room 3-.jpg', 0x616e426e, '2022-12-15 00:54:12', '2022-12-15 00:54:12'),
+(4, '34', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1671094465--Room 4-.jpg', 0x616e426e, '2022-12-15 00:54:25', '2022-12-15 00:54:25'),
+(5, '38 (corner room)', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1671094488--Room 5-.jpg', 0x616e426e, '2022-12-15 00:54:48', '2022-12-15 00:54:48'),
+(9, '36 (corner room)', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1671094513--Room 9-.JPG', 0x536c4248, '2022-12-15 00:55:13', '2022-12-15 00:55:13'),
+(10, '34', 'One (1) queen-sized & One (1) twin-sized', 'One (1)', 4, 'Available', 2500, 'Guests', 'hotel_images\\1671094561--Room 10-.JPG', 0x536c4248, '2022-12-15 00:56:01', '2022-12-15 00:56:01');
 
 -- --------------------------------------------------------
 
@@ -301,18 +332,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `User_Type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Daniel Diapen', 'daniel@gmail.com', NULL, '$2y$10$4EEHJKr8qW6Ic2UArGhPMeB9VuF1D..5VT5Fp7gvFRuorch2ukpaa', 'Admin', NULL, '2022-12-08 19:20:22', '2022-12-08 19:20:22'),
-(2, 'John Rey Lamprea', 'johnreylamprea@gmail.com', NULL, '$2y$10$nAc2cxaDFRX1rxu0/Kt.Z.YM4U.kIKIIOb5dxaooC0FuMvtIrsPdG', 'Guest', NULL, '2022-12-08 19:20:56', '2022-12-08 19:20:56');
+(1, 'Daniel Diapen', 'daniel@gmail.com', NULL, '$2y$10$6F.ivg3vgNqQe8DTgkIl7uMCM31lzEOVe215p2l0WDzw.MSLgroTm', 'Admin', NULL, '2022-12-15 00:51:19', '2022-12-15 00:51:19'),
+(2, 'John Lamprea', 'johnreylamprea@gmail.com', NULL, '$2y$10$DUbavvXiLLJJedOF5o5Aau2XvsGpq99YIgEmuc.JVQfD2RW1graDy', 'Guest', NULL, '2022-12-15 01:08:46', '2022-12-15 01:08:46');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `add_maintenances`
+-- Indexes for table `archived_hotel_reservation`
 --
-ALTER TABLE `add_maintenances`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `archived_hotel_reservation`
+  ADD PRIMARY KEY (`Reservation_No`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -320,6 +351,12 @@ ALTER TABLE `add_maintenances`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `guestticket`
+--
+ALTER TABLE `guestticket`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `hotelstock`
@@ -395,16 +432,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `add_maintenances`
---
-ALTER TABLE `add_maintenances`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `guestticket`
+--
+ALTER TABLE `guestticket`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hotelstock`
@@ -422,13 +459,13 @@ ALTER TABLE `hotelstocks`
 -- AUTO_INCREMENT for table `housekeepings`
 --
 ALTER TABLE `housekeepings`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
