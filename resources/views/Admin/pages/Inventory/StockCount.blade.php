@@ -23,7 +23,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
+                        <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Product Name</th>
@@ -248,7 +248,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/addstock') }}" class="prevent_submit" method="POST">
+                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
@@ -355,8 +355,51 @@
             });
             }, false);
         })();
-                    
+                   
+        
+<script>
+    $(function () {
+  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+
+  $.extend(true, $.fn.dataTable.defaults, {
+    order: [[ 1, 'desc' ]],
+    pageLength: 100,
+      columnDefs: [{
+          orderable: true,
+          className: '',
+          targets: 0
+      }]
+  });
+  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $($.fn.dataTable.tables(true)).DataTable()
+            .columns.adjust();
+    });
+})
+
+</script>
        </script>-->
+       <script>
+    $(function () {
+  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+
+  $.extend(true, $.fn.dataTable.defaults, {
+    order: [[ 1, 'desc' ]],
+    pageLength: 100,
+      columnDefs: [{
+          orderable: true,
+          className: '',
+          targets: 0
+      }]
+  });
+  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $($.fn.dataTable.tables(true)).DataTable()
+            .columns.adjust();
+    });
+})
+
+</script>
     
     @endsection
 
