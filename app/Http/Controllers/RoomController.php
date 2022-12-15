@@ -7,6 +7,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\novadeci_suites;
 use Illuminate\Support\Facades\DB;
 use App\Models\housekeeping;
+use App\Models\archived_hotel_reservation;
 
 class RoomController extends Controller
 {
@@ -178,9 +179,30 @@ class RoomController extends Controller
                 {
                     if($status == "Checked-Out")
                     {
-                        $select = DB::table('hotel_reservations')->get();+
-                        
-                        dd($select);
+                        // $select = DB::table('hotel_reservations')->get();     
+                        // $lists = new archived_hotel_reservation;
+                        //  foreach($select as $list)
+                        //  {  
+                        //     $lists->Reservation_No = $list->Reservation_No;
+                        //     $lists->Guest_Name = $list->Guest_Name;
+                        //     $lists->Mobile_Num = $list->Mobile_Num;
+                        //     $lists->Email = $list->Email;
+                        //     $lists->Room_No = $list->Room_No;
+                        //     $lists->No_of_Pax = $list->No_of_Pax;
+                        //     $lists->Email = $list->Email;
+                        //     $lists->Booking_Status = $status;
+                        // }   
+                        DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+                        (
+                            'Status' => $status
+                        ));
+                        $select = ['Room_No' => $room_no, 'Reservation_No' => $reserved_no];
+                        DB::table('hotel_reservations')->where($select)->update(array
+                        (
+                            'Booking_Status' => $status,
+                            'Isvalid' => False
+                        ));  
+                       
                     }
                     else
                     {

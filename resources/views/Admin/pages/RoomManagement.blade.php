@@ -157,10 +157,14 @@
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
-                                            @if($lists->Status != 'Available')
-                                                <!--Update Status button-->
-                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
-                                            @endif
+                                            @foreach($list3 as $lists3)
+                                                @if($lists->Room_No == $lists3->Room_No)
+                                                    @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")
+                                                        <!--Update Status button-->
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </td>
                                     </tr>
         
@@ -326,7 +330,7 @@
                                                                 <p class="text-left">Housekeeping Status :</p> 
                                                                 <select name="hstats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
-                                                                    <option value="Cleaned">Cleaned</option>
+                                                                    <!-- <option value="Cleaned">Cleaned</option> -->
                                                                     <option value="Dirty">Dirty</option>
                                                                     <option value="Out of Order">Out of Order</option>
                                                                     <option value="Out of Service">Out of Service</option>

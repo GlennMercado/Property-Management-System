@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\add_maintenance;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class HousekeepingController extends Controller
 {
@@ -38,6 +39,31 @@ class HousekeepingController extends Controller
     {
         //
     }
+
+    public function assign_housekeeper(Request $request)
+    {
+        try{
+            $this->validate($request,[
+                'room_no' => '',
+                'housekeeper' => 'required'
+                ]);
+
+            $room_no = $request->input('room_no');
+            $housekeeper = $request->input('housekeeper');
+
+            DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Room_Attendant' => $housekeeper));
+
+            Alert::Success('Success', 'Housekeeper successfully assigned!');
+            return redirect('Housekeeping')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Housekeeper assigning failed!');
+            return redirect('Housekeeping')->with('Success', 'Data Updated');
+        }
+
+    }
+
 
     public function add_maintenance(Request $request)
     {

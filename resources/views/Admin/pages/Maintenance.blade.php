@@ -55,7 +55,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                outoforder
+                               @foreach($list as $lists)
+                                @if($lists->Housekeeping_Status == "Out of Order")
+                                    <tr>
+                                        <td>{{$lists->Room_No}}</td>
+                                        <td>{{$lists->Status}}</td>
+                                        <td>{{$lists->Housekeeping_Status}}</td>
+                                    </tr>
+                                @endif
+                               @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -72,7 +80,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               outofservice
+                                @foreach($list as $lists)
+                                @if($lists->Housekeeping_Status == "Out of Service")
+                                    <tr>
+                                        <td>{{$lists->Room_No}}</td>
+                                        <td>{{$lists->Status}}</td>
+                                        <td>{{$lists->Housekeeping_Status}}</td>
+                                    </tr>
+                                @endif
+                                    
+                               @endforeach
                             </tbody>
                         </table>
                     </div>

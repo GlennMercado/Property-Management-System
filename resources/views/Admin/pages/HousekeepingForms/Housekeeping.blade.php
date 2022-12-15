@@ -31,18 +31,18 @@
                             <div class="col">
                                 <h3 class="mb-0">Cleaned</h3>
                             </div>
-                            <div class="col text-right">
+                            <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
+                            </div> -->
                         </div>
                         <!--Dirty-->
                         <div class="row align-items-center" id="dirty2" style="display:none;">
                             <div class="col">
                                 <h3 class="mb-0">Dirty</h3>
                             </div>
-                            <div class="col text-right">
+                            <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!--Cleaned-->
@@ -79,6 +79,8 @@
                                     <th scope="col">Room No.</th>
                                     <th scope="col">Booking Status</th>
                                     <th scope="col">Housekeeping Status</th>
+                                    <th scope="col">Housekeeper</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,7 +90,57 @@
                                     <td>{{ $lists2->Room_No }}</td>
                                     <td>{{ $lists2->Status}}</td>
                                     <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    <td>{{ $lists2->Room_Attendant}}</td>
+                                    <td>
+                                        @if($lists2->Room_Attendant == "Unassigned")
+                                            <!-- Assign Housekeeper Button -->
+                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#assign{{$lists2->Room_No}}"> 
+                                                <i class="bi bi-person-fill"></i>
+                                            </button>
+                                        @else
+                                            <!--Update Status button-->
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update"> 
+                                                <i class="bi bi-arrow-repeat"></i>
+                                            </button>
+                                        @endif
+                                    </td>
                                     @endif
+                                    <!--Assigning Housekeeper-->
+                                    <div class="modal fade" id="assign{{$lists2->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Assigning Housekeeper</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                        <form method="POST" class="prevent_submit" action="{{url('/assign_housekeeper')}}" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                            <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
+
+                                                            <p class="text-left">Housekeeper: </p>
+                                                            <select name="housekeeper" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Marie B. Adams">Marie B. Adams</option>
+                                                                <option value="Nathan Dela Cruz">Nathan Dela Cruz</option>
+                                                                <option value="Mark Delos Santos">Mark Delos Santos</option>
+                                                                <option value="Jacob Del Rosario">Jacob Del Rosario</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Assign" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -99,108 +151,14 @@
         </div>    
         
         <br>
-
-        <!--Cardboxes
-        <div class="row">
-           
-            <div class="col">
-                <div class="card" style="border: 2px solid green;">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/check.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Cleaned</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
-                    </div>
-                </div>
-            </div>
-           
-            <div class="col-xl">
-                <div class="card" style="border: 2px solid;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/dirty.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Dirty</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
-                    </div>
-                </div>
-            </div>
-           
-            <div class="col-xl">
-                <div class="card" style="border: 2px solid yellow;">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ asset('housekeeping-img') }}/outoforder.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Out of Order</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl">
-                <div class="card" style="border: 2px solid red;">
-                    <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('housekeeping-img') }}/outofservice.png" alt="Card image cap" style="width:30%; float:right;"/>
-                        <h5 class="card-title text-uppercase text-muted mb-0">Out of Service</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>         
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
-        <!--Maintenance-->
-        <!-- <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Maintenance</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="{{route('Maintenance')}}" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive"> -->
-                        <!-- Projects table -->
-                        <!-- <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" >ID</th>
-                                    <th scope="col" >Status</th>
-                                    <th scope="col" >Description</th>
-                                    <th scope="col" >Asset</th>
-                                    <th scope="col" >Location</th>
-                                    <th scope="col" >Due Date</th>
-                                    <th scope="col" >Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($list as $lists)
-                                <tr>
-                                    <td>{{ $lists->ID}}</td>
-                                    <td>{{ $lists->Status}}</td>
-                                    <td>{{ $lists->Description}}</td>
-                                    <td>{{ $lists->Asset}}</td>
-                                    <td>{{ $lists->Location}}</td>
-                                    <td>{{ date("F j Y", strtotime($lists->Due_Date))}}</td>
-                                    <td>
-                                        <i class="bi bi-person"></i>
-                                        <i class="bi bi-check-lg"></i>
-                                        <i class="bi bi-chevron-right"></i>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <br>
         
 
 
 
 <script>
+    $('.prevent_submit').on('submit', function(){
+            $('.prevent_submit').attr('disabled','true');
+        });
     $(document).ready(function(){
         $("#optionselect").change(function(){
         var selected = $("option:selected", this).val();
