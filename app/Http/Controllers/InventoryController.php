@@ -41,12 +41,12 @@ class InventoryController extends Controller
     public function addstock(Request $request)
     {
         $this->validate($request,[
-        'name' => 'required',
-        'description' => 'required',
-        'quantity' => 'required',
-        'in' => 'required',
-        'out' => 'required',
-        'category' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'quantity' => 'required',
+            'in' => 'required',
+            'out' => 'required',
+            'category' => 'required'
        ]);
 
        $stock = new hotelstocks;
@@ -88,20 +88,20 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_stockC(Request $request)
+    public function edit_stock(Request $request)
     {
-        //
-        try{
+        try
+        {
             $this->validate($request,[
-                'productid' => 'productid',
+                'productid' => '',
                 'name' => 'required',
                 'description' => 'required',
                 'quantity' => 'required',
-                'in' => 'required',
-                'out' => 'required',
+                'in' => '',
+                'out' => '',
                 'category' => 'required'
             ]);
-    
+            
             $productid = $request->input('productid');
             $name = $request->input('name');
             $description = $request->input('description');
@@ -110,6 +110,7 @@ class InventoryController extends Controller
             $out = $request->input('out');
             $category = $request->input('category');
 
+            
             $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
             $sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
@@ -133,8 +134,6 @@ class InventoryController extends Controller
             Alert::Error('Failed', 'Room Edit Failed!');
             return redirect('StockCount')->with('Failed', 'Data not Updateds');
         }
-
-
     }
 
     /**

@@ -56,7 +56,7 @@
                                                     </button>                    
                                                 </div>
                                                 <div class="modal-body">
-                                                            <form class="needs-validation" novalidate>
+                                                            
                                                                 <div class = "row">
                                                                         <div class = "col">
                                                                             <p class="text-left">Stock Name: </p>
@@ -124,13 +124,14 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <form method="POST" class="prevent_submit" action="{{ route('StockCount') }}" enctype="multipart/form-data">
+                                                <form method="POST" class="prevent_submit" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
-                                                <div class="modal-body">
+                                                    <div class="modal-body">
                                                         <div class = "row">
                                                             <div class = "col">
                                                                 <p class="text-left">Stock ID: </p>
-                                                                <input class="form-control" type="text" name="productid" value="{{$lists->productid}}" readonly>
+                                                                <input type="hidden" name="productid" value="{{$lists->productid}}">
+                                                                <input class="form-control" type="text" value="{{$lists->productid}}" readonly>
                                                             </div>
                                                             <div class = "col">
                                                                 <p class="text-left">Stock Name: </p>
@@ -213,8 +214,8 @@
                                                         </div>
                                                     </div> 
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button>
-                                                        <input type="submit"  value="Update" class="btn btn-success" />                      
+                                                        <a class="btn btn-failed" data-dismiss="modal">Close</a>
+                                                        <input type="submit" name="update" value="Update" class="btn btn-success" />                      
                                                     </div>
                                                 </div>
                                                 </form>
@@ -247,7 +248,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/addstock') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
