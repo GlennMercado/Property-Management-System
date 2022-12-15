@@ -106,16 +106,10 @@
                                                 <p class="text-left">Rate per Night </p>
                                                     <input class="form-control" type="text" name="rate_per_night" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
                                                 <br>
-                                                <p class="text-left">Membership </p>
-                                                    <select name="membership" class="form-control" required>
-                                                        <option selected="true" disabled="disabled">Select</option>
-                                                        <option value="Guests">Guests</option>
-                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                    </select>
-                                                <br>
-                                                    <p class="text-left">Hotel Image </p>
-                                                        <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
-                                                    </div>
+                                                
+                                                <p class="text-left">Hotel Image </p>
+                                                    <input type="file" name="images" class="form-control" accept="image/png, image/gif, image/jpeg" required />
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
@@ -185,9 +179,6 @@
                                                             <br><br>
                                                             <p class="text-left">Rate per Night: </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
-                                                            <br>
-                                                            <p class="text-left">Membership </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
                                                             <input class="form-control" type="text" value="{{$lists->No_Pax_Per_Room}}" readonly>
@@ -265,13 +256,6 @@
                                                                 <br>
                                                                 <p class="text-left">Rate per Night </p>
                                                                     <input class="form-control" type="text" name="rate_per_night" value="{{$lists->Rate_per_Night}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
-                                                                <br>
-                                                                <p class="text-left">Membership </p>
-                                                                    <select name="membership" class="form-control" required>
-                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                        <option value="Guests">Guests</option>
-                                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                                    </select>
                                                                 <br>
                                                             </div>
                                                         </div>
@@ -355,9 +339,6 @@
                                                             <p class="text-left">Rate per Night: </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
-                                                            <p class="text-left">Membership </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
-                                                            <br>
                                                             <p class="text-left">No. of Pax per Room </p>
                                                             <input class="form-control" type="text" value="{{$lists->No_Pax_Per_Room}}" readonly>
                                                         </div>
@@ -434,13 +415,6 @@
                                                                 <br>
                                                                 <p class="text-left">Rate per Night </p>
                                                                     <input class="form-control" type="text" name="rate_per_night" value="{{$lists->Rate_per_Night}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
-                                                                <br>
-                                                                <p class="text-left">Membership </p>
-                                                                    <select name="membership" class="form-control" required>
-                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                        <option value="Guests">Guests</option>
-                                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                                    </select>
                                                                 <br>
                                                             </div>
                                                         </div>
@@ -580,9 +554,6 @@
                                                             <p class="text-left">Rate per Night: </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
-                                                            <p class="text-left">Membership </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
-                                                            <br>
                                                             <p class="text-left">No. of Pax per Room </p>
                                                             <input class="form-control" type="text" value="{{$lists->No_Pax_Per_Room}}" readonly>
                                                         </div>
@@ -659,13 +630,6 @@
                                                                 <br>
                                                                 <p class="text-left">Rate per Night </p>
                                                                     <input class="form-control" type="text" name="rate_per_night" value="{{$lists->Rate_per_Night}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
-                                                                <br>
-                                                                <p class="text-left">Membership </p>
-                                                                    <select name="membership" class="form-control" required>
-                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                        <option value="Guests">Guests</option>
-                                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                                    </select>
                                                                 <br>
                                                             </div>
                                                         </div>
@@ -738,6 +702,7 @@
                                 
                             </tbody>
                         </table>
+
                         <!-- Checked-Out -->
                         <table class="table align-items-center table-flush" id="checkedout" style="display:none;">
                             <thead class="thead-light">
@@ -766,6 +731,14 @@
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
+                                            @foreach($list3 as $lists3)
+                                                @if($lists->Room_No == $lists3->Room_No)
+                                                    @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")
+                                                        <!--Update Status button-->
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </td>
                                     </tr>
         
@@ -794,9 +767,6 @@
                                                             <br><br>
                                                             <p class="text-left">Rate per Night: </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
-                                                            <br>
-                                                            <p class="text-left">Membership </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Membership}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
                                                             <input class="form-control" type="text" value="{{$lists->No_Pax_Per_Room}}" readonly>
@@ -874,14 +844,7 @@
                                                                 <br>
                                                                 <p class="text-left">Rate per Night </p>
                                                                     <input class="form-control" type="text" name="rate_per_night" value="{{$lists->Rate_per_Night}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
-                                                                <br>
-                                                                <p class="text-left">Membership </p>
-                                                                    <select name="membership" class="form-control" required>
-                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                        <option value="Guests">Guests</option>
-                                                                        <option value="PCC Officers, Staff and Event Team">PCC Officers, Staff and Event Team</option>
-                                                                    </select>
-                                                                <br>
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -891,6 +854,60 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Update Modal-->
+                                    <div class="modal fade" id="update{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room {{$lists->Room_No}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            <form method="POST" class="prevent_submit" action="{{url('/update_rooms')}}" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                            @foreach($list2 as $lists2)
+                                                                @if($lists2->Room_No == $lists->Room_No)
+                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Reservation_No}}" >
+                                                                @endif
+                                                            @endforeach
+                                                            <!--Room No-->
+                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
+                                                            @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')
+                                                                <p class="text-left">Booking Status :</p> 
+                                                                <select name="stats" class="form-control">
+                                                                    <option selected="true" disabled="disabled">Select</option>
+                                                                    <option value="Available">Available</option>
+                                                                    <option value="Reserved">Reserved</option>
+                                                                    <option value="Checked-In">Checked-In</option>
+                                                                    <option value="Checked-Out">Checked-Out</option>
+                                                                </select>
+                                                            @endif
+
+                                                            @if($lists->Status == 'Checked-Out' )
+                                                                <p class="text-left">Housekeeping Status :</p> 
+                                                                <select name="hstats" class="form-control">
+                                                                    <option selected="true" disabled="disabled">Select</option>
+                                                                    <!-- <option value="Cleaned">Cleaned</option> -->
+                                                                    <option value="Out of Order">Out of Order</option>
+                                                                    <option value="Out of Service">Out of Service</option>
+                                                                </select>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Update" />
+                                                </div> 
+                                            </form>
+                                            </div>                     
                                         </div>
                                     </div>
                                     @endif
