@@ -94,6 +94,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
 
 	//Inventory Management
+	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+
+	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	
 	Route::get('StockCount', function () {
 		$list = DB::select('SELECT * FROM hotelstocks');
 		return view('Admin.pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
