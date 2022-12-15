@@ -70,6 +70,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
 
+	//Front Desk
+	Route::get('FrontDesk', function(){
+		$room = DB::select('SELECT * FROM novadeci_suites');
+		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
 
 
 
