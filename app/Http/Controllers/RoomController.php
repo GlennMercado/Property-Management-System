@@ -74,11 +74,25 @@ class RoomController extends Controller
         
             if($request->hasfile('images'))
             {
+                //add image to a folder
                 $file = $request->file('images');
                 $extention = $file->getClientOriginalExtension();
                 $filename = time().'--Room '.$request->input('room_no').'-.'.$extention;
                 $path = $file->move('hotel_images/', $filename);
+
+                
+                //add image to database (which is not advisable)
+                //$path2 = $request->file('images')->getRealPath();
+                //$logo = file_get_contents($path2);
+                $base64 = base64_encode($extention);
+
+
+
                 $add_rooms->Hotel_Image = $path;
+                $add_rooms->DB_Image = $base64;
+
+
+
             }
 
             if($add_rooms->save() && $hs->save())
@@ -147,20 +161,40 @@ class RoomController extends Controller
             $this->validate($request,[
                 'room_no' => 'required',
                 'stats' => '',
-                'hstats' => ''
+                'hstats' => '',
+                'reserved_no' => ''
             ]);
 
             $room_no = $request->input('room_no');
             $status = $request->input('stats');
             $hstatus = $request->input('hstats');
             $stats = "Available";
+            $reserved_no = $request->input('reserved_no');
 
+            //dd($reserved_no);
             if($status != null)
             {
-                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
-                (
-                    'Status' => $status
-                ));
+                if($reserved_no != null)
+                {
+                    if($status == "Checked-Out")
+                    {
+                        $select = DB::table('hotel_reservations')->get();+
+                        
+                        dd($select);
+                    }
+                    else
+                    {
+                        DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
+                        (
+                            'Status' => $status
+                        ));
+                        $select = ['Room_No' => $room_no, 'Reservation_No' => $reserved_no];
+                        DB::table('hotel_reservations')->where($select)->update(array
+                        (
+                            'Booking_Status' => $status
+                        ));
+                    }                 
+                }            
             }
 
             if($hstatus != null)
@@ -185,13 +219,13 @@ class RoomController extends Controller
                 }
             }
          
-            Alert::Success('Success', 'Room Edited Successfully!');
+            Alert::Success('Success', 'Room Updated Successfully!');
             return redirect('RoomManagement')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('RoomManagement')->with('Failed', 'Data not Updateds');
+            return redirect('RoomManagement')->with('Failed', 'Data not Updated');
         }
     }
 

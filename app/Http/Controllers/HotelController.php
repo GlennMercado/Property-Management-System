@@ -94,7 +94,7 @@ class HotelController extends Controller
         
         if($check)
         {
-            DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats));
+            DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
     
             Alert::Success('Success', 'Reservation successfully updated!');

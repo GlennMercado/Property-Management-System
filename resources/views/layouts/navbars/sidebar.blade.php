@@ -178,10 +178,10 @@
                     </div>
                 </li>
 
-                <!--Guest Management-->
+                <!--Maintenance-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('GuestTicketManager') }}">
-                        <i class="bi bi-person-lines-fill text-success"></i> {{ __('Guest Ticket Management') }}
+                    <a class="nav-link text-default" href="{{ route('Maintenance') }}">
+                        <i class="bi bi-person-lines-fill text-success"></i> {{ __('Maintenance') }}
                     </a>
                 </li>
 

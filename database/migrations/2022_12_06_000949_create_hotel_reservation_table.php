@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('No_of_Pax');
 
             $table->string('Payment_Status')->default('Pending');
+            $table->string('Booking_Status')->nullable();
+            $table->boolean('Isvalid')->default(True);
 
             $table->string('Check_In_Date');
             $table->string('Check_Out_Date');

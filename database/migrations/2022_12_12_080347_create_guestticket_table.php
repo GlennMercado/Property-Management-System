@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guestticket', function (Blueprint $table) {
-            $table->integer('guest_id')->primary();
-            $table->string('name');
-            $table->string('email');
-            $table->string('category');
-            $table->string('subject');
-            $table->string('description');
-            $table->string('guest_image');
+            $table->increments('ID');
+            $table->string('Name');
+            $table->string('Email');
+            $table->string('Category');
+            $table->string('Subject');
+            $table->string('Description');
+            $table->string('Image');
+            
+            $table->binary('DB_Image');
             //$table->binary('DB_Image');
             $table->timestamps();
         });

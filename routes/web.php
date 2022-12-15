@@ -59,26 +59,19 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
 		return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room]);})->name('HotelReservationForm');
 
-	//For Housekeeping
-	Route::post('Maintenance', 'App\Http\Controllers\HousekeepingController@add_maintenance');
-
-
+	//For Housekeeping	
 	Route::get('Housekeeping', function () {
 		$list = DB::select('SELECT * FROM add_maintenances');
 		$list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
 		return view('Admin.pages.HousekeepingForms.Housekeeping',['list' =>$list, 'list2' =>$list2]);})->name('Dashboard');
-
-	Route::get('Maintenance', function () {
-		$list = DB::select('SELECT * FROM add_maintenances');
-				$list2 = DB::select('SELECT * FROM novadeci_suites');
-		return view('Admin.pages.HousekeepingForms.Maintenance', ['list'=>$list, 'list2'=>$list2]);})->name('Maintenance');	
 
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
 	//Room Management
 	Route::get('RoomManagement', function () {
 		$list = DB::select('SELECT * FROM novadeci_suites');
-		return view('Admin.pages.RoomManagement',['list'=>$list]);})->name('RoomManagement');
+		$list2 = DB::select('SELECT * FROM hotel_reservations');
+		return view('Admin.pages.RoomManagement',['list'=>$list, 'list2'=>$list2]);})->name('RoomManagement');
 
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
@@ -107,9 +100,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
-	Route::get('GuestTicketManager', function () {
-		$list = DB::select('SELECT * FROM guestticket');
-		return view('Admin.pages.Guestmanage.GuestTicketManager', ['list'=>$list]);})->name('GuestTicketManager');
+	Route::get('Maintenance', function () {
+		return view('Admin.pages.Maintenance');})->name('Maintenance');
 });
 
 //Guest

@@ -182,6 +182,9 @@
                                                             <p class="text-left">Room No. :</p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
                                                             <br>
+                                                            <!-- Image in Blob -->
+                                                            <!-- <img src="{{url($lists->Hotel_Image)}}" class="card-img-top" /> -->
+                                                            <!-- Image in path-->
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                             <br><br>
                                                             <p class="text-left">Rate per Night: </p>  
@@ -301,7 +304,11 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-
+                                                            @foreach($list2 as $lists2)
+                                                                @if($lists2->Room_No == $lists->Room_No)
+                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Reservation_No}}" >
+                                                                @endif
+                                                            @endforeach
                                                             <!--Room No-->
                                                             <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
                                                             @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')

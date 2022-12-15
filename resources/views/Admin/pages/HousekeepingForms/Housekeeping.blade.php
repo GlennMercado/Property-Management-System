@@ -22,8 +22,6 @@
                                 <select class="form-control" style="border:2px solid" id="optionselect" >
                                     <option value="Cleaned" selected="true">Cleaned</option>
                                     <option value="Dirty">Dirty</option>
-                                    <option value="Out of Order">Out of Order</option>
-                                    <option value="Out of Service">Out of Service</option>
                                 </select>
                             </div>
                         </div>
@@ -41,24 +39,6 @@
                         <div class="row align-items-center" id="dirty2" style="display:none;">
                             <div class="col">
                                 <h3 class="mb-0">Dirty</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                        <!--Out of Order-->
-                        <div class="row align-items-center" id="outoforder2" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Out of Order</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div>
-                        </div>
-                        <!--Out of Service-->
-                        <div class="row align-items-center" id="outofservice2" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Out of Service</h3>
                             </div>
                             <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -105,56 +85,6 @@
                                 @foreach($list2 as $lists2)
                                 <tr>
                                     @if($lists2->Housekeeping_Status == 'Dirty')
-                                    <td>{{ $lists2->Room_No }}</td>
-                                    <td>{{ $lists2->Status}}</td>
-                                    <td>{{ $lists2->Housekeeping_Status}}</td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!--Out of Order-->
-                    <div class="table-responsive" id="outoforder" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($list2 as $lists2)
-                                <tr>
-                                    @if($lists2->Housekeeping_Status == 'Out of Order')
-                                    <td>{{ $lists2->Room_No }}</td>
-                                    <td>{{ $lists2->Status}}</td>
-                                    <td>{{ $lists2->Housekeeping_Status}}</td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!--Out of Service-->
-                    <div class="table-responsive" id="outofservice" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($list2 as $lists2)
-                                <tr>
-                                    @if($lists2->Housekeeping_Status == 'Out of Service')
                                     <td>{{ $lists2->Room_No }}</td>
                                     <td>{{ $lists2->Status}}</td>
                                     <td>{{ $lists2->Housekeeping_Status}}</td>
@@ -215,7 +145,7 @@
         </div>-->
 
         <!--Maintenance-->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
@@ -228,9 +158,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive"> -->
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
+                        <!-- <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" >ID</th>
@@ -263,7 +193,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <br>
         
@@ -278,31 +208,12 @@
         {    
             $('#cleaned, #cleaned2').show();
             $('#dirty, #dirty2').hide();
-            $('#outoforder, #outoforder2').hide();
-            $('#outofservice, #outofservice2').hide();
         }
         else if(selected == 'Dirty')
         {
             $('#dirty, #dirty2').show();
             $('#cleaned, #cleaned2').hide();
-            $('#outoforder, #outoforder2').hide();
-            $('#outofservice, #outofservice2').hide();
         }
-        else if(selected == 'Out of Order')
-        {
-            $('#dirty, #dirty2').hide();
-            $('#cleaned, #cleaned2').hide();
-            $('#outoforder, #outoforder2').show();
-            $('#outofservice, #outofservice2').hide();
-        }
-        else if(selected == 'Out of Service')
-        {
-            $('#dirty, #dirty2').hide();
-            $('#cleaned, #cleaned2').hide();
-            $('#outoforder, #outoforder2').hide();
-            $('#outofservice, #outofservice2').show();
-        }
-
     });
     });
 </script>        
