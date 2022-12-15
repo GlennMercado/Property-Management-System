@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\purchasereports;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseReportController extends Controller
 {
@@ -77,9 +78,44 @@ class PurchaseReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit_report(Request $request)
     {
         //
+        try {
+            $this->validate($request,[
+                'productid' => 'required',
+                'name' => 'required',
+                'description' => 'required',
+                'unit' => 'required',
+                'quantity' => 'required',
+                'suppliername' => 'required'
+            ]);
+        
+            $productid = $request->input('productid');
+            $name = $request->input('name');
+           $description = $request->input('description');
+           $suppliername = $request->input('suppliername');
+           $quantity = $request->input('quantity');
+           $unit = $request->input('unit');
+    
+           DB::table('purchasereports')->where('productid', $productid)->update(array
+            (
+                'productid' => $productid,
+                'name' => $name,
+                'description' => $description,
+                'unit' => $unit,
+                'quantity' => $quantity,
+                'suppliername' => $suppliername
+            ));
+    
+           Alert::Success('Success', 'Report Successfully Updated!');
+           return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Stock Edit Failed!, Please try again.');
+            return redirect('StockCount')->with('Failed', 'Data not Updated');
+        }
     }
 
     /**

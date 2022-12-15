@@ -37,94 +37,77 @@
                                         </td>
                                     </tr>
 
-        <!--View Modal-->
-        <div class="modal fade" id="ModalViews{{ $lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <div class="modal-body">
-                        <div class = "row">
-                            <div class = "col">
-                                <p class="text-left">Stock ID: </p>
-                                        <input class="form-control" type="text" value="{{ $lists->productid}}" id="id" readonly>
-                            </div>
-                            <div class = "col">
-                                <p class="text-left">Stock Name: </p>
-                                    <input type="text" class="form-control" name="name" value="{{ $lists->name}}" required>
-                                                    
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="Stockdetails">Stock Description</label>
-                                <input type="text" class="form-control" name="description" value="{{ $lists->description}}" required>
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="Stockdetails">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" value="{{ $lists->total}}" required>
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="exampleInputPassword1">Category</label>
-                                    <select class="form-control" name = "category" value="{{ $lists->category}}" required>
-                                    <option value="Invalid">Linens :</option>
-                                    <option>Bed pad - Single</option>
-                                    <option>Fitted Sheet - Single</option>
-                                    <option>Flat Sheet - Single</option>
-                                    <option>Duvet Filler - Single</option>
-                                    <option>Duvet Cover - Single</option>
-                                    <option>Pillows</option>
-                                    <option>Bed pad - Queen</option>
-                                    <option>Fitted Sheet - Queen</option>
-                                    <option>Flat Sheet - Queen</option>
-                                    <option>Duvet Filler - Queen</option>
-                                    <option>Duvet Cover - Queen</option>
-                                    <option>Pillows Case</option>
-                                    <option>Bath Towel</option>
-                                    <option>Hand Towel</option>
-                                    <option>Bath Mat</option>
-                                    <option>Bed Ruuner Queen</option>
-                                    <option>Bed Runner Single</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Guest Supplies :</option>
-                                    <option>Bath Soap</option>
-                                    <option>Shampoo</option>
-                                    <option>Dental Kit</option>
-                                    <option>Slippers</option>
-                                    <option>Bottled Water</option>
-                                    <option>Juice</option>
-                                    <option>Coffee</option>
-                                    <option>Creamer</option>
-                                    <option>Sugar - White</>
-                                    <option>Sugar - Brown</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Amenities : </option>
-                                    <option>Kettle</option>
-                                    <option>Tray</option>
-                                    <option>Dental Glass</option>
-                                    <option>Teaspoon</option>
-                                    <option>Cup And Saucer</option>
-                                    <option>Hanger</option>
-                                    <option>Door Hang</option>
-                                    </select>
-                            </div>
-                        </div>                            
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>>                      
-                    </div>
-                </form>         
-            </div>
+                                    <!--View-->
+                                    <div class="modal fade text-left" id="ModalViews{{$lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title text-left display-4" id="exampleModalCreate">View Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>                    
+                                                </div>
+                                                <div class="modal-body">
+                                                            
+                                                                <div class = "row">
+                                                                        <div class = "col">
+                                                                            <p class="text-left">Stock Name: </p>
+                                                                                <input type="text" class="form-control" name="name" value = "{{ $lists->name}}" readonly>
+                                                                                    <div class="invalid-feedback">
+                                                                                        Stock Name empty
+                                                                                    </div>       
+                                                                        </div>
+                                                                </div>
+                                                        <div class="form-group">
+                                                            <label>Stock Description: </label>
+                                                                <input type="text" class="form-control" name="description" value = "{{ $lists->description}}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Stock Details empty
+                                                                    </div>
+
+                                                            <label>Date Stock Added: </label>
+                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Quantity empty
+                                                                    </div>
+
+                                                            <label>Quantity: </label>
+                                                                <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Quantity empty
+                                                                    </div>
+                                                            <div class = "row">
+                                                                <div class = "col">
+                                                                    <label class="text-left">Stock In: </label>
+                                                                    <input class="form-control" type="text" name="in" value="{{$lists->in}}" readonly >
+                                                                    <div class="invalid-feedback">
+                                                                            Quantity empty
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col">
+                                                                    <label class="text-left">Stock Out: </label>
+                                                                     <input type="text" class="form-control" name="out" value="{{$lists->out}}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Stock Name empty
+                                                                    </div> 
+                                                                </div>
+                                                            </div>  
+                                                        </div>
+                                                        <label for="exampleInputPassword1">Category: </label>
+                                                        <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
+                                                                <div class="invalid-feedback">
+                                                                Stock Details empty
+                                                                </div>
+                                                    </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
             
-            @endforeach
+                                     @endforeach
                                 </tbody>
                         </table>
                     </div>
