@@ -36,7 +36,7 @@
                             <h3>
                                 {{ auth()->user()->name }}<span class="font-weight-light"></span>
                                 <div class="visible-print text-center">
-                                    {!! QrCode::size(200)->generate(auth()->user()->name); !!}
+                                    {!! QrCode::size(200)->generate(auth()->user()->email) !!}
                                     <p>Show this code to the receptionist</p>
                                 </div>
                             </h3>

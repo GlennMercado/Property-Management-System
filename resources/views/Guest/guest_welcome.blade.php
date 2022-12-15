@@ -5,7 +5,8 @@
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
             <div class="col-md-9 mt-7">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
+                    style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -20,25 +21,25 @@
                                 <h1 class="display-1 text-white">NVDC PROPERTIES
                                 </h1>
                                 <h1 class="text-white">Convention Center</h1>
-                              </div>
+                            </div>
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('nvdcpics') }}/hotel12.jpg">
                             <div class="carousel-caption d-none d-md-block">
                                 <h1 class="display-1 text-white">Suites</h1>
-                              </div>
+                            </div>
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
                             <div class="carousel-caption d-none d-md-block">
                                 <h1 class="display-1 text-white">Function Roms</h1>
-                              </div>
+                            </div>
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
                             <div class="carousel-caption d-none d-md-block">
                                 <h1 class="display-1 text-white">Commercial Spaces</h1>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -103,10 +104,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="text-left">Number of Pax: </p>
-                                        <select name="pax" class="form-control" required>
+                                        <select name="pax" class="form-control" id="pax_num"
+                                            onchange="price_count()" required>
                                             <option selected="true" disabled="disabled">Select</option>
                                             @for ($count = 1; $count <= 4; $count++)
-                                                <option value="{{ $count }}">{{ $count }}</option>
+                                                <option value="{{ $count }}" id="room_pax">
+                                                    {{ $count }}</option>
                                             @endfor
                                         </select>
                                     </div>
@@ -118,26 +121,26 @@
                                 </div>
 
                                 <!--
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text-left">Number of Adult: </p>
-                                                <select name="adult" class="form-control" required>
-                                                    <option selected="true" disabled="disabled">Select</option>
-                                                    @for ($count = 1; $count <= 4; $count++)
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Number of Adult: </p>
+                                                                                    <select name="adult" class="form-control" required>
+                                                                                        <option selected="true" disabled="disabled">Select</option>
+                                                                                        @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <p class="text-left">Number of Children: </p>
-                                                <select name="child" class="form-control" required>
-                                                    <option selected="true" disabled="disabled">Select</option>
-                                                    @for ($count = 1; $count <= 4; $count++)
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Number of Children: </p>
+                                                                                    <select name="child" class="form-control" required>
+                                                                                        <option selected="true" disabled="disabled">Select</option>
+                                                                                        @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                </select>
-                                            </div>
-                                        </div>-->
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>-->
 
                                 <p class="text-left">Guest Name: </p>
                                 @foreach ($guest as $guests)
@@ -145,8 +148,9 @@
                                     <input class="form-control" type="text" name="gName"
                                         value="{{ $guests->name }}" readonly>
                                 @endforeach
-
-
+                                <p class="mt-5 display-4">Price: </p>
+                                <input class="form-control" id="room_price" readonly>
+                                <p>Additional P1,500.00/pax</p>
                             </div>
                         </div>
                     </div>
@@ -168,6 +172,7 @@
                     <p class="card-text">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
                     <!-- Button trigger modal -->
+                    <br>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
                         style="border-radius: 20px;">
                         Book Now
@@ -183,9 +188,12 @@
                         celebrations,
                         training/learning sessions and sports activities.</p>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reserve"
-                        style="border-radius: 20px;">
-                        View Details
+                    <br>
+                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                        <a href="{{ url('guest_event') }}" class="text-white">
+                            Inquire Now
+                        </a>
+
                     </button>
                 </div>
             </div>
@@ -198,7 +206,7 @@
                         convention center.</p>
 
                     <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                        <a href="{{ route('login') }}" class="text-white">
+                        <a href="{{ url('guest_event') }}" class="text-white">
                             Inquire Now
                         </a>
                     </button>
@@ -209,11 +217,12 @@
                     style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">We are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
+                    <p class="card-text">We are offering commercial spaces for lease with an introductory rate for as low
+                        as Php 3,500 per
                         month! </p>
 
                     <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                        <a href="{{ route('login') }}" class="text-white">
+                        <a href="{{ url('guest_commercial') }}" class="text-white">
                             Apply Now
                         </a>
                     </button>
@@ -323,11 +332,13 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
         .carousel-inner img {
             aspect-ratio: 16/9;
             object-fit: cover;
         }
-        .imgslider{
+
+        .imgslider {
             filter: brightness(70%);
         }
     </style>
@@ -348,10 +359,23 @@
 
             $('.chck').attr('min', maxDate);
         });
-
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
+
+        function price_count() {
+            var pax_num = document.getElementById("pax_num");
+            var room_price = document.getElementById("room_price");
+            if (pax_num.value == 1) {
+                room_price.value = "P2,500.00";
+            } else if (pax_num.value == 2) {
+                room_price.value = "P4,000.00";
+            } else if (pax_num.value == 3) {
+                room_price.value = "P5,500.00";
+            } else if (pax_num.value == 4) {
+                room_price.value = "P6,500.00";
+            }
+        }
     </script>
     </div>
     @include('layouts.footers.guest')

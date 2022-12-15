@@ -130,6 +130,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/about_us', [App\Http\Controllers\GuestController::class, 'about_us'])->name('about_us');
 	Route::get('/contact_us', [App\Http\Controllers\GuestController::class, 'contact_us'])->name('contact_us');
 	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');
-
+	Route::get('/guest_event', [App\Http\Controllers\GuestController::class, 'guest_event'])->name('guest_event');
+	Route::get('/guest_commercial', [App\Http\Controllers\GuestController::class, 'guest_commercial'])->name('guest_commercial');
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
 });
