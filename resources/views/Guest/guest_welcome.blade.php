@@ -224,8 +224,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+    
     {{-- Convention center intro --}}
     <div class="container-fluid bg-white" id="hotelRooms">
         <div class="row d-flex justify-content-center">

@@ -50,7 +50,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//Reservation
 	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
-	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.Reservations.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
+	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 	Route::get('/update/{id}/{no}', 'App\Http\Controllers\HotelController@update_payment');
 	
