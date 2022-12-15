@@ -17,10 +17,10 @@
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-4">
-                                <select class="form-control" style="border:2px solid" id="optionselect" >
+                                <!-- <select class="form-control" style="border:2px solid" id="optionselect" >
                                     <option value="Out of Order" selected="true">Out of Order</option>
                                     <option value="Out of Service">Out of Service</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                         <br>
@@ -68,31 +68,6 @@
                         </table>
                     </div>
 
-                    <!--Out of Service-->
-                    <div class="table-responsive" id="outofservice" style="display:none;">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($list as $lists)
-                                @if($lists->Housekeeping_Status == "Out of Service")
-                                    <tr>
-                                        <td>{{$lists->Room_No}}</td>
-                                        <td>{{$lists->Status}}</td>
-                                        <td>{{$lists->Housekeeping_Status}}</td>
-                                    </tr>
-                                @endif
-                                    
-                               @endforeach
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>    

@@ -46,8 +46,7 @@ class RoomController extends Controller
             'no_of_beds' => 'required',
             'extra_bed' => 'required',
             'no_of_pax' => 'required',
-            'rate_per_night' => 'required',
-            'membership' => 'required'
+            'rate_per_night' => 'required'
         ]);
 
         $roomno = $request->input('room_no');
@@ -69,7 +68,6 @@ class RoomController extends Controller
             $add_rooms->Extra_Bed = $request->input('extra_bed');
             $add_rooms->No_Pax_Per_Room = $request->input('no_of_pax');
             $add_rooms->Rate_per_Night = $request->input('rate_per_night');
-            $add_rooms->Membership = $request->input('membership');
 
             $hs->Room_No = $request->input('room_no');
         
@@ -120,8 +118,7 @@ class RoomController extends Controller
                 'no_of_beds' => 'required',
                 'extra_bed' => 'required',
                 'no_of_pax' => 'required',
-                'rate_per_night' => 'required',
-                'membership' => 'required'
+                'rate_per_night' => 'required'
             ]);
 
             $room_no = $request->input('room_no');
@@ -130,7 +127,7 @@ class RoomController extends Controller
             $extra = $request->input('extra_bed');
             $pax = $request->input('no_of_pax');
             $rate = $request->input('rate_per_night');
-            $member = $request->input('membership');
+            
 
 
             DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array
@@ -139,8 +136,7 @@ class RoomController extends Controller
                 'No_of_Beds' => $numbed,
                 'Extra_Bed' => $extra,
                 'No_Pax_Per_Room' => $pax,
-                'Rate_per_Night' => $rate,
-                'Membership' => $member
+                'Rate_per_Night' => $rate
             ));
 
             

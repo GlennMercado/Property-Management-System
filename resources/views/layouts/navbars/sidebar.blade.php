@@ -99,7 +99,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                    <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
                         <i class="bi bi-pc-display-horizontal text-success">•</i> {{ __('Front Desk') }}
                     </a>
                 </li>

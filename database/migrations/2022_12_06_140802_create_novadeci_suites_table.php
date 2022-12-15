@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('No_Pax_Per_Room');
             $table->string('Status')->default('Available');
             $table->integer('Rate_per_Night');
-            $table->string('Membership');
+            //$table->string('Membership');
             $table->string('Hotel_Image');
 
             $table->binary('DB_Image');

@@ -63,6 +63,34 @@ class HousekeepingController extends Controller
         }
 
     }
+    public function update_housekeeping_status(Request $request)
+    {
+        
+        try
+        {
+            $this->validate($request,[
+                'room_no' => '',
+                'status' => 'required'
+                ]);
+            
+            $available = "Available";
+            $unassigned = "Unassigned";
+            $room_no = $request->input('room_no');
+            $status = $request->input('status');
+
+            DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
+
+            Alert::Success('Success', 'Housekeeper successfully assigned!');
+            return redirect('Housekeeping')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Housekeeper assigning failed!');
+            return redirect('Housekeeping')->with('Success', 'Data Updated');
+        }
+
+    }
 
 
     public function add_maintenance(Request $request)
@@ -83,8 +111,6 @@ class HousekeepingController extends Controller
         $maintain->Location = $request->input('location');
         $maintain->Due_Date = $request->input('due');
 
-  
-
         if($maintain->save())
         {
             Alert::Success('Success', 'Maintenance successfully submitted!');
@@ -98,6 +124,7 @@ class HousekeepingController extends Controller
 
        
     }
+    
     /**
      * Display the specified resource.
      *

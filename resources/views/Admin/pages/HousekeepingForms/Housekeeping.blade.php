@@ -21,7 +21,7 @@
                             <div class="col-md-4">
                                 <select class="form-control" style="border:2px solid" id="optionselect" >
                                     <option value="Cleaned" selected="true">Cleaned</option>
-                                    <option value="Dirty">Dirty</option>
+                                    <option value="Out of Service">Out of Service</option>
                                 </select>
                             </div>
                         </div>
@@ -36,15 +36,16 @@
                             </div> -->
                         </div>
                         <!--Dirty-->
-                        <div class="row align-items-center" id="dirty2" style="display:none;">
+                        <div class="row align-items-center" id="outofservice2" style="display:none;">
                             <div class="col">
-                                <h3 class="mb-0">Dirty</h3>
+                                <h3 class="mb-0">Out of Service</h3>
                             </div>
                             <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div> -->
                         </div>
                     </div>
+
                     <!--Cleaned-->
                     <div class="table-responsive" id="cleaned">
                         <!-- Projects table -->
@@ -70,8 +71,8 @@
                         </table>
                     </div>
 
-                    <!--Dirty-->
-                    <div class="table-responsive" id="dirty" style="display:none;">
+                    <!--Out of Service-->
+                    <div class="table-responsive" id="outofservice" style="display:none;">
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -86,7 +87,7 @@
                             <tbody>
                                 @foreach($list2 as $lists2)
                                 <tr>
-                                    @if($lists2->Housekeeping_Status == 'Dirty')
+                                    @if($lists2->Housekeeping_Status == 'Out of Service')
                                     <td>{{ $lists2->Room_No }}</td>
                                     <td>{{ $lists2->Status}}</td>
                                     <td>{{ $lists2->Housekeeping_Status}}</td>
@@ -99,7 +100,7 @@
                                             </button>
                                         @else
                                             <!--Update Status button-->
-                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update"> 
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists2->Room_No}}"> 
                                                 <i class="bi bi-arrow-repeat"></i>
                                             </button>
                                         @endif
@@ -141,6 +142,42 @@
                                         </div>
                                         </form>
                                     </div>
+
+                                    <!--Update Housekeeping Status Modal-->
+                                    <div class="modal fade" id="update{{$lists2->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Assigning Housekeeper</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                        <form method="POST" class="prevent_submit" action="{{url('/update_housekeeping_status')}}" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                            <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
+
+                                                            <p class="text-left">Housekeeping Status: </p>
+                                                            <select name="status" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Cleaned">Cleaned</option>
+                                                                <option value="Out of Order">Out of Order</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -165,11 +202,11 @@
         if(selected == 'Cleaned')
         {    
             $('#cleaned, #cleaned2').show();
-            $('#dirty, #dirty2').hide();
+            $('#outofservice, #outofservice2').hide();
         }
-        else if(selected == 'Dirty')
+        else if(selected == 'Out of Service')
         {
-            $('#dirty, #dirty2').show();
+            $('#outofservice, #outofservice2').show();
             $('#cleaned, #cleaned2').hide();
         }
     });
