@@ -5,28 +5,14 @@
     <div class="container-fluid bg-white">
         <div class="text-center mt-6">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 mt-9 text-center">              
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-
                     <img src="{{ asset('nvdcpics') }}/nvdcpic4.png" style="max-width: 75vh; max-height: 50vh; ">
                 </div>
                 <div class="col-md-6 text-center">
-                    <h1 class="display-1 mt-9">Brief History</h1>
+                    <h1 class="display-1 mt-6">Brief History</h1>
                     <br>
-                    In the latter part of the 70’s a slaughterhouse in Novaliches was ordered closed by the local government
+                    <p>In the latter part of the 70’s a slaughterhouse in Novaliches was ordered closed by the local government
                     due
                     to sanitation and health considerations. This prompted the vendors in Susano Market to hold a meeting to
                     address this concern. Their agenda was mainly to provide solution to the meat vendor’s problem of lack
@@ -89,4 +75,14 @@
     </div>
     @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>
+    <style>
+        p{
+            font-family:sans-serif;
+            text-align:justify;
+        }
+        h1 {
+            
+            letter-spacing:2px;
+        }
+    </style>
 @endsection
