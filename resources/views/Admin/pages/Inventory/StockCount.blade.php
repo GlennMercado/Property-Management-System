@@ -67,19 +67,19 @@
                                                                         </div>
                                                                 </div>
                                                         <div class="form-group">
-                                                            <label>Stock Description</label>
+                                                            <label>Stock Description: </label>
                                                                 <input type="text" class="form-control" name="description" value = "{{ $lists->description}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Stock Details empty
                                                                     </div>
 
-                                                            <label>Date Stock Added:</label>
+                                                            <label>Date Stock Added: </label>
                                                                 <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
 
-                                                            <label>Quantity</label>
+                                                            <label>Quantity: </label>
                                                                 <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
@@ -101,7 +101,7 @@
                                                                 </div>
                                                             </div>  
                                                         </div>
-                                                        <label for="exampleInputPassword1">Category</label>
+                                                        <label for="exampleInputPassword1">Category: </label>
                                                         <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
                                                                 <div class="invalid-feedback">
                                                                 Stock Details empty
@@ -124,14 +124,14 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <form method="POST" class="prevent_submit" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <div class = "row">
                                                             <div class = "col">
                                                                 <p class="text-left">Stock ID: </p>
-                                                                <input type="hidden" name="productid" value="{{$lists->productid}}">
                                                                 <input class="form-control" type="text" value="{{$lists->productid}}" readonly>
+                                                                <input class="form-control" type="text" name="productid" value="{{$lists->productid}}" hidden>
                                                             </div>
                                                             <div class = "col">
                                                                 <p class="text-left">Stock Name: </p>
@@ -142,12 +142,12 @@
                                                             </div>
                                                         </div>
                                                     <div class="form-group">
-                                                        <label for="Stockdetails">Stock Description</label>
+                                                        <label for="Stockdetails">Stock Description: </label>
                                                         <input type="text" class="form-control" name="description" value="{{$lists->description}}" required>
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty
                                                             </div>
-                                                                <label for="Stockdetails">Quantity</label>
+                                                                <label for="Stockdetails">Quantity: </label>
                                                                 <input type="number" class="form-control" name="quantity" value="{{$lists->total}}" required>
                                                             <div class="invalid-feedback">
                                                                 Quantity empty
@@ -155,11 +155,11 @@
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <p class="text-left">Stock In: </p>
-                                                            <input class="form-control" type="text" name="in" value="{{$lists->in}}" >
+                                                            <input class="form-control" type="number" name="in" value="{{$lists->in}}" >
                                                         </div>
                                                         <div class = "col">
                                                             <p class="text-left">Stock Out: </p>
-                                                            <input type="text" class="form-control" name="out" value="{{$lists->out}}">
+                                                            <input type="number" class="form-control" name="out" value="{{$lists->out}}">
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
@@ -167,7 +167,7 @@
                                                     </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputPassword1">Category</label>
+                                                        <label for="exampleInputPassword1">Category: </label>
                                                         <select class="form-control" name="category" value="{{ $lists->category}}" required>
                                                         <option value="Invalid">Linens :</option>
                                                         <option>Bed pad - Single</option>
@@ -248,7 +248,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('StockCount') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/add_stock') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
@@ -260,13 +260,13 @@
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="Stockdetails">Stock Description</label>
+                                <label for="Stockdetails">Stock Description: </label>
                                 <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="Stockdetails">Quantity</label>
+                                <label for="Stockdetails">Quantity: </label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
                                 <input type="number" class="form-control" name="in" value="0" hidden>
                                 <input type="number" class="form-control" name="out" value="0" hidden>
@@ -274,7 +274,7 @@
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="exampleInputPassword1">Category</label>
+                                <label for="exampleInputPassword1">Category: </label>
                                 <select class="form-control" name = "category" required>
                                     <option value="Invalid">Linens :</option>
                                     <option>Bed pad - Single</option>

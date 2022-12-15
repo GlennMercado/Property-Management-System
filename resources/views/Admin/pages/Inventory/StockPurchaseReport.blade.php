@@ -100,13 +100,14 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form class="needs-validation" action="{{ route('StockPurchaseReport') }}" method="POST">
+                                            <form class="needs-validation" action="{{ url('/edit_report') }}" method="POST">
                                                 {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class = "row">
                                                                 <div class = "col">
+                                                                <input class="form-control" type="text" name="productid" value="{{$lists->productid}}"  hidden>
                                                                     <p class="text-left">Item Name :
                                                                         <input class="form-control" type="text" name="name" value="{{$lists->name}}"  required></p>
                                                                 </div>
@@ -157,7 +158,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('StockPurchaseReport') }}" class="prevent_submit" method="POST">
+                                            <form action="{{ url('/report') }}" class="prevent_submit" method="POST">
                                                 {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <div class="row">

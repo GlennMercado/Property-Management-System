@@ -63,7 +63,7 @@ class InventoryController extends Controller
         }
         else
         {
-            Alert::Error('Error', 'Stock Submission Failed!');
+            Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
             return redirect('StockCount')->with('Error', 'Failed!');
         }
     }
@@ -90,12 +90,12 @@ class InventoryController extends Controller
         try
         {
             $this->validate($request,[
-                'productid' => '',
+                'productid' => 'required',
                 'name' => 'required',
                 'description' => 'required',
                 'quantity' => 'required',
-                'in' => '',
-                'out' => '',
+                'in' => 'required',
+                'out' => 'required',
                 'category' => 'required'
             ]);
             
@@ -107,15 +107,15 @@ class InventoryController extends Controller
             $out = $request->input('out');
             $category = $request->input('category');
 
-            $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
-            $sub = ($total = $request->input('quantity') - $out = $request->input('out'));
+           // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
+            //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (
                 'productid' => $productid,
                 'name' => $name,
                 'description' => $description,
-                //'total' => $sum||$sub,
+                'total' => $total,
                 'in' => $in,
                 'out' => $out,
                 'category' => $category
@@ -127,8 +127,8 @@ class InventoryController extends Controller
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('StockCount')->with('Failed', 'Data not Updateds');
+            Alert::Error('Failed', 'Stock Edit Failed!');
+            return redirect('StockCount')->with('Failed', 'Data not Updated');
         }
     }
 
