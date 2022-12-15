@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\guestticket;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class GuestTickets extends Controller
+class GuestTicketsController extends Controller
 {
     /**
      * Display a listing of the resource.

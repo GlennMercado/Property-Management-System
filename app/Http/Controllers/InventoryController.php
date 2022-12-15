@@ -16,7 +16,10 @@ class InventoryController extends Controller
      */
     public function index()
     {
+        $hotelstocks = hotelstocks::latest()->paginate(5);
 
+        return view ('hotelsotcks.StockCount',compact('hotelstocks'))
+            ->with('i', (request()->input('page', 1) -1) *6);
     }
 
     /**
@@ -40,7 +43,6 @@ class InventoryController extends Controller
         $this->validate($request,[
         'name' => 'required',
         'description' => 'required',
-        'date' => 'required',
         'quantity' => 'required',
         'in' => 'required',
         'out' => 'required',
@@ -52,15 +54,21 @@ class InventoryController extends Controller
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->total = $request->input('quantity');
-       $stock->date = $request->input('date');
        $stock->in = $request->input('in');
        $stock->out = $request->input('out');
        $stock->category = $request->input('category');
 
-       $stock->save();
-
-       Alert::Success('Success', 'Stock Successfully Submitted!');
-       return redirect('StockCount')->with('Success', 'Data Saved');
+       
+       if($stock->save())
+        {
+            Alert::Success('Success', 'Stock Successfully Submitted!');
+            return redirect('StockCount')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Stock Submission Failed!');
+            return redirect('StockCount')->with('Error', 'Failed!');
+        }
     }
 
     /**
@@ -94,20 +102,23 @@ class InventoryController extends Controller
                 'category' => 'required'
             ]);
     
-           $productid = $request->input('productid');
-           $name = $request->input('name');
-           $description = $request->input('description');
-           $total = $request->input('quantity');
-           $in = $request->input('in');
-           $out = $request->input('out');
-           $category = $request->input('category');
+            $productid = $request->input('productid');
+            $name = $request->input('name');
+            $description = $request->input('description');
+            $total = $request->input('quantity');
+            $in = $request->input('in');
+            $out = $request->input('out');
+            $category = $request->input('category');
+
+            $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
+            $sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (
                 'productid' => $productid,
                 'name' => $name,
                 'description' => $description,
-                'total' => $total,
+                'total' => $sum||$sub,
                 'in' => $in,
                 'out' => $out,
                 'category' => $category
