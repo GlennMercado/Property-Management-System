@@ -73,7 +73,7 @@
                                                                         Stock Details empty
                                                                     </div>
 
-                                                            <label>Date Quantity Added:</label>
+                                                            <label>Date Stock Added:</label>
                                                                 <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty

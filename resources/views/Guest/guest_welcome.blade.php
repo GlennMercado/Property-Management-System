@@ -2,7 +2,6 @@
 
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
             <div class="col-md-9 mt-7">
@@ -51,7 +50,6 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
@@ -211,21 +209,19 @@
                     style="max-height: 14rem">
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC
-                        Properties,
-                        we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
+                    <p class="card-text">We are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
 
                     <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
-                            Inquire Now
+                            Apply Now
                         </a>
                     </button>
                 </div>
             </div>
         </div>
+
     </div>
-    
     {{-- Convention center intro --}}
     <div class="container-fluid bg-white" id="hotelRooms">
         <div class="row d-flex justify-content-center">
@@ -278,12 +274,10 @@
         </div>
     </div>
     <div class="container-fluid bg-white" id="functionRooms">
+        <br>
+        <br>
+        <br>
         <div class="row">
-            <div class="strike col-md-12 mt-5">
-                <span>
-                    <h1>Function Rooms</h1>
-                </span>
-            </div>
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                 <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="w-100 shadow-1-strong rounded mb-4" />
 
@@ -304,66 +298,11 @@
         </div>
     </div>
 
-    <!-- <div class="container-fluid bg-white" id="commercialSpaces">
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-8 cards1">
-                            <div class="strike">
-                                <span>
-                                    <h1>MAP</h1>
-                                </span>
-                            </div>
-                            <h3 class="text-center">NVDC Properties Location</h3>
-                            <div class="shadow1">
-                                <div class="mapouter">
-                                    <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0"
-                                            scrolling="no" marginheight="0" marginwidth="0"
-                                            src="https://maps.google.com/maps?width=660&amp;height=369&amp;hl=en&amp;q=Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
-                                            href="https://formatjson.org/">format json</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> -->
-
     <style>
-        .slide1 {
-            height: 13%;
-        }
-
         .shadow1 {
             -webkit-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
             -moz-box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
             box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
-        }
-
-        .shadow2 {
-            -webkit-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-            -moz-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-            box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-        }
-
-        .mapouter {
-            position: relative;
-            text-align: right;
-            width: 100%;
-            height: 369px;
-        }
-
-        .gmap_canvas {
-            overflow: hidden;
-            background: none !important;
-            width: 100%;
-            height: 369px;
-        }
-
-        .gmap_iframe {
-            height: 369px !important;
         }
 
         .cards1 {
@@ -379,63 +318,6 @@
             scroll-behavior: smooth;
         }
 
-        .nvdcbg {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Montserrat, sans-serif;
-            width: 100%;
-            min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("nvdcpics/convention.jpg");
-            background-size: cover;
-        }
-
-        @media screen and (max-width: 768px) {
-            .parallax-item h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        h4 {
-            margin-top: 5px;
-        }
-
-        .strike {
-            display: block;
-            text-align: center;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .strike>span {
-            position: relative;
-            display: inline-block;
-        }
-
-        .strike>span:before,
-        .strike>span:after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 200px;
-            height: 5px;
-            background: rgb(94, 94, 94);
-        }
-
-        .strike>span:before {
-            right: 100%;
-            margin-right: 15px;
-        }
-
-        .strike>span:after {
-            left: 100%;
-            margin-left: 15px;
-        }
-
-        .strike span h1 {
-            font-size: 35px;
-        }
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -444,9 +326,6 @@
         .carousel-inner img {
             aspect-ratio: 16/9;
             object-fit: cover;
-        }
-        .nvdcbgslider img{
-            width: 100%;
         }
         .imgslider{
             filter: brightness(70%);

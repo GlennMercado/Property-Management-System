@@ -20,6 +20,11 @@
                     <div class="card-body">
                         <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
             <br>
@@ -30,5 +35,6 @@
 
         </div>
     </div>
+    @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>
 @endsection

@@ -176,12 +176,10 @@
         </div>
     </div>
     <div class="container-fluid bg-white" id="functionRooms">
+        <br>
+        <br>
+        <br>
         <div class="row">
-            <div class="strike col-md-12 mt-5">
-                <span>
-                    <h1>Function Rooms</h1>
-                </span>
-            </div>
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                 <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="w-100 shadow-1-strong rounded mb-4" />
 
@@ -215,30 +213,6 @@
             box-shadow: 12px 12px 7px -7px rgba(0, 0, 0, 0.61);
         }
 
-        .shadow2 {
-            -webkit-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-            -moz-box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-            box-shadow: 8px 8px 7px -7px rgba(0, 0, 0, 0.61);
-        }
-
-        .mapouter {
-            position: relative;
-            text-align: right;
-            width: 100%;
-            height: 369px;
-        }
-
-        .gmap_canvas {
-            overflow: hidden;
-            background: none !important;
-            width: 100%;
-            height: 369px;
-        }
-
-        .gmap_iframe {
-            height: 369px !important;
-        }
-
         .cards1 {
             margin: 10px;
         }
@@ -250,63 +224,6 @@
 
         html {
             scroll-behavior: smooth;
-        }
-
-        .nvdcbg {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Montserrat, sans-serif;
-            width: 100%;
-            min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("nvdcpics/convention.jpg");
-            background-size: cover;
-        }
-
-        @media screen and (max-width: 768px) {
-            .parallax-item h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        h4 {
-            margin-top: 5px;
-        }
-
-        .strike {
-            display: block;
-            text-align: center;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .strike>span {
-            position: relative;
-            display: inline-block;
-        }
-
-        .strike>span:before,
-        .strike>span:after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 200px;
-            height: 5px;
-            background: rgb(94, 94, 94);
-        }
-
-        .strike>span:before {
-            right: 100%;
-            margin-right: 15px;
-        }
-
-        .strike>span:after {
-            left: 100%;
-            margin-left: 15px;
-        }
-
-        .strike span h1 {
-            font-size: 35px;
         }
 
         input::-webkit-outer-spin-button,
