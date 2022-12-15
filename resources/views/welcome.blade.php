@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'bg-light'])
+@extends('layouts.welcome_layout', ['class' => 'bg-light'])
 
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
