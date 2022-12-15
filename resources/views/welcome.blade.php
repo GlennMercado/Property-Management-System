@@ -203,6 +203,13 @@
 
 
     <style>
+        p{
+            text-align:justify;
+            text-justify: inter-word;
+        }
+        h5{
+            letter-spacing:2px;
+        }
         .slide1 {
             height: 13%;
         }
