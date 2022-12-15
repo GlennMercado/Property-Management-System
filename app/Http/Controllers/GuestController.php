@@ -8,6 +8,7 @@ use App\Models\hotel_reservations;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
+
 class GuestController extends Controller
 {
     public function welcome()
@@ -31,7 +32,10 @@ class GuestController extends Controller
     {
         return view('Guest.Map');
     }
-    
+    public function guest_profile()
+    {
+        return view('Guest.guestedit');
+    }
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;
