@@ -16,7 +16,7 @@
                 <h1 class="display-1">NVDC PROPERTIES</h1>
             </div>
             <div class="col-md-6 text-center">
-                <h1 class="display-1 mt-9">Contact us</h1>
+                <h1 class="display-1 mt-4">Contact us</h1>
                 <h1>Email: nvdcproperties@gmail.com</h1>
                 <h1>Mobile: 0917 623 7825</h1>
                 <h1>Visit us at our corporate office located at the G/F NOVADECI Main Office Bldg </h1>
