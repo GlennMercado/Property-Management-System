@@ -87,7 +87,7 @@
                 <!--Dashboard-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('home') }}">
-                    <i class="bi bi-palette text-success"></i> {{ __('Dashboard') }}
+                        <i class="bi bi-palette text-success"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
@@ -98,47 +98,31 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                        <i class="bi bi-pc-display-horizontal text-success">•</i> {{ __('Front Desk') }}
+                    </a>
+                </li>
+
                 <!--Housekeeping-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                        <i class="ni ni-delivery-fast text-success"></i> {{ __('Housekeeping') }}
+                        <i class="bi bi-house text-success"></i> {{ __('Housekeeping') }}
                     </a>
                 </li>
-                
-                <!--Analytics-->
-                <!--<li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('home') }}">
-                        <i class="ni ni-chart-pie-35 text-success"></i> {{ __('Analytics') }}
-                    </a>
-                </li>-->
-                
-                <!--Back Office-->
-                <!--<li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('BackOffice') }}">
-                        <i class="ni ni-folder-17 text-success"></i> {{ __('Back Office') }}
-                    </a>
-                </li>-->
 
-                <!--RDFM-->
+                <!--Reservaion-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
-                        <i class="bi bi-calendar-event text-success"></i>
+                        <i class="bi bi-card-checklist text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Reservation') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
-                                    <i class="text-success">•</i> {{ __('Event Inquiry Form') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
-                                    <i class="text-success">•</i> {{ __('Commercial Space Form') }}
+                                    <i class="bi bi-calendar-event text-success"></i> {{ __('Event Inquiry') }}
                                 </a>
                             </li>
 
@@ -146,25 +130,32 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
-                                    <i class="text-success">•</i> {{ __('Hotel Reservation Form') }}
+                                    <i class="bi bi-card-list text-success"></i> {{ __('Hotel Reservation') }}
                                 </a>
                             </li>
-                            </ul>
+                        </ul>
                     </div>
+                </li>
+
+                {{-- Commercial Space --}}
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
+                        <i class="bi bi-shop text-success"></i> {{ __('Commercial Space') }}
+                    </a>
                 </li>
 
                 <!--Inventory Management-->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
-                        <i class="bi bi-collection text-success"></i>
+                        <i class="bi bi-box text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples3">
-                    <ul class="nav nav-sm flex-column">
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
-                                    <i class="text-success">•</i> {{ __('Create Stock Count') }}
+                                    <i class="bi bi-boxes text-success"></i> {{ __('Create Stock Count') }}
                                 </a>
                             </li>
 
@@ -172,15 +163,15 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
-                                    <i class="text-success">•</i> {{ __('Stock Availability Report') }}
+                                    <i class="bi bi-ui-checks text-success"></i> {{ __('Stock Availability Report') }}
                                 </a>
                             </li>
 
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">                          
+                            <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockPurchaseReport') }}">
-                                    <i class="text-success">•</i> {{ __('Purchase Order Report') }}
+                                    <i class="bi bi-receipt-cutoff text-success"></i> {{ __('Purchase Order Report') }}
                                 </a>
                             </li>
                         </ul>
@@ -190,7 +181,7 @@
                 <!--Guest Management-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('GuestTicketManager') }}">
-                        <i class="bi bi-person text-success"></i> {{ __('Guest Ticket Management') }}
+                        <i class="bi bi-person-lines-fill text-success"></i> {{ __('Guest Ticket Management') }}
                     </a>
                 </li>
 
