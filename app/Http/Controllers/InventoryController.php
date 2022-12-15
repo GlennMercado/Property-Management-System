@@ -16,10 +16,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $hotelstocks = hotelstocks::latest()->paginate(5);
-
-        return view ('hotelsotcks.StockCount',compact('hotelstocks'))
-            ->with('i', (request()->input('page', 1) -1) *6);
+    
     }
 
     /**
@@ -110,15 +107,15 @@ class InventoryController extends Controller
             $out = $request->input('out');
             $category = $request->input('category');
 
-            $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
-            $sub = ($total = $request->input('quantity') - $out = $request->input('out'));
+            //$sum = ($total = $request->input('quantity') + $in = $request->input('in'));
+            //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (
                 'productid' => $productid,
                 'name' => $name,
                 'description' => $description,
-                'total' => $sum||$sub,
+                //'total' => $sum||$sub,
                 'in' => $in,
                 'out' => $out,
                 'category' => $category
