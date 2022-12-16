@@ -29,16 +29,25 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Item Description</th>
                                     <th scope="col">Available Stock</th>
+                                    <th scope="col">Stock Level</th>
+                                    <th scope="col">Alert</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            
+                                
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
                                         <td>{{ $lists->name}}</td>
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
+                                        <td>{{ $lists->Stock_Level}}</td>
+                                        @if($lists->Stock_Level <= $lists->total)
+                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
+                                        @else
+                                            <td><i class="bi bi-check-square-fill" style="color:green;"></i></td>
+                                        @endif
+                                        
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
@@ -84,22 +93,7 @@
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
-                                                            <div class = "row">
-                                                                <div class = "col">
-                                                                    <label class="text-left">Stock In: </label>
-                                                                    <input class="form-control" type="text" name="in" value="{{$lists->in}}" readonly >
-                                                                    <div class="invalid-feedback">
-                                                                            Quantity empty
-                                                                    </div>
-                                                                </div>
-                                                                <div class = "col">
-                                                                    <label class="text-left">Stock Out: </label>
-                                                                     <input type="text" class="form-control" name="out" value="{{$lists->out}}" readonly>
-                                                                    <div class="invalid-feedback">
-                                                                        Stock Name empty
-                                                                    </div> 
-                                                                </div>
-                                                            </div>  
+                                                             
                                                         </div>
                                                         <label for="exampleInputPassword1">Category: </label>
                                                         <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
@@ -148,18 +142,17 @@
                                                                 Stock Details empty
                                                             </div>
                                                                 <label for="Stockdetails">Quantity: </label>
-                                                                <input type="number" class="form-control" name="quantity" value="{{$lists->total}}" required>
-                                                            <div class="invalid-feedback">
-                                                                Quantity empty
-                                                            </div>
+                                                                <input type="hidden" name="quantity" value="{{$lists->total}}" />
+                                                                <input type="number" class="form-control" value="{{$lists->total}}" readonly>
+                                                            
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <p class="text-left">Stock In: </p>
-                                                            <input class="form-control" type="number" name="in" value="{{$lists->in}}" >
+                                                            <input class="form-control" type="number" name="in" value="0" >
                                                         </div>
                                                         <div class = "col">
                                                             <p class="text-left">Stock Out: </p>
-                                                            <input type="number" class="form-control" name="out" value="{{$lists->out}}">
+                                                            <input type="number" class="form-control" name="out" value="0">
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
@@ -268,8 +261,12 @@
                             <div class = "col">
                                 <label for="Stockdetails">Quantity: </label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
-                                <input type="number" class="form-control" name="in" value="0" hidden>
-                                <input type="number" class="form-control" name="out" value="0" hidden>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Level: </label>
+                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
                             </div>
                         </div>
                         <div class = "row">

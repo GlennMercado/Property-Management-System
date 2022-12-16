@@ -41,8 +41,7 @@ class InventoryController extends Controller
             'name' => 'required',
             'description' => 'required',
             'quantity' => 'required',
-            'in' => 'required',
-            'out' => 'required',
+            'stock' => 'required',
             'category' => 'required'
        ]);
 
@@ -51,8 +50,7 @@ class InventoryController extends Controller
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->total = $request->input('quantity');
-       $stock->in = $request->input('in');
-       $stock->out = $request->input('out');
+       $stock->Stock_Level = $request->input('stock');
        $stock->category = $request->input('category');
 
        
@@ -107,7 +105,17 @@ class InventoryController extends Controller
             $out = $request->input('out');
             $category = $request->input('category');
 
-           // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
+            if($in > 0)
+            {
+                $total = $total + $in;
+            }
+
+            if($out > 0)
+            {
+                $total = $total - $out;
+            }
+           
+            // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
             //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
@@ -116,8 +124,6 @@ class InventoryController extends Controller
                 'name' => $name,
                 'description' => $description,
                 'total' => $total,
-                'in' => $in,
-                'out' => $out,
                 'category' => $category
             ));
     
