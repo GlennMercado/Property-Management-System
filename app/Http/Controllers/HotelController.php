@@ -58,7 +58,10 @@ class HotelController extends Controller
             'pax' => 'required'
         ]);
 
+        $paystats = "Paid";
+        $status = "Checked-In";
         $reserve = new hotel_reservations;
+        $roomno = $request->input('room_no');
 
         $reserve->Reservation_No = $randID;
         $reserve->Check_In_Date = $request->input('checkIn');
@@ -66,10 +69,14 @@ class HotelController extends Controller
         $reserve->Guest_Name = $request->input('gName');
         $reserve->Mobile_Num = $request->input('mobile');
         $reserve->No_of_Pax = $request->input('pax');
-        $reserve->Room_No = $request->input('room_no');
+        $reserve->Room_No = $roomno;
+        $reserve->Payment_Status = $paystats;
+        $reserve->Booking_Status = $status;
 
         if($reserve->save())
         {
+            DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
+            
             Alert::Success('Success', 'Reservation was successfully submitted!');
             return redirect('HotelReservationForm')->with('Success', 'Data Saved');
         }

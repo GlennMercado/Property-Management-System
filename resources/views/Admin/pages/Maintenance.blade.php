@@ -52,6 +52,7 @@
                                     <th scope="col">Room No.</th>
                                     <th scope="col">Booking Status</th>
                                     <th scope="col">Housekeeping Status</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,8 +62,50 @@
                                         <td>{{$lists->Room_No}}</td>
                                         <td>{{$lists->Status}}</td>
                                         <td>{{$lists->Housekeeping_Status}}</td>
+                                        <td>
+                                            <!--Update Status button-->
+                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> 
+                                                <i class="bi bi-arrow-repeat"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endif
+
+                                <!--Update Housekeeping Status Modal-->
+                                <div class="modal fade" id="update{{$lists->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Assigning Housekeeper</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                        <form method="POST" class="prevent_submit" action="{{url('/update_housekeeping_status')}}" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}" />
+
+                                                            <p class="text-left">Housekeeping Status: </p>
+                                                            <select name="status" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Cleaned">Cleaned</option>
+                                                                <option value="Out of Order">Out of Order</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
                                @endforeach
                             </tbody>
                         </table>

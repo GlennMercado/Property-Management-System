@@ -19,9 +19,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('category');
 
-            $table->integer('in');
-            $table->integer('out');
             $table->integer('total');
+            $table->integer('Stock_Level');
 
             $table->timestamp('date');
             $table->timestamps();
