@@ -16,7 +16,7 @@
                                             Add Stock
                                     </button>
                                 </div>
-                                <h3 class="mb-0">Inventory Stocks</h3>
+                                <h3 class="mb-0">Hotel Stocks</h3>
                                 <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                                                     </div>
 
                                                             <label>Date Stock Added: </label>
-                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly>
+                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->created_at))}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
@@ -161,7 +161,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Category: </label>
-                                                        <select class="form-control" name="category" value="{{ $lists->category}}" required>
+                                                        <select class="form-control" value="{{ $lists->category}}" name="category" required>
                                                         <option value="Invalid">Linens :</option>
                                                         <option>Bed pad - Single</option>
                                                         <option>Fitted Sheet - Single</option>
@@ -236,7 +236,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Stocks</h5>
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Hotel Stock</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
