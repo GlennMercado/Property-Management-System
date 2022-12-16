@@ -38,7 +38,10 @@
         @endauth
         
         <div class="main-content">
-            @include('layouts.navbars.guest_navbar')
+            <!-- comment yan -->
+            {{-- @include('layouts.navbars.guest_navbar') --}}
+
+            @include('layouts.navbars.navbar')
                
             @yield('content')
         </div>
