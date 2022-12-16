@@ -82,7 +82,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Room Management
 	Route::get('RoomManagement', function () {
 		$list = DB::select('SELECT * FROM novadeci_suites');
-		$list2 = DB::select('SELECT * FROM hotel_reservations WHERE Isvalid != 0');
+		$pending = "Pending";
+		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE Isvalid != 0 and Payment_Status != '$pending'");
 		$list3 = DB::select('SELECT * FROM housekeepings');
 		return view('Admin.pages.RoomManagement',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('RoomManagement');
 
