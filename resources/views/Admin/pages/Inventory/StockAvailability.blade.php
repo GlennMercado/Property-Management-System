@@ -75,23 +75,7 @@
                                                                 <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
-                                                                    </div>
-                                                            <div class = "row">
-                                                                <div class = "col">
-                                                                    <label class="text-left">Stock In: </label>
-                                                                    <input class="form-control" type="text" name="in" value="{{$lists->in}}" readonly >
-                                                                    <div class="invalid-feedback">
-                                                                            Quantity empty
-                                                                    </div>
-                                                                </div>
-                                                                <div class = "col">
-                                                                    <label class="text-left">Stock Out: </label>
-                                                                     <input type="text" class="form-control" name="out" value="{{$lists->out}}" readonly>
-                                                                    <div class="invalid-feedback">
-                                                                        Stock Name empty
-                                                                    </div> 
-                                                                </div>
-                                                            </div>  
+                                                                    </div>  
                                                         </div>
                                                         <label for="exampleInputPassword1">Category: </label>
                                                         <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>

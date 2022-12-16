@@ -30,7 +30,7 @@
                                     <th scope="col">Item Description</th>
                                     <th scope="col">Available Stock</th>
                                     <th scope="col">Stock Level</th>
-                                    <th scope="col">Alert</th>
+                                    <th scope="col">Stock Alert</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -42,7 +42,7 @@
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->total}}</td>
                                         <td>{{ $lists->Stock_Level}}</td>
-                                        @if($lists->Stock_Level <= $lists->total)
+                                        @if($lists->total <= $lists->Stock_Level)
                                             <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
                                         @else
                                             <td><i class="bi bi-check-square-fill" style="color:green;"></i></td>

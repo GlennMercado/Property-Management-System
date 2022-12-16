@@ -11,7 +11,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0">Hotel Reservation</h3>
+                                <h2 class="mb-0">Hotel Booking</h3>
                             </div>
                         </div>
                     </div>
