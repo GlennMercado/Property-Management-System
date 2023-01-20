@@ -13,7 +13,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0">Housekeeping</h3>
+                                <h2 class="mb-0 title">Housekeeping</h3>
                             </div>
                         </div>
                         <br>
@@ -29,7 +29,7 @@
                         <!--Cleaned-->
                         <div class="row align-items-center" id="cleaned2">
                             <div class="col">
-                                <h3 class="mb-0">Cleaned</h3>
+                                <h3 class="mb-0 category">Cleaned</h3>
                             </div>
                             <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -38,7 +38,7 @@
                         <!--Dirty-->
                         <div class="row align-items-center" id="outofservice2" style="display:none;">
                             <div class="col">
-                                <h3 class="mb-0">Out of Service</h3>
+                                <h3 class="mb-0 category2">Out of Service</h3>
                             </div>
                             <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -52,18 +52,18 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($list2 as $lists2)
                                 <tr>
                                     @if($lists2->Housekeeping_Status == 'Cleaned')
-                                    <td>{{ $lists2->Room_No }}</td>
-                                    <td>{{ $lists2->Status}}</td>
-                                    <td>{{ $lists2->Housekeeping_Status}}</td>
+                                    <td style = "font-size:18px; color:#000000;">{{ $lists2->Room_No }}</td>
+                                    <td style = "font-size:18px; color:#000000;">{{ $lists2->Status}}</td>
+                                    <td style = "font-size:18px; color:#5BDF4A;">{{ $lists2->Housekeeping_Status}}</td>
                                     @endif
                                 </tr>
                                 @endforeach
@@ -77,21 +77,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                    <th scope="col">Housekeeper</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:20px;">Housekeeper</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($list2 as $lists2)
                                 <tr>
                                     @if($lists2->Housekeeping_Status == 'Out of Service')
-                                    <td>{{ $lists2->Room_No }}</td>
-                                    <td>{{ $lists2->Status}}</td>
-                                    <td>{{ $lists2->Housekeeping_Status}}</td>
-                                    <td>{{ $lists2->Room_Attendant}}</td>
+                                    <td style = "font-size:18px;">{{ $lists2->Room_No }}</td>
+                                    <td style = "font-size:18px;">{{ $lists2->Status}}</td>
+                                    <td style = "font-size:18px; color:#E46000;">{{ $lists2->Housekeeping_Status}}</td>
+                                    <td style = "font-size:18px;">{{ $lists2->Room_Attendant}}</td>
                                     <td>
                                         @if($lists2->Room_Attendant == "Unassigned")
                                             <!-- Assign Housekeeper Button -->
@@ -212,7 +212,24 @@
     });
     });
 </script>        
-        
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .category{
+        font-size:22px;
+        color:#5BDF4A;
+    }
+    .category2{
+        font-size:22px;
+        color:#E46000;
+    }
+    .tab{
+        font-size:100px;
+    }
+</style> 
 @include('layouts.footers.auth')
     
     </div>

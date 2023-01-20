@@ -9,55 +9,56 @@
                 <div class=" col ">
                     <div class="card">
                         <div class="card-header bg-transparent">
-                            <h2 class="mb-0">Event Inquiry Form</h2>
+                            <h2 class="mb-0 title">Event Inquiry Form</h2>
                         </div>
                         <form action="">
                         <div class="card-body">
-                            <h3 style="color: #8898aa;">Tell us about you</h3>
-                            
-                            <div class = "row">
+                            <h3 class = "title-color">Tell us about you</h3>
+                            <hr class = "line">
+                            <div class = "row pt-1">
                                 <div class = "col">
-                                    <h4>Client Name: </h4>
+                                    <h4 class = "text-color">Client Name </h4>
                                     <input type="text" class="form-control" placeholder="Enter client name" required>
                                 </div>
                                 <div class = "col">
-                                    <h4>Contact Number: </h4>
+                                    <h4 class = "text-color">Contact Number </h4>
                                     <input type="number" class="form-control" placeholder="Enter contact no." required>
                                 </div>
                             </div>
-                            <div class = "row">
+                            <div class = "row pt-4">
                                 <div class = "col">
-                                    <h4>Contact Person: </h4>
+                                    <h4 class = "text-color">Contact Person </h4>
                                     <input type="text" class="form-control" placeholder="Enter contact person" required>
                                 </div>
                                 <div class = "col">
-                                    <h4>Contact Number: </h4>
+                                    <h4 class = "text-color">Contact Number </h4>
                                     <input type="number" class="form-control" placeholder="Enter contact no." required>
                                 </div>
                             </div>  
-                            <h4>Billing Address: </h4>
+                            <h4 class = "pt-4 text-color">Billing Address </h4>
                             <input type="text" class="form-control" placeholder="Enter billing address" required>
-                            <h4>Contact Email: </h4>
+                            <h4 class = "pt-4 text-color">Contact Email </h4>
                             <input type="text" class="form-control" placeholder="Enter email address" required>
                             <br>
-                            <h3 style="color: #8898aa;">Tell us about your event</h3>
+                            <h3 class = "title-color">Tell us about your event</h3>
+                            <hr class = "line">
                             <br>
-                            <h4>Event Name: </h4>
+                            <h4 class = "text-color">Event Name </h4>
                             <input type="text" class="form-control" placeholder="Enter event name" required>
-                            <h4>Event Type: </h4>
+                            <h4 class = "pt-4 text-color">Event Type </h4>
                             <input type="text" class="form-control" placeholder="Enter event type" required>
                             <br>
                             <div class="container">
 
                                 <div class="row">
                                     <div class="col">
-                                        <h4>Event Date/Time: </h4>
+                                        <h4 class = "text-color">Event Date/Time </h4>
                                         <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00"
                                             id="example-datetime-local-input" required>
                                     </div>
                                     <div class="col">
                                         <span>
-                                            <h4>Expected No. of Guest: </h4>
+                                            <h4 class = "text-color">Expected No. of Guest </h4>
                                             <input type="number" class="form-control form-control-alternative"
                                                 placeholder="Enter expected no. of guest" required>
                                         </span>
@@ -69,7 +70,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <h4>Venue</h4>
+                                        <h4 class = "text-color">Venue</h4>
                                     </div>
                                     <div class="col-sm">
                                         <div class="custom-control custom-radio custom-control-inline">
@@ -96,7 +97,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <h4>Caterer</h4>
+                                        <h4 class = "text-color">Caterer</h4>
                                     </div>
                                     <div class="col-sm">
                                         <div class="custom-control custom-radio custom-control-inline">
@@ -120,7 +121,7 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block"></button>                                  
+                                    <input type="submit" class="btn btn-success btn-lg btn-block"></button>                                  
                                 </div>  
                             </div>
                         </div>
@@ -155,6 +156,33 @@
                 })
             }
         </script>
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .line{
+        border:2px solid black;
+        width:35%;
+        display: inline-block; 
+        align-items:right;
+        margin-top:10px;
+    }
+    .title-color{
+        color:#484848;
+        font-size:20px;
+    }
+    .text-color{
+        font-size:18px;
+        color:#6C6C6C;
+    }
+        @media (max-width: 800px){
+            .line{
+            width:100%;
+            }
+        }
+</style>
     @include('layouts.footers.auth')
     @endsection
 

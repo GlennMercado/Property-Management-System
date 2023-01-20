@@ -11,7 +11,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0">Maintenance</h3>
+                                <h2 class="mb-0 title">Maintenance</h3>
                             </div>
                         </div>
                         <br>
@@ -27,7 +27,7 @@
                         <!--Out of Order-->
                         <div class="row align-items-center" id="order">
                             <div class="col">
-                                <h3 class="mb-0">Out of Order</h3>
+                                <h3 class="mb-0 category2">Out of Order</h3>
                             </div>
                             <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -49,19 +49,19 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Housekeeping Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                @foreach($list as $lists)
                                 @if($lists->Housekeeping_Status == "Out of Order")
                                     <tr>
-                                        <td>{{$lists->Room_No}}</td>
-                                        <td>{{$lists->Status}}</td>
-                                        <td>{{$lists->Housekeeping_Status}}</td>
+                                        <td style = "font-size:18px;">{{$lists->Room_No}}</td>
+                                        <td style = "font-size:18px;">{{$lists->Status}}</td>
+                                        <td style = "font-size:18px; color:#E46000;">{{$lists->Housekeeping_Status}}</td>
                                         <td>
                                             <!--Update Status button-->
                                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> 
@@ -99,7 +99,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                                     <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                 </div>
                                             </div>
@@ -143,7 +143,17 @@
 @include('layouts.footers.auth')
     
     </div>
-
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .category2{
+        font-size:22px;
+        color:#E46000;
+    }
+</style>
 
     
 @endsection

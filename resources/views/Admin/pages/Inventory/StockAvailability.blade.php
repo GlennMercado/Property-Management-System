@@ -10,7 +10,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Hotel Stocks</h3>
+                                <h3 class="mb-0 title">Hotel Stocks</h3>
                             </div>
                         </div>
                     </div>
@@ -19,28 +19,28 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Item Description</th>
-                                    <th scope="col">Available Stock</th>
-                                    <th scope="col">Stock Level</th>
-                                    <th scope="col">Stock Alert</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:20px;">Product Name</th>
+                                    <th scope="col" style = "font-size:20px;">Item Description</th>
+                                    <th scope="col" style = "font-size:20px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:20px;">Stock Level</th>
+                                    <th scope="col" style = "font-size:20px;">Stock Alert</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->total}}</td>
-                                        <td>{{ $lists->Stock_Level}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
-                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
+                                            <td style = "font-size:30px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
                                         @else
-                                            <td><i class="bi bi-check-square-fill" style="color:green;"></i></td>
+                                            <td style = "font-size:30px;"><i class="bi bi-check-square-fill" style="color:green;"></i></td>
                                         @endif
-                                        <td><button type="button" data-toggle="modal" data-target="#ModalViews{{ $lists->productid}}"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                        <td><button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#ModalViews{{ $lists->productid}}"class="btn btn-primary"><i class="bi bi-eye"></i></button>
                                         </td>
                                     </tr>
 
@@ -54,44 +54,41 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <div class="modal-body">
-                                                            
-                                                                <div class = "row">
-                                                                        <div class = "col">
-                                                                            <p class="text-left">Stock Name: </p>
-                                                                                <input type="text" class="form-control" name="name" value = "{{ $lists->name}}" readonly>
-                                                                                    <div class="invalid-feedback">
-                                                                                        Stock Name empty
-                                                                                    </div>       
-                                                                        </div>
-                                                                </div>
-                                                        <div class="form-group">
+                                                <div class="modal-body">     
+                                                    <div class = "row">
+                                                        <div class = "col">
+                                                            <label class="text-left">Stock Name: </label>
+                                                                <input type="text" class="form-control" name="name" value = "{{ $lists->name}}" readonly>        
+                                                        </div>
+                                                        <div class = "col">
                                                             <label>Stock Description: </label>
                                                                 <input type="text" class="form-control" name="description" value = "{{ $lists->description}}" readonly>
-                                                                    <div class="invalid-feedback">
-                                                                        Stock Details empty
-                                                                    </div>
-
+                                                        </div>
+                                                    </div>
+                                                    <div class = "row">
+                                                        <div class = "col pt-4">
                                                             <label>Date Stock Added: </label>
                                                                 <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->created_at))}}" readonly>
-                                                                    <div class="invalid-feedback">
-                                                                        Quantity empty
-                                                                    </div>
-
+                                                        </div>
+                                                        <div class = "col pt-4">
                                                             <label>Quantity: </label>
                                                                 <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
-                                                                    <div class="invalid-feedback">
-                                                                        Quantity empty
-                                                                    </div>  
                                                         </div>
-                                                        <label for="exampleInputPassword1">Category: </label>
-                                                        <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
-                                                                <div class="invalid-feedback">
-                                                                Stock Details empty
-                                                                </div>
                                                     </div>
+                                                    <div class = "row">
+                                                        <div class = "col pt-4">
+                                                            <label for="exampleInputPassword1">Category: </label>
+                                                                <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
+                                                        </div>
+                                                    </div> 
+                                                </div>  
+                                                    <!-- <div class="form-group">                  
+                                                    </div> -->
+                                                    <!-- <div class="invalid-feedback">
+                                                                Stock Details empty
+                                                                </div> -->
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button> -->
                                                 </div>
                                                 </div>
                                             </div>
@@ -109,7 +106,21 @@
             Go Back
         </a>-->
 </div>
-
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .text-color{
+        font-size:18px;
+        color:#6C6C6C;
+    }
+    .cat{
+        color:#000000;
+        text-transform:uppercase;
+    }
+</style>
     @include('layouts.footers.auth')
     @endsection
 

@@ -12,11 +12,11 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Room Management</h3>
+                                <h3 class="mb-0 title">Room Management</h3>
                             </div>
                             <div class="col text-right">
                                 <button class="btn btn-outline-success" data-toggle="modal" data-target="#add_rooms">
-                                    <i class="bi bi-plus"></i>
+                                    Add Room
                                 </button>           
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                             <input type="submit" class="btn btn-success prevent_submit" value="Add" name="submit">
                                         </div>     
                                     </div>                  
@@ -127,30 +127,30 @@
                         <table class="table align-items-center table-flush" id="available">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Room Size</th>
-                                    <th scope="col">No. of Beds</th>
-                                    <th scope="col">Extra Bed</th>
-                                    <th scope="col">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Room Size</th>
+                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:17px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Available")
                                     <tr>
-                                        <td>{{ $lists->Room_No}}</td>
-                                        <td>{{ $lists->Room_Size}}</td>
-                                        <td>{{ $lists->No_of_Beds}}</td>
-                                        <td>{{ $lists->Extra_Bed}}</td>
-                                        <td>{{ $lists->Status}}</td>
+                                        <td style = "font-size:17px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:17px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:17px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:17px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:17px; color:#39D972;">{{ $lists->Status}}</td>
                                         <td>
-                                            <!--View Button-->
-                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
+                                            <!--View Button-->          
+                                            <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
-                                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
+                                            <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
                                         </td>
                                     </tr>
         
@@ -169,7 +169,7 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-                                                            <p class="text-left">Room No. :</p> 
+                                                            <p class="text-left">Room No. </p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
                                                             <br>
                                                             <!-- Image in Blob -->
@@ -177,7 +177,7 @@
                                                             <!-- Image in path-->
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                             <br><br>
-                                                            <p class="text-left">Rate per Night: </p>  
+                                                            <p class="text-left">Rate per Night </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
@@ -186,7 +186,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>          <!--replace a tag to button tag-->
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                 </div>
                                             </div>
@@ -209,7 +209,7 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="card-body bg-white" style="border-radius: 18px">
-                                                                <p class="text-left">Room No. :</p> 
+                                                                <p class="text-left">Room No. </p> 
                                                                 <input type="hidden" name="room_no" value="{{ $lists->Room_No}}">
                                                                 <input class="form-control" type="text" value="{{ $lists->Room_No}}" readonly>
 
@@ -261,7 +261,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                     </div>
                                                 </form>
@@ -278,25 +278,25 @@
                         <table class="table align-items-center table-flush" id="reserved" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Room Size</th>
-                                    <th scope="col">No. of Beds</th>
-                                    <th scope="col">Extra Bed</th>
-                                    <th scope="col">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Room Size</th>
+                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Reserved")
                                     <tr>
-                                        <td>{{ $lists->Room_No}}</td>
-                                        <td>{{ $lists->Room_Size}}</td>
-                                        <td>{{ $lists->No_of_Beds}}</td>
-                                        <td>{{ $lists->Extra_Bed}}</td>
-                                        <td>{{ $lists->Status}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:18px; color:#1C3A93;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -328,7 +328,7 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-                                                            <p class="text-left">Room No. :</p> 
+                                                            <p class="text-left">Room No. </p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
                                                             <br>
                                                             <!-- Image in Blob -->
@@ -336,7 +336,7 @@
                                                             <!-- Image in path-->
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                             <br><br>
-                                                            <p class="text-left">Rate per Night: </p>  
+                                                            <p class="text-left">Rate per Night </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
@@ -345,7 +345,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                 </div>
                                             </div>
@@ -368,7 +368,7 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="card-body bg-white" style="border-radius: 18px">
-                                                                <p class="text-left">Room No. :</p> 
+                                                                <p class="text-left">Room No. </p> 
                                                                 <input type="hidden" name="room_no" value="{{ $lists->Room_No}}">
                                                                 <input class="form-control" type="text" value="{{ $lists->Room_No}}" readonly>
 
@@ -420,7 +420,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button> <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                     </div>
                                                 </form>
@@ -451,7 +451,7 @@
                                                             <!--Room No-->
                                                             <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
                                                             @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')
-                                                                <p class="text-left">Booking Status :</p> 
+                                                                <p class="text-left">Booking Status </p> 
                                                                 <select name="stats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <option value="Available">Available</option>
@@ -462,7 +462,7 @@
                                                             @endif
 
                                                             @if($lists->Status == 'Checked-Out' )
-                                                                <p class="text-left">Housekeeping Status :</p> 
+                                                                <p class="text-left">Housekeeping Status </p> 
                                                                 <select name="hstats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <!-- <option value="Cleaned">Cleaned</option> -->
@@ -475,7 +475,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                     <input type="submit" class="btn btn-success prevent_submit" value="Update" />
                                                 </div> 
                                             </form>
@@ -493,25 +493,25 @@
                         <table class="table align-items-center table-flush" id="checkedin" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Room Size</th>
-                                    <th scope="col">No. of Beds</th>
-                                    <th scope="col">Extra Bed</th>
-                                    <th scope="col">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Room Size</th>
+                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Checked-In")
                                     <tr>
-                                        <td>{{ $lists->Room_No}}</td>
-                                        <td>{{ $lists->Room_Size}}</td>
-                                        <td>{{ $lists->No_of_Beds}}</td>
-                                        <td>{{ $lists->Extra_Bed}}</td>
-                                        <td>{{ $lists->Status}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:18px; color:#D61600;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -543,7 +543,7 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-                                                            <p class="text-left">Room No. :</p> 
+                                                            <p class="text-left">Room No. </p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
                                                             <br>
                                                             <!-- Image in Blob -->
@@ -551,7 +551,7 @@
                                                             <!-- Image in path-->
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                             <br><br>
-                                                            <p class="text-left">Rate per Night: </p>  
+                                                            <p class="text-left">Rate per Night </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
@@ -560,7 +560,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                 </div>
                                             </div>
@@ -583,7 +583,7 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="card-body bg-white" style="border-radius: 18px">
-                                                                <p class="text-left">Room No. :</p> 
+                                                                <p class="text-left">Room No. </p> 
                                                                 <input type="hidden" name="room_no" value="{{ $lists->Room_No}}">
                                                                 <input class="form-control" type="text" value="{{ $lists->Room_No}}" readonly>
 
@@ -635,7 +635,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                     </div>
                                                 </form>
@@ -666,7 +666,7 @@
                                                             <!--Room No-->
                                                             <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
                                                             @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')
-                                                                <p class="text-left">Booking Status :</p> 
+                                                                <p class="text-left">Booking Status </p> 
                                                                 <select name="stats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <option value="Available">Available</option>
@@ -677,7 +677,7 @@
                                                             @endif
 
                                                             @if($lists->Status == 'Checked-Out' )
-                                                                <p class="text-left">Housekeeping Status :</p> 
+                                                                <p class="text-left">Housekeeping Status </p> 
                                                                 <select name="hstats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <!-- <option value="Cleaned">Cleaned</option> -->
@@ -690,7 +690,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                     <input type="submit" class="btn btn-success prevent_submit" value="Update" />
                                                 </div> 
                                             </form>
@@ -707,25 +707,25 @@
                         <table class="table align-items-center table-flush" id="checkedout" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Room Size</th>
-                                    <th scope="col">No. of Beds</th>
-                                    <th scope="col">Extra Bed</th>
-                                    <th scope="col">Booking Status</th>
+                                    <th scope="col" style = "font-size:20px;">Room No.</th>
+                                    <th scope="col" style = "font-size:20px;">Room Size</th>
+                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col">Action</th>
+                                    <th scope="col"style = "font-size:20px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Checked-Out")
                                     <tr>
-                                        <td>{{ $lists->Room_No}}</td>
-                                        <td>{{ $lists->Room_Size}}</td>
-                                        <td>{{ $lists->No_of_Beds}}</td>
-                                        <td>{{ $lists->Extra_Bed}}</td>
-                                        <td>{{ $lists->Status}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -757,7 +757,7 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="card-body bg-white" style="border-radius: 18px">
-                                                            <p class="text-left">Room No. :</p> 
+                                                            <p class="text-left">Room No. </p> 
                                                             <input class="form-control" type="text" value="{{$lists->Room_No}}" readonly>
                                                             <br>
                                                             <!-- Image in Blob -->
@@ -765,7 +765,7 @@
                                                             <!-- Image in path-->
                                                             <img src="{{$lists->Hotel_Image}}" class="card-img-top"/>
                                                             <br><br>
-                                                            <p class="text-left">Rate per Night: </p>  
+                                                            <p class="text-left">Rate per Night </p>  
                                                             <input class="form-control" type="text" value="{{$lists->Rate_per_Night}}" readonly>
                                                             <br>
                                                             <p class="text-left">No. of Pax per Room </p>
@@ -774,7 +774,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                 </div>
                                             </div>
@@ -797,7 +797,7 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="card-body bg-white" style="border-radius: 18px">
-                                                                <p class="text-left">Room No. :</p> 
+                                                                <p class="text-left">Room No. </p> 
                                                                 <input type="hidden" name="room_no" value="{{ $lists->Room_No}}">
                                                                 <input class="form-control" type="text" value="{{ $lists->Room_No}}" readonly>
 
@@ -849,7 +849,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                     </div>
                                                 </form>
@@ -880,7 +880,7 @@
                                                             <!--Room No-->
                                                             <input type="hidden" name="room_no" value="{{$lists->Room_No}}" >
                                                             @if($lists->Status != 'Checked-Out' && $lists->Status != 'Available')
-                                                                <p class="text-left">Booking Status :</p> 
+                                                                <p class="text-left">Booking Status </p> 
                                                                 <select name="stats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <option value="Available">Available</option>
@@ -891,7 +891,7 @@
                                                             @endif
 
                                                             @if($lists->Status == 'Checked-Out' )
-                                                                <p class="text-left">Housekeeping Status :</p> 
+                                                                <p class="text-left">Housekeeping Status </p> 
                                                                 <select name="hstats" class="form-control">
                                                                     <option selected="true" disabled="disabled">Select</option>
                                                                     <!-- <option value="Cleaned">Cleaned</option> -->
@@ -903,7 +903,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                                     <input type="submit" class="btn btn-success prevent_submit" value="Update" />
                                                 </div> 
                                             </form>
@@ -993,6 +993,11 @@
     });
 </script>   
 <style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
     p{
         letter-spacing:1px;
         font-weight:lighter;
@@ -1001,6 +1006,9 @@
     }
     h5{
         font-family:sans-serif;
+    }
+    .hover:hover{
+        background-color:bg-danger;
     }
 </style>
 

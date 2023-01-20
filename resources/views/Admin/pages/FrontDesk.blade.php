@@ -11,7 +11,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0">Hotel Booking</h3>
+                                <h2 class="mb-0 title">Hotel Booking</h3>
                             </div>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                     role="tablist">
                                     <li class="nav-item">
-                                        <p class="text-left">Room No - Beds: </p>
+                                        <p class="text-left label">Room No - Beds </p>
                                         <select name="room_no" class="form-control" required>
                                             <option selected="true" disabled="disabled">Select</option>
                                             @foreach($room as $rooms)
@@ -33,11 +33,11 @@
                                         </select>
                                     </li>
                                     <li class="nav-item">
-                                        <p class="text-left">Check in Date/Time: </p>
+                                        <p class="text-left label">Check in Date </p> <!-- Check in Date/Time-->
                                         <input class="form-control chck" name="checkIn" type="date" onkeydown="return false" id="example-datetime-local-input" required>                     
                                     </li>
                                     <li class="nav-item">
-                                        <p class="text-left">Check out Date/Time: </p>
+                                        <p class="text-left label">Check out Date </p> <!-- Check in Date/Time-->
                                         <input class="form-control chck" name="checkOut" type="date" onkeydown="return false" id="example-datetime-local-input" required>
                                                             
                                     </li>                              
@@ -48,7 +48,7 @@
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                     role="tablist">
                                     <li class="nav-item">
-                                        <p class="text-left">Number of Pax: </p>
+                                        <p class="text-left label">Number of Pax </p>
                                         <select name="pax" class="form-control" required>
                                             <option selected="true" disabled="disabled">Select</option>
                                             @for($count = 1; $count <= 4; $count++)
@@ -57,12 +57,12 @@
                                         </select>
                                     </li>
                                     <li class="nav-item">
-                                        <p class="text-left">Mobile No.: </p>
-                                        <input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" required>
+                                        <p class="text-left label">Mobile No. </p>
+                                        <input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>
                                     </li>
                                     <li class="nav-item">
-                                        <p class="text-left">Guest Name: </p>
-                                        <input class="form-control" type="text" name="gName" required>                        
+                                        <p class="text-left label">Guest Name </p>
+                                        <input class="form-control" type="text" name="gName" placeholder = "Name" required>                        
                                     </li>                              
                                 </ul>
 
@@ -108,7 +108,17 @@
             $('.chck').attr('min', maxDate);
         });
 </script>        
-        
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .label{
+        font-size:20px;
+        font-family:sans-serif;
+    }
+</style> 
 @include('layouts.footers.auth')
     
     </div>
