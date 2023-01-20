@@ -91,6 +91,13 @@
                     </a>
                 </li>
 
+                <!--Calendar-->
+                <li class="nav-item">
+                        <a class="nav-link text-default" href="{{ route('Calendar') }}">
+                        <i class="bi bi-calendar3 text-success"></i></i> {{ __('Calendar') }}
+                    </a>
+                </li>
+
                 <!--Room Management-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
@@ -98,6 +105,7 @@
                     </a>
                 </li>
 
+                <!--Front Desk-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
                         <i class="bi bi-pc-display-horizontal text-success">•</i> {{ __('Front Desk') }}
