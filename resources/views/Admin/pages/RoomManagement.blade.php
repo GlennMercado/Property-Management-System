@@ -15,7 +15,7 @@
                                 <h3 class="mb-0 title">Room Management</h3>
                             </div>
                             <div class="col text-right">
-                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#add_rooms">
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_rooms">
                                     Add Room
                                 </button>           
                             </div>
@@ -57,7 +57,7 @@
                                                     <div class = "col">
                                                         <p class="text-left">Room No. </p>
                                                         <select name="room_no" class="form-control" required>
-                                                            <option selected="true" disabled="disabled">Select</option>
+                                                            <option selected disabled value="">Select</option>
                                                                 @for($count = 1; $count <=30; $count++)
                                                                     <option value="{{$count}}"> {{ $count }}</option>     
                                                                 @endfor
@@ -74,7 +74,7 @@
                                                     <div class = "col">
                                                         <p class="text-left">No. of Beds </p>
                                                         <select name="no_of_beds" class="form-control" required>
-                                                        <option selected="true" disabled="disabled">Select</option>
+                                                        <option selected disabled value="">Select</option>
                                                         <option value="One (1) twin-sized">One (1) twin-sized</option>
                                                         <option value="One (1) queen-sized">One (1) queen-sized</option>
                                                         <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
@@ -86,7 +86,7 @@
                                                     <div class = "col">
                                                         <p class="text-left">Extra Bed </p>
                                                             <select name="extra_bed" class="form-control" required>
-                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option selected disabled value="">Select</option>
                                                                 <option value="None">None</option>
                                                                 <option value="One (1)">One (1)</option>
                                                             </select>
@@ -94,7 +94,7 @@
                                                     <div class = "col">
                                                         <p class="text-left">No. of Pax per Room </p>
                                                             <select name="no_of_pax" class="form-control"required>
-                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option selected disabled value="">Select</option>
                                                                 @for($count = 1; $count <=4; $count++)
                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                 @endfor
@@ -205,7 +205,7 @@
                                                 </div>
                                                 <form method="POST" class="prevent_submit" action="{{url('/edit_rooms')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
-
+                                                
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="card-body bg-white" style="border-radius: 18px">
@@ -222,9 +222,9 @@
                                                                 
                                                                 <div class = "row">
                                                                     <div class = "col">
-                                                                        <p class="text-left">No. of Beds </p>
+                                                                        <p class="text-left pt-4">No. of Beds </p>
                                                                         <select name="no_of_beds" class="form-control" required>
-                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                            <option selected disabled value="">Select</option>
                                                                             <option value="One (1) twin-sized">One (1) twin-sized</option>
                                                                             <option value="One (1) queen-sized">One (1) queen-sized</option>
                                                                             <option value="One (1) queen-sized & One (1) twin-sized">One (1) queen-sized & One (1) twin-sized</option>
@@ -237,7 +237,7 @@
                                                                     <div class = "col">
                                                                         <p class="text-left">Extra Bed </p>
                                                                         <select name="extra_bed" class="form-control" required>
-                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                            <option selected disabled value="">Select</option>
                                                                             <option value="None">None</option>
                                                                             <option value="One (1)">One (1)</option>
                                                                         </select>
@@ -245,7 +245,7 @@
                                                                     <div class = "col">
                                                                         <p class="text-left">No. of Pax per Room </p>
                                                                             <select name="no_of_pax" class="form-control" required>
-                                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                                <option selected disabled value="">Select</option>
                                                                                 @for($count = 1; $count <=4; $count++)
                                                                                     <option value="{{$count}}"> {{ $count }}</option>
                                                                                 @endfor
@@ -260,6 +260,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
@@ -362,7 +363,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" class="prevent_submit" action="{{url('/edit_rooms')}}" enctype="multipart/form-data">
+                                                <form action="{{url('/edit_rooms')}}" method="POST" class="prevent_submit"  enctype="multipart/form-data">
                                                     {{ csrf_field() }}
 
                                                     <div class="modal-body">
@@ -597,7 +598,7 @@
                                                                 <div class = "row">
                                                                     <div class = "col">
                                                                         <p class="text-left">No. of Beds </p>
-                                                                        <select name="no_of_beds" class="form-control" required>
+                                                                        <select name="no_of_beds" class="form-select" id="validationDefault04" required>
                                                                             <option selected="true" disabled="disabled">Select</option>
                                                                             <option value="One (1) twin-sized">One (1) twin-sized</option>
                                                                             <option value="One (1) queen-sized">One (1) queen-sized</option>
@@ -632,6 +633,7 @@
                                                                     <input class="form-control" type="text" name="rate_per_night" value="{{$lists->Rate_per_Night}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');" required>
                                                                 <br>
                                                             </div>
+                    
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -991,6 +993,8 @@
 
     });
     });
+
+    
 </script>   
 <style>
     .title{

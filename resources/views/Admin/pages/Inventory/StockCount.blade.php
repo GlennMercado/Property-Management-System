@@ -12,7 +12,7 @@
                                 <div class = "col">
                                     
                                     </a>
-                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                             Add Stock
                                     </button>
                                 </div>

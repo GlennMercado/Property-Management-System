@@ -10,7 +10,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class = "col">
-                                <button class="btn btn-outline-success" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseReportModal" style = "float:right;">
+                                <button class="btn btn-outline-primary" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseReportModal" style = "float:right;">
                                     Make Report
                                 </button>
                                 </div>

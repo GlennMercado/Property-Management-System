@@ -8,7 +8,7 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h2 class="mb-0">Calendar</h3>
+                        <h2 class="mb-0 title">Calendar</h3>
                     </div>
                 </div>
             </div>
@@ -189,4 +189,11 @@
             $('.chck').attr('min', maxDate);
         });
 </script>
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+</style>
 @endsection
