@@ -16,13 +16,8 @@
                                             Add Stock
                                     </button>
                                 </div>
-<<<<<<< HEAD
-                                <h3 class="mb-0">Hotel Stock Inventory</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
-=======
                                 <h3 class="mb-0 title">Hotel Stocks</h3>
                                 <h5 class="mb-0" style="text-color:#ff0000; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                             </div>
                         </div>
                     </div>

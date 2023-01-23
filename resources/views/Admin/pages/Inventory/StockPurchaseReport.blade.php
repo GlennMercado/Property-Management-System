@@ -25,42 +25,20 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-<<<<<<< HEAD
-                                    <th scope="col">Item Name</th>
-                                    <th scope="col">Supplier Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Available Stock</th>
-                                    <th scope="col">Stock Alert</th>
-                                    <th scope="col">Action</th>
-=======
                                     <th scope="col" style = "font-size:20px;">Item Name</th>
                                     <th scope="col" style = "font-size:20px;">Supplier Name</th>
                                     <th scope="col" style = "font-size:20px;">Description</th>
                                     <th scope="col" style = "font-size:20px;">Available Stock</th>
                                     <th scope="col" style = "font-size:20px;">Action</th>
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                                 </tr>
                             </thead>
                             <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-<<<<<<< HEAD
-                                        <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->suppliername}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->quantity}}</td>
-                                        <td>{{ $lists->Stock_Level}}</td>
-                                        @if($lists->total <= $lists->Stock_Level)
-                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
-                                        @else
-                                            <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
-                                        @endif
-=======
                                         <td style = "font-size:18px;">{{ $lists->name}}</td>
                                         <td style = "font-size:18px;">{{ $lists->suppliername}}</td>
                                         <td style = "font-size:18px;">{{ $lists->description}}</td>
                                         <td style = "font-size:18px;">{{ $lists->quantity}}</td>
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>

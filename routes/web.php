@@ -103,7 +103,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		$list = DB::select('SELECT * FROM stockscenter');
 		return view('Admin.pages.Inventory.StockCenter', ['list'=>$list]);})->name('StockCenter');
 
-	//Function Rooms Inventory
+	//Function RoomsInventory
 	Route::post('/edit_stock', 'App\Http\Controllers\InventoryFunctionController@edit_stock');
 	Route::post('/add_stock', 'App\Http\Controllers\InventoryFunctionController@addstock');
 	
