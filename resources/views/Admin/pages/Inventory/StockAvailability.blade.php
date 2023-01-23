@@ -11,7 +11,15 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h3 class="mb-0">Hotel Stocks</h3>
+                            </div><br/>
+                            <div class="col-md-4">
+                                <select class="form-control" style="border:2px solid" id="optionselect" >
+                                    <option value="Pending" selected="true">Hotel Inventory</option>
+                                    <option value="On-going">Function Rooms Inventory</option>
+                                    <option value="Finished">COnvention Center Inventory</option>
+                                </select>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -36,9 +44,9 @@
                                         <td>{{ $lists->total}}</td>
                                         <td>{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
-                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
+                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
                                         @else
-                                            <td><i class="bi bi-check-square-fill" style="color:green;"></i></td>
+                                            <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
                                         @endif
                                         <td><button type="button" data-toggle="modal" data-target="#ModalViews{{ $lists->productid}}"class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                         </td>

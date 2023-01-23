@@ -29,6 +29,7 @@
                                     <th scope="col">Supplier Name</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Available Stock</th>
+                                    <th scope="col">Stock Alert</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -39,6 +40,12 @@
                                         <td>{{ $lists->suppliername}}</td>
                                         <td>{{ $lists->description}}</td>
                                         <td>{{ $lists->quantity}}</td>
+                                        <td>{{ $lists->Stock_Level}}</td>
+                                        @if($lists->total <= $lists->Stock_Level)
+                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
+                                        @else
+                                            <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
+                                        @endif
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
@@ -180,6 +187,10 @@
                                                                 <div class = "col">
                                                                     <p class="text-left">Quantity :
                                                                         <input class="form-control" type="number" placeholder="Enter Here.." name="quantity" required></p>
+                                                                </div>
+                                                                <div class = "col">
+                                                                    <p class="text-left">Stock Level :
+                                                                        <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required></p>
                                                                 </div>
                                                         </div>
                                                         <p class="text-left">Supplier Name: </p>

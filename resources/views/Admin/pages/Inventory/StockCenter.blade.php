@@ -13,10 +13,10 @@
                                     
                                     </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
-                                            Add Stock
+                                            Add Stocks
                                     </button>
                                 </div>
-                                <h3 class="mb-0">Hotel Stock Inventory</h3>
+                                <h3 class="mb-0">Convention Center Inventory</h3>
                                 <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
