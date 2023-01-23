@@ -14,7 +14,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Hotel Booking</h3>
+                                <h3 class="mb-0 title">Hotel Booking</h3>
                             </div>
                         </div>
                         <br>
@@ -33,11 +33,11 @@
                         <table class="table align-items-center table-flush" id="pending">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Reservation No.</th>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Guest Name</th>
-                                    <th scope="col">Payment Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Room No.</th>
+                                    <th scope="col" style = "font-size:17px;">Guest Name</th>
+                                    <th scope="col" style = "font-size:17px;">Payment Status</th>
+                                    <th scope="col" style = "font-size:17px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -167,21 +167,21 @@
                         <table class="table align-items-center table-flush" id="paid" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Reservation No.</th>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Guest Name</th>
-                                    <th scope="col">Payment Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Room No.</th>
+                                    <th scope="col" style = "font-size:17px;">Guest Name</th>
+                                    <th scope="col" style = "font-size:17px;">Payment Status</th>
+                                    <th scope="col" style = "font-size:17px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Isvalid == true && $lists->Payment_Status == "Paid")
                                         <tr>
-                                            <td>{{ $lists->Reservation_No }}</td>
-                                            <td>{{ $lists->Room_No }}</td>
-                                            <td>{{ $lists->Guest_Name }}</td>
-                                            <td>{{ $lists->Payment_Status }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Reservation_No }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Room_No }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Guest_Name }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Payment_Status }}</td>
                                             <td>
                                                 <!--View Button-->
                                                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
@@ -273,11 +273,11 @@
                         <table class="table align-items-center table-flush" id="finished" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Reservation No.</th>
-                                    <th scope="col">Room No.</th>
-                                    <th scope="col">Guest Name</th>
-                                    <th scope="col">Payment Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Room No.</th>
+                                    <th scope="col" style = "font-size:17px;">Guest Name</th>
+                                    <th scope="col" style = "font-size:17px;">Payment Status</th>
+                                    <th scope="col" style = "font-size:17px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -427,6 +427,13 @@
     });
     });
     </script>
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+</style>
 @endsection
 
 @push('js')

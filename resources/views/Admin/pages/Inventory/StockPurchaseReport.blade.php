@@ -10,12 +10,12 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class = "col">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseReportModal" style = "float:right;">
-                                    Make a Report
+                                <button class="btn btn-outline-primary" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseReportModal" style = "float:right;">
+                                    Make Report
                                 </button>
                                 </div>
-                                <h3 class="mb-0">Stock Purchase Reports</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
+                                <h3 class="mb-0 title">Stock Purchase Reports</h3>
+                                <h5 class="mb-0" style="text-color:#ff0000; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
                             </div>
                         </div>
                     </div>
@@ -25,17 +25,26 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
+<<<<<<< HEAD
                                     <th scope="col">Item Name</th>
                                     <th scope="col">Supplier Name</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Available Stock</th>
                                     <th scope="col">Stock Alert</th>
                                     <th scope="col">Action</th>
+=======
+                                    <th scope="col" style = "font-size:20px;">Item Name</th>
+                                    <th scope="col" style = "font-size:20px;">Supplier Name</th>
+                                    <th scope="col" style = "font-size:20px;">Description</th>
+                                    <th scope="col" style = "font-size:20px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:20px;">Action</th>
+>>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                                 </tr>
                             </thead>
                             <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
+<<<<<<< HEAD
                                         <td>{{ $lists->name}}</td>
                                         <td>{{ $lists->suppliername}}</td>
                                         <td>{{ $lists->description}}</td>
@@ -46,6 +55,12 @@
                                         @else
                                             <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
                                         @endif
+=======
+                                        <td style = "font-size:18px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->suppliername}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:18px;">{{ $lists->quantity}}</td>
+>>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
@@ -91,7 +106,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -173,28 +188,28 @@
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class = "row">
                                                                 <div class = "col">
-                                                                    <p class="text-left">Item Name :
-                                                                        <input class="form-control" type="text" name="name" placeholder="Enter Here.."  required></p>
+                                                                    <label class="text-left text-color">Item Name </label>
+                                                                        <input class="form-control mt-2" type="text" name="name" placeholder="Enter Here.."  required>
                                                                 </div>
                                                             </div>
-                                                        <p class="text-left">Item Description :
-                                                        <input class="form-control" type="text" placeholder="Enter Here.." name="description" required></p>
+                                                        <label class="text-left pt-4 text-color">Item Description </label>
+                                                        <input class="form-control mt-2" type="text" placeholder="Enter Here.." name="description" required>
                                                         <div class = "row">
                                                             <div class = "col">
-                                                                <p class="text-left">Unit :
-                                                                    <input class="form-control" type="number" placeholder="Enter Here.." name="unit" required></p>  
+                                                                <label class="text-left pt-4 text-color">Unit </label> 
+                                                                    <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
                                                             </div>
                                                                 <div class = "col">
-                                                                    <p class="text-left">Quantity :
-                                                                        <input class="form-control" type="number" placeholder="Enter Here.." name="quantity" required></p>
+                                                                    <label class="text-left pt-4 text-color">Quantity </label>
+                                                                        <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
                                                                 </div>
                                                                 <div class = "col">
                                                                     <p class="text-left">Stock Level :
                                                                         <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required></p>
                                                                 </div>
                                                         </div>
-                                                        <p class="text-left">Supplier Name: </p>
-                                                            <select class="form-control" name="suppliername" required>
+                                                        <label class="text-left pt-4 text-color">Supplier Name </label>
+                                                            <select class="form-control mt-2" name="suppliername" required>
                                                                 <option>Sample Supplier 1</option>
                                                                 <option>Sample Supplier 2</option>
                                                                 <option>Sample Supplier 3</option>
@@ -268,6 +283,17 @@
                  
 
 </div> 
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .text-color{
+        font-size:18px;
+        color:#6C6C6C;
+    }
+</style> 
     @endsection
     
     @push('js')

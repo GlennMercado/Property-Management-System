@@ -55,9 +55,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
 		return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room]);})->name('HotelReservationForm');
 
-
-
-
 	//For Housekeeping	
 	Route::get('Housekeeping', function () {
 		$list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
@@ -74,10 +71,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('FrontDesk', function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
 		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
-
-
-
-
 
 	//Room Management
 	Route::get('RoomManagement', function () {
@@ -133,6 +126,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Maintenance', function () {
 		$list = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
 		return view('Admin.pages.Maintenance', ['list' => $list]);})->name('Maintenance');
+
+	//Calendar
+	//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');
+	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
+	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
+	
+
+
 });
 
 //Guest
