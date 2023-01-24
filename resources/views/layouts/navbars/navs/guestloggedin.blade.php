@@ -6,15 +6,25 @@
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="ni ni-bullet-list-67 text-white"></span>
+
+            <span class="avatar avatar-sm rounded-circle">
+                <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+            </span>
+
+            </a>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
-                    <div class="col-8 collapse-brand">
-                        <a href="{{ route('welcome') }}">
-                            <h3>NVDC Properties</h3>
+                    <div class="col-1 collapse-brand">
+                        <a href="{{ route('welcome') }}">                           
+                            <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+                        </a>
+                    </div>
+                    <div class="col-7 collapse-brand">
+                        <a href="{{ route('welcome') }}">                           
+                            <h3>{{ auth()->user()->name }}</h3>
                         </a>
                     </div>
                     <div class="col-4 collapse-close">
@@ -41,10 +51,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('map')}}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('map') }}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('guest_profile') }}" class="nav-link nav-link-icon text-white font-weight-bold">
+                        <i class="ni ni-single-02"></i>
+                        <span class="nav-link-inner--text">{{ __('My profile') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i class="ni ni-user-run"></i>
+                    <span class="nav-link-inner--text">{{ __('Logout') }}</span>
+                </a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link nav-link-icon text-default" href="#" data-toggle="modal"
@@ -109,46 +133,53 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="card-body bg-white" style="border-radius: 18px">
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="example-email-input" class="form-control-label">Name</label>
-                                        <input class="form-control" type="text" placeholder="Enter Here.." name="name" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="example-email-input" class="form-control-label">Email</label>
-                                        <input class="form-control" type="email" placeholder="Enter Here.." name="email" required>
-                                    </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="example-email-input" class="form-control-label">Name</label>
+                                    <input class="form-control" type="text" placeholder="Enter Here.."
+                                        name="name" required>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="example-text-input" class="form-control-label">Category</label>
-                                        <select class="form-control" name="category" required>
-                                            <option>Hotel</option>
-                                            <option>Convention Center</option>
-                                            <option>Function Room</option>
-                                            <option>Sports Center</option>
-                                            <option>Stalls</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="example-text-input" class="form-control-label">Subject </label>
-                                        <input class="form-control" type="text" placeholder="Enter Subject Here.." name="subject" required>
-                                    </div>
+                                <div class="col">
+                                    <label for="example-email-input" class="form-control-label">Email</label>
+                                    <input class="form-control" type="email" placeholder="Enter Here.."
+                                        name="email" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Description </label>
-                                    <input class="form-control" type="text" placeholder="Enter Description Here.." name="description" required>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="example-text-input" class="form-control-label">Category</label>
+                                    <select class="form-control" name="category" required>
+                                        <option>Hotel</option>
+                                        <option>Convention Center</option>
+                                        <option>Function Room</option>
+                                        <option>Sports Center</option>
+                                        <option>Stalls</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Attachment(s) </label>
-                                    <input type="file" class="form-control" name="ticketimages" accept="image/png, image/gif, image/jpeg" value="asd" style="width:50%; " />
+                                <div class="col">
+                                    <label for="example-text-input" class="form-control-label">Subject </label>
+                                    <input class="form-control" type="text" placeholder="Enter Subject Here.."
+                                        name="subject" required>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Description </label>
+                                <input class="form-control" type="text" placeholder="Enter Description Here.."
+                                    name="description" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Attachment(s) </label>
+                                <input type="file" class="form-control" name="ticketimages"
+                                    accept="image/png, image/gif, image/jpeg" value="asd" style="width:50%; " />
+                            </div>
 
-                                <!--Buttons-->
-                                <button class="btn btn-primary" type="submit" style="float:right; margin-top:20px;">Submit Form</button>
-                                <a href="#" class="btn btn-primary" style="float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
-                                    Cancel
-                                </a>
+                            <!--Buttons-->
+                            <button class="btn btn-primary" type="submit"
+                                style="float:right; margin-top:20px;">Submit Form</button>
+                            <a href="#" class="btn btn-primary"
+                                style="float:right; margin-top:20px; margin-right:10px; background:#DC5C4E; border-color:#DC5C4E;">
+                                Cancel
+                            </a>
                         </div>
                     </div>
                 </div>

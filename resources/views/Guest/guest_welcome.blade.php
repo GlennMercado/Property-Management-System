@@ -4,12 +4,62 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
-            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore nesciunt obcaecati consequuntur
-                    reiciendis delectus incidunt magni recusandae voluptatem, iure at ipsam, beatae ad saepe est dolorem
-                    voluptatibus a necessitatibus.</p>
+            <div class="col-md-2 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <div class="accordion mt-2" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    item1
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    item2
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    item3
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-9 mt-7">
+            <div class="col-md-8 mt-7">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
                     style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
                     <ol class="carousel-indicators">
@@ -57,10 +107,18 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore nesciunt obcaecati consequuntur
-                    reiciendis delectus incidunt magni recusandae voluptatem, iure at ipsam, beatae ad saepe est dolorem
-                    voluptatibus a necessitatibus.</p>
+            <div class="col-md-2 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <a href="">Lorem ipsum dolor sit, amet consectetur</a>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="">Lorem ipsum dolor sit, amet consectetur</a>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="">Lorem ipsum dolor sit, amet consectetur</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -131,26 +189,26 @@
                                 </div>
 
                                 <!--
-                                                                                <div class="row">
-                                                                                    <div class="col">
-                                                                                        <p class="text-left">Number of Adult: </p>
-                                                                                        <select name="adult" class="form-control" required>
-                                                                                            <option selected="true" disabled="disabled">Select</option>
-                                                                                            @for ($count = 1; $count <= 4; $count++)
+                                                                                                            <div class="row">
+                                                                                                                <div class="col">
+                                                                                                                    <p class="text-left">Number of Adult: </p>
+                                                                                                                    <select name="adult" class="form-control" required>
+                                                                                                                        <option selected="true" disabled="disabled">Select</option>
+                                                                                                                        @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <p class="text-left">Number of Children: </p>
-                                                                                        <select name="child" class="form-control" required>
-                                                                                            <option selected="true" disabled="disabled">Select</option>
-                                                                                            @for ($count = 1; $count <= 4; $count++)
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                                <div class="col">
+                                                                                                                    <p class="text-left">Number of Children: </p>
+                                                                                                                    <select name="child" class="form-control" required>
+                                                                                                                        <option selected="true" disabled="disabled">Select</option>
+                                                                                                                        @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>-->
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>-->
 
                                 <p class="text-left">Guest Name: </p>
                                 @foreach ($guest as $guests)
