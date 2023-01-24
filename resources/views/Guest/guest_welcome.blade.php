@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
+            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore nesciunt obcaecati consequuntur
+                    reiciendis delectus incidunt magni recusandae voluptatem, iure at ipsam, beatae ad saepe est dolorem
+                    voluptatibus a necessitatibus.</p>
+            </div>
             <div class="col-md-9 mt-7">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
                     style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
@@ -51,6 +56,11 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+            </div>
+            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore nesciunt obcaecati consequuntur
+                    reiciendis delectus incidunt magni recusandae voluptatem, iure at ipsam, beatae ad saepe est dolorem
+                    voluptatibus a necessitatibus.</p>
             </div>
         </div>
     </div>
@@ -121,26 +131,26 @@
                                 </div>
 
                                 <!--
-                                                                            <div class="row">
-                                                                                <div class="col">
-                                                                                    <p class="text-left">Number of Adult: </p>
-                                                                                    <select name="adult" class="form-control" required>
-                                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                                        @for ($count = 1; $count <= 4; $count++)
+                                                                                <div class="row">
+                                                                                    <div class="col">
+                                                                                        <p class="text-left">Number of Adult: </p>
+                                                                                        <select name="adult" class="form-control" required>
+                                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                                            @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div class="col">
-                                                                                    <p class="text-left">Number of Children: </p>
-                                                                                    <select name="child" class="form-control" required>
-                                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                                        @for ($count = 1; $count <= 4; $count++)
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <p class="text-left">Number of Children: </p>
+                                                                                        <select name="child" class="form-control" required>
+                                                                                            <option selected="true" disabled="disabled">Select</option>
+                                                                                            @for ($count = 1; $count <= 4; $count++)
     <option value="{{ $count }}">{{ $count }}</option>
     @endfor
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>-->
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>-->
 
                                 <p class="text-left">Guest Name: </p>
                                 @foreach ($guest as $guests)

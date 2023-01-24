@@ -5,6 +5,11 @@
 
     <div class="container-fluid bg-white" id="conventionCenter">
         <div class="row justify-content-center">
+            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore nesciunt obcaecati consequuntur
+                    reiciendis delectus incidunt magni recusandae voluptatem, iure at ipsam, beatae ad saepe est dolorem
+                    voluptatibus a necessitatibus.</p>
+            </div>
             <div class="col-md-9 mt-7">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
                     style="text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;">
@@ -52,7 +57,11 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
+            </div>
+            <div class="col-md-1 mt-7 d-none d-md-block" style="background-color: #f5f5f5">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo reprehenderit impedit veniam
+                    laboriosam sunt facere aliquid nihil ducimus reiciendis dicta earum quam omnis hic possimus maxime,
+                    accusantium voluptas placeat!</p>
             </div>
         </div>
     </div>
@@ -203,13 +212,15 @@
 
 
     <style>
-        p{
-            text-align:justify;
+        p {
+            text-align: justify;
             text-justify: inter-word;
         }
-        h5{
-            letter-spacing:2px;
+
+        h5 {
+            letter-spacing: 2px;
         }
+
         .slide1 {
             height: 13%;
         }
