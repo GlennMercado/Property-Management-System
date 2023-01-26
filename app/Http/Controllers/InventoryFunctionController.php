@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\stocksfunction;
+use App\Models\stocksfunctions;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -45,7 +45,7 @@ class InventoryFunctionController extends Controller
             'category' => 'required'
        ]);
 
-       $stock = new stocksfucntion;
+       $stock = new stocksfunctions;
 
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
@@ -118,7 +118,7 @@ class InventoryFunctionController extends Controller
             // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
             //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
            
-           DB::table('stocksfunction')->where('productid', $productid)->update(array
+           DB::table('stocksfunctions')->where('productid', $productid)->update(array
             (
                 'productid' => $productid,
                 'name' => $name,

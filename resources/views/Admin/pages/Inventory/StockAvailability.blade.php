@@ -10,18 +10,14 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-<<<<<<< HEAD
                                 <h3 class="mb-0">Hotel Stocks</h3>
                             </div><br/>
                             <div class="col-md-4">
                                 <select class="form-control" style="border:2px solid" id="optionselect" >
-                                    <option value="Pending" selected="true">Hotel Inventory</option>
-                                    <option value="On-going">Function Rooms Inventory</option>
-                                    <option value="Finished">COnvention Center Inventory</option>
+                                    <option selected="true"><h3>Hotel Inventory</h3></option>
+                                    <option>Function Rooms Inventory</option>
+                                    <option>Convention Center Inventory</option>
                                 </select>
-=======
-                                <h3 class="mb-0 title">Hotel Stocks</h3>
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                             </div>
                         </div>
                         </div>
@@ -31,22 +27,22 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Product Name</th>
-                                    <th scope="col" style = "font-size:20px;">Item Description</th>
-                                    <th scope="col" style = "font-size:20px;">Available Stock</th>
-                                    <th scope="col" style = "font-size:20px;">Stock Level</th>
-                                    <th scope="col" style = "font-size:20px;">Stock Alert</th>
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:15px;">Product Name</th>
+                                    <th scope="col" style = "font-size:15px;">Item Description</th>
+                                    <th scope="col" style = "font-size:15px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:15px;">Stock Level</th>
+                                    <th scope="col" style = "font-size:15px;">Stock Alert</th>
+                                    <th scope="col" style = "font-size:15px;">Action</th>
                                 </tr>
                             </thead>
                             
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->name}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->description}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->total}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Stock_Level}}</td>
+                                        <td style = "font-size:13px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:13px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:13px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:13px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
                                             <td style = "font-size:30px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
                                         @else
@@ -94,11 +90,7 @@
                                                         </div>
                                                     </div> 
                                                 </div>  
-                                                    <!-- <div class="form-group">                  
-                                                    </div> -->
-                                                    <!-- <div class="invalid-feedback">
-                                                                Stock Details empty
-                                                                </div> -->
+                    
                                                 <div class="modal-footer">
                                                     <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button> -->
                                                 </div>

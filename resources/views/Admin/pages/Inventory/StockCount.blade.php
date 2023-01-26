@@ -38,20 +38,14 @@
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->name}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->description}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->total}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Stock_Level}}</td>
+                                        <td style = "font-size:15px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:15px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:15px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:15px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
-<<<<<<< HEAD
-                                            <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
+                                            <td style = "font-size:25px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
                                         @else
-                                            <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
-=======
-                                            <td style = "font-size:30px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
-                                        @else
-                                            <td style = "font-size:30px;"><i class="bi bi-check-square-fill" style="color:green;"></i></td>
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
+                                            <td style = "font-size:25px;"><i class="bi bi-check-square-fill" style="color:green;"></i></td>
                                         @endif
                                         <td>
                                             <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#ModalView{{$lists->productid}}"><i class="bi bi-eye"></i></button>
@@ -133,7 +127,6 @@
                                                                 <input type="text" class="form-control" name="name" value="{{$lists->name}}" required>    
                                                             </div>
                                                         </div>
-<<<<<<< HEAD
                                                     <div class="form-group">
                                                         <label for="Stockdetails">Stock Description: </label>
                                                         <input type="text" class="form-control" name="description" value="{{$lists->description}}" required>
@@ -148,14 +141,6 @@
                                                                 <input type="hidden" name="stock" value="{{$lists->Stock_Level}}" />
                                                                 <input type="number" class="form-control" value="{{$lists->Stock_Level}}" readonly>
                                                             
-=======
-                                                    <div class="form-group pt-4">
-                                                        <label for="Stockdetails">Stock Description </label>
-                                                        <input type="text" class="form-control" name="description" value="{{$lists->description}}" required>                                    
-                                                                <label for="Stockdetails" class = "pt-4">Quantity </label>
-                                                                    <input type="hidden" name="quantity" value="{{$lists->total}}" />
-                                                                    <input type="number" class="form-control" value="{{$lists->total}}" readonly> 
->>>>>>> 4f5ecc4a4eb5f56654c4281875e4256210f6fb2c
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <label class="text-left pt-4">Stock In </label>
