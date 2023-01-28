@@ -21,6 +21,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                     <!-- <div class="btn btn-primary">1</div> -->
+                    <!-- Section 2 -->
                     <h2 class="mb-0">Event Application Form (Step 1)</h3>
                     </div>
                 </div>
@@ -235,8 +236,8 @@
                 <br>
             </div>
         </div>
-                    </div>
-                </div>
+    </div>
+</div>
 <style>
     body{
         margin:0;

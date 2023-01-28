@@ -15,7 +15,8 @@
                 <img class="" src="{{ asset('nvdcpics') }}/hotel6.jpg">
                 <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter" src="{{ asset('nvdcpics') }}/hotel7.jpg">  
             </div>
-            <div class="user-select-none centered " data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div>
+            <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div>
+            <!-- section 2 -->
             <h1 class = "text-center text-uppercase lg pt-4 title animated fadeIn">Booking</h1>
 
             <div class="row">
@@ -36,14 +37,15 @@
                                     <h2 class="card-title d-flex justify-content-center uppercase text-uppercase title">Room Highlights</h2>
                                         <p class="card-text">Highly rated by recent guests</p>
                                         <p class="card-text">Clean, comfortable and quiet</p>
-                                            <a href="#scrollspyHeading2" class="btn btn-success d-flex justify-content-center">Reserve Now</a>
+                                            <a href="#section3" class="btn btn-success d-flex justify-content-center">Reserve Now</a>
                                 </div>
                         </div>
                     </div>
                 </div>
+                <!-- section 3 -->
                 <form action="">
                 <h1 class = "pt-8 d-flex justify-content-center text-uppercase title animated fadeInDown">Reserve</h1>
-                    <div class="row scrollspy-example" id = "scrollspyHeading2" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
+                    <div class="row scrollspy-example" id = "section3" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
                         <div class="col-6">
                             <label for="Stockdetails" class = "text-color pt-4 text-uppercase txt">Type </label>
                                 <input class="form-control" type="text" name="gName" value ="Suite" required readonly> 
@@ -206,11 +208,15 @@
 }
 
 /* Anything udner 1024px */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 600px) {
 	.image-grid {
 		--num-cols: 1;
 		--row-height: 200px;
 	}
+    .centered{
+        position:absolute;
+        font-size:10px;
+    }
 }
 
 .centered {

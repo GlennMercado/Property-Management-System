@@ -235,8 +235,8 @@
             <div class="col-md-3 brighten">
             <div class="image-container">
                 <a href="{{url('suites') }}">
-                    <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/hotel1.jpg" alt="Card image cap" style="max-height: 14rem">
-                        <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
+                    <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/hotel1.jpg" alt="Card image cap" style="max-height: 12.3rem">
+                        <div class="image-overlay card-img-top mt-3" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
                 </a>
@@ -280,8 +280,8 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{url('function_room') }}">
-                        <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/functionroom3.jpg" alt="Card image cap" style="max-height: 14rem">
-                            <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
+                        <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/functionroom3.jpg" alt="Card image cap" style="max-height: 12.3rem">
+                            <div class="image-overlay card-img-top mt-3" style="max-height: 12.3rem">
                                 <p>View</p>
                             </div>
                     </a>
@@ -312,7 +312,6 @@
                     <p class="card-text">We are offering commercial spaces for lease with an introductory rate for as low
                         as Php 3,500 per
                         month! </p>
-
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ url('guest_commercial') }}" class="text-white">
                             Apply Now

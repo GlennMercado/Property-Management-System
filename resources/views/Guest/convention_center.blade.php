@@ -16,8 +16,7 @@
                         </div>
                 </div>
             </div>
-
-
+            <!-- section 2 -->
             <div class="row first" id = "section2">
                 <div class="col-8 pt-8">
                     <!-- <h3>Description</h3> -->
@@ -99,6 +98,7 @@
                         various industries.</p>
                     </div>
                 </div>
+                <!-- section 3 -->
                 <form action="">
                         <div class="card-body"  id = "section3">
                             <h3 class = "title-color pt-8">Tell us about you</h3>
