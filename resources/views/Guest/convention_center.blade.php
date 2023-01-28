@@ -250,6 +250,7 @@
 p{
     font-family:sans-serif;
     text-align:justify;
+    font-size:18px;
 }
 .txt{
     font-family:sans-serif;

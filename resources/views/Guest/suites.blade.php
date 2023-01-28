@@ -42,6 +42,48 @@
                         </div>
                     </div>
                 </div>
+                <h1 class = "pt-4">House Rules</h1>
+                    <div class="row">
+                        <div class="col-2">
+                            <h2 class = "pt-4"><i class="bi bi-slash-circle mr-2" style = "color:red;"></i>No Smoking</h2>
+                        </div>
+                            <div class="col-6">
+                                <p class = "pt-4">Smoking is not allowed in any of the guest rooms or common areas of the hotel.</p>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <h2><i class="bi bi-alarm mr-2" style = "color:#411CAD;"></i>Quiet hours:</h2>
+                        </div>
+                        <div class="col-6">
+                            <p>Guests are asked to keep noise to a minimum between the hours of 10pm and 8am to 
+                                respect the comfort of other guests.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <h2><i class="bi bi-p-circle mr-2" style = "color:#1558A1;"></i>Parking:</h2>
+                        </div>
+                        <div class="col-6">
+                            <p>Parking is available for guests, but may be subject to additional charges.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <h2><i class="bi bi-exclamation-lg mr-2" style = "color:red;"></i>Damages:</h2>
+                        </div>
+                        <div class="col-6">
+                            <p>Guests will be held responsible for any damages caused to the room or hotel property.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <h2><i class="bi bi-key-fill mr-2" style = "color:#F9CF00"></i>Room keys:</h2>
+                        </div>
+                        <div class="col-6">
+                            <p>Guests are responsible for ensuring the security of their room key and will be charged for a replacement if it is not returned upon check-out.</p>
+                        </div>
+                    </div>
                 <!-- section 3 -->
                 <form action="">
                 <h1 class = "pt-8 d-flex justify-content-center text-uppercase title animated fadeInDown">Reserve</h1>
@@ -206,7 +248,6 @@
 .image-grid-row-2 {
 	grid-row: span 2;
 }
-
 /* Anything udner 1024px */
 @media screen and (max-width: 600px) {
 	.image-grid {
@@ -241,6 +282,7 @@
 p{
     font-family:sans-serif;
     text-align:justify;
+    font-size:18px;
 }
 .txt{
     font-family:sans-serif;

@@ -26,22 +26,22 @@
                         <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Product Name</th>
-                                    <th scope="col" style = "font-size:20px;">Item Description</th>
-                                    <th scope="col" style = "font-size:20px;">Available Stock</th>
-                                    <th scope="col" style = "font-size:20px;">Stock Level</th>
-                                    <th scope="col" style = "font-size:20px;">Stock Alert</th>
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Product Name</th>
+                                    <th scope="col" style = "font-size:18px;">Item Description</th>
+                                    <th scope="col" style = "font-size:18px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Level</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Alert</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                                 
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td style = "font-size:15px;">{{ $lists->name}}</td>
-                                        <td style = "font-size:15px;">{{ $lists->description}}</td>
-                                        <td style = "font-size:15px;">{{ $lists->total}}</td>
-                                        <td style = "font-size:15px;">{{ $lists->Stock_Level}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
                                             <td style = "font-size:25px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
                                         @else
