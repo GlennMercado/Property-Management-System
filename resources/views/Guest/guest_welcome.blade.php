@@ -299,7 +299,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-            <div class="image-container">
+                <div class="image-container">
                     <a href="{{url('commercial_spaces') }}">
                         <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap" style="max-height: 14rem">
                             <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
