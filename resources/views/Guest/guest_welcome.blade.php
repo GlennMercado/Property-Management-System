@@ -278,7 +278,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-            <div class="image-container">
+                <div class="image-container">
                     <a href="{{url('function_room') }}">
                         <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/functionroom3.jpg" alt="Card image cap" style="max-height: 14rem">
                             <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
@@ -433,18 +433,7 @@
         .imgslider {
             filter: brightness(70%);
         }
-        .brighten img {
-        -webkit-filter: brightness(100%);
-        -webkit-transition: all 1s ease;
-        -moz-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        -ms-transition: all 1s ease;
-        transition: all 1s ease;
-        }
-
-        .brighten img:hover {
-        -webkit-filter: brightness(50%);
-        }
+       
         .image-container {
     position: relative;
     }

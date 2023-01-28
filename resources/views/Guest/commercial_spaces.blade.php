@@ -11,17 +11,17 @@
                         <h1 class="image-text">Commercial Space</h1>
                         <div class="btn-container">
                         <!-- <a href = "#section2" class="btn btn-outline-light">Events</a> -->
-                        <a href = "#section3" class="btn btn-outline-light">Inquire Now</a>
+                        <a href = "#section" class="btn btn-outline-light">Inquire Now</a>
                         </div>
                 </div>
             </div>
-                <form action="">
-                    <div class="container-fluid bg-white mt-6" id="conventionCenter">
+                <form action="" >
+                    <div class="container-fluid bg-white mt-6" >
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-9 mt-5">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h2 class="mb-0">Commercial Space Inquiry and Application Form (Step 1)</h3>
+                                        <h2 class="mb-0"  id="section">Commercial Space Inquiry and Application Form (Step 1)</h3>
                                     </div>
                                 </div>
                                     <h3 class="text-muted">Business Information</h3>
