@@ -49,19 +49,19 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
-                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                @foreach($list as $lists)
                                 @if($lists->Housekeeping_Status == "Out of Order")
                                     <tr>
-                                        <td style = "font-size:18px;">{{$lists->Room_No}}</td>
-                                        <td style = "font-size:18px;">{{$lists->Status}}</td>
-                                        <td style = "font-size:18px; color:#E46000;">{{$lists->Housekeeping_Status}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Status}}</td>
+                                        <td style = "font-size:16px; color:#E46000;">{{$lists->Housekeeping_Status}}</td>
                                         <td>
                                             <!--Update Status button-->
                                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> 

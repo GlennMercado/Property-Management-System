@@ -15,7 +15,7 @@
                                 </button>
                                 </div>
                                 <h3 class="mb-0 title">Stock Purchase Reports</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
+                                <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
                             </div>
                         </div>
                     </div>

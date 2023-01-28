@@ -52,18 +52,18 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
-                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Housekeeping Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($list2 as $lists2)
                                 <tr>
                                     @if($lists2->Housekeeping_Status == 'Cleaned')
-                                    <td style = "font-size:18px; color:#000000;">{{ $lists2->Room_No }}</td>
-                                    <td style = "font-size:18px; color:#000000;">{{ $lists2->Status}}</td>
-                                    <td style = "font-size:18px; color:#5BDF4A;">{{ $lists2->Housekeeping_Status}}</td>
+                                    <td style = "font-size:16px; color:#000000;">{{ $lists2->Room_No }}</td>
+                                    <td style = "font-size:16px; color:#000000;">{{ $lists2->Status}}</td>
+                                    <td style = "font-size:16px; color:#5BDF4A;">{{ $lists2->Housekeeping_Status}}</td>
                                     @endif
                                 </tr>
                                 @endforeach
@@ -77,21 +77,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
-                                    <th scope="col" style = "font-size:20px;">Housekeeping Status</th>
-                                    <th scope="col" style = "font-size:20px;">Housekeeper</th>
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Housekeeping Status</th>
+                                    <th scope="col" style = "font-size:18px;">Housekeeper</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($list2 as $lists2)
                                 <tr>
                                     @if($lists2->Housekeeping_Status == 'Out of Service')
-                                    <td style = "font-size:18px;">{{ $lists2->Room_No }}</td>
-                                    <td style = "font-size:18px;">{{ $lists2->Status}}</td>
-                                    <td style = "font-size:18px; color:#E46000;">{{ $lists2->Housekeeping_Status}}</td>
-                                    <td style = "font-size:18px;">{{ $lists2->Room_Attendant}}</td>
+                                    <td style = "font-size:16px;">{{ $lists2->Room_No }}</td>
+                                    <td style = "font-size:16px;">{{ $lists2->Status}}</td>
+                                    <td style = "font-size:16px; color:#E46000;">{{ $lists2->Housekeeping_Status}}</td>
+                                    <td style = "font-size:16px;">{{ $lists2->Room_Attendant}}</td>
                                     <td>
                                         @if($lists2->Room_Attendant == "Unassigned")
                                             <!-- Assign Housekeeper Button -->
