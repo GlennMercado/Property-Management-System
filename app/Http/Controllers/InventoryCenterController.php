@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\purchasereports;
+use App\Models\stockscenters;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
-class PurchaseReportController extends Controller
+class InventoryCenterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,6 @@ class PurchaseReportController extends Controller
     public function index()
     {
         //
-        return view('StockPurchaseReport');
     }
 
     /**
@@ -36,37 +35,35 @@ class PurchaseReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function report(Request $request)
+    public function addstock(Request $request)
     {
-        
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
-            'unit' => 'required',
             'quantity' => 'required',
             'stock' => 'required',
-            'suppliername' => 'required'
-           ]);
-    
-           $stocks = new purchasereports;
+            'category' => 'required'
+       ]);
 
-           $stocks->name = $request->input('name');
-           $stocks->description = $request->input('description');
-           $stocks->suppliername = $request->input('suppliername');
-           $stocks->quantity = $request->input('quantity');
-           $stock->Stock_Level = $request->input('stock');
-           $stocks->unit = $request->input('unit');
-    
-           if($stock->save())
-            {
-                Alert::Success('Success', 'Stock Successfully Added!');
-            return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-                return redirect('StockCount')->with('Error', 'Failed!');
-            }
+       $stock = new stockscenters;
+
+       $stock->name = $request->input('name');
+       $stock->description = $request->input('description');
+       $stock->total = $request->input('quantity');
+       $stock->Stock_Level = $request->input('stock');
+       $stock->category = $request->input('category');
+
+       
+       if($stock->save())
+        {
+            Alert::Success('Success', 'Stock Successfully Submitted!');
+            return redirect('StockCenter')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
+            return redirect('StockCenter')->with('Error', 'Failed!');
+        }
     }
 
     /**
@@ -86,43 +83,58 @@ class PurchaseReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_report(Request $request)
+    public function edit_stock(Request $request)
     {
-        //
-        try {
+        try
+        {
             $this->validate($request,[
                 'productid' => 'required',
                 'name' => 'required',
                 'description' => 'required',
-                'unit' => 'required',
                 'quantity' => 'required',
-                'suppliername' => 'required'
+                'in' => 'required',
+                'out' => 'required',
+                'category' => 'required'
             ]);
-        
+            
             $productid = $request->input('productid');
             $name = $request->input('name');
-           $description = $request->input('description');
-           $suppliername = $request->input('suppliername');
-           $quantity = $request->input('quantity');
-           $unit = $request->input('unit');
-    
-           DB::table('purchasereports')->where('productid', $productid)->update(array
+            $description = $request->input('description');
+            $total = $request->input('quantity');
+            $in = $request->input('in');
+            $out = $request->input('out');
+            $category = $request->input('category');
+
+            if($in > 0)
+            {
+                $total = $total + $in;
+            }
+
+            if($out > 0)
+            {
+                $total = $total - $out;
+            }
+           
+            // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
+            //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
+           
+           DB::table('stockscenters')->where('productid', $productid)->update(array
             (
                 'productid' => $productid,
                 'name' => $name,
                 'description' => $description,
-                'unit' => $unit,
-                'quantity' => $quantity,
-                'suppliername' => $suppliername
+                'total' => $total,
+                'category' => $category
             ));
     
-           Alert::Success('Success', 'Report Successfully Updated!');
-           return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
+           Alert::Success('Success', 'Stock Successfully Updated!');
+           return redirect('StockCenter')->with('Success', 'Data Updated');
+          
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Failed', 'Stock Edit Failed!, Please try again.');
-            return redirect('StockCount')->with('Failed', 'Data not Updated');
+            Alert::Error('Failed', 'Stock Edit Failed!');
+            return redirect('StockCenter')->with('Failed', 'Data not Updated');
         }
     }
 

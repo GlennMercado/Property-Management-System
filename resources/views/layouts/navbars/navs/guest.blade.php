@@ -1,8 +1,8 @@
-<nav class="navbar fixed-top navbar-horizontal bg-white navbar-expand-md">
+<nav class="navbar fixed-top navbar-horizontal navbar-expand-md" style="background-color: #30bc6c">
     <div class="container px-2">
         <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 50px; height: 50px; margin-right:1%;">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <h2 class="text-default">NVDC Properties</h2>
+            <h2 class="text-white">NVDC Properties</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="ni ni-bullet-list-67 text-default"></span>
@@ -26,31 +26,31 @@
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('login') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('login') }}">
                         <i class="ni ni-key-25"></i>
                         <span class="nav-link-inner--text">{{ __('Login') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('register') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('register') }}">
                         <i class="ni ni-circle-08"></i>
                         <span class="nav-link-inner--text">{{ __('Register') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('about_us') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('about_us') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('About Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('contact_us') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('contact_us') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="{{ route('map')}}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('map')}}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>

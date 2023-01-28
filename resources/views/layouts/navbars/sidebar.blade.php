@@ -162,19 +162,31 @@
                     <div class="collapse" id="navbar-examples3">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockCount') }}">
-                                    <i class="bi bi-boxes text-success"></i> {{ __('Create Stock Count') }}
+                                <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
+                                    <i class="bi bi-ui-checks text-success"></i> {{ __('Stock Availability') }}
                                 </a>
                             </li>
-
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
-                                    <i class="bi bi-ui-checks text-success"></i> {{ __('Stock Availability Report') }}
+                                <a class="nav-link text-default" href="{{ route('StockCount') }}">
+                                    <i class="bi bi-boxes text-success"></i> {{ __('Hotel Inventory') }}
                                 </a>
                             </li>
-
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockCenter') }}">
+                                    <i class="bi bi-boxes text-success"></i> {{ __('Convention Center Inventory') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockFunction') }}">
+                                    <i class="bi bi-boxes text-success"></i> {{ __('Function Rooms Inventory') }}
+                                </a>
+                            </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
@@ -183,6 +195,7 @@
                                 </a>
                             </li>
                         </ul>
+
                     </div>
                 </li>
 
