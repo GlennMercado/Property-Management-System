@@ -112,7 +112,7 @@
         <!--Function Room Inventory-->
         <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock" id="function">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="function" style="display:none">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Product Name</th>
@@ -142,7 +142,7 @@
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
-                                    <div class="modal fade text-left" id="ModalView{{$lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                    <div class="modal fade text-left" id="ModalView{{$lists2->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -195,10 +195,14 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     @endforeach
+                                </tbody>
+                        </table>
+                    </div>
+                
                                 <!--Convention Center Inventory-->
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush datatable datatable-Stock" id="center">
+                                    <table class="table align-items-center table-flush datatable datatable-Stock" id="center" style="display:none">
                                         <thead class="thead-light">
                                         <tr>
                                         <th scope="col">Product Name</th>
@@ -217,7 +221,7 @@
                                         <td>{{ $lists3->description}}</td>
                                         <td>{{ $lists3->total}}</td>
                                         <td>{{ $lists3->Stock_Level}}</td>
-                                        @if($lists3->total <= $list3->Stock_Level)
+                                        @if($lists3->total <= $lists3->Stock_Level)
                                             <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
                                         @else
                                             <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
@@ -228,7 +232,7 @@
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
-                                    <div class="modal fade text-left" id="ModalView{{$lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                    <div class="modal fade text-left" id="ModalView{{$lists3->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -281,6 +285,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
+                                </tbody>
+                        </table>
+                    </div>
 
 </div>
 <script>

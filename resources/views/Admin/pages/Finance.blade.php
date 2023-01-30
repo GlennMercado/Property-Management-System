@@ -12,12 +12,12 @@
                                 <div class = "col">
                                     
                                     </a>
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                             Add Stocks
                                     </button>
                                 </div>
-                                <h3 class="mb-0 title">Function Rooms Inventory</h3>
-                                <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
+                                <h3 class="mb-0">Convention Center Inventory</h3>
+                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
                     </div>
@@ -26,12 +26,12 @@
                         <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:16px;">Product Name</th>
-                                    <th scope="col" style = "font-size:16px;">Item Description</th>
-                                    <th scope="col" style = "font-size:16px;">Available Stock</th>
-                                    <th scope="col" style = "font-size:16px;">Stock Level</th>
-                                    <th scope="col" style = "font-size:16px;">Stock Alert</th>
-                                    <th scope="col" style = "font-size:16px;">Action</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Item Description</th>
+                                    <th scope="col">Available Stock</th>
+                                    <th scope="col">Stock Level</th>
+                                    <th scope="col">Stock Alert</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                                 
@@ -117,7 +117,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <form method="POST" action="{{url('/edit_stock_function')}}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <div class = "row">
@@ -239,12 +239,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Function Room Stock</h5>
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Convention Center Stock</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/addstock_function') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/add_stock') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
@@ -337,63 +337,8 @@
 
 
     
-    <!--Validation                               
-       <script>
-                 
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {  
-            var forms = document.getElementsByClassName('needs-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-                }, false);
-            });
-            }, false);
-        })();
-                   
-        
-<script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-      columnDefs: [{
-          orderable: true,
-          className: '',
-          targets: 0
-      }]
-  });
-  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
-
-</script>
-       </script>-->
-<style>
-    .title{
-        text-transform:uppercase;
-        font-size:25px;
-        letter-spacing:2px;
-    }
-    .text-color{
-        font-size:18px;
-        color:#6C6C6C;
-    }
-    .cat{
-        color:#000000;
-        text-transform:uppercase;
-    }
-</style>
+                                 
+       
        <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
