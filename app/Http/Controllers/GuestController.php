@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\event_form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-
 
 class GuestController extends Controller
 {
@@ -59,6 +59,23 @@ class GuestController extends Controller
     public function commercial_spaces()
     {
         return view('Guest.commercial_spaces');
+    }
+    public function event_form()
+    {
+        return view('Guest.event_form');
+    }
+    public function store(Request $request)
+    {
+       if($file = $request->file('file')){
+            $name = $file->getClientOriginalName();
+            if($file->move('images', $name)){
+                $post = new event_form();
+                $post->image = $name;
+                $post->save();
+                return redirect()->route('event_form');
+            };
+       }
+       return redirect()->back();
     }
     public function guest_reservation(Request $request)
     {

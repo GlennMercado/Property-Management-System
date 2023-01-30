@@ -157,7 +157,17 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/function_room', [App\Http\Controllers\GuestController::class, 'function_room'])->name('function_room');
 	Route::get('/commercial_spaces', [App\Http\Controllers\GuestController::class, 'commercial_spaces'])->name('commercial_spaces');
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
-	
+	Route::get('/event_form', [App\Http\Controllers\GuestController::class, 'event_form'])->name('event_form');
+	Route::get('/download', function(){
+		$file = public_path()."/downloadablefiles/sample.pdf";
+
+		$header = array(
+			'Content-Type: application/pdf',
+		);
+
+		return Response::download($file, 'sample.pdf', $header);
+	});
+	Route::post('/store', 'App\Http\Controllers\GuestController@store')->name('store');
 });
 	
 
