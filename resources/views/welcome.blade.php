@@ -128,52 +128,76 @@
     <div class="container-fluid bg-white">
         <div class="row d-flex justify-content-center">
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/hotel1.jpg" alt="Card image cap"
-                    style="max-height: 14rem">
+            <div class="image-container">
+                <a href="{{url('suites') }}">
+                    <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/hotel1.jpg" alt="Card image cap" style="max-height: 12.3rem">
+                        <div class="image-overlay card-img-top mt-3" style="max-height: 12.3rem">
+                            <p>View</p>
+                        </div>
+                </a>
+            </div>
                 <div class="card-body">
                     <h5 class="card-title">Suites</h5>
                     <p class="card-text">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
-                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
                             Book Now
                         </a>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap"
-                    style="max-height: 14rem">
+            <div class="image-container">
+                    <a href="{{url('convention_center') }}">
+                        <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/convention2.jpg" alt="Card image cap" style="max-height: 14rem">
+                            <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
+                                <p>View</p>
+                            </div>
+                    </a>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Convention Center</h5>
                     <p class="card-text">Venue for personal and corporate
                         celebrations,
                         training/learning sessions and sports activities.</p>
-                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
                             Book Now
                         </a>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" alt="Card image cap"
-                    style="max-height: 14rem">
+                <div class="image-container">
+                    <a href="{{url('function_room') }}">
+                        <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/functionroom3.jpg" alt="Card image cap" style="max-height: 12.3rem">
+                            <div class="image-overlay card-img-top mt-3" style="max-height: 12.3rem">
+                                <p>View</p>
+                            </div>
+                    </a>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Function Rooms</h5>
                     <p class="card-text">Function room basic inclusions for either social event or trainings/seminar or
                         convention center.</p>
 
-                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
                             Book Now
                         </a>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <div class="col-md-3">
-                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap"
-                    style="max-height: 14rem">
+                <div class="image-container">
+                    <a href="{{url('commercial_spaces') }}">
+                        <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/cspaces2.jpg" alt="Card image cap" style="max-height: 14rem">
+                            <div class="image-overlay card-img-top mt-3" style="max-height: 14rem">
+                                <p>View</p>
+                            </div>
+                    </a>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Commercial Spaces</h5>
                     <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC
@@ -181,11 +205,11 @@
                         we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
 
-                    <button type="button" class="btn btn-success" style="border-radius: 20px;">
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                         <a href="{{ route('login') }}" class="text-white">
                             Book Now
                         </a>
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -320,6 +344,39 @@
         .imgslider {
             filter: brightness(70%);
         }
+    .image-container {
+    position: relative;
+    }
+
+    .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* black with 50% opacity */
+    color: white;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    }
+
+    .image-container:hover .image-overlay {
+    visibility: visible;
+    opacity: 1;
+    }
+
+    .image-overlay p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight:bold;
+    font-family:sans-serif;
+    letter-spacing:1px;
+    }
     </style>
 
     <script>

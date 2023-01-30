@@ -127,25 +127,25 @@
                         <table class="table align-items-center table-flush" id="available">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Room Size</th>
-                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
-                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Room Size</th>
+                                    <th scope="col" style = "font-size:18px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:18px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:17px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Available")
                                     <tr>
-                                        <td style = "font-size:17px;">{{ $lists->Room_No}}</td>
-                                        <td style = "font-size:17px;">{{ $lists->Room_Size}}</td>
-                                        <td style = "font-size:17px;">{{ $lists->No_of_Beds}}</td>
-                                        <td style = "font-size:17px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:17px; color:#39D972;">{{ $lists->Status}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:16px; color:#39D972;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->          
                                             <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -279,25 +279,25 @@
                         <table class="table align-items-center table-flush" id="reserved" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Room Size</th>
-                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
-                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Room Size</th>
+                                    <th scope="col" style = "font-size:18px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:18px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Reserved")
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:18px; color:#1C3A93;">{{ $lists->Status}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:16px; color:#1C3A93;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -494,25 +494,25 @@
                         <table class="table align-items-center table-flush" id="checkedin" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Room Size</th>
-                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
-                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Room Size</th>
+                                    <th scope="col" style = "font-size:18px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:18px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Checked-In")
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:18px; color:#D61600;">{{ $lists->Status}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:16px; color:#D61600;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -709,25 +709,25 @@
                         <table class="table align-items-center table-flush" id="checkedout" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Room No.</th>
-                                    <th scope="col" style = "font-size:20px;">Room Size</th>
-                                    <th scope="col" style = "font-size:20px;">No. of Beds</th>
-                                    <th scope="col" style = "font-size:20px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:20px;">Booking Status</th>
+                                    <th scope="col" style = "font-size:18px;">Room No.</th>
+                                    <th scope="col" style = "font-size:18px;">Room Size</th>
+                                    <th scope="col" style = "font-size:18px;">No. of Beds</th>
+                                    <th scope="col" style = "font-size:18px;">Extra Bed</th>
+                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col"style = "font-size:20px;">Action</th>
+                                    <th scope="col"style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
                                     @if($lists->Status == "Checked-Out")
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->Room_No}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Room_Size}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->No_of_Beds}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->Status}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -999,7 +999,7 @@
 <style>
     .title{
         text-transform:uppercase;
-        font-size:25px;
+        font-size:20px;
         letter-spacing:2px;
     }
     p{

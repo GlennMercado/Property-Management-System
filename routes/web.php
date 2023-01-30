@@ -30,7 +30,6 @@ Route::get('Map', function () { return view('Map');})->name('Map');
 
 
 
-
 Auth::routes();
 
 //Admin
@@ -138,8 +137,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 	
-
-
+	
 });
 
 //Guest
@@ -151,5 +149,12 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');
 	Route::get('/guest_event', [App\Http\Controllers\GuestController::class, 'guest_event'])->name('guest_event');
 	Route::get('/guest_commercial', [App\Http\Controllers\GuestController::class, 'guest_commercial'])->name('guest_commercial');
+	Route::get('/suites', [App\Http\Controllers\GuestController::class, 'suites'])->name('suites');
+	Route::get('/convention_center', [App\Http\Controllers\GuestController::class, 'convention_center'])->name('convention_center');
+	Route::get('/function_room', [App\Http\Controllers\GuestController::class, 'function_room'])->name('function_room');
+	Route::get('/commercial_spaces', [App\Http\Controllers\GuestController::class, 'commercial_spaces'])->name('commercial_spaces');
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
+	
 });
+	
+

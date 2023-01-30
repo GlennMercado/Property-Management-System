@@ -15,7 +15,7 @@
                                 </button>
                                 </div>
                                 <h3 class="mb-0 title">Stock Purchase Reports</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
+                                <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5>
                             </div>
                         </div>
                     </div>
@@ -25,20 +25,20 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:20px;">Item Name</th>
-                                    <th scope="col" style = "font-size:20px;">Supplier Name</th>
-                                    <th scope="col" style = "font-size:20px;">Description</th>
-                                    <th scope="col" style = "font-size:20px;">Available Stock</th>
-                                    <th scope="col" style = "font-size:20px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Item Name</th>
+                                    <th scope="col" style = "font-size:18px;">Supplier Name</th>
+                                    <th scope="col" style = "font-size:18px;">Description</th>
+                                    <th scope="col" style = "font-size:18px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td style = "font-size:18px;">{{ $lists->name}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->suppliername}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->description}}</td>
-                                        <td style = "font-size:18px;">{{ $lists->quantity}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->suppliername}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->quantity}}</td>
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>

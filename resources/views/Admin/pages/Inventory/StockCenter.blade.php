@@ -12,12 +12,12 @@
                                 <div class = "col">
                                     
                                     </a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                             Add Stocks
                                     </button>
                                 </div>
-                                <h3 class="mb-0">Convention Center Inventory</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
+                                <h3 class="mb-0 title">Convention Center Inventory</h3>
+                                <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
                     </div>
@@ -26,22 +26,22 @@
                         <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Item Description</th>
-                                    <th scope="col">Available Stock</th>
-                                    <th scope="col">Stock Level</th>
-                                    <th scope="col">Stock Alert</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style = "font-size:18px;">Product Name</th>
+                                    <th scope="col" style = "font-size:18px;">Item Description</th>
+                                    <th scope="col" style = "font-size:18px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Level</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Alert</th>
+                                    <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
                                 
                                 <tbody>
                                     @foreach ($list as $lists)
                                     <tr>
-                                        <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->total}}</td>
-                                        <td>{{ $lists->Stock_Level}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->name}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->description}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
                                             <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
                                         @else
@@ -350,6 +350,22 @@
 })
 
 </script>
+<style>
+    .title{
+        text-transform:uppercase;
+        font-size:25px;
+        letter-spacing:2px;
+    }
+    .text-color{
+        font-size:18px;
+        color:#6C6C6C;
+    }
+    .cat{
+        color:#000000;
+        text-transform:uppercase;
+    }
+</style>
+
     
     @endsection
 

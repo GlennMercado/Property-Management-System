@@ -44,6 +44,22 @@ class GuestController extends Controller
     {
         return view('Guest.guest_commercial_space');
     }
+    public function suites()
+    {
+        return view('Guest.suites');
+    }
+    public function convention_center()
+    {
+        return view('Guest.convention_center');
+    }
+    public function function_room()
+    {
+        return view('Guest.function_room');
+    }
+    public function commercial_spaces()
+    {
+        return view('Guest.commercial_spaces');
+    }
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;
