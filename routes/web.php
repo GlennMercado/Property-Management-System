@@ -86,6 +86,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Back Office
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
 
+	//Operation Management
+	Route::get('OperationManagement', function () {return view('Admin.pages.OperationManagement');})->name('OperationManagement'); 
+	
 	//Inventory Management
 	//Hotel Inventory
 	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');

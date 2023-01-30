@@ -266,7 +266,7 @@
     font-size:30px;
     text-decoration:underline;
     color:white;
-    top: 36.5%;
+    top: 30%;
     left: 86%;
     transform: translate(-50%, -50%);
     cursor:pointer;
