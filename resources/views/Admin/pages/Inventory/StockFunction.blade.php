@@ -117,7 +117,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <form method="POST" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{url('/edit_stock_function')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <div class = "row">
@@ -244,7 +244,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/add_stock') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/addstock_function') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">

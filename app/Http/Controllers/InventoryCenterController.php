@@ -35,7 +35,7 @@ class InventoryCenterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addstock(Request $request)
+    public function addstock_center(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
@@ -83,7 +83,7 @@ class InventoryCenterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_stock(Request $request)
+    public function edit_stock_center(Request $request)
     {
         try
         {

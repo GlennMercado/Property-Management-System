@@ -54,7 +54,7 @@ class PurchaseReportController extends Controller
            $stocks->description = $request->input('description');
            $stocks->suppliername = $request->input('suppliername');
            $stocks->quantity = $request->input('quantity');
-           $stock->Stock_Level = $request->input('stock');
+           $stocks->Stock_Level = $request->input('stock');
            $stocks->unit = $request->input('unit');
     
            if($stock->save())

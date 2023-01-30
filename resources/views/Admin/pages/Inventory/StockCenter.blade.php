@@ -117,7 +117,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>                    
                                                 </div>
-                                                <form method="POST" action="{{url('/edit_stock')}}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{url('/edit_stock_center')}}" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <div class = "row">
@@ -244,7 +244,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/add_stock') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/addstocks_center') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
@@ -327,59 +327,9 @@
             </div>
         </div>
     </div>
-    <!-- </div>     
     
-            </div>
-        </div>
-    </div> -->
-   
 
-
-
-    
-    <!--Validation                               
-       <script>
-                 
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {  
-            var forms = document.getElementsByClassName('needs-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-                }, false);
-            });
-            }, false);
-        })();
-                   
-        
 <script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-      columnDefs: [{
-          orderable: true,
-          className: '',
-          targets: 0
-      }]
-  });
-  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
-
-</script>
-       </script>-->
-       <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 

@@ -175,16 +175,16 @@
                                                         <div class = "row">
                                                             <div class = "col">
                                                                 <label class="text-left pt-4 text-color">Unit </label> 
-                                                                    <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
                                                             </div>
-                                                                <div class = "col">
-                                                                    <label class="text-left pt-4 text-color">Quantity </label>
-                                                                        <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
-                                                                </div>
-                                                                <div class = "col">
-                                                                    <p class="text-left">Stock Level :
-                                                                        <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required></p>
-                                                                </div>
+                                                            <div class = "col">
+                                                                <label class="text-left pt-4 text-color">Quantity </label>
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
+                                                            </div>
+                                                            <div class = "col">
+                                                                <label class="text-left pt-4 text-color">Stock Level :</label>
+                                                                <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required>
+                                                            </div>
                                                         </div>
                                                         <label class="text-left pt-4 text-color">Supplier Name </label>
                                                             <select class="form-control mt-2" name="suppliername" required>
