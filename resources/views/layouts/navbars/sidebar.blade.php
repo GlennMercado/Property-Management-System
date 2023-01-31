@@ -210,6 +210,7 @@
                             <i class="bi bi-person-lines-fill text-success"></i> {{ __('Operations Management') }}
                         </a>
                     </li>
+                    <!--Finance-->
                     <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Finance') }}">
                         <i class="bi bi-person-lines-fill text-success"></i> {{ __('Finance') }}
