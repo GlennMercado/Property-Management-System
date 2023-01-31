@@ -205,6 +205,11 @@
                         <i class="bi bi-person-lines-fill text-success"></i> {{ __('Maintenance') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('Finance') }}">
+                        <i class="bi bi-person-lines-fill text-success"></i> {{ __('Finance') }}
+                    </a>
+                </li>
 
             </ul>
             <!-- Divider -->
