@@ -333,163 +333,205 @@
             </div>
         </div>
     </div>
-    <style>
-        .img {
-            height: 700px;
-            object-fit: cover;
-            filter: brightness(50%)
-        }
+     <!-- scroll-top button -->
+     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
+<style>
+.img {
+    height: 700px;
+    object-fit: cover;
+    filter: brightness(50%)
+}
 
+.image-text {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    filter: brightness(50%);
+    font-family: montserrat;
+}
+
+.image-text2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 65px;
+    letter-spacing: 1px;
+    font-family: montserrat;
+}
+.group {
+    display: flex;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: montserrat;
+}
+
+.group p {
+    text-transform: uppercase;
+}
+
+a .p1{
+    text-decoration: none;
+    color: white;
+}
+a .p1:hover{
+    color:#B4B4B4;
+    transition: 0.3s ease-in-out;
+}
+.txt {
+    font-family: montserrat;
+}
+
+.txt1 {
+    font-size: 60px;
+}
+
+.txt2 {
+    color: #000000;
+    filter: brightness(100%);
+    font-size: 30px;
+
+}
+
+.txt3 {
+    font-size: 13px;
+}
+
+.txt4 {}
+
+.txt5 {
+    width: 200px;
+}
+
+.imgslider {
+    max-height: 30rem;
+    object-fit: cover;
+}
+
+/* overlay */
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* black with 50% opacity */
+    color: white;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+img {
+    transition: 0.4s ease-in-out;
+}
+
+.image-container:hover .image-overlay {
+    visibility: visible;
+    opacity: 1;
+}
+.image-container:hover img{
+    transform: scale(1.2);   
+}
+.image-overlay p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+/* scroll-top-button */
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #484848;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    opacity: 0.5;
+    }
+
+    #myBtn:hover {
+    background-color: #000000;
+    }
+    html {
+    scroll-behavior: smooth;
+    }
+    @media (max-width: 600px) {
         .image-text {
-            position: absolute;
-            top: 44%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 36px;
-            font-weight: bold;
-            text-align: center;
-            filter: brightness(50%);
-            font-family: montserrat;
+            font-size: 25px;
+            margin-top:15px;
+            filter: brightness(80%);
         }
 
         .image-text2 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            font-size: 65px;
-            letter-spacing: 1px;
-            font-family: montserrat;
+            font-size: 35px;
+            white-space: nowrap;
         }
+
         .group {
-            display: flex;
-            position: absolute;
-            top: 58%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            letter-spacing: 1px;
-            font-family: montserrat;
-        }
-
-        .group p {
-            text-transform: uppercase;
-        }
-
-        a .p1{
-            text-decoration: none;
-            color: white;
-        }
-        a .p1:hover{
-            color:#B4B4B4;
-            transition: 0.3s ease-in-out;
-        }
-        .txt {
-            font-family: montserrat;
-        }
-
-        .txt1 {
-            font-size: 60px;
-        }
-
-        .txt2 {
-            color: #000000;
-            filter: brightness(100%);
-            font-size: 30px;
-
-        }
-
-        .txt3 {
-            font-size: 13px;
-        }
-
-        .txt4 {}
-
-        .txt5 {
-            width: 200px;
-        }
-
-        .imgslider {
-            max-height: 30rem;
-            object-fit: cover;
-        }
-
-        /* overlay */
-        .image-container {
-            position: relative;
+            padding-bottom:50px;
+            padding-left:10px;
+            white-space: nowrap;
             overflow: hidden;
         }
 
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* black with 50% opacity */
-            color: white;
-            text-align: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
+        .group p {
+            font-size: 8px;
         }
 
-        img {
-            transition: 0.4s ease-in-out;
+        .txt5 {
+            padding-right: 185px;
         }
+        
+    }
+</style>
+    <script>
+        // code for scroll-top button
+        let mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
 
-        .image-container:hover .image-overlay {
-            visibility: visible;
-            opacity: 1;
+        function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
         }
-        .image-container:hover img{
-            transform: scale(1.2);   
         }
-        .image-overlay p {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            font-weight: bold;
-            font-family: sans-serif;
-            letter-spacing: 1px;
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         }
-
-        @media (max-width: 600px) {
-            .image-text {
-                font-size: 25px;
-                margin-top:15px;
-                filter: brightness(80%);
-            }
-
-            .image-text2 {
-                font-size: 35px;
-                white-space: nowrap;
-            }
-
-            .group {
-                padding-bottom:50px;
-                padding-left:10px;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            .group p {
-                font-size: 8px;
-            }
-
-            .txt5 {
-                padding-right: 185px;
-            }
-            
-        }
-    </style>
+    </script>
 @endsection

@@ -4,8 +4,103 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
-        <h1 class="mx-auto pt-6 text-uppercase title">Suites</h1>
+        <p class="mx-auto pt-6 text-uppercase title"   id = "section1">Reserve Now</p>
         <div class="card-body">
+            <!-- section1 -->
+        <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
+                    enctype="multipart/form-data">
+
+                    {{ csrf_field() }}
+                        <div class="row">
+                            <div class="card-body bg-white" style="border-radius: 18px">
+                                <div class="row">
+                                    <div class="col">
+                                    <p class="text-left">Guest Name: </p>
+                                    @foreach ($guest as $guests)
+                                        <input type="hidden" name="gName" value="{{ $guests->name }}" />
+                                        <input class="form-control" type="text" name="gName"
+                                            value="{{ $guests->name }}" readonly>
+                                    @endforeach
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-left pt-4">Check in Date/Time: </p>
+                                        <input class="form-control chck" name="checkIn" type="date"
+                                            onkeydown="return false" id="example-datetime-local-input" required>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-left pt-4">Check out Date/Time: </p>
+                                        <input class="form-control chck" name="checkOut" type="date"
+                                            onkeydown="return false" id="example-datetime-local-input" required>
+                                    </div>
+                                </div>
+
+                                <p class="text-left pt-4">Room No - Beds: </p>
+                                <select name="room_no" class="form-control" required>
+                                    <option selected="true" disabled="disabled">Select</option>
+                                    @foreach ($room as $rooms)
+                                        @if ($rooms->Status == 'Available')
+                                            <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
+                                                {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-left pt-4">Number of Pax: </p>
+                                        <select name="pax" class="form-control" id="pax_num"
+                                            onchange="price_count()" required>
+                                            <option selected="true" disabled="disabled">Select</option>
+                                            @for ($count = 1; $count <= 4; $count++)
+                                                <option value="{{ $count }}" id="room_pax">
+                                                    {{ $count }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-left pt-4">Mobile No.: </p>
+                                        <input class="form-control" type="tel" minlength="11" maxlength="11"
+                                            name="mobile" required>
+                                    </div>
+                                </div>
+                                    <!--
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-left">Number of Adult: </p>
+                                                <select name="adult" class="form-control" required>
+                                                    <option selected="true" disabled="disabled">Select</option>
+                                                    @for ($count = 1; $count <= 4; $count++)
+                                        <option value="{{ $count }}">{{ $count }}</option>
+                                        @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <p class="text-left">Number of Children: </p>
+                                            <select name="child" class="form-control" required>
+                                                <option selected="true" disabled="disabled">Select</option>
+                                                @for ($count = 1; $count <= 4; $count++)
+                                                    <option value="{{ $count }}">{{ $count }}</option>
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                    </div>-->
+
+                               
+                                <p class="pt-4 txt">Price: </p>
+                                <input class="form-control" id="room_price" readonly>
+                                <p>Additional P1,500.00/pax</p>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input type="submit" class="btn btn-success prevent_submit" style = "width:400px;"value="Submit" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+                <!-- section2 suite -->
+                <p class = "d-flex justify-content-center text-uppercase title pt-4">Suites</p>
             <div class="image-grid">
                 <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
@@ -16,13 +111,13 @@
                 <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter"
                     src="{{ asset('nvdcpics') }}/hotel7.jpg">
             </div>
-            <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div>
-            <!-- section 2 -->
-            <h1 class="text-center text-uppercase lg pt-4 title animated fadeIn">Booking</h1>
+            <!-- <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div> -->
+            <!-- section 3 -->
+            <p class="text-center text-uppercase lg pt-4 title animated fadeIn title">About our Suites</p>
 
             <div class="row">
                 <div class="col-8 pt-4">
-                    <h3>Description</h3>
+                    <h3 class = "txt">Description</h3>
                     <p>Our Superior Double Room offers comfort and style. The room features a comfortable double bed, a
                         flat-screen TV, a seating area, and a private bathroom with a rain shower. Guests can also enjoy
                         the hotel's garden views from the room's private balcony.</p>
@@ -35,26 +130,26 @@
                     <div class="card" style="width: 100%;  background-color: #D7D7D7;">
                         <img class="card-img-top">
                         <div class="card-body">
-                            <h2 class="card-title d-flex justify-content-center uppercase text-uppercase title">Room
-                                Highlights</h2>
+                            <p class="card-title d-flex justify-content-center uppercase text-uppercase font-weight-bold title">Room
+                                Highlights</p>
                             <p class="card-text">Highly rated by recent guests</p>
                             <p class="card-text">Clean, comfortable and quiet</p>
-                            <a href="#section3" class="btn btn-success d-flex justify-content-center">Reserve Now</a>
+                            <a href="#section1" class="btn btn-success d-flex justify-content-center">Reserve Now</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <h1 class="pt-4">House Rules</h1>
+            <h1 class="pt-4 txt">House Rules</h1>
             <div class="row">
                 <div class="col-2">
-                    <h2 class="pt-4"><i class="bi bi-slash-circle mr-2" style="color:red;"></i>No Smoking</h2>
+                    <h2 class="pt-4 txt"><i class="bi bi-slash-circle mr-2" style="color:red;"></i>No Smoking</h2>
                 </div>
                 <div class="col-6">
-                    <p class="pt-4">Smoking is not allowed in any of the guest rooms or common areas of the hotel.</p>
+                    <p class="pt-4 txt">Smoking is not allowed in any of the guest rooms or common areas of the hotel.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 txt">
                     <h2><i class="bi bi-alarm mr-2" style="color:#411CAD;"></i>Quiet hours:</h2>
                 </div>
                 <div class="col-6">
@@ -63,7 +158,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 txt">
                     <h2><i class="bi bi-p-circle mr-2" style="color:#1558A1;"></i>Parking:</h2>
                 </div>
                 <div class="col-6">
@@ -71,15 +166,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 txt">
                     <h2><i class="bi bi-exclamation-lg mr-2" style="color:red;"></i>Damages:</h2>
                 </div>
-                <div class="col-6">
+                <div class="col-6 txt">
                     <p>Guests will be held responsible for any damages caused to the room or hotel property.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 txt">
                     <h2><i class="bi bi-key-fill mr-2" style="color:#F9CF00"></i>Room keys:</h2>
                 </div>
                 <div class="col-6">
@@ -88,57 +183,10 @@
                 </div>
             </div>
             <!-- section 3 -->
-            <form action="">
-                <h1 class="pt-8 d-flex justify-content-center text-uppercase title animated fadeInDown">Reserve</h1>
-                <div class="row scrollspy-example" id="section3" data-bs-spy="scroll" data-bs-target="#navbar-example2"
-                    data-bs-offset="0" tabindex="0">
-                    <div class="col-6">
-                        <label for="Stockdetails" class="text-color pt-4 text-uppercase txt">Type </label>
-                        <input class="form-control" type="text" name="gName" value="Suite" required readonly>
-                    </div>
-                    <div class="col-6">
-                        <label for="Stockdetails" class="text-color pt-4 text-uppercase txt">Mobile </label>
-                        <input class="form-control" type="number" name="gName" value="Suite" required>
-                    </div>
-                    <div class="col-6 ">
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="Stockdetails" class="text-color pt-4 text-uppercase txt">Check-in date </label>
-                        <input class="form-control" type="date" name="gName" required>
-                    </div>
-                    <div class="col-6">
-                        <label for="Stockdetails" class="text-color pt-4 text-uppercase txt">Check-out date </label>
-                        <input class="form-control" type="date" name="gName" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p class="text-left pt-4 text-uppercase txt">Pax Count</p>
-                        <select name="extra_bed" class="form-control" required>
-                            <option selected disabled value="">Select</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <p class="text-left pt-4 text-uppercase txt">No. of Bed/s</p>
-                        <select name="extra_bed" class="form-control" required>
-                            <option selected disabled value="">Select</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="parent">
-                    <input type="submit" class="btn btn-success mb-2 mt-2 mt-4" value="Submit" style="width:300px;" />
-                </div>
-            </form>
+            
+            </div>
         </div>
+    </div>
         <!-- Information -->
         <div class="container">
             <div class="wrapper">
@@ -223,6 +271,8 @@
                 </div>
             </div>
         </div>
+        <!-- scroll-top button -->
+        <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
         <style>
             body {
                 margin: 0;
@@ -290,17 +340,18 @@
             .container {}
 
             p {
-                font-family: sans-serif;
+                font-family: montserrat;
                 text-align: justify;
                 font-size: 18px;
             }
 
             .txt {
-                font-family: sans-serif;
+                font-family: montserrat;
+                
             }
-
             .title {
                 letter-spacing: 1px;
+                font-size:30px;
             }
 
             .scrl {
@@ -316,7 +367,30 @@
                 display: flex;
                 justify-content: center;
             }
+            html {
+            scroll-behavior: smooth;
+            }
+            /* scroll to top arrow */
+            /* #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #484848;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+            opacity: 0.5;
+            }
 
+            #myBtn:hover {
+            background-color: #555;
+            } */
             /* .centered {
         font-size:30px;
       position: absolute;
@@ -327,6 +401,57 @@
       -webkit-text-stroke-color: black;
     } */
         </style>
+        <script>
+        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('.chck').attr('min', maxDate);
+        });
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+
+        function price_count() {
+            var pax_num = document.getElementById("pax_num");
+            var room_price = document.getElementById("room_price");
+            if (pax_num.value == 1) {
+                room_price.value = "P2,500.00";
+            } else if (pax_num.value == 2) {
+                room_price.value = "P4,000.00";
+            } else if (pax_num.value == 3) {
+                room_price.value = "P5,500.00";
+            } else if (pax_num.value == 4) {
+                room_price.value = "P6,500.00";
+            }
+        }
+
+                // code for scroll-top button
+        // let mybutton = document.getElementById("myBtn");
+        // window.onscroll = function() {scrollFunction()};
+
+        // function scrollFunction() {
+        // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     mybutton.style.display = "block";
+        // } else {
+        //     mybutton.style.display = "none";
+        // }
+        // }
+        // function topFunction() {
+        // document.body.scrollTop = 0;
+        // document.documentElement.scrollTop = 0;
+        // }
+
+    </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <!-- <img class="card-img-top mt-2 ml-5 largepic" src="{{ asset('nvdcpics') }}/hotel1.jpg"> -->
         @include('layouts.footers.guest')

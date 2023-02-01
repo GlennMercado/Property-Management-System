@@ -12,12 +12,9 @@ class GuestController extends Controller
 {
     public function welcome()
     {
-        $email = Auth::user()->email;
-        $list = DB::select('SELECT * FROM hotel_reservations');
-	    $room = DB::select('SELECT * FROM novadeci_suites');
-        $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
+       
         
-        return view('Guest.guest_welcome', ['list'=>$list, 'room'=>$room, 'guest'=>$guest]);
+        return view('Guest.guest_welcome');
     }
     public function about_us()
     {
@@ -45,7 +42,12 @@ class GuestController extends Controller
     }
     public function suites()
     {
-        return view('Guest.suites');
+        $email = Auth::user()->email;
+        $list = DB::select('SELECT * FROM hotel_reservations');
+	    $room = DB::select('SELECT * FROM novadeci_suites');
+        $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
+        
+        return view('Guest.suites', ['list'=>$list, 'room'=>$room, 'guest'=>$guest]);
     }
     public function convention_center()
     {
