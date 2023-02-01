@@ -14,9 +14,11 @@ class HotelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function hotel_reservation_form()
     {
-        return view('pages.Reservations.HotelReservationForm');
+        $list = DB::select('SELECT * FROM hotel_reservations');
+		$room = DB::select('SELECT * FROM novadeci_suites');    
+        return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room]);
     }
      
     /**
@@ -89,31 +91,87 @@ class HotelController extends Controller
         
     }
 
-    public function update_payment($id, $no)
+    public function update_payment($id, $no, $check)
     {
         $reserveno = $id;
         $roomno = $no;
+        $isvalid = $check;
 
         $stats = "Paid";
         $stats2 = "Reserved";
 
-        $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Available'");
-        
-        if($check)
+        if($isvalid == true)
         {
-            DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
-            DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
-    
-            Alert::Success('Success', 'Reservation successfully updated!');
-            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Available'");
+        
+            if($check)
+            {
+                DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+                DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+        
+                Alert::Success('Success', 'Reservation successfully updated!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Room is already reserved!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
         }
         else
         {
-            Alert::Error('Failed', 'Room is already reserved!');
+            Alert::Error('Failed', 'Reservation is not available!');
             return redirect('HotelReservationForm')->with('Success', 'Data Saved');
-        }
+        }    
+    }
 
-        
+    public function update_booking_status($id, $no, $check, $stats)
+    {
+            $reserveno = $id;
+            $roomno = $no;
+            $isvalid = $check;
+            
+            $status = $stats;
+            
+            if($status == "Checked-In")
+            {
+                if($isvalid == true)
+                {
+                    DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Booking_Status' => $status));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
+    
+                    Alert::Success('Success', 'Reservation successfully updated!');
+                    return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                }
+                else
+                {
+                    Alert::Error('Error', 'Reservation is not available!');
+                    return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                }
+            }
+            if($status == "Checked-Out")
+            {
+                if($isvalid == true)
+                {
+                    $hstatus = "Out of Service";
+                    DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array(
+                        'Booking_Status' => $status,
+                        'Isvalid' => false
+                    ));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
+                    DB::table('housekeepings')->where('Room_No', $roomno)->update(array('Housekeeping_Status' => $hstatus));
+
+
+                    Alert::Success('Success', 'Reservation successfully updated!');
+                    return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                }
+                else
+                {
+                    Alert::Error('Error', 'Reservation is not available!');
+                    return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                }
+            }
+            
     }
     /**
      * Display the specified resource.

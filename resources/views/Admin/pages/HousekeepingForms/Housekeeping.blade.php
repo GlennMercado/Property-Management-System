@@ -54,7 +54,7 @@
                                 <tr>
                                     <th scope="col" style = "font-size:18px;">Room No.</th>
                                     <th scope="col" style = "font-size:18px;">Booking Status</th>
-                                    <th scope="col" style = "font-size:18px;">Housekeeping Status</th>
+                                    <!-- <th scope="col" style = "font-size:18px;">Housekeeping Status</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +63,7 @@
                                     @if($lists2->Housekeeping_Status == 'Cleaned')
                                     <td style = "font-size:16px; color:#000000;">{{ $lists2->Room_No }}</td>
                                     <td style = "font-size:16px; color:#000000;">{{ $lists2->Status}}</td>
-                                    <td style = "font-size:16px; color:#5BDF4A;">{{ $lists2->Housekeeping_Status}}</td>
+                                    <!-- <td style = "font-size:16px; color:#5BDF4A;">{{ $lists2->Housekeeping_Status}}</td> -->
                                     @endif
                                 </tr>
                                 @endforeach
