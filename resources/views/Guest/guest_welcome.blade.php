@@ -1,28 +1,29 @@
 @extends('layouts.guest', ['class' => 'bg-light'])
 
 @section('content')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <div class="position-relative">
         <img class="img" src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" style="width:100%;">
         <h2 class="image-text font-weight-light uppercase">Welcome to</h2>
         <h1 class="image-text2 font-weight-light uppercase">Novadeci Properties</h1>
         <div class="group">
-            <a href="#">
-                <p class="mr-2">hotel </p>
+            <a href="#section2">
+                <p class="mr-2 p1">hotels </p>
             </a>
-            <a href="#">
-                <p class="mr-2">convention center </p>
+            <a href="{{ url('convention_center') }}">
+                <p class="mr-2 p1">convention center </p>
             </a>
-            <a href="#">
-                <p class="mr-2">function rooms </p>
+            <a href="{{ url('function_room') }}">
+                <p class="mr-2 p1">function rooms </p>
             </a>
-            <a href="#">
-                <p class="mr-2">commercial spaces </p>
+            <a href="{{ url('commercial_spaces') }}">
+                <p class="mr-2 p1">commercial spaces </p>
             </a>
         </div>
     </div>
-    <div class="container-fluid bg-white pt-4">
+    <!-- section 2 -->
+    <div class="container-fluid bg-white pt-4" id = "section2">
         <p
             class=" pt-2 pr-6 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
             our</p>
@@ -40,8 +41,8 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Suites</h5>
-                    <p class="card-text">P2,500.00 per night with breakfast
+                    <p class="txt" style = "font-weight:bold;">Suites</p>
+                    <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
                             <a href="{{ route('login') }}" class="text-white">
@@ -57,12 +58,12 @@
                             alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
-                        </div>
+                        </div> 
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Convention Center</h5>
-                    <p class="card-text">Venue for personal and corporate
+                    <p class="card-title txt" style = "font-weight:bold;">Convention Center</p>
+                    <p class="card-text txt">Venue for personal and corporate
                         celebrations,
                         training/learning sessions and sports activities.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
@@ -83,8 +84,8 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Function Rooms</h5>
-                    <p class="card-text">Function room basic inclusions for either social event or trainings/seminar or
+                    <p class="card-title txt" style = "font-weight:bold;">Function Rooms</p>
+                    <p class="card-text txt">Function room basic inclusions for either social event or trainings/seminar or
                         convention center.</p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
@@ -104,9 +105,9 @@
                         </div>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Commercial Spaces</h5>
-                    <p class="card-text">Looking for a place for your business to grow your market? Here at NVDC
+                <div class="card-body sec2">
+                    <p class="card-title txt" style = "font-weight:bold;">Commercial Spaces</p>
+                    <p class="card-text txt">Looking for a place for your business to grow your market? Here at NVDC
                         Properties,
                         we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
@@ -120,40 +121,47 @@
             </div>
         </div>
     </div>
+    <!-- section 3 -->
     <div class="container-fluid bg-white pt-4">
         <div class="card-body">
             <p
                 class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
                 Nvdc</p>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
-
-            <div class="row ml-2 pt-4">
-                <div class="col-7">
-                    <p class="txt txt3">The convention center houses function rooms which can accomodate from small groups
+            
+        <div class="row d-flex justify-content-center">
+            <div class="cards1" style="">
+                <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg" alt="Card image cap"
+                    style="max-height:17rem;">
+            </div>
+            <div class="col-md-6 text-left mt-5 ">
+                <div style="margin-left: 7%;">
+                <p class="txt txt3 justify-content">The convention center houses function rooms which can accomodate from small groups
                         and up to 400 guests.
-                    </p>
-                    <p class="txt txt3">Its main activity center, very much appropriate for large-scale events can be filled
+                        <br>
+                        <br>
+                        Its main activity center, very much appropriate for large-scale events can be filled
                         up to 2,500 guests!
-                    </p>
-                    <p class="txt txt3">Also within the complex is a 17-room hotel with room size of 26-38 sq. meters.
-                    </p>
-                    <p class="txt txt3">
+                        <br>
+                        <br>
+                        Also within the complex is a 17-room hotel with room size of 26-38 sq. meters.
+                        <br>
+                        <br>
                         The perfect pre-event prep place or post-event recharging place! Parking
                         concerns
-                    </p>
-                    <p class="txt txt3">
+                        <br>
+                        <br>
                         Never a problem with over a hundred parking spaces for 2-wheel and 4-wheel
                         vehicles
                     </p>
                 </div>
-                <div class="col-5">
-                    <img src="{{ asset('nvdcpics') }}/convention.jpg" alt="" style="max-height: 15rem">
-                </div>
             </div>
         </div>
     </div>
+</div>
+<!-- section 4 -->
     <div class="container-fluid bg-white pt-6">
-        <div class="card-body">
+        <div class="card-body row d-flex justify-content-center">
             <div class="container">
                 <div class="row g-2">
                     <div class="col-3">
@@ -179,7 +187,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <div class="container-fluid bg-white pt-4 ">
         <div class="card-body ">
             <p
@@ -326,7 +334,6 @@
         </div>
     </div>
     <style>
-        /* section1 */
         .img {
             height: 700px;
             object-fit: cover;
@@ -358,7 +365,6 @@
             letter-spacing: 1px;
             font-family: montserrat;
         }
-
         .group {
             display: flex;
             position: absolute;
@@ -376,11 +382,14 @@
             text-transform: uppercase;
         }
 
-        a {
+        a .p1{
             text-decoration: none;
-            color: inherit;
+            color: white;
         }
-
+        a .p1:hover{
+            color:#B4B4B4;
+            transition: 0.3s ease-in-out;
+        }
         .txt {
             font-family: montserrat;
         }
@@ -456,24 +465,35 @@
 
         @media (max-width: 600px) {
             .image-text {
-                font-size: 15px;
+                font-size: 25px;
+                margin-top:15px;
+                filter: brightness(80%);
             }
 
             .image-text2 {
-                font-size: 20px;
+                font-size: 35px;
+                white-space: nowrap;
             }
 
-            .group {}
+            .group {
+                padding-bottom:50px;
+                padding-left:10px;
+                white-space: nowrap;
+                overflow: hidden;
+            }
 
             .group p {
-                font-size: 5px;
+                font-size: 8px;
             }
 
             .txt5 {
                 padding-right: 185px;
             }
+            
         }
     </style>
     @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>
 @endsection
+    
+
