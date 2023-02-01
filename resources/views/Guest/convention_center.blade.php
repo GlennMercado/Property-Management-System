@@ -9,10 +9,10 @@
             <div class="image-grid">
                 <div class="image-container">
                     <img class="hw-20 img" src="{{ asset('nvdcpics') }}/convention2.jpg" style = "width:100%;">
-                        <h1 class="image-text">Convention Center</h1>
+                        <p class="image-text title">Convention Center</p>
                         <div class="btn-container">
-                        <a href = "#section2" class="btn btn-outline-light">Events</a>
-                        <a href = "#section3" class="btn btn-outline-light">Make Event</a>
+                        <a href = "#section2" class="btn btn-outline-light txt">Events</a>
+                        <a href = "#section3" class="btn btn-outline-light txt">Make Event</a>
                         </div>
                 </div>
             </div>
@@ -247,15 +247,20 @@
     width: 100%;
     text-align: center;
 }
+.btn:hover{
+    background-color:#909090;
+    transition:0.5s ease-in-out;
+}
 p{
-    font-family:sans-serif;
+    font-family:montserrat;
     text-align:justify;
     font-size:18px;
 }
 .txt{
-    font-family:sans-serif;
+    font-family:montserrat;
 }
 .title {
+    font-family:montserrat;
     letter-spacing:1px;
 }
 .scrl {
@@ -268,21 +273,24 @@ p{
   display: flex;
   justify-content: center;
 }
-@media (max-width: 800px){
-    .btn-container {  
-        top: 400px;   
+html {
+    scroll-behavior: smooth;
     }
-}
-        
-/* .centered {
-    font-size:30px;
-  position: absolute;
-  bottom: 410px;
-  right: 200px;
-  color:white;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
-} */
+    @media (max-width: 800px){
+        .btn-container {  
+            top: 400px;   
+        }
+    }
+            
+    /* .centered {
+        font-size:30px;
+    position: absolute;
+    bottom: 410px;
+    right: 200px;
+    color:white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    } */
 </style>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
 <script>
