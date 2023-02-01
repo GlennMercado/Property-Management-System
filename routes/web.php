@@ -47,12 +47,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
-	Route::get('/update/{id}/{no}', 'App\Http\Controllers\HotelController@update_payment');
-	
-	Route::get('HotelReservationForm', function () {
-		$list = DB::select('SELECT * FROM hotel_reservations');
-		$room = DB::select('SELECT * FROM novadeci_suites');
-		return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room]);})->name('HotelReservationForm');
+	Route::get('/update/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
+
+	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
 	//For Housekeeping	
 	Route::get('Housekeeping', function () {
@@ -90,6 +88,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('OperationManagement', function () {return view('Admin.pages.OperationManagement');})->name('OperationManagement'); 
 	
 	//Inventory Management
+
 	//Hotel Inventory
 	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');

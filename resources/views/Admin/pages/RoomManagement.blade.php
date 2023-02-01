@@ -131,10 +131,9 @@
                                     <th scope="col" style = "font-size:18px;">Room Size</th>
                                     <th scope="col" style = "font-size:18px;">No. of Beds</th>
                                     <th scope="col" style = "font-size:18px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:18px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,7 +144,6 @@
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
                                         <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:16px; color:#39D972;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->          
                                             <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
@@ -283,10 +281,9 @@
                                     <th scope="col" style = "font-size:18px;">Room Size</th>
                                     <th scope="col" style = "font-size:18px;">No. of Beds</th>
                                     <th scope="col" style = "font-size:18px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:18px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -296,21 +293,20 @@
                                         <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
                                         <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
-                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:16px; color:#1C3A93;">{{ $lists->Status}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>         
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
-                                            @foreach($list3 as $lists3)
+                                            <!-- @foreach($list3 as $lists3)
                                                 @if($lists->Room_No == $lists3->Room_No)
-                                                    @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")
+                                                    @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")-->
                                                         <!--Update Status button-->
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
-                                                    @endif
+                                                        <!-- <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button> -->
+                                                    <!-- @endif
                                                 @endif
-                                            @endforeach
+                                            @endforeach -->
                                         </td>
                                     </tr>
         
@@ -498,10 +494,9 @@
                                     <th scope="col" style = "font-size:18px;">Room Size</th>
                                     <th scope="col" style = "font-size:18px;">No. of Beds</th>
                                     <th scope="col" style = "font-size:18px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col" style = "font-size:18px;">Action</th>
+                                    <th scope="col" style = "font-size:18px;"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -512,20 +507,20 @@
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
                                         <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:16px; color:#D61600;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
-                                            @foreach($list3 as $lists3)
+                                            <!-- @foreach($list3 as $lists3)
                                                 @if($lists->Room_No == $lists3->Room_No)
                                                     @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")
+                                                       -->
                                                         <!--Update Status button-->
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                        <!-- <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                                     @endif
                                                 @endif
-                                            @endforeach
+                                            @endforeach -->
                                         </td>
                                     </tr>
         
@@ -713,10 +708,9 @@
                                     <th scope="col" style = "font-size:18px;">Room Size</th>
                                     <th scope="col" style = "font-size:18px;">No. of Beds</th>
                                     <th scope="col" style = "font-size:18px;">Extra Bed</th>
-                                    <th scope="col" style = "font-size:18px;">Booking Status</th>
                                     
                                     <!--<th scope="col">Guest Preference</th>-->
-                                    <th scope="col"style = "font-size:18px;">Action</th>
+                                    <th scope="col"style = "font-size:18px;"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -727,20 +721,20 @@
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
                                         <td style = "font-size:16px;">{{ $lists->No_of_Beds}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Extra_Bed}}</td>
-                                        <td style = "font-size:16px;">{{ $lists->Status}}</td>
                                         <td>
                                             <!--View Button-->
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view{{$lists->Room_No}}"> <i class="bi bi-eye"></i> </button>
                                             <!--Edit Button-->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit{{$lists->Room_No}}"> <i class="bi bi-pencil-square"></i> </button>
-                                            @foreach($list3 as $lists3)
+                                            <!-- @foreach($list3 as $lists3)
                                                 @if($lists->Room_No == $lists3->Room_No)
                                                     @if($lists->Status != 'Available' && $lists3->Housekeeping_Status == "Cleaned")
+                                                         -->
                                                         <!--Update Status button-->
                                                         <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Room_No}}"> <i class="bi bi-arrow-repeat"></i></button>
-                                                    @endif
+                                                    <!-- @endif
                                                 @endif
-                                            @endforeach
+                                            @endforeach -->
                                         </td>
                                     </tr>
         
