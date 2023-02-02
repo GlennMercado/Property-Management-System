@@ -151,28 +151,28 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                        <form method="POST" class="prevent_submit" action="{{url('/update_housekeeping_status')}}" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                <form method="POST" class="prevent_submit" action="{{url('/update_housekeeping_status')}}" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="card-body bg-white" style="border-radius: 18px">
 
-                                                            <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
+                                                                    <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
 
-                                                            <p class="text-left">Set Status: </p>
-                                                            <select name="status" class="form-control" required>
-                                                                <option selected="true" disabled="disabled">Select</option>
-                                                                <option value="Cleaned">Cleaned</option>
-                                                                <option value="Out of Order">Out of Order</option>
-                                                            </select>
+                                                                    <p class="text-left">Set Status: </p>
+                                                                    <select name="status" class="form-control" required>
+                                                                        <option selected="true" disabled="disabled">Select</option>
+                                                                        <option value="Cleaned">Cleaned</option>
+                                                                        <option value="Out of Order">Out of Order</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                            <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                    <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
-                                                </div>
-                                            </div>
                                         </div>
                                         </form>
                                     </div>

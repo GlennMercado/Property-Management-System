@@ -73,12 +73,12 @@ class HousekeepingController extends Controller
                 'status' => 'required'
                 ]);
             
-            $available = "Available";
+            $available = "Vacant for Accommodation";
             $unassigned = "Unassigned";
             $room_no = $request->input('room_no');
             $status = $request->input('status');
 
-            if($status == "Available")
+            if($status == "Cleaned")
             {
                 DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));

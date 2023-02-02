@@ -20,7 +20,7 @@ return new class extends Migration
             $table->String('No_of_Beds');
             $table->string('Extra_Bed');
             $table->integer('No_Pax_Per_Room');
-            $table->string('Status')->default('Vacant for Accomodation');
+            $table->string('Status')->default('Vacant for Accommodation');
             $table->integer('Rate_per_Night');
             //$table->string('Membership');
             $table->string('Hotel_Image');
