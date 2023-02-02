@@ -56,6 +56,12 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('suites') }}">
+                        <i class="bi bi-book-half"></i>
+                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
+                    </a>
+                </li>
                 <li class="nav-item d-block d-sm-none">
                     <a href="{{ url('guest_profile') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="ni ni-single-02"></i>

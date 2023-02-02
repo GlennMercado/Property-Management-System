@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\event_form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
@@ -13,12 +12,9 @@ class GuestController extends Controller
 {
     public function welcome()
     {
-        $email = Auth::user()->email;
-        $list = DB::select('SELECT * FROM hotel_reservations');
-	    $room = DB::select('SELECT * FROM novadeci_suites');
-        $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
+       
         
-        return view('Guest.guest_welcome', ['list'=>$list, 'room'=>$room, 'guest'=>$guest]);
+        return view('Guest.guest_welcome');
     }
     public function about_us()
     {
@@ -46,7 +42,12 @@ class GuestController extends Controller
     }
     public function suites()
     {
-        return view('Guest.suites');
+        $email = Auth::user()->email;
+        $list = DB::select('SELECT * FROM hotel_reservations');
+	    $room = DB::select('SELECT * FROM novadeci_suites');
+        $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
+        
+        return view('Guest.suites', ['list'=>$list, 'room'=>$room, 'guest'=>$guest]);
     }
     public function convention_center()
     {
@@ -64,19 +65,7 @@ class GuestController extends Controller
     {
         return view('Guest.event_form');
     }
-    public function store(Request $request)
-    {
-       if($file = $request->file('file')){
-            $name = $file->getClientOriginalName();
-            if($file->move('images', $name)){
-                $post = new event_form();
-                $post->image = $name;
-                $post->save();
-                return redirect()->route('event_form');
-            };
-       }
-       return redirect()->back();
-    }
+    
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;

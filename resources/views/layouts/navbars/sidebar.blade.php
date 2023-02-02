@@ -107,9 +107,34 @@
 
                 <!--Front Desk-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
-                        <i class="bi bi-pc-display-horizontal text-success">•</i> {{ __('Front Desk') }}
+                    <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="navbar-examples3">
+                        <i class="bi bi-pc-display-horizontal text-success">•</i>
+                        <span class="nav-link-text text-default">{{ __('Front Desk') }}</span>
                     </a>
+                    <div class="collapse" id="navbar-examples2">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
+                                <i class="bi bi-pc-display-horizontal text-success"></i> {{ __('Hotel Booking') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
+                                    <i class="bi bi-card-list text-success"></i> {{ __('Hotel Reservation') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
+                                    <i class="bi bi-calendar-event text-success"></i> {{ __('Event Inquiry') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <!--Housekeeping-->
@@ -120,7 +145,7 @@
                 </li>
 
                 <!--Reservaion-->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
                         <i class="bi bi-card-checklist text-success"></i>
@@ -143,7 +168,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
                 {{-- Commercial Space --}}
                 <li class="nav-item">
