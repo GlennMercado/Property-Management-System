@@ -78,15 +78,26 @@ class HousekeepingController extends Controller
             $room_no = $request->input('room_no');
             $status = $request->input('status');
 
-            DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
-            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
+            if($status == "Available")
+            {
+                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
+    
+                Alert::Success('Success', 'Setting Status Success!');
+                return redirect('Housekeeping')->with('Success', 'Data Updated');
+            }
+            elseif($status == "Out of Order")
+            {
+                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
 
-            Alert::Success('Success', 'Housekeeper successfully assigned!');
-            return redirect('Housekeeping')->with('Success', 'Data Updated');
+                Alert::Success('Success', 'Setting Status Success!');
+                return redirect('Housekeeping')->with('Success', 'Data Updated');
+            }
+           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Error', 'Housekeeper assigning failed!');
+            Alert::Error('Error', 'Setting Status failed!');
             return redirect('Housekeeping')->with('Success', 'Data Updated');
         }
 

@@ -79,7 +79,6 @@
                                 <tr>
                                     <th scope="col" style = "font-size:18px;">Room No.</th>
                                     <th scope="col" style = "font-size:18px;">Booking Status</th>
-                                    <th scope="col" style = "font-size:18px;">Housekeeping Status</th>
                                     <th scope="col" style = "font-size:18px;">Housekeeper</th>
                                     <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
@@ -90,7 +89,6 @@
                                     @if($lists2->Housekeeping_Status == 'Out of Service')
                                     <td style = "font-size:16px;">{{ $lists2->Room_No }}</td>
                                     <td style = "font-size:16px;">{{ $lists2->Status}}</td>
-                                    <td style = "font-size:16px; color:#E46000;">{{ $lists2->Housekeeping_Status}}</td>
                                     <td style = "font-size:16px;">{{ $lists2->Room_Attendant}}</td>
                                     <td>
                                         @if($lists2->Room_Attendant == "Unassigned")
@@ -148,7 +146,7 @@
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Assigning Housekeeper</h5>
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Setting Status</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -161,7 +159,7 @@
 
                                                             <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
 
-                                                            <p class="text-left">Housekeeping Status: </p>
+                                                            <p class="text-left">Set Status: </p>
                                                             <select name="status" class="form-control" required>
                                                                 <option selected="true" disabled="disabled">Select</option>
                                                                 <option value="Cleaned">Cleaned</option>
