@@ -230,12 +230,63 @@
                         <i class="bi bi-person-lines-fill text-success"></i> {{ __('Maintenance') }}
                     </a>
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-default" href="{{ route('OperationManagement') }}">
-                            <i class="bi bi-person-lines-fill text-success"></i> {{ __('Operations Management') }}
-                        </a>
-                    </li>
-
+                <!-- Operation Management -->
+                <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples4" data-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="navbar-examples3">
+                        <i class="bi bi-gear text-success"></i></i>
+                        <span class="nav-link-text text-default">{{ __('Operations Management') }}</span>
+                    </a>
+                    <!-- <div class="collapse" id="navbar-examples4">
+                        <ul class="nav-item">
+                            <a class="nav-link" href="#navbar-examples4" data-toggle="collapse" role="button"
+                                aria-expanded="false" aria-controls="navbar-examples4">
+                                <i class="bi bi-box text-success"></i>
+                                <span class="nav-link-text text-default">{{ __('Reservations') }}</span>
+                            </a> -->
+                            <div class="collapse" id="navbar-examples4">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-default" href="{{ route('Reservation') }}">
+                                            <i class="bi bi-view-stacked text-success"></i> {{ __('Reservations') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-default" href="{{ route('RoomAvailable') }}">
+                                            <i class="bi bi-check-square text-success"></i> {{ __('Room Available') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-default" href="{{ route('Request') }}">
+                                                <i class="bi bi-exclamation-square text-success"></i> {{ __('Request') }}
+                                            </a>
+                                        </li>
+                                    </ul>  
+                                </div>
+                    <!-- </div> -->
+                    <div class="collapse" id="navbar-examples4">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Complaints') }}">
+                                    <i class="bi bi-question-square text-success"></i> {{ __('Complaints') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="collapse" id="navbar-examples4">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Inventory') }}">
+                                    <i class="bi bi-clipboard-check-fill text-success"></i> {{ __('Inventory') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
             <!-- Divider -->
             <hr class="my-3">
