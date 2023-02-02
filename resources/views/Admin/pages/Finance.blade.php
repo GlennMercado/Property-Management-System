@@ -13,11 +13,10 @@
                                     
                                     </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
-                                            Add Stocks
+                                            Add Finance
                                     </button>
                                 </div>
-                                <h3 class="mb-0">Convention Center Inventory</h3>
-                                <h5 class="mb-0" style="text-color:#ff0000">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5>
+                                <h3 class="mb-0">Finance</h3>
                             </div>
                         </div>
                     </div>
@@ -26,11 +25,10 @@
                         <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Item Description</th>
-                                    <th scope="col">Available Stock</th>
-                                    <th scope="col">Stock Level</th>
-                                    <th scope="col">Stock Alert</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Contact Number</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -39,9 +37,9 @@
                                     @foreach ($list as $lists)
                                     <tr>
                                         <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->total}}</td>
-                                        <td>{{ $lists->Stock_Level}}</td>
+                                        <td>{{ $lists->email}}</td>
+                                        <td>{{ $lists->cnumber}}</td>
+                                        <td>{{ $lists->status}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
                                             <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
                                         @else
@@ -239,85 +237,39 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Convention Center Stock</h5>
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Finance Proof</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/add_stock') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/add_info') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
                             <div class = "col">
-                                <p class="text-left">Stock Name: </p>
-                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
-                                                    
+                                <p class="text-left">Name: </p>
+                                <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="Stockdetails">Stock Description: </label>
-                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                                <label for="Stockdetails">Email : </label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter details..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="Stockdetails">Quantity: </label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                                <label for="Stockdetails">Contact Number: </label>
+                                <input type="number" class="form-control" name="cnumber" placeholder="Enter number..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
-                                <label for="Stockdetails">Stock Level: </label>
-                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
+                                <label for="Stockdetails">Proof of Payment: </label>
+                                <input type="text" class="form-control" name="proof" placeholder="Enter here..." required>
+                                <input type="hidden" class="form-control" name="status" value=" ">
                             </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="exampleInputPassword1">Category: </label>
-                                <select class="form-control" name = "category" required>
-                                    <option value="Invalid">Linens :</option>
-                                    <option>Bed pad - Single</option>
-                                    <option>Fitted Sheet - Single</option>
-                                    <option>Flat Sheet - Single</option>
-                                    <option>Duvet Filler - Single</option>
-                                    <option>Duvet Cover - Single</option>
-                                    <option>Pillows</option>
-                                    <option>Bed pad - Queen</option>
-                                    <option>Fitted Sheet - Queen</option>
-                                    <option>Flat Sheet - Queen</option>
-                                    <option>Duvet Filler - Queen</option>
-                                    <option>Duvet Cover - Queen</option>
-                                    <option>Pillows Case</option>
-                                    <option>Bath Towel</option>
-                                    <option>Hand Towel</option>
-                                    <option>Bath Mat</option>
-                                    <option>Bed Ruuner Queen</option>
-                                    <option>Bed Runner Single</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Guest Supplies :</option>
-                                    <option>Bath Soap</option>
-                                    <option>Shampoo</option>
-                                    <option>Dental Kit</option>
-                                    <option>Slippers</option>
-                                    <option>Bottled Water</option>
-                                    <option>Juice</option>
-                                    <option>Coffee</option>
-                                    <option>Creamer</option>
-                                    <option>Sugar - White</>
-                                    <option>Sugar - Brown</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Amenities : </option>
-                                    <option>Kettle</option>
-                                    <option>Tray</option>
-                                    <option>Dental Glass</option>
-                                    <option>Teaspoon</option>
-                                    <option>Cup And Saucer</option>
-                                    <option>Hanger</option>
-                                    <option>Door Hang</option>
-                                    </select>
-                            </div>
-                        </div>                            
+                        </div>                           
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>

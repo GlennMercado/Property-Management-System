@@ -304,7 +304,7 @@
                                     <th scope="col" style = "font-size:17px;">Reservation No.</th>
                                     <th scope="col" style = "font-size:17px;">Room No.</th>
                                     <th scope="col" style = "font-size:17px;">Guest Name</th>
-                                    <th scope="col" style = "font-size:17px;">asdasd</th>
+                                    <th scope="col" style = "font-size:17px;">Payment</th>
                                     <th scope="col" style = "font-size:17px;">Action</th>
                                 </tr>
                             </thead>

@@ -24,10 +24,11 @@
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <select class="form-control" style="border:2px solid" id="optionselect" >
-                                    <option value="Available" selected="true">Available</option>
+                                    <option value="Available" selected="true">Vacant for Accommodation</option>
                                     <option value="Reserved">Reserved</option>
-                                    <option value="Checked-In">Checked-In</option>
-                                    <option value="Checked-Out">Checked-Out</option>
+                                    <option value="Checked-In">Occupied</option>
+                                    <option value="Checked-Out">Vacant for Cleaning</option>
+                                    <option value="Out of Order">Out of Order</option>
                                 </select>
                             </div>
                         </div>
@@ -138,7 +139,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if($lists->Status == "Available")
+                                    @if($lists->Status == "Vacant for Accommodation")
                                     <tr>
                                         <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
@@ -501,7 +502,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if($lists->Status == "Checked-In")
+                                    @if($lists->Status == "Occupied")
                                     <tr>
                                         <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
@@ -715,7 +716,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if($lists->Status == "Checked-Out")
+                                    @if($lists->Status == "Vacant for Cleaning")
                                     <tr>
                                         <td style = "font-size:16px;">{{ $lists->Room_No}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Room_Size}}</td>
