@@ -85,8 +85,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
 
 	//Operation Management
-	Route::get('OperationManagement', function () {return view('Admin.pages.OperationManagement');})->name('OperationManagement'); 
-	
+	//Reservation
+	Route::get('Reservation', function () {return view('Admin.pages.OperationManagement.Reservation');})->name('Reservation'); 
+	Route::get('RoomAvailable', function () {return view('Admin.pages.OperationManagement.RoomAvailable');})->name('RoomAvailable');
+	Route::get('Request', function () {return view('Admin.pages.OperationManagement.Request');})->name('Request'); 
+	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints'); 
+	Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
+	//Guest Receipt
+	Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 	//Inventory Management
 
 	//Hotel Inventory

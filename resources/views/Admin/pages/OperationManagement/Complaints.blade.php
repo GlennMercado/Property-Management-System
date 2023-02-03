@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    <h1>TEST</h1>
+    <h1>Complaints</h1>
     @endsection
 
 @push('js')
