@@ -39,7 +39,7 @@
                                                         <select name="room_no" class="form-control" required>
                                                             <option selected disabled value="">Select</option>
                                                             @foreach($room as $rooms)
-                                                                @if($rooms->Status == 'Available')
+                                                                @if($rooms->Status == 'Vacant for Accommodation')
                                                                     <option value="{{$rooms->Room_No}}">{{$rooms->Room_No}} - {{$rooms->No_of_Beds}} - {{$rooms->Extra_Bed}}</option>
                                                                 @endif
                                                             @endforeach

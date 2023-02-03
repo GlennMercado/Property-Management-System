@@ -310,7 +310,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if($lists->Booking_Status == "Checked-In" && $lists->Isvalid == true && $lists->Payment_Status == "Paid")
+                                    @if($lists->Booking_Status == "Occupied" && $lists->Isvalid == true && $lists->Payment_Status == "Paid")
                                         <tr>
                                             <td style = "font-size:15px;">{{ $lists->Reservation_No }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Room_No }}</td>
