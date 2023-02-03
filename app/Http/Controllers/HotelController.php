@@ -102,7 +102,7 @@ class HotelController extends Controller
 
         if($isvalid == true)
         {
-            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Available'");
+            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Vacant for Accommodation'");
         
             if($check)
             {
