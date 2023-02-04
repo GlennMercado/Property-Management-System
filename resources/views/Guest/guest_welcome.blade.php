@@ -24,10 +24,10 @@
     </div>
     <!-- section 2 -->
     <div class="container-fluid bg-white pt-4" id = "section2">
-        <p
-            class=" pt-2 pr-6 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
-            our</p>
-
+        <div class = "d-flex justify-content-center">
+                <p class="pt-2 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    our</p>
+                    </div>
         <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">services</p>
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-3">
@@ -124,9 +124,10 @@
     <!-- section 3 -->
     <div class="container-fluid bg-white pt-4">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
             
         <div class="row d-flex justify-content-center">
@@ -160,7 +161,7 @@
     </div>
 </div>
 <!-- section 4 -->
-    <div class="container-fluid bg-white pt-6">
+    <!-- <div class="container-fluid bg-white pt-6">
         <div class="card-body row d-flex justify-content-center">
             <div class="container">
                 <div class="row g-2">
@@ -187,12 +188,14 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  -->
+    <!-- section 5 -->
     <div class="container-fluid bg-white pt-4 ">
         <div class="card-body ">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
         </div>
     </div>
@@ -206,16 +209,16 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
+                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/hotel12.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
+                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
+                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -229,11 +232,13 @@
             </div>
         </div>
     </div>
+    <!-- section 6 -->
     <div class="container-fluid bg-white pt-6">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Novadeci Location</p>
             <div class="container-fluid bg-white">
                 <div class="text-center mt-7">
@@ -261,11 +266,13 @@
             </div>
         </div>
     </div>
+    <!-- section 7  -->
     <div class="container-fluid bg-white pt-6">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Frequently asked questions</p>
         </div>
     </div>
@@ -490,13 +497,13 @@ img {
     }
     @media (max-width: 600px) {
         .image-text {
-            font-size: 25px;
+            font-size: 20px;
             margin-top:15px;
             filter: brightness(80%);
         }
 
         .image-text2 {
-            font-size: 35px;
+            font-size: 25px;
             white-space: nowrap;
         }
 
@@ -508,7 +515,7 @@ img {
         }
 
         .group p {
-            font-size: 8px;
+            font-size: 6px;
         }
 
         .txt5 {
