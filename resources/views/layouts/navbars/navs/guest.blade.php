@@ -25,12 +25,12 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#">
+                <!-- <li class="nav-item">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('/') }}">
                         <i class="bi bi-house-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Home') }}</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('about_us') }}">
                         <i class="ni ni-single-02"></i>

@@ -24,10 +24,10 @@
     </div>
     <!-- section 2 -->
     <div class="container-fluid bg-white pt-4" id = "section2">
-        <p
-            class=" pt-2 pr-6 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
-            our</p>
-
+        <div class = "d-flex justify-content-center">
+                <p class="pt-2 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    our</p>
+                    </div>
         <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">services</p>
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-3">
@@ -124,9 +124,10 @@
     <!-- section 3 -->
     <div class="container-fluid bg-white pt-4">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt txt1 text-light">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
             
         <div class="row d-flex justify-content-center">
@@ -160,39 +161,41 @@
     </div>
 </div>
 <!-- section 4 -->
-    <div class="container-fluid bg-white pt-6">
-        <div class="card-body row d-flex justify-content-center">
+    <!-- <div class="container-fluid bg-white pt-6">
+        <div class="card-body d-flex justify-content-center">
             <div class="container">
                 <div class="row g-2">
-                    <div class="col-3">
+                    <div class="col-3 ">
                         <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
                         <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                        <p class="uppercase d-flex justify-content-center txt txt5 mx-auto">2,500</p>
+                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
                     </div>
                     <div class="col-3">
                         <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
                         <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                        <p class="uppercase d-flex justify-content-center txt txt5 mx-auto">17</p>
+                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
                     </div>
                     <div class="col-3">
                         <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
                         <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                        <p class="uppercase d-flex justify-content-center txt txt5 mx-auto">5</p>
+                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
                     </div>
                     <div class="col-3">
                         <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
                         <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                        <p class="uppercase d-flex justify-content-center txt txt5 mx-auto">1</p>
+                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
-    <div class="container-fluid bg-white pt-4 ">
+    </div>  -->
+    <!-- section 5 -->
+    <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+</div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
         </div>
     </div>
@@ -206,16 +209,16 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100 imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -229,11 +232,13 @@
             </div>
         </div>
     </div>
+    <!-- section 6 -->
     <div class="container-fluid bg-white pt-6">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Novadeci Location</p>
             <div class="container-fluid bg-white">
                 <div class="text-center mt-7">
@@ -261,11 +266,13 @@
             </div>
         </div>
     </div>
+    <!-- section 7  -->
     <div class="container-fluid bg-white pt-6">
         <div class="card-body">
-            <p
-                class="pt-3 pr-7 d-flex justify-content-center text-uppercase position-absolute w-100 align-items-center txt1 text-light txt ">
-                Nvdc</p>
+            <div class = "d-flex justify-content-center">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                    Nvdc</p>
+                    </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Frequently asked questions</p>
         </div>
     </div>
@@ -337,8 +344,8 @@
      <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
 <style>
 .img {
-    height: 700px;
-    object-fit: cover;
+    height:auto;
+    object-fit:cover;
     filter: brightness(50%)
 }
 
@@ -490,29 +497,50 @@ img {
     }
     @media (max-width: 600px) {
         .image-text {
-            font-size: 25px;
-            margin-top:15px;
+            font-size: 15px;
+            padding-top:45px;
             filter: brightness(80%);
         }
 
         .image-text2 {
-            font-size: 35px;
+            padding-top:60px;
+            font-size: 25px;
             white-space: nowrap;
         }
 
         .group {
-            padding-bottom:50px;
-            padding-left:10px;
+            padding-top:80px;
+            padding-bottom:auto;
             white-space: nowrap;
             overflow: hidden;
         }
 
         .group p {
-            font-size: 8px;
+            font-size: 6px;
         }
 
         .txt5 {
             padding-right: 185px;
+        }
+        #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: #484848;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
+        opacity: 0.5;
+        }
+
+        #myBtn:hover {
+        background-color: #000000;
         }
         
     }
