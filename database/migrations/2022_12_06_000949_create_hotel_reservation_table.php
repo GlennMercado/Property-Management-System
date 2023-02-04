@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('Booking_Status')->nullable();
             $table->boolean('Isvalid')->default(True);
 
-            $table->string('Proof_Image');
-            $table->binary('DB_Proof_Image');
+            $table->string('Proof_Image')->nullable();
+            $table->binary('DB_Proof_Image')->nullable();
 
             $table->string('Check_In_Date');
             $table->string('Check_Out_Date');
