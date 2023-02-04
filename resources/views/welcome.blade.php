@@ -190,12 +190,12 @@
         </div>
     </div>  -->
     <!-- section 5 -->
-    <div class="container-fluid bg-white pt-4 ">
+    <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
             <div class = "d-flex justify-content-center">
                 <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
                     Nvdc</p>
-                    </div>
+</div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
         </div>
     </div>
@@ -209,16 +209,16 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block imgslider" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -344,8 +344,8 @@
      <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
 <style>
 .img {
-    height: 700px;
-    object-fit: cover;
+    height:auto;
+    object-fit:cover;
     filter: brightness(50%)
 }
 
@@ -495,21 +495,22 @@ img {
     html {
     scroll-behavior: smooth;
     }
-    @media (max-width: 360px) {
+    @media (max-width: 600px) {
         .image-text {
-            font-size: 20px;
-            margin-top:15px;
+            font-size: 15px;
+            padding-top:45px;
             filter: brightness(80%);
         }
 
         .image-text2 {
+            padding-top:60px;
             font-size: 25px;
             white-space: nowrap;
         }
 
         .group {
-            padding-bottom:50px;
-            padding-left:10px;
+            padding-top:80px;
+            padding-bottom:auto;
             white-space: nowrap;
             overflow: hidden;
         }
