@@ -21,7 +21,7 @@
                 <p class="mr-2 p1">commercial spaces </p>
             </a>
         </div>
-        <div class="card tab position-absolute" style=" height:14rem; width:70%">
+        <div class="card tab position-absolute" style=" height:14rem; width:50%">
             <div class="card-body card2">
                 <div class="row">
                     <div class="col pt-2">
