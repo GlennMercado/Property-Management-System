@@ -46,12 +46,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('contact_us') }}">
-                        <i class="ni ni-single-02"></i>
+                        <i class="bi bi-telephone-fill"></i>
                         <span class="nav-link-inner--text">{{ __('Contact Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('map') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section6">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
