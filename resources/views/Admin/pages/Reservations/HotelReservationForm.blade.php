@@ -90,6 +90,7 @@
                                 </div>
                             </div>
                         </div> -->
+            </div>
                     <div class="table-responsive">
                         <!-- Pending -->
                         <table class="table align-items-center table-flush" id="pending">

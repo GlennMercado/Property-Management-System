@@ -14,35 +14,15 @@
                                 <h2 class="mb-0 title">Maintenance</h3>
                             </div>
                         </div>
-                        <br>
-                        <div class="row align-items-center">
-                            <div class="col-md-4">
-                                <!-- <select class="form-control" style="border:2px solid" id="optionselect" >
-                                    <option value="Out of Order" selected="true">Out of Order</option>
-                                    <option value="Out of Service">Out of Service</option>
-                                </select> -->
-                            </div>
-                        </div>
-                        <br>
                         <!--Out of Order-->
                         <div class="row align-items-center" id="order">
-                            <div class="col">
-                                <h3 class="mb-0 category2">Out of Order</h3>
-                            </div>
-                            <!-- <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                            </div> -->
-                        </div>
-                        <!--Out of Service-->
-                        <div class="row align-items-center" id="service" style="display:none;">
-                            <div class="col">
-                                <h3 class="mb-0">Out of Service</h3>
-                            </div>
                             <!-- <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div> -->
                         </div>
                     </div>
+                </div>
+            </div>
                     <!--Out of Order-->
                     <div class="table-responsive" id="outoforder">
                         <!-- Projects table -->
