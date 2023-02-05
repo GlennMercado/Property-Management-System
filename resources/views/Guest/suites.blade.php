@@ -257,13 +257,31 @@
                                     <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
                                         free of charge. If within (3) calendar days, guests will be charged of the total
                                         price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                        <a href="#" class = "text-success">Company Policy</a>
+                                        <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
                                     </p>
                                     <input type="submit" class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-2" value="Submit" style = "width:60%;" />
                     </div>  
                     </form>
                 </div>
-                
+                    <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content mx-auto d-flex justify-content-center">
+                                <div class="modal-header">
+                                    <h2>Company Policy</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 
         
             <!-- section1 -->
