@@ -102,7 +102,7 @@ class GuestController extends Controller
 
             $reserve = new hotel_reservations;
 
-            $reserve->Reservation_No = $randID;
+            $reserve->Booking_No = $randID;
             $reserve->Email = $email;
             $reserve->Check_In_Date = $request->input('checkIn');
             $reserve->Check_Out_Date = $request->input('checkOut');

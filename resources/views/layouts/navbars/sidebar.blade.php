@@ -113,13 +113,13 @@
                         <span class="nav-link-text text-default">{{ __('Front Desk') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
-                        <ul class="nav nav-sm flex-column">
+                        <!-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
                                     <i class="text-success">•</i> {{ __('Hotel Booking') }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
