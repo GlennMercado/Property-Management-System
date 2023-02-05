@@ -17,12 +17,12 @@
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
-                    <div class="col-1 collapse-brand">
+                    <div class="col-2 collapse-brand">
                         <a href="{{ route('welcome') }}">                           
                             <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
                         </a>
                     </div>
-                    <div class="col-7 collapse-brand">
+                    <div class="col mt-1 collapse-brand">
                         <a href="{{ route('welcome') }}">                           
                             <h3>{{ auth()->user()->name }}</h3>
                         </a>
@@ -76,13 +76,13 @@
                     <span class="nav-link-inner--text">{{ __('Logout') }}</span>
                 </a>
                 </li>
-                {{-- <li class="nav-item">
+                 <!-- <li class="nav-item">
                     <a class="nav-link nav-link-icon text-default" href="#" data-toggle="modal"
                         data-target="#ticket">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Submit a Ticket') }}</span>
                     </a>
-                </li> --}}
+                </li> -->
             </ul>
         </div>
     </div>

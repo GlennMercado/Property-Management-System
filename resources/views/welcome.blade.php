@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <div class="position-relative">
+    <div class="position-relative mx-auto d-flex justify-content-center">
         <img class="img" src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" style="width:100%;">
         <h2 class="image-text font-weight-light uppercase">Welcome to</h2>
         <h1 class="image-text2 font-weight-light uppercase">Novadeci Properties</h1>
@@ -21,7 +21,41 @@
                 <p class="mr-2 p1">commercial spaces </p>
             </a>
         </div>
+        <div class="card tab position-absolute" style=" height:14rem; width:70%">
+            <div class="card-body card2">
+                <div class="row">
+                    <div class="col pt-2">
+                        <input type="Date" class = "form-control">
+                    </div>
+                    <div class="col-md pt-2">
+                        <input type="date" class = "form-control">
+                    </div>
+                </div>
+                <div class="row pt-4">       
+                    <div class="col">
+                        <select name="room_no" class="form-control" required>
+                            <option selected disabled value="">Adult Count</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "mx-auto d-flex justify-content-center">
+                    <a href="{{ url('suites') }}">
+                        <button class="btn btn-success btn-md mt-3 d-flex justify-content-center btn1">Book Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="container-fluid bg-white tab">
+            <div class = "d-flex justify-content-center">
+                
+            </div>
+        </div>
     <!-- section 2 -->
     <div class="container-fluid bg-white pt-4" id = "section2">
         <div class = "d-flex justify-content-center">
@@ -344,7 +378,7 @@
      <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
 <style>
 .img {
-    height:auto;
+    height:700px;
     object-fit:cover;
     filter: brightness(50%)
 }
@@ -389,6 +423,12 @@
 
 .group p {
     text-transform: uppercase;
+}
+.tab{
+    top: 60%;   
+}
+.card{
+    background: rgba(240, 240, 240, 0.7) 
 }
 
 a .p1{
@@ -497,20 +537,19 @@ img {
     }
     @media (max-width: 600px) {
         .image-text {
-            font-size: 15px;
-            padding-top:45px;
+            font-size: 20px;
+            margin-top:15px;
             filter: brightness(80%);
         }
 
         .image-text2 {
-            padding-top:60px;
             font-size: 25px;
             white-space: nowrap;
         }
 
         .group {
-            padding-top:80px;
-            padding-bottom:auto;
+            padding-bottom:50px;
+            padding-left:10px;
             white-space: nowrap;
             overflow: hidden;
         }
@@ -543,6 +582,9 @@ img {
         background-color: #000000;
         }
         
+        .btn1{
+            top:10px;
+        }
     }
 </style>
     <script>
