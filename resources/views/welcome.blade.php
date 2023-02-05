@@ -67,7 +67,7 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('suites') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/Suites.jpg" alt="Card image cap"
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/Suites.png" alt="Card image cap"
                             style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
@@ -88,7 +88,7 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('convention_center') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.jpg"
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.png"
                             alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
@@ -110,7 +110,7 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('function_room') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/FunctionRooms.jpg" alt="Card image cap"
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/FunctionRooms.png" alt="Card image cap"
                             style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
@@ -132,7 +132,7 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('commercial_spaces') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.jpg"
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png"
                             alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
@@ -267,7 +267,7 @@
         </div>
     </div>
     <!-- section 6 -->
-    <div class="container-fluid bg-white pt-6">
+    <div class="container-fluid bg-white pt-6" id = "section6">
         <div class="card-body">
             <div class = "d-flex justify-content-center">
                 <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
@@ -301,7 +301,7 @@
         </div>
     </div>
     <!-- section 7  -->
-    <div class="container-fluid bg-white pt-6">
+    <div class="container-fluid bg-white pt-6" id = "section7">
         <div class="card-body">
             <div class = "d-flex justify-content-center">
                 <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">

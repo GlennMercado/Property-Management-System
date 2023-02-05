@@ -257,13 +257,31 @@
                                     <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
                                         free of charge. If within (3) calendar days, guests will be charged of the total
                                         price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                        <a href="#" class = "text-success">Company Policy</a>
+                                        <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
                                     </p>
-                                    <input type="submit" class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-6" value="Submit" style = "width:60%;" />
+                                    <input type="submit" class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-2" value="Submit" style = "width:60%;" />
                     </div>  
                     </form>
                 </div>
-                
+                    <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content mx-auto d-flex justify-content-center">
+                                <div class="modal-header">
+                                    <h2>Company Policy</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 
         
             <!-- section1 -->
@@ -360,7 +378,7 @@
                         </div>
                 </form> -->
                 <!-- section2 suite -->
-                <p class = "d-flex justify-content-center text-uppercase title pt-4">Suites</p>
+                <p class = "d-flex justify-content-center text-uppercase title pt-6">Suites</p>
             <div class="image-grid">
                 <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.jpg" data-toggle="lightbox" data-gallery="example-gallery">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
@@ -401,7 +419,7 @@
             </div>
 
         <div>
-            <h1 class="pt-4 txt">House Rules</h1>
+            <!-- <h1 class="pt-4 txt">House Rules</h1>
             <div class="row">
                 <div class="col">
                     <h2 class="pt-4 txt"><i class="bi bi-slash-circle mr-2" style="color:red;"></i>No Smoking</h2>
@@ -443,7 +461,7 @@
                     <p>Guests are responsible for ensuring the security of their room key and will be charged for a
                         replacement if it is not returned upon check-out.</p>
                 </div>
-            </div>
+            </div> -->
             <!-- section 3 -->
             
             </div>

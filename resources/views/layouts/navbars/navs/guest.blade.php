@@ -44,13 +44,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('map')}}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section6">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Map') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section7">
                         <i class="bi bi-question-circle-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('FAQs') }}</span>
                     </a>
