@@ -242,12 +242,39 @@
                     </div>
                 </li>
 
+
                 <!--Maintenance-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Maintenance') }}">
-                        <i class="bi bi-person-lines-fill text-success"></i> {{ __('Maintenance') }}
+                    <a class="nav-link active" href="#navbar-examples6" data-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="navbar-examples6">
+                         <i class="bi bi-person-lines-fill text-success"></i>
+                        <span class="nav-link-text text-default">{{ __('Maintenance') }}</span>
                     </a>
+                    <div class="collapse" id="navbar-examples6">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Out_of_Order_Rooms') }}">
+                                <i class="text-success">•</i> {{ __('Out of Order Rooms') }}
+                                </a>
+                            </li>
+                        </ul> 
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Lost_or_Damage_Items') }}">
+                                <i class="text-success">•</i> {{ __('Lost or Damage Items') }}
+                                </a>
+                            </li>
+                        </ul>  
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Lost_or_Damage_Keys') }}">
+                                <i class="text-success">•</i> {{ __('Lost or Damage Keys') }}
+                                </a>
+                            </li>
+                        </ul> 
+                    </div>
                 </li>
+
                 <!-- Operation Management -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples5" data-toggle="collapse" role="button"

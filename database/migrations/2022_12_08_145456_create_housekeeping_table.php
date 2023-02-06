@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('housekeepings', function (Blueprint $table) {
             $table->increments('ID');
-            $table->unsignedInteger('Room_No')->nullable();
-            
+
+            $table->integer('Room_No');
+            $table->index('Room_No');
+            $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade');
+                       
             $table->string('Housekeeping_Status')->default('Cleaned');
             $table->string('Room_Attendant')->default('Unassigned');
             $table->date('Date_Time_Accomplished')->nullable();
