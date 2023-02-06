@@ -30,7 +30,7 @@ Route::get('Map', function () { return view('Map');})->name('Map');
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
