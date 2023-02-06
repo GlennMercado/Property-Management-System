@@ -143,15 +143,16 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
-	Route::get('Maintenance', function () {
-		$list = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
-		return view('Admin.pages.Maintenance', ['list' => $list]);})->name('Maintenance');
 
 	//Calendar
 	//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');
 	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 	
+	//Maintenance
+	Route::get('Out of Order Rooms', [App\Http\Controllers\MaintenanceController::class, 'Out_of_Order_Rooms'])->name('Out_of_Order_Rooms');
+	Route::get('Lost or Damage Items', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Items'])->name('Lost_or_Damage_Items');
+	Route::get('Lost or Damage Keys', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Keys'])->name('Lost_or_Damage_Keys');
 	
 });
 

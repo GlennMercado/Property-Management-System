@@ -16,6 +16,11 @@
                             <div class="col">
                                 <h3 class="mb-0 title">Hotel Booking</h3>
                             </div>
+                            <div class="col text-right">
+                                <a href="{{ route('FrontDesk') }}" class="btn btn-outline-success">
+                                    Book Now
+                                </a>         
+                            </div>
                         </div>
                         <br>
                         <div class="row align-items-center">
@@ -28,13 +33,70 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                        <!-- <div class="row align-items-center">   
+                            
+                            <div class="col">
+                                <div class="card-body" style="background:lightgray; border:solid black 1px; cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase mb-0">Arrival</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <div class="card-body" style="background:lightgreen; border:solid black 1px; cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase mb-0">Check In</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <div class="card-body" style="background:#FFCCCB; border:solid black 1px; cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase mb-0">Check Out</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col">
+                                <div class="card-body" style="background:#e27602; border:solid black 2px; cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase mb-0">Due Out</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <div class="card-body" style="background:white; border:solid black 2px; cursor:pointer;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase mb-0">Room Vacant</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+            </div>
                     <div class="table-responsive">
                         <!-- Pending -->
                         <table class="table align-items-center table-flush" id="pending">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Booking Number</th>
                                     <th scope="col" style = "font-size:17px;">Room No.</th>
                                     <th scope="col" style = "font-size:17px;">Guest Name</th>
                                     <th scope="col" style = "font-size:17px;">Payment Status</th>
@@ -45,23 +107,23 @@
                                 @foreach ($list as $lists)
                                     @if($lists->Isvalid == true && $lists->Payment_Status == "Pending")
                                         <tr>
-                                            <td>{{ $lists->Reservation_No }}</td>
+                                            <td>{{ $lists->Booking_No }}</td>
                                             <td>{{ $lists->Room_No }}</td>
                                             <td>{{ $lists->Guest_Name }}</td>
                                             <td>{{ $lists->Payment_Status }}</td>
                                             <td>
                                                 <!--View Button-->
-                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
+                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Booking_No}}"> <i class="bi bi-eye-fill"></i> </button>
                                                 <!--update Button-->
                                                 @if($lists->Payment_Status == 'Pending')
-                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Reservation_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->Booking_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                                 @endif
                                             </td>
                                         </tr>
                                     @endif
   
                                     <!--View-->
-                                    <div class="modal fade" id="view{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="view{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -76,7 +138,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="text-left">Reservation Number: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Reservation_No}}" readonly>
+                                                            <input class="form-control" type="text" value="{{$lists->Booking_No}}" readonly>
                                                         </div>
                                                         <div class="col">
                                                             <p class="text-left">Room Number: </p>
@@ -137,7 +199,7 @@
                                     </div>
 
                                     <!--Update Status-->
-                                    <div class="modal fade" id="update{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="update{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -154,21 +216,19 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update', ['id' => $lists->Reservation_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid]) }}" class="btn btn-success">Yes</a>
+                                                    <a href="{{ url('/update', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid]) }}" class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </tbody>
-                        </table>
-
-                        
+                        </table>                    
                         <!-- Reserved -->
                         <table class="table align-items-center table-flush" id="reserved" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Booking Number</th>
                                     <th scope="col" style = "font-size:17px;">Room No.</th>
                                     <th scope="col" style = "font-size:17px;">Guest Name</th>
                                     <th scope="col" style = "font-size:17px;">Payment Status</th>
@@ -180,21 +240,21 @@
                                 @foreach ($list as $lists)
                                     @if($lists->Booking_Status == "Reserved" && $lists->Isvalid == true && $lists->Payment_Status == "Paid")
                                         <tr>
-                                            <td style = "font-size:15px;">{{ $lists->Reservation_No }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Booking_No }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Room_No }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Guest_Name }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Payment_Status }}</td>
                                             <td>
                                                 <!--View Button-->
-                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
+                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Booking_No}}"> <i class="bi bi-eye-fill"></i> </button>
                                                 <!--Update Reservation/Room Status Button-->
-                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_booking_status{{$lists->Reservation_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_booking_status{{$lists->Booking_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                             </td>
                                         </tr>
                                     @endif
                                       
                                     <!--Update Status-->
-                                    <div class="modal fade" id="update_booking_status{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="update_booking_status{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -211,14 +271,14 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Reservation_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-In' ]) }}" class="btn btn-success">Yes</a>
+                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-In' ]) }}" class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!--View-->
-                                    <div class="modal fade" id="view{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="view{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -233,7 +293,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="text-left">Reservation Number: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Reservation_No}}" readonly>
+                                                            <input class="form-control" type="text" value="{{$lists->Booking_No}}" readonly>
                                                         </div>
                                                         <div class="col">
                                                             <p class="text-left">Room Number: </p>
@@ -301,7 +361,7 @@
                         <table class="table align-items-center table-flush" id="checkin" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Booking Number</th>
                                     <th scope="col" style = "font-size:17px;">Room No.</th>
                                     <th scope="col" style = "font-size:17px;">Guest Name</th>
                                     <th scope="col" style = "font-size:17px;">Payment</th>
@@ -312,21 +372,21 @@
                                 @foreach ($list as $lists)
                                     @if($lists->Booking_Status == "Occupied" && $lists->Isvalid == true && $lists->Payment_Status == "Paid")
                                         <tr>
-                                            <td style = "font-size:15px;">{{ $lists->Reservation_No }}</td>
+                                            <td style = "font-size:15px;">{{ $lists->Booking_No }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Room_No }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Guest_Name }}</td>
                                             <td style = "font-size:15px;">{{ $lists->Payment_Status }}</td>
                                             <td>
                                                 <!--View Button-->
-                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
+                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Booking_No}}"> <i class="bi bi-eye-fill"></i> </button>
                                                 <!--Update Reservation/Room Status Button-->
-                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_booking_status2{{$lists->Reservation_No}}"> <i class="bi bi-arrow-repeat"></i></button>
+                                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_booking_status2{{$lists->Booking_No}}"> <i class="bi bi-arrow-repeat"></i></button>
                                             </td>
                                         </tr>
                                     @endif
   
                                     <!--View-->
-                                    <div class="modal fade" id="view{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="view{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -341,7 +401,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="text-left">Reservation Number: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Reservation_No}}" readonly>
+                                                            <input class="form-control" type="text" value="{{$lists->Booking_No}}" readonly>
                                                         </div>
                                                         <div class="col">
                                                             <p class="text-left">Room Number: </p>
@@ -402,7 +462,7 @@
                                     </div>
 
                                     <!--Update Status-->
-                                    <div class="modal fade" id="update_booking_status2{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="update_booking_status2{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -419,7 +479,7 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Reservation_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-Out' ]) }}" class="btn btn-success">Yes</a>
+                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-Out' ]) }}" class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -433,7 +493,7 @@
                         <table class="table align-items-center table-flush" id="finished" style="display:none;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" style = "font-size:17px;">Reservation No.</th>
+                                    <th scope="col" style = "font-size:17px;">Booking Number</th>
                                     <th scope="col" style = "font-size:17px;">Room No.</th>
                                     <th scope="col" style = "font-size:17px;">Guest Name</th>
                                     <th scope="col" style = "font-size:17px;">Payment Status</th>
@@ -444,19 +504,19 @@
                                 @foreach ($list as $lists)
                                     @if($lists->Isvalid == false)
                                         <tr>
-                                            <td>{{ $lists->Reservation_No }}</td>
+                                            <td>{{ $lists->Booking_No }}</td>
                                             <td>{{ $lists->Room_No }}</td>
                                             <td>{{ $lists->Guest_Name }}</td>
                                             <td>{{ $lists->Payment_Status }}</td>
                                             <td>
                                                 <!--View Button-->
-                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Reservation_No}}"> <i class="bi bi-eye-fill"></i> </button>
+                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#view{{$lists->Booking_No}}"> <i class="bi bi-eye-fill"></i> </button>
                                             </td>
                                         </tr>
                                     @endif
   
                                     <!--View-->
-                                    <div class="modal fade" id="view{{$lists->Reservation_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="view{{$lists->Booking_No}}" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -471,7 +531,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="text-left">Reservation Number: </p>
-                                                            <input class="form-control" type="text" value="{{$lists->Reservation_No}}" readonly>
+                                                            <input class="form-control" type="text" value="{{$lists->Booking_No}}" readonly>
                                                         </div>
                                                         <div class="col">
                                                             <p class="text-left">Room Number: </p>

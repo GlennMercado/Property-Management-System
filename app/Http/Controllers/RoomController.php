@@ -192,7 +192,7 @@ class RoomController extends Controller
                         (
                             'Status' => $status
                         ));
-                        $select = ['Room_No' => $room_no, 'Reservation_No' => $reserved_no];
+                        $select = ['Room_No' => $room_no, 'Booking_No' => $reserved_no];
                         DB::table('hotel_reservations')->where($select)->update(array
                         (
                             'Booking_Status' => $status,
@@ -206,7 +206,7 @@ class RoomController extends Controller
                         (
                             'Status' => $status
                         ));
-                        $select = ['Room_No' => $room_no, 'Reservation_No' => $reserved_no];
+                        $select = ['Room_No' => $room_no, 'Booking_No' => $reserved_no];
                         DB::table('hotel_reservations')->where($select)->update(array
                         (
                             'Booking_Status' => $status

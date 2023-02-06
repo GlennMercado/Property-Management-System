@@ -14,23 +14,33 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hotel_reservations', function (Blueprint $table) {
-            $table->string('Reservation_No')->primary();
+            $table->string('Booking_No')->primary();
+            
+            $table->integer('Room_No');
+            $table->index('Room_No');
+            $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade'); 
+
             $table->string('Guest_Name');
             $table->string('Mobile_Num');
             $table->string('Email')->nullable();
-            
-            $table->integer('Room_No');
+        
             $table->integer('No_of_Pax');
 
             $table->string('Payment_Status')->default('Pending');
             $table->string('Booking_Status')->nullable();
+
             $table->boolean('Isvalid')->default(True);
+
+            $table->double('Down_Payment')->nullable();
+            $table->double('Balance')->nullable();
+            $table->double('Full_Payment')->nullable();
+
+            $table->date('Check_In_Date');
+            $table->date('Check_Out_Date');
+            $table->date('Check_Out_Extension')->nullable();
 
             $table->string('Proof_Image')->nullable();
             $table->binary('DB_Proof_Image')->nullable();
-
-            $table->string('Check_In_Date');
-            $table->string('Check_Out_Date');
 
             $table->timestamps();
         });

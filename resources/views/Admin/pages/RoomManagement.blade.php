@@ -444,7 +444,7 @@
                                                         <div class="card-body bg-white" style="border-radius: 18px">
                                                             @foreach($list2 as $lists2)
                                                                 @if($lists2->Room_No == $lists->Room_No)
-                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Reservation_No}}" >
+                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Booking_No}}" >
                                                                 @endif
                                                             @endforeach
                                                             <!--Room No-->
@@ -659,7 +659,7 @@
                                                         <div class="card-body bg-white" style="border-radius: 18px">
                                                             @foreach($list2 as $lists2)
                                                                 @if($lists2->Room_No == $lists->Room_No)
-                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Reservation_No}}" >
+                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Booking_No}}" >
                                                                 @endif
                                                             @endforeach
                                                             <!--Room No-->
@@ -872,7 +872,7 @@
                                                         <div class="card-body bg-white" style="border-radius: 18px">
                                                             @foreach($list2 as $lists2)
                                                                 @if($lists2->Room_No == $lists->Room_No)
-                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Reservation_No}}" >
+                                                                    <input type="hidden" name="reserved_no" value="{{$lists2->Booking_No}}" >
                                                                 @endif
                                                             @endforeach
                                                             <!--Room No-->
