@@ -68,7 +68,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('FrontDesk', function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
 		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
-
+	
+	//Event inquiry
+	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+	
 	//Room Management
 	Route::get('Hotel Room Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');

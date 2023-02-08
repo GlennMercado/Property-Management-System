@@ -92,7 +92,6 @@
     }
 </style> 
 
-@include('layouts.footers.auth')  
 </div>    
      
 

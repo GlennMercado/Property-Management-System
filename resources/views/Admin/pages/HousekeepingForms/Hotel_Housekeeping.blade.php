@@ -277,8 +277,6 @@
         font-size:100px;
     }
 </style> 
-@include('layouts.footers.auth')
-    
     </div>
 
 

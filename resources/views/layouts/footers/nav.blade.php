@@ -2,8 +2,8 @@
     <div class="col-xl-6">
         <ul class="nav nav-footer">
             <li class="nav-item">
-                <h1 class="text-white">OFFICE HOUR</h1>
-                <h2 class="text-white">Mon-Sat | 8:00am - 5:00am</h2>
+                <h1 class="text-black">OFFICE HOUR</h1>
+                <h2 class="text-black">Mon-Sat | 8:00am - 5:00am</h2>
             </li>
         </ul>
     </div>
