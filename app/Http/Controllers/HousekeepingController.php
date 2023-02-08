@@ -93,10 +93,7 @@ class HousekeepingController extends Controller
     }
 
 
-    public function add_out_order(Request $request)
-    {
-        $createdby = Auth::user()->name;
-    }
+
     
     /**
      * Display the specified resource.

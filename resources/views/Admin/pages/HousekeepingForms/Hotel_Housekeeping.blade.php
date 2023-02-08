@@ -72,7 +72,7 @@
                     </div>
 
                     <!--Out of Service-->
-                    <div class="table-responsive" id="outofservice" style="display:block;">
+                    <div class="table-responsive" id="outofservice" style="display:none;">
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -173,7 +173,7 @@
                                     </div>
 
                                     <!--Out of Order Rooms Modal-->
-                                    <div class="" id="outoforder{{$lists2->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="outoforder{{$lists2->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -187,8 +187,10 @@
                                                         <div class="col">
                                                             <!-- Room Number and Facility Type -->
                                                             <p class="text-left">Room No</p>
-                                                            <input type="hidden" name="room_no"value="{{$lists2->Room_No}}" />
+                                                            <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
                                                             <input class="form-control" value="{{$lists2->Room_No}}" readonly />
+
+                                                            <input type="hidden" name="facility_type" value="Hotel Room" />
 
                                                         </div>
                                                         <div class="col">
@@ -210,8 +212,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <p class="text-left">Description</p>
-                                                            <input type="text" class="form-control" name="description" required/>   
+                                                            <p class="text-left">Due Date</p>
+                                                            <input type="date" class="form-control" name="due_date" required/>   
                                                         </div>  
                                                     </div>
 
