@@ -18,4 +18,16 @@ class MaintenanceController extends Controller
     {   
         return view('Admin.pages.Maintenance.LostDamageKeys');
     }
+
+    public function add_out_of_order()
+    {
+        $createdby_name = Auth::user()->name;
+        $createdby_role = Auth::user()->User_Type;
+
+        //room no
+        //facility
+        //priority
+        //description
+        
+    }
 }

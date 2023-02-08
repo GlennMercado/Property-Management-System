@@ -7,36 +7,19 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\novadeci_suites;
 use Illuminate\Support\Facades\DB;
 use App\Models\housekeeping;
-use App\Models\archived_hotel_reservation;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function Hotel_Rooms()
     {
-        //
+        $list = DB::select('SELECT * FROM novadeci_suites');
+		$pending = "Pending";
+		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE Isvalid != 0 and Payment_Status != '$pending'");
+		$list3 = DB::select('SELECT * FROM housekeepings');
+
+		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function add_rooms(Request $request)
     {
        
@@ -55,7 +38,7 @@ class RoomController extends Controller
         if($checkExist)
         {
             Alert::Error('Error', 'Room Already Exist');
-            return redirect('RoomManagement')->with('Error', 'Data Not Saved');
+            return redirect('Hotel Room Management')->with('Error', 'Data Not Saved');
         }
         else
         {
@@ -97,12 +80,12 @@ class RoomController extends Controller
             if($add_rooms->save() && $hs->save())
             {
                 Alert::Success('Success', 'Room Successfully Created!');
-                return redirect('RoomManagement')->with('Success', 'Data Saved');
+                return redirect('Hotel Room Management')->with('Success', 'Data Saved');
             }
             else
             {
                 Alert::Error('Error', 'Room Creation Failed');
-                return redirect('RoomManagement')->with('Error', 'Data Not Saved');
+                return redirect('Hotel Room Management')->with('Error', 'Data Not Saved');
             }
 
         }
@@ -141,12 +124,12 @@ class RoomController extends Controller
 
             
             Alert::Success('Success', 'Room Edited Successfully!');
-            return redirect('RoomManagement')->with('Success', 'Data Updated');
+            return redirect('Hotel Room Management')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('RoomManagement')->with('Failed', 'Data not Updateds');
+            return redirect('Hotel Room Management')->with('Failed', 'Data not Updateds');
         }
 
 
@@ -238,57 +221,12 @@ class RoomController extends Controller
             }
          
             Alert::Success('Success', 'Room Updated Successfully!');
-            return redirect('RoomManagement')->with('Success', 'Data Updated');
+            return redirect('Hotel Room Management')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('RoomManagement')->with('Failed', 'Data not Updated');
+            return redirect('Hotel Room Management')->with('Failed', 'Data not Updated');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
