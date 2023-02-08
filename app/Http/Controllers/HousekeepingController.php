@@ -14,9 +14,11 @@ class HousekeepingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function hotel_housekeeping()
     {
-        //
+        $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
+
+		return view('Admin.pages.HousekeepingForms.Hotel_Housekeeping',['list2' =>$list2]);
     }
 
     /**
@@ -54,86 +56,46 @@ class HousekeepingController extends Controller
             DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Room_Attendant' => $housekeeper));
 
             Alert::Success('Success', 'Housekeeper successfully assigned!');
-            return redirect('Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Housekeeper assigning failed!');
-            return redirect('Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
         }
 
     }
-    public function update_housekeeping_status(Request $request)
+    public function update_housekeeping_status($id, $status)
     {
         
         try
-        {
-            $this->validate($request,[
-                'room_no' => '',
-                'status' => 'required'
-                ]);
-            
+        {           
             $available = "Vacant for Accommodation";
             $unassigned = "Unassigned";
-            $room_no = $request->input('room_no');
-            $status = $request->input('status');
+            $room_no = $id;
+            $stats = $status;
 
-            if($status == "Cleaned")
+            if($stats == "Cleaned")
             {
-                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
+                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $stats, 'Room_Attendant' => $unassigned));
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
     
                 Alert::Success('Success', 'Setting Status Success!');
-                return redirect('Housekeeping')->with('Success', 'Data Updated');
-            }
-            elseif($status == "Out of Order")
-            {
-                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status, 'Room_Attendant' => $unassigned));
-
-                Alert::Success('Success', 'Setting Status Success!');
-                return redirect('Housekeeping')->with('Success', 'Data Updated');
-            }
-           
+                return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
+            }         
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Setting Status failed!');
-            return redirect('Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
         }
 
     }
 
 
-    public function add_maintenance(Request $request)
+    public function add_out_order(Request $request)
     {
-        $this->validate($request,[
-            'desc' => 'required',
-            'asset' => 'required',
-            'location' => 'required',
-            'due' => 'required'
-        ]);
-
-        $maintain = new add_maintenance;
-
-        $stats = 'On-going';
-        $maintain->Status = $stats;
-        $maintain->Description = $request->input('desc');
-        $maintain->Asset = $request->input('asset');
-        $maintain->Location = $request->input('location');
-        $maintain->Due_Date = $request->input('due');
-
-        if($maintain->save())
-        {
-            Alert::Success('Success', 'Maintenance successfully submitted!');
-            return redirect('Maintenance')->with('Success', 'Data Saved');
-        }
-        else
-        {
-            Alert::Error('Error', 'Maintenance Submission Failed!');
-            return redirect('Maintenance')->with('Error', 'Failed!');
-        }
-
-       
+        $createdby = Auth::user()->name;
     }
     
     /**

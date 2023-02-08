@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('out_of_order_rooms', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('Room_No');
+            $table->string('Facility_Type');
+    
+            $table->integer('Room_No')->nullable();
             $table->index('Room_No');
             $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->string('Description');   
             $table->string('Created_By');
             $table->string('Priority_Level');

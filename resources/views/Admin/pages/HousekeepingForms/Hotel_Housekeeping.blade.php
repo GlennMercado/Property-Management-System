@@ -72,7 +72,7 @@
                     </div>
 
                     <!--Out of Service-->
-                    <div class="table-responsive" id="outofservice" style="display:none;">
+                    <div class="table-responsive" id="outofservice" style="display:block;">
                         <!-- Projects table -->
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -101,7 +101,12 @@
                                             <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists2->Room_No}}"> 
                                                 <i class="bi bi-arrow-repeat"></i>
                                             </button>
+                                            
                                         @endif
+                                        <!--Out of Order button-->
+                                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#outoforder{{$lists2->Room_No}}"> 
+                                            <i class="bi bi-tools"></i>
+                                        </button>
                                     </td>
                                     @endif
                                     <!--Assigning Housekeeper-->
@@ -151,30 +156,72 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" class="prevent_submit" action="{{url('/update_housekeeping_status')}}" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="card-body bg-white" style="border-radius: 18px">
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="card-body bg-white" style="border-radius: 18px">
 
-                                                                    <input type="hidden" name="room_no" value="{{$lists2->Room_No}}" />
-
-                                                                    <p class="text-left">Set Status: </p>
-                                                                    <select name="status" class="form-control" required>
-                                                                        <option selected="true" disabled="disabled">Select</option>
-                                                                        <option value="Cleaned">Cleaned</option>
-                                                                        <option value="Out of Order">Out of Order</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                                                            <h4 class="text-center">Is the Room {{$lists2->Room_No}}<span class="text-success">CLEANED</span>?</h4>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists2->Room_No, 'status' => 'Cleaned']) }}" class="btn btn-success">Yes</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        </form>
+                                    </div>
+
+                                    <!--Out of Order Rooms Modal-->
+                                    <div class="" id="outoforder{{$lists2->Room_No}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Maintenance</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">         
+                                                    <div class="row">                                                       
+                                                        <div class="col">
+                                                            <!-- Room Number and Facility Type -->
+                                                            <p class="text-left">Room No</p>
+                                                            <input type="hidden" name="room_no"value="{{$lists2->Room_No}}" />
+                                                            <input class="form-control" value="{{$lists2->Room_No}}" readonly />
+
+                                                        </div>
+                                                        <div class="col">
+                                                            <p class="text-left">Priority Level</p>
+                                                            <select name="priority" class="form-control" required>
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Low">Low</option>
+                                                                <option value="Moderate">Moderate</option>
+                                                                <option value="High">High</option>
+                                                            </select>
+                                                        </div>                                                                                                                  
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <p class="text-left">Description</p>
+                                                            <input type="text" class="form-control" name="description" required/>   
+                                                        </div>     
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <p class="text-left">Description</p>
+                                                            <input type="text" class="form-control" name="description" required/>   
+                                                        </div>  
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists2->Room_No, 'status' => 'Cleaned']) }}" class="btn btn-success">Yes</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </tr>
                                 @endforeach

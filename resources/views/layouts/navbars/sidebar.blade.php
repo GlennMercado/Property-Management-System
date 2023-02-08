@@ -100,7 +100,7 @@
 
                 <!--Room Management-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('RoomManagement') }}">
+                    <a class="nav-link text-default" href="{{ route('Dashboard') }}">
                         <i class="ni ni-building text-success"></i> {{ __('Room Management') }}
                     </a>
                 </li>
@@ -147,14 +147,14 @@
                     <div class="collapse" id="navbar-examples4">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
+                                <a class="nav-link text-default" href="#">
                                 <i class="text-success">•</i> {{ __('Dashboard') }}
                                 </a>
                             </li>
                         </ul> 
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
+                                <a class="nav-link text-default" href="{{ route('Hotel_Housekeeping') }}">
                                 <i class="text-success">•</i> {{ __('Hotel Housekeeping') }}
                                 </a>
                             </li>
