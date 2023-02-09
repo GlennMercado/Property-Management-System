@@ -7,8 +7,7 @@
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <p class="mx-auto pt-6 text-uppercase title"   id = "section1">Reserve Now</p>
         <div class="card-body">
-            <div class="parent-container">
-                <div class="child-container">
+            <div class="container">
                     <h1>Hotel Reservation form</h1>
                         <h5>Please complete the form below</h5>
                         <hr class = "">
@@ -16,7 +15,7 @@
                                 enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row pt-4">
-                                        <div class="col">
+                                        <div class="col-md-6">
                                             <p>Guest Name</p>
                                                 @foreach ($guest as $guests)
                                                     <input type="hidden" name="gName" value="{{ $guests->name }}" />
@@ -24,26 +23,24 @@
                                                         value="{{ $guests->name }}" readonly>
                                                 @endforeach
                                         </div>
+                                            <div class="col-md-6">
+                                                <p>Email</p>
+                                                    <input class="form-control" type = "text">
+                                            </div>    
                                     </div>
                                 <div class="row pt-4">
-                                    <div class="col">
+                                    <div class="col-md-6">
                                         <p>Other Guests</p> 
                                             <input class="form-control" type = "text">
                                     </div>
-                                </div>
-                                    <div class="row pt-4">
-                                        <div class="col">
-                                            <p>Email</p>
-                                                <input class="form-control" type = "text">
-                                        </div>
-                                            <div class="col">
-                                                <p class="form-label">Mobile No.</p>
-                                                <input class="form-control" type="number" minlength="11" maxlength="11"
-                                            name="mobile" required>
-                                            </div>
+                                    <div class="col-md-6">
+                                        <p class="form-label">Mobile No.</p>
+                                            <input class="form-control" type="number" minlength="11" maxlength="11"
+                                        name="mobile" required>
                                     </div>
+                                </div>
                                         <div class="row pt-4">
-                                            <div class="col">
+                                            <div class="col-md">
                                                 <p class="form-label">Number of pax</p>
                                                     <select name="pax" class="form-control" id="pax_num"
                                                         onchange="price_count()" required>
@@ -54,7 +51,7 @@
                                                             @endfor
                                         </select>
                                             </div>  
-                                                <div class="col">
+                                                <div class="col-md">
                                                     <p>Room No</p>
                                                     <select name="room_no" class="form-control" required>
                                     <option selected disabled value="">Select</option>
@@ -68,19 +65,19 @@
                                                 </div>
                                         </div>
                                             <div class="row pt-4">
-                                                <div class="col">
+                                                <div class="col-md">
                                                     <p>Check in Date/Time</p>
                                                         <input class="form-control chck" name="checkIn" type="date"
                                                             onkeydown="return false" id="example-datetime-local-input" required>
                                                 </div>  
-                                                    <div class="col">
+                                                    <div class="col-md">
                                                         <p>Check out Date/Time</p>
                                                             <input class="form-control chck" name="checkOut" type="date"
                                                                 onkeydown="return false" id="example-datetime-local-input" required>
                                                     </div>
                                             </div>
                                                 <div class="row pt-4">
-                                                    <div class="col">
+                                                    <div class="col-md">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                 <label class="form-check-label" for="flexCheckDefault">
@@ -93,14 +90,14 @@
                                                 <h3 class = "pt-4">Guest Information</h3>
 
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-md">
                                                             <p>Full Name</p>
                                                             <input class="form-control" type = "text">
                                                         </div>
                                                     </div>
                                                         <h3 class = "pt-4">Do you have any special request?</h3>
                                                         <div class="row">
-                                                            <div class="col">
+                                                            <div class="col-md">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                         <label class="form-check-label" for="flexCheckDefault">
@@ -108,7 +105,7 @@
                                                                         </label>
                                                                 </div>
                                                             </div>
-                                                            <div class="col">
+                                                            <div class="col-md">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                         <label class="form-check-label" for="flexCheckDefault">
@@ -116,7 +113,7 @@
                                                                         </label>
                                                                 </div>
                                                             </div>
-                                                            <div class="col">
+                                                            <div class="col-md">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                         <label class="form-check-label" for="flexCheckDefault">
@@ -126,123 +123,75 @@
                                                             </div>
                                                         </div>
                                                         <div class="row pt-4">
-                                                            <div class="col">
+                                                            <div class="col-md">
                                                                 <div class="form-group">
                                                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        </div>
                                 </div>
-                    <div class="child-container ml-3">
-                        <h1 class = "">Reservation Information</h1>
-                            <h5>Please review all details below</h5>
-                                <hr class = "">
-                                    <div class="row">
-                                        <div class="col">
-                                            Booking Id: 
-                                            
+                                    <input type="submit" class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-2" value="Submit" style = "width:40%;" data-toggle="modal" data-target="#submit" />
+                                
+                                <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Reservation Information</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                        <div class="col">
-                                            
-                                            <!-- <p>output</p> -->
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Booking Id: 
+                                                    
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Guest Name:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Room Type:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Email:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Mobile no:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Check in date/time:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Check out date/time:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Book applied by:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Total Amount:                                     
+                                                    </div>
+                                                    <div class="col-md-12 pt-2">   
+                                                        Payment:                                     
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            Company Name: 
-                                            
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
-                                        <div class="col">
-                                            
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Guest Name: 
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Room Type: 
-                                        </div>
-                                        <div class="col">  
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Email:   
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Mobile no: 
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
                                         </div>
                                     </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Check in Date/Time: 
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-1">
-                                        <div class="col">
-                                            Check out Date/Time: 
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-4">
-                                        <div class="col">
-                                            Booked and Apply by: 
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-4">
-                                        <div class="col">
-                                            Other Guests: 
-                                        </div>
-                                        <div class="col">
-                                            <!-- <p>output</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="row pt-4">
-                                        <div class="col">
-                                            <h3>Total Amount</h3>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" id="room_price" readonly>
-                                                <p>Additional P1,500.00/pax</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <h2>Payment</h2>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control" id="" readonly>
-                                        </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col">
-                                            <hr>
-                                            <p class = " d-flex justify-content-center">scan here to pay</p>
+
+                                            
+                                            
+                                            <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
                                             <div class = "qrsample mx-auto d-flex justify-content-center">
                                                 <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
                                             </div>
@@ -258,8 +207,8 @@
                                         free of charge. If within (3) calendar days, guests will be charged of the total
                                         price. Refund, In case of guaranteed reservation, is payable through check issuance
                                         <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-                                    </p>
-                                    <input type="submit" class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-2" value="Submit" style = "width:60%;" />
+                                    </p> -->
+                                   
                     </div>  
                     </form>
                 </div>
@@ -276,8 +225,7 @@
                                 
                             </div>
                                 <div class="modal-footer">
-                                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -378,7 +326,7 @@
                         </div>
                 </form> -->
                 <!-- section2 suite -->
-                <p class = "d-flex justify-content-center text-uppercase title pt-6">Suites</p>
+                <!-- <p class = "d-flex justify-content-center text-uppercase title pt-6">Suites</p>
             <div class="image-grid">
                 <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.jpg" data-toggle="lightbox" data-gallery="example-gallery">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
@@ -388,12 +336,12 @@
                 <img class="" src="{{ asset('nvdcpics') }}/hotel6.jpg">
                 <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter"
                     src="{{ asset('nvdcpics') }}/hotel7.jpg">
-            </div>
+            </div> -->
             <!-- <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div> -->
             <!-- section 3 -->
-            <p class="text-center text-uppercase lg mt-4 title animated fadeIn title">About our Suites</p>
+            <!-- <p class="text-center text-uppercase lg mt-4 title animated fadeIn title">About our Suites</p> -->
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <h3 class = "txt">Description</h3>
                     <p>Our Superior Double Room offers comfort and style. The room features a comfortable double bed, a
@@ -416,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         <div>
             <!-- <h1 class="pt-4 txt">House Rules</h1>
