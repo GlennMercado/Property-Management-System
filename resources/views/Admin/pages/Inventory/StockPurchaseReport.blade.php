@@ -216,8 +216,7 @@
                   
                                                  
                 
-
-@include('layouts.footers.auth')                            
+                      
     </div>
 <!--Modal 2
 <div class="container-fluid mt--7">

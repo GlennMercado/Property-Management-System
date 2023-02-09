@@ -25,12 +25,12 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#">
+                <!-- <li class="nav-item">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('/') }}">
                         <i class="bi bi-house-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Home') }}</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('about_us') }}">
                         <i class="ni ni-single-02"></i>
@@ -44,13 +44,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('map')}}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section6">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Map') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section7">
                         <i class="bi bi-question-circle-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('FAQs') }}</span>
                     </a>

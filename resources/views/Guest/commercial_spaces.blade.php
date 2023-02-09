@@ -161,5 +161,4 @@ p{
   -webkit-text-stroke-color: black;
 } */
 </style>
-@include('layouts.footers.guest')
 @endsection

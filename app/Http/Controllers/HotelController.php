@@ -61,11 +61,11 @@ class HotelController extends Controller
         ]);
 
         $paystats = "Paid";
-        $status = "Checked-In";
+        $status = "Occupied";
         $reserve = new hotel_reservations;
         $roomno = $request->input('room_no');
 
-        $reserve->Reservation_No = $randID;
+        $reserve->Booking_No = $randID;
         $reserve->Check_In_Date = $request->input('checkIn');
         $reserve->Check_Out_Date = $request->input('checkOut');
         $reserve->Guest_Name = $request->input('gName');
@@ -93,7 +93,7 @@ class HotelController extends Controller
 
     public function update_payment($id, $no, $check)
     {
-        $reserveno = $id;
+        $bookno = $id;
         $roomno = $no;
         $isvalid = $check;
 
@@ -102,11 +102,11 @@ class HotelController extends Controller
 
         if($isvalid == true)
         {
-            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Available'");
+            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Vacant for Accommodation'");
         
             if($check)
             {
-                DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+                DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
         
                 Alert::Success('Success', 'Reservation successfully updated!');
@@ -127,7 +127,7 @@ class HotelController extends Controller
 
     public function update_booking_status($id, $no, $check, $stats)
     {
-            $reserveno = $id;
+            $bookno = $id;
             $roomno = $no;
             $isvalid = $check;
             
@@ -137,8 +137,9 @@ class HotelController extends Controller
             {
                 if($isvalid == true)
                 {
-                    DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array('Booking_Status' => $status));
-                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
+                    $roomstats = "Occupied";
+                    DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
     
                     Alert::Success('Success', 'Reservation successfully updated!');
                     return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -154,11 +155,12 @@ class HotelController extends Controller
                 if($isvalid == true)
                 {
                     $hstatus = "Out of Service";
-                    DB::table('hotel_reservations')->where('Reservation_No', $reserveno)->update(array(
+                    $roomstats = "Vacant for Cleaning";
+                    DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array(
                         'Booking_Status' => $status,
                         'Isvalid' => false
                     ));
-                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
                     DB::table('housekeepings')->where('Room_No', $roomno)->update(array('Housekeeping_Status' => $hstatus));
 
 

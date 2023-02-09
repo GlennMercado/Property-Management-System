@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
+use App\Models\convention_center_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,7 +103,7 @@ class GuestController extends Controller
 
             $reserve = new hotel_reservations;
 
-            $reserve->Reservation_No = $randID;
+            $reserve->Booking_No = $randID;
             $reserve->Email = $email;
             $reserve->Check_In_Date = $request->input('checkIn');
             $reserve->Check_Out_Date = $request->input('checkOut');
@@ -123,4 +124,46 @@ class GuestController extends Controller
             }
         }
     }
+    public function convention_center_application(Request $request)
+    {         
+            $this->validate($request,[
+                'client_name' => 'required',
+                'contact_no' => 'required',
+                'contact_person' => 'required',
+                'contact_person_no' => 'required',
+                'billing_address' => 'required',
+                'email_address' => 'required',
+                'event_name' => 'required',
+                'event_type' => 'required',
+                'event_date' => 'required',
+                'no_of_guest' => 'required'
+            ]);
+            
+            $submit = new convention_center_application;
+            $submit->client_name = $request->input('client_name');
+            $submit->contact_no = $request->input('contact_no');
+            $submit->contact_person = $request->input('contact_person');
+            $submit->contact_person_no = $request->input('contact_person_no');
+            $submit->billing_address = $request->input('billing_address');
+            $submit->email_address = $request->input('email_address');
+            $submit->event_name = $request->input('event_name');
+            $submit->event_type = $request->input('event_type');
+            $submit->event_date = $request->input('event_date');
+            $submit->no_of_guest = $request->input('no_of_guest');
+
+
+            if($submit->save())
+            {
+                Alert::Success('Success', 'Inquiry was sent successfully submitted!');
+                return redirect('/convention_center')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Inquiry was not sent');
+                return redirect('/convention_center')->with('Error', 'Failed!');
+            }
+    }
+
+
+
 }

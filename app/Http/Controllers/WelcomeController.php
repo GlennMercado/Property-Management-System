@@ -17,7 +17,10 @@ class WelcomeController extends Controller
      {
          return view('welcome');
      }
-      
+     public function about_us()
+     {
+         return view('Guest.AboutUs');
+     }
      /**
       * Show the form for creating a new resource.
       *

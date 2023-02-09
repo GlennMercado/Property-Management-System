@@ -13,6 +13,7 @@ class AdminController extends Controller
     {
         return view('Admin.admindashboard');
     }
+   
 
     public function Calendar(Request $request)
     {

@@ -30,11 +30,12 @@ Route::get('Map', function () { return view('Map');})->name('Map');
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
+	
 
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@admin_edit']);
@@ -46,6 +47,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Reservation
 	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
+	
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 	Route::get('/update/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
@@ -53,13 +55,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
 	//For Housekeeping	
-	Route::get('Housekeeping', function () {
-		$list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
-		return view('Admin.pages.HousekeepingForms.Housekeeping',['list2' =>$list2]);})->name('Dashboard');
+	Route::get('Hotel Housekeeping', [App\Http\Controllers\HousekeepingController::class, 'hotel_housekeeping'])->name('Hotel_Housekeeping');
 
 	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
-	Route::post('/update_housekeeping_status', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+	Route::get('/update_housekeeping_status/{id}/{status}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
@@ -68,15 +68,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('FrontDesk', function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
 		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
-
+	
+	//Event inquiry
+	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+	
 	//Room Management
-	Route::get('RoomManagement', function () {
-		$list = DB::select('SELECT * FROM novadeci_suites');
-		$pending = "Pending";
-		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE Isvalid != 0 and Payment_Status != '$pending'");
-		$list3 = DB::select('SELECT * FROM housekeepings');
-		return view('Admin.pages.RoomManagement',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('RoomManagement');
-
+	Route::get('Hotel Room Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
 	Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
@@ -85,8 +82,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
 
 	//Operation Management
-	Route::get('OperationManagement', function () {return view('Admin.pages.OperationManagement');})->name('OperationManagement'); 
-	
+	//Reservation
+	Route::get('Reservation', function () {return view('Admin.pages.OperationManagement.Reservation');})->name('Reservation'); 
+	Route::get('RoomAvailable', function () {return view('Admin.pages.OperationManagement.RoomAvailable');})->name('RoomAvailable');
+	Route::get('Request', function () {return view('Admin.pages.OperationManagement.Request');})->name('Request'); 
+	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints'); 
+	Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
+	//Guest Receipt
+	Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 	//Inventory Management
 
 	//Hotel Inventory
@@ -143,15 +146,16 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
-	Route::get('Maintenance', function () {
-		$list = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
-		return view('Admin.pages.Maintenance', ['list' => $list]);})->name('Maintenance');
 
 	//Calendar
 	//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');
 	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 	
+	//Maintenance
+	Route::get('Out of Order Rooms', [App\Http\Controllers\MaintenanceController::class, 'Out_of_Order_Rooms'])->name('Out_of_Order_Rooms');
+	Route::get('Lost or Damage Items', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Items'])->name('Lost_or_Damage_Items');
+	Route::get('Lost or Damage Keys', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Keys'])->name('Lost_or_Damage_Keys');
 	
 });
 
@@ -170,16 +174,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/commercial_spaces', [App\Http\Controllers\GuestController::class, 'commercial_spaces'])->name('commercial_spaces');
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
 	Route::get('/event_form', [App\Http\Controllers\GuestController::class, 'event_form'])->name('event_form');
-	Route::get('/download', function(){
-		$file = public_path()."/downloadablefiles/sample.pdf";
-
-		$header = array(
-			'Content-Type: application/pdf',
-		);
-
-		return Response::download($file, 'sample.pdf', $header);
-	});
-	Route::post('/store', 'App\Http\Controllers\GuestController@store')->name('store');
+	Route::post('/convention_center_submit', 'App\Http\Controllers\GuestController@convention_center_application');
 });
 	
 

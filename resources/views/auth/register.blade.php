@@ -20,7 +20,6 @@
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            <small>{{ __('sign up with credentials') }}</small>
                         </div>
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf
@@ -95,6 +94,9 @@
                                 <button type="submit"
                                     class="btn btn-primary mt-4 bg-success">{{ __('Create account') }}</button>
                             </div>
+                                <div class="text-center pt-2">
+                                    <span class = "text-muted text-sm">Already have an account <a href = "{{ url('login') }}">Sign In</a></span>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -379,9 +381,8 @@
     </div>
     </div>
     <style>
-        p strong{
+        p{
             text-align:justify;
-            font-family:sans-serif;
         }
         
     .nvdcbg {
