@@ -126,10 +126,13 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 	
 	//Stock Availability
+	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
+	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
+	
 		Route::get('StockAvailability', function () {
 			$list = DB::select('SELECT * FROM hotelstocks');
-			$list2 = DB::select('SELECT * FROM stocksfunctions');
-			$list3 = DB::select('SELECT * FROM stockscenters');
+			$list2 = DB::select('SELECT * FROM stockscenters');
+			$list3 = DB::select('SELECT * FROM stocksfunctions');
 			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('StockAvailability');
 			//Stock Avail
 		Route::get('StockAvail', function () {
