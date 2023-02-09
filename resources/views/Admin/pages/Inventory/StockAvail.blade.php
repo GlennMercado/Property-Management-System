@@ -22,9 +22,9 @@
                                 <tr>
                                     <td scope="col">Shampoo</td>
                                     <td scope="col">19</td>
-                                    <td scope="col" >5</td>
+                                    <td scope="col">5</td>
                                     <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
-                                    <td scope="col" >Hotel</td>
+                                    <td scope="col">Hotel</td>
                                 </tr>
                             </tbody>
                             </table>
