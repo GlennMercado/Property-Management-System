@@ -157,9 +157,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 	
 	//Maintenance
-	Route::get('Out_of_Order_Rooms', [App\Http\Controllers\MaintenanceController::class, 'Out_of_Order_Rooms'])->name('Out_of_Order_Rooms');
-	Route::get('Lost_or_Damage_Items', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Items'])->name('Lost_or_Damage_Items');
-	Route::get('Lost_or_Damage_Keys', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Keys'])->name('Lost_or_Damage_Keys');
+	Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 	
 	Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 });

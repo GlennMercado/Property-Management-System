@@ -10,19 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MaintenanceController extends Controller
 {
-    public function Out_of_Order_Rooms()
+    public function Maintenance()
     {   
-        $list = DB::select('SELECT * FROM out_of_order_rooms');
-        return view('Admin.pages.Maintenance.OutofOrder',  ['list' => $list]);
+        return view('Admin.pages.HousekeepingForms.Maintenance');
     }
-    public function Lost_or_Damage_Items()
-    {   
-        return view('Admin.pages.Maintenance.LostDamageItems');
-    }
-    public function Lost_or_Damage_Keys()
-    {   
-        return view('Admin.pages.Maintenance.LostDamageKeys');
-    }
+
 
     public function add_out_of_order(Request $request)
     {
