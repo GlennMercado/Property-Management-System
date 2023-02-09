@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('finances', function (Blueprint $table) {
             $table->id('userid');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('proof');
+            $table->text('email');
+            $table->string('proof_image');
             $table->string('status');
 
             $table->integer('cnumber');
+            $table->binary('proof_image_b');
             
             $table->timestamps();
         });

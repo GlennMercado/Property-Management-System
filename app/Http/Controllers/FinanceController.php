@@ -35,13 +35,12 @@ class FinanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function add_info(Request $request)
+    public function addinfo(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required',
             'cnumber' => 'required',
-            'proof' => 'required',
             'status' => 'required'
             ]);
 
@@ -50,14 +49,28 @@ class FinanceController extends Controller
             $finance->name = $request->input('name');
             $finance->email = $request->input('email');
             $finance->cnumber = $request->input('cnumber');
-            $finance->proof = $request->input('proof');
             $finance->status = $request->input('status');
+
+            if($request->hasfile('proof'))
+            {
+                //add image to a folder
+                $file = $request->file('proof');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extension;
+                $path = $file->move('finance_images/', $filename);
+                
+                $base64 = base64_encode($extension); 
+
+                $finance->proof_image = $path;
+                $finance->proof_image_b = $base64;
+
+            }
 
         
         if($finance->save())
         {
             Alert::Success('Success', 'Successfully Alerted the Finance Department!');
-            return redirect('Finance')->with('Success', 'Data Updated');
+            return redirect('Finance')->with('Success', 'Data Saved');
         }
         else
         {
@@ -95,7 +108,7 @@ class FinanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update_info(Request $request, $id)
+    public function update_info(Request $request)
     {
         try{
             $this->validate($request,[
@@ -104,7 +117,7 @@ class FinanceController extends Controller
                 'email' => 'required',
                 'cnumber' => 'required',
                 'proof' => 'required',
-                'status' => 'status'
+                'status' => 'required'
             ]);
             
             $userid = $request->input('userid');
@@ -122,10 +135,10 @@ class FinanceController extends Controller
                 'email' => $email,
                 'cnumber' => $cnumber,
                 'proof' => $proof,
-                'status' => $status,
+                'status' => $status
             ));
     
-            Alert::Success('Success', 'Successfully Alerted the Finance Department!');
+            Alert::Success('Success', 'Successfully Updated the Data!');
             return redirect('Finance')->with('Success', 'Data Updated');
           
         }

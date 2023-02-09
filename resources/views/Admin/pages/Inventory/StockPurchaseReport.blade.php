@@ -29,6 +29,8 @@
                                     <th scope="col" style = "font-size:18px;">Supplier Name</th>
                                     <th scope="col" style = "font-size:18px;">Description</th>
                                     <th scope="col" style = "font-size:18px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Level</th>
+                                    <th scope="col" style = "font-size:18px;">Stock Alert</th>
                                     <th scope="col" style = "font-size:18px;">Action</th>
                                 </tr>
                             </thead>
@@ -39,6 +41,12 @@
                                         <td style = "font-size:16px;">{{ $lists->suppliername}}</td>
                                         <td style = "font-size:16px;">{{ $lists->description}}</td>
                                         <td style = "font-size:16px;">{{ $lists->quantity}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->Stock_Level}}</td>
+                                        @if($lists->quantity <= $lists->Stock_Level)
+                                            <td style = "font-size:25px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
+                                        @else
+                                            <td style = "font-size:25px;"><i class="bi bi-check-square-fill" style="color:green;"></i></td>
+                                        @endif
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
                                             <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
