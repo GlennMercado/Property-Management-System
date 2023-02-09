@@ -73,7 +73,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Event inquiry
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-	
+	//Commercial Spaces
+	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
+
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -183,6 +185,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::post('/guest_reservation', 'App\Http\Controllers\GuestController@guest_reservation');
 	Route::get('/event_form', [App\Http\Controllers\GuestController::class, 'event_form'])->name('event_form');
 	Route::post('/convention_center_submit', 'App\Http\Controllers\GuestController@convention_center_application');
+	Route::post('/commercial_spaces_submit', 'App\Http\Controllers\GuestController@commercial_spaces_application');
 });
 	
 

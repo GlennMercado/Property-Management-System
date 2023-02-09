@@ -21,7 +21,6 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <!-- Pending -->
                                 <table class="table align-items-center table-flush" id="myTable">
                                     <thead class="thead-light">
                                         <tr>

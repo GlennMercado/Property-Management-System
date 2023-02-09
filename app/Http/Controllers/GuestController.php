@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
 use App\Models\convention_center_application;
+use App\Models\commercial_spaces_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -164,6 +165,50 @@ class GuestController extends Controller
             }
     }
 
+    public function commercial_spaces_application(Request $request)
+    {         
+            $this->validate($request,[
+                'business_name' => 'required',
+                'business_style' => 'required',
+                'business_address' => 'required',
+                'email_website_fb' => 'required',
+                'business_landline_no' => 'required',
+                'business_mobile_no' => 'required',
+                'name_of_owner' => 'required',
+                'spouse' => 'required',
+                'home_address' => 'required',
+                'landline' => 'required',
+                'mobile_no' => 'required',
+                'tax_identification_no' => 'required',
+                'tax_cert_valid_gov_id' => 'required'
+            ]);
+            
+            $submit = new commercial_spaces_application;
+            $submit->business_name = $request->input('business_name');
+            $submit->business_style = $request->input('business_style');
+            $submit->business_address = $request->input('business_address');
+            $submit->email_website_fb = $request->input('email_website_fb');
+            $submit->business_landline_no = $request->input('business_landline_no');
+            $submit->business_mobile_no = $request->input('business_landline_no');
+            $submit->name_of_owner = $request->input('name_of_owner');
+            $submit->spouse = $request->input('spouse');
+            $submit->home_address = $request->input('home_address');
+            $submit->landline = $request->input('landline');
+            $submit->mobile_no = $request->input('mobile_no');
+            $submit->tax_identification_no = $request->input('tax_identification_no');
+            $submit->tax_cert_valid_gov_id = $request->input('tax_cert_valid_gov_id');
 
+
+            if($submit->save())
+            {
+                Alert::Success('Success', 'Inquiry was sent successfully submitted!');
+                return redirect('/commercial_spaces')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Inquiry was not sent');
+                return redirect('/commercial_spaces')->with('Error', 'Failed!');
+            }
+    }
 
 }

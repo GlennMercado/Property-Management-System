@@ -14,8 +14,77 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
+    <div class="container">
+    <div class="row mt--9">
+                <div class="card card-stats col-md-3" style="width: 8rem;">
+                    <!-- Card body -->
+                    <div class="card-body" style="height: 85px;">    
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+                          <i class="ni ni-chart-pie-35"></i>
+                      </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <div class="card card-stats col-md-3" style="width: 8rem;">
+                    <!-- Card body -->
+                    <div class="card-body" style="height: 85px;">    
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+                          <i class="ni ni-chart-pie-35"></i>
+                      </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <div class="card card-stats col-md-3">
+                    <!-- Card body -->
+                    <div class="card-body" style="height: 85px;">    
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+                          <i class="ni ni-chart-pie-35"></i>
+                      </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <div class="card card-stats col-md-3" style="width: 8rem;">
+                    <!-- Card body -->
+                    <div class="card-body" style="height: 85px;">    
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+                          <i class="ni ni-chart-pie-35"></i>
+                      </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+</div>
+</div>
 
-        <div class="container-fluid mt--11">
+<br><br>
+        <div class="container-fluid mt--4">
             <div class="row justify-content-center">
                 <div class=" col ">
                     <div class="card">
