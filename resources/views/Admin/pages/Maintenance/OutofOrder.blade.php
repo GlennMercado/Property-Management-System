@@ -46,15 +46,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
-                                    <td style = "font-size:16px;">qwe</td>
+                                    @foreach($list as $lists)
+                                        <td style = "font-size:16px;">{{$lists->Room_No}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Facility_Type}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Description}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Priority_Level}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Resolved_By}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Date_Created = date('M d, Y')}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Due_Date = date('M d, Y')}}</td>
+                                        <td style = "font-size:16px;">{{$lists->Date_Resolved}}</td>
+                                        <td style = "font-size:16px;">
+                                            <button class="btn btn-primary">
+                                                ACtion
+                                            </button>
+                                        </td>
+                                    @endforeach
                                 </tr>
                             </tbody>
                         </table>
