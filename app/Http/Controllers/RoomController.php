@@ -15,9 +15,8 @@ class RoomController extends Controller
         $list = DB::select('SELECT * FROM novadeci_suites');
 		$pending = "Pending";
 		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE IsArchived != 1 and Payment_Status != '$pending'");
-		$list3 = DB::select('SELECT * FROM housekeepings');
 
-		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);
+		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2]);
     }
 
     public function add_rooms(Request $request)
@@ -33,6 +32,7 @@ class RoomController extends Controller
         ]);
 
         $roomno = $request->input('room_no');
+
         $checkExist = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' ");
 
         if($checkExist)
@@ -43,7 +43,6 @@ class RoomController extends Controller
         else
         {
             $add_rooms= new novadeci_suites;
-            $hs = new housekeeping;
 
             $add_rooms->Room_No = $request->input('room_no');
             $add_rooms->Room_Size = $request->input('room_size');
@@ -52,7 +51,6 @@ class RoomController extends Controller
             $add_rooms->No_Pax_Per_Room = $request->input('no_of_pax');
             $add_rooms->Rate_per_Night = $request->input('rate_per_night');
 
-            $hs->Room_No = $request->input('room_no');
         
             if($request->hasfile('images'))
             {

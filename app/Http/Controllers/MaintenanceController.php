@@ -10,19 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class MaintenanceController extends Controller
 {
-    public function Out_of_Order_Rooms()
+    public function Maintenance()
     {   
-        $list = DB::select('SELECT * FROM out_of_order_rooms');
-        return view('Admin.pages.Maintenance.OutofOrder',  ['list' => $list]);
+        $list = DB::SELECT('SELECT * FROM out_of_order_rooms');
+        return view('Admin.pages.HousekeepingForms.Maintenance', ['list' => $list]);
     }
-    public function Lost_or_Damage_Items()
-    {   
-        return view('Admin.pages.Maintenance.LostDamageItems');
-    }
-    public function Lost_or_Damage_Keys()
-    {   
-        return view('Admin.pages.Maintenance.LostDamageKeys');
-    }
+
 
     public function add_out_of_order(Request $request)
     {
@@ -32,6 +25,7 @@ class MaintenanceController extends Controller
         $createdby = $createdby_name.' ('.$createdby_role.')';
 
         $this->validate($request,[
+            'id' => '',
             'room_no' => '',
             'facility_type'=> '',
             'priority' => 'required',
@@ -41,6 +35,7 @@ class MaintenanceController extends Controller
 
         $status = "Out of Order";
 
+        $id = $request->input('id');
         $room_no = $request->input('room_no');
         $facility = $request->input('facility_type');
         $priority = $request->input('priority');
@@ -60,16 +55,16 @@ class MaintenanceController extends Controller
 
         if($add->save())
         {
-            DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status));
-            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $status));
+            DB::table('housekeepings')->where('ID', $id)->update(array('Housekeeping_Status' => $status));
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $status));
             
             Alert::Success('Success', 'Out of Order Room Successfully Recorded!');
-            return redirect('Out of Order Rooms')->with('Success', 'Data Saved');
+            return redirect('Maintenance')->with('Success', 'Data Saved');
         }
         else
         {
             Alert::Error('Failed', 'Out of Order Room Failed Recording!');
-            return redirect('Out of Order Rooms')->with('Success', 'Data Saved');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Saved');
         }
         
         

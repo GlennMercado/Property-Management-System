@@ -16,7 +16,8 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard');
+        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list]);
     }
     public function hotel_housekeeping()
     {
@@ -50,48 +51,52 @@ class HousekeepingController extends Controller
     {
         try{
             $this->validate($request,[
-                'room_no' => '',
+                'id' => '',
                 'housekeeper' => 'required'
                 ]);
 
-            $room_no = $request->input('room_no');
+            $id = $request->input('id');
             $housekeeper = $request->input('housekeeper');
 
-            DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Room_Attendant' => $housekeeper));
+            DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
-            Alert::Success('Success', 'Housekeeper successfully assigned!');
-            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
+            Alert::Success('Success', 'Attendant successfully assigned!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Housekeeper assigning failed!');
-            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
 
     }
-    public function update_housekeeping_status($id, $status)
+    public function update_housekeeping_status($room_no, $id, $status, $req)
     {
         
         try
         {           
             $available = "Vacant for Accommodation";
-            $unassigned = "Unassigned";
-            $room_no = $id;
+            $hid = $id;
+            $reqid = $req;
+            $roomno = $room_no;
             $stats = $status;
-
+            $archive = true;
+            
+            
             if($stats == "Cleaned")
             {
-                DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Housekeeping_Status' => $stats, 'Room_Attendant' => $unassigned));
-                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
+                DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
+                DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
+                DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
     
                 Alert::Success('Success', 'Setting Status Success!');
-                return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
+                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             }         
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Setting Status failed!');
-            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
 
     }

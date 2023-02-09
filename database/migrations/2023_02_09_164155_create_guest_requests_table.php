@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('Request');
             
             $table->string('Status')->default('Ongoing');
+            $table->boolean('IsArchived')->default(false);
             
 
 

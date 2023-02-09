@@ -61,7 +61,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
-	Route::get('/update_housekeeping_status/{id}/{status}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+	Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
@@ -162,9 +162,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 	
 	//Maintenance
-	Route::get('Out_of_Order_Rooms', [App\Http\Controllers\MaintenanceController::class, 'Out_of_Order_Rooms'])->name('Out_of_Order_Rooms');
-	Route::get('Lost_or_Damage_Items', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Items'])->name('Lost_or_Damage_Items');
-	Route::get('Lost_or_Damage_Keys', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Keys'])->name('Lost_or_Damage_Keys');
+	Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 	
 	Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 });

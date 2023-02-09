@@ -355,16 +355,8 @@
                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}"> <i
                                                         class="bi bi-pencil-square"></i> </button>
-                                                <!-- @foreach ($list3 as $lists3)
-    @if ($lists->Room_No == $lists3->Room_No)
-    @if ($lists->Status != 'Available' && $lists3->Housekeeping_Status == 'Cleaned')
-    -->
-                                                <!--Update Status button-->
-                                                <!-- <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{ $lists->Room_No }}"> <i class="bi bi-arrow-repeat"></i></button> -->
-                                                <!--
-    @endif
-    @endif
-    @endforeach -->
+                                               
+                                          
                                             </td>
                                         </tr>
 
@@ -626,16 +618,8 @@
                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}"> <i
                                                         class="bi bi-pencil-square"></i> </button>
-                                                <!-- @foreach ($list3 as $lists3)
-    @if ($lists->Room_No == $lists3->Room_No)
-    @if ($lists->Status != 'Available' && $lists3->Housekeeping_Status == 'Cleaned')
-    -->
-                                                <!--Update Status button-->
-                                                <!-- <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{ $lists->Room_No }}"> <i class="bi bi-arrow-repeat"></i></button>
-    @endif
-    @endif
-    @endforeach -->
-                                            </td>
+                                               
+                                              </td>
                                         </tr>
 
 
@@ -898,19 +882,8 @@
                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}"> <i
                                                         class="bi bi-pencil-square"></i> </button>
-                                                <!-- @foreach ($list3 as $lists3)
-    @if ($lists->Room_No == $lists3->Room_No)
-    @if ($lists->Status != 'Available' && $lists3->Housekeeping_Status == 'Cleaned')
-    -->
-                                                <!--Update Status button-->
-                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                    data-target="#update{{ $lists->Room_No }}"> <i
-                                                        class="bi bi-arrow-repeat"></i></button>
-                                                <!--
-    @endif
-    @endif
-    @endforeach -->
-                                            </td>
+                                              
+                                           </td>
                                         </tr>
 
 

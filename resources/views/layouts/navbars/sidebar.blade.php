@@ -146,7 +146,14 @@
                                 <i class="text-success">•</i> {{ __('Room Management') }}
                                 </a>
                             </li>
-                        </ul>  
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Maintenance') }}">
+                                <i class="text-success">•</i> {{ __('Maintenance') }}
+                                </a>
+                            </li>
+                        </ul>    
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Hotel_Housekeeping') }}">
@@ -246,7 +253,7 @@
 
 
                 <!--Maintenance-->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples6" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples6">
                          <i class="bi bi-person-lines-fill text-success"></i>
@@ -275,7 +282,7 @@
                             </li>
                         </ul> 
                     </div>
-                </li>
+                </li> --}}
 
                 <!-- Operation Management -->
                 <li class="nav-item">
