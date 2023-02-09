@@ -329,13 +329,29 @@
                                     </ul>
                                 </div>
                     <!-- </div> --> 
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
+                                        aria-expanded="false" aria-controls="navbar-examples13">
+                                         <i class="bi bi-person-lines-fill text-success"></i>
+                                        <span class="nav-link-text text-default">{{ __('Finances') }}</span>
+                                    </a>
+                                    <div class="collapse" id="navbar-examples13">
+                                        <ul class="nav nav-sm flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link text-default" href="{{ route('Finance') }}">
+                                                <i class="bi bi-person-lines-fill text-success"></i> {{ __('Finance') }}
+                                            </a>
+                                            </li>
+                                        </ul> 
+                                        <ul class="nav nav-sm flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link text-default" href="{{ route('FinanceDashboard') }}">
+                                                    <i class="text-success">•</i> {{ __('FinanceDashboard') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-default" href="{{ route('Finance') }}">
-                                            <i class="bi bi-person-lines-fill text-success"></i> {{ __('Finance') }}
-                                        </a>
-                                    </li>
-                                </ul>
             <!-- Divider -->
             <hr class="my-3">
 

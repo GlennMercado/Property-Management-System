@@ -145,6 +145,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Finance', function () {
 		$list = DB::select('SELECT * FROM finances');
 		return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
+		//Finance Dashboard
+		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
 
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
