@@ -318,7 +318,7 @@
                         </table>
                     </div>
 
-</div>
+
 <script>
     //$(document).ready(function(){
       //  $("#optionselect").change(function(){
@@ -361,7 +361,6 @@
         text-transform:uppercase;
     }
 </style>
-    @include('layouts.footers.auth')
     @endsection
 
     @push('js')

@@ -57,7 +57,7 @@ class PurchaseReportController extends Controller
            $stocks->Stock_Level = $request->input('stock');
            $stocks->unit = $request->input('unit');
     
-           if($stock->save())
+           if($stocks->save())
             {
                 Alert::Success('Success', 'Stock Successfully Added!');
             return redirect('StockPurchaseReport')->with('Success', 'Data Saved');

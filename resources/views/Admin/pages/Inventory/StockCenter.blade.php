@@ -243,7 +243,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/addstocks_center') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/addstock_center') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <div class = "row">
