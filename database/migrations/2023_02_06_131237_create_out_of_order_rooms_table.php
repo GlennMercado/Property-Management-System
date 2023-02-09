@@ -31,7 +31,7 @@ return new class extends Migration
             $table->date('Due_Date');
             $table->date('Date_Resolved')->nullable();
             
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 

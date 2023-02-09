@@ -182,7 +182,10 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">         
+                                                <div class="modal-body">  
+                                                <form action="{{ url('/add_out_of_order') }}" class="prevent_submit" method="POST"
+                                                enctype="multipart/form-data">
+                                                {{ csrf_field() }}       
                                                     <div class="row">                                                       
                                                         <div class="col">
                                                             <!-- Room Number and Facility Type -->
@@ -220,11 +223,13 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists2->Room_No, 'status' => 'Cleaned']) }}" class="btn btn-success">Yes</a>
+                                                    <input type="submit" name="outofordersubmit" class="btn btn-primary" />
                                                 </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
+
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -151,6 +151,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Lost or Damage Items', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Items'])->name('Lost_or_Damage_Items');
 	Route::get('Lost or Damage Keys', [App\Http\Controllers\MaintenanceController::class, 'Lost_or_Damage_Keys'])->name('Lost_or_Damage_Keys');
 	
+	Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 });
 
 //Guest
