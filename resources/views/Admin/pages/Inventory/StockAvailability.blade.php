@@ -21,7 +21,7 @@
                     <div class="card-body" style="height: 85px;">    
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Hotel Inventory</h5>
                         <span class="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <div class="col-auto">
@@ -37,7 +37,7 @@
                     <div class="card-body" style="height: 85px;">    
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Convention Center Inventory</h5>
                         <span class="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <div class="col-auto">
@@ -53,7 +53,7 @@
                     <div class="card-body" style="height: 85px;">    
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Stocks Availability</h5>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Function Room Inventory</h5>
                         <span class="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <div class="col-auto">
@@ -113,9 +113,10 @@
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                             <!--Hotel Stock Inventory-->
+                                           <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">Add Stock</button>
                                            <h3 class="mb-0 title">Hotel Stock Inventory</h3>
                                              <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5><br><br>
-                                             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
+                                            
                                                 Add Stock
                                         </button>
                                          <table class="table align-items-center" id="myTable">
@@ -308,6 +309,7 @@
                                         </div>
                         <!--Convention Center Inventory-->
                                         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">Add Stock</button>
                                             <h3 class="mb-0 title">Convention Center Inventory</h3>
                                             <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5><br><br>
                                             <table class="table align-items-center" id="myTables">
@@ -512,11 +514,10 @@
                                         </div>
                     <!--Function Rooms inventory-->
                                         <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">Add Stock</button>
                                         <h3 class="mb-0 title">Function Rooms Inventory</h3>
                                         <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5><br><br>
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
-                                            Add Stocks
-                                    </button>
+        
                         <table class="table align-items-center" id="myTabless">
                             <thead class="thead-light">
                                 <tr>
@@ -716,59 +717,11 @@
                                 </tbody>
                         </table>
                                         </div>
-                                        <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                        <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
                     <!--Request Forms-->
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">Purchase Report</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="{{ url('/report') }}" class="prevent_submit" method="POST">
-                                                {{ csrf_field() }}
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="card-body bg-white" style="border-radius: 18px">
-                                                        <div class = "row">
-                                                                <div class = "col">
-                                                                    <label class="text-left text-color">Item Name </label>
-                                                                        <input class="form-control mt-2" type="text" name="name" placeholder="Enter Here.."  required>
-                                                                </div>
-                                                            </div>
-                                                        <label class="text-left pt-4 text-color">Item Description </label>
-                                                        <input class="form-control mt-2" type="text" placeholder="Enter Here.." name="description" required>
-                                                        <div class = "row">
-                                                            <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Unit </label> 
-                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
-                                                            </div>
-                                                            <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Quantity </label>
-                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
-                                                            </div>
-                                                            <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Stock Level :</label>
-                                                                <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required>
-                                                            </div>
-                                                        </div>
-                                                        <label class="text-left pt-4 text-color">Supplier Name </label>
-                                                            <select class="form-control mt-2" name="suppliername" required>
-                                                                <option>Sample Supplier 1</option>
-                                                                <option>Sample Supplier 2</option>
-                                                                <option>Sample Supplier 3</option>
-                                                            </select>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                   sss
+    </div>
+                    
                                         </div>
                                     </div>
                                 </div>
