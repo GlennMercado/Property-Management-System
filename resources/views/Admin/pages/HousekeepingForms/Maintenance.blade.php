@@ -13,7 +13,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0 title">Housekeeping Dashboard</h3>
+                                <h2 class="mb-0 title">Maintenance</h3>
                             </div>
                         </div>
                         <br>
@@ -44,7 +44,7 @@
                                         <tr>
                                             <th scope="col" style = "font-size:18px;">Room No.</th>
                                             <th scope="col" style = "font-size:18px;">Facility Type</th>
-                                            <th scope="col" style = "font-size:18px;">Details</th>
+                                            <th scope="col" style = "font-size:18px;">Description</th>
                                             <th scope="col" style = "font-size:18px;">Priority Level</th>
                                             <th scope="col" style = "font-size:18px;">Status</th>
                                             <th scope="col" style = "font-size:18px;">Due Date</th>
@@ -52,7 +52,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @foreach($list as $lists)
+                                        <tr>
+                                            <td>{{$lists->Room_No}}</td>
+                                            <td>{{$lists->Facility_Type}}</td>
+                                            <td>{{$lists->Description}}</td>
+                                            <td>{{$lists->Priority_Level}}</td>
+                                            <td>{{$lists->Status}}</td>
+                                            <td>{{$lists->Due_Date = date('M d, Y')}}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#view"> <i class="bi bi-eye"></i> </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

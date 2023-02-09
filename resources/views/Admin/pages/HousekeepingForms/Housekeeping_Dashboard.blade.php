@@ -64,7 +64,10 @@
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#assign{{$lists->ID}}"> <i class="bi bi-person-fill"></i> </button>
                                                 @endif
                                                 @if($lists->Housekeeping_Status  == 'Out of Service')
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#outoforder{{$lists->ID}}"> <i class="bi bi-arrow-repeat"></i> </button>
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists->ID}}"> 
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#outoforder{{$lists->ID}}"> <i class="bi bi-tools"></i> </button>
                                                 @endif
                                             </td>
                                         </tr> 
@@ -157,6 +160,7 @@
                                                             <div class="col">
                                                                 <!-- Room Number and Facility Type -->
                                                                 <p class="text-left">Room No</p>
+                                                                <input type="hidden" name="id" value="{{$lists->ID}}" />
                                                                 <input type="hidden" name="room_no" value="{{$lists->Room_No}}" />
                                                                 <input class="form-control" value="{{$lists->Room_No}}" readonly />
 
@@ -193,6 +197,32 @@
                                                         <input type="submit" name="outofordersubmit" class="btn btn-primary" />
                                                     </div>
                                                 </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Update Housekeeping Status Modal-->
+                                        <div class="modal fade" id="update{{$lists->ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Setting Status</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="card-body bg-white" style="border-radius: 18px">
+
+                                                                <h4 class="text-center">Is the Room {{$lists->Room_No}} <span class="text-success">CLEANED</span>?</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}" class="btn btn-success">Yes</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

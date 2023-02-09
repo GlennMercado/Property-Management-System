@@ -61,7 +61,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
-	Route::get('/update_housekeeping_status/{id}/{status}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+	Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
