@@ -3,19 +3,47 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col-xl">
+    <div class="container-fluid mt--9">
+    <div class="row">
+            <div class="form-control col-md-7" style="height:150px" >
+            <h5>Stock Avalability</h5>
+            <table class="table align-items-center table-flush">
+
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" >Product Name</th>
+                                    <th scope="col">Available Stock</th>
+                                    <th scope="col" >Stock Level</th>
+                                    <th scope="col" >Stock Alert</th>
+                                    <th scope="col" >Branch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="col">Shampoo</td>
+                                    <td scope="col">19</td>
+                                    <td scope="col" >5</td>
+                                    <td><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
+                                    <td scope="col" >Hotel</td>
+                                </tr>
+                            </tbody>
+                            </table>
+
+            </div>
+<br >
+<div class="form-control col-md-5" style="height:55" >
+</div>
+
+<div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Availability of Stocks</h3><br />
-                                <select class="form-control col-md-3" style="border:2px solid" id="optionselect" >
-                                    <option value="HotelStock" selected="true"><h3>Hotel Inventory</h3></option>
-                                    <option value="FunctionStock">Function Rooms Inventory</option>
-                                    <option value="CenterStock">Convention Center Inventory</option>
-                                </select>
+                                
+                                    <a href="{{ url('StockCount') }}"><input class="btn btn-primary" type="button" value="Hotel Inventory" id="HotelStock"></input></a>
+                                    <a href="{{ url('StockFunction') }}"><input class="btn btn-primary" type="button" value="Function Room Inventory" id="FunctionStock"></input></a>
+                                    <a href="{{ url('StockCenter') }}"><input class="btn btn-primary" type="button" value="Convention Center Inventory" id="CenterStock"></input></a>
+
                             </div><br/>
                             
                         </div>
@@ -292,9 +320,9 @@
 
 </div>
 <script>
-    $(document).ready(function(){
-        $("#optionselect").change(function(){
-        var selected = $("option:selected", this).val();
+    //$(document).ready(function(){
+      //  $("#optionselect").change(function(){
+        //var selected = $("option:selected", this).val();
 
         if(selected == 'HotelStock')
         {    
@@ -315,8 +343,8 @@
             $('#center').show();
         }
 
-    });
-    });
+    //});
+    //});
 </script>
 <style>
     .title{

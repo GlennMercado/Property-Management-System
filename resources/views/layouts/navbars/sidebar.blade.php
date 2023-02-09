@@ -194,6 +194,13 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockAvail') }}">
+                                    <i class="bi bi-ui-checks text-success"></i> {{ __('Stock Avail') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
                                     <i class="bi bi-boxes text-success"></i> {{ __('Hotel Inventory') }}
                                 </a>
