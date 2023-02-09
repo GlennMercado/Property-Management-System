@@ -50,7 +50,13 @@
                                         <td style = "font-size:16px;">{{$lists->Room_No}}</td>
                                         <td style = "font-size:16px;">{{$lists->Facility_Type}}</td>
                                         <td style = "font-size:16px;">{{$lists->Description}}</td>
-                                        <td style = "font-size:16px;">{{$lists->Priority_Level}}</td>
+                                        @if($lists->Priority_Level == "Low")
+                                            <td style = "font-size:16px; color:#5cb85c;">{{$lists->Priority_Level}}</td>
+                                        @elseif($lists->Priority_Level == "Moderate")
+                                            <td style = "font-size:16px; color:#f0ad4e;">{{$lists->Priority_Level}}</td>
+                                        @elseif($lists->Priority_Level == "High")
+                                            <td style = "font-size:16px; color: #d9534f;">{{$lists->Priority_Level}}</td>
+                                        @endif
                                         <td style = "font-size:16px;">{{$lists->Resolved_By}}</td>
                                         <td style = "font-size:16px;">{{$lists->Date_Created = date('M d, Y')}}</td>
                                         <td style = "font-size:16px;">{{$lists->Due_Date = date('M d, Y')}}</td>

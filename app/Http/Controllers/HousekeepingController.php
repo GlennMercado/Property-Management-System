@@ -14,6 +14,10 @@ class HousekeepingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function housekeeping_dashboard()
+    {
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard');
+    }
     public function hotel_housekeeping()
     {
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
@@ -56,12 +60,12 @@ class HousekeepingController extends Controller
             DB::table('housekeepings')->where('Room_No', $room_no)->update(array('Room_Attendant' => $housekeeper));
 
             Alert::Success('Success', 'Housekeeper successfully assigned!');
-            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Housekeeper assigning failed!');
-            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
         }
 
     }
@@ -81,13 +85,13 @@ class HousekeepingController extends Controller
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $available));
     
                 Alert::Success('Success', 'Setting Status Success!');
-                return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
+                return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
             }         
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Setting Status failed!');
-            return redirect('Hotel Housekeeping')->with('Success', 'Data Updated');
+            return redirect('Hotel_Housekeeping')->with('Success', 'Data Updated');
         }
 
     }
