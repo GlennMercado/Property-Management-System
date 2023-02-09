@@ -3,10 +3,19 @@
 @section('content')
     @include('layouts.headers.cards')
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+            $('#myTables').DataTable();
+            $('#myTabless').DataTable();
+        });
+        // Code that uses other library's $ can follow here.
+    </script>
 
-
-    <div class="container-fluid mt--7">
-        <div class="container-fluid mt--6">
+        <div class="container-fluid mt--11">
             <div class="row justify-content-center">
                 <div class=" col ">
                     <div class="card">
@@ -25,6 +34,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>Function Rooms Inventory </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>Request Forms</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="card shadow">
@@ -32,12 +44,12 @@
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                             <!--Hotel Stock Inventory-->
-                                           <h3 class="mb-0 title">Hotel Stocks</h3>
+                                           <h3 class="mb-0 title">Hotel Stock Inventory</h3>
                                              <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before starting, see to It that all inventory are in the Storage Area</h5><br><br>
                                              <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                                 Add Stock
                                         </button>
-                                         <table class="table align-items-center table-flush">
+                                         <table class="table align-items-center" id="myTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style = "font-size:18px;">Product Name</th>
@@ -229,7 +241,7 @@
                                         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                                             <h3 class="mb-0 title">Convention Center Inventory</h3>
                                             <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before Starting, See To It That All Inventory Are In The Storage Area</h5><br><br>
-                                            <table class="table align-items-center table-flush datatable datatable-Stock">
+                                            <table class="table align-items-center" id="myTables">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col" style = "font-size:18px;">Product Name</th>
@@ -436,7 +448,7 @@
                                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" style = "float:right;">
                                             Add Stocks
                                     </button>
-                        <table class="table align-items-center table-flush">
+                        <table class="table align-items-center" id="myTabless">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style = "font-size:16px;">Product Name</th>
@@ -449,25 +461,25 @@
                             </thead>
                                 
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list3 as $lists3)
                                     <tr>
-                                        <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->total}}</td>
-                                        <td>{{ $lists->Stock_Level}}</td>
-                                        @if($lists->total <= $lists->Stock_Level)
+                                        <td>{{ $lists3->name}}</td>
+                                        <td>{{ $lists3->description}}</td>
+                                        <td>{{ $lists3->total}}</td>
+                                        <td>{{ $lists3->Stock_Level}}</td>
+                                        @if($lists3->total <= $lists3->Stock_Level)
                                             <td><i class="bi bi-exclamation-triangle-fill" style="color:red;font-size:20px"></i></td>
                                         @else
                                             <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i></td>
                                         @endif
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#ModalView{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
-                                            <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#ModalView{{$lists3->productid}}" class="btn btn-primary"><i class="bi bi-eye" style = "padding:2px;">View</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#ModalUpdate{{$lists3->productid}}" class="btn btn-primary"><i class="bi bi-pencil-square"style = "padding:2px;" >Edit</i></button>
                                         </td>
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
-                                    <div class="modal fade text-left" id="ModalView{{$lists->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                    <div class="modal fade text-left" id="ModalView{{$lists3->productid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -481,7 +493,7 @@
                                                                 <div class = "row">
                                                                         <div class = "col">
                                                                             <p class="text-left">Stock Name: </p>
-                                                                                <input type="text" class="form-control" name="name" value = "{{ $lists->name}}" readonly>
+                                                                                <input type="text" class="form-control" name="name" value = "{{ $lists3->name}}" readonly>
                                                                                     <div class="invalid-feedback">
                                                                                         Stock Name empty
                                                                                     </div>       
@@ -489,26 +501,26 @@
                                                                 </div>
                                                         <div class="form-group">
                                                             <label>Stock Description: </label>
-                                                                <input type="text" class="form-control" name="description" value = "{{ $lists->description}}" readonly>
+                                                                <input type="text" class="form-control" name="description" value = "{{ $lists3->description}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Stock Details empty
                                                                     </div>
 
                                                             <label>Date Stock Added: </label>
-                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->created_at))}}" readonly>
+                                                                <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists3->created_at))}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
 
                                                             <label>Quantity: </label>
-                                                                <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
+                                                                <input type="text" class="form-control" name="total" value = "{{ $lists3->total}}" readonly>
                                                                     <div class="invalid-feedback">
                                                                         Quantity empty
                                                                     </div>
                                                              
                                                         </div>
                                                         <label for="exampleInputPassword1">Category: </label>
-                                                        <input type="text" class="form-control" name="category" value = "{{ $lists->category}}" readonly>
+                                                        <input type="text" class="form-control" name="category" value = "{{ $lists3->category}}" readonly>
                                                                 <div class="invalid-feedback">
                                                                 Stock Details empty
                                                                 </div>
@@ -521,7 +533,7 @@
                                         </div>
                                     </div>
                                     <!--Modal Edit-->
-                                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade text-left" id="ModalUpdate{{ $lists3->productid}}" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -536,12 +548,12 @@
                                                         <div class = "row">
                                                             <div class = "col">
                                                                 <p class="text-left">Stock ID: </p>
-                                                                <input class="form-control" type="text" value="{{$lists->productid}}" readonly>
-                                                                <input class="form-control" type="text" name="productid" value="{{$lists->productid}}" hidden>
+                                                                <input class="form-control" type="text" value="{{$lists3->productid}}" readonly>
+                                                                <input class="form-control" type="text" name="productid" value="{{$lists3->productid}}" hidden>
                                                             </div>
                                                             <div class = "col">
                                                                 <p class="text-left">Stock Name: </p>
-                                                                <input type="text" class="form-control" name="name" value="{{$lists->name}}" required>
+                                                                <input type="text" class="form-control" name="name" value="{{$lists3->name}}" required>
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>       
@@ -549,17 +561,17 @@
                                                         </div>
                                                     <div class="form-group">
                                                         <label for="Stockdetails">Stock Description: </label>
-                                                        <input type="text" class="form-control" name="description" value="{{$lists->description}}" required>
+                                                        <input type="text" class="form-control" name="description" value="{{$lists3->description}}" required>
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty
                                                             </div>
                                                                 <label for="Stockdetails">Quantity: </label>
-                                                                <input type="hidden" name="quantity" value="{{$lists->total}}" />
-                                                                <input type="number" class="form-control" value="{{$lists->total}}" readonly>
+                                                                <input type="hidden" name="quantity" value="{{$lists3->total}}" />
+                                                                <input type="number" class="form-control" value="{{$lists3->total}}" readonly>
 
                                                                 <label for="Stockdetails">Stock Level: </label>
-                                                                <input type="hidden" name="stock" value="{{$lists->Stock_Level}}" />
-                                                                <input type="number" class="form-control" value="{{$lists->Stock_Level}}" readonly>
+                                                                <input type="hidden" name="stock" value="{{$lists3->Stock_Level}}" />
+                                                                <input type="number" class="form-control" value="{{$lists3->Stock_Level}}" readonly>
                                                             
                                                     <div class = "row">
                                                         <div class = "col">
@@ -577,7 +589,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Category: </label>
-                                                        <select class="form-control" value="{{ $lists->category}}" name="category" required>
+                                                        <select class="form-control" value="{{ $lists3->category}}" name="category" required>
                                                         <option value="Invalid">Linens :</option>
                                                         <option>Bed pad - Single</option>
                                                         <option>Fitted Sheet - Single</option>
@@ -631,11 +643,63 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!--Table Continue-->
                                     @endforeach
                                 </tbody>
                         </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                    <!--Request Forms-->
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">Purchase Report</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ url('/report') }}" class="prevent_submit" method="POST">
+                                                {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="card-body bg-white" style="border-radius: 18px">
+                                                        <div class = "row">
+                                                                <div class = "col">
+                                                                    <label class="text-left text-color">Item Name </label>
+                                                                        <input class="form-control mt-2" type="text" name="name" placeholder="Enter Here.."  required>
+                                                                </div>
+                                                            </div>
+                                                        <label class="text-left pt-4 text-color">Item Description </label>
+                                                        <input class="form-control mt-2" type="text" placeholder="Enter Here.." name="description" required>
+                                                        <div class = "row">
+                                                            <div class = "col">
+                                                                <label class="text-left pt-4 text-color">Unit </label> 
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
+                                                            </div>
+                                                            <div class = "col">
+                                                                <label class="text-left pt-4 text-color">Quantity </label>
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
+                                                            </div>
+                                                            <div class = "col">
+                                                                <label class="text-left pt-4 text-color">Stock Level :</label>
+                                                                <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-left pt-4 text-color">Supplier Name </label>
+                                                            <select class="form-control mt-2" name="suppliername" required>
+                                                                <option>Sample Supplier 1</option>
+                                                                <option>Sample Supplier 2</option>
+                                                                <option>Sample Supplier 3</option>
+                                                            </select>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                         </div>
                                     </div>
                                 </div>
