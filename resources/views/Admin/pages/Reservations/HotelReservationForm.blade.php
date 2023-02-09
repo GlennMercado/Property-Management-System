@@ -105,7 +105,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if ($lists->Isvalid == true && $lists->Payment_Status == 'Pending')
+                                    @if ($lists->IsArchived == false && $lists->Payment_Status == 'Pending')
                                         <tr>
                                             <td>{{ $lists->Booking_No }}</td>
                                             <td>{{ $lists->Room_No }}</td>
@@ -237,7 +237,7 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid]) }}"
+                                                    <a href="{{ url('/update', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
                                                         class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
@@ -260,7 +260,7 @@
                             <tbody>
 
                                 @foreach ($list as $lists)
-                                    @if ($lists->Booking_Status == 'Reserved' && $lists->Isvalid == true && $lists->Payment_Status == 'Paid')
+                                    @if ($lists->Booking_Status == 'Reserved' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                         <tr>
                                             <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
                                             <td style="font-size:15px;">{{ $lists->Room_No }}</td>
@@ -302,7 +302,7 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-In']) }}"
+                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In']) }}"
                                                         class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
@@ -414,7 +414,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if ($lists->Booking_Status == 'Occupied' && $lists->Isvalid == true && $lists->Payment_Status == 'Paid')
+                                    @if ($lists->Booking_Status == 'Occupied' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                         <tr>
                                             <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
                                             <td style="font-size:15px;">{{ $lists->Room_No }}</td>
@@ -545,7 +545,7 @@
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->Isvalid, 'stats' => 'Checked-Out']) }}"
+                                                    <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
                                                         class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
@@ -568,7 +568,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($list as $lists)
-                                    @if ($lists->Isvalid == false)
+                                    @if ($lists->IsArchived == true)
                                         <tr>
                                             <td>{{ $lists->Booking_No }}</td>
                                             <td>{{ $lists->Room_No }}</td>

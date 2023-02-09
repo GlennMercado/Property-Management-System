@@ -14,7 +14,7 @@ class RoomController extends Controller
     {
         $list = DB::select('SELECT * FROM novadeci_suites');
 		$pending = "Pending";
-		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE Isvalid != 0 and Payment_Status != '$pending'");
+		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE IsArchived != 1 and Payment_Status != '$pending'");
 		$list3 = DB::select('SELECT * FROM housekeepings');
 
 		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);
@@ -38,7 +38,7 @@ class RoomController extends Controller
         if($checkExist)
         {
             Alert::Error('Error', 'Room Already Exist');
-            return redirect('Hotel Room Management')->with('Error', 'Data Not Saved');
+            return redirect('Hotel_Room_Management')->with('Error', 'Data Not Saved');
         }
         else
         {
@@ -77,15 +77,15 @@ class RoomController extends Controller
 
             }
 
-            if($add_rooms->save() && $hs->save())
+            if($add_rooms->save())
             {
                 Alert::Success('Success', 'Room Successfully Created!');
-                return redirect('Hotel Room Management')->with('Success', 'Data Saved');
+                return redirect('Hotel_Room_Management')->with('Success', 'Data Saved');
             }
             else
             {
                 Alert::Error('Error', 'Room Creation Failed');
-                return redirect('Hotel Room Management')->with('Error', 'Data Not Saved');
+                return redirect('Hotel_Room_Management')->with('Error', 'Data Not Saved');
             }
 
         }
@@ -124,12 +124,12 @@ class RoomController extends Controller
 
             
             Alert::Success('Success', 'Room Edited Successfully!');
-            return redirect('Hotel Room Management')->with('Success', 'Data Updated');
+            return redirect('Hotel_Room_Management')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('Hotel Room Management')->with('Failed', 'Data not Updateds');
+            return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updateds');
         }
 
 
@@ -221,12 +221,12 @@ class RoomController extends Controller
             }
          
             Alert::Success('Success', 'Room Updated Successfully!');
-            return redirect('Hotel Room Management')->with('Success', 'Data Updated');
+            return redirect('Hotel_Room_Management')->with('Success', 'Data Updated');
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('Hotel Room Management')->with('Failed', 'Data not Updated');
+            return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
         }
     }
 }

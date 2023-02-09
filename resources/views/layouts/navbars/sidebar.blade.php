@@ -98,12 +98,7 @@
                     </a>
                 </li>
 
-                <!--Room Management-->
-                <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                        <i class="ni ni-building text-success"></i> {{ __('Room Management') }}
-                    </a>
-                </li>
+                
 
                 <!--Front Desk-->
                 <li class="nav-item">
@@ -113,13 +108,6 @@
                         <span class="nav-link-text text-default">{{ __('Front Desk') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
-                        <!-- <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('FrontDesk') }}">
-                                    <i class="text-success">•</i> {{ __('Hotel Booking') }}
-                                </a>
-                            </li>
-                        </ul> -->
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
@@ -147,11 +135,18 @@
                     <div class="collapse" id="navbar-examples4">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="#">
+                                <a class="nav-link text-default" href="{{ route('Housekeeping_Dashboard') }}">
                                 <i class="text-success">•</i> {{ __('Dashboard') }}
                                 </a>
                             </li>
-                        </ul> 
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
+                                <i class="text-success">•</i> {{ __('Room Management') }}
+                                </a>
+                            </li>
+                        </ul>  
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Hotel_Housekeeping') }}">

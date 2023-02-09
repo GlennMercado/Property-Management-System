@@ -8,7 +8,7 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0" >
                     <div class="card-header bg-transparent pb-5" >
-                        <div class="text-muted text-center mt-2 mb-1"><strong>Login</strong></div>
+                        <div class="text-muted text-center mt-2 mb-1"><strong>Sign In</strong></div>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <form role="form" method="POST" action="{{ route('login') }}">
@@ -64,7 +64,7 @@
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary my-4 bg-success" >{{ __('Login') }}</button>
+                                <button type="submit" class="btn btn-primary my-4 bg-success" >{{ __('Sign In') }}</button>
                             </div>
                             <div class="row">
                                 <div class="col-6">
