@@ -131,6 +131,7 @@
                                                         <label for="Stockdetails">Stock Description: </label>
                                                         <input type="text" class="form-control" name="email" value="{{$lists->email}}" required>
                                                         <input type="hidden" class="form-control" name="cnumber" value="{{$lists->cnumber}}">
+                                                        {{-- <input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required> --}}
                                                          <input type="hidden" class="form-control" name="proof" value="{{$lists->proof}}">
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty

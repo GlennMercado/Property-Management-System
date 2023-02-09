@@ -66,18 +66,15 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
-                                                        <p class="text-left">Item Name :
+                                                        <p class="text-left">Category :
                                                         <input class="form-control" type="text" name="name" value="{{$lists->name}}"  readonly></p>
                                                         
-                                                        <p class="text-left">Product Description :
-                                                        <input class="form-control" type="text" name="description" value="{{$lists->description}}" readonly></p>
-
                                                         <p class="text-left">Purchased Date :
                                                         <input class="form-control" type="text" name="date" value="{{ date('m-d-Y', strtotime($lists->date))}}" readonly></p>
                                                         
                                                         <div class = "row">
                                                             <div class = "col">
-                                                                <p class="text-left">Unit :
+                                                                <p class="text-left">Item :
                                                                     <input class="form-control" type="number" placeholder="Enter Here.." name="unit" value="{{$lists->unit}}"  readonly></p>  
                                                             </div>
                                                                 <div class = "col">
@@ -85,14 +82,17 @@
                                                                     <input class="form-control" type="text" name="quantity" value = "{{$lists->quantity}}" readonly></p>
                                                                 </div>
                                                         </div>
-                                                        <p class="text-left">Supplier Name :
+                                                        <p class="text-left">Reciever :
                                                         <input class="form-control" type="text" name="suppliername" value = "{{$lists->suppliername}}" readonly></p>
+
+                                                        <p class="text-left">Supervisor/Dept : 
+                                                            <input class="form-control" type="text" name="suppliername" value = "{{$lists->suppliername}}" readonly></p>
         
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button> -->
                                             </div>
                                         </div>
                                     </div>
