@@ -96,8 +96,8 @@ class HotelController extends Controller
             $facility = "Hotel Room";
             DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
 
-            DB::insert('insert into housekeepings (Room_No, Facility_Type, Facility_Status, Front_Desk_Status, Check_In_Date, Check_Out_Date) 
-            values (?, ?, ?, ?, ?, ?)', [$roomno, $facility, $status, $status, $request->input('checkIn'), $request->input('checkOut')]);
+            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status, Check_In_Date, Check_Out_Date) 
+            values (?, ?, ?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $status, $request->input('checkIn'), $request->input('checkOut')]);
             
             Alert::Success('Success', 'Reservation was successfully submitted!');
             return redirect('HotelReservationForm')->with('Success', 'Data Saved');
