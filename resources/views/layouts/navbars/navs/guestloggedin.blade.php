@@ -107,7 +107,10 @@
                     <i class="ni ni-single-02"></i>
                     <span>{{ __('My profile') }}</span>
                 </a>
-
+                <a href="{{ url('my_bookings') }}" class="dropdown-item">
+                    <i class="ni ni-single-02"></i>
+                    <span>{{ __('My Bookings') }}</span>
+                </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item"
                     onclick="event.preventDefault();

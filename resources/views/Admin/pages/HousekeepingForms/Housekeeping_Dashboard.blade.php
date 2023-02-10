@@ -60,231 +60,238 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
-                                            <tr>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Facility_Type }}</td>
-                                                <td>{{ $lists->Facility_Status }}</td>
-                                                <td>{{ $lists->Check_In_Date = date('M d, Y') }}</td>
-                                                <td>{{ $lists->Check_Out_Date = date('M d, Y') }}</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                        data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    @if ($lists->Attendant == 'Unassigned')
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#assign{{ $lists->ID }}"> <i
-                                                                class="bi bi-person-fill"></i> </button>
-                                                    @endif
-                                                    @if ($lists->Housekeeping_Status == 'Out of Service')
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#update{{ $lists->ID }}">
-                                                            <i class="bi bi-arrow-repeat"></i>
+                                            @if($lists->IsArchived == false)
+                                                <tr>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Facility_Type }}</td>
+                                                    <td>{{ $lists->Facility_Status }}</td>
+                                                    <td>{{ $lists->Check_In_Date = date('M d, Y') }}</td>
+                                                    <td>{{ $lists->Check_Out_Date = date('M d, Y') }}</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
                                                         </button>
-                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                            data-target="#outoforder{{ $lists->ID }}"> <i
-                                                                class="bi bi-tools"></i> </button>
-                                                    @endif
-                                                </td>
-                                            </tr>
-
-                                            <!--View-->
-                                            <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">View Information</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
+                                                        @if ($lists->Attendant == 'Unassigned')
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#assign{{ $lists->ID }}"> <i
+                                                                    class="bi bi-person-fill"></i> </button>
+                                                        @endif
+                                                        @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#update{{ $lists->ID }}">
+                                                                <i class="bi bi-arrow-repeat"></i>
                                                             </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="card-body bg-white" style="border-radius: 18px">
-                                                                    <input type="hidden" name="id"
-                                                                        value="{{ $lists->ID }}" />
+                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                data-target="#outoforder{{ $lists->ID }}"> <i
+                                                                    class="bi bi-tools"></i> </button>
+                                                        @endif
+                                                    </td>
+                                                </tr>
 
-                                                                    <p class="text-left">Housekeeping Status: </p>
-                                                                    <input type="text" class="form-control"
-                                                                        value="{{ $lists->Housekeeping_Status }}"
-                                                                        readonly>
-
-                                                                    <p class="text-left">Front Desk Status: </p>
-                                                                    <input type="text" class="form-control"
-                                                                        value="{{ $lists->Front_Desk_Status }}" readonly>
-
-                                                                    <p class="text-left">Attendant: </p>
-                                                                    <input type="text" class="form-control"
-                                                                        value="{{ $lists->Attendant }}" readonly>
-                                                                </div>
+                                                <!--View-->
+                                                <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">View Information</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!--Assign Attendant-->
-                                            <div class="modal fade" id="assign{{ $lists->ID }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">View Information</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form method="POST" class="prevent_submit"
-                                                            action="{{ url('/assign_housekeeper') }}"
-                                                            enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
                                                             <div class="modal-body">
                                                                 <div class="row">
-                                                                    <div class="card-body bg-white"
-                                                                        style="border-radius: 18px">
+                                                                    <div class="card-body bg-white" style="border-radius: 18px">
                                                                         <input type="hidden" name="id"
                                                                             value="{{ $lists->ID }}" />
 
-                                                                        <p class="text-left">Attendants: </p>
-                                                                        <select name="housekeeper" class="form-control"
-                                                                            required>
-                                                                            <option selected="true" disabled="disabled">
-                                                                                Select</option>
-                                                                            <option value="Marie B. Adams">Marie B. Adams
-                                                                            </option>
-                                                                            <option value="Nathan Dela Cruz">Nathan Dela
-                                                                                Cruz</option>
-                                                                            <option value="Mark Delos Santos">Mark Delos
-                                                                                Santos</option>
-                                                                            <option value="Jacob Del Rosario">Jacob Del
-                                                                                Rosario</option>
-                                                                        </select>
+                                                                        <p class="text-left">Housekeeping Status: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Housekeeping_Status }}"
+                                                                            readonly>
+
+                                                                        <p class="text-left">Front Desk Status: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Front_Desk_Status }}" readonly>
+
+                                                                        <p class="text-left">Attendant: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Attendant }}" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</a>
-                                                                <input type="submit"
-                                                                    class="btn btn-success prevent_submit"
-                                                                    value="Assign" />
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!--Out of Order Rooms Modal-->
-                                            <div class="modal fade" id="outoforder{{ $lists->ID }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">Maintenance</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ url('/add_out_of_order') }}"
-                                                                class="prevent_submit" method="POST"
+                                                <!--Assign Attendant-->
+                                                <div class="modal fade" id="assign{{ $lists->ID }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">View Information</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="POST" class="prevent_submit"
+                                                                action="{{ url('/assign_housekeeper') }}"
                                                                 enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <!-- Room Number and Facility Type -->
-                                                                        <p class="text-left">Room No</p>
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $lists->ID }}" />
-                                                                        <input type="hidden" name="room_no"
-                                                                            value="{{ $lists->Room_No }}" />
-                                                                        <input class="form-control"
-                                                                            value="{{ $lists->Room_No }}" readonly />
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
 
-                                                                        <input type="hidden" name="facility_type"
-                                                                            value="Hotel Room" />
-
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <p class="text-left">Priority Level</p>
-                                                                        <select name="priority" class="form-control"
-                                                                            required>
-                                                                            <option selected="true" disabled="disabled">
-                                                                                Select</option>
-                                                                            <option value="Low">Low</option>
-                                                                            <option value="Moderate">Moderate</option>
-                                                                            <option value="High">High</option>
-                                                                        </select>
+                                                                            <p class="text-left">Attendants: </p>
+                                                                            <select name="housekeeper" class="form-control"
+                                                                                required>
+                                                                                <option selected="true" disabled="disabled">
+                                                                                    Select</option>
+                                                                                <option value="Marie B. Adams">Marie B. Adams
+                                                                                </option>
+                                                                                <option value="Nathan Dela Cruz">Nathan Dela
+                                                                                    Cruz</option>
+                                                                                <option value="Mark Delos Santos">Mark Delos
+                                                                                    Santos</option>
+                                                                                <option value="Jacob Del Rosario">Jacob Del
+                                                                                    Rosario</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <p class="text-left">Description</p>
-                                                                        <input type="text" class="form-control"
-                                                                            name="description" required />
-                                                                    </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
+                                                                    <input type="submit"
+                                                                        class="btn btn-success prevent_submit"
+                                                                        value="Assign" />
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <p class="text-left">Due Date</p>
-                                                                        <input type="date" class="form-control"
-                                                                            name="due_date" required />
-                                                                    </div>
-                                                                </div>
-
+                                                            </form>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <input type="submit" name="outofordersubmit"
-                                                                class="btn btn-primary" />
-                                                        </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!--Update Housekeeping Status Modal-->
-                                            <div class="modal fade" id="update{{ $lists->ID }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">Setting Status</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                <!--Out of Order Rooms Modal-->
+                                                <div class="modal fade" id="outoforder{{ $lists->ID }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">Maintenance</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ url('/add_out_of_order') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <!-- Room Number and Facility Type -->
+                                                                            <p class="text-left">Room No</p>
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
+                                                                            <input type="hidden" name="room_no"
+                                                                                value="{{ $lists->Room_No }}" />
+                                                                            <input class="form-control"
+                                                                                value="{{ $lists->Room_No }}" readonly />
+
+                                                                            <input type="hidden" name="facility_type"
+                                                                                value="Hotel Room" />
+
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="text-left">Priority Level</p>
+                                                                            <select name="priority" class="form-control"
+                                                                                required>
+                                                                                <option selected="true" disabled="disabled">
+                                                                                    Select</option>
+                                                                                <option value="Low">Low</option>
+                                                                                <option value="Moderate">Moderate</option>
+                                                                                <option value="High">High</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p class="text-left">Description</p>
+                                                                            <input type="text" class="form-control"
+                                                                                name="description" required />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p class="text-left">Due Date</p>
+                                                                            <input type="date" class="form-control"
+                                                                                name="due_date" required />
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <input type="submit" name="outofordersubmit"
+                                                                    class="btn btn-primary" />
+                                                            </div>
+                                                            </form>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="card-body bg-white"
-                                                                    style="border-radius: 18px">
+                                                    </div>
+                                                </div>
 
-                                                                    <h4 class="text-center">Is the Room
-                                                                        {{ $lists->Room_No }} <span
-                                                                            class="text-success">CLEANED</span>?</h4>
+                                                <!--Update Housekeeping Status Modal-->
+                                                <div class="modal fade" id="update{{ $lists->ID }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">Setting Status</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="card-body bg-white"
+                                                                        style="border-radius: 18px">
+
+                                                                        @if($lists->Request_ID == null)
+                                                                            @php $lists->Request_ID = "null"; @endphp
+                                                                        @endif
+                                                                        <h4 class="text-center">Is the Room
+                                                                            {{ $lists->Room_No }} <span
+                                                                                class="text-success">
+                                                                                
+                                                                                CLEANED</span>?</h4>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
-                                                                class="btn btn-success">Yes</a>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
+                                                                    class="btn btn-success">Yes</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -306,66 +313,69 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list as $lists)
-                                            @if ($lists->Attendant != 'Unassigned')
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Facility_Type }}</td>
-                                                <td>{{ $lists->Facility_Status }}</td>
-                                                <td>{{ $lists->Housekeeping_Status }}</td>
-                                                <td>{{ $lists->Request }}</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                        data-target="#view2{{ $lists->ID }}"> <i
-                                                            class="bi bi-eye"></i> </button>
-                                                </td>
+                                        @foreach ($list2 as $lists)
+                                            @if($lists->IsArchived == false)
+                                                @if ($lists->Attendant != 'Unassigned')
+                                                <tr>                                                <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Facility_Type }}</td>
+                                                    <td>{{ $lists->Facility_Status }}</td>
+                                                    <td>{{ $lists->Housekeeping_Status }}</td>
+                                                    <td>{{ $lists->Request }}</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#view2{{ $lists->ID }}"> <i
+                                                                class="bi bi-eye"></i> </button>
+                                                    </td>
+                                                </tr>
 
-                                                <!--View-->
-                                                <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">View Information</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="card-body bg-white"
-                                                                        style="border-radius: 18px">
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $lists->ID }}" />
+                                                    <!--View-->
+                                                    <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
 
-                                                                        <p class="text-left">Room No: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Room_No }}" readonly>
+                                                                            <p class="text-left">Room No: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Room_No }}" readonly>
 
-                                                                        <p class="text-left">Guest Name: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Guest_Name }}" readonly>
+                                                                            <p class="text-left">Guest Name: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Guest_Name }}" readonly>
 
-                                                                        <p class="text-left">Date Requesteds: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Date_Requested = date('M d, Y') }}"
-                                                                            readonly>
+                                                                            <p class="text-left">Date Requesteds: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Date_Requested = date('M d, Y') }}"
+                                                                                readonly>
 
-                                                                        <p class="text-left">Attendant: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Attendant }}" readonly>
+                                                                            <p class="text-left">Attendant: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Attendant }}" readonly>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</a>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </tbody>

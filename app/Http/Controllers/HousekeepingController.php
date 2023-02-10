@@ -16,8 +16,9 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
-        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list]);
+        $list = DB::select('SELECT * FROM housekeepings');
+        $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list,'list2' => $list2]);
     }
     public function hotel_housekeeping()
     {
@@ -85,12 +86,23 @@ class HousekeepingController extends Controller
             
             if($stats == "Cleaned")
             {
-                DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
-                DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
-                DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
-    
-                Alert::Success('Success', 'Setting Status Success!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                if($reqid != "null")
+                {               
+                    DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
+                    DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
+        
+                    Alert::Success('Success', 'Setting Status Success!');
+                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
+        
+                    Alert::Success('Success', 'Setting Status Success!');
+                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');    
+                }
             }         
         }
         catch(\Illuminate\Database\QueryException $e)

@@ -154,13 +154,13 @@
                                 </a>
                             </li>
                         </ul>    
-                        <ul class="nav nav-sm flex-column">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Hotel_Housekeeping') }}">
                                 <i class="text-success">•</i> {{ __('Hotel Housekeeping') }}
                                 </a>
                             </li>
-                        </ul> 
+                        </ul>  --}}
                     </div>
                 </li>
 
@@ -215,7 +215,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockAvail') }}">
-                                    <i class="bi bi-ui-checks text-success"></i> {{ __('Stock Avail') }}
+                                    <i class="text-success">•</i> {{ __('Stock Avail') }}
                                 </a>
                             </li>
                         </ul>
@@ -346,7 +346,7 @@
                                         <ul class="nav nav-sm flex-column">
                                             <li class="nav-item">
                                                 <a class="nav-link text-default" href="{{ route('Finance') }}">
-                                                <i class="bi bi-person-lines-fill text-success"></i> {{ __('Finance') }}
+                                                    <i class="text-success">•</i> {{ __('Finance') }}
                                             </a>
                                             </li>
                                         </ul> 

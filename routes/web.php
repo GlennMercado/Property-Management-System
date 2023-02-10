@@ -171,6 +171,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
+	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
 	Route::get('/about_us', [App\Http\Controllers\GuestController::class, 'about_us'])->name('about_us');
 	Route::get('/contact_us', [App\Http\Controllers\GuestController::class, 'contact_us'])->name('contact_us');
 	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');
