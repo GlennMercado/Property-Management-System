@@ -63,6 +63,7 @@ class HotelController extends Controller
 
         $paystats = "Paid";
         $status;
+        $checkin = "Checked-In";
 
         $chckin = $request->input('checkIn');
 
@@ -89,7 +90,7 @@ class HotelController extends Controller
         $reserve->No_of_Pax = $request->input('pax');
         $reserve->Room_No = $roomno;
         $reserve->Payment_Status = $paystats;
-        $reserve->Booking_Status = $status;
+        $reserve->Booking_Status = $checkin;
 
         if($reserve->save())
         {
@@ -97,7 +98,7 @@ class HotelController extends Controller
             DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $status));
 
             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status, Check_In_Date, Check_Out_Date) 
-            values (?, ?, ?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $status, $request->input('checkIn'), $request->input('checkOut')]);
+            values (?, ?, ?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $checkin, $request->input('checkIn'), $request->input('checkOut')]);
             
             Alert::Success('Success', 'Reservation was successfully submitted!');
             return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -120,7 +121,7 @@ class HotelController extends Controller
         $stats = "Paid";
         $stats2 = "Reserved";
 
-        if($isarchived == true)
+        if($isarchived == false)
         {
             $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Vacant for Accommodation'");
         
@@ -129,7 +130,7 @@ class HotelController extends Controller
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
         
-                Alert::Success('Success', 'Reservation successfully updated!');
+                Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
             else
@@ -157,10 +158,26 @@ class HotelController extends Controller
             {
                 if($isarchived == false)
                 {
+                    $sql = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
+                    $chckin;
+                    $chckout;
+
+                    foreach($sql as $lists)
+                    {
+                        $chckin = $lists->Check_In_Date;
+                        $chckout = $lists->Check_Out_Date;
+                    }
+
                     $roomstats = "Occupied";
+                    $facility = "Hotel Room";
+
                     DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
                     DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
     
+                    DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status, Check_In_Date, Check_Out_Date) 
+                    values (?, ?, ?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status, $chckin, $chckout]);
+
                     Alert::Success('Success', 'Reservation successfully updated!');
                     return redirect('HotelReservationForm')->with('Success', 'Data Saved');
                 }
@@ -184,7 +201,7 @@ class HotelController extends Controller
                     DB::table('housekeepings')->where('Room_No', $roomno)->update(array('Housekeeping_Status' => $hstatus));
 
 
-                    Alert::Success('Success', 'Reservation successfully updated!');
+                    Alert::Success('Success', 'Reservation successfully Checked!');
                     return redirect('HotelReservationForm')->with('Success', 'Data Saved');
                 }
                 else

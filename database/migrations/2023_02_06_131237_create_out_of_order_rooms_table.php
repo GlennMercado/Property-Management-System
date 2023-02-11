@@ -21,6 +21,10 @@ return new class extends Migration
             $table->integer('Room_No')->nullable();
             $table->index('Room_No');
             $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('Booking_No');
+            $table->index('Booking_No');
+            $table->foreign('Booking_No')->references('Booking_No')->on('hotel_reservations')->onDelete('cascade')->onUpdate('cascade');
             
             $table->string('Description');   
             $table->string('Created_By');
