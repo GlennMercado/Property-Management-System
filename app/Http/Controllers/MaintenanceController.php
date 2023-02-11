@@ -30,7 +30,8 @@ class MaintenanceController extends Controller
             'facility_type'=> '',
             'priority' => 'required',
             'description' => 'required',
-            'due_date' => 'required'
+            'due_date' => 'required',
+            'book_no' => 'required'
             ]);
 
         $status = "Out of Order";
@@ -41,6 +42,7 @@ class MaintenanceController extends Controller
         $priority = $request->input('priority');
         $description = $request->input('description');
         $due_date = $request->input('due_date');
+        $bookno = $request->input('book_no');
         
 
         $add = new out_of_order_rooms;
@@ -51,6 +53,7 @@ class MaintenanceController extends Controller
         $add->Created_By = $createdby;
         $add->Priority_Level = $priority;
         $add->Due_Date = $due_date;
+        $add->Booking_No = $bookno;
 
 
         if($add->save())

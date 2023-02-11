@@ -39,6 +39,11 @@
                                             href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
                                             aria-selected="false"> Supply Request</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
+                                            href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4"
+                                            aria-selected="false"> Archives</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -212,6 +217,8 @@
                                                                                     value="{{ $lists->ID }}" />
                                                                                 <input type="hidden" name="room_no"
                                                                                     value="{{ $lists->Room_No }}" />
+                                                                                <input type="hidden" name="book_no"
+                                                                                    value="{{$lists->Booking_No}}" />   
                                                                                 <input class="form-control"
                                                                                     value="{{ $lists->Room_No }}" readonly />
 
@@ -394,6 +401,98 @@
                                         williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
                                         synth.</p>
                                 </div>
+
+                                {{-- Archives --}}
+                                <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-4-tab">
+
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="myTable4">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Check In Date</th>
+                                                <th scope="col" style="font-size:18px;">Check Out Date</th>
+                                                <th scope="col" style="font-size:18px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list as $lists)
+                                                @if($lists->IsArchived == true)
+                                                    <tr>
+                                                        <td>{{ $lists->Room_No }}</td>
+                                                        <td>{{ $lists->Facility_Type }}</td>
+                                                        <td>{{ $lists->Facility_Status }}</td>
+                                                        <td>{{ $lists->Check_In_Date = date('M d, Y') }}</td>
+                                                        <td>{{ $lists->Check_Out_Date = date('M d, Y') }}</td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
+                                                            </button>
+                                                            @if ($lists->Attendant == 'Unassigned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#assign{{ $lists->ID }}"> <i
+                                                                        class="bi bi-person-fill"></i> </button>
+                                                            @endif
+                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update{{ $lists->ID }}">
+                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                </button>
+                                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                    data-target="#outoforder{{ $lists->ID }}"> <i
+                                                                        class="bi bi-tools"></i> </button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+
+                                                    <!--View-->
+                                                    <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
+
+                                                                            <p class="text-left">Housekeeping Status: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Housekeeping_Status }}"
+                                                                                readonly>
+
+                                                                            <p class="text-left">Front Desk Status: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Front_Desk_Status }}" readonly>
+
+                                                                            <p class="text-left">Attendant: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Attendant }}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -414,6 +513,7 @@
     jQuery(document).ready(function($) {
         $('#myTable').DataTable();
         $('#myTable2').DataTable();
+        $('#myTable4').DataTable();
     });
     // $(document).ready(function() {
     //     $("#optionselect").change(function() {
