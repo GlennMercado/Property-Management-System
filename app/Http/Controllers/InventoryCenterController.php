@@ -57,12 +57,12 @@ class InventoryCenterController extends Controller
        if($stock->save())
         {
             Alert::Success('Success', 'Stock Successfully Submitted!');
-            return redirect('StockCenter')->with('Success', 'Data Saved');
+            return redirect('StockAvailability')->with('Success', 'Data Saved');
         }
         else
         {
             Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-            return redirect('StockCenter')->with('Error', 'Failed!');
+            return redirect('StockAvailability')->with('Error', 'Failed!');
         }
     }
 
@@ -128,13 +128,13 @@ class InventoryCenterController extends Controller
             ));
     
            Alert::Success('Success', 'Stock Successfully Updated!');
-           return redirect('StockCenter')->with('Success', 'Data Updated');
+           return redirect('StockAvailability')->with('Success', 'Data Updated');
           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Stock Edit Failed!');
-            return redirect('StockCenter')->with('Failed', 'Data not Updated');
+            return redirect('StockAvailability')->with('Failed', 'Data not Updated');
         }
     }
 
