@@ -53,16 +53,33 @@ class HousekeepingController extends Controller
         try{
             $this->validate($request,[
                 'id' => '',
+                'check' => '',
                 'housekeeper' => 'required'
                 ]);
 
-            $id = $request->input('id');
-            $housekeeper = $request->input('housekeeper');
-
-            DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
-
-            Alert::Success('Success', 'Attendant successfully assigned!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            $check = $request->input('check');
+            if($check == "checkin")
+            {
+                $id = $request->input('id');
+                $housekeeper = $request->input('housekeeper');
+    
+                DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
+    
+                Alert::Success('Success', 'Attendant successfully assigned!');
+                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            }
+            if($check == "arrival")
+            {
+                $id = $request->input('id');
+                $housekeeper = $request->input('housekeeper');
+                $inspect = "Inspect";
+    
+                DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
+    
+                Alert::Success('Success', 'Attendant successfully assigned!');
+                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            }
+            
         }
         catch(\Illuminate\Database\QueryException $e)
         {
@@ -103,6 +120,14 @@ class HousekeepingController extends Controller
                     Alert::Success('Success', 'Setting Status Success!');
                     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');    
                 }
+            }
+            if($stats == "Arrival")
+            {
+                
+                DB::table('housekeepings')->where('ID', $hid)->update(array('Housekeeping_Status' => "Cleaned (After Inspection)", 'Attendant' => "Unassigned"));
+
+                Alert::Success('Success', 'Inspection Success!');
+                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             }         
         }
         catch(\Illuminate\Database\QueryException $e)

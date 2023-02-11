@@ -34,6 +34,8 @@ return new class extends Migration
             $table->index('Request_ID');
             $table->foreign('Request_ID')->references('Request_ID')->on('guest_requests')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->string('Housekeeping_Request')->nullable();
+
             $table->string('Attendant')->default('Unassigned');
             
             $table->date('Check_In_Date');

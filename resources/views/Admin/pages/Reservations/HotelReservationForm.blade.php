@@ -279,7 +279,7 @@
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->Booking_No }}"> <i
+                                                            data-target="#views{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                         <!--Update Reservation/Room Status Button-->
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
@@ -312,7 +312,7 @@
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In2']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
@@ -320,7 +320,7 @@
                                             </div>
 
                                             <!--View-->
-                                            <div class="modal fade" id="view{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -435,7 +435,7 @@
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#views{{ $lists->Booking_No }}"> <i
+                                                            data-target="#views1{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                         <!--Update Reservation/Room Status Button-->
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
@@ -452,7 +452,7 @@
                                             @endif
 
                                             <!--View-->
-                                            <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade" id="views1{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
