@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('Payment_Status')->default('Pending');
             $table->string('Booking_Status')->nullable();
 
-            $table->boolean('IsArchived?')->default(false);
+            $table->boolean('IsArchived')->default(false);
 
             $table->double('Down_Payment')->nullable();
             $table->double('Balance')->nullable();
