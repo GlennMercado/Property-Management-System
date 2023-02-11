@@ -27,10 +27,12 @@ return new class extends Migration
             $table->foreign('Booking_No')->references('Booking_No')->on('hotel_reservations')->onDelete('cascade')->onUpdate('cascade');
             
             $table->string('Description');   
-            $table->string('Created_By');
+            $table->string('Discovered_By')->nullable();
             $table->string('Priority_Level');
             $table->string('Status')->default('Ongoing');
-            $table->string('Resolved_By')->nullable();
+            
+            $table->boolean('IsArchived')->default(false);
+
             $table->timestamp('Date_Created')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('Due_Date');
             $table->date('Date_Resolved')->nullable();

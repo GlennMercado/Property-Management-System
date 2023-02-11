@@ -13,18 +13,13 @@ class MaintenanceController extends Controller
 {
     public function Maintenance()
     {   
-        $list = DB::SELECT('SELECT * FROM out_of_order_rooms');
+        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No');
         return view('Admin.pages.HousekeepingForms.Maintenance', ['list' => $list]);
     }
 
 
     public function add_out_of_order(Request $request)
     {
-        $createdby_name = Auth::user()->name;
-        $createdby_role = Auth::user()->User_Type;
-
-        $createdby = $createdby_name.' ('.$createdby_role.')';
-
         $this->validate($request,[
             'id' => '',
             'room_no' => '',
@@ -32,7 +27,8 @@ class MaintenanceController extends Controller
             'priority' => 'required',
             'description' => 'required',
             'due_date' => 'required',
-            'book_no' => 'required'
+            'book_no' => 'required',
+            'discoveredby' => ''
             ]);
 
         $status = "Out of Order";
@@ -44,6 +40,7 @@ class MaintenanceController extends Controller
         $description = $request->input('description');
         $due_date = $request->input('due_date');
         $bookno = $request->input('book_no');
+        $discoveredby = $request->input('discoveredby');
         
 
         $add = new out_of_order_rooms;
@@ -51,10 +48,10 @@ class MaintenanceController extends Controller
         $add->Facility_Type = $facility;
         $add->Room_No = $room_no;
         $add->Description = $description;
-        $add->Created_By = $createdby;
         $add->Priority_Level = $priority;
         $add->Due_Date = $due_date;
         $add->Booking_No = $bookno;
+        $add->Discovered_By = $discoveredby;
 
 
         if($add->save())
@@ -137,5 +134,31 @@ class MaintenanceController extends Controller
             return redirect('HotelReservationForm')->with('Failed', 'Data Saved');
         }
         
+    }
+
+    public function update_maintenance_status($id, $rno, $bno)
+    {
+
+        $maintenance_id = $id;
+        $room_no = $rno;
+        $booking_no = $bno;
+        $datenow = now()->format('Y-m-d');
+        $status = "Resolved";
+
+        try{
+            DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
+            DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+            DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+
+            Alert::Success('Success', 'Maintenance Successfully Updated!');
+            return redirect('Maintenance')->with('Success', 'Data Saved');
+
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Maintenance Failed Updating!');
+            return redirect('Maintenance')->with('Success', 'Data Saved');
+        }
     }
 }

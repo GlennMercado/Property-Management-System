@@ -316,6 +316,8 @@
                                                                                     <input type="text" class="form-control"
                                                                                         value="{{ $lists2->Date_Requested = date('M d, Y') }}"
                                                                                         readonly>
+
+                                                        
                                                                                 @endforeach                      
                                                                             @endif
                                                                                     <input type="hidden" name="id"
@@ -435,6 +437,8 @@
 
                                                                                 <input type="hidden" name="facility_type"
                                                                                     value="Hotel Room" />
+
+                                                                            <input type="hidden" name="discoveredby" value="{{$lists->Attendant}}" />
 
                                                                             </div>
                                                                             <div class="col">

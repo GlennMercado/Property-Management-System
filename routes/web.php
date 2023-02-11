@@ -71,6 +71,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
+	Route::get('/update_maintenance_status/{id}/{rno}/{bno}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+
 	//Front Desk
 	Route::get('FrontDesk', function(){
 		$room = DB::select('SELECT * FROM novadeci_suites');
