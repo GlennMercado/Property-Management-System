@@ -68,32 +68,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php $datenow = date('Y-m-d'); @endphp
+                                            
                                             @foreach ($list as $lists)
-                                                @if($lists->IsArchived == false)
+                                                @if($lists->IsArchived == false && $lists->Check_In_Date == $datenow)
                                                     <tr>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
                                                         <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ $lists->Check_In_Date = date('M d, Y') }}</td>
-                                                        <td>{{ $lists->Check_Out_Date = date('M d, Y') }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
                                                             </button>
-                                                            @if ($lists->Attendant == 'Unassigned')
-                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#assign{{ $lists->ID }}"> <i
-                                                                        class="bi bi-person-fill"></i> </button>
-                                                            @endif
-                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
-                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update{{ $lists->ID }}">
-                                                                    <i class="bi bi-arrow-repeat"></i>
-                                                                </button>
-                                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                    data-target="#outoforder{{ $lists->ID }}"> <i
-                                                                        class="bi bi-tools"></i> </button>
-                                                            @endif
+                                                            
                                                         </td>
                                                     </tr>
 
@@ -116,7 +105,7 @@
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
 
-                                                                            <p class="text-left">Housekeeping Status: </p>
+                                                                            <p class="text-left">Housekeeping Status : </p>
                                                                             <input type="text" class="form-control"
                                                                                 value="{{ $lists->Housekeeping_Status }}"
                                                                                 readonly>
@@ -133,6 +122,115 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- Task Assignment --}}
+                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-2-tab">
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="myTable2">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Booking Status</th>
+                                                <th scope="col" style="font-size:18px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list as $lists)
+                                                @if($lists->IsArchived == false)
+                                                    <tr>                                                
+                                                        <td>{{ $lists->Room_No }}</td>
+                                                        <td>{{ $lists->Facility_Type }}</td>
+                                                        <td>{{ $lists->Facility_Status }}</td>
+                                                        <td>{{ $lists->Front_Desk_Status }}</td>                          
+                                                        <td>
+                                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                data-target="#view2{{ $lists->ID }}"> <i
+                                                                    class="bi bi-eye"></i> </button>
+
+                                                            @if ($lists->Attendant == 'Unassigned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#assign{{ $lists->ID }}"> 
+                                                                <i class="bi bi-person-fill"></i> </button>
+                                                            @endif
+                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update{{ $lists->ID }}">
+                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                </button>
+                                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                    data-target="#outoforder{{ $lists->ID }}"> 
+                                                                    <i class="bi bi-tools"></i> </button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+
+                                                    <!--View-->
+                                                    <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
+                                                                            @if($lists->Request_ID != null)
+                                                                                @foreach($list2 as $lists2)
+                                                                                    <input type="hidden" name="id"
+                                                                                        value="{{ $lists2->ID }}" />
+
+                                                                                    <p class="text-left">Room No: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ $lists2->Room_No }}" readonly>
+
+                                                                                    <p class="text-left">Guest Name: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ $lists2->Guest_Name }}" readonly>
+
+                                                                                    <p class="text-left">Date Requesteds: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ $lists2->Date_Requested = date('M d, Y') }}"
+                                                                                        readonly>
+                                                                                @endforeach                      
+                                                                            @endif
+                                                                                    <input type="hidden" name="id"
+                                                                                        value="{{ $lists->ID }}" />
+                                                                                        
+                                                                                    <p class="text-left">Housekeeping Status: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ $lists->Housekeeping_Status }}" readonly>
+
+                                                                                    <p class="text-left">Attendant: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ $lists->Attendant }}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -302,92 +400,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                {{-- Task Assignment --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable2">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility Type</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
-                                                <th scope="col" style="font-size:18px;">Request</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($list2 as $lists)
-                                                @if($lists->IsArchived == false)
-                                                    @if ($lists->Attendant != 'Unassigned')
-                                                    <tr>                                                
-                                                        <td>{{ $lists->Room_No }}</td>
-                                                        <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ $lists->Housekeeping_Status }}</td>
-                                                        <td>{{ $lists->Request }}</td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view2{{ $lists->ID }}"> <i
-                                                                    class="bi bi-eye"></i> </button>
-                                                        </td>
-                                                    </tr>
-
-                                                        <!--View-->
-                                                        <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="exampleModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title text-left display-4"
-                                                                            id="exampleModalLabel">View Information</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="card-body bg-white"
-                                                                                style="border-radius: 18px">
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists->ID }}" />
-
-                                                                                <p class="text-left">Room No: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Room_No }}" readonly>
-
-                                                                                <p class="text-left">Guest Name: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Guest_Name }}" readonly>
-
-                                                                                <p class="text-left">Date Requesteds: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Date_Requested = date('M d, Y') }}"
-                                                                                    readonly>
-
-                                                                                <p class="text-left">Attendant: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Attendant }}" readonly>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <a class="btn btn-secondary"
-                                                                            data-dismiss="modal">Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
                                                 @endif
                                             @endforeach
                                         </tbody>
