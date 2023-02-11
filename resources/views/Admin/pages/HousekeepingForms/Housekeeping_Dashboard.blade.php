@@ -327,7 +327,8 @@
                                             @foreach ($list2 as $lists)
                                                 @if($lists->IsArchived == false)
                                                     @if ($lists->Attendant != 'Unassigned')
-                                                    <tr>                                                <td>{{ $lists->Room_No }}</td>
+                                                    <tr>                                                
+                                                        <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
                                                         <td>{{ $lists->Facility_Status }}</td>
                                                         <td>{{ $lists->Housekeeping_Status }}</td>

@@ -7,6 +7,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\out_of_order_rooms;
 use Illuminate\Support\Facades\Auth;
+use App\Models\guest_request;
 
 class MaintenanceController extends Controller
 {
@@ -70,6 +71,56 @@ class MaintenanceController extends Controller
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Saved');
         }
         
+        
+    }
+
+    public function Guest_Call_Register()
+    {
+        $list = DB::select("SELECT * FROM guest_requests");
+        return view('Admin.pages.HousekeepingForms.Guest_Call_Register', ['list' => $list]);
+    }
+
+    public function add_guest_request(Request $request)
+    {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // generate a pin based on 2 * 7 digits + a random character
+        $pin = mt_rand(1000000, 9999999)
+            . mt_rand(1000000, 9999999)
+            . $characters[rand(0, strlen($characters) - 5)];
+
+        // shuffle the result
+        $randID = str_shuffle($pin);
+
+        $this->validate($request,[
+            'roomno' => '',
+            'bookno' => '',
+            'guest_name'=> 'required',
+            'request' => 'required'
+            ]);
+           
+        $add = new guest_request;
+ 
+        $bookno = $request->input('bookno');
+        
+        $add->Request_ID = $randID;
+        $add->Room_No = $request->input('roomno');
+        $add->Booking_No = $bookno;
+        $add->Guest_Name = $request->input('guest_name');
+        $add->Request = $request->input('request');
+
+        if($add->save())
+        {
+            DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Request_ID' => $randID));
+
+            Alert::Success('Success', '"'. $randID .'" Guest Request Successfully Recorded!');
+            return redirect('Guest_Call_Register')->with('Success', 'Data Saved');   
+        }
+        else
+        {
+            Alert::Error('Success', 'Guest Request Failed in Recording!');
+            return redirect('HotelReservationForm')->with('Failed', 'Data Saved');
+        }
         
     }
 }

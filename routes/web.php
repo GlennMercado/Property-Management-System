@@ -54,10 +54,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
-	//For Housekeeping
+	//For Housekeeping and Maintenance
 	Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
-
-	Route::get('Hotel_Housekeeping', [App\Http\Controllers\HousekeepingController::class, 'hotel_housekeeping'])->name('Hotel_Housekeeping');
 
 	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
@@ -65,6 +63,13 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
+	Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
+	
+	Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
+
+	Route::get('Guest_Call_Register', [App\Http\Controllers\MaintenanceController::class, 'Guest_Call_Register'])->name('Guest_Call_Register');
+
+	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 	//Front Desk
 	Route::get('FrontDesk', function(){
@@ -160,11 +165,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');
 	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
-	
-	//Maintenance
-	Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
-	
-	Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
+
 });
 
 //Guest

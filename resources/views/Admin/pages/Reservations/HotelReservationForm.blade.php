@@ -434,18 +434,24 @@
                                                 <td>
                                                     <!--View Button-->
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                        data-target="#view{{ $lists->Booking_No }}"> <i
+                                                        data-target="#views{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--Update Reservation/Room Status Button-->
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                         data-target="#update_booking_status2{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-arrow-repeat"></i></button>
+
+                                                    <!--Guest Request Button-->
+                                                    <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                        data-target="#request{{ $lists->Booking_No }}"> 
+                                                        <i class="bi bi-plus-square"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endif
 
                                         <!--View-->
-                                        <div class="modal fade" id="view{{ $lists->Booking_No }}" tabindex="-1"
+                                        <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
                                             role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -559,6 +565,49 @@
                                                         <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
                                                             class="btn btn-success">Yes</a>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!--Add Request-->
+                                        <div class="modal fade" id="request{{ $lists->Booking_No }}"
+                                            tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title text-left display-4" id="exampleModalLabel">
+                                                            Guest Request
+                                                        </h3>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ url('/add_guest_request') }}" class="prevent_submit" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <div class="modal-body">
+                                                        <p class="text-left">Room No.</p>
+                                                        <input type="hidden" name="roomno" value="{{$lists->Room_No}}">
+                                                        <input type="text" class="form-control" value="{{$lists->Room_No}}" readonly>
+                                                        
+                                                        <p class="text-left">Booking No.</p>
+                                                        <input type="hidden" name="bookno" value="{{$lists->Booking_No}}">
+                                                        <input type="text" class="form-control" value="{{$lists->Booking_No}}" readonly>
+                                                        
+                                                        <p class="text-left">Guest Name</p>
+                                                        <input type="hidden" name="guest_name" value="{{$lists->Guest_Name}}">
+                                                        <input type="text" class="form-control" value="{{$lists->Guest_Name}}" readonly>
+
+                                                        <p class="text-left">Request</p>
+                                                        <input type="text" name="request" class="form-control" required>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
