@@ -43,17 +43,13 @@
                                         
                                             </div>  
                                 
-                                    <div class="col-md-6">
+                                    <div class="col-md">
                                         <p class="form-label">Mobile No.</p>
                                             <input class="form-control" type="number" minlength="11" maxlength="11"
                                         name="mobile" required>
                                     </div>
                                 </div>
-                                        <div class="row pt-4">
-                                            <div class="col-md-6">
-                                                <p>Other Guests</p> 
-                                                    <input class="form-control" type = "text">
-                                        </div>
+                            <div class="row pt-4">
                                 <div class="col-md">
                                     <p>Room No</p>
                                     <select name="room_no" class="form-control" required>
@@ -83,7 +79,7 @@
                                                     <div class="col-md">
                                                         <div class="form-check form-check-input">
                                                             <input type="checkbox" id="mainCheckbox">
-                                                                <label for="mainCheckbox">Add another Guest</label>
+                                                                <label for="mainCheckbox">Make this booking for someone else?</label>
                                                                 <br><br>
                                                                 <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                                     <label class="form-check-label" for="flexCheckDefault">
@@ -106,7 +102,7 @@
                                                             <div class="col-md">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="checkbox1">
-                                                                        <input type="checkbox" id="checkbox2" class = "form-check-input" disabled>
+                                                                        <input type="checkbox" id="checkbox2" class = "form-check-input"> <!--disable-->
                                                                             <label for="checkbox2">Extra Pillow</label>
                                                                         <!-- <label class="form-check-label" for="checkbox1">
                                                                             Extra pillow
@@ -116,7 +112,7 @@
                                                             <div class="col-md">
                                                                 <div class="form-check">
                                                                     <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
-                                                                        <input type="checkbox" id="checkbox3" disabled>
+                                                                        <input class="form-check-input" type="checkbox" id="checkbox3">
                                                                             <label for="checkbox3">Towel</label>
                                                                         <!-- <label class="form-check-label" for="flexCheckDefault">
                                                                             Towels
@@ -125,7 +121,7 @@
                                                             </div>
                                                             <div class="col-md">
                                                                 <div class="form-check">
-                                                                        <input type="checkbox" id="checkbox4" disabled>
+                                                                        <input class="form-check-input" type="checkbox" id="checkbox4">
                                                                             <label for="checkbox4" class = "">Mattress</label>
                                                                         <!-- <label class="form-check-label" for="flexCheckDefault">
                                                                             Mattress
@@ -136,7 +132,7 @@
                                                         <div class="row pt-4">
                                                             <div class="col-md">
                                                                 <div class="">
-                                                                    <input type="text" id="textbox2" class = "form-control" disabled></input>
+                                                                    <input type="text" id="textbox2" class = "form-control"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -675,12 +671,12 @@ input[type="text"].disabled {
 // });
 
 document.getElementById("mainCheckbox").addEventListener("change", function() {
-    document.getElementById("checkbox1").disabled = !this.checked;
-    document.getElementById("checkbox2").disabled = !this.checked;
-    document.getElementById("checkbox3").disabled = !this.checked;
-    document.getElementById("checkbox4").disabled = !this.checked;
+    // document.getElementById("checkbox1").disabled = !this.checked;
+    // document.getElementById("checkbox2").disabled = !this.checked;
+    // document.getElementById("checkbox3").disabled = !this.checked;
+    // document.getElementById("checkbox4").disabled = !this.checked;
     document.getElementById("textbox1").disabled = !this.checked;
-    document.getElementById("textbox2").disabled = !this.checked;
+    
 });
 
 function changeValue(){

@@ -18,12 +18,12 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-2 collapse-brand">
-                        <a href="{{ route('welcome') }}">                           
+                        <a href="{{ route('welcome') }}">
                             <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
                         </a>
                     </div>
                     <div class="col mt-1 collapse-brand">
-                        <a href="{{ route('welcome') }}">                           
+                        <a href="{{ route('welcome') }}">
                             <h3>{{ auth()->user()->name }}</h3>
                         </a>
                     </div>
@@ -38,6 +38,20 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
+                <div class="dropdown show">
+                    <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
+                        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bi bi-book-half"></i>
+                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
+                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
+                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('about_us') }}">
                         <i class="ni ni-single-02"></i>
@@ -56,15 +70,15 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
-                <div class="btn-group">
-                    <button type="button" class="btn dropdown-toggle" style = "background-color:#30BC6C; color:white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--<div class="btn-group">
+                     <button type="button" class="btn dropdown-toggle" style = "background-color:#30BC6C; color:white;" data-toggle="dropdown" aria-haspopup="" aria-expanded="false">
                     <i class="bi bi-book-half mr-md-2"></i>Book Now
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
                         <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
                         <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
-                    </div>
+                    </div> -->
                 <!-- <div class="dropdown nav-item">
                     <p class="dropbtn nav-link nav-link-icon">Book Now</p>
                         <div class="dropdown-content">
@@ -81,13 +95,13 @@
                 </li>
                 <li class="nav-item d-block d-sm-none">
                     <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
-                    onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    <i class="ni ni-user-run"></i>
-                    <span class="nav-link-inner--text">{{ __('Logout') }}</span>
-                </a>
+                        <i class="ni ni-user-run"></i>
+                        <span class="nav-link-inner--text">{{ __('Logout') }}</span>
+                    </a>
                 </li>
-                 <!-- <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link nav-link-icon text-default" href="#" data-toggle="modal"
                         data-target="#ticket">
                         <i class="ni ni-single-02"></i>
@@ -211,34 +225,41 @@
     body {
         overflow-x: hidden;
     }
+
     .dropbtn {
-  color: white;
-}
+        color: white;
+    }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
 
-.dropdown-content a:hover {background-color: #ddd;}
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
 
-.dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
 </style>
