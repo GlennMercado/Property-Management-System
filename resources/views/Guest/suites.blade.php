@@ -29,10 +29,20 @@
                                             </div>    
                                     </div>
                                 <div class="row pt-4">
-                                    <div class="col-md-6">
-                                        <p>Other Guests</p> 
-                                            <input class="form-control" type = "text">
-                                    </div>
+                                <div class="col-md">
+                                                <p class="form-label" >Number of pax</p>
+                                                    <select name="pax" id="textboxes" class="form-control" id="pax_num"
+                                                        onchange="pax_on_change()" required>
+                                                            <option selected disabled value="">Select</option>
+                                                                @for ($count = 1; $count <= 4; $count++)
+                                                            <option value="{{ $count }}" id="room_pax">
+                                                                {{ $count }}</option>
+                                                            @endfor
+                                        </select>
+                                        <div id="balls"></div>
+                                        
+                                            </div>  
+                                
                                     <div class="col-md-6">
                                         <p class="form-label">Mobile No.</p>
                                             <input class="form-control" type="number" minlength="11" maxlength="11"
@@ -40,20 +50,13 @@
                                     </div>
                                 </div>
                                         <div class="row pt-4">
-                                            <div class="col-md">
-                                                <p class="form-label">Number of pax</p>
-                                                    <select name="pax" class="form-control" id="pax_num"
-                                                        onchange="price_count()" required>
-                                                            <option selected disabled value="">Select</option>
-                                                                @for ($count = 1; $count <= 4; $count++)
-                                                            <option value="{{ $count }}" id="room_pax">
-                                                                {{ $count }}</option>
-                                                            @endfor
-                                        </select>
-                                            </div>  
-                                                <div class="col-md">
-                                                    <p>Room No</p>
-                                                    <select name="room_no" class="form-control" required>
+                                            <div class="col-md-6">
+                                                <p>Other Guests</p> 
+                                                    <input class="form-control" type = "text">
+                                        </div>
+                                <div class="col-md">
+                                    <p>Room No</p>
+                                    <select name="room_no" class="form-control" required>
                                     <option selected disabled value="">Select</option>
                                     @foreach ($room as $rooms)
                                         @if ($rooms->Status == 'Vacant for Accommodation')
@@ -68,7 +71,7 @@
                                                 <div class="col-md">
                                                     <p>Check in Date/Time</p>
                                                         <input class="form-control chck" name="checkIn" type="date"
-                                                            onkeydown="return false" id="example-datetime-local-input" required>
+                                                            onkeydown="return false" id="example-datetime-local-input" required />
                                                 </div>  
                                                     <div class="col-md">
                                                         <p>Check out Date/Time</p>
@@ -78,54 +81,62 @@
                                             </div>
                                                 <div class="row pt-4">
                                                     <div class="col-md">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                     Make this booking for someone else?
-                                                                </label>
+                                                        <div class="form-check form-check-input">
+                                                            <input type="checkbox" id="mainCheckbox">
+                                                                <label for="mainCheckbox">Add another Guest</label>
+                                                                <br><br>
+                                                                <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                                        Make this booking for someone else?
+                                                                    </label> -->
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <h3 class = "pt-4">Guest Information</h3>
+                                                <h3 class = "pt-6">Guest Information</h3>
 
                                                     <div class="row">
                                                         <div class="col-md">
                                                             <p>Full Name</p>
-                                                            <input class="form-control" type = "text">
+                                                            <input type="text" id="textbox1" class = "form-control"disabled>
                                                         </div>
                                                     </div>
                                                         <h3 class = "pt-4">Do you have any special request?</h3>
                                                         <div class="row">
                                                             <div class="col-md">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+                                                                        <input type="checkbox" id="checkbox2" class = "form-check-input" disabled>
+                                                                            <label for="checkbox2">Extra Pillow</label>
+                                                                        <!-- <label class="form-check-label" for="checkbox1">
                                                                             Extra pillow
-                                                                        </label>
+                                                                        </label> -->
                                                                 </div>
                                                             </div>
                                                             <div class="col-md">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                    <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+                                                                        <input type="checkbox" id="checkbox3" disabled>
+                                                                            <label for="checkbox3">Towel</label>
+                                                                        <!-- <label class="form-check-label" for="flexCheckDefault">
                                                                             Towels
-                                                                        </label>
+                                                                        </label> -->
                                                                 </div>
                                                             </div>
                                                             <div class="col-md">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                        <input type="checkbox" id="checkbox4" disabled>
+                                                                            <label for="checkbox4" class = "">Mattress</label>
+                                                                        <!-- <label class="form-check-label" for="flexCheckDefault">
                                                                             Mattress
-                                                                        </label>
+                                                                        </label> -->
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row pt-4">
                                                             <div class="col-md">
-                                                                <div class="form-group">
-                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                <div class="">
+                                                                    <input type="text" id="textbox2" class = "form-control" disabled></input>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -141,9 +152,7 @@
                                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
                                             <div> 
                                                         </div>
-                                </div>
-                                    
-                                
+                                </div>  
                                 <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -448,11 +457,15 @@
                 </div>
             </div>
         </div>
+
         <!-- scroll-top button -->
         <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
     <style>
         body {
             margin: 0;
+        }
+        input[type="text"] {
+            margin-top: 10px;
         }
         /* divider */
         .parent-container {
@@ -595,6 +608,14 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 } */
+input[type="text"].disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+      input[type="checkbox"]:checked ~ input[type="text"].disabled {
+        pointer-events: auto;
+        opacity: 1;
+      }
     </style>
         <script>
         $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
@@ -645,7 +666,43 @@
         // document.body.scrollTop = 0;
         // document.documentElement.scrollTop = 0;
         // }
-        
+
+//         document.getElementById("checkbox").addEventListener("change", function() {
+//     var textboxes = document.getElementsByClassName("textbox");
+//     for (var i = 0; i < textboxes.length; i++) {
+//         textboxes[i].disabled = !this.checked;
+//     }
+// });
+
+document.getElementById("mainCheckbox").addEventListener("change", function() {
+    document.getElementById("checkbox1").disabled = !this.checked;
+    document.getElementById("checkbox2").disabled = !this.checked;
+    document.getElementById("checkbox3").disabled = !this.checked;
+    document.getElementById("checkbox4").disabled = !this.checked;
+    document.getElementById("textbox1").disabled = !this.checked;
+    document.getElementById("textbox2").disabled = !this.checked;
+});
+
+function changeValue(){
+  var textboxNumbers = document.getElementById("textboxes").value;
+  balls.innerHTML = '';
+  var i;
+
+  for(i=0; i<textboxNumbers; i++){
+    var yourTextboxes = document.createElement("INPUT");
+    yourTextboxes.setAttribute("type", "text");
+    yourTextboxes.classList.add("form-control");
+    yourTextboxes.setAttribute("placeholder", "Enter Name Here");
+    document.getElementById("balls").appendChild(yourTextboxes);
+  }
+}
+
+function pax_on_change()
+{
+    changeValue();
+    price_count();
+}
+
     </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <!-- <img class="card-img-top mt-2 ml-5 largepic" src="{{ asset('nvdcpics') }}/hotel1.jpg"> -->
