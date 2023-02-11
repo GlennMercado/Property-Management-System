@@ -111,7 +111,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
-                                    <i class="text-success">•</i> {{ __('Hotel Reservation') }}
+                                    <i class="text-success">•</i> {{ __('Hotel Booking') }}
                                 </a>
                             </li>
                         </ul>
@@ -154,13 +154,13 @@
                                 </a>
                             </li>
                         </ul>    
-                        {{-- <ul class="nav nav-sm flex-column">
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Hotel_Housekeeping') }}">
-                                <i class="text-success">•</i> {{ __('Hotel Housekeeping') }}
+                                <a class="nav-link text-default" href="{{ route('Guest_Call_Register') }}">
+                                <i class="text-success">•</i> {{ __('Guest Call Register') }}
                                 </a>
                             </li>
-                        </ul>  --}}
+                        </ul>
                     </div>
                 </li>
 

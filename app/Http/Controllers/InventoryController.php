@@ -16,6 +16,9 @@ class InventoryController extends Controller
      */
     public function index()
     {
+
+       $sum = hotelstocks::where('total' < 'Stock_Level')->count();
+       return view('StockAvailability', compact('sum'));
     
     }
 

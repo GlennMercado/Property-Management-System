@@ -174,33 +174,30 @@
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class = "row">
                                                                 <div class = "col">
-                                                                    <label class="text-left text-color">Item Name </label>
-                                                                        <input class="form-control mt-2" type="text" name="name" placeholder="Enter Here.."  required>
+                                                                    <label class="text-left text-color">Category :  </label>
+                                                                    <input class="form-control mt-1" type="text" name="name" placeholder="Enter Here.."  required>
                                                                 </div>
                                                             </div>
-                                                        <label class="text-left pt-4 text-color">Item Description </label>
-                                                        <input class="form-control mt-2" type="text" placeholder="Enter Here.." name="description" required>
                                                         <div class = "row">
                                                             <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Unit </label> 
-                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="unit" required> 
+                                                                <label class="text-left pt-4 text-color">Unit </label> <input type="button" value="+"></button>
+                                                                <select class="form-control mt-2" name="suppliername" required>
+                                                                    <option>Sample Supplier 1</option>
+                                                                    <option>Sample Supplier 2</option>
+                                                                    <option>Sample Supplier 3</option>
+                                                                </select> 
                                                             </div>
                                                             <div class = "col">
                                                                 <label class="text-left pt-4 text-color">Quantity </label>
                                                                 <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
                                                             </div>
-                                                            <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Stock Level :</label>
-                                                                <input class="form-control" type="number" placeholder="Enter Here.." name="stock" required>
-                                                            </div>
                                                         </div>
-                                                        <label class="text-left pt-4 text-color">Supplier Name </label>
-                                                            <select class="form-control mt-2" name="suppliername" required>
-                                                                <option>Sample Supplier 1</option>
-                                                                <option>Sample Supplier 2</option>
-                                                                <option>Sample Supplier 3</option>
-                                                            </select>  
+                                                        <label class="text-left pt-4 text-color">Receiver :  </label>
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
+                                                                <label class="text-left pt-4 text-color">Supervisor Dept. :  </label>
+                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
