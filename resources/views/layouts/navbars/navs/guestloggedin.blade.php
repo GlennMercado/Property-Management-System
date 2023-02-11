@@ -56,12 +56,23 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('suites') }}">
-                        <i class="bi bi-book-half"></i>
-                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
-                    </a>
-                </li>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" style = "background-color:#30BC6C; color:white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-book-half mr-md-2"></i>Book Now
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
+                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
+                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
+                    </div>
+                <!-- <div class="dropdown nav-item">
+                    <p class="dropbtn nav-link nav-link-icon">Book Now</p>
+                        <div class="dropdown-content">
+                            <a href="{{ url('suites') }}">Suites</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div> -->
                 <li class="nav-item d-block d-sm-none">
                     <a href="{{ url('guest_profile') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="ni ni-single-02"></i>
@@ -200,4 +211,34 @@
     body {
         overflow-x: hidden;
     }
+    .dropbtn {
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
