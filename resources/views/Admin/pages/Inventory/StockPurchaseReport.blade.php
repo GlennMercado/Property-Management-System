@@ -293,7 +293,7 @@ function changeValue(){
   }
 
 
-    for(var i = 0; i < dropdowns; i++) {
+    for(i = 0; i < dropdowns; i++) {
       var yourDropdown = document.createElement("SELECT");
       yourDropdown.classList.add("form-control");
 
