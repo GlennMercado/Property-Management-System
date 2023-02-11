@@ -96,9 +96,23 @@ class MaintenanceController extends Controller
             'roomno' => '',
             'bookno' => '',
             'guest_name'=> 'required',
-            'request' => 'required'
+            'type_of_request' => 'required',
+            'item_request' => '',
+            'service_request' => ''
             ]);
-           
+          
+        $guestrequest;
+        if($request->input('item_request') != null)
+        {
+            $guestrequest = $request->input('item_request');
+        }
+        if($request->input('service_request') != null)
+        {
+            $guestrequest = $request->input('service_request');
+        }
+        
+        
+
         $add = new guest_request;
  
         $bookno = $request->input('bookno');
@@ -107,7 +121,8 @@ class MaintenanceController extends Controller
         $add->Room_No = $request->input('roomno');
         $add->Booking_No = $bookno;
         $add->Guest_Name = $request->input('guest_name');
-        $add->Request = $request->input('request');
+        $add->Type_of_Request = $request->input('type_of_request');
+        $add->Request = $guestrequest;
 
         if($add->save())
         {

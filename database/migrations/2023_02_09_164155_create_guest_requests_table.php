@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->string('Guest_Name');
             $table->date('Date_Requested')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('Type of Request')->nullable();
+            $table->string('Type_of_Request')->nullable();
             $table->string('Request');
             
             $table->string('Status')->default('Ongoing');
