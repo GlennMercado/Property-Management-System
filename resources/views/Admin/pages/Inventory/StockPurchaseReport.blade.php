@@ -179,19 +179,31 @@
                                                                 </div>
                                                             </div>
                                                         <div class = "row">
-                                                            <div class = "col">
-                                                                <label class="text-left pt-4 text-color">Unit </label> <input type="button" value="+"></button>
-                                                                <select class="form-control mt-2" name="suppliername" required>
-                                                                    <option>Sample Supplier 1</option>
-                                                                    <option>Sample Supplier 2</option>
-                                                                    <option>Sample Supplier 3</option>
-                                                                </select> 
+                                                            <div class="col">
+                                                            <p class="form-label" >Number of pax</p>
+                                                    <select name="pax" id="childs" class="form-control" onchange="pax_on_change()" required>
+                                                            <option selected value="">Select</option>
+                                                                @for ($count = 1; $count <= 10; $count++)
+                                                            <option value="{{ $count }}" id="room_pax">
+                                                                {{ $count }}</option>
+                                                            @endfor
+                                                    </select>
+                                                </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class = "col">
+                                                            <label class="text-left pt-4 text-color">Unit :</label>
+
+                                            
+                                                                <div class="col" id="ballses">
+                                                                </div> 
                                                             </div>
                                                             <div class = "col">
                                                                 <label class="text-left pt-4 text-color">Quantity </label>
-                                                                <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
+                                                                <div class="col" id="balls">
+                                                                </div> 
                                                             </div>
-                                                        </div>
+                                                        </div><bzread>
                                                         <label class="text-left pt-4 text-color">Receiver :  </label>
                                                                 <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
                                                                 <label class="text-left pt-4 text-color">Supervisor Dept. :  </label>
@@ -265,6 +277,105 @@
                  
 
 </div> 
+<script>
+function changeValue(){
+  var textboxNumbers = document.getElementById("childs").value;
+  var dropdowns = document.getElementById("childs").value;
+  balls.innerHTML = '';
+  var i;
+
+  for(i=0; i<textboxNumbers; i++){
+    var yourTextboxes = document.createElement("INPUT");
+    yourTextboxes.setAttribute("type", "text");
+    yourTextboxes.classList.add("form-control");
+    yourTextboxes.setAttribute("placeholder", "Enter Here");
+    document.getElementById("balls").appendChild(yourTextboxes);
+  }
+
+
+    for(var i = 0; i < dropdowns; i++) {
+      var yourDropdown = document.createElement("SELECT");
+      yourDropdown.classList.add("form-control");
+
+      var option1 = document.createElement("OPTION");
+      option1.setAttribute("value", "Option 1");
+      option1.innerHTML = "Sugar";
+      yourDropdown.appendChild(option1);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Toothbrush";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 3");
+      option2.innerHTML = "Shampoo";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Bedsheet";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Dental Kit";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Hand Towel";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Bath Towel";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Coffee";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Creamer";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Hanger";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Queen Sheet";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Pillows";
+      yourDropdown.appendChild(option2);
+
+      var option2 = document.createElement("OPTION");
+      option2.setAttribute("value", "Option 2");
+      option2.innerHTML = "Pillow Case";
+      yourDropdown.appendChild(option2);
+
+      document.getElementById("ballses").appendChild(yourDropdown);
+    }
+    window.onload = function() {
+  }
+}
+
+
+
+
+function pax_on_change()
+{
+    changeValue();
+}
+</script>
 <style>
     .title{
         text-transform:uppercase;
