@@ -369,11 +369,105 @@
                                     </tbody>
                                     </table>
                                 </div>
+
+                                <!--Add Stock-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Hotel Stock</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/addstock') }}" class="prevent_submit" method="POST">
+                        {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class = "row">
+                            <div class = "col">
+                                <label class="text-color">Stock Name </label>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
+                                                    
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Stock Description </label>
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Quantity </label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Stock Level </label>
+                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="exampleInputPassword1" class = "text-color pt-4">Category </label>
+                                <select class="form-control" name = "category" required>
+                                    <option value="Invalid" class = "cat">Linens </option>
+                                    <option>Bed pad - Single</option>
+                                    <option>Fitted Sheet - Single</option>
+                                    <option>Flat Sheet - Single</option>
+                                    <option>Duvet Filler - Single</option>
+                                    <option>Duvet Cover - Single</option>
+                                    <option>Pillows</option>
+                                    <option>Bed pad - Queen</option>
+                                    <option>Fitted Sheet - Queen</option>
+                                    <option>Flat Sheet - Queen</option>
+                                    <option>Duvet Filler - Queen</option>
+                                    <option>Duvet Cover - Queen</option>
+                                    <option>Pillows Case</option>
+                                    <option>Bath Towel</option>
+                                    <option>Hand Towel</option>
+                                    <option>Bath Mat</option>
+                                    <option>Bed Ruuner Queen</option>
+                                    <option>Bed Runner Single</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid" class = "cat">Guest Supplies </option>
+                                    <option>Bath Soap</option>
+                                    <option>Shampoo</option>
+                                    <option>Dental Kit</option>
+                                    <option>Slippers</option>
+                                    <option>Bottled Water</option>
+                                    <option>Juice</option>
+                                    <option>Coffee</option>
+                                    <option>Creamer</option>
+                                    <option>Sugar - White</>
+                                    <option>Sugar - Brown</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid" class = "cat">Amenities  </option>
+                                    <option>Kettle</option>
+                                    <option>Tray</option>
+                                    <option>Dental Glass</option>
+                                    <option>Teaspoon</option>
+                                    <option>Cup And Saucer</option>
+                                    <option>Hanger</option>
+                                    <option>Door Hang</option>
+                                    </select>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />                      
+                    </div>
+                </form>         
+            </div>
+        </div>
+    </div>
                                 <!--Convention Center Inventory-->
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right;">Add Stock</button>
+                                        data-target="#exampleModal2" style="float:right;">Add Stock</button>
                                     <h3 class="mb-0 title">Convention Center Inventory</h3>
                                     <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before
                                         Starting, See To It That All Inventory Are In The Storage Area</h5><br><br>
@@ -616,11 +710,104 @@
                                 </table>
 
                             </div>
+                            <!--Add Stock-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Convention Center Stock</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/addstock_center') }}" class="prevent_submit" method="POST">
+                        {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class = "row">
+                            <div class = "col">
+                                <p class="text-left">Stock Name: </p>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
+                                                    
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Description: </label>
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Quantity: </label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Level: </label>
+                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="exampleInputPassword1">Category: </label>
+                                <select class="form-control" name = "category" required>
+                                    <option value="Invalid">Linens :</option>
+                                    <option>Bed pad - Single</option>
+                                    <option>Fitted Sheet - Single</option>
+                                    <option>Flat Sheet - Single</option>
+                                    <option>Duvet Filler - Single</option>
+                                    <option>Duvet Cover - Single</option>
+                                    <option>Pillows</option>
+                                    <option>Bed pad - Queen</option>
+                                    <option>Fitted Sheet - Queen</option>
+                                    <option>Flat Sheet - Queen</option>
+                                    <option>Duvet Filler - Queen</option>
+                                    <option>Duvet Cover - Queen</option>
+                                    <option>Pillows Case</option>
+                                    <option>Bath Towel</option>
+                                    <option>Hand Towel</option>
+                                    <option>Bath Mat</option>
+                                    <option>Bed Ruuner Queen</option>
+                                    <option>Bed Runner Single</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Guest Supplies :</option>
+                                    <option>Bath Soap</option>
+                                    <option>Shampoo</option>
+                                    <option>Dental Kit</option>
+                                    <option>Slippers</option>
+                                    <option>Bottled Water</option>
+                                    <option>Juice</option>
+                                    <option>Coffee</option>
+                                    <option>Creamer</option>
+                                    <option>Sugar - White</>
+                                    <option>Sugar - Brown</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Amenities : </option>
+                                    <option>Kettle</option>
+                                    <option>Tray</option>
+                                    <option>Dental Glass</option>
+                                    <option>Teaspoon</option>
+                                    <option>Cup And Saucer</option>
+                                    <option>Hanger</option>
+                                    <option>Door Hang</option>
+                                    </select>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />                      
+                    </div>
+                </form>         
+            </div>
+        </div>
+    </div>
                             <!--Function Rooms inventory-->
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-3-tab">
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                    data-target="#exampleModal" style="float:right;">Add Stock</button>
+                                    data-target="#exampleModal3" style="float:right;">Add Stock</button>
                                 <h3 class="mb-0 title">Function Rooms Inventory</h3>
                                 <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before Starting,
                                     See To It That All Inventory Are In The Storage Area</h5><br><br>
@@ -1006,6 +1193,99 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <!--Add Stock-->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Function Room Stock</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/addstock_function') }}" class="prevent_submit" method="POST">
+                        {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class = "row">
+                            <div class = "col">
+                                <p class="text-left">Stock Name: </p>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
+                                                    
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Description: </label>
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Quantity: </label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails">Stock Level: </label>
+                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="exampleInputPassword1">Category: </label>
+                                <select class="form-control" name = "category" required>
+                                    <option value="Invalid">Linens :</option>
+                                    <option>Bed pad - Single</option>
+                                    <option>Fitted Sheet - Single</option>
+                                    <option>Flat Sheet - Single</option>
+                                    <option>Duvet Filler - Single</option>
+                                    <option>Duvet Cover - Single</option>
+                                    <option>Pillows</option>
+                                    <option>Bed pad - Queen</option>
+                                    <option>Fitted Sheet - Queen</option>
+                                    <option>Flat Sheet - Queen</option>
+                                    <option>Duvet Filler - Queen</option>
+                                    <option>Duvet Cover - Queen</option>
+                                    <option>Pillows Case</option>
+                                    <option>Bath Towel</option>
+                                    <option>Hand Towel</option>
+                                    <option>Bath Mat</option>
+                                    <option>Bed Ruuner Queen</option>
+                                    <option>Bed Runner Single</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Guest Supplies :</option>
+                                    <option>Bath Soap</option>
+                                    <option>Shampoo</option>
+                                    <option>Dental Kit</option>
+                                    <option>Slippers</option>
+                                    <option>Bottled Water</option>
+                                    <option>Juice</option>
+                                    <option>Coffee</option>
+                                    <option>Creamer</option>
+                                    <option>Sugar - White</>
+                                    <option>Sugar - Brown</option>
+                                    <option value="Invalid"></option>
+                                    <option value="Invalid">Amenities : </option>
+                                    <option>Kettle</option>
+                                    <option>Tray</option>
+                                    <option>Dental Glass</option>
+                                    <option>Teaspoon</option>
+                                    <option>Cup And Saucer</option>
+                                    <option>Hanger</option>
+                                    <option>Door Hang</option>
+                                    </select>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />                      
+                    </div>
+                </form>         
+            </div>
+        </div>
+    </div>
 
                         </div>
                     </div>
