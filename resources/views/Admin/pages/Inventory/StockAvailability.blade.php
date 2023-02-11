@@ -24,13 +24,6 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">Hotel Inventory</h5>
                             <span class="h2 font-weight-bold mb-0">
-                                @foreach ($list as $lists)
-                                    @if ($lists->total <= $lists->Stock_Level)
-                                        <td style="font-size:25px;"><i>{{ $lists->total }}</i></td>
-                                        @else
-                                        <td style="font-size:25px;">0</td>
-                                    @endif
-                                @endforeach
 
                             </span>
                         </div>
@@ -1217,27 +1210,25 @@
                                 <table class="table align-items-center table-flush" id="myTablessss">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" style="font-size:18px;">Item Name</th>
-                                            <th scope="col" style="font-size:18px;">Department</th>
-                                            <th scope="col" style="font-size:18px;">Name of Supervisor</th>
-                                            <th scope="col" style="font-size:18px;">Date</th>
-                                            <th scope="col" style="font-size:18px;">Date</th>
-                                            <th scope="col" style="font-size:18px;">Stock Level</th>
-                                            <th scope="col" style="font-size:18px;">Stock Alert</th>
-                                            <th scope="col" style="font-size:18px;">file</th>
-                                            <th scope="col" style="font-size:18px;">Action</th>
+                                            <th scope="col" style="font-size:16px;">Item Name</th>
+                                            <th scope="col" style="font-size:16px;">Department</th>
+                                            <th scope="col" style="font-size:16px;">Name of Supervisor</th>
+                                            <th scope="col" style="font-size:16px;">Date</th>
+                                            <th scope="col" style="font-size:16px;">Stock Level</th>
+                                            <th scope="col" style="font-size:16px;">Stock Alert</th>
+                                            <th scope="col" style="font-size:16px;">file</th>
+                                            <th scope="col" style="font-size:16px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list4 as $lists4)
                                             <tr>
-                                                <td style="font-size:16px;">{{ $lists4->name }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->suppliername }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->description }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->quantity }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->name }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->suppliername }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->description }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->quantity }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
+                                                <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
                                                 @if ($lists4->quantity <= $lists4->Stock_Level)
                                                     <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
                                                             style="color:red;"></i></td>
@@ -1493,15 +1484,8 @@
                                         <table class="table align-items-center table-flush" id="myTablessss">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col" style="font-size:18px;">Item Name</th>
-                                                    <th scope="col" style="font-size:18px;">Department</th>
-                                                    <th scope="col" style="font-size:18px;">Name of Supervisor</th>
+                                                    <th scope="col" style="font-size:18px;">Movement</th>
                                                     <th scope="col" style="font-size:18px;">Date</th>
-                                                    <th scope="col" style="font-size:18px;">Date</th>
-                                                    <th scope="col" style="font-size:18px;">Stock Level</th>
-                                                    <th scope="col" style="font-size:18px;">Stock Alert</th>
-                                                    <th scope="col" style="font-size:18px;">file</th>
-                                                    <th scope="col" style="font-size:18px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
