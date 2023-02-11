@@ -279,7 +279,7 @@
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->Booking_No }}"> <i
+                                                            data-target="#views{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                         <!--Update Reservation/Room Status Button-->
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
@@ -312,7 +312,7 @@
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In2']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
@@ -320,7 +320,7 @@
                                             </div>
 
                                             <!--View-->
-                                            <div class="modal fade" id="view{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -435,7 +435,7 @@
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#views{{ $lists->Booking_No }}"> <i
+                                                            data-target="#views1{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                         <!--Update Reservation/Room Status Button-->
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
@@ -452,7 +452,7 @@
                                             @endif
 
                                             <!--View-->
-                                            <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade" id="views1{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -601,8 +601,22 @@
                                                             <input type="hidden" name="guest_name" value="{{$lists->Guest_Name}}">
                                                             <input type="text" class="form-control" value="{{$lists->Guest_Name}}" readonly>
 
-                                                            <p class="text-left">Request</p>
-                                                            <input type="text" name="request" class="form-control" required>
+                                                            <p class="text-left">Type of Request </p>
+                                                            <select name="type_of_request" id="request_select" class="form-control" required>
+                                                                <option value="" disabled="disabled" selected="true">Select</option>
+                                                                <option value="Service Request">Service Request</option>
+                                                                <option value="Item Request">Item Request</option>
+                                                            </select>
+
+                                                            <div id="service" style="display:none;">
+                                                                <p class="text-left">Service Request </p>
+                                                                <input type="text" name="service_request" id="req" class="form-control">
+                                                            </div>
+
+                                                            <div id="item" style="display:none;">
+                                                                <p class="text-left">Item Request </p>
+                                                                <input type="text" name="item_request" id="req2" class="form-control">
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
@@ -791,7 +805,23 @@
                 }
             });
         });
-        
+        $(document).ready(function(){
+            $("#request_select").change(function(){
+                var selected = $("option:selected", this).val();
+                if(selected == 'Service Request')
+                {
+                    $('#service').css({ 'display' : 'block' });
+                    $('#item').css( { 'display' : 'none' } );
+                    $('#req2').val('');
+                }
+                else if(selected == 'Item Request')
+                {
+                    $('#service').css({ 'display' : 'none' });
+                    $('#req').val('');
+                    $('#item').css( { 'display' : 'block' } );
+                }
+            });
+        });
         $.noConflict();
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();

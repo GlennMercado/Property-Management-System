@@ -61,7 +61,7 @@
                                             <tr>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
                                                 <th scope="col" style="font-size:18px;">Check Out Date</th>
                                                 <th scope="col" style="font-size:18px;">Action</th>
@@ -71,18 +71,29 @@
                                             @php $datenow = date('Y-m-d'); @endphp
                                             
                                             @foreach ($list as $lists)
-                                                @if($lists->IsArchived == false && $lists->Check_In_Date == $datenow)
+                                                @if($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != "Checked-In")
                                                     <tr>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Facility_Status }}</td>
+                                                        <td>{{ $lists->Housekeeping_Status }}</td>
                                                         <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                         <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
                                                             </button>
-                                                            
+
+                                                            @if ($lists->Attendant == 'Unassigned' && $lists->Housekeeping_Status == 'Cleaned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#assign{{ $lists->ID }}"> 
+                                                                <i class="bi bi-person-fill"></i> </button>
+                                                            @endif
+
+                                                            @if($lists->Housekeeping_Status == "Inspect")
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update{{ $lists->ID }}">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                            @endif
                                                         </td>
                                                     </tr>
 
@@ -105,9 +116,9 @@
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
 
-                                                                            <p class="text-left">Housekeeping Status : </p>
+                                                                            <p class="text-left">Room Status : </p>
                                                                             <input type="text" class="form-control"
-                                                                                value="{{ $lists->Housekeeping_Status }}"
+                                                                                value="{{ $lists->Facility_Status }}"
                                                                                 readonly>
 
                                                                             <p class="text-left">Front Desk Status: </p>
@@ -127,7 +138,99 @@
                                                         </div>
                                                     </div>
 
+                                                    <!--Assign Attendant-->
+                                                    <div class="modal fade" id="assign{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST" class="prevent_submit"
+                                                                    action="{{ url('/assign_housekeeper') }}"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="card-body bg-white"
+                                                                                style="border-radius: 18px">
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $lists->ID }}" />
+
+                                                                                <input type="hidden" name="check" value="arrival" />
+
+                                                                                <p class="text-left">Attendants: </p>
+                                                                                <select name="housekeeper" class="form-control"
+                                                                                    required>
+                                                                                    <option selected="true" disabled="disabled">
+                                                                                        Select</option>
+                                                                                    <option value="Marie B. Adams">Marie B. Adams
+                                                                                    </option>
+                                                                                    <option value="Nathan Dela Cruz">Nathan Dela
+                                                                                        Cruz</option>
+                                                                                    <option value="Mark Delos Santos">Mark Delos
+                                                                                        Santos</option>
+                                                                                    <option value="Jacob Del Rosario">Jacob Del
+                                                                                        Rosario</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</a>
+                                                                        <input type="submit"
+                                                                            class="btn btn-success prevent_submit"
+                                                                            value="Assign" />
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     
+                                                    <!--Update Housekeeping Status Modal-->
+                                                    <div class="modal fade" id="update{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">Setting Status</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
+
+                                                                            @if($lists->Request_ID == null)
+                                                                                @php $lists->Request_ID = "null"; @endphp
+                                                                            @endif
+                                                                            <h4 class="text-center">Is the Room
+                                                                                {{ $lists->Room_No }} <span
+                                                                                    class="text-success">
+                                                                                    
+                                                                                    CLEANED</span>?</h4>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                    <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
+                                                                        class="btn btn-success">Yes</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 @endif
                                             @endforeach
                                         </tbody>
@@ -150,7 +253,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($list as $lists)
-                                                @if($lists->IsArchived == false)
+                                                @if($lists->IsArchived == false && $lists->Front_Desk_Status != 'Reserved')
                                                     <tr>                                                
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
@@ -209,7 +312,7 @@
                                                                                     <input type="text" class="form-control"
                                                                                         value="{{ $lists2->Guest_Name }}" readonly>
 
-                                                                                    <p class="text-left">Date Requesteds: </p>
+                                                                                    <p class="text-left">Date Requested: </p>
                                                                                     <input type="text" class="form-control"
                                                                                         value="{{ $lists2->Date_Requested = date('M d, Y') }}"
                                                                                         readonly>
@@ -225,6 +328,14 @@
                                                                                     <p class="text-left">Attendant: </p>
                                                                                     <input type="text" class="form-control"
                                                                                         value="{{ $lists->Attendant }}" readonly>
+
+                                                                                    <p class="text-left">Checked In Date: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}" readonly>
+                                                                                            
+                                                                                    <p class="text-left">Checked Out Date: </p>
+                                                                                    <input type="text" class="form-control"
+                                                                                        value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}" readonly>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -259,6 +370,8 @@
                                                                                 style="border-radius: 18px">
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->ID }}" />
+
+                                                                                <input type="hidden" name="check" value="checkin" />
 
                                                                                 <p class="text-left">Attendants: </p>
                                                                                 <select name="housekeeper" class="form-control"
