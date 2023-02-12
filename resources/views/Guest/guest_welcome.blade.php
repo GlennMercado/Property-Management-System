@@ -59,7 +59,7 @@
     <!-- section 2 -->
     <div class="container-fluid bg-white pt-4" id = "section2">
         <div class = "d-flex justify-content-center">
-                <p class="pt-2 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                <p class="pt-2 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
                     our</p>
                     </div>
         <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">services</p>
@@ -159,7 +159,7 @@
     <div class="container-fluid bg-white pt-4">
         <div class="card-body">
             <div class = "d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
                     Nvdc</p>
                     </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
@@ -227,7 +227,7 @@
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
             <div class = "d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
                     Nvdc</p>
 </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
@@ -270,7 +270,7 @@
     <div class="container-fluid bg-white pt-6" id = "section6">
         <div class="card-body">
             <div class = "d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
                     Nvdc</p>
                     </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Novadeci Location</p>
@@ -304,7 +304,7 @@
     <div class="container-fluid bg-white pt-6">
         <div class="card-body">
             <div class = "d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt ">
+                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
                     Nvdc</p>
                     </div>
             <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Frequently asked questions</p>
