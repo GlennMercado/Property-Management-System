@@ -16,7 +16,8 @@
                                     {{ csrf_field() }}
                                     <div class="row pt-4">
                                         <div class="col-md-6">
-                                            <p>Guest Name</p>
+                                            <p>Guest Name <span class = "text-danger">*</span></p>
+                                            <!-- <i class="bi bi-asterisk" style="color:red; font-size:7px;"></i> -->
                                                 @foreach ($guest as $guests)
                                                     <input type="hidden" name="gName" value="{{ $guests->name }}" />
                                                     <input class="form-control" type="text" name="gName"
@@ -24,13 +25,13 @@
                                                 @endforeach
                                         </div>
                                             <div class="col-md-6">
-                                                <p>Email</p>
+                                                <p>Email <span class = "text-danger">*</span></p>
                                                     <input class="form-control" type = "text">
                                             </div>    
                                     </div>
                                 <div class="row pt-4">
                                 <div class="col-md">
-                                                <p class="form-label" >Number of pax</p>
+                                                <p class="form-label" >Number of pax <span class = "text-danger">*</span></p>
                                                     <select name="pax" id="textboxes" class="form-control" id="pax_num"
                                                         onchange="pax_on_change()" required>
                                                             <option selected disabled value="">Select</option>
@@ -44,14 +45,14 @@
                                             </div>  
                                 
                                     <div class="col-md">
-                                        <p class="form-label">Mobile No.</p>
+                                        <p class="form-label">Mobile No. <span class = "text-danger">*</span></p>
                                             <input class="form-control" type="number" minlength="11" maxlength="11"
                                         name="mobile" required>
                                     </div>
                                 </div>
                             <div class="row pt-4">
                                 <div class="col-md">
-                                    <p>Room No</p>
+                                    <p>Room No <span class = "text-danger">*</span></p>
                                     <select name="room_no" class="form-control" required>
                                     <option selected disabled value="">Select</option>
                                     @foreach ($room as $rooms)
@@ -65,12 +66,12 @@
                                         </div>
                                             <div class="row pt-4">
                                                 <div class="col-md">
-                                                    <p>Check in Date/Time</p>
+                                                    <p>Check in Date/Time <span class = "text-danger">*</span></p>
                                                         <input class="form-control chck" name="checkIn" type="date"
                                                             onkeydown="return false" id="example-datetime-local-input" required />
                                                 </div>  
                                                     <div class="col-md">
-                                                        <p>Check out Date/Time</p>
+                                                        <p>Check out Date/Time <span class = "text-danger">*</span></p>
                                                             <input class="form-control chck" name="checkOut" type="date"
                                                                 onkeydown="return false" id="example-datetime-local-input" required>
                                                     </div>
