@@ -44,14 +44,6 @@
                         <span class="nav-link-inner--text">{{ __('My profile') }}</span>
                     </a>
                 </li>
-                <li class="nav-item d-block d-sm-none">
-                    <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
-                        onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        <i class="ni ni-user-run"></i>
-                        <span class="nav-link-inner--text">{{ __('Logout') }}</span>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('about_us') }}">
                         <i class="ni ni-single-02"></i>
@@ -84,6 +76,14 @@
                         <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
                     </div>
                 </div>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <i class="ni ni-user-run"></i>
+                        <span class="nav-link-inner--text">{{ __('Logout') }}</span>
+                    </a>
+                </li>
                 <!--<div class="btn-group">
                      <button type="button" class="btn dropdown-toggle" style = "background-color:#30BC6C; color:white;" data-toggle="dropdown" aria-haspopup="" aria-expanded="false">
                     <i class="bi bi-book-half mr-md-2"></i>Book Now

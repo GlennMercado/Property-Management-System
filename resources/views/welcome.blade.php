@@ -272,7 +272,7 @@
                         <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.JPG">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">

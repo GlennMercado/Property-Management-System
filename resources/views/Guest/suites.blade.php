@@ -283,14 +283,14 @@
                 <!-- section2 suite -->
                 <p class = "d-flex justify-content-center text-uppercase title pt-6">Suites</p>
             <div class="image-grid">
-                <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.jpg" data-toggle="lightbox" data-gallery="example-gallery">
+                <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.JPG" data-toggle="lightbox" data-gallery="example-gallery">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel3.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel4.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel5.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel6.jpg">
                 <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter"
-                    src="{{ asset('nvdcpics') }}/hotel7.jpg">
+                    src="{{ asset('nvdcpics') }}/hotel7.JPG">
             </div>
             <!-- <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div> -->
             <!-- section 3 -->
@@ -392,7 +392,7 @@
                         <!-- contents -->
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel1.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel1.JPG">
                             </div>
                             <div class="col-4">
                                 <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel2.jpg">
@@ -416,34 +416,34 @@
                         <br>
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel7.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel7.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel8.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel8.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel9.jpg">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel10.jpg">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel11.jpg">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel9.JPG">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel13.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel10.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel14.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel11.JPG">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel12.JPG">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel13.JPG">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel14.JPG">
                             </div>
                         </div>
                     </div>
