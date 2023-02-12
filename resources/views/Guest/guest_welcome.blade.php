@@ -3,7 +3,32 @@
 @section('content')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <div class="position-relative mx-auto d-flex justify-content-center">
+    <div class="position-relative">
+        <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="Your Background Image">
+        <div class="position-absolute d-flex align-items-center text-center"
+            style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
+            <div class="container mx-auto">
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style = "color:#B4B4B4">Welcome to</h1>
+                <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1 pb-4">Novadeci
+                    Properties</h1>
+                <div class="group pt-6">
+                    <a href="#section2">
+                        <p class="mr-2 p1 d-none d-lg-block">hotels </p>
+                    </a>
+                    <a href="{{ url('convention_center') }}">
+                        <p class="mr-2 p1 d-none d-lg-block">convention center </p>
+                    </a>
+                    <a href="{{ url('function_room') }}">
+                        <p class="mr-2 p1 d-none d-lg-block">function rooms </p>
+                    </a>
+                    <a href="{{ url('commercial_spaces') }}">
+                        <p class="mr-2 p1 d-none d-lg-block">commercial spaces </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="position-relative mx-auto d-flex justify-content-center">
         <img class="img" src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" style="width:100%;">
         <h2 class="image-text font-weight-light uppercase">Welcome to</h2>
         <h1 class="image-text2 font-weight-light uppercase">Novadeci Properties</h1>
@@ -55,7 +80,7 @@
             <div class = "d-flex justify-content-center">
                 
             </div>
-        </div>
+        </div> --}}
     <!-- section 2 -->
     <div class="container-fluid bg-white pt-4" id = "section2">
         <div class = "d-flex justify-content-center">
@@ -67,7 +92,7 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('suites') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/Suites.png" alt="Card image cap"
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/suites.png" alt="Card image cap"
                             style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
@@ -384,7 +409,7 @@
 }
 
 .image-text {
-    position: absolute;
+    /* position: absolute;
     top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -392,12 +417,13 @@
     font-size: 36px;
     font-weight: bold;
     text-align: center;
-    filter: brightness(50%);
+    filter: brightness(50%); */
     font-family: montserrat;
+    margin-bottom: -1rem;
 }
 
 .image-text2 {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -405,7 +431,7 @@
     font-weight: bold;
     text-align: center;
     font-size: 65px;
-    letter-spacing: 1px;
+    letter-spacing: 1px; */
     font-family: montserrat;
 }
 .group {
