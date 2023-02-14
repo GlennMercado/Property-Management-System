@@ -38,20 +38,12 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
-                <div class="dropdown show">
-                    <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
-                        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="bi bi-book-half"></i>
-                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('guest_profile') }}" class="nav-link nav-link-icon text-white font-weight-bold">
+                        <i class="ni ni-single-02"></i>
+                        <span class="nav-link-inner--text">{{ __('My profile') }}</span>
                     </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
-                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
-                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
-                    </div>
-                </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('about_us') }}">
                         <i class="ni ni-single-02"></i>
@@ -68,6 +60,28 @@
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('map') }}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
+                    </a>
+                </li>
+                <div class="dropdown show">
+                    <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
+                        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bi bi-book-half"></i>
+                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
+                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
+                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
+                    </div>
+                </div>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <i class="ni ni-user-run"></i>
+                        <span class="nav-link-inner--text">{{ __('Logout') }}</span>
                     </a>
                 </li>
                 <!--<div class="btn-group">
@@ -87,20 +101,7 @@
                             <a href="#">Link 3</a>
                         </div>
                     </div> -->
-                <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url('guest_profile') }}" class="nav-link nav-link-icon text-white font-weight-bold">
-                        <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('My profile') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item d-block d-sm-none">
-                    <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
-                        onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        <i class="ni ni-user-run"></i>
-                        <span class="nav-link-inner--text">{{ __('Logout') }}</span>
-                    </a>
-                </li>
+
                 <!-- <li class="nav-item">
                     <a class="nav-link nav-link-icon text-default" href="#" data-toggle="modal"
                         data-target="#ticket">

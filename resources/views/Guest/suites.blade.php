@@ -16,7 +16,8 @@
                                     {{ csrf_field() }}
                                     <div class="row pt-4">
                                         <div class="col-md-6">
-                                            <p>Guest Name</p>
+                                            <p>Guest Name <span class = "text-danger">*</span></p>
+                                            <!-- <i class="bi bi-asterisk" style="color:red; font-size:7px;"></i> -->
                                                 @foreach ($guest as $guests)
                                                     <input type="hidden" name="gName" value="{{ $guests->name }}" />
                                                     <input class="form-control" type="text" name="gName"
@@ -24,13 +25,13 @@
                                                 @endforeach
                                         </div>
                                             <div class="col-md-6">
-                                                <p>Email</p>
+                                                <p>Email <span class = "text-danger">*</span></p>
                                                     <input class="form-control" type = "text">
                                             </div>    
                                     </div>
                                 <div class="row pt-4">
                                 <div class="col-md">
-                                                <p class="form-label" >Number of pax</p>
+                                                <p class="form-label" >Number of pax <span class = "text-danger">*</span></p>
                                                     <select name="pax" id="textboxes" class="form-control" id="pax_num"
                                                         onchange="pax_on_change()" required>
                                                             <option selected disabled value="">Select</option>
@@ -44,14 +45,14 @@
                                             </div>  
                                 
                                     <div class="col-md">
-                                        <p class="form-label">Mobile No.</p>
+                                        <p class="form-label">Mobile No. <span class = "text-danger">*</span></p>
                                             <input class="form-control" type="number" minlength="11" maxlength="11"
                                         name="mobile" required>
                                     </div>
                                 </div>
                             <div class="row pt-4">
                                 <div class="col-md">
-                                    <p>Room No</p>
+                                    <p>Room No <span class = "text-danger">*</span></p>
                                     <select name="room_no" class="form-control" required>
                                     <option selected disabled value="">Select</option>
                                     @foreach ($room as $rooms)
@@ -65,12 +66,12 @@
                                         </div>
                                             <div class="row pt-4">
                                                 <div class="col-md">
-                                                    <p>Check in Date/Time</p>
+                                                    <p>Check in Date/Time <span class = "text-danger">*</span></p>
                                                         <input class="form-control chck" name="checkIn" type="date"
                                                             onkeydown="return false" id="example-datetime-local-input" required />
                                                 </div>  
                                                     <div class="col-md">
-                                                        <p>Check out Date/Time</p>
+                                                        <p>Check out Date/Time <span class = "text-danger">*</span></p>
                                                             <input class="form-control chck" name="checkOut" type="date"
                                                                 onkeydown="return false" id="example-datetime-local-input" required>
                                                     </div>
@@ -282,14 +283,14 @@
                 <!-- section2 suite -->
                 <p class = "d-flex justify-content-center text-uppercase title pt-6">Suites</p>
             <div class="image-grid">
-                <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.jpg" data-toggle="lightbox" data-gallery="example-gallery">
+                <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.JPG" data-toggle="lightbox" data-gallery="example-gallery">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel3.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel4.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel5.jpg">
                 <img class="" src="{{ asset('nvdcpics') }}/hotel6.jpg">
                 <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter"
-                    src="{{ asset('nvdcpics') }}/hotel7.jpg">
+                    src="{{ asset('nvdcpics') }}/hotel7.JPG">
             </div>
             <!-- <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div> -->
             <!-- section 3 -->
@@ -391,7 +392,7 @@
                         <!-- contents -->
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel1.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel1.JPG">
                             </div>
                             <div class="col-4">
                                 <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel2.jpg">
@@ -415,34 +416,34 @@
                         <br>
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel7.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel7.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel8.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel8.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel9.jpg">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel10.jpg">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel11.jpg">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel12.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel9.JPG">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel13.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel10.JPG">
                             </div>
                             <div class="col-4">
-                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel14.jpg">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel11.JPG">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel12.JPG">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel13.JPG">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-thumbnail" src="{{ asset('nvdcpics') }}/hotel14.JPG">
                             </div>
                         </div>
                     </div>
