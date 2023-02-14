@@ -168,6 +168,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Calendar', [App\Http\Controllers\AdminController::class, 'Calendar'])->name('Calendar');
 	Route::post('hotel_sched', 'App\Http\Controllers\AdminController@hotel_sched');
 
+	//User management
+	Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
+
 });
 
 //Guest
