@@ -26,7 +26,9 @@
                                         </div>
                                             <div class="col-md-6">
                                                 <p>Email <span class = "text-danger">*</span></p>
-                                                    <input class="form-control" type = "text">
+                                                @foreach ($guest as $guests)
+                                                    <input class="form-control" type = "text" value="{{$guests->email}}" readonly>
+                                                @endforeach
                                             </div>    
                                     </div>
                                 <div class="row pt-4">

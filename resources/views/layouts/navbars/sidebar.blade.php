@@ -191,10 +191,10 @@
                 </li> -->
 
                 {{-- Commercial Space --}}
-                <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
-                    <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">     
                         <i class="bi bi-shop text-success"></i> {{ __('Commercial Space') }}
-                </a>
+                    </a>
                 </li>
 
                 <!--Inventory Management-->
