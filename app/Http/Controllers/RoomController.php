@@ -19,6 +19,13 @@ class RoomController extends Controller
 		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2]);
     }
 
+    public function Key_Management()
+    {
+        $list = DB::SELECT('SELECT * FROM key_management');
+        
+        return view('Admin.pages.RoomManagement.Key_Management', ['list' => $list]);
+    }
+
     public function add_rooms(Request $request)
     {
        
@@ -43,8 +50,9 @@ class RoomController extends Controller
         else
         {
             $add_rooms= new novadeci_suites;
-
+            
             $add_rooms->Room_No = $request->input('room_no');
+            $add_rooms->Key_ID = "Key - 0".$request->input('room_no');
             $add_rooms->Room_Size = $request->input('room_size');
             $add_rooms->No_of_Beds = $request->input('no_of_beds');
             $add_rooms->Extra_Bed = $request->input('extra_bed');

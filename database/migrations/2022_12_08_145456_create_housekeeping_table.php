@@ -38,9 +38,6 @@ return new class extends Migration
 
             $table->string('Attendant')->default('Unassigned');
             
-            $table->date('Check_In_Date');
-            $table->date('Check_Out_Date');
-
             $table->boolean('IsArchived')->default(false);
 
             $table->timestamps();

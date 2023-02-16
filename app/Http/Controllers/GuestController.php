@@ -48,6 +48,7 @@ class GuestController extends Controller
     public function suites()
     {
         $email = Auth::user()->email;
+        
         $list = DB::select('SELECT * FROM hotel_reservations');
 	    $room = DB::select('SELECT * FROM novadeci_suites');
         $guest = DB::select("SELECT * FROM users WHERE email = '$email'");

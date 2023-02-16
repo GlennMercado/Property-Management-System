@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('novadeci_suites', function (Blueprint $table) {
             
             $table->integer('Room_No')->primary();
+
+            $table->string('Key_ID');
+            $table->unique('Key_ID');
+
             $table->String('Room_Size');
             $table->String('No_of_Beds');
             $table->string('Extra_Bed');
