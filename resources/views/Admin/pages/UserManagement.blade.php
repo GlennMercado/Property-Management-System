@@ -17,7 +17,62 @@
                 <div class="card">
                     <div class="card-header bg-transparent row">
                         <h3 class="mb-0 col-md-6">User Management</h3>
-                        <Button class="col-md-6">Add User</Button>
+                        <div class="col text-right">
+                            <button class="btn btn-outline-primary bg-success text-white" data-toggle="modal"
+                                data-target="#add_rooms">
+                                Create New User
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Add Modal -->
+                    <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create New User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('/create_new_user') }}" class="prevent_submit" method="POST"
+                                    enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="card-body bg-white" style="border-radius: 18px">
+                                                <label class="text_color">Name</label>
+                                                <input type="text" class="form-control" name="name" required>
+                                                <label class="text_color">Email</label>
+                                                <input type="email" class="form-control" name="email" required>
+                                                <label class="text_color">Password</label>
+                                                <input type="password" class="form-control" name="password" required>
+                                                <label class="text_color">Confirm Password</label>
+                                                <input type="password" class="form-control">
+                                                <label class="text_color">User Type</label>
+                                                <select name="" id="selectbox"; class="form-control" name="User_Type" required>
+                                                    <option id="option1">Select</option>
+                                                    <option value="Guest" id="option2">Guest</option>
+                                                    <option value="Sales" id="option3">Sales & Marketing
+                                                    </option>
+                                                    <option value="Finance" id="option4">Finance</option>
+                                                    <option value="Frontdesk" id="option5">Frontdesk</option>
+                                                    <option value="OperationsManager" id="option6">Operations
+                                                        Manager</option>
+                                                    <option value="Admin" id="option7">Admin</option>
+                                                    <option value="Inventory" id="option8">Inventory</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-success prevent_submit" value="Save"
+                                                name="submit">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="nav-wrapper">
@@ -40,13 +95,17 @@
                                                 <td>{{ $lists->email }}</td>
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
-                                                    <select name="" id="">
-                                                        <option value="">try</option>
-                                                        <option value="">try</option>
-                                                        <option value="">try</option>
+                                                    <select name="" id="selectbox"; class="form-control">
+                                                        <option id="option1">{{ $lists->User_Type }}</option>
+                                                        <option value="Guest" id="option2">Guest</option>
+                                                        <option value="Sales" id="option3">Sales & Marketing</option>
+                                                        <option value="Finance" id="option4">Finance</option>
+                                                        <option value="Frontdesk" id="option5">Frontdesk</option>
+                                                        <option value="OperationsManager" id="option6">Operations
+                                                            Manager</option>
+                                                        <option value="Admin" id="option7">Admin</option>
+                                                        <option value="Inventory" id="option8">Inventory</option>
                                                     </select>
-                                                    <button>sad</button>
-                                                    <button>sadasd</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -58,6 +117,9 @@
             </div>
         </div>
     </div>
+    <script>
+        // var x = document.getElementById("selectbox");
+    </script>
 @endsection
 
 @push('js')

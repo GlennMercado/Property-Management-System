@@ -170,7 +170,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//User management
 	Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
-
+	Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
 });
 
 //Guest
