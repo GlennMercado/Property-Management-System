@@ -16,8 +16,9 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
-        $list = DB::select('SELECT * FROM housekeepings');
+        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON b.Booking_No = a.Booking_No');
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
+        
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list,'list2' => $list2]);
     }
     public function hotel_housekeeping()
