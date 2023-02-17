@@ -130,6 +130,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Stock Purchase Report
 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
 	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
+	Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
 	Route::get('StockPurchaseReport', function () {
 		$list = DB::select('SELECT * FROM purchasereports');
 		return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');

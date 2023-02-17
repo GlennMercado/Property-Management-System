@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\purchasereports;
+use App\Models\reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +38,39 @@ class PurchaseReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function report(Request $request)
+    {
+        
+        $this->validate($request,[
+            'name' => 'required',
+            'description' => 'required',
+            'unit' => 'required',
+            'quantity' => 'required',
+            'stock' => 'required',
+            'suppliername' => 'required'
+           ]);
+    
+           $stocks = new purchasereports;
+
+           $stocks->name = $request->input('name');
+           $stocks->description = $request->input('description');
+           $stocks->suppliername = $request->input('suppliername');
+           $stocks->quantity = $request->input('quantity');
+           $stocks->Stock_Level = $request->input('stock');
+           $stocks->unit = $request->input('unit');
+    
+           if($stocks->save())
+            {
+                Alert::Success('Success', 'Stock Successfully Added!');
+            return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
+                return redirect('StockCount')->with('Error', 'Failed!');
+            }
+    }
+
+    public function add(Request $request)
     {
         
         $this->validate($request,[
