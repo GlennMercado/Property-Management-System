@@ -85,9 +85,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
+
 	Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
 	Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
+
+	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
 	//Back Office
 	Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
@@ -171,7 +174,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//User management
 	Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
-
+	Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
 });
 
 //Guest
