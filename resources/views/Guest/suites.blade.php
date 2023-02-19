@@ -16,8 +16,8 @@
                 <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
                     enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <div class="row pt-4">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 pt-4">
                             <p>Guest Name <span class="text-danger">*</span></p>
                             <!-- <i class="bi bi-asterisk" style="color:red; font-size:7px;"></i> -->
                             @foreach ($guest as $guests)
@@ -26,15 +26,15 @@
                                     readonly>
                             @endforeach
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pt-4">
                             <p>Email <span class="text-danger">*</span></p>
                             @foreach ($guest as $guests)
                                 <input class="form-control" type="text" value="{{ $guests->email }}" readonly>
                             @endforeach
                         </div>
                     </div>
-                    <div class="row pt-4">
-                        <div class="col-md">
+                    <div class="row ">
+                        <div class="col-md pt-4">
                             <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
                             <input class="form-control" type="number" minlength="11" maxlength="11" name="mobile"
                                 min="0" oninput="this.value = Math.abs(this.value)" required>
@@ -43,7 +43,7 @@
 
                         </div>
 
-                        <div class="col-md">
+                        <div class="col-md pt-4">
                             <p>Room No <span class="text-danger">*</span></p>
                             <select name="room_no" class="form-control" required>
                                 <option selected disabled value="">Select</option>
@@ -56,26 +56,26 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row pt-4">
+                    <div class="row ">
                         <div class="col-md">
 
                         </div>
                     </div>
 
-                    <div class="row pt-2">
-                        <div class="col-md">
+                    <div class="row">
+                        <div class="col-md pt-4">
                             <p>Check in Date/Time <span class="text-danger">*</span></p>
                             <input class="form-control chck" name="checkIn" type="date" onkeydown="return false"
                                 id="example-datetime-local-input" required />
                         </div>
-                        <div class="col-md">
+                        <div class="col-md pt-4">
                             <p>Check out Date/Time <span class="text-danger">*</span></p>
                             <input class="form-control chck" name="checkOut" type="date" onkeydown="return false"
                                 id="example-datetime-local-input" required>
                         </div>
                     </div>
-                    <div class="row pt-4">
-                        <div class="col-md">
+                    <div class="row">
+                        <div class="col-md pt-4">
                             <p class="form-label">Number of pax <span class="text-danger">*</span></p>
                             <div class="dropdown">
                                 <button class="btn btn-outline-success dropdown-toggle" type="button"
@@ -89,7 +89,7 @@
                                         <div id="input1">
                                             <label for="field1" class="pt-2">Adult:</label>
                                             <input type="number" class="form-control" value="0" id="mytextbox"
-                                                min="0" required>
+                                                min="0" required >
                                         </div>
                                         <div id="input2">
                                             <label for="field1" class="pt-2">Child:</label>
@@ -142,16 +142,16 @@
                     </div>
                     <h2 class="pt-4">Do you have any special request?</h2>
                     <h5>Extras</h5>
-                    <div class="row pt-4">
-                        <div class="col-md">
+                    <div class="row">
+                        <div class="col-md  pt-4">
                             <p>Pillow</p>
                             <input type="number" class="form-control" min="0" max="5" value="0">
                         </div>
-                        <div class="col-md">
+                        <div class="col-md  pt-4">
                             <p>Towel</p>
                             <input type="number" class="form-control" min="0" max="5" value="0">
                         </div>
-                        <div class="col-md">
+                        <div class="col-md  pt-4">
                             <p>Mattress</p>
                             <input type="number" class="form-control" min="0" max="5" value="0">
                         </div>
@@ -634,7 +634,7 @@
             </div>
 
             <div>
-                <h1 class="pt-4 txt">House Rules</h1>
+                {{-- <h1 class="pt-4 txt">House Rules</h1>
                 <div class="row">
                     <div class="col">
                         <h2 class="pt-4 txt"><i class="bi bi-slash-circle mr-2" style="color:red;"></i>No Smoking</h2>
@@ -677,7 +677,7 @@
                         <p>Guests are responsible for ensuring the security of their room key and will be charged for a
                             replacement if it is not returned upon check-out.</p>
                     </div>
-                </div>
+                </div> --}}
                 <!-- section 3 -->
 
             </div>
