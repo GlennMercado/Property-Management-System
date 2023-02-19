@@ -6,7 +6,7 @@
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
         <div class="card-body">
-            <h1 class=" d-flex justify-content-center pt-4" id="section1">Convention Center</h1>
+            <h1 class=" d-flex justify-content-center pt-6" id="section1">Convention Center</h1>
             <div class="container-fluid bg-white mt-4" id="conventionCenter">
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-9 pt-4">
@@ -101,7 +101,7 @@
                                 subject
                                 to RA 10173 - Data Privacy Act of 2021.
                             </p>
-                            <input type="submit" class="btn btn-success btn-lg btn-block"></button>
+                            <input type="submit" class="btn btn-outline-success mx-auto d-flex justify-content-center" style="width:40%;"></button>
                     </div>
                     </form>
                 </div>
@@ -127,9 +127,9 @@
             {{-- <div class="row first" id="section2">
                 <div class="col-8 pt-8"> --}}
 
-                    <!-- <h3>Description</h3> -->
+            <!-- <h3>Description</h3> -->
 
-                    {{-- <div class="card">
+            {{-- <div class="card">
                         <img class="card-img-top">
                         <div class="card-body">
                             <h2 class="card-title d-flex justify-content-center uppercase text-uppercase title">Upcoming
@@ -203,7 +203,8 @@
             </div> --}}
             <div class="row pt-8">
                 <div class="col">
-                    <p class="" id="section2">A convention center is a large facility that is designed to host conventions, trade
+                    <p class="" id="section2">A convention center is a large facility that is designed to host
+                        conventions, trade
                         shows,
                         conferences, and other events. They typically feature large exhibit halls, meeting rooms,
                         and banquet spaces, as well as amenities such as on-site hotels and restaurants. Convention
@@ -292,14 +293,14 @@
         }
 
         /* .centered {
-                                                                                        font-size:30px;
-                                                                                    position: absolute;
-                                                                                    bottom: 410px;
-                                                                                    right: 200px;
-                                                                                    color:white;
-                                                                                    -webkit-text-stroke-width: 1px;
-                                                                                    -webkit-text-stroke-color: black;
-                                                                                    } */
+                                                                                                    font-size:30px;
+                                                                                                position: absolute;
+                                                                                                bottom: 410px;
+                                                                                                right: 200px;
+                                                                                                color:white;
+                                                                                                -webkit-text-stroke-width: 1px;
+                                                                                                -webkit-text-stroke-color: black;
+                                                                                                } */
     </style>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
     <script>

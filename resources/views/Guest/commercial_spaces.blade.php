@@ -5,57 +5,48 @@
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
         <div class="card-body">
-            <div class="image-grid">
-                <div class="image-container">
-                    <img class="hw-20 img" src="{{ asset('nvdcpics') }}/cspaces2.jpg" style="width:100%;">
-                    <h1 class="image-text">Commercial Space</h1>
-                    <div class="btn-container">
-                        <!-- <a href = "#section2" class="btn btn-outline-light">Events</a> -->
-                        <a href="#section2" class="btn btn-outline-light">Inquire Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- section 2 -->
+            <h1 class=" d-flex justify-content-center pt-6" id="section1">Commercial Space</h1>
             <form action="{{ url('/commercial_spaces_submit') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <div class="container-fluid bg-white mt-6" id="section2">
+                <div class="container-fluid bg-white" id="section2">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-9 mt-5">
+                        <div class="col-md-9">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h2 class="mx-auto pt-6">Commercial Space Inquiry and Application Form (Step 1)</h3>
+                                    <h3 class = " mt-6"><span><button class="btn btn-success" disabled>1</button></span> &nbsp Commercial Space Inquiry and Application Form
+                                        </h3>
                                 </div>
                             </div>
-                            <h3 class="text-muted">Business Information</h3>
-                            <h4 class="pt-4">Business Name </h4>
+                            {{-- <h4 class="pt-4">Business Information</h4> --}}
+                            <p class="pt-4">Business Name <span class="text-danger">*</span></p>
                             <input type="text" name="business_name" class="form-control mt-2"
                                 placeholder="Enter Business Name" required>
-                            <h4 class="pt-4">Business Style/Trade Name (if different from company name): </h4>
+                            <p class="pt-4">Business Style/Trade Name (if different from company name) <span class="text-danger">*</span> </p>
                             <input type="text" name="business_style" class="form-control"
                                 placeholder="Enter Business Style/Trade Name" required>
-                            <h4 class="pt-4">Business Address </h4>
+                            <p class="pt-4">Business Address <span class="text-danger">*</span> </p>
                             <input type="text" name="business_address" class="form-control"
                                 placeholder="Enter Business Address" required>
-                            <h4 class="pt-4">Email Address/Website/FB Page </h4>
+                            <p class="pt-4">Email Address/Website/FB Page <span class="text-danger">*</span> </p>
                             <input type="text" name="email_website_fb" class="form-control"
                                 placeholder="Enter Email Address/Website/FB Page..." required>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md">
 
-                                    <h4 class="pt-4">Landline No. </h4>
+                                    <p class="pt-4">Landline No. <span class="text-danger">*</span> </p>
                                     <input type="text" name="business_landline_no" class="form-control"
                                         placeholder="Enter Landline No." required>
                                 </div>
-                                <div class="col-6">
-                                    <h4 class="pt-4">Mobile No. </h4>
+                                <div class="col-md">
+                                    <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
                                     <input type="text" name="business_mobile_no" class="form-control"
                                         placeholder="Enter Mobile No." required>
                                 </div>
                             </div>
 
                             <!-- <h4>Owner Details </h4>
-                                                                                        <h4>For Single Proprietorship </h4> -->
-                            <h4 class="pt-4">Name of owner </h4>
+                                                                                                                <h4>For Single Proprietorship </h4> -->
+                            <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                             <input type="text" name="name_of_owner" class="form-control"
                                 placeholder="Enter Name of Owner" required>
                             {{-- <div class="row ml-3 mt-4">
@@ -81,32 +72,32 @@
                                 </div>
                             </div> --}}
                             <br>
-                            <h4>Spouse </h4>
+                            <p>Spouse <span class="text-danger">*</span> </p>
                             <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse" required>
                             <br>
-                            <h4>Home Address </h4>
+                            <p>Home Address <span class="text-danger">*</span> </p>
                             <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address"
                                 required>
                             <div class="row">
                                 <div class="col">
                                     <br>
-                                    <h4>Landline No </h4>
+                                    <p>Landline No <span class="text-danger">*</span> </p>
                                     <input type="text" name="landline" class="form-control"
                                         placeholder="Enter Landline No." required>
                                 </div>
                                 <div class="col">
                                     <br>
-                                    <h4>Mobile no. </h4>
+                                    <p>Mobile no. <span class="text-danger">*</span> </p>
                                     <input type="text" name="mobile_no" class="form-control"
                                         placeholder="Enter Mobile No.:" required>
                                 </div>
                             </div>
                             <br>
-                            <h4>Tax Identification No. </h4>
+                            <p>Tax Identification No. <span class="text-danger">*</span> </p>
                             <input type="text" name="tax_identification_no" class="form-control"
                                 placeholder="Enter Tax Identification No." required>
                             <br>
-                            <h4>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. </h4>
+                            <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span class="text-danger">*</span> </p>
                             <input type="text" name="tax_cert_valid_gov_id" class="form-control"
                                 placeholder="Enter Home Address" required>
                             <p class="mt-6">I certify that all of the information I have provided above is true and
@@ -114,11 +105,39 @@
                                 to the best of my knowledge. I fully understand that all data gathered here are required for
                                 the evaluation of my application for commercial space lease/rent. I am aware that THIS IS
                                 NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</p>
+                            <input type="submit" class="btn btn-outline-success mx-auto d-flex justify-content-center" style="width:40%;"></button>
                         </div>
+
                     </div>
-                    <input type="submit" class="btn btn-success btn-lg btn-block mt-4 mb-4"></button>
+
                 </div>
             </form>
+            {{-- <div class="image-grid">
+                <div class="image-container">
+                    <img class="hw-20 img" src="{{ asset('nvdcpics') }}/cspaces2.jpg" style="width:100%;">
+                    <h1 class="image-text">Commercial Space</h1>
+                    <div class="btn-container">
+                        <!-- <a href = "#section2" class="btn btn-outline-light">Events</a> -->
+                        <a href="#section2" class="btn btn-outline-light">Inquire Now</a>
+                    </div>
+                </div>
+            </div> --}}
+            <!-- section 2 -->
+            <div class="position-relative">
+                <div class="image-grid pt-6">
+                    <div class="image-container">
+                        <img class="hw-20 img" src="{{ asset('nvdcpics') }}/cspaces2.jpg" style="width:100%;">
+                        <div class="container mx-auto">
+
+                            <div class="btn-container">
+                                <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1">
+                                    Commercial Space</h1>
+                                <a href="#section1" class="btn btn-outline-light txt mt-6">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <style>
             /* Information */
@@ -149,16 +168,27 @@
             }
 
             p {
-                font-family: sans-serif;
+                font-family: montserrat;
                 text-align: justify;
+                font-size: 18px;
             }
 
-            .txt {
-                font-family: sans-serif;
+            h1,
+            h3,
+            .text {
+                font-family: montserrat;
+            }
+
+            .scrl {
+                scroll-behavior: smooth;
             }
 
             .title {
                 letter-spacing: 1px;
+            }
+
+            html {
+                scroll-behavior: smooth;
             }
 
             .scrl {
@@ -182,13 +212,14 @@
             }
 
             /* .centered {
-            font-size:30px;
-          position: absolute;
-          bottom: 410px;
-          right: 200px;
-          color:white;
-          -webkit-text-stroke-width: 1px;
-          -webkit-text-stroke-color: black;
-        } */
+                                    font-size:30px;
+                                  position: absolute;
+                                  bottom: 410px;
+                                  right: 200px;
+                                  color:white;
+                                  -webkit-text-stroke-width: 1px;
+                                  -webkit-text-stroke-color: black;
+                                } */
         </style>
-    @endsection
+    @include('layouts.footers.guest')
+    @endsection 
