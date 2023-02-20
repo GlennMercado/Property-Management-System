@@ -27,11 +27,11 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:18px;">Key ID</th>
-                                        <th scope="col" style="font-size:18px;">Designated Room</th>
+                                        <th scope="col" style="font-size:18px;">Room No</th>
                                         <th scope="col" style="font-size:18px;">Issued To</th>
+                                        <th scope="col" style="font-size:18px;">Issued Time</th>
                                         <th scope="col" style="font-size:18px;">Due Time</th>
                                         <th scope="col" style="font-size:18px;">Status</th>
-                                        <th scope="col" style="font-size:18px;"> </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,34 +39,26 @@
                                     @foreach($list as $lists)
                                     @php 
 
-                                    $duetime = date('Y-m-d H:i:s', strtotime($lists->Due_Time));
+                                    $duedate = date('F j, Y', strtotime($lists->Due_Time));
+                                    $duetime = date('h:i:s A', strtotime($lists->Due_Time));
 
-                                    $timenow = \Carbon\Carbon::parse($duetime); 
-                                    
+                                    $issueddate = date('F j, Y', strtotime($lists->Issued_Time));
+                                    $issued_time = date('h:i:s A', strtotime($lists->Issued_Time));                           
                                     @endphp
                                     <tr>
                                         <td style="font-size:16px;">{{$lists->Key_ID}}</td>
                                         <td style="font-size:16px;">{{$lists->Room_No}}</td>
                                         <td style="font-size:16px;">{{$lists->Attendant}}</td>
-                                        @if($timenow->isPast())
-                                            <td style="font-size:16px;">{{$duetime}}</td>
-                                        @endif
+                                        <td style="font-size:16px;">{{$issueddate}} <br> {{$issued_time}}</td>
+                                        
+                                        <td style="font-size:16px;">{{$duedate}} <br> {{$duetime}}</td>
                                         
                                         @if($lists->Status == "Issued")
                                         <td style="font-size:16px;" class="text-success">{{$lists->Status}}</td>
                                         @elseif($lists->Status == "Not Returned")
                                         <td style="font-size:16px;" class="text-danger">{{$lists->Status}}</td>
                                         @endif
-                                        <td>
-                                            <!--View Button-->
-                                            <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                data-target="#view"> <i class="bi bi-eye"></i>
-                                            </button>
-                                            <!--Edit Button-->
-                                            <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
-                                                data-target="#edit"> <i
-                                                    class="bi bi-pencil-square"></i> </button>
-                                        </td>
+
                                     </tr>
                                     @endforeach              
                                 </tbody>

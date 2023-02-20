@@ -251,10 +251,15 @@ class HotelController extends Controller
                     {
                         $due_time = Carbon::now();
                         Carbon::createFromFormat('Y-m-d H:i:s', $due_time);
+                        
                         $due_time = Carbon::now()->addHour(2);
 
-                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Due_Time) 
-                        values (?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $due_time]);
+                        $issued_time = Carbon::now();
+                        Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
+
+
+                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
 
                         Alert::Success('Success', 'Booking Successfully Checked Out!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
