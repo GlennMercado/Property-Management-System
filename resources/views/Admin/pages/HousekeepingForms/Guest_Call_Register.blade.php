@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="row align-items-center">
+                        <!-- <div class="row align-items-center">
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                     role="tablist">
@@ -29,15 +29,9 @@
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
                                             aria-controls="tabs-icons-text-1" aria-selected="true">Guest Request</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                            aria-selected="false"> Guest Complaints </a>
-                                    </li>
                                 </ul>
                             </div>
-                        </div>
-                        <br>
+                        </div> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
