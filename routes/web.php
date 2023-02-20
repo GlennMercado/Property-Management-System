@@ -71,7 +71,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
-		Route::get('/update_maintenance_status/{id}/{rno}/{bno}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+		Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
 
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
