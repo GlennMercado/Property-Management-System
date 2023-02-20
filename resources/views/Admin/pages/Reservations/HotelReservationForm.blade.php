@@ -654,14 +654,14 @@
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->Booking_No }}"> <i
+                                                            data-target="#view4{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                     </td>
                                                 </tr>
                                             @endif
 
                                             <!--View-->
-                                            <div class="modal fade" id="view{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade" id="view4{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -759,6 +759,26 @@
         </div>
     </div>
     <script type="text/javascript">
+        $(document).ready(function(){
+            $("#request_select").change(function(){
+                
+                var selected = $("option:selected", this).val();
+
+                if(selected == 'Service Request')
+                {
+                    $('#service').css({ 'display' : 'block' });
+                    $('#item').css( { 'display' : 'none' } );
+                    $('#req2').val('');
+                }
+                else if(selected == 'Item Request')
+                {
+                    $('#service').css({ 'display' : 'none' });
+                    $('#req').val('');
+                    $('#item').css( { 'display' : 'block' } );
+                    alert('asd2');
+                }
+            });
+        });
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
@@ -802,23 +822,6 @@
                     $('#checkin').hide();
                     $('#reserved').hide();
                     $('#finished').show();
-                }
-            });
-        });
-        $(document).ready(function(){
-            $("#request_select").change(function(){
-                var selected = $("option:selected", this).val();
-                if(selected == 'Service Request')
-                {
-                    $('#service').css({ 'display' : 'block' });
-                    $('#item').css( { 'display' : 'none' } );
-                    $('#req2').val('');
-                }
-                else if(selected == 'Item Request')
-                {
-                    $('#service').css({ 'display' : 'none' });
-                    $('#req').val('');
-                    $('#item').css( { 'display' : 'block' } );
                 }
             });
         });

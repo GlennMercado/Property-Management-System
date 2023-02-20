@@ -16,10 +16,11 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
-        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON b.Booking_No = a.Booking_No WHERE a.IsArchived = 0');
+        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
         
-        $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON b.Booking_No = a.Booking_No WHERE a.IsArchived = 1 ");
+        $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
 
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list,'list2' => $list2, 'archived' => $archived]);
     }

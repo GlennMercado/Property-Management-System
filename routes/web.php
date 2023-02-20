@@ -91,13 +91,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
 	
 	//Event inquiry
-<<<<<<< HEAD
 		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
 	//Commercial Spaces
 		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 	
 	
-=======
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
 	Route::get('EventInquiryView', [App\Http\Controllers\EventController::class, 'EventInquiryView'])->name('EventInquiryView');
 	//Commercial Spaces
@@ -113,7 +111,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
->>>>>>> 41416e7f4ae0dfb80cbade2f4edf63a753f71ca8
 	//Back Office
 		Route::get('BackOffice', function () {return view('Admin.pages.BackOffice');})->name('BackOffice');
 

@@ -312,9 +312,9 @@
                                                                                     <input type="text" class="form-control"
                                                                                         value="{{ $lists2->Guest_Name }}" readonly>
 
-                                                                                    <p class="text-left">Date Requested: </p>
+                                                                                    <p class="text-left">Date_Requested: </p>
                                                                                     <input type="text" class="form-control"
-                                                                                        value="{{ $lists2->Date_Requested = date('M d, Y') }}"
+                                                                                        value="{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}"
                                                                                         readonly>
 
                                                         
@@ -555,8 +555,8 @@
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
                                                         <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ $lists->Check_In_Date = date('M d, Y') }}</td>
-                                                        <td>{{ $lists->Check_Out_Date = date('M d, Y') }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
@@ -582,6 +582,14 @@
                                                                             <div class="card-body bg-white" style="border-radius: 18px">
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->ID }}" />
+                                                                                    
+                                                                                <p class="text-left">Booking No.: </p>
+                                                                                <input type="text" class="form-control"
+                                                                                    value="{{ $lists->Booking_No }}" readonly>
+
+                                                                                <p class="text-left">Guest Name: </p>
+                                                                                <input type="text" class="form-control"
+                                                                                    value="{{ $lists->Guest_Name }}" readonly>
 
                                                                                 <p class="text-left">Housekeeping Status: </p>
                                                                                 <input type="text" class="form-control"
