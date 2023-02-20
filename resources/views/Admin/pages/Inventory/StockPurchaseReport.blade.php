@@ -167,7 +167,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ url('/report') }}" class="prevent_submit" method="POST">
+                                            <form action="{{ url('/add') }}" class="prevent_submit" method="POST">
                                                 {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <div class="row">
@@ -291,6 +291,8 @@ function changeValue(){
     yourTextboxes.setAttribute("placeholder", "Enter Here");
     document.getElementById("balls").appendChild(yourTextboxes);
   }
+  }
+  function change{
 
 
     for(i = 0; i < dropdowns; i++) {
@@ -374,6 +376,7 @@ function changeValue(){
 function pax_on_change()
 {
     changeValue();
+    change();
 }
 </script>
 <style>

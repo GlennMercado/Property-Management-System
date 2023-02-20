@@ -80,8 +80,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Event inquiry
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+	Route::get('EventInquiryView', [App\Http\Controllers\EventController::class, 'EventInquiryView'])->name('EventInquiryView');
 	//Commercial Spaces
 	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
+	Route::get('CommercialSpaceView', [App\Http\Controllers\CommercialSpacesController::class, 'CommercialSpaceView'])->name('CommercialSpaceView');
 
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
@@ -133,6 +135,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Stock Purchase Report
 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
 	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
+	Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
 	Route::get('StockPurchaseReport', function () {
 		$list = DB::select('SELECT * FROM purchasereports');
 		return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
@@ -173,7 +176,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//User management
 	Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
-
+	Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
 });
 
 //Guest
