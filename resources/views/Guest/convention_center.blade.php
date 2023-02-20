@@ -114,7 +114,8 @@
                             </div>
                         </div>
                         <h3 style="color: #8898aa;">Tell us about you</h3>
-                        <form action="{{ url('/convention_center_submit') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/convention_center_submit') }}" id="myform" method="POST"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col">
@@ -125,7 +126,7 @@
                                 <div class="col">
                                     <h4>Contact Number: </h4>
                                     <input type="number" name="contact_no" class="form-control"
-                                        placeholder="Enter contact no." required>
+                                        placeholder="Enter contact no." id="mobile" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -135,16 +136,16 @@
                                         placeholder="Enter contact person" required>
                                 </div>
                                 <div class="col">
-                                    <h4>Contact Number: </h4>
+                                    <h4>Contact Person Mobile Number: </h4>
                                     <input type="number" name="contact_person_no" class="form-control"
-                                        placeholder="Enter contact no." required>
+                                        placeholder="Enter contact no." id="mobile1" required>
                                 </div>
                             </div>
                             <h4>Billing Address: </h4>
                             <input type="text" name="billing_address" class="form-control"
                                 placeholder="Enter billing address" required>
                             <h4>Contact Email: </h4>
-                            <input type="text" name="email_address" class="form-control"
+                            <input type="email" name="email_address" class="form-control"
                                 placeholder="Enter email address" required>
                             <br>
                             <h3 style="color: #8898aa;">Tell us about your event</h3>
@@ -158,8 +159,13 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <h4>Event Date/Time: </h4>
-                                    <input class="form-control" name="event_date" type="date"
+                                    <h4>Event Date: </h4>
+                                    <input class="form-control chck" name="event_date" type="date"
+                                        onkeydown="return false" id="" required>
+                                </div>
+                                <div class="col">
+                                    <h4>Event Time: </h4>
+                                    <input class="form-control" name="event_time" type="time"
                                         onkeydown="return false" id="example-datetime-local-input" required>
                                 </div>
                                 <div class="col">
@@ -170,140 +176,278 @@
                                             placeholder="Enter expected no. of guest" required>
                                     </span>
                                 </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <h4>Venue</h4>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Yes <input type="radio" name="venue" value="yes" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                No (If no, please specify venue) <input type="radio" name="venue"
+                                                    value="venue_value_no" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input style="display:none;" class="form-control-sm" type="text" name="venue"
+                                                    id="specify_venue_text" />
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <h4>Caterer</h4>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Yes <input type="radio" name="caterer" value="yes" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                No (If no, please specify venue) <input type="radio" name="caterer"
+                                                    value="caterer_value_no" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input style="display:none;" class="form-control-sm" type="text" name="caterer"
+                                                    id="specify_caterer_text" />
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <h4>Audio/Visual</h4>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Yes <input type="radio" name="audio_visual" value="yes" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                No (If no, please specify venue) <input type="radio" name="audio_visual"
+                                                    value="audio_visual_value_no" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input style="display:none;" class="form-control-sm" type="text" name="audio_visual"
+                                                    id="specify_audio_visual_text" />
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <h4>Event concept and styling</h4>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                Yes <input type="radio" name="concept" value="yes" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                No (If no, please specify venue) <input type="radio" name="concept"
+                                                    value="concept_value_no" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input style="display:none;" class="form-control-sm" type="text" name="concept"
+                                                    id="specify_concept_text" />
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
                             </div>
                             <br>
-                            <br>                               
-                            <p>Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
                             <br>
+                            <p class="text-red">Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
                             <br>
-                                <br>
-                                <p>
-                                    This information requested in this profiling is voluntary and confidential and is not to
-                                    be
-                                    used for any purpose. The bearer understand its content and voluntarily give his/her
-                                    consent
-                                    for the collection use, processing, storage and retention of his/her personal data
-                                    subject
-                                    to RA 10173 - Data Privacy Act of 2021.
-                                </p>
-                            </div>
-                            <br>
-                                    <input type="submit" class="btn btn-success btn-lg btn-block"></button>
-                            <br>
-                        </form>
+                            <p>
+                                This information requested in this profiling is voluntary and confidential and is not to
+                                be
+                                used for any purpose. The bearer understand its content and voluntarily give his/her
+                                consent
+                                for the collection use, processing, storage and retention of his/her personal data
+                                subject
+                                to RA 10173 - Data Privacy Act of 2021.
+                            </p>
                     </div>
+                    <br>
+                    <input type="submit" class="btn btn-success btn-lg btn-block col-md-9"></button>
+                    <br>
+                    </form>
                 </div>
-                {{--  --}}
-
             </div>
+            {{--  --}}
+
         </div>
-        <style>
-            /* Information */
-            .img {
-                height: 700px;
-                object-fit: cover;
-                filter: brightness(50%)
-            }
+    </div>
+    <style>
+        /* Information */
+        .img {
+            height: 700px;
+            object-fit: cover;
+            filter: brightness(50%)
+        }
 
-            .image-text {
-                position: absolute;
-                top: 11%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: white;
-                font-size: 36px;
-                font-weight: bold;
-                text-align: center;
-            }
+        .image-text {
+            position: absolute;
+            top: 11%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+        }
 
+        .btn-container {
+            position: absolute;
+            top: 350px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #909090;
+            transition: 0.5s ease-in-out;
+        }
+
+        p {
+            font-family: montserrat;
+            text-align: justify;
+            font-size: 18px;
+        }
+
+        .txt {
+            font-family: montserrat;
+        }
+
+        .title {
+            font-family: montserrat;
+            letter-spacing: 1px;
+        }
+
+        .scrl {
+            scroll-behavior: smooth;
+        }
+
+        .animate__animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .parent {
+            display: flex;
+            justify-content: center;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 800px) {
             .btn-container {
-                position: absolute;
-                top: 350px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100%;
-                text-align: center;
+                top: 400px;
             }
+        }
 
-            .btn:hover {
-                background-color: #909090;
-                transition: 0.5s ease-in-out;
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* .centered {
+                                                                                                                font-size:30px;
+                                                                                                            position: absolute;
+                                                                                                            bottom: 410px;
+                                                                                                            right: 200px;
+                                                                                                            color:white;
+                                                                                                            -webkit-text-stroke-width: 1px;
+                                                                                                            -webkit-text-stroke-color: black;
+                                                                                                            } */
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script>
+        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('.chck').attr('min', maxDate);
+        });
+
+
+        var max_chars = 10;
+
+        $('#mobile').keydown(function(e) {
+            if ($(this).val().length >= max_chars) {
+                $(this).val($(this).val().substr(0, max_chars));
             }
+        });
 
-            p {
-                font-family: montserrat;
-                text-align: justify;
-                font-size: 18px;
+        $('#mobile').keyup (function(e) {
+            if ($(this).val().length >= max_chars) {
+                $(this).val($(this).val().substr(0, max_chars));
             }
+        });
 
-            .txt {
-                font-family: montserrat;
+        $('#mobile1').keydown(function(e) {
+            if ($(this).val().length >= max_chars) {
+                $(this).val($(this).val().substr(0, max_chars));
             }
+        });
 
-            .title {
-                font-family: montserrat;
-                letter-spacing: 1px;
+        $('#mobile1').keyup (function(e) {
+            if ($(this).val().length >= max_chars) {
+                $(this).val($(this).val().substr(0, max_chars));
             }
+        });
 
-            .scrl {
-                scroll-behavior: smooth;
+        $("input[name='venue']").change(function() {
+
+            if ($(this).val() == "venue_value_no") {
+                $("#specify_venue_text").show();
+            } else {
+                $("#specify_venue_text").hide();
             }
-
-            .animate__animated {
-                animation-duration: 1s;
-                animation-fill-mode: both;
+        });
+        $("input[name='caterer']").change(function() {
+            if ($(this).val() == "caterer_value_no") {
+                $("#specify_caterer_text").show();
+            } else {
+                $("#specify_caterer_text").hide();
             }
-
-            .parent {
-                display: flex;
-                justify-content: center;
+        })       
+        $("input[name='audio_visual']").change(function() {
+            if ($(this).val() == "audio_visual_value_no") {
+                $("#specify_audio_visual_text").show();
+            } else {
+                $("#specify_audio_visual_text").hide();
             }
-
-            html {
-                scroll-behavior: smooth;
+        })   
+        $("input[name='concept']").change(function() {
+            if ($(this).val() == "concept_value_no") {
+                $("#specify_concept_text").show();
+            } else {
+                $("#specify_concept_text").hide();
             }
-
-            @media (max-width: 800px) {
-                .btn-container {
-                    top: 400px;
-                }
-            }
-
-            /* .centered {
-                                                font-size:30px;
-                                            position: absolute;
-                                            bottom: 410px;
-                                            right: 200px;
-                                            color:white;
-                                            -webkit-text-stroke-width: 1px;
-                                            -webkit-text-stroke-color: black;
-                                            } */
-        </style>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
-        <script>
-            function enableinput() {
-                $('input[type=radio][name=customRadioInline1]').change(function() {
-                    if (this.id == 'customRadioInline2') {
-                        $('#others').attr('readonly', false);
-                    } else {
-                        $('#others').val('');
-                        $('#others').attr('readonly', true);
-
-                    }
-                })
-            }
-
-            function enableinput2() {
-                $('input[type=radio][name=customRadioInline2]').change(function() {
-                    if (this.id == 'customRadioInline4') {
-                        $('#others2').attr('readonly', false);
-                    } else {
-                        $('#others2').val('');
-                        $('#others2').attr('readonly', true);
-
-                    }
-                })
-            }
-        </script>
-        @include('layouts.footers.guest')
-    @endsection
+        })
+    </script>
+    @include('layouts.footers.guest')
+@endsection
