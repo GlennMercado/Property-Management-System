@@ -24,6 +24,7 @@
                                 <table class="table align-items-center table-flush" id="myTable">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:16px;">Action</th>
                                             <th scope="col" style="font-size:17px;">ID</th>
                                             <th scope="col" style="font-size:17px;">Client Name</th>
                                             <th scope="col" style="font-size:17px;">Contact No.</th>
@@ -40,6 +41,25 @@
                                     <tbody>
                                         @foreach ($list as $lists)
                                             <tr>
+                                                <td class="row">
+                                                    <div class="col-md-2">
+                                                        <form action="{{ route('EventInquiryView') }}" target="_blank">
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-success" title="View">
+                                                                <i class="bi bi-eye"></i></button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-primary" title="Edit">
+                                                            <i class="bi bi-pencil-square"></i></button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-danger" title="Delete">
+                                                            <i class="ni ni-fat-remove"></i></button>
+                                                    </div>
+                                                </td>
                                                 <td>{{ $lists->id }}</td>
                                                 <td>{{ $lists->client_name }}</td>
                                                 <td>{{ $lists->contact_no }}</td>

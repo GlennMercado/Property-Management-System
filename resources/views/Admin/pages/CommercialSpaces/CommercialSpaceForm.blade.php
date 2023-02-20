@@ -32,7 +32,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                             href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                            aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>Tenants</a>
+                                            aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>tenants</a>
                                     </li>
                                 </ul>
                             </div>
@@ -45,6 +45,7 @@
                                                 <table class="table align-items-center table-flush" id="myTable">
                                                     <thead class="thead-light">
                                                         <tr>
+                                                            <th scope="col" style="font-size:16px;">Action</th>
                                                             <th scope="col" style="font-size:17px;">ID</th>
                                                             <th scope="col" style="font-size:17px;">Business Name</th>
                                                             <th scope="col" style="font-size:17px;">Business Style</th>
@@ -69,6 +70,25 @@
                                                     <tbody>
                                                         @foreach ($list as $lists)
                                                             <tr>
+                                                                <td class="row">
+                                                                    <div class="col-md-2">
+                                                                        <form action="{{ route('CommercialSpaceView') }}" target="_blank">
+                                                                            <button type="submit"
+                                                                                class="btn btn-sm btn-success" title="View">
+                                                                                <i class="bi bi-eye"></i></button>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <button type="submit"
+                                                                            class="btn btn-sm btn-primary" title="Edit">
+                                                                            <i class="bi bi-pencil-square"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <button type="submit"
+                                                                            class="btn btn-sm btn-danger" title="Delete">
+                                                                            <i class="ni ni-fat-remove"></i></button>
+                                                                    </div>
+                                                                </td>
                                                                 <td>{{ $lists->id }}</td>
                                                                 <td>{{ $lists->business_name }}</td>
                                                                 <td>{{ $lists->business_style }}</td>
@@ -86,12 +106,12 @@
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                             aria-labelledby="tabs-icons-text-2-tab">
-                                            b
-
+                                            <p class="description">Try</p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,40 +121,39 @@
                 </div>
             </div>
         </div>
-    </div>
-    <style>
-        .title {
-            text-transform: uppercase;
-            font-size: 25px;
-            letter-spacing: 2px;
-        }
-
-        .line {
-            border: 2px solid black;
-            width: 35%;
-            display: inline-block;
-            align-items: right;
-            margin-top: 10px;
-        }
-
-        .title-color {
-            color: #484848;
-            font-size: 20px;
-        }
-
-        .text-color {
-            font-size: 18px;
-            color: #6C6C6C;
-        }
-
-        @media (max-width: 800px) {
-            .line {
-                width: 100%;
+        <style>
+            .title {
+                text-transform: uppercase;
+                font-size: 25px;
+                letter-spacing: 2px;
             }
-        }
-    </style>
-@endsection
-@push('js')
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-@endpush
+
+            .line {
+                border: 2px solid black;
+                width: 35%;
+                display: inline-block;
+                align-items: right;
+                margin-top: 10px;
+            }
+
+            .title-color {
+                color: #484848;
+                font-size: 20px;
+            }
+
+            .text-color {
+                font-size: 18px;
+                color: #6C6C6C;
+            }
+
+            @media (max-width: 800px) {
+                .line {
+                    width: 100%;
+                }
+            }
+        </style>
+    @endsection
+    @push('js')
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    @endpush
