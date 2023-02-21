@@ -10,7 +10,7 @@
             <div class="container mx-auto">
                 <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style = "color:#B4B4B4">Welcome to</h1>
                 <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1 pb-4">Novadeci
-                    Properties</h1>
+                    CONVENTION CENTER</h1>
                 <div class="group pt-6">
                     <a href="#section2">
                         <p class="mr-2 p1 d-none d-lg-block">hotels </p>

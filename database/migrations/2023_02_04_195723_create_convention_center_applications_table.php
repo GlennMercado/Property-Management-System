@@ -25,6 +25,10 @@ return new class extends Migration
             $table->string('event_type');
             $table->string('event_date');
             $table->string('no_of_guest');
+            $table->string('venue');
+            $table->string('caterer');
+            $table->string('audio_visual');
+            $table->string('concept');
             $table->timestamps();
         });
     }

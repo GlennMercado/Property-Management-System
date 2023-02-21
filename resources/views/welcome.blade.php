@@ -8,9 +8,9 @@
         <div class="position-absolute d-flex align-items-center text-center"
             style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
             <div class="container mx-auto">
-                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style = "color:#B4B4B4">Welcome to</h1>
-                <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1 pb-4">Novadeci
-                    Properties</h1>
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style = "color:#e0e0e0">Welcome to</h1>
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-1 pb-4 text-white">Novadeci
+                    CONVENTION CENTER</h1>
                 <div class="group pt-6">
                     <a href="#section2">
                         <p class="mr-2 p1 d-none d-lg-block">hotels </p>
