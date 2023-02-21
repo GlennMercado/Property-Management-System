@@ -9,7 +9,7 @@
             style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
             <div class="container mx-auto">
                 <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style = "color:#B4B4B4">Welcome to</h1>
-                <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1 pb-4">Novadeci
+                <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
                 <div class="group pt-6">
                     <a href="#section2">
