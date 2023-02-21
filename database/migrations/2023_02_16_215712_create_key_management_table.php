@@ -31,6 +31,8 @@ return new class extends Migration
             //basta hawak ng attendant
             $table->string('Status')->default('Issued');
 
+            $table->datetime('Issued_Time');
+
             $table->datetime('Due_Time');
 
             $table->datetime('Returned_Time')->nullable();

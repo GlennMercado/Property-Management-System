@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\DB;
 use App\Models\out_of_order_rooms;
 use Illuminate\Support\Facades\Auth;
 use App\Models\guest_request;
+use Carbon\Carbon;
 
 class MaintenanceController extends Controller
 {
     public function Maintenance()
     {   
-        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No');
-        return view('Admin.pages.HousekeepingForms.Maintenance', ['list' => $list]);
+        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+        $list2 = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1');
+        
+        return view('Admin.pages.HousekeepingForms.Maintenance', ['list' => $list, 'list2' => $list2]);
     }
 
 
@@ -136,23 +139,44 @@ class MaintenanceController extends Controller
         
     }
 
-    public function update_maintenance_status($id, $rno, $bno)
+    public function update_maintenance_status($id, $rno, $bno, $due)
     {
 
         $maintenance_id = $id;
         $room_no = $rno;
         $booking_no = $bno;
         $datenow = now()->format('Y-m-d');
+        $due_date = $due; 
         $status = "Resolved";
+        $status2 = "Late Resolved";
+        $datenow = Carbon::now();
+        $datenow = date('Y-m-d', strtotime($datenow));
+
+        
 
         try{
-            DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
-            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
-            DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
-            DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
 
-            Alert::Success('Success', 'Maintenance Successfully Updated!');
-            return redirect('Maintenance')->with('Success', 'Data Saved');
+            if($due_date >= $datenow)
+            {
+                DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
+                DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+                DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+
+                Alert::Success('Success', 'Maintenance Successfully Updated!');
+                return redirect('Maintenance')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status2, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
+                DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+                DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+
+                Alert::Success('Success', 'Maintenance Successfully Updated!');
+                return redirect('Maintenance')->with('Success', 'Data Saved');
+            }
+            
 
         }
         catch(\Illuminate\Database\QueryException $e)
