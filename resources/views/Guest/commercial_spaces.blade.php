@@ -13,15 +13,17 @@
                         <div class="col-md-9">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class = " mt-6"><span><button class="btn btn-success" disabled>1</button></span> &nbsp Commercial Space Inquiry and Application Form
-                                        </h3>
+                                    <h3 class=" mt-6"><span><button class="btn btn-success" disabled>1</button></span> &nbsp
+                                        Commercial Space Inquiry and Application Form
+                                    </h3>
                                 </div>
                             </div>
                             {{-- <h4 class="pt-4">Business Information</h4> --}}
                             <p class="pt-4">Business Name <span class="text-danger">*</span></p>
                             <input type="text" name="business_name" class="form-control mt-2"
                                 placeholder="Enter Business Name" required>
-                            <p class="pt-4">Business Style/Trade Name (if different from company name) <span class="text-danger">*</span> </p>
+                            <p class="pt-4">Business Style/Trade Name (if different from company name) <span
+                                    class="text-danger">*</span> </p>
                             <input type="text" name="business_style" class="form-control"
                                 placeholder="Enter Business Style/Trade Name" required>
                             <p class="pt-4">Business Address <span class="text-danger">*</span> </p>
@@ -34,18 +36,19 @@
                                 <div class="col-md">
 
                                     <p class="pt-4">Landline No. <span class="text-danger">*</span> </p>
-                                    <input type="text" name="business_landline_no" class="form-control"
-                                        placeholder="Enter Landline No." required>
+                                    <input type="number" onKeyPress="if(this.value.length==8) return false;"
+                                        name="business_landline_no" class="form-control" placeholder="Please use a 10 digit telephone number with no dashes or dots"
+                                        required>
                                 </div>
                                 <div class="col-md">
                                     <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
-                                    <input type="text" name="business_mobile_no" class="form-control"
-                                        placeholder="Enter Mobile No." required>
+                                    <input type="number" onKeyPress="if(this.value.length==10) return false;" name="business_mobile_no" class="form-control"
+                                        placeholder="Please use a 10 digit mobile number with no dashes or dots" required>
                                 </div>
                             </div>
 
                             <!-- <h4>Owner Details </h4>
-                                                                                                                <h4>For Single Proprietorship </h4> -->
+                                                                                                                    <h4>For Single Proprietorship </h4> -->
                             <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                             <input type="text" name="name_of_owner" class="form-control"
                                 placeholder="Enter Name of Owner" required>
@@ -82,14 +85,14 @@
                                 <div class="col">
                                     <br>
                                     <p>Landline No <span class="text-danger">*</span> </p>
-                                    <input type="text" name="landline" class="form-control"
-                                        placeholder="Enter Landline No." required>
+                                    <input type="number" onKeyPress="if(this.value.length==8) return false;" name="landline" class="form-control"
+                                        placeholder="Please use a 8 digit telephone number with no dashes or dots" required>
                                 </div>
                                 <div class="col">
                                     <br>
                                     <p>Mobile no. <span class="text-danger">*</span> </p>
-                                    <input type="text" name="mobile_no" class="form-control"
-                                        placeholder="Enter Mobile No.:" required>
+                                    <input type="number" onKeyPress="if(this.value.length==10) return false;" name="mobile_no" class="form-control"
+                                        placeholder="Please use a 10 digit mobile number with no dashes or dots" required>
                                 </div>
                             </div>
                             <br>
@@ -97,15 +100,17 @@
                             <input type="text" name="tax_identification_no" class="form-control"
                                 placeholder="Enter Tax Identification No." required>
                             <br>
-                            <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span class="text-danger">*</span> </p>
+                            <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
+                                    class="text-danger">*</span> </p>
                             <input type="text" name="tax_cert_valid_gov_id" class="form-control"
                                 placeholder="Enter Home Address" required>
                             <p class="mt-6">I certify that all of the information I have provided above is true and
                                 correct
                                 to the best of my knowledge. I fully understand that all data gathered here are required for
-                                the evaluation of my application for commercial space lease/rent. I am aware that THIS IS
-                                NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</p>
-                            <input type="submit" class="btn btn-outline-success mx-auto d-flex justify-content-center" style="width:40%;"></button>
+                                the evaluation of my application for commercial space lease/rent. I am aware that <span class="text-red">THIS IS
+                                NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</span></p>
+                            <input type="submit" class="btn btn-outline-success mx-auto d-flex justify-content-center"
+                                style="width:40%;"></button>
                         </div>
 
                     </div>
@@ -212,14 +217,14 @@
             }
 
             /* .centered {
-                                    font-size:30px;
-                                  position: absolute;
-                                  bottom: 410px;
-                                  right: 200px;
-                                  color:white;
-                                  -webkit-text-stroke-width: 1px;
-                                  -webkit-text-stroke-color: black;
-                                } */
+                                        font-size:30px;
+                                      position: absolute;
+                                      bottom: 410px;
+                                      right: 200px;
+                                      color:white;
+                                      -webkit-text-stroke-width: 1px;
+                                      -webkit-text-stroke-color: black;
+                                    } */
         </style>
-    @include('layouts.footers.guest')
-    @endsection 
+        @include('layouts.footers.guest')
+    @endsection

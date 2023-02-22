@@ -4,16 +4,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
         <div class="image-container" style="height: 25vh">
-            <img class="hw-20 img" src="{{ asset('nvdcpics') }}/convention2.jpg" style="width:100%; height: 50vh">
-            <div class="container mx-auto">
-                <div class="btn-container mt--9">
-                    <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1"
-                        style="font-size: 5vh">
-                        Convention Center</h1>
-                </div>
-            </div>
+            <a href="{{ asset('nvdcpics') }}/convention2.jpg" data-lightbox="photos">
+                <img class="hw-20 img" src="{{ asset('nvdcpics') }}/convention2.jpg" style="width:100%; height: 50vh">
+            </a>
         </div>
         <div class="card-body">
             <div class="container-fluid bg-white mt-1" id="conventionCenter">
@@ -37,8 +32,9 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
-                                    <input type="number" name="contact_no" class="form-control"
-                                        placeholder="Enter contact no." required>
+                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                        title="Please use a 10 digit mobile number with no dashes or dots" name="contact_no"
+                                        class="form-control" placeholder="Enter contact no." required>
                                 </div>
                             </div>
                             <div class="row ">
@@ -48,9 +44,11 @@
                                         placeholder="Enter contact person" required>
                                 </div>
                                 <div class="col-md pt-4">
-                                    <p>Contact Number <span class="text-danger">*</span></p>
-                                    <input type="number" name="contact_person_no" class="form-control"
-                                        placeholder="Enter contact no." required>
+                                    <p>Contact Person Number <span class="text-danger">*</span></p>
+                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                        title="Please use a 10 digit mobile number with no dashes or dots"
+                                        name="contact_person_no" class="form-control" placeholder="Enter contact no."
+                                        required>
                                 </div>
                             </div>
                             <div class="row ">
@@ -61,7 +59,7 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Email <span class="text-danger">*</span></p>
-                                    <input type="text" name="email_address" class="form-control"
+                                    <input type="email" name="email_address" class="form-control"
                                         placeholder="Enter email address" required>
                                 </div>
                             </div>
@@ -89,8 +87,7 @@
                                 <div class="col-md pt-4">
                                     <span>
                                         <p>Expected No. of Guest <span class="text-danger">*</span></p>
-                                        <input type="number" name="no_of_guest"
-                                            class="form-control"
+                                        <input type="number" name="no_of_guest" class="form-control"
                                             placeholder="Enter expected no. of guest" required>
                                     </span>
                                 </div>
@@ -103,14 +100,15 @@
                                         <p>Venue<span class="text-danger">*</span></p>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                Yes <input type="radio" name="venue" value="yes" required>
+                                                <input type="radio" name="venue" value="yes">
+                                                Yes
                                             </div>
                                             <div class="col-md-4">
-                                                No (If no, please specify venue) <input type="radio" name="venue"
-                                                    value="venue_value_no">
+                                                <input type="radio" name="venue" value="venue_value_no">
+                                                No (If no, please specify)
                                             </div>
                                             <div class="col-md-4">
-                                                <input style="display:none"  class="form-control-sm" type="text"
+                                                <input style="display:none" class="form-control-sm" type="text"
                                                     name="venue" id="specify_venue_text">
                                             </div>
                                         </div>
@@ -123,11 +121,12 @@
                                         <p>Caterer <span class="text-danger">*</span></p>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                Yes <input type="radio" name="caterer" value="yes" required>
+                                                <input type="radio" name="caterer" value="yes">
+                                                Yes
                                             </div>
                                             <div class="col-md-4">
-                                                No (If no, please specify venue) <input type="radio" name="caterer"
-                                                    value="caterer_value_no">
+                                                <input type="radio" name="caterer" value="caterer_value_no">
+                                                No (If no, please specify)
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
@@ -143,11 +142,12 @@
                                         <p>Audio/Visual <span class="text-danger">*</span></p>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                Yes <input type="radio" name="audio_visual" value="yes" required>
+                                                <input type="radio" name="audio_visual" value="yes">
+                                                Yes
                                             </div>
                                             <div class="col-md-4">
-                                                No (If no, please specify venue) <input type="radio" name="audio_visual"
-                                                    value="audio_visual_value_no">
+                                                <input type="radio" name="audio_visual" value="audio_visual_value_no">
+                                                No (If no, please specify)
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
@@ -163,11 +163,12 @@
                                         <p>Event Concept And Styling <span class="text-danger">*</span></p>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                Yes <input type="radio" name="concept" value="yes" required>
+                                                <input type="radio" name="concept" value="yes">
+                                                Yes
                                             </div>
                                             <div class="col-md-4">
-                                                No (If no, please specify venue) <input type="radio" name="concept"
-                                                    value="concept_value_no">
+                                                <input type="radio" name="concept" value="concept_value_no">
+                                                No (If no, please specify)
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
@@ -179,11 +180,11 @@
                             </div>
                             <br>
                             <br>
-                            <p>Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
+                            <p class="text-red">Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
                             <br>
                             <br>
                             <br>
-                            <p class="text-center">
+                            <p class="text-center font-weight-bold">
                                 This information requested in this profiling is voluntary and confidential and is not to
                                 be
                                 used for any purpose. The bearer understand its content and voluntarily give his/her
@@ -192,15 +193,17 @@
                                 subject
                                 to RA 10173 - Data Privacy Act of 2021.
                             </p>
-                            <input type="submit" class="btn btn-outline-success text-white bg-green mx-auto d-flex justify-content-center"
+                            <input type="submit"
+                                class="btn btn-outline-success text-white bg-green mx-auto d-flex justify-content-center"
                                 style="width:40%;"></button>
                             <br>
                             <br>
                     </div>
                     </form>
-                    <div class="col-md-4" style="margin-top: 220px">
+                    <div class="col-md-4" style="margin-top: 12%">
+                        <h2 class="ml-3 title1" style="font-size: 2.5rem;">Convention Center</h2>
                         <!-- Gallery -->
-                        <div class="row shadow p-3 mb-5" style="margin: 15px">
+                        <div class="row shadow p-3 mb-5 gal" style="margin: 15px">
                             <div class="col-md-12">
                                 <p class="display-5">Photos</p>
                             </div>
@@ -253,14 +256,15 @@
                                 <p id="section2">A convention center is a large facility that is designed to host
                                     conventions, trade
                                     shows,
-                                    conferences, and other events. They typically feature large exhibit halls, meeting rooms,
+                                    conferences, and other events. They typically feature large exhibit halls, meeting
+                                    rooms,
                                     and banquet spaces, as well as amenities such as on-site hotels and restaurants.</p>
                             </div>
                         </div>
                         <!-- Gallery -->
                     </div>
                 </div>
-            </div>           
+            </div>
             <!-- section 2 -->
 
 
@@ -326,130 +330,149 @@
                     </div>
                 </div>
             </div> --}}
-          
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    </body>
 
-    <style>
-        /* Information */
-        .img {
-            height: 700px;
-            object-fit: cover;
-            filter: brightness(50%)
-        }
-        .image-text {
-            position: absolute;
-            top: 11%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 36px;
-            font-weight: bold;
-            text-align: center;
-        }
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+            </body>
 
-        .btn-container {
-            position: absolute;
-            top: 350px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
-        }
+            <style>
+                input[type="number"]::-webkit-outer-spin-button,
+                input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
 
-        p {
-            font-family: montserrat;
-            text-align: justify;
-            font-size: 18px;
-        }
+                input[type="number"] {
+                    -moz-appearance: textfield;
+                }
 
-        h1,
-        h3,
-        .text {
-            font-family: montserrat;
-        }
+                .gal img:hover {
+                    transform: scale(1.05);
+                }
 
-        .title {
-            font-family: montserrat;
-            letter-spacing: 1px;
-        }
+                .title1:hover {
+                    transform: scale(1.01);
+                    cursor: pointer;
+                }
 
-        .scrl {
-            scroll-behavior: smooth;
-        }
+                .img {
+                    height: 700px;
+                    object-fit: cover;
+                    filter: brightness(50%)
+                }
 
-        .animate__animated {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
+                .image-text {
+                    position: absolute;
+                    top: 11%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    font-size: 36px;
+                    font-weight: bold;
+                    text-align: center;
+                }
 
-        .parent {
-            display: flex;
-            justify-content: center;
-        }
+                .btn-container {
+                    position: absolute;
+                    top: 350px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100%;
+                    text-align: center;
+                }
 
-        html {
-            scroll-behavior: smooth;
-        }
+                p {
+                    font-family: montserrat;
+                    text-align: justify;
+                    font-size: 18px;
+                }
 
-        @media (max-width: 800px) {
-            .btn-container {
-                top: 400px;
-            }
-        }
+                h1,
+                h3,
+                .text {
+                    font-family: montserrat;
+                }
 
-        /* .centered {
-                                                                                                                                                    font-size:30px;
-                                                                                                                                                position: absolute;
-                                                                                                                                                bottom: 410px;
-                                                                                                                                                right: 200px;
-                                                                                                                                                color:white;
-                                                                                                                                                -webkit-text-stroke-width: 1px;
-                                                                                                                                                -webkit-text-stroke-color: black;
-                                                                                                                                                } */
-    </style>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
-    <script>
-        $(document).on("click", '[data-toggle="lightbox"]', function(event) {
-            event.preventDefault();
-            $(this).ekkoLightbox();
-        });
-        $("input[name='venue']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_venue_text").hide();
-                $('#specify_venue_text').removeAttr('required');
-            } else {
-                $("#specify_venue_text").show();
-                $('#specify_venue_text').attr('required', true);
-            }
-        })
-        $("input[name='caterer']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_caterer_text").hide();
-                $('#specify_caterer_text').removeAttr('required');
-            } else {
-                $("#specify_caterer_text").show();
-                $('#specify_caterer_text').attr('required', true);
-            }
-        })
-        $("input[name='audio_visual']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_audio_visual_text").hide();
-                $('#specify_audio_visual_text').removeAttr('required');
-            } else {
-                $("#specify_audio_visual_text").show();
-                $('#specify_audio_visual_text').attr('required', true);
-            }
-        })
-        $("input[name='concept']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_concept_text").hide();
-                $('#specify_concept_text').removeAttr('required');
-            } else {
-                $("#specify_concept_text").show();
-                $('#specify_concept_text').attr('required', true);
-            }
-        })
-    </script>
-    @include('layouts.footers.guest')
-@endsection
+                .title {
+                    font-family: montserrat;
+                    letter-spacing: 1px;
+                }
+
+                .scrl {
+                    scroll-behavior: smooth;
+                }
+
+                .animate__animated {
+                    animation-duration: 1s;
+                    animation-fill-mode: both;
+                }
+
+                .parent {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                html {
+                    scroll-behavior: smooth;
+                }
+
+                @media (max-width: 800px) {
+                    .btn-container {
+                        top: 400px;
+                    }
+                }
+
+                /* .centered {
+                                                                                                                                                                                        font-size:30px;
+                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                    bottom: 410px;
+                                                                                                                                                                                    right: 200px;
+                                                                                                                                                                                    color:white;
+                                                                                                                                                                                    -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                    -webkit-text-stroke-color: black;
+                                                                                                                                                                                    } */
+            </style>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
+            <script>
+                $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+                    event.preventDefault();
+                    $(this).ekkoLightbox();
+                });
+                $("input[name='venue']").change(function() {
+                    if ($(this).val() == "yes") {
+                        $("#specify_venue_text").hide();
+                        $('#specify_venue_text').removeAttr('required');
+                    } else {
+                        $("#specify_venue_text").show();
+                        $('#specify_venue_text').attr('required', true);
+                    }
+                })
+                $("input[name='caterer']").change(function() {
+                    if ($(this).val() == "yes") {
+                        $("#specify_caterer_text").hide();
+                        $('#specify_caterer_text').removeAttr('required');
+                    } else {
+                        $("#specify_caterer_text").show();
+                        $('#specify_caterer_text').attr('required', true);
+                    }
+                })
+                $("input[name='audio_visual']").change(function() {
+                    if ($(this).val() == "yes") {
+                        $("#specify_audio_visual_text").hide();
+                        $('#specify_audio_visual_text').removeAttr('required');
+                    } else {
+                        $("#specify_audio_visual_text").show();
+                        $('#specify_audio_visual_text').attr('required', true);
+                    }
+                })
+                $("input[name='concept']").change(function() {
+                    if ($(this).val() == "yes") {
+                        $("#specify_concept_text").hide();
+                        $('#specify_concept_text').removeAttr('required');
+                    } else {
+                        $("#specify_concept_text").show();
+                        $('#specify_concept_text').attr('required', true);
+                    }
+                })
+            </script>
+            @include('layouts.footers.guest')
+        @endsection
