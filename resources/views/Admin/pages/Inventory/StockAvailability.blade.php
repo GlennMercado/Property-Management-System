@@ -64,7 +64,7 @@
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">Function Room Inventory</h5>
+                            <h5 class="card-title text-uppercase text-muted mb-0">Requests Inventory</h5>
                             <span class="h2 font-weight-bold mb-0">
                                 @foreach ($list3 as $lists3)
                                     @if ($lists3->total <= $lists3->Stock_Level)
@@ -169,6 +169,16 @@
                                             <tbody>
                                                 @foreach ($list as $lists)
                                                     <tr>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-primary btn-lg"
+                                                                data-toggle="modal"
+                                                                data-target="#ModalView{{ $lists->productid }}"><i
+                                                                    class="bi bi-eye"></i></button>
+                                                            <button class="btn btn-sm btn-warning btn-lg"
+                                                                data-toggle="modal"
+                                                                data-target="#ModalUpdate{{ $lists->productid }}"><i
+                                                                    class="bi bi-pencil-square"></i></button>
+                                                        </td>
                                                         <td style="font-size:16px;">{{ $lists->name }}</td>
                                                         <td style="font-size:16px;">{{ $lists->description }}</td>
                                                         <td style="font-size:16px;">{{ $lists->total }}</td>
@@ -181,16 +191,6 @@
                                                             <td style="font-size:25px;"><i class="bi bi-check-square-fill"
                                                                     style="color:green;"></i></td>
                                                         @endif
-                                                        <td>
-                                                            <button class="btn btn-sm btn-primary btn-lg"
-                                                                data-toggle="modal"
-                                                                data-target="#ModalView{{ $lists->productid }}"><i
-                                                                    class="bi bi-eye"></i></button>
-                                                            <button class="btn btn-sm btn-warning btn-lg"
-                                                                data-toggle="modal"
-                                                                data-target="#ModalUpdate{{ $lists->productid }}"><i
-                                                                    class="bi bi-pencil-square"></i></button>
-                                                        </td>
                                                     </tr>
                                                     <!-- Modal -->
                                                     <!--View-->
@@ -511,6 +511,7 @@
                                     <table class="table align-items-center" id="myTables">
                                         <thead class="thead-light">
                                             <tr>
+                                            <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Product Name</th>
                                                 <th scope="col" style="font-size:18px;">Item Description</th>
                                                 <th scope="col" style="font-size:18px;">Available Stock</th>
@@ -523,6 +524,16 @@
                                         <tbody>
                                             @foreach ($list2 as $lists2)
                                                 <tr>
+                                                    <td>
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#ModalView2{{ $lists2->productid }}"
+                                                            class="btn btn-primary"><i class="bi bi-eye"
+                                                                style="padding:2px;">View</i></button>
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#ModalUpdate2{{ $lists2->productid }}"
+                                                            class="btn btn-primary"><i
+                                                                class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
+                                                    </td>
                                                     <td style="font-size:16px;">{{ $lists2->name }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->description }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->total }}</td>
@@ -535,15 +546,6 @@
                                                                 style="color:green;font-size:20px"></i></td>
                                                     @endif
                                                     <td>
-                                                        <button type="button" data-toggle="modal"
-                                                            data-target="#ModalView2{{ $lists2->productid }}"
-                                                            class="btn btn-primary"><i class="bi bi-eye"
-                                                                style="padding:2px;">View</i></button>
-                                                        <button type="button" data-toggle="modal"
-                                                            data-target="#ModalUpdate2{{ $lists2->productid }}"
-                                                            class="btn btn-primary"><i
-                                                                class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
-                                                    </td>
                                                 </tr>
                                                 <!-- Modal -->
                                                 <!--View-->
@@ -1495,9 +1497,6 @@
                                                         <td style="font-size:16px;">{{ $lists4->suppliername }}</td>
                                                         <td style="font-size:16px;">{{ $lists4->description }}</td>
                                                         <td style="font-size:16px;">{{ $lists4->quantity }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->Stock_Level }}</td>
                                                         @if ($lists4->quantity <= $lists4->Stock_Level)
                                                             <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
                                                                     style="color:red;"></i></td>

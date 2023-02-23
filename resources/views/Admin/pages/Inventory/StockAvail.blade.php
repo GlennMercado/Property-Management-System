@@ -14,19 +14,19 @@
                         <div class = "row">
                             <div class = "col">
                                 <p class="text-left">OR Number : </p>
-                                <input type="text" class="form-control" name="or" placeholder="Enter name..." required>
+                                <input type="text" class="form-control" name="ornum" placeholder="Enter OR Number..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
                                 <label for="Stockdetails">Payee : </label>
-                                <input type="email" class="form-control" name="payee" placeholder="Enter details..." required>
+                                <input type="email" class="form-control" name="payee" placeholder="Enter Name..." required>
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col">
                                 <label for="Stockdetails">Particular: </label>
-                                <input type="number" class="form-control" name="particular" placeholder="Enter number..." required>
+                                <input type="number" class="form-control" name="particular" required>
                                 <select class="form-control" value="{{ $lists->status}}" name="status" required>
                                     <option>Court Rental</option>
                                     <option>Court Rental/League</option>
@@ -54,8 +54,7 @@
                         <div class = "row">
                             <div class = "col">
                                 <label for="Stockdetails">Debit Type: </label>
-                                <input type="number" class="form-control" name="debit" placeholder="Enter number..." required>
-                                <select class="form-control" value="{{ $lists->status}}" name="status" required>
+                                <select class="form-control" name="debit" required>
                                     <option>Cash/GCash</option>
                                     <option>Unearned Income (DP from Previous Months)</option>
                                     <option>Bank Transfer/Direct to Bank</option>
@@ -72,7 +71,7 @@
                         <div class = "row">
                             <div class = "col">
                                 <label for="Stockdetails">Event Date: </label>
-                                <input type="number" class="form-control" name="eventdate" placeholder="Enter number..." required>
+                                <input type="number" class="form-control" name="eventdate" placeholder="Enter date..." required>
                             </div>
                         </div>                           
                     </div>
