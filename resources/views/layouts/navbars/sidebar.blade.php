@@ -295,14 +295,21 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Finance') }}">
-                                    <i class="text-success">•</i> {{ __('Finance') }}
+                                    <i class="text-success"></i> {{ __('Finance') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('DailyReport') }}">
+                                    <i class="text-success"></i> {{ __('DailyReport') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('FinanceDashboard') }}">
-                                    <i class="text-success">•</i> {{ __('FinanceDashboard') }}
+                                    <i class="text-success"></i> {{ __('FinanceDashboard') }}
                                 </a>
                             </li>
                         </ul>

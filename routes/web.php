@@ -164,6 +164,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		//Finance Dashboard
 		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
 
+		Route::get('DailyReport', function () { return view('Admin.pages.Finances.DailyReport');})->name('DailyReport');
+
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
 
