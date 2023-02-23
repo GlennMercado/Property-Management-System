@@ -41,7 +41,7 @@
                             <tbody>
                                 @foreach ($list as $lists)
                                     <tr>
-                                        <td>{{ $lists->or }}</td>
+                                        <td>{{ $lists->ornum }}</td>
                                         <td>{{ $lists->dateadded }}</td>
                                         <td>{{ $lists->payee }}</td>
                                         <td>{{ $lists->particular }}</td>
@@ -98,14 +98,14 @@
                                                         <tbody>
                                                             @foreach ($list as $lists)
                                                                 <tr>
-                                                                    <td>{{ $lists->or }}</td>
+                                                                    <td>{{ $lists->ornum }}</td>
                                                                     <td>{{ $lists->dateadded }}</td>
                                                                     <td>{{ $lists->payee }}</td>
                                                                     <td>{{ $lists->particular }}</td>
                                                                     <td>{{ $lists->eventdate }}</td>
                                                                     <td>{{ $lists->amount }}</td>
                                                                     <td>{{ $lists->remark }}</td>
-                                                                    <td></td>
+                                                                    <td>{{ $lists->debit }}</td>
                                                                 </tr>
                                                         </tbody>
                                                     </table>
@@ -137,40 +137,49 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <p class="text-left">Stock ID: </p>
+                                                                <p class="text-left">User ID: </p>
                                                                 <input class="form-control" type="text"
                                                                     value="{{ $lists->userid }}" readonly>
                                                                 <input class="form-control" type="text" name="userid"
                                                                     value="{{ $lists->userid }}" hidden>
                                                             </div>
                                                             <div class="col">
-                                                                <p class="text-left">Stock Name: </p>
-                                                                <input type="text" class="form-control" name="name"
-                                                                    value="{{ $lists->name }}" required>
+                                                                <p class="text-left">OR Number: </p>
+                                                                <input type="text" class="form-control" name="ornum"
+                                                                    value="{{ $lists->ornum }}" required>
                                                                 <div class="invalid-feedback">
                                                                     Stock Name empty
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="Stockdetails">Stock Description: </label>
-                                                            <input type="text" class="form-control" name="email"
-                                                                value="{{ $lists->email }}" required>
-                                                            <input type="hidden" class="form-control" name="cnumber"
-                                                                value="{{ $lists->cnumber }}">
-                                                            {{-- <input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required> --}}
-                                                            <input type="hidden" class="form-control" name="proof"
-                                                                value="{{ $lists->proof }}">
+                                                            <label for="Stockdetails">Payee: </label>
+                                                            <input type="text" class="form-control" name="payee"
+                                                                value="{{ $lists->payee }}" required>
+                                                            
+                                                             <!--<input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>-->
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty
                                                             </div>
-                                                            <label>Status: </label>
-                                                            <select class="form-control" value="{{ $lists->status }}"
+                                                            <label>Particular: </label>
+                                                            <select class="form-control" value="{{ $lists->particular }}"
                                                                 name="status" required>
                                                                 <option>Requesting</option>
                                                                 <option>Paid</option>
                                                                 <option>Unpaid</option>
                                                             </select>
+
+                                                            <label for="Stockdetails">Event Date: </label>
+                                                            <input type="text" class="form-control" name="eventdate"
+                                                                value="{{ $lists->eventdate }}" required>
+
+                                                            <label for="Stockdetails">Debit Type: </label>
+                                                            <input type="text" class="form-control" name="debit"
+                                                                value="{{ $lists->debit }}" required>
+
+                                                            <label for="Stockdetails">Remarks : </label>
+                                                            <input type="text" class="form-control" name="remark"
+                                                                value="{{ $lists->remark }}" >
 
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty

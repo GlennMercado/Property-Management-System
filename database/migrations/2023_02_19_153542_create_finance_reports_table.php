@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('finance_reports', function (Blueprint $table) {
             $table->id('userid');
-            $table->integer('or');
+            $table->integer('ornum');
             $table->string('payee');
             $table->string('particular');
             $table->string('debit');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('amount');
             
             
-            $table->timestamps('dateadded');
+            $table->timestamps();
         });
     }
 
