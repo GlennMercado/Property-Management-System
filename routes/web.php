@@ -120,7 +120,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Reservation', function () {return view('Admin.pages.OperationManagement.Reservation');})->name('Reservation'); 
 		Route::get('RoomAvailable', function () {return view('Admin.pages.OperationManagement.RoomAvailable');})->name('RoomAvailable');
 		Route::get('Request', function () {return view('Admin.pages.OperationManagement.Request');})->name('Request'); 
-		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints'); 
+		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
+		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
@@ -196,7 +197,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//User management
 		Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
 		Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
-
+	
 });
 
 //Guest
@@ -217,6 +218,8 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/event_form', [App\Http\Controllers\GuestController::class, 'event_form'])->name('event_form');
 	Route::post('/convention_center_submit', 'App\Http\Controllers\GuestController@convention_center_application');
 	Route::post('/commercial_spaces_submit', 'App\Http\Controllers\GuestController@commercial_spaces_application');
+	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
+	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
 });
 	
 

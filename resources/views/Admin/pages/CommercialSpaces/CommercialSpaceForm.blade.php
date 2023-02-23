@@ -47,7 +47,7 @@
                                                         <tr>
                                                             <th scope="col" style="font-size:17px;">Action</th>
                                                             <th scope="col" style="font-size:17px;">ID</th>
-                                                            <th scope="col" style="font-size:17px;">Business Info</th>                                                   
+                                                            <th scope="col" style="font-size:17px;">Business Info</th>
                                                             <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         </tr>
                                                     </thead>
@@ -56,9 +56,12 @@
                                                             <tr>
                                                                 <td class="row">
                                                                     <div class="col-md-1">
-                                                                        <form action="{{ route('CommercialSpaceView') }}" data-target="#view{{ $lists->id }}" target="_blank">
+                                                                        <form action="{{ route('CommercialSpaceView') }}"
+                                                                            data-target="#view{{ $lists->id }}"
+                                                                            target="_blank">
                                                                             <button type="submit"
-                                                                                class="btn btn-sm btn-success" title="View">
+                                                                                class="btn btn-sm btn-success"
+                                                                                title="View">
                                                                                 <i class="bi bi-eye"></i></button>
                                                                         </form>
                                                                     </div>
@@ -68,8 +71,8 @@
                                                                             <i class="bi bi-pencil-square"></i></button>
                                                                     </div>
                                                                     <div class="col-md-1">
-                                                                        <button type="submit"
-                                                                            class="btn btn-sm btn-danger" title="Delete">
+                                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                                            title="Delete">
                                                                             <i class="ni ni-fat-remove"></i></button>
                                                                     </div>
                                                                 </td>
@@ -77,10 +80,12 @@
                                                                 <td>
                                                                     Business Name: {{ $lists->business_name }} <br>
                                                                     Business Style: {{ $lists->business_style }} <br>
-                                                                    Business Address: {{$lists->business_address}} <br>
+                                                                    Business Address: {{ $lists->business_address }} <br>
                                                                     Email/Website/FB: {{ $lists->email_website_fb }} <br>
-                                                                    Business Landline: {{ $lists->business_landline_no }} <br>
-                                                                    Business Mobile No.: {{ $lists->business_mobile_no }} <br>
+                                                                    Business Landline: {{ $lists->business_landline_no }}
+                                                                    <br>
+                                                                    Business Mobile No.: {{ $lists->business_mobile_no }}
+                                                                    <br>
 
                                                                 </td>
                                                                 <td>Owner Name: {{ $lists->name_of_owner }} <br>
@@ -88,8 +93,10 @@
                                                                     Home Address: {{ $lists->home_address }} <br>
                                                                     Landline: {{ $lists->landline }} <br>
                                                                     Mobile: {{ $lists->mobile_no }} <br>
-                                                                    Tax Identification No.: {{ $lists->tax_identification_no }} <br>
-                                                                    Tax Cert or Valid ID: {{ $lists->tax_cert_valid_gov_id }} <br>
+                                                                    Tax Identification No.:
+                                                                    {{ $lists->tax_identification_no }} <br>
+                                                                    Tax Cert or Valid ID:
+                                                                    {{ $lists->tax_cert_valid_gov_id }} <br>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -109,39 +116,40 @@
                 </div>
             </div>
         </div>
-        <style>
-            .title {
-                text-transform: uppercase;
-                font-size: 25px;
-                letter-spacing: 2px;
-            }
+    </div>
+    <style>
+        .title {
+            text-transform: uppercase;
+            font-size: 25px;
+            letter-spacing: 2px;
+        }
 
+        .line {
+            border: 2px solid black;
+            width: 35%;
+            display: inline-block;
+            align-items: right;
+            margin-top: 10px;
+        }
+
+        .title-color {
+            color: #484848;
+            font-size: 20px;
+        }
+
+        .text-color {
+            font-size: 18px;
+            color: #6C6C6C;
+        }
+
+        @media (max-width: 800px) {
             .line {
-                border: 2px solid black;
-                width: 35%;
-                display: inline-block;
-                align-items: right;
-                margin-top: 10px;
+                width: 100%;
             }
-
-            .title-color {
-                color: #484848;
-                font-size: 20px;
-            }
-
-            .text-color {
-                font-size: 18px;
-                color: #6C6C6C;
-            }
-
-            @media (max-width: 800px) {
-                .line {
-                    width: 100%;
-                }
-            }
-        </style>
-    @endsection
-    @push('js')
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-    @endpush
+        }
+    </style>
+@endsection
+@push('js')
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+@endpush

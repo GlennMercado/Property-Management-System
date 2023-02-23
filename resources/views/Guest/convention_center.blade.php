@@ -195,7 +195,7 @@
                             </p>
                             <input type="submit"
                                 class="btn btn-outline-success text-white bg-green mx-auto d-flex justify-content-center"
-                                style="width:40%;"></button>
+                                style="width:40%;">
                             <br>
                             <br>
                     </div>
