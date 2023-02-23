@@ -27,7 +27,6 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">OR No.</th>
-                                    <th scope="col">Date</th>
                                     <th scope="col">Payee</th>
                                     <th scope="col">Particulars</th>
                                     <th scope="col">Event Date</th>
@@ -42,13 +41,12 @@
                                 @foreach ($list as $lists)
                                     <tr>
                                         <td>{{ $lists->ornum }}</td>
-                                        <td>{{ $lists->dateadded }}</td>
                                         <td>{{ $lists->payee }}</td>
                                         <td>{{ $lists->particular }}</td>
                                         <td>{{ $lists->eventdate }}</td>
                                         <td>{{ $lists->amount }}</td>
                                         <td>{{ $lists->remark }}</td>
-                                        <td>{{ $lists->debittype }}</td>
+                                        <td>{{ $lists->debit }}</td>
                                         <td>
                                             <button type="button" data-toggle="modal"
                                                 data-target="#ModalView{{ $lists->userid }}" class="btn btn-primary"><i
@@ -131,7 +129,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" action="{{ url('/update_info') }}"
+                                                <form method="POST" action="{{ url('/edit') }}"
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
@@ -156,8 +154,8 @@
                                                             <label for="Stockdetails">Payee: </label>
                                                             <input type="text" class="form-control" name="payee"
                                                                 value="{{ $lists->payee }}" required>
-                                                            
-                                                             <!--<input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>-->
+
+                                                            <!--<input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>-->
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty
                                                             </div>
@@ -169,8 +167,8 @@
                                                                 <option>Unpaid</option>
                                                             </select>
 
-                                                            <label for="Stockdetails">Event Date: </label>
-                                                            <input type="text" class="form-control" name="eventdate"
+                                                            <label>Event Date: </label>
+                                                            <input type="date" class="form-control" name="eventdate"
                                                                 value="{{ $lists->eventdate }}" required>
 
                                                             <label for="Stockdetails">Debit Type: </label>
@@ -179,7 +177,7 @@
 
                                                             <label for="Stockdetails">Remarks : </label>
                                                             <input type="text" class="form-control" name="remark"
-                                                                value="{{ $lists->remark }}" >
+                                                                value="{{ $lists->remark }}">
 
                                                             <div class="invalid-feedback">
                                                                 Stock Details empty
@@ -204,7 +202,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div></div>
 
 
     <!--Add -->
@@ -218,29 +216,27 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/addinfo') }}" class="prevent_submit" method="POST">
+                <form action="{{ url('/insert') }}" class="prevent_submit" method="POST">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
                                 <p class="text-left">OR Number : </p>
-                                <input type="text" class="form-control" name="or" placeholder="Enter name..."
+                                <input type="text" class="form-control" name="ornum" placeholder="Enter name..."
                                     required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="Stockdetails">Payee : </label>
-                                <input type="email" class="form-control" name="payee" placeholder="Enter details..."
+                                <input type="text" class="form-control" name="payee" placeholder="Enter details..."
                                     required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="Stockdetails">Particular: </label>
-                                <input type="number" class="form-control" name="particular"
-                                    placeholder="Enter number..." required>
-                                <select class="form-control" value="{{ $lists->status }}" name="status" required>
+                                <select class="form-control" name="particular" required>
                                     <option>Court Rental</option>
                                     <option>Court Rental/League</option>
                                     <option>Venue Rental</option>
@@ -295,7 +291,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="Stockdetails">Event Date: </label>
-                                <input type="number" class="form-control" name="eventdate"
+                                <input type="date" class="form-control" name="eventdate"
                                     placeholder="Enter number..." required>
                             </div>
                         </div>
@@ -308,9 +304,6 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
 
 @push('js')

@@ -205,7 +205,7 @@
                         <div class = "row">
                             <div class = "col">
                                 <label for="Stockdetails">Proof of Payment: </label>
-                                <input type="file" class="form-control" name="proof" accept="image/png, image/gif, image/jpeg, image/jpg" required>
+                                <input type="file" class="form-control" name="proof" accept="image/png, image/gif, image/jpeg" required>
                                
                                 <input type="hidden" class="form-control" name="status" value="Requesting">
                             </div>

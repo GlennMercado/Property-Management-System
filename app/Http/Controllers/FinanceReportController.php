@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\finance_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class FinanceReportController extends Controller
 {
@@ -57,6 +57,7 @@ class FinanceReportController extends Controller
             $finance->debit = $request->input('debit');
             $finance->remark = $request->input('remark');
             $finance->amount = $request->input('amount');
+            
         if($finance->save())
         {
             Alert::Success('Success', 'Successfully Alerted the Finance Department!');
@@ -69,10 +70,11 @@ class FinanceReportController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function edit(Request $request)
     {
         try{
             $this->validate($request,[
+                'userid' => 'required',
                 'ornum' => 'required',
                 'payee' => 'required',
                 'particular' => 'required',
@@ -82,6 +84,7 @@ class FinanceReportController extends Controller
                 'amount' => 'required'
             ]);
             
+            $userid = $request->input('userid');
             $ornum = $request->input('ornum');
             $payee = $request->input('payee');
             $particular = $request->input('particular');
@@ -91,8 +94,9 @@ class FinanceReportController extends Controller
             $amount = $request->input('amount');
 
            
-           DB::table('finances')->where('userid', $userid)->update(array
+           DB::table('finance_reports')->where('userid', $userid)->update(array
             (
+                'userid' => $userid,
                 'ornum' => $ornum,
                 'payee' => $payee,
                 'particular' => $particular,
@@ -103,13 +107,13 @@ class FinanceReportController extends Controller
             ));
     
             Alert::Success('Success', 'Successfully Updated the Data!');
-            return redirect('Finance')->with('Success', 'Data Updated');
+            return redirect('DailyReport')->with('Success', 'Data Updated');
           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Failed!, Please Try Again.');
-            return redirect('Finance')->with('Success', 'Data Updated');
+            return redirect('DailyReport')->with('Success', 'Data Updated');
         }
     }
 
@@ -130,10 +134,7 @@ class FinanceReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.

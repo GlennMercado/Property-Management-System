@@ -376,7 +376,6 @@ function changeValue(){
 function pax_on_change()
 {
     changeValue();
-    change();
 }
 </script>
 <style>

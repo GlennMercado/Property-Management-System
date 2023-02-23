@@ -56,7 +56,7 @@ class FinanceController extends Controller
                 //add image to a folder
                 $file = $request->file('proof');
                 $extension = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extension;
+                $filename = time().'--Room '.$request->input('name').'-.'.$extension;
                 $path = $file->move('finance_images/', $filename);
                 
                 $base64 = base64_encode($extension); 

@@ -1486,34 +1486,20 @@
                                         <table class="table align-items-center table-flush" id="myTablessss">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col" style="font-size:18px;">Movement</th>
-                                                    <th scope="col" style="font-size:18px;">Date</th>
+                                                    <th scope="col" style="font-size:14px;">Item Name</th>
+                                                    <th scope="col" style="font-size:14px;">Movement</th>
+                                                    <th scope="col" style="font-size:14px;">Date</th>
+                                                    <th scope="col" style="font-size:14px;">Housekeeper</th>
+                                                </tr>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($list4 as $lists4)
                                                     <tr>
-                                                        <td style="font-size:16px;">{{ $lists4->name }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->suppliername }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->description }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->quantity }}</td>
-                                                        @if ($lists4->quantity <= $lists4->Stock_Level)
-                                                            <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
-                                                                    style="color:red;"></i></td>
-                                                        @else
-                                                            <td style="font-size:25px;"><i class="bi bi-check-square-fill"
-                                                                    style="color:green;"></i></td>
-                                                        @endif
-                                                        <td>
-                                                            <button type="button" data-toggle="modal"
-                                                                data-target="#ModalView4{{ $lists4->productid }}"
-                                                                class="btn btn-primary"><i class="bi bi-eye"
-                                                                    style="padding:2px;">View</i></button>
-                                                            <button type="button" data-toggle="modal"
-                                                                data-target="#ModalUpdate4{{ $lists4->productid }}"
-                                                                class="btn btn-primary"><i
-                                                                    class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
-                                                        </td>
+                                                        <td style="font-size:16px;">{{ $lists4->itemname }}</td>
+                                                        <td style="font-size:16px;">{{ $lists4->movement }}</td>
+                                                        <td style="font-size:16px;">{{ $lists4->created_at }}</td>
+                                                        <td style="font-size:16px;">{{ $lists4->housekeeper }}</td>
                                                     </tr>
                                                 </table>
                                                 @endforeach
