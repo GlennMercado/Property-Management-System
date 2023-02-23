@@ -14,6 +14,21 @@
             $('#myTablessss').DataTable();
         });
         // Code that uses other library's $ can follow here.
+        var $j = jQuery.noConflict();
+        $j("input[name='hotelout'], input[name='hotelin']").keyup(function() {
+        // Bind keyup event on the input
+        // If value is not empty
+        if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() == 0) {
+            // Hide the element
+            $("input[name='housekeeper']").hide();
+            $("label[name='housekeeper']").hide();
+        } else {
+            // Otherwise show it
+            $("input[name='housekeeper']").show();
+            $("label[name='housekeeper']").show();
+        }
+        }).keyup();  // Trigger the keyup event, thus running the handler on page load
+        
     </script>
     <div class="container-fluid mt--9">
         <div class="row mt--9">
@@ -313,28 +328,32 @@
                                                             <input type="number" class="form-control"
                                                                 value="{{ $lists->Stock_Level }}" readonly>
 
-                                                                <div class = "row">
-                                                                    <div class = "col">
-                                                                        <label class="text-left pt-4">Stock In </label>
-                                                                        <input class="form-control" type="number" name="hotelin" value="0" onkeyup="showTextboxes()">
-                                                                    </div>
-                                                                    <div class = "col">
-                                                                        <label class="text-left pt-4">Stock Out </label>
-                                                                        <input type="number" class="form-control" name="hotelout" value="0" onkeyup="showTextboxes()">  
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label class="text-left pt-4">Stock In </label>
+                                                                    <input class="form-control" type="number"
+                                                                        name="hotelin" value="0">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label class="text-left pt-4">Stock Out </label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="hotelout" value="0">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div>
+                                                                        <label class="text-left pt-4" for="textbox2"
+                                                                            name="housekeeper">HouseKeeper : </label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="housekeeper">
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div id="hidden-textboxes">
-                                                                            <label class="text-left pt-4" for="textbox2" name="housekeeper">HouseKeeper : </label>
-                                                                            <input type="text" class="form-control" name="housekeeper">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <!-- <div class="invalid-feedback">
-                                                                                        Stock Name empty
-                                                                                    </div>        -->
+                                                                                                Stock Name empty
+                                                                                            </div>        -->
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Category: </label>
                                                             <select class="form-control" value="{{ $lists->category }}"
@@ -1446,14 +1465,16 @@
                                                                     name="reqid[]" placeholder="Enter Here.." hidden>
                                                                 <label class="text-left text-color">Category : </label>
                                                                 <input class="form-control mt-1" type="text"
-                                                                    name="category[]" placeholder="Enter Here.." required>
+                                                                    name="category[]" placeholder="Enter Here.."
+                                                                    required>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <p class="text-left pt-4 text-color">Number of pax :</p>
                                                                 <select name="pax" id="childs"
-                                                                    class="form-control" name="pax[]" value="room_pax" onchange="pax_on_change()"
+                                                                    class="form-control" name="pax[]"
+                                                                    value="room_pax" onchange="pax_on_change()"
                                                                     required>
                                                                     <option>Select</option>
                                                                     @for ($count = 1; $count <= 10; $count++)
@@ -1471,7 +1492,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <label class="text-left pt-4 text-color">Quantity : </label>
+                                                                <label class="text-left pt-4 text-color">Quantity :
+                                                                </label>
                                                                 <div class="col" id="balls" name="quantity[]">
                                                                 </div>
                                                             </div>
@@ -1524,14 +1546,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list4 as $lists4)
+                                        @foreach ($list5 as $lists5)
                                             <tr>
-                                                <td style="font-size:16px;">{{ $lists4->category }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->name }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->movement }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->movement_quantity }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->created_at }}</td>
-                                                <td style="font-size:16px;">{{ $lists4->housekeeper }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->category }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->name }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->movement }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->movement_quantity }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->created_at }}</td>
+                                                <td style="font-size:16px;">{{ $lists5->housekeeper }}</td>
                                             </tr>
                                 </table>
                                 @endforeach
@@ -1547,6 +1569,36 @@
     </div>
 
     <script>
+        /*var $j = jQuery.noConflict();
+        $j("input[name='hotelout'], input[name='hotelin']").keyup(function() {
+        // Bind keyup event on the input
+        // If value is not empty
+        if ($("input[name='hotelout']").val() == "" && $("input[name='hotelin']").val() == "") {
+            // Hide the element
+            $("input[name='housekeeper']").hide();
+            $("label[name='housekeeper']").hide();
+        } else {
+            // Otherwise show it
+            $("input[name='housekeeper']").show();
+            $("label[name='housekeeper']").show();
+        }
+        }).keyup();  // Trigger the keyup event, thus running the handler on page load*/
+
+        var $j = jQuery.noConflict();
+$j("input[name='hotelout'], input[name='hotelin']").keyup(function() {
+    // Bind keyup event on the input
+    // If value is not empty
+    if ($j.trim($j("input[name='hotelout']").val()) == 0 && $j.trim($j("input[name='hotelin']").val()) == 0) {
+        // Hide the element
+        $j("input[name='housekeeper']").hide();
+        $j("label[name='housekeeper']").hide();
+    } else {
+        // Otherwise show it
+        $j("input[name='housekeeper']").show();
+        $j("label[name='housekeeper']").show();
+    }
+}).keyup();// Trigger the keyup event, thus running the handler on page load
+
         function changeValue() {
             var textboxNumbers = document.getElementById("childs").value;
             balls.innerHTML = '';
@@ -1642,28 +1694,7 @@
         function pax_on_change() {
             changeValue();
         }
-</script>
-        <script>
-            function showTextboxes() {
-// Bind keyup event on the input
-$("input[name='hotelout'], input[name='hotelin']").keyup(function() {
-
-// If value is not empty
-if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() == 0) {
-    // Hide the element
-    $("input[name='housekeeper']").hide();
-    $("label[name='housekeeper']").hide();
-} else {
-    // Otherwise show it
-    $("input[name='housekeeper']").show();
-    $("label[name='housekeeper']").show();
-}
-}).keyup(); // Trigger the keyup event, thus running the handler on page load
-            }
-</script>
-
-
-
+    </script>
 
     <style>
         .title {
@@ -1687,6 +1718,5 @@ if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() =
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endpush
