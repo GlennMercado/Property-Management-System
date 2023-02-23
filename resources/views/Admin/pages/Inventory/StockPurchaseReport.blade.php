@@ -183,7 +183,7 @@
                                                             <p class="form-label" >Number of pax</p>
                                                     <select name="pax" id="childs" class="form-control" onchange="pax_on_change()" required>
                                                             <option selected value="">Select</option>
-                                                                @for ($count = 1; $count <= 10; $count++)
+                                                                @for ($count = 0; $count <= 10; $count++)
                                                             <option value="{{ $count }}" id="room_pax">
                                                                 {{ $count }}</option>
                                                             @endfor
@@ -203,7 +203,7 @@
                                                                 <div class="col" id="balls">
                                                                 </div> 
                                                             </div>
-                                                        </div><bzread>
+                                                        </div>
                                                         <label class="text-left pt-4 text-color">Receiver :  </label>
                                                                 <input class="form-control mt-2" type="number" placeholder="Enter Here.." name="quantity" required>
                                                                 <label class="text-left pt-4 text-color">Supervisor Dept. :  </label>
@@ -227,53 +227,7 @@
                 
                       
     </div>
-<!--Modal 2
-<div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <div class = "col">
-                               
-                                </div>
-                                <h3 class="mb-0">Stocks</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-
-                         Projects table 
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Product Code</th>
-                                    <th scope="col">Item Name</th>
-                                    <th scope="col">Supplier</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Available Stock</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    @foreach ($list as $lists)
-                                    <tr>
-                                        <td>{{ $lists->name}}</td>
-                                        <td>{{ $lists->description}}</td>
-                                        <td>{{ $lists->unit}}</td>
-                                        <td>{{ $lists->suppliername}}</td>
-                                        <td>{{ $lists->quantity}}</td>
-                                        
-                                            <a href="#" data-toggle="modal" data-target="#ModalCreate"><i class="bi bi-eye" style = "padding:2px;"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#ModalUpdate"><i class="bi bi-pencil-square"style = "padding:2px;"></i></a>
-                                            <a href = "#"><i class="bi bi-archive-fill"style = "padding:2px;"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                            </tbody>
-                        </table>
-                    </div> -->
+                  
                  
 
 </div> 
@@ -291,11 +245,10 @@ function changeValue(){
     yourTextboxes.setAttribute("placeholder", "Enter Here");
     document.getElementById("balls").appendChild(yourTextboxes);
   }
-  }
-  function change{
 
+    
 
-    for(i = 0; i < dropdowns; i++) {
+    for(i=0; i<dropdowns; i++) {
       var yourDropdown = document.createElement("SELECT");
       yourDropdown.classList.add("form-control");
 
@@ -309,65 +262,63 @@ function changeValue(){
       option2.innerHTML = "Toothbrush";
       yourDropdown.appendChild(option2);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 3");
-      option2.innerHTML = "Shampoo";
-      yourDropdown.appendChild(option2);
+      var option3 = document.createElement("OPTION");
+      option3.setAttribute("value", "Option 3");
+      option3.innerHTML = "Shampoo";
+      yourDropdown.appendChild(option3);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Bedsheet";
-      yourDropdown.appendChild(option2);
+      var option4 = document.createElement("OPTION");
+      option4.setAttribute("value", "Option 4");
+      option4.innerHTML = "Bedsheet";
+      yourDropdown.appendChild(option4);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Dental Kit";
-      yourDropdown.appendChild(option2);
+      var option5 = document.createElement("OPTION");
+      option5.setAttribute("value", "Option 5");
+      option5.innerHTML = "Dental Kit";
+      yourDropdown.appendChild(option5);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Hand Towel";
-      yourDropdown.appendChild(option2);
+      var option6 = document.createElement("OPTION");
+      option6.setAttribute("value", "Option 6");
+      option6.innerHTML = "Hand Towel";
+      yourDropdown.appendChild(option6);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Bath Towel";
-      yourDropdown.appendChild(option2);
+      var option7 = document.createElement("OPTION");
+      option7.setAttribute("value", "Option 7");
+      option7.innerHTML = "Bath Towel";
+      yourDropdown.appendChild(option7);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Coffee";
-      yourDropdown.appendChild(option2);
+      var option8 = document.createElement("OPTION");
+      option8.setAttribute("value", "Option 8");
+      option8.innerHTML = "Coffee";
+      yourDropdown.appendChild(option8);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Creamer";
-      yourDropdown.appendChild(option2);
+      var option9 = document.createElement("OPTION");
+      option9.setAttribute("value", "Option 9");
+      option9.innerHTML = "Creamer";
+      yourDropdown.appendChild(option9);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Hanger";
-      yourDropdown.appendChild(option2);
+      var option10 = document.createElement("OPTION");
+      option10.setAttribute("value", "Option 10");
+      option10.innerHTML = "Hanger";
+      yourDropdown.appendChild(option10);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Queen Sheet";
-      yourDropdown.appendChild(option2);
+      var option11 = document.createElement("OPTION");
+      option11.setAttribute("value", "Option 11");
+      option11.innerHTML = "Queen Sheet";
+      yourDropdown.appendChild(option11);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Pillows";
-      yourDropdown.appendChild(option2);
+      var option12 = document.createElement("OPTION");
+      option12.setAttribute("value", "Option 12");
+      option12.innerHTML = "Pillows";
+      yourDropdown.appendChild(option12);
 
-      var option2 = document.createElement("OPTION");
-      option2.setAttribute("value", "Option 2");
-      option2.innerHTML = "Pillow Case";
-      yourDropdown.appendChild(option2);
+      var option13 = document.createElement("OPTION");
+      option13.setAttribute("value", "Option 13");
+      option13.innerHTML = "Pillow Case";
+      yourDropdown.appendChild(option13);
 
       document.getElementById("ballses").appendChild(yourDropdown);
     }
-    window.onload = function() {
-  }
 }
 
 
@@ -376,6 +327,7 @@ function changeValue(){
 function pax_on_change()
 {
     changeValue();
+    change()
 }
 </script>
 <style>
