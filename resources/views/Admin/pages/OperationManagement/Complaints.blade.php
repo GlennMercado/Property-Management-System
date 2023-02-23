@@ -12,17 +12,17 @@
                     <div class="card-body">
                         @foreach ($list as $list)
                             <div class="row">
-                                <div class="card shadow mb-2" style="min-width: 350px;">
-                                    <div class="card-header">
+                                <div class="card shadow mb-2 msgcolor text-white" style="min-width: 350px;">
+                                    <div class="card-header msgcolor text-white">
                                         <span>{{ $list->concern }}</span>
                                         <div class="d-flex justify-content-end mt--4">
                                             <a href="#" data-toggle="modal" data-target="#modal-notification"
-                                                style="color:black"><span aria-hidden="true">×</span>
+                                                style="color:black"><span class="text-white" aria-hidden="true">×</span>
                                             </a>
                                         </div>
                                         <span>{{ $list->created_at }}</span>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body font-weight-bold">
                                         <br>
                                         {{ $list->concern_text }}
                                     </div>
@@ -34,7 +34,7 @@
                             <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
                                 aria-labelledby="modal-notification" aria-hidden="true">
                                 <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                    <div class="modal-content bg-gradient-danger">
+                                    <div class="modal-content bg-red">
 
                                         <div class="modal-header">
                                             <h6 class="modal-title" id="modal-title-notification">Your attention is required
@@ -48,8 +48,8 @@
 
                                             <div class="py-3 text-center">
                                                 <i class="ni ni-archive-2 ni-3x"></i>
-                                                <h4 class="heading mt-4">You should read this!</h4>
-                                                <p>Are you sure you want to delete this data?</p>
+                                                <h4 class="heading mt-4">Attention!</h4>
+                                                <p>Are you sure you want to delete this message?</p>
                                             </div>
 
                                         </div>
@@ -67,6 +67,11 @@
                     </div>
                 </div>
             </div>
+            <style>
+                .msgcolor{
+                    background-color: rgb(41, 157, 168);
+                }
+            </style>
         @endsection
 
         @push('js')
