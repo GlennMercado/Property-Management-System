@@ -20,37 +20,73 @@
                             <h2 class="mb-0 title">Event Inquiry List</h2>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive t1">
                                 <table class="table align-items-center table-flush" id="myTable">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" style="font-size:17px;">ID</th>
-                                            <th scope="col" style="font-size:17px;">Client Name</th>
-                                            <th scope="col" style="font-size:17px;">Contact No.</th>
-                                            <th scope="col" style="font-size:17px;">Contact Person</th>
-                                            <th scope="col" style="font-size:17px;">Contact Person No.</th>
-                                            <th scope="col" style="font-size:17px;">Billing Address</th>
-                                            <th scope="col" style="font-size:17px;">Email Address</th>
-                                            <th scope="col" style="font-size:17px;">Event Name</th>
-                                            <th scope="col" style="font-size:17px;">Event Type</th>
-                                            <th scope="col" style="font-size:17px;">Event Date</th>
-                                            <th scope="col" style="font-size:17px;">No. of Guest</th>
+                                            <th scope="col" style="font-size:15px;">Action</th>
+                                            <th scope="col" style="font-size:15px;">Control Number</th>
+                                            <th scope="col" style="font-size:15px;">Client Info</th>
+                                            <th scope="col" style="font-size:15px;">Contact Person Info.</th>
+                                            <th scope="col" style="font-size:15px;">Event Information</th>                                        
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             <tr>
-                                                <td>{{ $lists->id }}</td>
-                                                <td>{{ $lists->client_name }}</td>
-                                                <td>{{ $lists->contact_no }}</td>
-                                                <td>{{ $lists->contact_person }}</td>
-                                                <td>{{ $lists->contact_person_no }}</td>
-                                                <td>{{ $lists->billing_address }}</td>
-                                                <td>{{ $lists->email_address }}</td>
-                                                <td>{{ $lists->event_name }}</td>
-                                                <td>{{ $lists->event_type }}</td>
-                                                <td>{{ $lists->event_date }}</td>
-                                                <td>{{ $lists->no_of_guest }}</td>
+                                                <td class="row">
+                                                    <div class="col-md-1">
+                                                        <form action="{{ route('EventInquiryView') }}"
+                                                            data-toggle="tooltip" data-placement="top" title="View Inquiry"
+                                                            target="_blank">
+                                                            <button type="submit" class="btn btn-sm btn-success">
+                                                                <i class="bi bi-eye"></i></button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <button type="submit" data-toggle="tooltip" data-placement="top"
+                                                            title="Edit" class="btn btn-sm btn-primary">
+                                                            <i class="bi bi-pencil-square"></i></button>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <button type="submit" data-toggle="tooltip" data-placement="top"
+                                                            title="Delete Data" class="btn btn-sm btn-danger">
+                                                            <i class="ni ni-fat-remove"></i></button>
+                                                    </div>
+                                                </td>
+                                                <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
+                                                <td>
+                                                    Name: {{ $lists->client_name }}
+                                                    <br>Contact Number:
+                                                    {{ $lists->contact_no }}
+                                                    <br>
+                                                    Billing Address:
+                                                    {{ $lists->billing_address }}
+                                                    <br>
+                                                    Email: {{ $lists->email_address }}
+                                                </td>
+                                                <td>Name: {{ $lists->contact_person }}
+                                                    <br>
+                                                    Contact Number:
+                                                    {{ $lists->contact_person_no }}
+                                                </td>
+                                                <td>Event name: {{ $lists->event_name }}
+                                                    <br>
+                                                    Event Type:
+                                                    {{ $lists->event_type }}
+                                                    <br>
+                                                    Event Date: {{ $lists->event_date }}
+                                                    <br>
+                                                    No. of Guest: {{ $lists->no_of_guest }}
+                                                    <br>
+                                                    Venue: {{ $lists->venue}}
+                                                    <br>
+                                                    Caterer: {{$lists->caterer}}
+                                                    <br>
+                                                    Audio/Visual: {{$lists->audio_visual}}
+                                                    <br>
+                                                    Events and Concep Styling: {{$lists->concept}}
+                                                </td>                                              
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -60,6 +96,10 @@
                 </div>
                 </form>
                 <style>
+                    .t1 td {
+                        text-emphasis: wrap;
+                    }
+
                     .title {
                         text-transform: uppercase;
                         font-size: 25px;

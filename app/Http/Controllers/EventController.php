@@ -14,4 +14,9 @@ class EventController extends Controller
         $list = DB::select('SELECT * FROM convention_center_applications');    
         return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list]);
     }
+    public function EventInquiryView()
+    {
+        $list = DB::select('SELECT * FROM convention_center_applications');    
+        return view('Admin.pages.Reservations.EventInquiryView', ['list'=>$list]);
+    }
 }

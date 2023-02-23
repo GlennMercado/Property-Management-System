@@ -141,7 +141,11 @@ class GuestController extends Controller
                 'event_name' => 'required',
                 'event_type' => 'required',
                 'event_date' => 'required',
-                'no_of_guest' => 'required'
+                'no_of_guest' => 'required',
+                'venue' => 'required',
+                'caterer' => 'required',
+                'audio_visual' => 'required',
+                'concept' => 'required'
             ]);
             
             $submit = new convention_center_application;
@@ -155,6 +159,10 @@ class GuestController extends Controller
             $submit->event_type = $request->input('event_type');
             $submit->event_date = $request->input('event_date');
             $submit->no_of_guest = $request->input('no_of_guest');
+            $submit->venue = $request->input('venue');
+            $submit->caterer = $request->input('caterer');
+            $submit->audio_visual = $request->input('audio_visual');
+            $submit->concept = $request->input('concept');
 
 
             if($submit->save())
