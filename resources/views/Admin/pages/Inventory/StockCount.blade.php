@@ -144,11 +144,19 @@
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <label class="text-left pt-4">Stock In </label>
-                                                            <input class="form-control" type="number" name="in" value="0" >
+                                                            <input class="form-control" type="number" name="in" value="0" onkeyup="showTextboxes()">
                                                         </div>
                                                         <div class = "col">
                                                             <label class="text-left pt-4">Stock Out </label>
-                                                            <input type="number" class="form-control" name="out" value="0">  
+                                                            <input type="number" class="form-control" name="out" value="0" onkeyup="showTextboxes()">  
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div id="hidden-textboxes">
+                                                                <label class="text-left pt-4" for="textbox2" name="housekeeper">HouseKeeper : </label>
+                                                                <input type="text" class="form-control" name="housekeeper">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -242,8 +250,7 @@
                         <div class = "row">
                             <div class = "col">
                                 <label class="text-color">Stock Name </label>
-                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required>
-                                                    
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required> 
                             </div>
                         </div>
                         <div class = "row">
@@ -329,67 +336,22 @@
 
 
     
-    <!--Validation                               
+    
        <script>
-                 
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {  
-            var forms = document.getElementsByClassName('needs-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-                }, false);
-            });
-            }, false);
-        })();
-                   
-        
-<script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+// Bind keyup event on the input
+$("input[name='out'], input[name='in']").keyup(function() {
 
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-      columnDefs: [{
-          orderable: true,
-          className: '',
-          targets: 0
-      }]
-  });
-  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
-
-</script>
-       </script>-->
-       <script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-      columnDefs: [{
-          orderable: true,
-          className: '',
-          targets: 0
-      }]
-  });
-  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
+// If value is not empty
+if ($("input[name='out']").val() == 00 && $("input[name='in']").val() == 0) {
+    // Hide the element
+    $("input[name='housekeeper']").hide();
+    $("label[name='housekeeper']").hide();
+} else {
+    // Otherwise show it
+    $("input[name='housekeeper']").show();
+    $("label[name='housekeeper']").show();
+}
+}).keyup(); // Trigger the keyup event, thus running the handler on page load
 
 </script>
 <style>

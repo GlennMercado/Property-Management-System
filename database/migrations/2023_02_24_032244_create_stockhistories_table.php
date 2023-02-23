@@ -13,26 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotelstocks', function (Blueprint $table) {
-            $table->id('productid');
-            $table->string('name');
-            $table->text('description');
+        Schema::create('stockhistories', function (Blueprint $table) {
+            $table->id('itemid');
             $table->string('category');
-
-            $table->integer('total');
-            $table->integer('Stock_Level');
-        
+            $table->string('name');
+            $table->string('movement');
+            $table->integer('movement_quantity');
+            $table->string('housekeeper');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *c
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('hotelstocks');
+        Schema::dropIfExists('stockhistories');
     }
 };

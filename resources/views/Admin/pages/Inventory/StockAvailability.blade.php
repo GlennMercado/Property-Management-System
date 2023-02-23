@@ -45,7 +45,7 @@
                                 @foreach ($list2 as $lists2)
                                     @if ($lists2->total <= $lists2->Stock_Level)
                                         <td style="font-size:25px;"><i>{{ $lists2->total }}</i></td>
-                                        @else
+                                    @else
                                         <td style="font-size:25px;">0</td>
                                     @endif
                                 @endforeach
@@ -90,13 +90,15 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">History</h5>
                             <span class="h2 font-weight-bold mb-0">
-                                
+
                             </span>
                         </div>
                         <div class="col-auto">
-                            <div >
-                                <button type="button" class="btn btn-outline-primary icon icon-shape bg-orange text-white rounded-circle shadow" data-toggle="modal"
-                                data-target="#HistoryModal" style="float:right;"><i class="ni ni-chart-pie-35"></i></button>
+                            <div>
+                                <button type="button"
+                                    class="btn btn-outline-primary icon icon-shape bg-orange text-white rounded-circle shadow"
+                                    data-toggle="modal" data-target="#HistoryModal" style="float:right;"><i
+                                        class="ni ni-chart-pie-35"></i></button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +132,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                         href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                        aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>Function Rooms
+                                        aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>Client Requests
                                         Inventory </a>
                                 </li>
                                 <li class="nav-item">
@@ -220,7 +222,8 @@
                                                                             <label>Stock Description </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="description"
-                                                                                value="{{ $lists->description }}" readonly>
+                                                                                value="{{ $lists->description }}"
+                                                                                readonly>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -310,22 +313,28 @@
                                                             <input type="number" class="form-control"
                                                                 value="{{ $lists->Stock_Level }}" readonly>
 
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label class="text-left pt-4">Stock In </label>
-                                                                    <input class="form-control" type="number"
-                                                                        name="in" value="0">
+                                                                <div class = "row">
+                                                                    <div class = "col">
+                                                                        <label class="text-left pt-4">Stock In </label>
+                                                                        <input class="form-control" type="number" name="hotelin" value="0" onkeyup="showTextboxes()">
+                                                                    </div>
+                                                                    <div class = "col">
+                                                                        <label class="text-left pt-4">Stock Out </label>
+                                                                        <input type="number" class="form-control" name="hotelout" value="0" onkeyup="showTextboxes()">  
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col">
-                                                                    <label class="text-left pt-4">Stock Out </label>
-                                                                    <input type="number" class="form-control"
-                                                                        name="out" value="0">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div id="hidden-textboxes">
+                                                                            <label class="text-left pt-4" for="textbox2" name="housekeeper">HouseKeeper : </label>
+                                                                            <input type="text" class="form-control" name="housekeeper">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                         <!-- <div class="invalid-feedback">
-                                                                                    Stock Name empty
-                                                                                </div>        -->
+                                                                                        Stock Name empty
+                                                                                    </div>        -->
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Category: </label>
                                                             <select class="form-control" value="{{ $lists->category }}"
@@ -511,7 +520,7 @@
                                     <table class="table align-items-center" id="myTables">
                                         <thead class="thead-light">
                                             <tr>
-                                            <th scope="col" style="font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Product Name</th>
                                                 <th scope="col" style="font-size:18px;">Item Description</th>
                                                 <th scope="col" style="font-size:18px;">Available Stock</th>
@@ -856,7 +865,7 @@
                                 aria-labelledby="tabs-icons-text-3-tab">
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                     data-target="#exampleModal3" style="float:right;">Add Stock</button>
-                                <h3 class="mb-0 title">Function Rooms Inventory</h3>
+                                <h3 class="mb-0 title">Clients Request Inventory</h3>
                                 <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before Starting,
                                     See To It That All Inventory Are In The Storage Area</h5><br><br>
 
@@ -1206,7 +1215,7 @@
                                 aria-labelledby="tabs-icons-text-4-tab">
                                 <button class="btn btn-outline-primary" class="btn btn-primary" data-toggle="modal"
                                     data-target="#PurchaseReportModal" style="float:right;">Make Report</button>
-                                <h3 class="mb-0 title">Stock Purchase Reports</h3>
+                                <h3 class="mb-0 title">Report Inventory</h3>
                                 <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before starting,
                                     see to It that all inventory are in the Storage Area</h5><br><br>
                                 <table class="table align-items-center table-flush" id="myTablessss">
@@ -1338,8 +1347,8 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form class="needs-validation" action="{{ url('/edit_report') }}"
-                                                            method="POST">
+                                                        <form class="needs-validation"
+                                                            action="{{ url('/edit_report') }}" method="POST">
                                                             {{ csrf_field() }}
                                                             <div class="modal-body">
                                                                 <div class="row">
@@ -1347,8 +1356,8 @@
                                                                         style="border-radius: 18px">
                                                                         <div class="row">
                                                                             <div class="col">
-                                                                                <input class="form-control" type="text"
-                                                                                    name="productid"
+                                                                                <input class="form-control"
+                                                                                    type="text" name="productid"
                                                                                     value="{{ $lists4->productid }}"
                                                                                     hidden>
                                                                                 <p class="text-left">Item Name :
@@ -1419,52 +1428,63 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title text-left display-4" id="exampleModalLabel">Purchase
-                                                Report</h5>
+                                                Report
+                                            </h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ url('/report') }}" class="prevent_submit" method="POST">
+                                        <form action="{{ url('/add') }}" class="prevent_submit" method="POST">
                                             {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="card-body bg-white" style="border-radius: 18px">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label class="text-left text-color">Item Name </label>
-                                                                <input class="form-control mt-2" type="text"
-                                                                    name="name" placeholder="Enter Here.." required>
+                                                                <input class="form-control mt-1" type="text"
+                                                                    name="reqid[]" placeholder="Enter Here.." hidden>
+                                                                <label class="text-left text-color">Category : </label>
+                                                                <input class="form-control mt-1" type="text"
+                                                                    name="category[]" placeholder="Enter Here.." required>
                                                             </div>
                                                         </div>
-                                                        <label class="text-left pt-4 text-color">Item Description </label>
-                                                        <input class="form-control mt-2" type="text"
-                                                            placeholder="Enter Here.." name="description" required>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label class="text-left pt-4 text-color">Unit </label>
-                                                                <input class="form-control mt-2" type="number"
-                                                                    placeholder="Enter Here.." name="unit" required>
-                                                            </div>
-                                                            <div class="col">
-                                                                <label class="text-left pt-4 text-color">Quantity </label>
-                                                                <input class="form-control mt-2" type="number"
-                                                                    placeholder="Enter Here.." name="quantity" required>
-                                                            </div>
-                                                            <div class="col">
-                                                                <label class="text-left pt-4 text-color">Stock Level
-                                                                    :</label>
-                                                                <input class="form-control" type="number"
-                                                                    placeholder="Enter Here.." name="stock" required>
+                                                                <p class="text-left pt-4 text-color">Number of pax :</p>
+                                                                <select name="pax" id="childs"
+                                                                    class="form-control" name="pax[]" value="room_pax" onchange="pax_on_change()"
+                                                                    required>
+                                                                    <option>Select</option>
+                                                                    @for ($count = 1; $count <= 10; $count++)
+                                                                        <option value="{{ $count }}"
+                                                                            id="room_pax" name="room_pax[]">
+                                                                            {{ $count }}</option>
+                                                                    @endfor
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <label class="text-left pt-4 text-color">Supplier Name </label>
-                                                        <select class="form-control mt-2" name="suppliername" required>
-                                                            <option>Sample Supplier 1</option>
-                                                            <option>Sample Supplier 2</option>
-                                                            <option>Sample Supplier 3</option>
-                                                        </select>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label class="text-left pt-4 text-color">Unit :</label>
+                                                                <div class="col" id="ballses" name="unit[]">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label class="text-left pt-4 text-color">Quantity : </label>
+                                                                <div class="col" id="balls" name="quantity[]">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-left pt-4 text-color">Receiver : </label>
+                                                        <input class="form-control mt-2" type="text"
+                                                            placeholder="Enter Here.." name="receiver[]" required>
+                                                        <label class="text-left pt-4 text-color">Supervisor Dept. :
+                                                        </label>
+                                                        <input class="form-control mt-2" type="text"
+                                                            placeholder="Enter Here.." name="supervisor[]" required>
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -1476,67 +1496,197 @@
                                     </div>
                                 </div>
                             </div>
-                            <!---->
-                            <!--Modalfor History-->
-                            <div class="modal fade bd-example-modal-lg" id="HistoryModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <table class="table align-items-center table-flush" id="myTablessss">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col" style="font-size:14px;">Item Name</th>
-                                                    <th scope="col" style="font-size:14px;">Movement</th>
-                                                    <th scope="col" style="font-size:14px;">Date</th>
-                                                    <th scope="col" style="font-size:14px;">Housekeeper</th>
-                                                </tr>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($list4 as $lists4)
-                                                    <tr>
-                                                        <td style="font-size:16px;">{{ $lists4->itemname }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->movement }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->created_at }}</td>
-                                                        <td style="font-size:16px;">{{ $lists4->housekeeper }}</td>
-                                                    </tr>
-                                                </table>
-                                                @endforeach
-                                        
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
-                        </div>
-
+                            </form>
                         </div>
                     </div>
                 </div>
+                <!---->
+                <!--Modalfor History-->
+                <div class="modal fade bd-example-modal-lg" id="HistoryModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <table class="table align-items-center table-flush" id="myTablessss">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" style="font-size:14px;">Category</th>
+                                            <th scope="col" style="font-size:14px;">Item Name</th>
+                                            <th scope="col" style="font-size:14px;">Movement</th>
+                                            <th scope="col" style="font-size:14px;">Quantity</th>
+                                            <th scope="col" style="font-size:14px;">Date</th>
+                                            <th scope="col" style="font-size:14px;">Housekeeper</th>
+                                        </tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($list4 as $lists4)
+                                            <tr>
+                                                <td style="font-size:16px;">{{ $lists4->category }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->name }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->movement }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->movement_quantity }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->created_at }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->housekeeper }}</td>
+                                            </tr>
+                                </table>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+    </div>
+    </div>
 
+    <script>
+        function changeValue() {
+            var textboxNumbers = document.getElementById("childs").value;
+            balls.innerHTML = '';
+            var i;
 
-
-
-        <style>
-            .title {
-                text-transform: uppercase;
-                font-size: 25px;
-                letter-spacing: 2px;
+            for (i = 0; i < textboxNumbers; i++) {
+                var yourTextboxes = document.createElement("INPUT");
+                yourTextboxes.setAttribute("type", "text");
+                yourTextboxes.classList.add("form-control");
+                yourTextboxes.setAttribute("placeholder", "Enter Here");
+                document.getElementById("balls").appendChild(yourTextboxes);
             }
 
-            .text-color {
-                font-size: 18px;
-                color: #6C6C6C;
-            }
+            var dropdowns = document.getElementById("childs").value;
+            document.getElementById("ballses").innerHTML = '';
 
-            .cat {
-                color: #000000;
-                text-transform: uppercase;
-            }
-        </style>
-    @endsection
+            for (i = 0; i < dropdowns; i++) {
+                var yourDropdown = document.createElement("SELECT");
+                yourDropdown.classList.add("form-control");
 
-    @push('js')
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-    @endpush
+                var option1 = document.createElement("OPTION");
+                option1.setAttribute("value", "Option 1");
+                option1.innerHTML = "Sugar";
+                yourDropdown.appendChild(option1);
+
+                var option2 = document.createElement("OPTION");
+                option2.setAttribute("value", "Option 2");
+                option2.innerHTML = "Toothbrush";
+                yourDropdown.appendChild(option2);
+
+                var option3 = document.createElement("OPTION");
+                option3.setAttribute("value", "Option 3");
+                option3.innerHTML = "Shampoo";
+                yourDropdown.appendChild(option3);
+
+                var option4 = document.createElement("OPTION");
+                option4.setAttribute("value", "Option 4");
+                option4.innerHTML = "Bedsheet";
+                yourDropdown.appendChild(option4);
+
+                var option5 = document.createElement("OPTION");
+                option5.setAttribute("value", "Option 5");
+                option5.innerHTML = "Dental Kit";
+                yourDropdown.appendChild(option5);
+
+                var option6 = document.createElement("OPTION");
+                option6.setAttribute("value", "Option 6");
+                option6.innerHTML = "Hand Towel";
+                yourDropdown.appendChild(option6);
+
+                var option7 = document.createElement("OPTION");
+                option7.setAttribute("value", "Option 7");
+                option7.innerHTML = "Bath Towel";
+                yourDropdown.appendChild(option7);
+
+                var option8 = document.createElement("OPTION");
+                option8.setAttribute("value", "Option 8");
+                option8.innerHTML = "Coffee";
+                yourDropdown.appendChild(option8);
+
+                var option9 = document.createElement("OPTION");
+                option9.setAttribute("value", "Option 9");
+                option9.innerHTML = "Creamer";
+                yourDropdown.appendChild(option9);
+
+                var option10 = document.createElement("OPTION");
+                option10.setAttribute("value", "Option 10");
+                option10.innerHTML = "Hanger";
+                yourDropdown.appendChild(option10);
+
+                var option11 = document.createElement("OPTION");
+                option11.setAttribute("value", "Option 11");
+                option11.innerHTML = "Queen Sheet";
+                yourDropdown.appendChild(option11);
+
+                var option12 = document.createElement("OPTION");
+                option12.setAttribute("value", "Option 12");
+                option12.innerHTML = "Pillows";
+                yourDropdown.appendChild(option12);
+
+                var option13 = document.createElement("OPTION");
+                option13.setAttribute("value", "Option 13");
+                option13.innerHTML = "Pillow Case";
+                yourDropdown.appendChild(option13);
+
+                document.getElementById("ballses").appendChild(yourDropdown);
+            }
+        }
+
+
+
+
+        function pax_on_change() {
+            changeValue();
+        }
+</script>
+        <script>
+            function showTextboxes() {
+// Bind keyup event on the input
+$("input[name='hotelout'], input[name='hotelin']").keyup(function() {
+
+// If value is not empty
+if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() == 0) {
+    // Hide the element
+    $("input[name='housekeeper']").hide();
+    $("label[name='housekeeper']").hide();
+} else {
+    // Otherwise show it
+    $("input[name='housekeeper']").show();
+    $("label[name='housekeeper']").show();
+}
+}).keyup(); // Trigger the keyup event, thus running the handler on page load
+            }
+</script>
+
+
+
+
+    <style>
+        .title {
+            text-transform: uppercase;
+            font-size: 25px;
+            letter-spacing: 2px;
+        }
+
+        .text-color {
+            font-size: 18px;
+            color: #6C6C6C;
+        }
+
+        .cat {
+            color: #000000;
+            text-transform: uppercase;
+        }
+    </style>
+@endsection
+
+@push('js')
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+@endpush

@@ -39,68 +39,39 @@ class PurchaseReportController extends Controller
      */
     public function report(Request $request)
     {
-        
-        $this->validate($request,[
-            'name' => 'required',
-            'description' => 'required',
-            'unit' => 'required',
-            'quantity' => 'required',
-            'stock' => 'required',
-            'suppliername' => 'required'
-           ]);
-    
-           $stocks = new purchasereports;
 
-           $stocks->name = $request->input('name');
-           $stocks->description = $request->input('description');
-           $stocks->suppliername = $request->input('suppliername');
-           $stocks->quantity = $request->input('quantity');
-           $stocks->Stock_Level = $request->input('stock');
-           $stocks->unit = $request->input('unit');
     
-           if($stocks->save())
-            {
-                Alert::Success('Success', 'Stock Successfully Added!');
-            return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-                return redirect('StockCount')->with('Error', 'Failed!');
-            }
     }
+            
+    
 
     public function add(Request $request)
     {
         
-        $this->validate($request,[
-            'name' => 'required',
-            'description' => 'required',
-            'unit' => 'required',
-            'quantity' => 'required',
-            'stock' => 'required',
-            'suppliername' => 'required'
-           ]);
-    
-           $stocks = new purchasereports;
+           $category = $request->category;
+           $pax = $request->room_pax;
+           $unit = $request->unit;
+           $quantity = $request->quantity;
+           $receiver = $request->receiver;
+           $supervisor = $request->supervisor;
 
-           $stocks->name = $request->input('name');
-           $stocks->description = $request->input('description');
-           $stocks->suppliername = $request->input('suppliername');
-           $stocks->quantity = $request->input('quantity');
-           $stocks->Stock_Level = $request->input('stock');
-           $stocks->unit = $request->input('unit');
+
+           for($i=1;$i<count($pax);$i++){
+            $datasave=[
+                'category' => $category[$i],
+            'pax' => $pax[$i],
+            'unit' => $unit[$i],
+            'quantity' => $quantity[$i],
+            'receiver' => $receiver[$i],
+            'supervisor' => $supervisor[$i],
+            ];
+
+            DB::table('purchasereports')->insert($datasave);
+        }
+            return redirect()->back();
+           
     
-           if($stocks->save())
-            {
-                Alert::Success('Success', 'Stock Successfully Added!');
-            return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-                return redirect('StockCount')->with('Error', 'Failed!');
-            }
+        }
     }
 
     /**
@@ -109,77 +80,5 @@ class PurchaseReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit_report(Request $request)
-    {
-        //
-        try {
-            $this->validate($request,[
-                'productid' => 'required',
-                'name' => 'required',
-                'description' => 'required',
-                'unit' => 'required',
-                'quantity' => 'required',
-                'suppliername' => 'required'
-            ]);
-        
-            $productid = $request->input('productid');
-            $name = $request->input('name');
-           $description = $request->input('description');
-           $suppliername = $request->input('suppliername');
-           $quantity = $request->input('quantity');
-           $unit = $request->input('unit');
-    
-           DB::table('purchasereports')->where('productid', $productid)->update(array
-            (
-                'productid' => $productid,
-                'name' => $name,
-                'description' => $description,
-                'unit' => $unit,
-                'quantity' => $quantity,
-                'suppliername' => $suppliername
-            ));
-    
-           Alert::Success('Success', 'Report Successfully Updated!');
-           return redirect('StockPurchaseReport')->with('Success', 'Data Saved');
-        }
-        catch(\Illuminate\Database\QueryException $e)
-        {
-            Alert::Error('Failed', 'Stock Edit Failed!, Please try again.');
-            return redirect('StockCount')->with('Failed', 'Data not Updated');
-        }
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-}

@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('purchasereports', function (Blueprint $table) {
-            $table->id('productid');
-            $table->string('name');
-            $table->string('suppliername');
-            $table->text('description');
+            $table->id('reqid');
+            $table->string('category');
+            $table->string('pax');
+            $table->string('unit');
+            $table->string('receiver');
+            $table->string('supervisor');
 
-            $table->integer('unit');
             $table->integer('quantity');
 
-            $table->timestamp('date');
             $table->timestamps();
         });
     }

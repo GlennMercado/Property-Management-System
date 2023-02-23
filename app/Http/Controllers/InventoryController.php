@@ -97,16 +97,15 @@ class InventoryController extends Controller
                 'quantity' => 'required',
                 'in' => 'required',
                 'out' => 'required',
-                'category' => 'required'
+                'category' => 'required',
             ]);
             
             $productid = $request->input('productid');
             $name = $request->input('name');
             $description = $request->input('description');
             $total = $request->input('quantity');
-            $in = $request->input('in');
-            $out = $request->input('out');
-            $category = $request->input('category');
+            $in = $request->input('hotelin');
+            $out = $request->input('hotelout');
 
             if($in > 0)
             {
