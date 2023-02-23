@@ -225,7 +225,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label class="text-left text-color">Category : </label>
-                                                        <input class="form-control mt-1" type="text" name="name"
+                                                        <input class="form-control mt-1" type="text" name="category[]"
                                                             placeholder="Enter Here.." required>
                                                     </div>
                                                 </div>
@@ -245,21 +245,21 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label class="text-left pt-4 text-color">Unit :</label>
-                                                        <div class="col" id="ballses">
+                                                        <div class="col" id="ballses" name="unit[]">
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <label class="text-left pt-4 text-color">Quantity </label>
-                                                        <div class="col" id="balls">
+                                                        <div class="col" id="balls" name="quantity[]">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <label class="text-left pt-4 text-color">Receiver : </label>
                                                 <input class="form-control mt-2" type="text"
-                                                    placeholder="Enter Here.." name="quantity" required>
+                                                    placeholder="Enter Here.." name="receiver[]" required>
                                                 <label class="text-left pt-4 text-color">Supervisor Dept. : </label>
                                                 <input class="form-control mt-2" type="text"
-                                                    placeholder="Enter Here.." name="quantity" required>
+                                                    placeholder="Enter Here.." name="supervisor[]" required>
                                             </div>
 
                                         </div>
@@ -293,6 +293,7 @@
                     for (i = 0; i < textboxNumbers; i++) {
                         var yourTextboxes = document.createElement("INPUT");
                         yourTextboxes.setAttribute("type", "text");
+                        yourTextboxes.setAttribute("name", "quantity[]");
                         yourTextboxes.classList.add("form-control");
                         yourTextboxes.setAttribute("placeholder", "Enter Here");
                         document.getElementById("balls").appendChild(yourTextboxes);
@@ -303,6 +304,7 @@
 
                     for (i = 0; i < dropdowns; i++) {
                         var yourDropdown = document.createElement("SELECT");
+                        yourDropdown.setAttribute("name", "unit[]");
                         yourDropdown.classList.add("form-control");
 
                         var option1 = document.createElement("OPTION");

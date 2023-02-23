@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\hotelstocks;
+use App\Models\stockhistories;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -98,6 +99,7 @@ class InventoryController extends Controller
                 'in' => 'required',
                 'out' => 'required',
                 'category' => 'required',
+                'housekeeper' => 'required'
             ]);
             
             $productid = $request->input('productid');
@@ -106,19 +108,30 @@ class InventoryController extends Controller
             $total = $request->input('quantity');
             $in = $request->input('hotelin');
             $out = $request->input('hotelout');
+            $housekeeper = $request->input('housekeeper');
+            $add = new stockhistories;
 
             if($in > 0)
             {
                 $total = $total + $in;
+                $category = "Hotel";
+                $movement = "StockIn";
+
             }
 
             if($out > 0)
             {
                 $total = $total - $out;
+                $category = "Hotel";
+                $movement = "StockOut";
             }
            
-            // $sum = ($total = $request->input('quantity') + $in = $request->input('in'));
-            //$sub = ($total = $request->input('quantity') - $out = $request->input('out'));
+            $add->category = $request->input($category);
+            $add->name = $request->input($name);
+             $add->movement = $request->input($movement);
+                $add->quantity = $request->input($total);
+                $add->housekeeper = $request->input($housekeeper);
+                $add->save;
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (
@@ -128,9 +141,11 @@ class InventoryController extends Controller
                 'total' => $total,
                 'category' => $category
             ));
+
     
            Alert::Success('Success', 'Stock Successfully Updated!');
            return redirect('StockAvailability')->with('Success', 'Data Updated');
+
           
         }
         catch(\Illuminate\Database\QueryException $e)

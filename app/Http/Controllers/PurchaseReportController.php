@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\purchasereports;
-use App\Models\reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -55,15 +54,14 @@ class PurchaseReportController extends Controller
            $receiver = $request->receiver;
            $supervisor = $request->supervisor;
 
-
-           for($i=1;$i<count($pax);$i++){
+           for($i=0;$i<count($unit);$i++){
             $datasave=[
                 'category' => $category[$i],
             'pax' => $pax[$i],
             'unit' => $unit[$i],
             'quantity' => $quantity[$i],
             'receiver' => $receiver[$i],
-            'supervisor' => $supervisor[$i],
+            'supervisor' => $supervisor[$i]
             ];
 
             DB::table('purchasereports')->insert($datasave);
