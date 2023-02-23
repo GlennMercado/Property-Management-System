@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="card shadow mb-2" style="min-width: 350px;">
                                     <div class="card-header">
-                                        <span>Concern: {{ $list->concern }}</span>
+                                        <span>{{ $list->concern }}</span>
                                         <div class="d-flex justify-content-end mt--4">
                                             <a href="#" data-toggle="modal" data-target="#modal-notification"
                                                 style="color:black"><span aria-hidden="true">×</span>

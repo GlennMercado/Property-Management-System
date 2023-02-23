@@ -34,7 +34,7 @@
                                     <p>Contact Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots" name="contact_no"
-                                        class="form-control" placeholder="Enter contact no." required>
+                                        class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>
                             <div class="row ">
@@ -47,7 +47,7 @@
                                     <p>Contact Person Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
-                                        name="contact_person_no" class="form-control" placeholder="Enter contact no."
+                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
                                         required>
                                 </div>
                             </div>
