@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
 use App\Models\convention_center_application;
 use App\Models\commercial_spaces_application;
+use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,7 +72,30 @@ class GuestController extends Controller
     {
         return view('Guest.event_form');
     }
-    
+    public function complaints(){
+        return view('Guest.complaints');
+    }
+    public function complaints_submit(Request $request){
+        $this->validate($request,[
+            'concern' => 'required',
+            'concern_text' => 'required',
+        ]);
+        
+        $submit = new complaints;
+        $submit->concern = $request->input('concern');
+        $submit->concern_text = $request->input('concern_text');
+
+        if($submit->save())
+        {
+            Alert::Success('Success', 'Complaint was sent successfully submitted!');
+            return redirect('/complaints')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Complaint was not sent');
+            return redirect('/complaints')->with('Error', 'Failed!');
+        }
+    }
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;
