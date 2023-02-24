@@ -6,110 +6,218 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
-        <p class="mx-auto pt-6 text-uppercase title" id="section1">Reserve Now</p>
         <div class="card-body">
-            <div class="container">
-                <h1>Hotel Reservation form</h1>
-                <h5>Please complete the form below</h5>
-                <hr class="">
-                <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
-                    enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="row">
-                        <div class="col-md-6 pt-4">
-                            <p>Guest Name <span class="text-danger">*</span></p>
-                            <!-- <i class="bi bi-asterisk" style="color:red; font-size:7px;"></i> -->
-                            @foreach ($guest as $guests)
-                                <input type="hidden" name="gName" value="{{ $guests->name }}" />
-                                <input class="form-control" type="text" name="gName" value="{{ $guests->name }}"
-                                    readonly>
-                            @endforeach
-                        </div>
-                        <div class="col-md-6 pt-4">
-                            <p>Email <span class="text-danger">*</span></p>
-                            @foreach ($guest as $guests)
-                                <input class="form-control" type="text" value="{{ $guests->email }}" readonly>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-md pt-4">
-                            <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
-                            <input class="form-control" type="number" minlength="11" maxlength="11" name="mobile"
-                                min="0" oninput="this.value = Math.abs(this.value)" required>
+            <div class="container bg-white mt-1" id="conventionCenter">
+                <div class="row d-flex flex-row-reverse">
+                    <div class="col-md-4 p-3 ml-2 d-flex justify-content-center">
+                        <div class="lightbox-gallery">
+                            <div class="container shadow">
+                                <div class="row gal">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 item"><a
+                                            href="{{ asset('nvdcpics') }}/hotel2.jpg" data-lightbox="photos"><img
+                                                class="img-fluid mt-3" src="{{ asset('nvdcpics') }}/hotel2.jpg"></a>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 item pt-2"><a
+                                            href="{{ asset('nvdcpics') }}/hotel3.jpg" data-lightbox="photos"><img
+                                                class="img-fluid d-none d-md-block"
+                                                src="{{ asset('nvdcpics') }}/hotel3.jpg"></a>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 item pt-2"><a
+                                            href="{{ asset('nvdcpics') }}/hotel4.jpg" data-lightbox="photos"><img
+                                                class="img-fluid d-none d-md-block"
+                                                src="{{ asset('nvdcpics') }}/hotel4.jpg"></a>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 item pt-2"><a
+                                            href="{{ asset('nvdcpics') }}/hotel5.jpg" data-lightbox="photos"><img
+                                                class="img-fluid d-none d-md-block"
+                                                src="{{ asset('nvdcpics') }}/hotel5.jpg"></a>
+                                    </div>
 
-                            <div id="balls"></div>
-
-                        </div>
-
-                        <div class="col-md pt-4">
-                            <p>Room No <span class="text-danger">*</span></p>
-                            <select name="room_no" class="form-control" required>
-                                <option selected disabled value="">Select</option>
-                                @foreach ($room as $rooms)
-                                    @if ($rooms->Status == 'Vacant for Accommodation')
-                                        <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
-                                            {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-md">
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md pt-4">
-                            <p>Check in Date/Time <span class="text-danger">*</span></p>
-                            <input class="form-control chck" name="checkIn" type="date" onkeydown="return false"
-                                id="example-datetime-local-input" required />
-                        </div>
-                        <div class="col-md pt-4">
-                            <p>Check out Date/Time <span class="text-danger">*</span></p>
-                            <input class="form-control chck" name="checkOut" type="date" onkeydown="return false"
-                                id="example-datetime-local-input" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md pt-4">
-                            <p class="form-label">Number of pax <span class="text-danger">*</span></p>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-success dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false" style="width:250px;">
-                                    Select
-                                </button>
-
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <div class="container">
-                                        <div id="input1">
-                                            <label for="field1" class="pt-2">Adult:</label>
-                                            <input type="number" class="form-control" value="0" id="mytextbox"
-                                                min="0" required>
-                                        </div>
-                                        <div id="input2">
-                                            <label for="field1" class="pt-2">Child:</label>
-                                            <input type="number" class="form-control" id="field2" value="0"
-                                                min="0" required>
-                                        </div>
-                                        <div id="input3">
-                                            <label for="field1" class="pt-2">Infant:</label>
-                                            <input type="number" class="form-control" id="field3" value="0"
-                                                min="0" required>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Done</button>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                        </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h2 class="text-success">₱ 2,500</h2>
+                                    <h3 class="font-weight-bold">testing</h3>
+                                    <p class="text-sm">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
+                                    </p>
+                                    <h3 class="pt-4 text-muted pb-2">
+                                        Additional ₱ 1,500/pax
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="container shadow">
+                                <h3 class="pt-2">Other rooms</h3>
+                                <div class="row gal">
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel3.jpg">
+                                        <h3 class="text-success font-weight-bold mt-1">₱ 2,500</h3>
+                                        <h4 class="font-weight-bold">testing</h4>
+                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel4.jpg">
+                                        <h3 class="text-success font-weight-bold mt-1">₱ 3,500</h3>
+                                        <h4 class="font-weight-bold">testing</h4>
+                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
                                     </div>
                                 </div>
+                                <div class="row gal">
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel5.jpg">
+                                        <h3 class="text-success font-weight-bold mt-1">₱ 5,500</h3>
+                                        <h4 class="font-weight-bold">testing</h4>
+                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel6.jpg">
+                                        <h3 class="text-success font-weight-bold mt-1">₱ 5,500</h3>
+                                        <h4 class="font-weight-bold">testing</h4>
+                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="text-dark justify-content-end text-sm"style="text-decoration:underline; cursor:pointer;">See all</a>
+                            </div>
+                            {{-- <div class="row gal">
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel6.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel6.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel7.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel7.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel8.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel8.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel9.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel9.jpg"></a></div>
+                                    </div>
+                                    <div class="row gal">
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel10.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel10.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel11.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel11.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel12.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel12.jpg"></a></div>
+                                        <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
+                                                href="{{ asset('nvdcpics') }}/hotel1.jpg" data-lightbox="photos"><img
+                                                    class="img-fluid" src="{{ asset('nvdcpics') }}/hotel1.jpg"></a></div>
+                                    </div> --}}
+                            {{-- <div class = "pt-4">
+                                        <p>Welcome to the luxurious and comfortable world of our hotel!</p>
+                                        <p>Located in the heart of the city, our hotel offers the perfect 
+                                            combination of style, comfort, and convenience. With our impeccable 
+                                            service and world-class amenities, we guarantee an unforgettable stay.</p>
+                                            <p>Additional Php 1,500 per pax</p>
+                                            <p class = "text-dark">Sub total</p>
+                                            <input type="text" class = "form-control">
+                                    </div> --}}
+                        </div>
+                    </div>
+                    <div class="col-md-7 shadow p-3 mb-5">
+                        <h1>Hotel Reservation form</h1>
+                        <h5>Please complete the form below</h5>
+                        <hr class="">
+                        <form action="{{ url('/guest_reservation') }}" class="prevent_submit" method="POST"
+                            enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-md-6 pt-4">
+                                    <p>Guest Name <span class="text-danger">*</span></p>
+                                    <!-- <i class="bi bi-asterisk" style="color:red; font-size:7px;"></i> -->
+                                    @foreach ($guest as $guests)
+                                        <input type="hidden" name="gName" value="{{ $guests->name }}" />
+                                        <input class="form-control" type="text" name="gName"
+                                            value="{{ $guests->name }}" readonly>
+                                    @endforeach
+                                </div>
+                                <div class="col-md-6 pt-4">
+                                    <p>Email <span class="text-danger">*</span></p>
+                                    @foreach ($guest as $guests)
+                                        <input class="form-control" type="text" value="{{ $guests->email }}" readonly>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md pt-4">
+                                    <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
+                                    <input class="form-control" type="number" minlength="11" maxlength="11" name="mobile"
+                                        min="0" oninput="this.value = Math.abs(this.value)" required>
 
-                                {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div id="balls"></div>
+
+                                </div>
+
+                                <div class="col-md pt-4">
+                                    <p>Room No <span class="text-danger">*</span></p>
+                                    <select name="room_no" class="form-control" required>
+                                        <option selected disabled value="">Select</option>
+                                        @foreach ($room as $rooms)
+                                            @if ($rooms->Status == 'Vacant for Accommodation')
+                                                <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
+                                                    {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md">
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md pt-4">
+                                    <p>Check in Date/Time <span class="text-danger">*</span></p>
+                                    <input class="form-control chck" name="checkIn" type="date"
+                                        onkeydown="return false" id="example-datetime-local-input" required />
+                                </div>
+                                <div class="col-md pt-4">
+                                    <p>Check out Date/Time <span class="text-danger">*</span></p>
+                                    <input class="form-control chck" name="checkOut" type="date"
+                                        onkeydown="return false" id="example-datetime-local-input" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md pt-4">
+                                    <p class="form-label">Number of pax <span class="text-danger">*</span></p>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-success dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" style="width:250px;">
+                                            Select
+                                        </button>
+
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div class="container">
+                                                <div id="input1">
+                                                    <label for="field1" class="pt-2">Adult:</label>
+                                                    <input type="number" class="form-control" value="0"
+                                                        id="mytextbox" min="0" required>
+                                                </div>
+                                                <div id="input2">
+                                                    <label for="field1" class="pt-2">Child:</label>
+                                                    <input type="number" class="form-control" id="field2"
+                                                        value="0" min="0" required>
+                                                </div>
+                                                <div id="input3">
+                                                    <label for="field1" class="pt-2">Infant:</label>
+                                                    <input type="number" class="form-control" id="field3"
+                                                        value="0" min="0" required>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Done</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <div class="container">
                                         <div id="input1">
                                             <label for="field1" class="pt-2">Adult:</label>
@@ -133,11 +241,11 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                            </div>
+                                    </div>
 
-                            {{-- code for pax count --}}
+                                    {{-- code for pax count --}}
 
-                            {{-- <select name="pax" id="textboxes" class="form-control" id="pax_num"
+                                    {{-- <select name="pax" id="textboxes" class="form-control" id="pax_num"
                                 onchange="pax_on_change()" required>
                                 <option selected disabled value="">Select</option>
                                 @for ($count = 1; $count <= 4; $count++)
@@ -145,98 +253,112 @@
                                         {{ $count }}</option>
                                 @endfor
                             </select> --}}
-                        </div>
-                    </div>
-                    <div class="row pt-4">
-                        <div class="col-md">
-                            <div class="form-check form-check-input">
-                                <input type="checkbox" id="mainCheckbox">
-                                <label for="mainCheckbox">Make this booking for someone else?</label>
-                                <br><br>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="pt-6">Guest Information</h3>
-
-                    <div class="row">
-                        <div class="col-md">
-                            <p>Full Name</p>
-                            <input type="text" id="textbox1" class="form-control" disabled>
-                        </div>
-                    </div>
-                    <h2 class="pt-4">Do you have any special request?</h2>
-                    <h5>Extras</h5>
-                    <div class="row">
-                        <div class="col-md  pt-4">
-                            <p>Pillow</p>
-                            <input type="number" class="form-control" min="0" max="5" value="0">
-                        </div>
-                        <div class="col-md  pt-4">
-                            <p>Towel</p>
-                            <input type="number" class="form-control" min="0" max="5" value="0">
-                        </div>
-                        <div class="col-md  pt-4">
-                            <p>Mattress</p>
-                            <input type="number" class="form-control" min="0" max="5" value="0">
-                        </div>
-                    </div>
-                    <p class="pt-4 txt">Price: </p>
-                    <input class="form-control" id="room_price" readonly>
-                    <p>Additional P1,500.00/pax</p>
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="custom-control custom-control-alternative custom-checkbox">
-                                <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-                                <label class="custom-control-label" for="customCheckRegister">
-                                    <span class="text-muted">{{ __('Agree to') }} <a href="#ModalPrivacyPolicy"
-                                            data-toggle="modal" data-target="#ModalTerms">Terms & Conditions</a></span>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Modal > Privacy Policy -->
-                    <div class="modal fade" id="ModalTerms" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLongTitle">TERMS AND CONDITIONS</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                 </div>
-                                <div class="modal-body">
-                                    <p style="text-align: justify;">
-
-                                    <h2 style="text-align: center;"><b></b></h2>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="row pt-4">
+                                <div class="col-md">
+                                    <div class="form-check form-check-input">
+                                        <input type="checkbox" id="mainCheckbox">
+                                        <label for="mainCheckbox">Make this booking for someone else?</label>
+                                        <br><br>
+                                        {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Make this booking for someone else?
+                                    </label>  --}}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col d-flex justify-content-center">
-                            <input type="submit"
-                                class="mx-auto d-flex justify-content-center btn btn-outline-success prevent_submit mt-2"
-                                value="Submit" style="width:40%;" data-toggle="modal" data-target="#submit" />
-                        </div>
-                    </div>
-                    <div>
 
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-                        <div>
-                        </div>
+                            <h3 class="pt-6">Guest Information</h3>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <p>Full Name</p>
+                                    <input type="text" id="textbox1" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <h2 class="pt-4">Do you have any special request?</h2>
+                            <h5>Extras</h5>
+                            <div class="row">
+                                <div class="col-md  pt-4">
+                                    <p>Pillow</p>
+                                    <input type="number" class="form-control" min="0" max="5"
+                                        value="0">
+                                </div>
+                                <div class="col-md  pt-4">
+                                    <p>Towel</p>
+                                    <input type="number" class="form-control" min="0" max="5"
+                                        value="0">
+                                </div>
+                                <div class="col-md  pt-4">
+                                    <p>Mattress</p>
+                                    <input type="number" class="form-control" min="0" max="5"
+                                        value="0">
+                                </div>
+                            </div>
+                            <p class="pt-4 txt">Price: </p>
+                            <input class="form-control" id="room_price" readonly>
+                            <p>Additional P1,500.00/pax</p>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="custom-control custom-control-alternative custom-checkbox">
+                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox"
+                                            required>
+                                        <label class="custom-control-label" for="customCheckRegister">
+                                            <span class="text-muted">{{ __('Agree to') }} <a href="#ModalPrivacyPolicy"
+                                                    data-toggle="modal" data-target="#ModalTerms">Terms &
+                                                    Conditions</a></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Modal > Privacy Policy -->
+                            <div class="modal fade" id="ModalTerms" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title" id="exampleModalLongTitle">TERMS AND CONDITIONS</h2>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p style="text-align: justify;">
+
+                                            <h2 style="text-align: center;"><b></b></h2>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <input type="submit"
+                                        class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt-2"
+                                        value="Submit" style="width:40%;" data-toggle="modal" data-target="#submit" />
+                                </div>
+                            </div>
+                            <div>
+
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+                                <div>
+                                </div>
+                            </div>
                     </div>
 
-                    {{-- modal submit --}}
-                    {{-- WAG TATANGGALIN --}}
-                    {{-- <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                </div>
+
+                {{-- modal submit --}}
+                {{-- WAG TATANGGALIN --}}
+                {{-- <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
@@ -319,204 +441,58 @@
                                         </div>
                                     </div>
                                     </div> --}}
-                    <div class="row mt-4">
-                        <div class="col">
+                <div class="row mt-4">
+                    <div class="col">
 
 
 
-                            <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
-        <div class = "qrsample mx-auto d-flex justify-content-center">
-        <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
-        </div>
-        <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
-        <p class = "d-flex justify-content-center">xxxxxxxx098</p>
-        <div class="mb-3 d-flex justify-content-center">
-        <label for="formFile" class="form-label"></label>
-        <input class="form-control w-50" type="file" id="formFile">
-        </div>
-        </div>
-        </div>
-        <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
-        free of charge. If within (3) calendar days, guests will be charged of the total
-        price. Refund, In case of guaranteed reservation, is payable through check issuance
-        <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-        </p> -->
-
-                        </div>
-                </form>
-            </div>
-            <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content mx-auto d-flex justify-content-center">
-                        <div class="modal-header">
-                            <h2>Company Policy</h2>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                        <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
+                                                            <div class = "qrsample mx-auto d-flex justify-content-center">
+                                                            <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
+                                                            </div>
+                                                            <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
+                                                            <p class = "d-flex justify-content-center">xxxxxxxx098</p>
+                                                            <div class="mb-3 d-flex justify-content-center">
+                                                            <label for="formFile" class="form-label"></label>
+                                                            <input class="form-control w-50" type="file" id="formFile">
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
+                                                            free of charge. If within (3) calendar days, guests will be charged of the total
+                                                            price. Refund, In case of guaranteed reservation, is payable through check issuance
+                                                            <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
+                                                            </p> -->
 
                     </div>
+                    </form>
                 </div>
-            </div>
+                <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content mx-auto d-flex justify-content-center">
+                            <div class="modal-header">
+                                <h2>Company Policy</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
-
-            <!-- section1 -->
-            <!-- section2 suite -->
-
-            {{-- <p class="d-flex justify-content-center text-uppercase title pt-6">Suites</p>
-            <div class="image-grid">
-                <img class="image-grid-col-2 image-grid-row-2" src="{{ asset('nvdcpics') }}/hotel1.JPG"
-                    data-toggle="lightbox" data-gallery="example-gallery">
-                <img class="" src="{{ asset('nvdcpics') }}/hotel2.jpg">
-                <img class="" src="{{ asset('nvdcpics') }}/hotel3.jpg">
-                <img class="" src="{{ asset('nvdcpics') }}/hotel4.jpg">
-                <img class="" src="{{ asset('nvdcpics') }}/hotel5.jpg">
-                <img class="" src="{{ asset('nvdcpics') }}/hotel6.jpg">
-                <img class="seventh" data-toggle="modal" data-target="#exampleModalCenter"
-                    src="{{ asset('nvdcpics') }}/hotel7.JPG">
-            </div> --}}
-
-            <div class="lightbox-gallery pt-8">
-                <div class="container">
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="{{ asset('nvdcpics') }}/hotel2.jpg"
-                                    data-lightbox="photos"><img class="img-fluid"
-                                        src="{{ asset('nvdcpics') }}/hotel2.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="{{ asset('nvdcpics') }}/hotel3.jpg"
-                                    data-lightbox="photos"><img class="img-fluid"
-                                        src="{{ asset('nvdcpics') }}/hotel3.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="{{ asset('nvdcpics') }}/hotel4.jpg"
-                                    data-lightbox="photos"><img class="img-fluid"
-                                        src="{{ asset('nvdcpics') }}/hotel4.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="{{ asset('nvdcpics') }}/hotel5.jpg"
-                                    data-lightbox="photos"><img class="img-fluid"
-                                        src="{{ asset('nvdcpics') }}/hotel5.jpg"></a></div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel6.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel6.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel7.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel7.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel8.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel8.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel9.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel9.jpg"></a></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel10.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel10.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel11.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel11.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel12.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel12.jpg"></a></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
-                                    href="{{ asset('nvdcpics') }}/hotel1.jpg" data-lightbox="photos"><img
-                                        class="img-fluid" src="{{ asset('nvdcpics') }}/hotel1.jpg"></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="user-select-none centered" data-toggle="modal" data-target="#exampleModalCenter">+7 Photos</div> -->
-            <!-- section 3 -->
-            <!-- <p class="text-center text-uppercase lg mt-4 title animated fadeIn title">About our Suites</p> -->
-
-            <div class="row pt-8">
-                <div class="col">
-                    <h3 class="txt">Description</h3>
-                    <p>Our Superior Double Room offers comfort and style. The room features a comfortable double bed, a
-                        flat-screen TV, a seating area, and a private bathroom with a rain shower. Guests can also enjoy
-                        the hotel's garden views from the room's private balcony.</p>
-                    <p>The Executive Suite is ideal for business travelers. The suite features a king-sized bed, a
-                        separate living area with a comfortable sofa and armchair, a work desk, and a private balcony
-                        with city views. Guests also have access to the Executive Lounge, where they can enjoy
-                        complimentary breakfast and evening drinks.</p>
-                </div>
-                <div class="col">
-                    <div class="card" style="width: 100%;  background-color: #D7D7D7;">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <p
-                                class="card-title d-flex justify-content-center uppercase text-uppercase font-weight-bold title">
-                                Room
-                                Highlights</p>
-                            <p class="card-text">Highly rated by recent guests</p>
-                            <p class="card-text">Clean, comfortable and quiet</p>
-                            <a href="#section1" class="btn btn-success d-flex justify-content-center">Reserve Now</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div>
-                {{-- <h1 class="pt-4 txt">House Rules</h1>
-                <div class="row">
-                    <div class="col">
-                        <h2 class="pt-4 txt"><i class="bi bi-slash-circle mr-2" style="color:red;"></i>No Smoking</h2>
-                    </div>
-                    <div class="col">
-                        <p class="pt-4 txt">Smoking is not allowed in any of the guest rooms or common areas of the hotel.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col txt">
-                        <h2><i class="bi bi-alarm mr-2" style="color:#411CAD;"></i>Quiet hours:</h2>
-                    </div>
-                    <div class="col">
-                        <p>Guests are asked to keep noise to a minimum between the hours of 10pm and 8am to
-                            respect the comfort of other guests.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col txt">
-                        <h2><i class="bi bi-p-circle mr-2" style="color:#1558A1;"></i>Parking:</h2>
-                    </div>
-                    <div class="col">
-                        <p>Parking is available for guests, but may be subject to additional charges.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col txt">
-                        <h2><i class="bi bi-exclamation-lg mr-2" style="color:red;"></i>Damages:</h2>
-                    </div>
-                    <div class="col txt">
-                        <p>Guests will be held responsible for any damages caused to the room or hotel property.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col txt">
-                        <h2><i class="bi bi-key-fill mr-2" style="color:#F9CF00"></i>Room keys:</h2>
-                    </div>
-                    <div class="col">
-                        <p>Guests are responsible for ensuring the security of their room key and will be charged for a
-                            replacement if it is not returned upon check-out.</p>
-                    </div>
-                </div> --}}
-                <!-- section 3 -->
-
+        </div>
+        <!-- Information -->
+        <div class="container">
+            <div class="wrapper">
+                <!-- <h1>Information</h1> -->
             </div>
         </div>
-    </div>
-    <!-- Information -->
-    <div class="container">
-        <div class="wrapper">
-            <!-- <h1>Information</h1> -->
-        </div>
-    </div>
 
-    <!-- Modal at 7th pic-->
-    {{-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        <!-- Modal at 7th pic-->
+        {{-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -594,336 +570,299 @@
     </div> --}}
 
 
-    <!-- scroll-top button -->
-    <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
-    <style>
-        body {
-            margin: 0;
-        }
+        <!-- scroll-top button -->
+        <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
+        <style>
+            .gal img:hover {
+                transform: scale(1.01);
+            }
 
-        input[type="text"] {
-            margin-top: 10px;
-        }
+            body {
+                margin: 0;
+            }
 
-        /* divider */
-        .parent-container {
-            display: flex;
-            flex-direction: row;
-            /* 100% of the viewport width */
-        }
+            input[type="text"] {
+                margin-top: 10px;
+            }
 
-        .child-container {
-            flex: 1;
-            /* to make each child container take equal space */
+            /* divider */
+            .parent-container {
+                display: flex;
+                flex-direction: row;
+                /* 100% of the viewport width */
+            }
 
-        }
+            .child-container {
+                flex: 1;
+                /* to make each child container take equal space */
 
-        .image-grid {
-            --gap: 14px;
-            --num-cols: 4;
-            --row-height: 200px;
+            }
 
-            box-sizing: border-box;
-            padding: var(--gap);
-
-            display: grid;
-            grid-template-columns: repeat(var(--num-cols), 1fr);
-            grid-auto-rows: var(--row-height);
-            gap: var(--gap);
-        }
-
-        .image-grid>img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-grid-col-2 {
-            grid-column: span 3;
-        }
-
-        .image-grid-row-2 {
-            grid-row: span 2;
-        }
-
-        /* Anything udner 1024px */
-        @media screen and (max-width: 600px) {
             .image-grid {
-                --num-cols: 1;
+                --gap: 14px;
+                --num-cols: 4;
                 --row-height: 200px;
+
+                box-sizing: border-box;
+                padding: var(--gap);
+
+                display: grid;
+                grid-template-columns: repeat(var(--num-cols), 1fr);
+                grid-auto-rows: var(--row-height);
+                gap: var(--gap);
+            }
+
+            .image-grid>img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .image-grid-col-2 {
+                grid-column: span 3;
+            }
+
+            .image-grid-row-2 {
+                grid-row: span 2;
+            }
+
+            /* Anything udner 1024px */
+            @media screen and (max-width: 600px) {
+                .image-grid {
+                    --num-cols: 1;
+                    --row-height: 200px;
+                }
+
+                .centered {
+                    position: absolute;
+                    font-size: 10px;
+                }
             }
 
             .centered {
                 position: absolute;
-                font-size: 10px;
+                font-weight: bold;
+                font-size: 30px;
+                text-decoration: underline;
+                color: white;
+                top: 30%;
+                left: 86%;
+                transform: translate(-50%, -50%);
+                cursor: pointer;
             }
-        }
 
-        .centered {
-            position: absolute;
-            font-weight: bold;
-            font-size: 30px;
-            text-decoration: underline;
-            color: white;
-            top: 30%;
-            left: 86%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-        }
+            .seventh {
+                filter: brightness(0.25);
 
-        .seventh {
-            filter: brightness(0.25);
-
-        }
-
-        /* Information */
-        .container {}
-
-        p {
-            font-family: montserrat;
-            text-align: justify;
-            font-size: 18px;
-        }
-
-        .txt {
-            font-family: montserrat;
-
-        }
-
-        .title {
-            letter-spacing: 1px;
-            font-size: 30px;
-        }
-
-        .scrl {
-            scroll-behavior: smooth;
-        }
-
-        .animate__animated {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-
-        .parent {
-            display: flex;
-            justify-content: center;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        hr {
-            border: 2px solid #30bc6c;
-            display: flex;
-        }
-
-        .qrsample {
-            height: 100px;
-            width: 100px;
-        }
-
-        /* scroll to top arrow */
-        /* #myBtn {
-                                                            display: none;
-                                                            position: fixed;
-                                                            bottom: 20px;
-                                                            right: 30px;
-                                                            z-index: 99;
-                                                            font-size: 18px;
-                                                            border: none;
-                                                            outline: none;
-                                                            background-color: #484848;
-                                                            color: white;
-                                                            cursor: pointer;
-                                                            padding: 15px;
-                                                            border-radius: 4px;
-                                                            opacity: 0.5;
-                                                            }
-
-                                                            #myBtn:hover {
-                                                            background-color: #555;
-                                                            } */
-        /* .centered {
-                                                        font-size:30px;
-                                                        position: absolute;
-                                                        bottom: 410px;
-                                                        right: 200px;
-                                                        color:white;
-                                                        -webkit-text-stroke-width: 1px;
-                                                        -webkit-text-stroke-color: black;
-                                                    } */
-        input[type="text"].disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        input[type="checkbox"]:checked~input[type="text"].disabled {
-            pointer-events: auto;
-            opacity: 1;
-        }
-    </style>
-    <script>
-        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
-            var dateToday = new Date();
-            var month = dateToday.getMonth() + 1;
-            var day = dateToday.getDate();
-            var year = dateToday.getFullYear();
-
-            if (month < 10)
-                month = '0' + month.toString();
-            if (day < 10)
-                day = '0' + day.toString();
-
-            var maxDate = year + '-' + month + '-' + day;
-
-            $('.chck').attr('min', maxDate);
-        });
-        $('.prevent_submit').on('submit', function() {
-            $('.prevent_submit').attr('disabled', 'true');
-        });
-
-        function price_count() {
-            var pax_num = document.getElementById("pax_num");
-            var room_price = document.getElementById("room_price");
-            if (pax_num.value == 1) {
-                room_price.value = "P2,500.00";
-            } else if (pax_num.value == 2) {
-                room_price.value = "P4,000.00";
-            } else if (pax_num.value == 3) {
-                room_price.value = "P5,500.00";
-            } else if (pax_num.value == 4) {
-                room_price.value = "P6,500.00";
             }
-        }
 
-        // code for scroll-top button
-        // let mybutton = document.getElementById("myBtn");
-        // window.onscroll = function() {scrollFunction()};
+            /* Information */
+            .container {}
 
-        // function scrollFunction() {
-        // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        //     mybutton.style.display = "block";
-        // } else {
-        //     mybutton.style.display = "none";
-        // }
-        // }
-        // function topFunction() {
-        // document.body.scrollTop = 0;
-        // document.documentElement.scrollTop = 0;
-        // }
-
-        //         document.getElementById("checkbox").addEventListener("change", function() {
-        //     var textboxes = document.getElementsByClassName("textbox");
-        //     for (var i = 0; i < textboxes.length; i++) {
-        //         textboxes[i].disabled = !this.checked;
-        //     }
-        // });
-
-        document.getElementById("mainCheckbox").addEventListener("change", function() {
-            // document.getElementById("checkbox1").disabled = !this.checked;
-            // document.getElementById("checkbox2").disabled = !this.checked;
-            // document.getElementById("checkbox3").disabled = !this.checked;
-            // document.getElementById("checkbox4").disabled = !this.checked;
-            document.getElementById("textbox1").disabled = !this.checked;
-
-        });
-
-        function changeValue() {
-            var textboxNumbers = document.getElementById("textboxes").value;
-            balls.innerHTML = '';
-            var i;
-
-            for (i = 0; i < textboxNumbers; i++) {
-                var yourTextboxes = document.createElement("INPUT");
-                yourTextboxes.setAttribute("type", "text");
-                yourTextboxes.classList.add("form-control");
-                yourTextboxes.setAttribute("placeholder", "Enter Name Here");
-                document.getElementById("balls").appendChild(yourTextboxes);
+            p {
+                font-family: montserrat;
+                text-align: justify;
+                font-size: 18px;
             }
-        }
-        // code sa price count and sa count ng textbox
-        function pax_on_change() {
-            changeValue();
-            price_count();
-        }
 
-        function incrementValue(id) {
-            var input = document.getElementById(id);
-            var value = parseInt(input.value, 10);
-            value = isNaN(value) ? 0 : value;
-            value++;
-            input.value = value;
-        }
+            .txt {
+                font-family: montserrat;
 
-        function decrementValue(id) {
-            var input = document.getElementById(id);
-            var value = parseInt(input.value, 10);
-            value = isNaN(value) ? 0 : value;
-            value--;
-            input.value = value;
-        }
-        // Add event listeners for input 1
-        document.querySelector('#input1 .inc').addEventListener('click', function() {
-            incrementValue('input1');
-        });
-        document.querySelector('#input1 .dec').addEventListener('click', function() {
-            decrementValue('input1');
-        });
-
-        // Add event listeners for input 2
-        document.querySelector('#input2 .inc').addEventListener('click', function() {
-            incrementValue('input2');
-        });
-        document.querySelector('#input2 .dec').addEventListener('click', function() {
-            decrementValue('input2');
-        });
-        const textbox = document.getElementById('mytextbox');
-        let value = parseInt(textbox.value);
-
-        textbox.addEventListener('keydown', function(event) {
-            if (event.keyCode == 38) { // up arrow
-                value++;
-                textbox.value = value;
-            } else if (event.keyCode == 40) { // down arrow
-                value--;
-                textbox.value = value;
             }
-        });
 
-        const submitBtn = document.querySelector("button[type='submit']");
-        submitBtn.addEventListener("click", function(event) {
-            const inputs = document.querySelectorAll("input[type='number']");
-            let totalDigits = 0;
-            inputs.forEach(function(input) {
-                totalDigits += input.value.length;
+            .title {
+                letter-spacing: 1px;
+                font-size: 30px;
+            }
+
+            .scrl {
+                scroll-behavior: smooth;
+            }
+
+            .animate__animated {
+                animation-duration: 1s;
+                animation-fill-mode: both;
+            }
+
+            .parent {
+                display: flex;
+                justify-content: center;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            hr {
+                border: 2px solid #30bc6c;
+                display: flex;
+            }
+
+            .qrsample {
+                height: 100px;
+                width: 100px;
+            }
+
+            /* scroll to top arrow */
+            /* #myBtn {
+                                                                                                                display: none;
+                                                                                                                position: fixed;
+                                                                                                                bottom: 20px;
+                                                                                                                right: 30px;
+                                                                                                                z-index: 99;
+                                                                                                                font-size: 18px;
+                                                                                                                border: none;
+                                                                                                                outline: none;
+                                                                                                                background-color: #484848;
+                                                                                                                color: white;
+                                                                                                                cursor: pointer;
+                                                                                                                padding: 15px;
+                                                                                                                border-radius: 4px;
+                                                                                                                opacity: 0.5;
+                                                                                                                }
+
+                                                                                                                #myBtn:hover {
+                                                                                                                background-color: #555;
+                                                                                                                } */
+            /* .centered {
+                                                                                                            font-size:30px;
+                                                                                                            position: absolute;
+                                                                                                            bottom: 410px;
+                                                                                                            right: 200px;
+                                                                                                            color:white;
+                                                                                                            -webkit-text-stroke-width: 1px;
+                                                                                                            -webkit-text-stroke-color: black;
+                                                                                                        } */
+            input[type="text"].disabled {
+                pointer-events: none;
+                opacity: 0.5;
+            }
+
+            input[type="checkbox"]:checked~input[type="text"].disabled {
+                pointer-events: auto;
+                opacity: 1;
+            }
+        </style>
+        <script>
+            $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+                var dateToday = new Date();
+                var month = dateToday.getMonth() + 1;
+                var day = dateToday.getDate();
+                var year = dateToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+                var maxDate = year + '-' + month + '-' + day;
+                $('.chck').attr('min', maxDate);
             });
-            if (totalDigits > 4) {
-                alert("You can only enter a maximum of 4 digits in total.");
-                event.preventDefault();
-            }
-        });
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
 
-        // validation
-        $(function() {
-            var $reserveform = $("#reserve");
-            if ($reserveform.length) {
-                $reserveform.validate({
-                    rules: {
-                        mobile: {
-                            required: true;
-                        }
-                    },
-                    messages: {
-                        mobile: 'Please enter your number!'
-                    }
-                })
+            function price_count() {
+                var pax_num = document.getElementById("pax_num");
+                var room_price = document.getElementById("room_price");
+                if (pax_num.value == 1) {
+                    room_price.value = "P2,500.00";
+                } else if (pax_num.value == 2) {
+                    room_price.value = "P4,000.00";
+                } else if (pax_num.value == 3) {
+                    room_price.value = "P5,500.00";
+                } else if (pax_num.value == 4) {
+                    room_price.value = "P6,500.00";
+                }
             }
-        })
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <!-- <img class="card-img-top mt-2 ml-5 largepic" src="{{ asset('nvdcpics') }}/hotel1.jpg"> -->
-    @include('layouts.footers.guest')
-    <!-- <div class="container mt--5 pb-5"></div> -->
-    <!-- {{ asset('nvdcpics') }}/hotel1.jpg -->
-@endsection
+            // code for scroll-top button
+            // let mybutton = document.getElementById("myBtn");
+            // window.onscroll = function() {scrollFunction()};
+            // function scrollFunction() {
+            // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            //     mybutton.style.display = "block";
+            // } else {
+            //     mybutton.style.display = "none";
+            // }
+            // }
+            // function topFunction() {
+            // document.body.scrollTop = 0;
+            // document.documentElement.scrollTop = 0;
+            // }
+            //         document.getElementById("checkbox").addEventListener("change", function() {
+            //     var textboxes = document.getElementsByClassName("textbox");
+            //     for (var i = 0; i < textboxes.length; i++) {
+            //         textboxes[i].disabled = !this.checked;
+            //     }
+            // });
+            document.getElementById("mainCheckbox").addEventListener("change", function() {
+                // document.getElementById("checkbox1").disabled = !this.checked;
+                // document.getElementById("checkbox2").disabled = !this.checked;
+                // document.getElementById("checkbox3").disabled = !this.checked;
+                // document.getElementById("checkbox4").disabled = !this.checked;
+                document.getElementById("textbox1").disabled = !this.checked;
+            });
+
+            function changeValue() {
+                var textboxNumbers = document.getElementById("textboxes").value;
+                balls.innerHTML = '';
+                var i;
+                for (i = 0; i < textboxNumbers; i++) {
+                    var yourTextboxes = document.createElement("INPUT");
+                    yourTextboxes.setAttribute("type", "text");
+                    yourTextboxes.classList.add("form-control");
+                    yourTextboxes.setAttribute("placeholder", "Enter Name Here");
+                    document.getElementById("balls").appendChild(yourTextboxes);
+                }
+            }
+
+            function pax_on_change() {
+                changeValue();
+                price_count();
+            }
+
+            function incrementValue(id) {
+                var input = document.getElementById(id);
+                var value = parseInt(input.value, 10);
+                value = isNaN(value) ? 0 : value;
+                value++;
+                input.value = value;
+            }
+
+            function decrementValue(id) {
+                var input = document.getElementById(id);
+                var value = parseInt(input.value, 10);
+                value = isNaN(value) ? 0 : value;
+                value--;
+                input.value = value;
+            }
+            // Add event listeners for input 1
+            document.querySelector('#input1 .inc').addEventListener('click', function() {
+                incrementValue('input1');
+            });
+            document.querySelector('#input1 .dec').addEventListener('click', function() {
+                decrementValue('input1');
+            });
+            // Add event listeners for input 2
+            document.querySelector('#input2 .inc').addEventListener('click', function() {
+                incrementValue('input2');
+            });
+            document.querySelector('#input2 .dec').addEventListener('click', function() {
+                decrementValue('input2');
+            });
+            const textbox = document.getElementById('mytextbox');
+            let value = parseInt(textbox.value);
+            textbox.addEventListener('keydown', function(event) {
+                if (event.keyCode == 38) { // up arrow
+                    value++;
+                    textbox.value = value;
+                } else if (event.keyCode == 40) { // down arrow
+                    value--;
+                    textbox.value = value;
+                }
+            });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <!-- <img class="card-img-top mt-2 ml-5 largepic" src="{{ asset('nvdcpics') }}/hotel1.jpg"> -->
+        @include('layouts.footers.guest')
+        <!-- <div class="container mt--5 pb-5"></div> -->
+        <!-- {{ asset('nvdcpics') }}/hotel1.jpg -->
+    @endsection

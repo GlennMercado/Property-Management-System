@@ -174,12 +174,12 @@
                                         <table class="table align-items-center" id="myTable">
                                             <thead class="thead-light">
                                                 <tr>
+                                                    <th scope="col" style="font-size:18px;">Action</th>
                                                     <th scope="col" style="font-size:18px;">Product Name</th>
                                                     <th scope="col" style="font-size:18px;">Item Description</th>
                                                     <th scope="col" style="font-size:18px;">Available Stock</th>
                                                     <th scope="col" style="font-size:18px;">Stock Level</th>
                                                     <th scope="col" style="font-size:18px;">Stock Alert</th>
-                                                    <th scope="col" style="font-size:18px;">Action</th>
                                                 </tr>
                                             </thead>
 
