@@ -29,6 +29,7 @@
                                     <th scope="col" style = "font-size:18px;">Product Name</th>
                                     <th scope="col" style = "font-size:18px;">Item Description</th>
                                     <th scope="col" style = "font-size:18px;">Available Stock</th>
+                                    <th scope="col" style = "font-size:18px;">All Stock</th>
                                     <th scope="col" style = "font-size:18px;">Stock Level</th>
                                     <th scope="col" style = "font-size:18px;">Stock Alert</th>
                                     <th scope="col" style = "font-size:18px;">Action</th>
@@ -41,6 +42,7 @@
                                         <td style = "font-size:16px;">{{ $lists->name}}</td>
                                         <td style = "font-size:16px;">{{ $lists->description}}</td>
                                         <td style = "font-size:16px;">{{ $lists->total}}</td>
+                                        <td style = "font-size:16px;">{{ $lists->allstock}}</td>
                                         <td style = "font-size:16px;">{{ $lists->Stock_Level}}</td>
                                         @if($lists->total <= $lists->Stock_Level)
                                             <td style = "font-size:25px;"><i class="bi bi-exclamation-triangle-fill" style="color:red;"></i></td>
@@ -76,13 +78,19 @@
                                                         </div>
                                                             <div class = "row">
                                                                 <div class = "col pt-4">
-                                                                    <label class = "text-left">Date Stock Added </label>
-                                                                    <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->created_at))}}" readonly>
+                                                                    <label class = "text-left">All Stock </label>
+                                                                    <input type="text" class="form-control" name="allstock" value = "{{ $lists->description}}" readonly>
                                                                 </div>
                                                                 <div class = "col pt-4">
-                                                                <label>Quantity </label>
-                                                                    <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
+                                                                <label>Date Stock Added </label>
+                                                                    <input type="text" class="form-control" name="date" value="{{ date('m-d-Y', strtotime($lists->created_at))}}" readonly>
                                                                 </div>                      
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col pt-4">
+                                                                    <label for="exampleInputPassword1">Quantity </label>
+                                                                    <input type="text" class="form-control" name="total" value = "{{ $lists->total}}" readonly>
+                                                                </div>    
                                                             </div>
                                                             <div class = "row">
                                                                 <div class = "col pt-4">
@@ -144,19 +152,11 @@
                                                     <div class = "row">
                                                         <div class = "col">
                                                             <label class="text-left pt-4">Stock In </label>
-                                                            <input class="form-control" type="number" name="in" value="0" onkeyup="showTextboxes()">
+                                                            <input class="form-control" type="number" name="in" value="0">
                                                         </div>
                                                         <div class = "col">
                                                             <label class="text-left pt-4">Stock Out </label>
-                                                            <input type="number" class="form-control" name="out" value="0" onkeyup="showTextboxes()">  
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div id="hidden-textboxes">
-                                                                <label class="text-left pt-4" for="textbox2" name="housekeeper">HouseKeeper : </label>
-                                                                <input type="text" class="form-control" name="housekeeper">
-                                                            </div>
+                                                            <input type="number" class="form-control" name="out" value="0">  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,8 +165,9 @@
                                                                 </div>        -->
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Category: </label>
+                                                        <input type="number" class="form-control" name="category" value="{{ $lists->category}}" hidden> 
                                                         <select class="form-control" value="{{ $lists->category}}" name="category" required>
-                                                        <option value="Invalid" class = "cat">Linens</option>
+                                                        <option value="Invalid" class = "cat" disabled>Linens</option>
                                                         <option>Bed pad - Single</option>
                                                         <option>Fitted Sheet - Single</option>
                                                         <option>Flat Sheet - Single</option>
@@ -249,32 +250,20 @@
                     <div class="modal-body">
                         <div class = "row">
                             <div class = "col">
-                                <label class="text-color">Stock Name </label>
-                                    <input type="text" class="form-control" name="name" placeholder="Enter name..." required> 
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="Stockdetails" class = "text-color pt-4">Stock Description </label>
-                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="Stockdetails" class = "text-color pt-4">Quantity </label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="Stockdetails" class = "text-color pt-4">Stock Level </label>
-                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
-                            </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
                                 <label for="exampleInputPassword1" class = "text-color pt-4">Category </label>
-                                <select class="form-control" name = "category" required>
+                                <select class="form-control" name="category" required>
+                                    <option value="Linens">Linens </option>
+                                    <option value="GuestSupplies">GuestSupplies </option>
+                                    <option value="Amenities">Amenities  </option>
+                                    </select>
+                            </div>
+                        </div> 
+                        <div class = "row">
+                            <div class = "col">
+                                <label class="text-color">Stock Name </label>
+                                <select class="form-control" name = "name" required>
+                                    @foreach ($list as $lists)
+                                    @if('category' == 'Linens')
                                     <option value="Invalid" class = "cat">Linens </option>
                                     <option>Bed pad - Single</option>
                                     <option>Fitted Sheet - Single</option>
@@ -293,7 +282,7 @@
                                     <option>Bath Mat</option>
                                     <option>Bed Ruuner Queen</option>
                                     <option>Bed Runner Single</option>
-                                    <option value="Invalid"></option>
+                                    @elseif('category' == 'GuestSupplies')
                                     <option value="Invalid" class = "cat">Guest Supplies </option>
                                     <option>Bath Soap</option>
                                     <option>Shampoo</option>
@@ -303,9 +292,9 @@
                                     <option>Juice</option>
                                     <option>Coffee</option>
                                     <option>Creamer</option>
-                                    <option>Sugar - White</>
+                                    <option>Sugar - White</option>
                                     <option>Sugar - Brown</option>
-                                    <option value="Invalid"></option>
+                                    @elseif('category' == 'Amenities')
                                     <option value="Invalid" class = "cat">Amenities  </option>
                                     <option>Kettle</option>
                                     <option>Tray</option>
@@ -314,9 +303,35 @@
                                     <option>Cup And Saucer</option>
                                     <option>Hanger</option>
                                     <option>Door Hang</option>
+                                    @endif
+                                    @endforeach
                                     </select>
                             </div>
-                        </div>                            
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Stock Description </label>
+                                <input type="text" class="form-control" name="description" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Overall Initial Stock :  </label>
+                                <input type="text" class="form-control" name="allstock" placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Quantity </label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter number..." required>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col">
+                                <label for="Stockdetails" class = "text-color pt-4">Stock Level </label>
+                                <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
+                            </div>
+                        </div>                      
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button><!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
@@ -337,7 +352,7 @@
 
     
     
-       <script>
+       <!--<script>
 // Bind keyup event on the input
 $("input[name='out'], input[name='in']").keyup(function() {
 
@@ -353,7 +368,16 @@ if ($("input[name='out']").val() == 00 && $("input[name='in']").val() == 0) {
 }
 }).keyup(); // Trigger the keyup event, thus running the handler on page load
 
-</script>
+</script>-->
+<script>
+    $('select[name="category"]').on('change', function() {
+    // Get the selected option's value
+    var selectedValue = $(this).val();
+
+    // Do something with the selected value
+    console.log(selectedValue);
+});
+    </script>
 <style>
     .title{
         text-transform:uppercase;

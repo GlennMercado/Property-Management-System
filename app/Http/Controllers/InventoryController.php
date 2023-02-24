@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\hotelstocks;
-use App\Models\stockhistories;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +43,7 @@ class InventoryController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'description' => 'required',
+            'allstock' => 'required',
             'quantity' => 'required',
             'stock' => 'required',
             'category' => 'required'
@@ -53,6 +53,7 @@ class InventoryController extends Controller
 
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
+       $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
        $stock->Stock_Level = $request->input('stock');
        $stock->category = $request->input('category');
@@ -98,8 +99,7 @@ class InventoryController extends Controller
                 'quantity' => 'required',
                 'in' => 'required',
                 'out' => 'required',
-                'category' => 'required',
-                'housekeeper' => 'required'
+                'category' => 'required'
             ]);
             
             $productid = $request->input('productid');
@@ -108,30 +108,19 @@ class InventoryController extends Controller
             $total = $request->input('quantity');
             $in = $request->input('hotelin');
             $out = $request->input('hotelout');
-            $housekeeper = $request->input('housekeeper');
-            $add = new stockhistories;
+            $category = $request->input('category');
 
             if($in > 0)
             {
                 $total = $total + $in;
-                $category = "Hotel";
-                $movement = "StockIn";
 
             }
 
             if($out > 0)
             {
                 $total = $total - $out;
-                $category = "Hotel";
-                $movement = "StockOut";
             }
            
-            $add->category = $request->input($category);
-            $add->name = $request->input($name);
-             $add->movement = $request->input($movement);
-                $add->quantity = $request->input($total);
-                $add->housekeeper = $request->input($housekeeper);
-                $add->save;
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (

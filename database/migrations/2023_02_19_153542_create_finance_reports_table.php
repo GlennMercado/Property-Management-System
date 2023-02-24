@@ -22,6 +22,16 @@ return new class extends Migration
             $table->string('remark');
 
             $table->integer('amount');
+            $table->cash('amount');
+            $table->unearned('amount');
+            $table->bank('amount');
+            $table->cheque('amount');
+            $table->integer('amount');
+            $table->integer('amount');
+            $table->integer('amount');
+            $table->integer('amount');
+
+
             
             
             $table->timestamps();

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('category');
 
             $table->integer('total');
+            $table->integer('allstock');
             $table->integer('Stock_Level');
         
             $table->timestamps();

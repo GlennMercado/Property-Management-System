@@ -13,26 +13,11 @@
             $('#myTabless').DataTable();
             $('#myTablessss').DataTable();
         });
-        // Code that uses other library's $ can follow here.
-        var $j = jQuery.noConflict();
-        $j("input[name='hotelout'], input[name='hotelin']").keyup(function() {
-        // Bind keyup event on the input
-        // If value is not empty
-        if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() == 0) {
-            // Hide the element
-            $("input[name='housekeeper']").hide();
-            $("label[name='housekeeper']").hide();
-        } else {
-            // Otherwise show it
-            $("input[name='housekeeper']").show();
-            $("label[name='housekeeper']").show();
-        }
-        }).keyup();  // Trigger the keyup event, thus running the handler on page load
         
     </script>
     <div class="container-fluid mt--9">
         <div class="row mt--9">
-            <div class="card card-stats col-md-3" style="width: 8rem;">
+            <div class="card card-stats col-md-4" style="width: 8rem;">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -50,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-stats col-md-3" style="width: 8rem;">
+            <div class="card card-stats col-md-4" style="width: 8rem;">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -74,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-stats col-md-3">
+            <div class="card card-stats col-md-4">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -93,27 +78,6 @@
                         <div class="col-auto">
                             <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
                                 <i class="ni ni-chart-pie-35"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-stats col-md-3" style="width: 8rem;">
-                <!-- Card body -->
-                <div class="card-body" style="height: 85px;">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">History</h5>
-                            <span class="h2 font-weight-bold mb-0">
-
-                            </span>
-                        </div>
-                        <div class="col-auto">
-                            <div>
-                                <button type="button"
-                                    class="btn btn-outline-primary icon icon-shape bg-orange text-white rounded-circle shadow"
-                                    data-toggle="modal" data-target="#HistoryModal" style="float:right;"><i
-                                        class="ni ni-chart-pie-35"></i></button>
                             </div>
                         </div>
                     </div>
@@ -358,7 +322,7 @@
                                                             <label for="exampleInputPassword1">Category: </label>
                                                             <select class="form-control" value="{{ $lists->category }}"
                                                                 name="category" required>
-                                                                <option value="Invalid" class="cat">Linens</option>
+                                                                <option class="cat" disabled>Linens</option>
                                                                 <option>Bed pad - Single</option>
                                                                 <option>Fitted Sheet - Single</option>
                                                                 <option>Flat Sheet - Single</option>
@@ -376,9 +340,8 @@
                                                                 <option>Bath Mat</option>
                                                                 <option>Bed Ruuner Queen</option>
                                                                 <option>Bed Runner Single</option>
-                                                                <option value="Invalid"></option>
-                                                                <option value="Invalid" class="cat">Guest Supplies
-                                                                </option>
+                                                                <option disabled></option>
+                                                                <option class="cat" disabled>Guest Supplies</option>
                                                                 <option>Bath Soap</option>
                                                                 <option>Shampoo</option>
                                                                 <option>Dental Kit</option>
@@ -389,8 +352,8 @@
                                                                 <option>Creamer</option>
                                                                 <option>Sugar - White</>
                                                                 <option>Sugar - Brown</option>
-                                                                <option value="Invalid"></option>
-                                                                <option value="Invalid" class="cat">Amenities</option>
+                                                                <option disabled></option>
+                                                                <option class="cat" disabled>Amenities</option>
                                                                 <option>Kettle</option>
                                                                 <option>Tray</option>
                                                                 <option>Dental Glass</option>

@@ -17,6 +17,16 @@ class FinanceReportController extends Controller
     public function index()
     {
         //
+        $count = DB::select('SELECT * FROM finance_reports');
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['ornum' => $counts->ornum];
+        }
+        return view('Admin.pages.Finances.DailyReport', 
+                    ['array' => $array]
+                    );
         
     }
 
@@ -159,3 +169,4 @@ class FinanceReportController extends Controller
         //
     }
 }
+
