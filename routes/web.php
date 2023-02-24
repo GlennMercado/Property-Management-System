@@ -59,6 +59,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
+		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
 		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 
 		Route::get('Linen_Management', [App\Http\Controllers\HousekeepingController::class, 'linen_management'])->name('Linen_Management');

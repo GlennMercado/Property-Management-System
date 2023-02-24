@@ -289,6 +289,14 @@
                                                                     data-target="#outoforder{{ $lists->ID }}">
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
+                                                            @if ($lists->Housekeeping_Status == 'Inspect' && $lists->Attendant != 'Unassigned')
+                                                                <button class="btn btn-sm"
+                                                                    style="background: #9FA6B2;  color:white;"
+                                                                    data-toggle="modal"
+                                                                    data-target="#check_supply{{ $lists->ID }}">
+                                                                    <i class="bi bi-list-check"></i>
+                                                                </button>
+                                                            @endif
                                                         </td>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
@@ -396,7 +404,8 @@
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->ID }}" />
 
-                                                                                <input type="hidden" name="room_no" value="{{$lists->Room_No}}" />
+                                                                                <input type="hidden" name="room_no"
+                                                                                    value="{{ $lists->Room_No }}" />
 
                                                                                 <input type="hidden" name="check"
                                                                                     value="checkin" />
@@ -556,6 +565,80 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    {{-- Supply Checking --}}
+                                                    <div id="check_supply{{$lists->ID}}"
+                                                        class="modal hide fade" tabindex="-1">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">Room
+                                                                        {{ $lists->Room_No }} Supply 
+                                                                        Checking
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('/deduct_supply') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p class="text-left">Item Name</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Quantity</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Deduction</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        @foreach ($list4 as $lists2)
+                                                                            @if ($lists2->Room_No == $lists->Room_No)
+                                                                                <div class="row">
+                                                                                    <div class="col">
+                                                                                        <input type="hidden"
+                                                                                            name="room_no"
+                                                                                            value="{{ $lists2->Room_No }}" />
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->name }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden"
+                                                                                            name="name[]"
+                                                                                            value="{{ $lists2->name }}">
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->Quantity }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden" name="quantity[]" value= "{{ $lists2->Quantity }}" />
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            name="deduction[]" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a data-dismiss="modal" class="btn">Close</a>
+                                                                        <input type="submit" value="Submit"
+                                                                            name="submit" class="btn btn-primary">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endif
                                             @endforeach
                                         </tbody>
@@ -581,18 +664,20 @@
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Date_Requested }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
-                                                    <td>{{ $lists->Status }}</td>
+                                                    <td>{{ $lists->hrsstats }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-primary"
                                                             data-toggle="modal"
                                                             data-target="#view_supply{{ $lists->Room_No }}">
                                                             View Supply
                                                         </button>
-                                                        <button type="button" class="btn btn-primary"
-                                                            data-toggle="modal"
-                                                            data-target="#request_supply{{ $lists->Room_No }}">
-                                                            Request Supply
-                                                        </button>
+                                                        @if($lists->rstats != "Occupied")
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal"
+                                                                data-target="#request_supply{{ $lists->Room_No }}">
+                                                                Request Supply
+                                                            </button>
+                                                        @endif
                                                     </td>
                                             @endforeach
                                             </tr>
@@ -684,10 +769,12 @@
                                                                 @if ($lists->Room_No == $arrays['Room_No'])
                                                                     <div class="row">
                                                                         <div class="col">
-                                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}"/>
+                                                                            <input type="hidden" name="room_no"
+                                                                                value="{{ $lists->Room_No }}" />
                                                                             <input type="text" class="form-control"
                                                                                 value="{{ $lists->name }}" readonly>
-                                                                            <input type="hidden" name="name[]" value="{{$lists->name}}">
+                                                                            <input type="hidden" name="name[]"
+                                                                                value="{{ $lists->name }}">
                                                                         </div>
                                                                         <div class="col">
                                                                             <input type="text" class="form-control"
@@ -709,7 +796,8 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a data-dismiss="modal" class="btn">Close</a>
-                                                            <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                                            <input type="submit" value="Submit" name="submit"
+                                                                class="btn btn-primary">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -728,7 +816,7 @@
                                             <tr>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Housekeeping <br> Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
                                                 <th scope="col" style="font-size:18px;">Check Out Date</th>
                                                 <th scope="col" style="font-size:18px;"> </th>
@@ -739,7 +827,7 @@
                                                 <tr>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Facility_Type }}</td>
-                                                    <td>{{ $lists->Facility_Status }}</td>
+                                                    <td>{{ $lists->Housekeeping_Status }}</td>
                                                     <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                     <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                     <td>
@@ -779,9 +867,9 @@
                                                                         <input type="text" class="form-control"
                                                                             value="{{ $lists->Guest_Name }}" readonly>
 
-                                                                        <p class="text-left">Housekeeping Status: </p>
+                                                                        <p class="text-left">Facility Status: </p>
                                                                         <input type="text" class="form-control"
-                                                                            value="{{ $lists->Housekeeping_Status }}"
+                                                                            value="{{ $lists->Facility_Status }}"
                                                                             readonly>
 
                                                                         <p class="text-left">Front Desk Status: </p>

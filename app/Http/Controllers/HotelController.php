@@ -227,7 +227,7 @@ class HotelController extends Controller
             {
                 if($isarchived == false)
                 {
-                    $hstatus = "Out of Service";
+                    $hstatus = "Inspect";
                     $roomstats = "Vacant for Cleaning";
                     DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array(
                         'Booking_Status' => $status,
