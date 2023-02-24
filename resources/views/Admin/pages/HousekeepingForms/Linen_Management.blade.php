@@ -16,7 +16,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0 title">Reports</h3>
+                                <h2 class="mb-0 title">Linen Management</h3>
                             </div>
                         </div>
                         <br>
@@ -27,17 +27,12 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival</a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Stocks</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                             href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                            aria-selected="false"> Supply Request </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                            aria-selected="false"> Maintenance</a>
+                                            aria-selected="false"> Repairing </a>
                                     </li>
                                 </ul>
                             </div>
@@ -47,7 +42,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="tab-content" id="myTabContent">
-                                {{-- Arrival / Departure --}}
+                                {{-- Stocks --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <!-- Projects table -->
@@ -63,12 +58,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           arrival
+                                        
                                         </tbody>
                                     </table>
                                 </div>
 
-                                {{-- Supply Request --}}
+                                {{-- Reporting --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <!-- Projects table -->
@@ -84,17 +79,8 @@
                                         </thead>
                                         <tbody>
 
-                                        </tbody>supply
+                                        </tbody>Repairing
                                     </table>
-                                </div>
-
-                                {{-- Maintenance --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-3-tab">
-                                    <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
-                                        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-                                        williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                                        synth.</p>
                                 </div>
                             </div>
                         </div>

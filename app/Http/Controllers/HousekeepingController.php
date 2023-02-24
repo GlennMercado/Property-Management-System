@@ -31,6 +31,11 @@ class HousekeepingController extends Controller
 		return view('Admin.pages.HousekeepingForms.Hotel_Housekeeping',['list2' =>$list2]);
     }
 
+    public function linen_management()
+    {
+        return view('Admin.pages.HousekeepingForms.Linen_Management');
+    }
+
     public function housekeeping_reports()
     {
         return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
