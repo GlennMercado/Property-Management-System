@@ -124,20 +124,16 @@
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col" style="font-size:18px;"> </th>
                                         <th scope="col" style="font-size:18px;">Room No.</th>
                                         <th scope="col" style="font-size:18px;">Room Size</th>
                                         <th scope="col" style="font-size:18px;">No. of Beds</th>
-                                        <th scope="col" style="font-size:18px;">Status</th>
-                                        <th scope="col" style="font-size:18px;"> </th>
+                                        <th scope="col" style="font-size:18px;">Status</th>                            
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($list as $lists)
                                             <tr>
-                                                <td style="font-size:16px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
-                                                <td style="font-size:16px;">{{ $lists->No_of_Beds }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Status }}</td>
                                                 <td>
                                                     <!--View Button-->
                                                     <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
@@ -148,6 +144,11 @@
                                                         data-target="#edit{{ $lists->Room_No }}"> <i
                                                             class="bi bi-pencil-square"></i> </button>
                                                 </td>
+                                                <td style="font-size:16px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
+                                                <td style="font-size:16px;">{{ $lists->No_of_Beds }}</td>
+                                                <td style="font-size:16px;">{{ $lists->Status }}</td>
+                                                
                                             </tr>
 
 

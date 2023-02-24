@@ -49,12 +49,16 @@
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility Type</th>
-                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
-                                                <th scope="col" style="font-size:18px;">Check In Date</th>
-                                                <th scope="col" style="font-size:18px;">Check Out Date</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Item</th>
+                                                <th scope="col" style="font-size:18px;">Size</th>
+                                                <th scope="col" style="font-size:18px;">Date Collected</th>
+                                                <th scope="col" style="font-size:18px;">Soiled Received</th>
+                                                <th scope="col" style="font-size:18px;">Soiled for Laundry</th>
+                                                <th scope="col" style="font-size:18px;">Total Discrepancy</th>
+                                                <th scope="col" style="font-size:18px;">Remarks</th>
+                                                <th scope="col" style="font-size:18px;">Reason</th>
+                                                <th scope="col" style="font-size:18px;">Return Status</th>
+                                                <th scope="col" style="font-size:18px;">Return Date & Time</th>      
                                             </tr>
                                         </thead>
                                         <tbody>
