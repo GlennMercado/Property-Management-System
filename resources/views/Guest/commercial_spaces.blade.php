@@ -21,31 +21,31 @@
                             {{-- <h4 class="pt-4">Business Information</h4> --}}
                             <p class="pt-4">Business Name <span class="text-danger">*</span></p>
                             <input type="text" name="business_name" class="form-control mt-2"
-                                placeholder="Enter Business Name" required>
+                                placeholder="Enter Business Name" maxlength="64" required>
                             <p class="pt-4">Business Style/Trade Name (if different from company name) <span
                                     class="text-danger">*</span> </p>
                             <input type="text" name="business_style" class="form-control"
-                                placeholder="Enter Business Style/Trade Name" required>
+                                placeholder="Enter Business Style/Trade Name" maxlength="64" required>
                             <p class="pt-4">Business Address <span class="text-danger">*</span> </p>
                             <input type="text" name="business_address" class="form-control"
-                                placeholder="Enter Business Address" required>
+                                placeholder="Enter Business Address" maxlength="64" required>
                             <p class="pt-4">Email Address/Website/FB Page <span class="text-danger">*</span> </p>
                             <input type="text" name="email_website_fb" class="form-control"
-                                placeholder="Enter Email Address/Website/FB Page..." required>
+                                placeholder="Enter Email Address/Website/FB Page..." maxlength="64" required>
                             <div class="row">
                                 <div class="col-md">
 
                                     <p class="pt-4">Landline No. <span class="text-danger">*</span> </p>
                                     <input type="number" onKeyPress="if(this.value.length==8) return false;"
                                         name="business_landline_no" class="form-control"
-                                        placeholder="Please use a 10 digit telephone number with no dashes or dots"
+                                        placeholder="09XXXXXXXX"
                                         required>
                                 </div>
                                 <div class="col-md">
                                     <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         name="business_mobile_no" class="form-control"
-                                        placeholder="Please use a 10 digit mobile number with no dashes or dots" required>
+                                        placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@
                                                                                                                             <h4>For Single Proprietorship </h4> -->
                             <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                             <input type="text" name="name_of_owner" class="form-control"
-                                placeholder="Enter Name of Owner" required>
+                                placeholder="Enter Name of Owner" maxlength="64" required>
                             {{-- <div class="row ml-3 mt-4">
                                 <div class="col-md-3">
                                     <input type="radio" id="customRadioInline3" name="customRadioInline2"
@@ -78,10 +78,10 @@
                             </div> --}}
                             <br>
                             <p>Spouse <span class="text-danger">*</span> </p>
-                            <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse" required>
+                            <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse" maxlength="64" required>
                             <br>
                             <p>Home Address <span class="text-danger">*</span> </p>
-                            <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address"
+                            <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address" maxlength="128"
                                 required>
                             <div class="row">
                                 <div class="col">
@@ -101,13 +101,13 @@
                             </div>
                             <br>
                             <p>Tax Identification No. <span class="text-danger">*</span> </p>
-                            <input type="text" name="tax_identification_no" class="form-control"
-                                placeholder="Enter Tax Identification No." required>
+                            <input type="number" name="tax_identification_no" class="form-control"
+                                placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==12) return false;" required>
                             <br>
                             <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                                     class="text-danger">*</span> </p>
                             <input type="text" name="tax_cert_valid_gov_id" class="form-control"
-                                placeholder="Enter Home Address" required>
+                                placeholder="Enter Home Address" maxlength="128" required>
                             <p class="mt-6">I certify that all of the information I have provided above is true and
                                 correct
                                 to the best of my knowledge. I fully understand that all data gathered here are required for
