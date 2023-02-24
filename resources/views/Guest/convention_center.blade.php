@@ -421,14 +421,14 @@
                 }
 
                 /* .centered {
-                                                                                                                                                                                                            font-size:30px;
-                                                                                                                                                                                                        position: absolute;
-                                                                                                                                                                                                        bottom: 410px;
-                                                                                                                                                                                                        right: 200px;
-                                                                                                                                                                                                        color:white;
-                                                                                                                                                                                                        -webkit-text-stroke-width: 1px;
-                                                                                                                                                                                                        -webkit-text-stroke-color: black;
-                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                font-size:30px;
+                                                                                                                                                                                                            position: absolute;
+                                                                                                                                                                                                            bottom: 410px;
+                                                                                                                                                                                                            right: 200px;
+                                                                                                                                                                                                            color:white;
+                                                                                                                                                                                                            -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                                            -webkit-text-stroke-color: black;
+                                                                                                                                                                                                            } */
             </style>
             <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
             <script>

@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
     <div class="container-fluid mt--6">
         <div class="row justify-content-center">
-            <div class=" col ">
+            <div class="col">
                 <div class="card shadow">
                     <div class="card-header bg-transparent">
                         <h3 class="mb-0">Guest Complaints</h3>
@@ -12,17 +12,9 @@
                     <div class="card-body">
                         @foreach ($list as $list)
                             <div class="row">
-                                <div class="card shadow mb-2 msgcolor text-white" style="min-width: 350px; max-width: 500px">
-                                    <div class="card-header msgcolor text-white">
-                                        <span>{{ $list->concern }}</span>
-                                        <div class="d-flex justify-content-end mt--4">
-                                            <a href="#" data-toggle="modal" data-target="#modal-notification"
-                                                style="color:black"><span class="text-white" aria-hidden="true">×</span>
-                                            </a>
-                                        </div>
-                                        <span>{{ $list->created_at }}</span>
-                                    </div>
-                                    <div class="card-body font-weight-bold">
+                                <i class="ni ni-circle-08 display-4"></i>
+                                <div class="card shadow ml-2 mb-2 msgcolor text-white" data-toggle="tooltip" data-placement="bottom" title="{{$list->concern}} {{$list->created_at}}" style="max-width: 500px;">
+                                    <div class="card-body font-weight-bold mt--4">
                                         <br>
                                         {{ $list->concern_text }}
                                     </div>
@@ -69,7 +61,7 @@
             </div>
             <style>
                 .msgcolor{
-                    background-color: rgb(41, 157, 168);
+                    background-color: rgb(41, 168, 136);
                 }
             </style>
         @endsection

@@ -60,7 +60,7 @@
                                     <!--View-->
                                     <div class="modal fade text-left" id="ModalView{{ $lists->userid }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-dialog modal-lg" role="document" style="max-width:90%">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-left display-4" id="exampleModalCreate">View
@@ -71,44 +71,30 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <table class="table align-items-center table-flush"
-                                                        style="align-items:center">
-                                                        <thead class="thead-light">
-                                                            <col>
-                                                            <col>
-                                                            <colgroup span="4"></colgroup>
-                                                            <tr>
-                                                                <th scope="col">OR No.</th>
-                                                                <th scope="col">Date</th>
-                                                                <th scope="col">Payee</th>
-                                                                <th scope="col">Particulars</th>
-                                                                <th scope="col">Event Date</th>
-                                                                <th scope="col">Amount</th>
-                                                                <th scope="col">Remarks</th>
-                                                                <th colspan="4" scope="colgroup">Debit Type</th>
-                                                                <th scope="col">Cash/GCash</th>
-                                                                <th scope="col">Unearned Income</th>
-                                                                <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                                <th scope="col">Cheque</th>
-                                                            </tr>
-                                                        </thead>
+                                                    <div class="table-responsive">
+                                                        <table id="my-table">
+                                                            <thead>
+                                                              <tr>
+                                                                <th>Column 1</th>
+                                                                <th>Column 2</th>
+                                                                <th>Column 3</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>Row 1, Column 1</td>
+                                                                <td>Row 1, Column 2</td>
+                                                                <td>Row 1, Column 3</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Row 2, Column 1</td>
+                                                                <td>Row 2, Column 2</td>
+                                                                <td>Row 2, Column 3</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                </div>
 
-                                                        <tbody>
-                                                            @foreach ($list as $lists)
-                                                                <tr>
-                                                                    <td>{{ $lists->ornum }}</td>
-                                                                    <td>{{ $lists->dateadded }}</td>
-                                                                    <td>{{ $lists->payee }}</td>
-                                                                    <td>{{ $lists->particular }}</td>
-                                                                    <td>{{ $lists->eventdate }}</td>
-                                                                    <td>{{ $lists->amount }}</td>
-                                                                    <td>{{ $lists->remark }}</td>
-                                                                    <td>{{ $lists->debit }}</td>
-                                                                </tr>
-                                                        </tbody>
-                                                    </table>
-
-                                                    </html>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-failed"
                                                             data-dismiss="modal">Close</button>
@@ -202,7 +188,8 @@
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>
+    </div>
 
 
     <!--Add -->
@@ -222,14 +209,14 @@
                         <div class="row">
                             <div class="col">
                                 <p class="text-left">OR Number : </p>
-                                <input type="text" class="form-control" name="ornum" placeholder="Enter name..."
-                                    required>
+                                <input type="text" class="form-control" name="ornum"
+                                    placeholder="Enter OR Number..." required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="Stockdetails">Payee : </label>
-                                <input type="text" class="form-control" name="payee" placeholder="Enter details..."
+                                <input type="text" class="form-control" name="payee" placeholder="Enter payee..."
                                     required>
                             </div>
                         </div>
@@ -310,3 +297,22 @@
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
