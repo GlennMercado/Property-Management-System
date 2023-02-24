@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\add_maintenance;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use Carbon\Carbon;
 
 class HousekeepingController extends Controller
 {
@@ -22,7 +24,18 @@ class HousekeepingController extends Controller
         
         $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
 
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', ['list' => $list,'list2' => $list2, 'archived' => $archived]);
+        $list3 = DB::select("SELECT DISTINCT  Room_No, Date_Requested, Attendant, Status FROM hotel_room_supplies");
+        $list4 = DB::select('SELECT * FROM hotel_room_supplies');
+        $count = DB::select('Select * from novadeci_suites');
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Room_No' => $counts->Room_No];
+        }
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
+                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4]
+                    );
     }
     public function hotel_housekeeping()
     {
@@ -41,9 +54,51 @@ class HousekeepingController extends Controller
         return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
     }
 
-    public function store(Request $request)
+    public function supply_request(Request $request)
     {
-        //
+       
+        try{
+            $arraysofname[] = $request->name;
+            $arraysofquantity[] = $request->requested_quantity;
+            $arraysofremarks[] = $request->remarks;
+            
+            $date_requested = Carbon::now();
+            Carbon::createFromFormat('Y-m-d H:i:s', $date_requested);
+
+            $status = "Requested";
+
+            
+
+            for($i=0; $i < count($request->name); $i++)
+            {
+                DB::table('hotel_room_supplies')
+                    ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
+                    ->update([
+                        'Quantity_Requested' => $request->requested_quantity[$i],
+                        'Remarks' => $request->remarks[$i], 
+                        'Date_Requested' => $date_requested,
+                        'Status' => $status, 
+                ]);
+            }
+            // DB::transaction(function () {
+            //     for($i = 0; $i < count($request->name); $i++)
+            //     {
+            //         hotel_room_supplies::where(['name', $request->name[$i]])
+            //         ->update(['Request'])
+            //     }
+            // });
+            
+            
+            
+            Alert::Success('Success', 'Supplies Successfully Requested!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Supply Request Failed!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+        }
     }
 
     public function assign_housekeeper(Request $request)
@@ -51,17 +106,22 @@ class HousekeepingController extends Controller
         try{
             $this->validate($request,[
                 'id' => '',
+                'room_no'=> '',
                 'check' => '',
                 'housekeeper' => 'required'
                 ]);
 
             $check = $request->input('check');
+            $room_no = $request->input('room_no');
+
             if($check == "checkin")
             {
                 $id = $request->input('id');
                 $housekeeper = $request->input('housekeeper');
     
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
+
+                DB::table('hotel_room_supplies')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
     
                 Alert::Success('Success', 'Attendant successfully assigned!');
                 return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');

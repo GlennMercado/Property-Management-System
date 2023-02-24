@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hotelstocks', function (Blueprint $table) {
-            $table->id('productid');
+            $table->increments('productid');
             $table->string('name');
+            $table->unique('name');
             $table->text('description');
             $table->string('category');
 

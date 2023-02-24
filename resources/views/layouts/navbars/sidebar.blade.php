@@ -99,6 +99,13 @@
                 </li>
 
 
+                <!--Calendar-->
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('Dashboard') }}">
+                            <i class="bi bi-house text-success"></i> {{ __('Room Management') }}
+                    </a>
+                </li>
+
 
                 <!--Front Desk-->
                 <li class="nav-item">
@@ -147,20 +154,13 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                                    <i class="text-success">•</i> {{ __('Room Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Key_Management') }}">
                                     <i class="text-success">•</i> {{ __('Key Management') }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Maintenance') }}">
@@ -168,13 +168,13 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="nav nav-sm flex-column">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Guest_Call_Register') }}">
                                     <i class="text-success">•</i> {{ __('Guest Call Register') }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Housekeeping_Reports') }}">

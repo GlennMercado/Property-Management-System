@@ -5,11 +5,11 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    
+
 
     <div class="container-fluid mt--7">
         <br>
-        
+
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
@@ -64,30 +64,31 @@
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
-                                                <th scope="col" style="font-size:18px;">Check Out Date</th>                                 
+                                                <th scope="col" style="font-size:18px;">Check Out Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $datenow = date('Y-m-d'); @endphp
-                                            
+
                                             @foreach ($list as $lists)
-                                                @if($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != "Checked-In")
+                                                @if ($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != 'Checked-In')
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
+                                                                data-target="#view{{ $lists->ID }}"> <i
+                                                                    class="bi bi-eye"></i>
                                                             </button>
 
                                                             @if ($lists->Attendant == 'Unassigned' && $lists->Housekeeping_Status == 'Cleaned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#assign{{ $lists->ID }}"> 
-                                                                <i class="bi bi-person-fill"></i> </button>
+                                                                    data-target="#assign{{ $lists->ID }}">
+                                                                    <i class="bi bi-person-fill"></i> </button>
                                                             @endif
 
-                                                            @if($lists->Housekeeping_Status == "Inspect")
-                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            @if ($lists->Housekeeping_Status == 'Inspect')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->ID }}">
-                                                            <i class="bi bi-arrow-repeat"></i>
+                                                                    <i class="bi bi-arrow-repeat"></i>
                                                             @endif
                                                         </td>
 
@@ -96,25 +97,27 @@
                                                         <td>{{ $lists->Housekeeping_Status }}</td>
                                                         <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                         <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                      
+
                                                     </tr>
 
                                                     <!--View-->
                                                     <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">View Information</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="row">
-                                                                        <div class="card-body bg-white" style="border-radius: 18px">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
 
@@ -125,7 +128,8 @@
 
                                                                             <p class="text-left">Front Desk Status: </p>
                                                                             <input type="text" class="form-control"
-                                                                                value="{{ $lists->Front_Desk_Status }}" readonly>
+                                                                                value="{{ $lists->Front_Desk_Status }}"
+                                                                                readonly>
 
                                                                             <p class="text-left">Attendant: </p>
                                                                             <input type="text" class="form-control"
@@ -134,22 +138,24 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <!--Assign Attendant-->
-                                                    <div class="modal fade" id="assign{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="assign{{ $lists->ID }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">View Information</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -164,20 +170,26 @@
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->ID }}" />
 
-                                                                                <input type="hidden" name="check" value="arrival" />
+                                                                                <input type="hidden" name="check"
+                                                                                    value="arrival" />
 
                                                                                 <p class="text-left">Attendants: </p>
-                                                                                <select name="housekeeper" class="form-control"
-                                                                                    required>
-                                                                                    <option selected="true" disabled="disabled">
+                                                                                <select name="housekeeper"
+                                                                                    class="form-control" required>
+                                                                                    <option selected="true"
+                                                                                        disabled="disabled">
                                                                                         Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B. Adams
+                                                                                    <option value="Marie B. Adams">Marie B.
+                                                                                        Adams
                                                                                     </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan Dela
+                                                                                    <option value="Nathan Dela Cruz">Nathan
+                                                                                        Dela
                                                                                         Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark Delos
+                                                                                    <option value="Mark Delos Santos">Mark
+                                                                                        Delos
                                                                                         Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob Del
+                                                                                    <option value="Jacob Del Rosario">Jacob
+                                                                                        Del
                                                                                         Rosario</option>
                                                                                 </select>
                                                                             </div>
@@ -194,17 +206,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <!--Update Housekeeping Status Modal-->
-                                                    <div class="modal fade" id="update{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="update{{ $lists->ID }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">Setting Status</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -213,26 +226,26 @@
                                                                         <div class="card-body bg-white"
                                                                             style="border-radius: 18px">
 
-                                                                            @if($lists->Request_ID == null)
+                                                                            @if ($lists->Request_ID == null)
                                                                                 @php $lists->Request_ID = "null"; @endphp
                                                                             @endif
                                                                             <h4 class="text-center">Is the Room
                                                                                 {{ $lists->Room_No }} <span
                                                                                     class="text-success">
-                                                                                    
+
                                                                                     CLEANED</span>?</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
                                                                     <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 @endif
                                             @endforeach
                                         </tbody>
@@ -250,13 +263,13 @@
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Booking Status</th>                                              
+                                                <th scope="col" style="font-size:18px;">Booking Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($list as $lists)
-                                                @if($lists->Front_Desk_Status != 'Reserved')
-                                                    <tr> 
+                                                @if ($lists->Front_Desk_Status != 'Reserved')
+                                                    <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view2{{ $lists->ID }}"> <i
@@ -264,8 +277,8 @@
 
                                                             @if ($lists->Attendant == 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#assign{{ $lists->ID }}"> 
-                                                                <i class="bi bi-person-fill"></i> </button>
+                                                                    data-target="#assign{{ $lists->ID }}">
+                                                                    <i class="bi bi-person-fill"></i> </button>
                                                             @endif
                                                             @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
@@ -273,14 +286,14 @@
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
                                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                    data-target="#outoforder{{ $lists->ID }}"> 
+                                                                    data-target="#outoforder{{ $lists->ID }}">
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
-                                                        </td>                                               
+                                                        </td>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
                                                         <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ $lists->Front_Desk_Status }}</td>                                                                              
+                                                        <td>{{ $lists->Front_Desk_Status }}</td>
                                                     </tr>
 
                                                     <!--View-->
@@ -301,45 +314,52 @@
                                                                     <div class="row">
                                                                         <div class="card-body bg-white"
                                                                             style="border-radius: 18px">
-                                                                            @if($lists->Request_ID != null)
-                                                                                @foreach($list2 as $lists2)
+                                                                            @if ($lists->Request_ID != null)
+                                                                                @foreach ($list2 as $lists2)
                                                                                     <input type="hidden" name="id"
                                                                                         value="{{ $lists2->ID }}" />
 
                                                                                     <p class="text-left">Room No: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ $lists2->Room_No }}" readonly>
-
-                                                                                    <p class="text-left">Guest Name: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ $lists2->Guest_Name }}" readonly>
-
-                                                                                    <p class="text-left">Date_Requested: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}"
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        value="{{ $lists2->Room_No }}"
                                                                                         readonly>
 
-                                                        
-                                                                                @endforeach                      
+                                                                                    <p class="text-left">Guest Name: </p>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        value="{{ $lists2->Guest_Name }}"
+                                                                                        readonly>
+
+                                                                                    <p class="text-left">Date_Requested:
+                                                                                    </p>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        value="{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}"
+                                                                                        readonly>
+                                                                                @endforeach
                                                                             @endif
-                                                                                    <input type="hidden" name="id"
-                                                                                        value="{{ $lists->ID }}" />
-                                                                                        
-                                                                                    <p class="text-left">Housekeeping Status: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ $lists->Housekeeping_Status }}" readonly>
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
 
-                                                                                    <p class="text-left">Attendant: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ $lists->Attendant }}" readonly>
+                                                                            <p class="text-left">Housekeeping Status: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Housekeeping_Status }}"
+                                                                                readonly>
 
-                                                                                    <p class="text-left">Checked In Date: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}" readonly>
-                                                                                            
-                                                                                    <p class="text-left">Checked Out Date: </p>
-                                                                                    <input type="text" class="form-control"
-                                                                                        value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}" readonly>
+                                                                            <p class="text-left">Attendant: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Attendant }}" readonly>
+
+                                                                            <p class="text-left">Checked In Date: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                                                readonly>
+
+                                                                            <p class="text-left">Checked Out Date: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                                                readonly>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -352,15 +372,16 @@
                                                     </div>
 
                                                     <!--Assign Attendant-->
-                                                    <div class="modal fade" id="assign{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="assign{{ $lists->ID }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">View Information</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -375,20 +396,28 @@
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->ID }}" />
 
-                                                                                <input type="hidden" name="check" value="checkin" />
+                                                                                <input type="hidden" name="room_no" value="{{$lists->Room_No}}" />
+
+                                                                                <input type="hidden" name="check"
+                                                                                    value="checkin" />
 
                                                                                 <p class="text-left">Attendants: </p>
-                                                                                <select name="housekeeper" class="form-control"
-                                                                                    required>
-                                                                                    <option selected="true" disabled="disabled">
+                                                                                <select name="housekeeper"
+                                                                                    class="form-control" required>
+                                                                                    <option selected="true"
+                                                                                        disabled="disabled">
                                                                                         Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B. Adams
+                                                                                    <option value="Marie B. Adams">Marie B.
+                                                                                        Adams
                                                                                     </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan Dela
+                                                                                    <option value="Nathan Dela Cruz">Nathan
+                                                                                        Dela
                                                                                         Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark Delos
+                                                                                    <option value="Mark Delos Santos">Mark
+                                                                                        Delos
                                                                                         Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob Del
+                                                                                    <option value="Jacob Del Rosario">Jacob
+                                                                                        Del
                                                                                         Rosario</option>
                                                                                 </select>
                                                                             </div>
@@ -407,15 +436,16 @@
                                                     </div>
 
                                                     <!--Out of Order Rooms Modal-->
-                                                    <div class="modal fade" id="outoforder{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="outoforder{{ $lists->ID }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">Maintenance</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -433,24 +463,28 @@
                                                                                 <input type="hidden" name="room_no"
                                                                                     value="{{ $lists->Room_No }}" />
                                                                                 <input type="hidden" name="book_no"
-                                                                                    value="{{$lists->Booking_No}}" />   
+                                                                                    value="{{ $lists->Booking_No }}" />
                                                                                 <input class="form-control"
-                                                                                    value="{{ $lists->Room_No }}" readonly />
+                                                                                    value="{{ $lists->Room_No }}"
+                                                                                    readonly />
 
                                                                                 <input type="hidden" name="facility_type"
                                                                                     value="Hotel Room" />
 
-                                                                            <input type="hidden" name="discoveredby" value="{{$lists->Attendant}}" />
+                                                                                <input type="hidden" name="discoveredby"
+                                                                                    value="{{ $lists->Attendant }}" />
 
                                                                             </div>
                                                                             <div class="col">
                                                                                 <p class="text-left">Priority Level</p>
-                                                                                <select name="priority" class="form-control"
-                                                                                    required>
-                                                                                    <option selected="true" disabled="disabled">
+                                                                                <select name="priority"
+                                                                                    class="form-control" required>
+                                                                                    <option selected="true"
+                                                                                        disabled="disabled">
                                                                                         Select</option>
                                                                                     <option value="Low">Low</option>
-                                                                                    <option value="Moderate">Moderate</option>
+                                                                                    <option value="Moderate">Moderate
+                                                                                    </option>
                                                                                     <option value="High">High</option>
                                                                                 </select>
                                                                             </div>
@@ -473,7 +507,8 @@
 
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
                                                                     <input type="submit" name="outofordersubmit"
                                                                         class="btn btn-primary" />
                                                                 </div>
@@ -483,15 +518,16 @@
                                                     </div>
 
                                                     <!--Update Housekeeping Status Modal-->
-                                                    <div class="modal fade" id="update{{ $lists->ID }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="update{{ $lists->ID }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">Setting Status</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -500,19 +536,20 @@
                                                                         <div class="card-body bg-white"
                                                                             style="border-radius: 18px">
 
-                                                                            @if($lists->Request_ID == null)
+                                                                            @if ($lists->Request_ID == null)
                                                                                 @php $lists->Request_ID = "null"; @endphp
                                                                             @endif
                                                                             <h4 class="text-center">Is the Room
                                                                                 {{ $lists->Room_No }} <span
                                                                                     class="text-success">
-                                                                                    
+
                                                                                     CLEANED</span>?</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
                                                                     <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
@@ -528,10 +565,157 @@
                                 {{-- Supply Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
-                                    <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
-                                        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-                                        williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                                        synth.</p>
+                                    <table class="table align-items-center table-flush" id="myTable2">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Room No</th>
+                                                <th scope="col" style="font-size:18px;">Date</th>
+                                                <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list3 as $lists)
+                                                <tr>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Date_Requested }}</td>
+                                                    <td>{{ $lists->Attendant }}</td>
+                                                    <td>{{ $lists->Status }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-toggle="modal"
+                                                            data-target="#view_supply{{ $lists->Room_No }}">
+                                                            View Supply
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-toggle="modal"
+                                                            data-target="#request_supply{{ $lists->Room_No }}">
+                                                            Request Supply
+                                                        </button>
+                                                    </td>
+                                            @endforeach
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    @foreach ($array as $arrays)
+                                        {{-- View Supply --}}
+                                        <div id="view_supply{{ $arrays['Room_No'] }}" class="modal hide fade"
+                                            tabindex="-1">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">Room {{ $arrays['Room_No'] }} Supplies
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table align-items-center table-flush"
+                                                            id="myTable2">
+                                                            <thead class="thead-light">
+                                                                <tr>
+                                                                    <th scope="col">Room No
+                                                                    </th>
+                                                                    <th scope="col">Item
+                                                                        Name</th>
+                                                                    <th scope="col">
+                                                                        Quantity</th>
+                                                                    <th scope="col">
+                                                                        Quantity <br> Requested</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($list4 as $lists)
+                                                                    @if ($lists->Room_No == $arrays['Room_No'])
+                                                                        <tr>
+                                                                            <td>{{ $lists->Room_No }}</td>
+                                                                            <td>{{ $lists->name }}</td>
+                                                                            <td>{{ $lists->Quantity }}</td>
+                                                                            <td>{{ $lists->Quantity_Requested }}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Request Supply --}}
+                                        <div id="request_supply{{ $arrays['Room_No'] }}" class="modal hide fade"
+                                            tabindex="-1">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">Room {{ $arrays['Room_No'] }} Request
+                                                            Supplies
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ url('/supply_request') }}" class="prevent_submit"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p class="text-left">Item Name</p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="text-left">Quantity</p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="text-left">Requested Quantity</p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="text-left">Remarks</p>
+                                                                </div>
+                                                            </div>
+                                                            @foreach ($list4 as $lists)
+                                                                @if ($lists->Room_No == $arrays['Room_No'])
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <input type="hidden" name="room_no" value="{{$lists->Room_No}}"/>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->name }}" readonly>
+                                                                            <input type="hidden" name="name[]" value="{{$lists->name}}">
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Quantity }}" readonly>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="number" class="form-control"
+                                                                                value="0"
+                                                                                name="requested_quantity[]" />
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text" class="form-control"
+                                                                                name="remarks[]">
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a data-dismiss="modal" class="btn">Close</a>
+                                                            <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
 
                                 {{-- Archives --}}
@@ -552,68 +736,72 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($archived as $lists)
-                                                
-                                                    <tr>
-                                                        <td>{{ $lists->Room_No }}</td>
-                                                        <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Facility_Type }}</td>
+                                                    <td>{{ $lists->Facility_Status }}</td>
+                                                    <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                    <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#view{{ $lists->ID }}"> <i
+                                                                class="bi bi-eye"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
-                                                    <!--View-->
-                                                    <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title text-left display-4"
-                                                                            id="exampleModalLabel">View Information</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                            aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="card-body bg-white" style="border-radius: 18px">
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists->ID }}" />
-                                                                                    
-                                                                                <p class="text-left">Booking No.: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Booking_No }}" readonly>
+                                                <!--View-->
+                                                <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">View Information</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="card-body bg-white"
+                                                                        style="border-radius: 18px">
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $lists->ID }}" />
 
-                                                                                <p class="text-left">Guest Name: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Guest_Name }}" readonly>
+                                                                        <p class="text-left">Booking No.: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Booking_No }}" readonly>
 
-                                                                                <p class="text-left">Housekeeping Status: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Housekeeping_Status }}"
-                                                                                    readonly>
+                                                                        <p class="text-left">Guest Name: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Guest_Name }}" readonly>
 
-                                                                                <p class="text-left">Front Desk Status: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Front_Desk_Status }}" readonly>
+                                                                        <p class="text-left">Housekeeping Status: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Housekeeping_Status }}"
+                                                                            readonly>
 
-                                                                                <p class="text-left">Attendant: </p>
-                                                                                <input type="text" class="form-control"
-                                                                                    value="{{ $lists->Attendant }}" readonly>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                        <p class="text-left">Front Desk Status: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Front_Desk_Status }}"
+                                                                            readonly>
+
+                                                                        <p class="text-left">Attendant: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ $lists->Attendant }}" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</a>
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -630,52 +818,57 @@
 
 
 
-<script>
-    $('.prevent_submit').on('submit', function() {
-        $('.prevent_submit').attr('disabled', 'true');
-    });
-    $.noConflict();
-    jQuery(document).ready(function($) {
-        $('#myTable').DataTable();
-        $('#myTable2').DataTable();
-        $('#myTable4').DataTable();
-    });
-    // $(document).ready(function() {
-    //     $("#optionselect").change(function() {
-    //         var selected = $("option:selected", this).val();
-    //         if (selected == 'Cleaned') {
-    //             $('#cleaned, #cleaned2').show();
-    //             $('#outofservice, #outofservice2').hide();
-    //         } else if (selected == 'Out of Service') {
-    //             $('#outofservice, #outofservice2').show();
-    //             $('#cleaned, #cleaned2').hide();
-    //         }
-    //     });
-    // });
-</script>
-<style>
-    .title {
-        text-transform: uppercase;
-        font-size: 25px;
-        letter-spacing: 2px;
-    }
+        <script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+                $('#myTable2').DataTable();
+                $('#myTable3').DataTable();
+                $('#myTable4').DataTable();
+            });
+            // $(document).ready(function() {
+            //     $("#optionselect").change(function() {
+            //         var selected = $("option:selected", this).val();
+            //         if (selected == 'Cleaned') {
+            //             $('#cleaned, #cleaned2').show();
+            //             $('#outofservice, #outofservice2').hide();
+            //         } else if (selected == 'Out of Service') {
+            //             $('#outofservice, #outofservice2').show();
+            //             $('#cleaned, #cleaned2').hide();
+            //         }
+            //     });
+            // });
+        </script>
+        <style>
+            .title {
+                text-transform: uppercase;
+                font-size: 25px;
+                letter-spacing: 2px;
+            }
 
-    .category {
-        font-size: 22px;
-        color: #5BDF4A;
-    }
+            .category {
+                font-size: 22px;
+                color: #5BDF4A;
+            }
 
-    .category2 {
-        font-size: 22px;
-        color: #E46000;
-    }
+            .category2 {
+                font-size: 22px;
+                color: #E46000;
+            }
 
-    .tab {
-        font-size: 100px;
-    }
-</style>
+            .tab {
+                font-size: 100px;
+            }
 
-</div>
+            #row:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        </style>
+
+    </div>
 
 @endsection
 
