@@ -49,7 +49,7 @@
                         </div>
                         <br>
                     </div>
-                    <div class="card-body">
+                    <div style="padding:8px;">
                         <div class="table-responsive">
                             <div class="tab-content" id="myTabContent">
                                 {{-- Arrival / Departure --}}
@@ -59,12 +59,12 @@
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
-                                                <th scope="col" style="font-size:18px;">Check Out Date</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Check Out Date</th>                                 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,11 +73,6 @@
                                             @foreach ($list as $lists)
                                                 @if($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != "Checked-In")
                                                     <tr>
-                                                        <td>{{ $lists->Room_No }}</td>
-                                                        <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Housekeeping_Status }}</td>
-                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view{{ $lists->ID }}"> <i class="bi bi-eye"></i>
@@ -95,6 +90,13 @@
                                                             <i class="bi bi-arrow-repeat"></i>
                                                             @endif
                                                         </td>
+
+                                                        <td>{{ $lists->Room_No }}</td>
+                                                        <td>{{ $lists->Facility_Type }}</td>
+                                                        <td>{{ $lists->Housekeeping_Status }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                      
                                                     </tr>
 
                                                     <!--View-->
@@ -244,21 +246,17 @@
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Booking Status</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Booking Status</th>                                              
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($list as $lists)
                                                 @if($lists->Front_Desk_Status != 'Reserved')
-                                                    <tr>                                                
-                                                        <td>{{ $lists->Room_No }}</td>
-                                                        <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Facility_Status }}</td>
-                                                        <td>{{ $lists->Front_Desk_Status }}</td>                          
+                                                    <tr> 
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                                 data-target="#view2{{ $lists->ID }}"> <i
@@ -278,7 +276,11 @@
                                                                     data-target="#outoforder{{ $lists->ID }}"> 
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
-                                                        </td>
+                                                        </td>                                               
+                                                        <td>{{ $lists->Room_No }}</td>
+                                                        <td>{{ $lists->Facility_Type }}</td>
+                                                        <td>{{ $lists->Facility_Status }}</td>
+                                                        <td>{{ $lists->Front_Desk_Status }}</td>                                                                              
                                                     </tr>
 
                                                     <!--View-->

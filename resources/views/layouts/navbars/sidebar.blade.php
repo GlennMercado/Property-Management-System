@@ -142,6 +142,13 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Linen_Management') }}">
+                                    <i class="text-success">•</i> {{ __('Linen Management') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Dashboard') }}">
                                     <i class="text-success">•</i> {{ __('Room Management') }}
                                 </a>

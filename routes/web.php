@@ -61,6 +61,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 
+		Route::get('Linen_Management', [App\Http\Controllers\HousekeepingController::class, 'linen_management'])->name('Linen_Management');
+		
 		Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
@@ -81,7 +83,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
-		Route::get('Housekeeping_Reports', [App\Http\Controllers\housekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
+		Route::get('Housekeeping_Reports', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
 
 
 
