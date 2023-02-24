@@ -231,6 +231,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::post('/commercial_spaces_submit', 'App\Http\Controllers\GuestController@commercial_spaces_application');
 	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
+	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
 });
 	
 

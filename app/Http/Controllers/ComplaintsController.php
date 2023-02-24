@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class ComplaintsController extends Controller
 {
     public function Complaints(Request $request){
-        $list = DB::select('SELECT * FROM complaints');    
+        $list = DB::select('SELECT * FROM complaints, users');    
         return view('Admin.pages.OperationManagement.Complaints', ['list'=>$list]);
     }
 

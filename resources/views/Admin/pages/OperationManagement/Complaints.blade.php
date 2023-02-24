@@ -11,15 +11,22 @@
                     </div>
                     <div class="card-body">
                         @foreach ($list as $list)
-                            <div class="row">
-                                <i class="ni ni-circle-08 display-4"></i>
-                                <div class="card shadow ml-2 mb-2 msgcolor text-white" data-toggle="tooltip" data-placement="bottom" title="{{$list->concern}} {{$list->created_at}}" style="max-width: 500px;">
-                                    <div class="card-body font-weight-bold mt--4">
-                                        <br>
-                                        {{ $list->concern_text }}
+                                <div class="row container-fluid">
+                                    <i class="ni ni-circle-08 display-4"></i>
+                                    <p class="pl-2 font-weight-bold">{{ $list->name }}</p>
+                                    <div class="card shadow ml-2 mb-2 msgcolor" data-toggle="tooltip"
+                                        data-placement="bottom" title="{{ $list->concern }} {{ $list->created_at }}"
+                                        style="width: 100%">
+                                        <div class="card-body font-weight-bold mt--4">
+                                            <br>
+                                            <span class="text-muted">{{ $list->concern }}</span>
+                                            <br>
+                                            <span class="text-muted">{{ $list->created_at }}</span>
+                                            <br>
+                                            <span>{{ $list->concern_text }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         @endforeach
                         {{-- DELETE MODAL --}}
                         <div class="col-md-4">
@@ -59,11 +66,6 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .msgcolor{
-                    background-color: rgb(41, 168, 136);
-                }
-            </style>
         @endsection
 
         @push('js')
