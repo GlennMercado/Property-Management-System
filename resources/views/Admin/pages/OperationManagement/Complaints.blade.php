@@ -12,7 +12,7 @@
                     <div class="card-body">
                         @foreach ($list as $list)
                             <div class="row">
-                                <div class="card shadow mb-2 msgcolor text-white" style="min-width: 350px;">
+                                <div class="card shadow mb-2 msgcolor text-white" style="min-width: 350px; max-width: 500px">
                                     <div class="card-header msgcolor text-white">
                                         <span>{{ $list->concern }}</span>
                                         <div class="d-flex justify-content-end mt--4">

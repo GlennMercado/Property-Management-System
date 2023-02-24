@@ -28,7 +28,7 @@
                                 <div class="col-md pt-4">
                                     <p>Client Name <span class="text-danger">*</span></p>
                                     <input type="text" name="client_name" class="form-control"
-                                        placeholder="Enter client name" required>
+                                        placeholder="Enter client name" maxlength="64" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
@@ -41,26 +41,25 @@
                                 <div class="col-md pt-4">
                                     <p>Contact Person <span class="text-danger">*</span></p>
                                     <input type="text" name="contact_person" class="form-control"
-                                        placeholder="Enter contact person" required>
+                                        placeholder="Enter contact person" maxlength="64" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Person Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
-                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
-                                        required>
+                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Billing Address <span class="text-danger">*</span></p>
-                                    <input type="text" name="billing_address" class="form-control"
+                                    <input type="text" name="billing_address" maxlength="82" class="form-control"
                                         placeholder="Enter billing address" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Email <span class="text-danger">*</span></p>
                                     <input type="email" name="email_address" class="form-control"
-                                        placeholder="Enter email address" required>
+                                        placeholder="Enter email address" maxlength="32" required>
                                 </div>
                             </div>
 
@@ -70,12 +69,12 @@
                                 <div class="col-md pt-4">
                                     <p>Event Name <span class="text-danger">*</span></p>
                                     <input type="text" name="event_name" class="form-control"
-                                        placeholder="Enter event name" required>
+                                        placeholder="Enter event name" maxlength="64" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
                                     <input type="text" name="event_type" class="form-control"
-                                        placeholder="Enter event type" required>
+                                        placeholder="Enter event type" maxlength="32" required>
                                 </div>
                             </div>
                             <div class="row ">
@@ -109,7 +108,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none" class="form-control-sm" type="text"
-                                                    name="venue" id="specify_venue_text">
+                                                    name="venue" id="specify_venue_text" maxlength="32">
                                             </div>
                                         </div>
                                     </span>
@@ -130,7 +129,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="caterer" id="specify_caterer_text">
+                                                    name="caterer" id="specify_caterer_text" maxlength="32">
                                             </div>
                                         </div>
                                     </span>
@@ -151,7 +150,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="audio_visual" id="specify_audio_visual_text">
+                                                    name="audio_visual" id="specify_audio_visual_text" maxlength="32">
                                             </div>
                                         </div>
                                     </span>
@@ -172,7 +171,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="concept" id="specify_concept_text">
+                                                    name="concept" id="specify_concept_text" maxlength="32">
                                             </div>
                                         </div>
                                     </span>
@@ -422,14 +421,14 @@
                 }
 
                 /* .centered {
-                                                                                                                                                                                        font-size:30px;
-                                                                                                                                                                                    position: absolute;
-                                                                                                                                                                                    bottom: 410px;
-                                                                                                                                                                                    right: 200px;
-                                                                                                                                                                                    color:white;
-                                                                                                                                                                                    -webkit-text-stroke-width: 1px;
-                                                                                                                                                                                    -webkit-text-stroke-color: black;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                                            font-size:30px;
+                                                                                                                                                                                                        position: absolute;
+                                                                                                                                                                                                        bottom: 410px;
+                                                                                                                                                                                                        right: 200px;
+                                                                                                                                                                                                        color:white;
+                                                                                                                                                                                                        -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                                        -webkit-text-stroke-color: black;
+                                                                                                                                                                                                        } */
             </style>
             <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
             <script>
@@ -473,6 +472,24 @@
                         $('#specify_concept_text').attr('required', true);
                     }
                 })
+                $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+                    var dateToday = new Date();
+                    var month = dateToday.getMonth() + 1;
+                    var day = dateToday.getDate();
+                    var year = dateToday.getFullYear();
+
+                    if (month < 10)
+                        month = '0' + month.toString();
+                    if (day < 10)
+                        day = '0' + day.toString();
+
+                    var maxDate = year + '-' + month + '-' + day;
+
+                    $('.chck').attr('min', maxDate);
+                });
+                $('.prevent_submit').on('submit', function() {
+                    $('.prevent_submit').attr('disabled', 'true');
+                });
             </script>
             @include('layouts.footers.guest')
         @endsection
