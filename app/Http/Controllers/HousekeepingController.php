@@ -24,7 +24,7 @@ class HousekeepingController extends Controller
         
         $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
 
-        $list3 = DB::select("SELECT DISTINCT  Room_No, Date_Requested, Attendant, Status FROM hotel_room_supplies");
+        $list3 = DB::select("SELECT DISTINCT  a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No");
         $list4 = DB::select('SELECT * FROM hotel_room_supplies');
         $count = DB::select('Select * from novadeci_suites');
         $array = array();
@@ -80,16 +80,39 @@ class HousekeepingController extends Controller
                         'Status' => $status, 
                 ]);
             }
-            // DB::transaction(function () {
-            //     for($i = 0; $i < count($request->name); $i++)
-            //     {
-            //         hotel_room_supplies::where(['name', $request->name[$i]])
-            //         ->update(['Request'])
-            //     }
-            // });
+                        
+            Alert::Success('Success', 'Supplies Successfully Requested!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
-            
-            
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Supply Request Failed!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+        }
+    }
+
+    public function deduct_supply(Request $request)
+    {
+        try{
+            $arraysofname[] = $request->name;
+            $arraysofquantity[] = $request->requested_quantity;
+            $room_no = $request->input('room_no');
+            $quantity = array();
+            for($i=0; $i < count($request->name); $i++)
+            {
+                $quantity[$i] = $request->input('quantity')[$i] - $request->input('deduction')[$i];
+                
+                DB::table('hotel_room_supplies')
+                    ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
+                    ->update([
+                        'Quantity' => $quantity[$i],
+                ]);
+            }
+                 
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(array(
+                'Housekeeping_Status' => "Out of Service"
+            ));
             Alert::Success('Success', 'Supplies Successfully Requested!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             

@@ -32,7 +32,7 @@ return new class extends Migration
                 
             $table->integer('Quantity_Requested')->nullable();
 
-            $table->string('Attendant')->nullable();
+            $table->string('Attendant')->default('Unassigned');
             $table->string('Status')->default('Approved');
             $table->text('Remarks')->nullable();
 
