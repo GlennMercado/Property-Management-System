@@ -775,7 +775,6 @@
                     $('#service').css({ 'display' : 'none' });
                     $('#req').val('');
                     $('#item').css( { 'display' : 'block' } );
-                    alert('asd2');
                 }
             });
         });

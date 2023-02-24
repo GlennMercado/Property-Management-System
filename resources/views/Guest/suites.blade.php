@@ -75,7 +75,7 @@
                                         <p class="text-sm">tryasdasdasdasdasdasdasd</p>
                                     </div>
                                 </div>
-                                <a href="#" class="text-dark justify-content-end text-sm"style="text-decoration:underline; cursor:pointer;">See all</a>
+                                <a href="{{ url('/rooms') }}" class="text-dark justify-content-end text-sm"style="text-decoration:underline; cursor:pointer;">See all</a>
                             </div>
                             {{-- <div class="row gal">
                                         <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a

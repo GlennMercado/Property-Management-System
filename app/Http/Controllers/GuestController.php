@@ -75,6 +75,10 @@ class GuestController extends Controller
     public function complaints(){
         return view('Guest.complaints');
     }
+    public function rooms(){
+        $list = DB::select('SELECT * FROM novadeci_suites');    
+        return view('Guest.rooms', ['list'=>$list]);
+    }
     public function complaints_submit(Request $request){
         $this->validate($request,[
             'concern' => 'required',
