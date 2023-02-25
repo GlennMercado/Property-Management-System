@@ -247,6 +247,68 @@
                                                         </div>
                                                     </div>
                                                 @endif
+                                                @if ($lists->IsArchived == false && $lists->Check_Out_Date == $datenow && $lists->Front_Desk_Status == 'Checked-In')
+                                                    <tr>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                data-target="#view2{{ $lists->ID }}"> <i
+                                                                    class="bi bi-eye"></i>
+                                                            </button>
+                                                        </td>
+
+                                                        <td>{{ $lists->Room_No }}</td>
+                                                        <td>{{ $lists->Facility_Type }}</td>
+                                                        <td>{{ $lists->Housekeeping_Status }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                        <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+
+                                                    </tr>
+
+                                                    <!--View-->
+                                                    <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="card-body bg-white"
+                                                                            style="border-radius: 18px">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->ID }}" />
+
+                                                                            <p class="text-left">Room Status : </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Facility_Status }}"
+                                                                                readonly>
+
+                                                                            <p class="text-left">Front Desk Status: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Front_Desk_Status }}"
+                                                                                readonly>
+
+                                                                            <p class="text-left">Attendant: </p>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ $lists->Attendant }}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -280,6 +342,7 @@
                                                                     data-target="#assign{{ $lists->ID }}">
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
+                                                            
                                                             @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->ID }}">
@@ -623,7 +686,7 @@
                                                                                     <div class="col">
                                                                                         <input type="number"
                                                                                             class="form-control"
-                                                                                            name="deduction[]" />
+                                                                                            name="deduction[]" value="0" />
                                                                                     </div>
                                                                                 </div>
                                                                                 <br>
