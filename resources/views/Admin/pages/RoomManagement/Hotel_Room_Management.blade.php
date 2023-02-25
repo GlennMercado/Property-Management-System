@@ -47,10 +47,9 @@
                                                         <p class="text-left">Room No. </p>
                                                         <select name="room_no" class="form-control" required>
                                                             <option selected disabled value="">Select</option>
-                                                            @for ($count = 1; $count <= 30; $count++)
-                                                                <option value="{{ $count }}"> {{ $count }}
-                                                                </option>
-                                                            @endfor
+                                                                @for ($count = 1; $count <= 30; $count++)
+                                                                    <option value="{{ $count }}"> {{ $count }}
+                                                                @endfor
                                                         </select>
                                                     </div>
                                                     <div class="col">

@@ -41,6 +41,7 @@ class InventoryController extends Controller
     public function addstock(Request $request)
     {
         $this->validate($request,[
+            'productid' => 'required',
             'name' => 'required',
             'description' => 'required',
             'allstock' => 'required',
@@ -51,6 +52,7 @@ class InventoryController extends Controller
 
        $stock = new hotelstocks;
 
+       $stock->productid = $request->input('productid');
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
