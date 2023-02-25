@@ -248,6 +248,17 @@
                 <form action="{{ url('/addstock') }}" class="prevent_submit" method="POST">
                         {{ csrf_field() }}
                     <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="exampleInputPassword1" class = "text-color pt-4">Product ID</label>
+                                @foreach($count as $counts)
+                                    @for($i = 1 + $counts['counts']; $i <= $counts['counts'] + 1; $i++)
+                                        <input class="form-control" type="text" value="{{$i}}" readonly/>
+                                        <input type="hidden" name="productid" value="{{$i}}" />
+                                    @endfor
+                                @endforeach
+                            </div>
+                        </div>
                         <div class = "row">
                             <div class = "col">
                                 <label for="exampleInputPassword1" class = "text-color pt-4">Category </label>
@@ -255,57 +266,13 @@
                                     <option value="Linens">Linens </option>
                                     <option value="GuestSupplies">GuestSupplies </option>
                                     <option value="Amenities">Amenities  </option>
-                                    </select>
+                                </select>
                             </div>
                         </div> 
                         <div class = "row">
                             <div class = "col">
                                 <label class="text-color">Stock Name </label>
-                                <select class="form-control" name = "name" required>
-                                    @foreach ($list as $lists)
-                                    @if('category' == 'Linens')
-                                    <option value="Invalid" class = "cat">Linens </option>
-                                    <option>Bed pad - Single</option>
-                                    <option>Fitted Sheet - Single</option>
-                                    <option>Flat Sheet - Single</option>
-                                    <option>Duvet Filler - Single</option>
-                                    <option>Duvet Cover - Single</option>
-                                    <option>Pillows</option>
-                                    <option>Bed pad - Queen</option>
-                                    <option>Fitted Sheet - Queen</option>
-                                    <option>Flat Sheet - Queen</option>
-                                    <option>Duvet Filler - Queen</option>
-                                    <option>Duvet Cover - Queen</option>
-                                    <option>Pillows Case</option>
-                                    <option>Bath Towel</option>
-                                    <option>Hand Towel</option>
-                                    <option>Bath Mat</option>
-                                    <option>Bed Ruuner Queen</option>
-                                    <option>Bed Runner Single</option>
-                                    @elseif('category' == 'GuestSupplies')
-                                    <option value="Invalid" class = "cat">Guest Supplies </option>
-                                    <option>Bath Soap</option>
-                                    <option>Shampoo</option>
-                                    <option>Dental Kit</option>
-                                    <option>Slippers</option>
-                                    <option>Bottled Water</option>
-                                    <option>Juice</option>
-                                    <option>Coffee</option>
-                                    <option>Creamer</option>
-                                    <option>Sugar - White</option>
-                                    <option>Sugar - Brown</option>
-                                    @elseif('category' == 'Amenities')
-                                    <option value="Invalid" class = "cat">Amenities  </option>
-                                    <option>Kettle</option>
-                                    <option>Tray</option>
-                                    <option>Dental Glass</option>
-                                    <option>Teaspoon</option>
-                                    <option>Cup And Saucer</option>
-                                    <option>Hanger</option>
-                                    <option>Door Hang</option>
-                                    @endif
-                                    @endforeach
-                                    </select>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
                         </div>
                         <div class = "row">

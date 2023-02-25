@@ -20,9 +20,9 @@ return new class extends Migration
             $table->index('Room_No');
             $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade');
 
-            // $table->integer('productid');
-            // $table->index('productid');
-            // $table->foreign('productid')->references('productid')->on('hotelstocks')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('productid');
+            $table->index('productid');
+            $table->foreign('productid')->references('productid')->on('hotelstocks')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('name');
             $table->index('name');

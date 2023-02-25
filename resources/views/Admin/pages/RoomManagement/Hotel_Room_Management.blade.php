@@ -47,12 +47,9 @@
                                                         <p class="text-left">Room No. </p>
                                                         <select name="room_no" class="form-control" required>
                                                             <option selected disabled value="">Select</option>
-                                                            @foreach($count as $cnt)
-                                                                @for ($count = 1 + $cnt['counts']; $count <= 30; $count++)
+                                                                @for ($count = 1; $count <= 30; $count++)
                                                                     <option value="{{ $count }}"> {{ $count }}
-                                                                    </option>
                                                                 @endfor
-                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col">

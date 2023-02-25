@@ -137,7 +137,16 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 		Route::get('StockCount', function () {
 		$list = DB::select('SELECT * FROM hotelstocks');
-		return view('Admin.pages.Inventory.StockCount', ['list'=>$list]);})->name('StockCount');
+		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+		$count = array();
+
+		foreach($check as $checks)
+		{
+			$count[] = ['counts' => $checks->cnt];
+		}
+		
+
+		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count]);})->name('StockCount');
 	
 	//Convention Center Inventory
 		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');

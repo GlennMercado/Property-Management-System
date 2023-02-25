@@ -16,16 +16,8 @@ class RoomController extends Controller
 		$pending = "Pending";
 		$list2 = DB::select("SELECT * FROM hotel_reservations WHERE IsArchived != 1 and Payment_Status != '$pending'");
 
-        $count = DB::select("SELECT COUNT(*) as cnt FROM novadeci_suites");
-        $cnt = array();
         
-        foreach($count as $counts)
-        {
-            $cnt[] = ['counts' => $counts->cnt];
-        }
-
-        
-		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2, 'count' => $cnt]);
+		return view('Admin.pages.RoomManagement.Hotel_Room_Management',['list'=>$list, 'list2'=>$list2]);
     }
 
     public function Key_Management()
