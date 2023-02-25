@@ -27,7 +27,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival</a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Room Status</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -38,6 +38,11 @@
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                             href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
                                             aria-selected="false"> Maintenance</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
+                                            href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4"
+                                            aria-selected="false"> Guest Request</a>
                                     </li>
                                 </ul>
                             </div>
@@ -91,6 +96,15 @@
                                 {{-- Maintenance --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
+                                    <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+                                        williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                        synth.</p>
+                                </div>
+
+                                {{-- Guest Request --}}
+                                <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-4-tab">
                                     <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
                                         Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
                                         williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher

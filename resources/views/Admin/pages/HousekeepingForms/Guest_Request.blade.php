@@ -16,7 +16,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0 title">Guest Call Register</h3>
+                                <h2 class="mb-0 title">Guest Request</h3>
                             </div>
                         </div>
                         <br>
@@ -49,7 +49,6 @@
                                                 <th scope="col" style="font-size:18px;">Date Requested</th>
                                                 <th scope="col" style="font-size:18px;">Request</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,11 +60,6 @@
                                                 <td style="font-size:15px;">{{$lists->Date_Requested = date('M d, Y')}}</td>
                                                 <td style="font-size:15px;">{{$lists->Request}}</td>
                                                 <td style="font-size:15px;">{{$lists->Status}}</td>
-                                                <td>
-                                                    <button class="btn btn-primary">
-                                                        Action
-                                                    </button>
-                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

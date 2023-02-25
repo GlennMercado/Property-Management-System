@@ -149,8 +149,8 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Linen_Management') }}">
-                                    <i class="text-success">•</i> {{ __('Linen Management') }}
+                                <a class="nav-link text-default" href="{{ route('Linen_Monitoring') }}">
+                                    <i class="text-success">•</i> {{ __('Linen Monitoring') }}
                                 </a>
                             </li>
                         </ul>
@@ -168,13 +168,13 @@
                                 </a>
                             </li>
                         </ul>
-                        {{-- <ul class="nav nav-sm flex-column">
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Guest_Call_Register') }}">
-                                    <i class="text-success">•</i> {{ __('Guest Call Register') }}
+                                <a class="nav-link text-default" href="{{ route('Guest_Request') }}">
+                                    <i class="text-success">•</i> {{ __('Guest Request') }}
                                 </a>
                             </li>
-                        </ul> --}}
+                        </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Housekeeping_Reports') }}">

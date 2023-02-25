@@ -12,7 +12,7 @@
                     Welcome to</h1>
                 <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
-                <div class="group pt-6">
+                <div class="group">
                     <a href="#section2">
                         <p class="mr-2 p1 d-none d-lg-block">hotels </p>
                     </a>
@@ -25,6 +25,61 @@
                     <a href="{{ url('commercial_spaces') }}">
                         <p class="mr-2 p1 d-none d-lg-block">commercial spaces </p>
                     </a>
+                </div>
+                <div class="row">
+                    <div class="card mx-auto d-flex justify-content-center mt-8 col-md-8">
+                        <div class="card-body">
+                            <h3>Number of pax</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <span>Adult : 0</span>
+                                            <span>Child : 0</span>
+                                            <span>Infant : 0</span>
+                                        </button>
+
+
+                                        <div class="dropdown-menu mx-auto" aria-labelledby="dropdownMenuButton">
+                                            <form onsubmit="return validateForm()">
+                                                <div class="container">
+                                                    <div id="input1">
+                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
+                                                            onclick="decrement('adult')">-</button></span>
+                                                        <label class="pt-2" min="0">Adult: 0</label>
+                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                                onclick="increment('adult')">+</button></span>
+                                                    </div>
+                                                    <div id="input2">
+                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
+                                                            onclick="decrement('child')">-</button></span>
+                                                        <label class="pt-2">Child: 0</label>
+                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                                onclick="increment('child')">+</button></span>
+                                                    </div>
+                                                    <div id="input3">
+                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
+                                                            onclick="decrement('infant')">-</button></span>
+                                                        <label class="pt-2">Infant: 0</label>
+                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                                onclick="increment('infant')">+</button></span>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-count2 btn-primary">Done</button>
+                                                        <button type="button" class="btn btn-count btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-success mt-3">Submit</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -440,7 +495,7 @@
         .group {
             display: flex;
             position: absolute;
-            top: 58%;
+            top: 43%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
@@ -645,6 +700,89 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+        // dropdown counnt
+        function updateValue(change, id) {
+            var element = document.getElementById(id);
+            var value = parseInt(element.value);
+            value += change;
+            if (value < 0) {
+                value = 0;
+            }
+            element.value = value;
+            var dropdownButton = document.getElementById("dropdownMenuButton");
+            dropdownButton.innerHTML = "<span>Adult: " + document.getElementById("adult").value + "</span><span>Child: " +
+                document.getElementById("child").value + "</span><span>Infant: " + document.getElementById("infant").value +
+                "</span>";
+        }
+        // count
+        // get the dropdown button and the input fields
+        const dropdownButton = document.getElementById('dropdownMenuButton');
+        const adultInput = document.getElementById('input1');
+        const childInput = document.getElementById('input2');
+        const infantInput = document.getElementById('input3');
+
+        // add event listeners to the plus and minus buttons
+        const buttons = document.querySelectorAll('.btn-count, .btn-count2');
+        buttons.forEach(button => {
+            button.addEventListener('click', event => {
+                // prevent default form submission
+                event.preventDefault();
+
+                // get the parent element of the clicked button
+                const parent = event.target.parentElement.parentElement;
+
+                // get the label and current value of the input field
+                const label = parent.querySelector('label').textContent;
+                let value = parseInt(label.split(': ')[1]);
+
+                // increment or decrement the value depending on which button was clicked
+                // if (event.target.classList.contains('btn-success')) {
+                //     value++;
+                // } else if (event.target.classList.contains('btn-danger')) {
+                //     value--;
+                // }
+                if (event.target.classList.contains('btn-count')){
+                    value++;
+                    if(value > 4){
+                        document.getElementById("btn-count").disabled = true;
+                    }
+                }else if (event.target.classList.contains('btn-count2')){
+                    value--;
+                    if(value < 0){
+                        document.getElementById("btn-count2").disabled = true;
+                    }
+                }
+                else{
+                    document.getElementById("btn-count").disabled = false;
+                    document.getElementById("btn-count2").disabled = false;
+                }
+                // update the label and dropdown button text
+                parent.querySelector('label').textContent = `${label.split(': ')[0]}: ${value}`;
+                dropdownButton.querySelectorAll('span').forEach(span => {
+                    if (span.textContent.includes(label.split(': ')[0])) {
+                        span.textContent = `${label.split(': ')[0]}: ${value}`;
+                    }
+                });
+            });
+        });
+        let count = 0;
+    const countElement = document.getElementById('count');
+
+    // validation of 4 counts
+
+    function validateForm() {
+        var adultCount = parseInt(document.getElementById("adultCount").innerText);
+        var childCount = parseInt(document.getElementById("childCount").innerText);
+        var infantCount = parseInt(document.getElementById("infantCount").innerText);
+        var totalCount = adultCount + childCount + infantCount;
+
+        if (totalCount < 4) {
+            alert("Please select at least 4 passengers.");
+            return false;
+        }
+
+        return true;
+    }
     </script>
     @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>

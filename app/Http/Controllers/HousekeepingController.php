@@ -24,7 +24,8 @@ class HousekeepingController extends Controller
         
         $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
 
-        $list3 = DB::select("SELECT DISTINCT  a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No");
+        $list3 = DB::select("SELECT a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No GROUP BY a.Room_No");
+        
         $list4 = DB::select("SELECT * FROM hotel_room_supplies WHERE Category = 'Guest Supply'");
         $list5 = DB::select("SELECT * FROM hotel_room_linens");
 
@@ -46,9 +47,9 @@ class HousekeepingController extends Controller
 		return view('Admin.pages.HousekeepingForms.Hotel_Housekeeping',['list2' =>$list2]);
     }
 
-    public function linen_management()
+    public function linen_monitoring()
     {
-        $list = DB::select("SELECT Room_No, Date_Received, SUM(Discrepancy) as ds, SUM(Quantity) as total, Attendant FROM hotel_room_linens Group By Room_No");
+        $list = DB::select("SELECT a.Room_No, a.Date_Received, SUM(a.Discrepancy) as ds, SUM(a.Quantity) as total, a.Attendant, b.Status as rstats FROM hotel_room_linens a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No Group By a.Room_No");
         $list2 = DB::select("SELECT * FROM hotel_room_linens");
 
         $count = DB::select('Select * from novadeci_suites');
@@ -59,7 +60,7 @@ class HousekeepingController extends Controller
             $array[] = ['Room_No' => $counts->Room_No];
         }
         
-        return view('Admin.pages.HousekeepingForms.Linen_Management', ['list' => $list, 'list2' => $list2, 'array' => $array]);
+        return view('Admin.pages.HousekeepingForms.Linen_Monitoring', ['list' => $list, 'list2' => $list2, 'array' => $array]);
     }
     
     public function check_linen(Request $request)
@@ -96,6 +97,51 @@ class HousekeepingController extends Controller
         }
     }
 
+    public function linen_request(Request $request)
+    {
+       
+        try{
+            $arraysofname[] = $request->name;
+            $arraysofquantity[] = $request->requested_quantity;
+            $arraysofremarks[] = $request->remarks;
+            
+            $date_requested = Carbon::now();
+            Carbon::createFromFormat('Y-m-d H:i:s', $date_requested);
+
+            $status;
+
+            
+
+            for($i=0; $i < count($request->name); $i++)
+            {
+                if($request->input('requested_quantity')[$i] > 0)
+                {
+                    $status = "Requested";
+                }
+                else
+                {
+                    $status = "Received";
+                }
+                DB::table('hotel_room_linens')
+                    ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
+                    ->update([
+                        'Quantity_Requested' => $request->requested_quantity[$i], 
+                        'Date_Requested' => $date_requested,
+                        'Status' => $status, 
+                ]);
+            }
+                        
+            Alert::Success('Success', 'Linens Successfully Requested!');
+            return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
+            
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Supply Request Failed!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+        }
+    }
+
     public function housekeeping_reports()
     {
         return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
@@ -107,22 +153,29 @@ class HousekeepingController extends Controller
         try{
             $arraysofname[] = $request->name;
             $arraysofquantity[] = $request->requested_quantity;
-            $arraysofremarks[] = $request->remarks;
             
             $date_requested = Carbon::now();
             Carbon::createFromFormat('Y-m-d H:i:s', $date_requested);
 
-            $status = "Requested";
+            $status;
 
             
 
             for($i=0; $i < count($request->name); $i++)
             {
+                if($request->input('requested_quantity')[$i] > 0)
+                {
+                    $status = "Requested";
+                }
+                else
+                {
+                    $status = "Approved";
+                }
+
                 DB::table('hotel_room_supplies')
                     ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
                     ->update([
-                        'Quantity_Requested' => $request->requested_quantity[$i],
-                        'Remarks' => $request->remarks[$i], 
+                        'Quantity_Requested' => $request->requested_quantity[$i], 
                         'Date_Requested' => $date_requested,
                         'Status' => $status, 
                 ]);
