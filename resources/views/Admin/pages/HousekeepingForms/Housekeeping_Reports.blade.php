@@ -116,7 +116,7 @@
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
                                     <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable3">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:18px;"> </th>
@@ -186,6 +186,7 @@
             jQuery(document).ready(function($) {
                 $('#myTable').DataTable();
                 $('#myTable2').DataTable();
+                $('#myTable3').DataTable();
                 $('#myTable4').DataTable();
             });
             // $(document).ready(function() {
