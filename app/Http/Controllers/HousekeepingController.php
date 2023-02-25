@@ -7,6 +7,7 @@ use App\Models\add_maintenance;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
+use App\Models\housekeepings;
 use Carbon\Carbon;
 
 class HousekeepingController extends Controller
@@ -144,7 +145,16 @@ class HousekeepingController extends Controller
 
     public function housekeeping_reports()
     {
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
+        $datenow = Carbon::now();
+        
+
+        $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
+                ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
+                ->whereDate('Check_Out_Date', '=', $datenow->format('Y-m-d'))->get();
+
+        $list2 = DB::select("SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1");
+        
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports', ['list' => $list, 'list2' => $list2]);
     }
 
     public function supply_request(Request $request)
@@ -271,7 +281,7 @@ class HousekeepingController extends Controller
         }
 
     }
-    
+
     public function update_housekeeping_status($room_no, $id, $status, $req)
     {
         
