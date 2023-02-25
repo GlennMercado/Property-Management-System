@@ -264,7 +264,7 @@
                                 <label for="exampleInputPassword1" class = "text-color pt-4">Category </label>
                                 <select class="form-control" name="category" required>
                                     <option value="Linens">Linens </option>
-                                    <option value="GuestSupplies">GuestSupplies </option>
+                                    <option value="Guest Supply">GuestSupplies </option>
                                     <option value="Amenities">Amenities  </option>
                                 </select>
                             </div>
