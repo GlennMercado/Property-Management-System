@@ -601,22 +601,10 @@
                                                             <input type="hidden" name="guest_name" value="{{$lists->Guest_Name}}">
                                                             <input type="text" class="form-control" value="{{$lists->Guest_Name}}" readonly>
 
-                                                            <p class="text-left">Type of Request </p>
-                                                            <select name="type_of_request" id="request_select" class="form-control" required>
-                                                                <option value="" disabled="disabled" selected="true">Select</option>
-                                                                <option value="Service Request">Service Request</option>
-                                                                <option value="Item Request">Item Request</option>
-                                                            </select>
-
-                                                            <div id="service" style="display:none;">
-                                                                <p class="text-left">Service Request </p>
-                                                                <input type="text" name="service_request" id="req" class="form-control">
-                                                            </div>
-
-                                                            <div id="item" style="display:none;">
-                                                                <p class="text-left">Item Request </p>
-                                                                <input type="text" name="item_request" id="req2" class="form-control">
-                                                            </div>
+                                                            
+                                                            <p class="text-left">Item Request </p>
+                                                            <input type="text" name="item_request" id="req2" class="form-control">
+                                                            
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
@@ -759,25 +747,6 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#request_select").change(function(){
-                
-                var selected = $("option:selected", this).val();
-
-                if(selected == 'Service Request')
-                {
-                    $('#service').css({ 'display' : 'block' });
-                    $('#item').css( { 'display' : 'none' } );
-                    $('#req2').val('');
-                }
-                else if(selected == 'Item Request')
-                {
-                    $('#service').css({ 'display' : 'none' });
-                    $('#req').val('');
-                    $('#item').css( { 'display' : 'block' } );
-                }
-            });
-        });
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
