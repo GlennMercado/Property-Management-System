@@ -334,29 +334,34 @@
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view2{{ $lists->ID }}" title="View Information"> <i
-                                                                    class="bi bi-eye"></i> </button>
+                                                                data-target="#view2{{ $lists->ID }}"
+                                                                title="View Information"> <i class="bi bi-eye"></i>
+                                                            </button>
 
                                                             @if ($lists->Attendant == 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#assign{{ $lists->ID }}" title="Assign Attendant">
+                                                                    data-target="#assign{{ $lists->ID }}"
+                                                                    title="Assign Attendant">
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
-                                                            
+
                                                             @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update{{ $lists->ID }}" title="Update Housekeeping Status">
+                                                                    data-target="#update{{ $lists->ID }}"
+                                                                    title="Update Housekeeping Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
                                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                    data-target="#outoforder{{ $lists->ID }}" title="Update Room to Out of Order">
+                                                                    data-target="#outoforder{{ $lists->ID }}"
+                                                                    title="Update Room to Out of Order">
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
                                                             @if ($lists->Housekeeping_Status == 'Inspect' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
                                                                     data-toggle="modal"
-                                                                    data-target="#check_supply{{ $lists->ID }}" title="Checking Room Supplies">
+                                                                    data-target="#check_supply{{ $lists->ID }}"
+                                                                    title="Checking Room Supplies">
                                                                     <i class="bi bi-list-check"></i>
                                                                 </button>
                                                             @endif
@@ -365,8 +370,9 @@
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
                                                                     data-toggle="modal"
-                                                                    data-target="#check_linen{{ $lists->ID }}" title="Checking Room Linen">
-                                                                        <i class="bi bi-check2-square"></i>
+                                                                    data-target="#check_linen{{ $lists->ID }}"
+                                                                    title="Checking Room Linen">
+                                                                    <i class="bi bi-check2-square"></i>
                                                                 </button>
                                                             @endif
                                                         </td>
@@ -639,14 +645,14 @@
                                                     </div>
 
                                                     {{-- Supply Checking --}}
-                                                    <div id="check_supply{{$lists->ID}}"
-                                                        class="modal hide fade" tabindex="-1">
+                                                    <div id="check_supply{{ $lists->ID }}" class="modal hide fade"
+                                                        tabindex="-1">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title text-left display-4"
                                                                         id="exampleModalLabel">Room
-                                                                        {{ $lists->Room_No }} Supply 
+                                                                        {{ $lists->Room_No }} Supply
                                                                         Checking
                                                                     </h5>
                                                                     <button type="button" class="close"
@@ -690,12 +696,15 @@
                                                                                             class="form-control"
                                                                                             value="{{ $lists2->Quantity }}"
                                                                                             readonly>
-                                                                                        <input type="hidden" name="quantity[]" value= "{{ $lists2->Quantity }}" />
+                                                                                        <input type="hidden"
+                                                                                            name="quantity[]"
+                                                                                            value="{{ $lists2->Quantity }}" />
                                                                                     </div>
                                                                                     <div class="col">
                                                                                         <input type="number"
                                                                                             class="form-control"
-                                                                                            name="deduction[]" value="0" />
+                                                                                            name="deduction[]"
+                                                                                            value="0" />
                                                                                     </div>
                                                                                 </div>
                                                                                 <br>
@@ -713,8 +722,8 @@
                                                     </div>
 
                                                     {{-- Check Linen --}}
-                                                    <div id="check_linen{{$lists->ID}}"
-                                                        class="modal hide fade" tabindex="-1">
+                                                    <div id="check_linen{{ $lists->ID }}" class="modal hide fade"
+                                                        tabindex="-1">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -768,19 +777,31 @@
                                                                                             class="form-control"
                                                                                             value="{{ $lists2->Quantity }}"
                                                                                             readonly>
-                                                                                        <input type="hidden" name="quantity[]" value= "{{ $lists2->Quantity }}" />
+                                                                                        <input type="hidden"
+                                                                                            name="quantity[]"
+                                                                                            value="{{ $lists2->Quantity }}" />
                                                                                     </div>
                                                                                     <div class="col">
-                                                                                        <input type="hidden" name="current_discrepancy[]" value="{{$lists2->Discrepancy}}" />
+                                                                                        <input type="hidden"
+                                                                                            name="current_discrepancy[]"
+                                                                                            value="{{ $lists2->Discrepancy }}" />
                                                                                         <input type="number"
                                                                                             class="form-control"
-                                                                                            name="discrepancy[]" value="0" />
+                                                                                            name="discrepancy[]"
+                                                                                            value="0" />
                                                                                     </div>
                                                                                     <div class="col">
-                                                                                        <select name="status[]" class="form-control">
-                                                                                            <option value="Received" selected="true">Select</option>
-                                                                                            <option value="Laundry">Laundry</option>
-                                                                                            <option value="Returned to Inventory">Returned to Inventory</option>
+                                                                                        <select name="status[]"
+                                                                                            class="form-control">
+                                                                                            <option value="Received"
+                                                                                                selected="true">Select
+                                                                                            </option>
+                                                                                            <option value="Laundry">Laundry
+                                                                                            </option>
+                                                                                            <option
+                                                                                                value="Returned to Inventory">
+                                                                                                Returned to Inventory
+                                                                                            </option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
@@ -812,7 +833,6 @@
                                                 <th scope="col" style="font-size:18px;">Room No</th>
                                                 <th scope="col" style="font-size:18px;">Date</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
                                                 <th scope="col" style="font-size:18px;"></th>
                                             </tr>
                                         </thead>
@@ -822,19 +842,29 @@
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Date_Requested }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
-                                                    <td>{{ $lists->hrsstats }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary"
+                                                        @php 
+                                                            $check;
+                                                            $roomno = $lists->Room_No;
+                                                            $sql = \DB::select("SELECT CASE WHEN diff_rows > 0 THEN 'Different' ELSE 'Same' END AS Result FROM ( SELECT SUM(CASE WHEN Status = 'Requested' THEN 0 ELSE 1 END) AS diff_rows FROM hotel_room_supplies WHERE Room_No = '$roomno') AS derived");
+                                                            foreach($sql as $supply)
+                                                            {
+                                                                $check = $supply->Result;
+                                                            }
+                                                        @endphp
+                                                        <button type="button" class="btn btn-sm btn-primary"
                                                             data-toggle="modal"
                                                             data-target="#view_supply{{ $lists->Room_No }}">
-                                                            View Supply
+                                                            <i class="bi bi-eye"></i>
                                                         </button>
-                                                        @if($lists->rstats != "Occupied")
-                                                            <button type="button" class="btn btn-primary"
+                                                        @if ($lists->rstats != 'Occupied' && $lists->Attendant != "Unassigned")
+                                                            @if($check == "Different")
+                                                            <button type="button" class="btn btn-sm btn-success"
                                                                 data-toggle="modal"
                                                                 data-target="#request_supply{{ $lists->Room_No }}">
-                                                                Request Supply
+                                                                <i class="bi bi-box-arrow-in-down-left"></i>
                                                             </button>
+                                                            @endif
                                                         @endif
                                                     </td>
                                             @endforeach
@@ -862,24 +892,27 @@
                                                             id="myTable2">
                                                             <thead class="thead-light">
                                                                 <tr>
-                                                                    <th scope="col">Room No
-                                                                    </th>
                                                                     <th scope="col">Item
                                                                         Name</th>
                                                                     <th scope="col">
                                                                         Quantity</th>
                                                                     <th scope="col">
                                                                         Quantity <br> Requested</th>
+                                                                    <th scope="col">
+                                                                        Date <br> Requested</th>
+                                                                    <th scope="col">
+                                                                        Status</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($list4 as $lists)
                                                                     @if ($lists->Room_No == $arrays['Room_No'])
                                                                         <tr>
-                                                                            <td>{{ $lists->Room_No }}</td>
                                                                             <td>{{ $lists->name }}</td>
                                                                             <td>{{ $lists->Quantity }}</td>
                                                                             <td>{{ $lists->Quantity_Requested }}</td>
+                                                                            <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} <br> {{date('h:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            <td>{{ $lists->Status }}</td>
                                                                         </tr>
                                                                     @endif
                                                                 @endforeach
@@ -919,12 +952,9 @@
                                                                 <div class="col">
                                                                     <p class="text-left">Requested Quantity</p>
                                                                 </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">Remarks</p>
-                                                                </div>
                                                             </div>
                                                             @foreach ($list4 as $lists)
-                                                                @if ($lists->Room_No == $arrays['Room_No'])
+                                                                @if ($lists->Room_No == $arrays['Room_No'] && $lists->Status != "Requested")
                                                                     <div class="row">
                                                                         <div class="col">
                                                                             <input type="hidden" name="room_no"
@@ -942,10 +972,6 @@
                                                                             <input type="number" class="form-control"
                                                                                 value="0"
                                                                                 name="requested_quantity[]" />
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <input type="text" class="form-control"
-                                                                                name="remarks[]">
                                                                         </div>
                                                                     </div>
                                                                     <br>

@@ -16,7 +16,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="mb-0 title">Guest Call Register</h3>
+                                <h2 class="mb-0 title">Guest Request</h3>
                             </div>
                         </div>
                         <br>

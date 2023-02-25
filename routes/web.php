@@ -58,12 +58,15 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
 		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
+
 		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
+		Route::post('/linen_request', 'App\Http\Controllers\HousekeepingController@linen_request');
+
 		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
 		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 		Route::post('/check_linen', 'App\Http\Controllers\HousekeepingController@check_linen');
 
-		Route::get('Linen_Management', [App\Http\Controllers\HousekeepingController::class, 'linen_management'])->name('Linen_Management');
+		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
 		Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
@@ -71,7 +74,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 
-		Route::get('Guest_Call_Register', [App\Http\Controllers\MaintenanceController::class, 'Guest_Call_Register'])->name('Guest_Call_Register');
+		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 

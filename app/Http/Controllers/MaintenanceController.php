@@ -74,10 +74,10 @@ class MaintenanceController extends Controller
         
     }
 
-    public function Guest_Call_Register()
+    public function Guest_Request()
     {
         $list = DB::select("SELECT * FROM guest_requests");
-        return view('Admin.pages.HousekeepingForms.Guest_Call_Register', ['list' => $list]);
+        return view('Admin.pages.HousekeepingForms.Guest_Request', ['list' => $list]);
     }
 
     public function add_guest_request(Request $request)
