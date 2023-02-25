@@ -27,10 +27,11 @@
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" style="font-size:18px;">Room No.</th>
+                                        <th scope="col" style="font-size:18px;">Room <br> No.</th>
                                         <th scope="col" style="font-size:18px;">Date & Time <br> Received</th>
-                                        <th scope="col" style="font-size:18px;">Total Linen</th>
-                                        <th scope="col" style="font-size:18px;">Total Discrepancy</th>
+                                        <th scope="col" style="font-size:18px;">Total <br> Linen</th>
+                                        <th scope="col" style="font-size:18px;">Total <br> Discrepancy</th>
+                                        <th scope="col" style="font-size:18px;">Attendant</th>
                                         <th scope="col" style="font-size:18px;">Action</th>
                                     </tr>
                                 </thead>
@@ -40,10 +41,11 @@
                                             <td>{{ $lists->Room_No }}</td>
                                             <td>{{ $lists->Date_Received }}</td>
                                             <td>{{ $lists->total }}</td>
-                                            <td>{{ $lists->Discrepancy }}</td>
+                                            <td>{{ $lists->ds }}</td>
+                                            <td>{{ $lists->Attendant }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                    data-target="#view_supply{{ $lists->Room_No }}">
+                                                    data-target="#view_supply{{ $lists->Room_No }}" title="View Room Supplies">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
                                             </td>
@@ -75,8 +77,8 @@
                                                                 Name</th>
                                                             <th scope="col">
                                                                 Quantity</th>
-                                                            <th scope="col">
-                                                                Quantity <br> Requested</th>
+                                                                <th scope="col">
+                                                                    Discrepancy</th>
                                                             <th scope="col"> Status </th>  
                                                         </tr>
                                                     </thead>
@@ -87,7 +89,7 @@
                                                                     <td>{{ $lists->Room_No }}</td>
                                                                     <td>{{ $lists->name }}</td>
                                                                     <td>{{ $lists->Quantity }}</td>
-                                                                    <td>{{ $lists->Quantity_Requested }}</td>
+                                                                    <td>{{ $lists->Discrepancy }}</td>
                                                                     <td>{{ $lists->Status}}</td>
                                                                 </tr>
                                                             @endif

@@ -32,7 +32,7 @@ return new class extends Migration
 
             $table->integer('Quantity');
 
-            $table->integer('Discrepancy');
+            $table->integer('Discrepancy')->default(0);
                 
             $table->integer('Quantity_Requested')->nullable();
 
