@@ -196,7 +196,20 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::get('DailyReport', function () {
 			$list = DB::select('SELECT * FROM finance_reports');
-			return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
+			$list1 = DB::select('SELECT * FROM finance_reports');
+			$array = array();
+
+			foreach($list as $lists)
+			{
+				$array[] = ['userid' => $lists->userid];
+			}
+
+			return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'array' => $array, 'list1'=>$list1]);})->name('DailyReport');
+			
+			
+
+			
+
 
 	//GuestManagement
 		Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');

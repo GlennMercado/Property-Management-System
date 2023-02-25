@@ -13,26 +13,11 @@
             $('#myTabless').DataTable();
             $('#myTablessss').DataTable();
         });
-        // Code that uses other library's $ can follow here.
-        var $j = jQuery.noConflict();
-        $j("input[name='hotelout'], input[name='hotelin']").keyup(function() {
-        // Bind keyup event on the input
-        // If value is not empty
-        if ($("input[name='hotelout']").val() == 0 && $("input[name='hotelin']").val() == 0) {
-            // Hide the element
-            $("input[name='housekeeper']").hide();
-            $("label[name='housekeeper']").hide();
-        } else {
-            // Otherwise show it
-            $("input[name='housekeeper']").show();
-            $("label[name='housekeeper']").show();
-        }
-        }).keyup();  // Trigger the keyup event, thus running the handler on page load
         
     </script>
     <div class="container-fluid mt--9">
         <div class="row mt--9">
-            <div class="card card-stats col-md-3" style="width: 8rem;">
+            <div class="card card-stats col-md-4" style="width: 8rem;">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -50,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-stats col-md-3" style="width: 8rem;">
+            <div class="card card-stats col-md-4" style="width: 8rem;">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -74,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-stats col-md-3">
+            <div class="card card-stats col-md-4">
                 <!-- Card body -->
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
@@ -93,27 +78,6 @@
                         <div class="col-auto">
                             <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
                                 <i class="ni ni-chart-pie-35"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-stats col-md-3" style="width: 8rem;">
-                <!-- Card body -->
-                <div class="card-body" style="height: 85px;">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">History</h5>
-                            <span class="h2 font-weight-bold mb-0">
-
-                            </span>
-                        </div>
-                        <div class="col-auto">
-                            <div>
-                                <button type="button"
-                                    class="btn btn-outline-primary icon icon-shape bg-orange text-white rounded-circle shadow"
-                                    data-toggle="modal" data-target="#HistoryModal" style="float:right;"><i
-                                        class="ni ni-chart-pie-35"></i></button>
                             </div>
                         </div>
                     </div>
@@ -358,7 +322,7 @@
                                                             <label for="exampleInputPassword1">Category: </label>
                                                             <select class="form-control" value="{{ $lists->category }}"
                                                                 name="category" required>
-                                                                <option value="Invalid" class="cat">Linens</option>
+                                                                <option class="cat" disabled>Linens</option>
                                                                 <option>Bed pad - Single</option>
                                                                 <option>Fitted Sheet - Single</option>
                                                                 <option>Flat Sheet - Single</option>
@@ -376,9 +340,8 @@
                                                                 <option>Bath Mat</option>
                                                                 <option>Bed Ruuner Queen</option>
                                                                 <option>Bed Runner Single</option>
-                                                                <option value="Invalid"></option>
-                                                                <option value="Invalid" class="cat">Guest Supplies
-                                                                </option>
+                                                                <option disabled></option>
+                                                                <option class="cat" disabled>Guest Supplies</option>
                                                                 <option>Bath Soap</option>
                                                                 <option>Shampoo</option>
                                                                 <option>Dental Kit</option>
@@ -389,8 +352,8 @@
                                                                 <option>Creamer</option>
                                                                 <option>Sugar - White</>
                                                                 <option>Sugar - Brown</option>
-                                                                <option value="Invalid"></option>
-                                                                <option value="Invalid" class="cat">Amenities</option>
+                                                                <option disabled></option>
+                                                                <option class="cat" disabled>Amenities</option>
                                                                 <option>Kettle</option>
                                                                 <option>Tray</option>
                                                                 <option>Dental Glass</option>
@@ -645,7 +608,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                </div>
                                 <!--Modal Edit-->
                                 <div class="modal fade text-left" id="ModalUpdate2{{ $lists2->productid }}"
                                     tabindex="-1" role="dialog" aria-hidden="true">
@@ -1240,14 +1202,13 @@
                                 <table class="table align-items-center table-flush" id="myTablessss">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:16px;">Action</th>
                                             <th scope="col" style="font-size:16px;">Item Name</th>
                                             <th scope="col" style="font-size:16px;">Department</th>
                                             <th scope="col" style="font-size:16px;">Name of Supervisor</th>
                                             <th scope="col" style="font-size:16px;">Date</th>
                                             <th scope="col" style="font-size:16px;">Stock Level</th>
                                             <th scope="col" style="font-size:16px;">Stock Alert</th>
-                                            <th scope="col" style="font-size:16px;">file</th>
-                                            <th scope="col" style="font-size:16px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1259,13 +1220,6 @@
                                                 <td style="font-size:14px;">{{ $lists4->quantity }}</td>
                                                 <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
                                                 <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
-                                                @if ($lists4->quantity <= $lists4->Stock_Level)
-                                                    <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
-                                                            style="color:red;"></i></td>
-                                                @else
-                                                    <td style="font-size:25px;"><i class="bi bi-check-square-fill"
-                                                            style="color:green;"></i></td>
-                                                @endif
                                                 <td>
                                                     <button type="button" data-toggle="modal"
                                                         data-target="#ModalView4{{ $lists4->productid }}"
@@ -1358,81 +1312,13 @@
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">Purchase Report</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form class="needs-validation"
-                                                            action="{{ url('/edit_report') }}" method="POST">
-                                                            {{ csrf_field() }}
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="card-body bg-white"
-                                                                        style="border-radius: 18px">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <input class="form-control"
-                                                                                    type="text" name="productid"
-                                                                                    value="{{ $lists4->productid }}"
-                                                                                    hidden>
-                                                                                <p class="text-left">Item Name :
-                                                                                    <input class="form-control"
-                                                                                        type="text" name="name"
-                                                                                        value="{{ $lists4->name }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="text-left">Item Description :
-                                                                            <input class="form-control" type="text"
-                                                                                placeholder="Enter Here.."
-                                                                                name="description"
-                                                                                value="{{ $lists4->description }}"
-                                                                                required>
-                                                                        </p>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Unit :
-                                                                                    <input class="form-control"
-                                                                                        type="number"
-                                                                                        placeholder="Enter Here.."
-                                                                                        name="unit"
-                                                                                        value="{{ $lists4->unit }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Quantity :
-                                                                                    <input class="form-control"
-                                                                                        type="number"
-                                                                                        placeholder="Enter Here.."
-                                                                                        name="quantity"
-                                                                                        value="{{ $lists4->quantity }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="text-left">Supplier Name: </p>
-                                                                        <select class="form-control" name="suppliername"
-                                                                            value="{{ $lists4->productid }}" required>
-                                                                            <option>Sample Supplier 1</option>
-                                                                            <option>Sample Supplier 2</option>
-                                                                            <option>Sample Supplier 3</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-success">Submit</button>
-                                                            </div>
-                                                        </form>
+                                                    <label>Status: </label>
+                                                        <select class="form-control" value="{{ $lists->status}}" name="status" required>
+                                                        <option>Requesting</option>
+                                                        <option>Paid</option>
+                                                        <option>Unpaid</option>
+                                                        </select>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
