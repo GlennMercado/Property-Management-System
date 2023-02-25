@@ -42,18 +42,35 @@ class InventoryController extends Controller
     {
         $this->validate($request,[
             'productid' => 'required',
-            'name' => 'required',
+            'category' => 'required',
+            'Linens' => 'required',
+            'GuestSupplies' => 'required',
+            'Amenities' => 'required',
             'description' => 'required',
             'allstock' => 'required',
             'quantity' => 'required',
-            'stock' => 'required',
-            'category' => 'required'
+            'stock' => 'required'
        ]);
 
        $stock = new hotelstocks;
+       $linens = $request->input('Linens');
+       $guest = $request->input('GuestSupplies');
+       $amenities = $request->input('Amenities');
+
+       if($linens = 'Linens')
+        {
+            $stock->name = $request->input('Linens');
+        }
+        elseif($guest = 'GuestSupplies')
+        {
+            $stock->name = $request->input('GuestSupplies');
+        }
+        elseif($amenities =  'Amenities')
+        {
+            $stock->name = $request->input('Amenities');
+        }
 
        $stock->productid = $request->input('productid');
-       $stock->name = $request->input('name');
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
