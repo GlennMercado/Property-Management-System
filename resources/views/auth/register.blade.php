@@ -33,7 +33,7 @@
                                         <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Name') }}" type="text" name="name"
                                             value="{{ old('name') }}" required autofocus maxlength="32"
-                                            pattern="[A-Za-z0-9 ]+">
+                                            pattern="[A-Za-z0-9 ]+" title="Username should only contain uppercase and lowercase letters. e.g. John">
                                     </div>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
