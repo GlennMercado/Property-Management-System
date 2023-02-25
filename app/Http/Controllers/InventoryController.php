@@ -164,6 +164,59 @@ class InventoryController extends Controller
         }
     }
 
+    public function addrequest(Request $request)
+    {
+        $this->validate($request,[
+            'productid' => 'required',
+            'category' => 'required',
+            'Linens' => 'required',
+            'GuestSupplies' => 'required',
+            'Amenities' => 'required',
+            'description' => 'required',
+            'allstock' => 'required',
+            'quantity' => 'required',
+            'stock' => 'required'
+       ]);
+
+       $stock = new hotelstocks;
+
+       $stock->productid = $request->input('productid');
+       $linens = $request->input('Linens');
+       $guest = $request->input('GuestSupplies');
+       $amenities = $request->input('Amenities');
+
+       if($linens = 'Linens')
+        {
+            $stock->name = $request->input('Linens');
+        }
+        elseif($guest = 'GuestSupplies')
+        {
+            $stock->name = $request->input('GuestSupplies');
+        }
+        elseif($amenities =  'Amenities')
+        {
+            $stock->name = $request->input('Amenities');
+        }
+
+       $stock->description = $request->input('description');
+       $stock->allstock = $request->input('allstock');
+       $stock->total = $request->input('quantity');
+       $stock->Stock_Level = $request->input('stock');
+       $stock->category = $request->input('category');
+
+       
+       if($stock->save())
+        {
+            Alert::Success('Success', 'Stock Successfully Submitted!');
+            return redirect('StockAvailability')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
+            return redirect('StockAvailability')->with('Error', 'Failed!');
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *

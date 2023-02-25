@@ -27,6 +27,9 @@ return new class extends Migration
             $table->integer('unearned');
             $table->integer('bank');
             $table->integer('cheque');
+
+            $table->integer('basketball');
+            $table->integer('otherincome');
             
             $table->timestamps();
         });

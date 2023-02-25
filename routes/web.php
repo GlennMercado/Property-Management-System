@@ -170,7 +170,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);})->name('StockFunction');
 
 	//Stock Purchase Report
-		Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
+		Route::post('/repo	rt', 'App\Http\Controllers\PurchaseReportController@report');
 		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
 		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
 		Route::get('StockPurchaseReport', function () {
@@ -178,6 +178,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 	
 	//Stock Availability
+	Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
+
 		Route::get('StockAvailability', function () {
 			$list = DB::select('SELECT * FROM hotelstocks');
 			$list2 = DB::select('SELECT * FROM stockscenters');

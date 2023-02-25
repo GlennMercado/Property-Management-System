@@ -118,19 +118,11 @@ class FinanceReportController extends Controller
         //for Credit
         if($compute == 'CourtRental' || 'CourtRental/League')
         {
-            $finance->cash = $request->input('amount');
-            $finance->unearned = $nopayment;
-            $finance->bank = $nopayment;
-            $finance->cheque = $nopayment;
+            $finance->basketball = $request->input('amount');
+            $finance->otherincome = $nopayment;
             
         }
-        elseif($payment = 'Unearned')
-        {
-            $finance->cash = $nopayment;
-            $finance->unearned = $request->input('amount');
-            $finance->bank = $nopayment;
-            $finance->cheque = $nopayment;
-        }
+        
 
 
             // $finance->basketball = $request->input('basketball');
