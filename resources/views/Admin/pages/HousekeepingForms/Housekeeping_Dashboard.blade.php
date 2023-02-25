@@ -27,7 +27,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival</a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival / Departure</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -334,30 +334,39 @@
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view2{{ $lists->ID }}"> <i
+                                                                data-target="#view2{{ $lists->ID }}" title="View Information"> <i
                                                                     class="bi bi-eye"></i> </button>
 
                                                             @if ($lists->Attendant == 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#assign{{ $lists->ID }}">
+                                                                    data-target="#assign{{ $lists->ID }}" title="Assign Attendant">
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
                                                             
                                                             @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update{{ $lists->ID }}">
+                                                                    data-target="#update{{ $lists->ID }}" title="Update Housekeeping Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
                                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                    data-target="#outoforder{{ $lists->ID }}">
+                                                                    data-target="#outoforder{{ $lists->ID }}" title="Update Room to Out of Order">
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
                                                             @if ($lists->Housekeeping_Status == 'Inspect' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
                                                                     data-toggle="modal"
-                                                                    data-target="#check_supply{{ $lists->ID }}">
+                                                                    data-target="#check_supply{{ $lists->ID }}" title="Checking Room Supplies">
                                                                     <i class="bi bi-list-check"></i>
+                                                                </button>
+                                                            @endif
+
+                                                            @if ($lists->Housekeeping_Status == 'Inspect(After Checking)' && $lists->Attendant != 'Unassigned')
+                                                                <button class="btn btn-sm"
+                                                                    style="background: #9FA6B2;  color:white;"
+                                                                    data-toggle="modal"
+                                                                    data-target="#check_linen{{ $lists->ID }}" title="Checking Room Linen">
+                                                                        <i class="bi bi-check2-square"></i>
                                                                 </button>
                                                             @endif
                                                         </td>
@@ -687,6 +696,92 @@
                                                                                         <input type="number"
                                                                                             class="form-control"
                                                                                             name="deduction[]" value="0" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a data-dismiss="modal" class="btn">Close</a>
+                                                                        <input type="submit" value="Submit"
+                                                                            name="submit" class="btn btn-primary">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Check Linen --}}
+                                                    <div id="check_linen{{$lists->ID}}"
+                                                        class="modal hide fade" tabindex="-1">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">Room
+                                                                        {{ $lists->Room_No }} Linen
+                                                                        Checking
+                                                                    </h5>
+
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('/check_linen') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p class="text-left">Item Name</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Quantity</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Discrepancy</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Status</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        @foreach ($list5 as $lists2)
+                                                                            @if ($lists2->Room_No == $lists->Room_No)
+                                                                                <div class="row">
+                                                                                    <div class="col">
+                                                                                        <input type="hidden"
+                                                                                            name="room_no"
+                                                                                            value="{{ $lists2->Room_No }}" />
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->name }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden"
+                                                                                            name="name[]"
+                                                                                            value="{{ $lists2->name }}">
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->Quantity }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden" name="quantity[]" value= "{{ $lists2->Quantity }}" />
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="hidden" name="current_discrepancy[]" value="{{$lists2->Discrepancy}}" />
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            name="discrepancy[]" value="0" />
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <select name="status[]" class="form-control">
+                                                                                            <option value="Received" selected="true">Select</option>
+                                                                                            <option value="Laundry">Laundry</option>
+                                                                                            <option value="Returned to Inventory">Returned to Inventory</option>
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
                                                                                 <br>

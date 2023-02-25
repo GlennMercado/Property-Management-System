@@ -61,6 +61,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
 		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
 		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+		Route::post('/check_linen', 'App\Http\Controllers\HousekeepingController@check_linen');
 
 		Route::get('Linen_Management', [App\Http\Controllers\HousekeepingController::class, 'linen_management'])->name('Linen_Management');
 		
@@ -103,7 +104,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('EventInquiryView', [App\Http\Controllers\EventController::class, 'EventInquiryView'])->name('EventInquiryView');
 	//Commercial Spaces
 	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
-	Route::get('CommercialSpaceView', [App\Http\Controllers\CommercialSpacesController::class, 'CommercialSpaceView'])->name('CommercialSpaceView');
+	
+	Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
 
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
@@ -180,6 +182,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			$list4= DB::select('SELECT * FROM hotel_room_supplies');
 			$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
 
+
 		$count = array();
 
 		foreach($check as $checks)
@@ -187,7 +190,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			$count[] = ['counts' => $checks->cnt];
 		}
 
-			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'list5'=>$list5, 'count'=>$count]);})->name('StockAvailability');
+			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count]);})->name('StockAvailability');
 			
 			//Stock Avail
 		Route::get('StockAvail', function () {

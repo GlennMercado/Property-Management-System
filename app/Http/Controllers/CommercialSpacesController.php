@@ -14,9 +14,12 @@ class CommercialSpacesController extends Controller
         $list = DB::select('SELECT * FROM commercial_spaces_applications');    
         return view('Admin.pages.CommercialSpaces.CommercialSpaceForm', ['list'=>$list]);
     }
-    public function CommercialSpaceView()
+    public function commercial_space_view($id)
     {
-        $list = DB::select('SELECT * FROM commercial_spaces_applications');    
+        $comid = $id;
+        
+        $list = DB::select("SELECT * FROM commercial_spaces_applications  WHERE id = '$comid'");    
+
         return view('Admin.pages.CommercialSpaces.CommercialSpaceView', ['list'=>$list]);
     }
 }

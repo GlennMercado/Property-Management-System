@@ -129,11 +129,11 @@
                                     </div>
                     </div>
                     <!-- <div class="invalid-feedback">
-                                                                    Stock Details empty
-                                                                    </div> -->
+                                                                        Stock Details empty
+                                                                        </div> -->
                     <!--Modal Edit / validation-->
-                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1" role="dialog"
-                        aria-hidden="true">
+                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1"
+                        role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -190,8 +190,8 @@
                                             </div>
                                         </div>
                                         <!-- <div class="invalid-feedback">
-                                                                        Stock Name empty
-                                                                    </div>        -->
+                                                                            Stock Name empty
+                                                                        </div>        -->
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Category: </label>
                                             <input type="number" class="form-control" name="category"
@@ -298,9 +298,10 @@
                             <div class="col">
                                 <label for="exampleInputPassword1" class="text-color pt-4">Category </label>
                                 <select class="form-control" id="category" name="category" required>
-                                    <option id="lin" value="linens">Linens</option>
-                                    <option id="gu" value="guestsupplies">GuestSupplies</option>
-                                    <option id="am" value="amenities">Amenities</option>
+                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                    <option id="lin" value="Linen">Linens</option>
+                                    <option id="gu" value="Guest Supply">Guest Supplies</option>
+                                    <option id="am" value="Amenities">Amenities</option>
                                 </select>
                             </div>
                         </div>
@@ -394,10 +395,10 @@
         </div>
     </div>
     <!-- </div>
-        
+            
+                    </div>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
 
 
 
@@ -409,7 +410,7 @@
         $(document).ready(function() {
             $("#category").change(function() {
                 var selected = $("option:selected", this).val();
-                if (selected == 'linens') {
+                if (selected == 'Linen') {
                     $('#linens').css({
                         'display': 'block'
                     });
@@ -419,7 +420,7 @@
                     $('#amenities').css({
                         'display': 'none'
                     });
-                } else if (selected == 'guestsupplies') {
+                } else if (selected == 'Guest Supply') {
                     $('#linens').css({
                         'display': 'none'
                     });
@@ -429,7 +430,7 @@
                     $('#amenities').css({
                         'display': 'none'
                     });
-                } else if (selected == 'amenities') {
+                } else if (selected == 'Amenities') {
                     $('#linens').css({
                         'display': 'none'
                     });

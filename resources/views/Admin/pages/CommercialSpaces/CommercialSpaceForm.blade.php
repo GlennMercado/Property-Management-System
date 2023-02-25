@@ -56,14 +56,9 @@
                                                             <tr>
                                                                 <td class="row">
                                                                     <div class="col-md-1">
-                                                                        <form action="{{ route('CommercialSpaceView') }}"
-                                                                            data-target="#view{{ $lists->id }}"
-                                                                            target="_blank">
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm btn-success"
-                                                                                title="View">
-                                                                                <i class="bi bi-eye"></i></button>
-                                                                        </form>
+                                                                        <a href="{{url('/commercial_space_view', ['id' => $lists->id]) }}" class="btn btn-sm btn-success" style="cursor:pointer;">
+                                                                            <i class="bi bi-eye"></i>
+                                                                        </a>
                                                                     </div>
                                                                     <div class="col-md-1">
                                                                         <button type="submit"

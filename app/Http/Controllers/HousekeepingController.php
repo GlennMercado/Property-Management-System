@@ -26,6 +26,8 @@ class HousekeepingController extends Controller
 
         $list3 = DB::select("SELECT DISTINCT  a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No");
         $list4 = DB::select("SELECT * FROM hotel_room_supplies WHERE Category = 'Guest Supply'");
+        $list5 = DB::select("SELECT * FROM hotel_room_linens");
+
         $count = DB::select('Select * from novadeci_suites');
         $array = array();
 
@@ -34,7 +36,7 @@ class HousekeepingController extends Controller
             $array[] = ['Room_No' => $counts->Room_No];
         }
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
-                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4]
+                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]
                     );
     }
     public function hotel_housekeeping()
@@ -46,7 +48,52 @@ class HousekeepingController extends Controller
 
     public function linen_management()
     {
-        return view('Admin.pages.HousekeepingForms.Linen_Management');
+        $list = DB::select("SELECT Room_No, Date_Received, SUM(Discrepancy) as ds, SUM(Quantity) as total, Attendant FROM hotel_room_linens Group By Room_No");
+        $list2 = DB::select("SELECT * FROM hotel_room_linens");
+
+        $count = DB::select('Select * from novadeci_suites');
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Room_No' => $counts->Room_No];
+        }
+        
+        return view('Admin.pages.HousekeepingForms.Linen_Management', ['list' => $list, 'list2' => $list2, 'array' => $array]);
+    }
+    
+    public function check_linen(Request $request)
+    {
+        try
+        {
+            $room_no = $request->input('room_no');
+            
+           
+            $totaldiscrepancy = array();
+            
+
+            for($i = 0; $i < count($request->input('name')); $i++)
+            {
+                $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
+                DB::table('hotel_room_linens')
+                    ->where(['Room_No' => $room_no, 'name' => $request->input('name')[$i]])
+                    ->update([
+                            'Discrepancy' => $totaldiscrepancy[$i],
+                            'Status' => $request->input('status')[$i]    
+                            ]);
+            }
+
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
+            
+
+            Alert::Success('Success', 'Linens Successfully Checked!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');   
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Line Successfully Checked!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+        }
     }
 
     public function housekeeping_reports()
@@ -111,15 +158,15 @@ class HousekeepingController extends Controller
             }
                  
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(array(
-                'Housekeeping_Status' => "Out of Service"
+                'Housekeeping_Status' => "Inspect(After Checking)"
             ));
-            Alert::Success('Success', 'Supplies Successfully Requested!');
+            Alert::Success('Success', 'Supplies Successfully Checked!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Error', 'Supply Request Failed!');
+            Alert::Error('Error', 'Supply Checking Failed!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
     }
@@ -145,6 +192,8 @@ class HousekeepingController extends Controller
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
                 DB::table('hotel_room_supplies')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
+
+                DB::table('hotel_room_linens')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
     
                 Alert::Success('Success', 'Attendant successfully assigned!');
                 return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');

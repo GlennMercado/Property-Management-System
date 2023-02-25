@@ -45,12 +45,15 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <p class="text-left">Room No. </p>
-                                                        <select name="room_no" class="form-control" required>
-                                                            <option selected disabled value="">Select</option>
-                                                                @for ($count = 1; $count <= 30; $count++)
-                                                                    <option value="{{ $count }}"> {{ $count }}
-                                                                @endfor
-                                                        </select>
+                                                        
+                                                            @foreach ($count as $counts)
+                                                            @for ($i = 1 + $counts['counts']; $i <= $counts['counts'] + 1; $i++)
+                                                                <input class="form-control" type="text" value="{{ $i }}"
+                                                                    readonly />
+                                                                <input type="hidden" name="room_no" value="{{ $i }}" />
+                                                            @endfor
+                                                        @endforeach
+                                                       
                                                     </div>
                                                     <div class="col">
                                                         <p class="text-left">Room Size (sq. m.)</p>
