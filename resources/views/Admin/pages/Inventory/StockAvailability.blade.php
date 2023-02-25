@@ -754,13 +754,11 @@
                                 {{-- Linen Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
-                                    <h3 class="mb-0 title">Linen Request </h3>
+                                    <h3 class="mb-0 title">Linen Request</h3>
                                     <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before
-                                        Starting,
-                                        See To It That All Inventory Are In The Storage Area</h5><br><br>
-                                </div>
+                                        Starting, See To It That All Inventory Are In The Storage Area</h5><br><br>
 
-                                <table class="table align-items-center" id="myTabless">
+                                    <table class="table align-items-center" id="myTabless">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:16px;">Product Name</th>
@@ -868,6 +866,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!--Modal Edit-->
+                                                <div class="modal fade text-left"
+                                                    id="ModalUpdate3{{ $lists3->productid }}" tabindex="-1"
+                                                    role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title">{{ __('Edit Details') }}</h2>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
 
                                 {{-- Supply Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
