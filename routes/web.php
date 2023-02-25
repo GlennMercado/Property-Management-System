@@ -58,12 +58,15 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
 		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
+
 		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
+		Route::post('/linen_request', 'App\Http\Controllers\HousekeepingController@linen_request');
+
 		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
 		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 		Route::post('/check_linen', 'App\Http\Controllers\HousekeepingController@check_linen');
 
-		Route::get('Linen_Management', [App\Http\Controllers\HousekeepingController::class, 'linen_management'])->name('Linen_Management');
+		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
 		Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
 
@@ -71,7 +74,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 
-		Route::get('Guest_Call_Register', [App\Http\Controllers\MaintenanceController::class, 'Guest_Call_Register'])->name('Guest_Call_Register');
+		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
@@ -167,7 +170,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);})->name('StockFunction');
 
 	//Stock Purchase Report
-		Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
+		Route::post('/repo	rt', 'App\Http\Controllers\PurchaseReportController@report');
 		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
 		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
 		Route::get('StockPurchaseReport', function () {
@@ -175,22 +178,31 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 	
 	//Stock Availability
+	Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
+
 		Route::get('StockAvailability', function () {
 			$list = DB::select('SELECT * FROM hotelstocks');
 			$list2 = DB::select('SELECT * FROM stockscenters');
 			$list3 = DB::select('SELECT * FROM stocksfunctions');
 			$list4= DB::select('SELECT * FROM hotel_room_supplies');
 			$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+			$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
 
 
 		$count = array();
+		$count2 = array();
 
 		foreach($check as $checks)
 		{
 			$count[] = ['counts' => $checks->cnt];
 		}
 
-			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count]);})->name('StockAvailability');
+		foreach($check2 as $checks)
+		{
+			$count2[] = ['counts' => $checks->cnt];
+		}
+
+			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
 			
 			//Stock Avail
 		Route::get('StockAvail', function () {
@@ -210,14 +222,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
 
 		//Finance Daily Report
-		Route::post('/insert', 'App\Http\Controllers\FinanceReportController@insert');
+		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
 		
 		Route::get('DailyReport', function () {
-			$list = DB::select('SELECT * FROM finance_reports');
-			$list1 = DB::select('SELECT * FROM finance_reports');
+			$list = DB::select('SELECT * FROM finance_2_reports');
 			$array = array();
-
+			$list1 = DB::select('SELECT * FROM finance_2_reports');
+ 
 			foreach($list as $lists)
 			{
 				$array[] = ['userid' => $lists->userid];

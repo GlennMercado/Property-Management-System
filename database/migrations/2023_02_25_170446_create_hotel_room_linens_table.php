@@ -34,7 +34,7 @@ return new class extends Migration
 
             $table->integer('Discrepancy')->default(0);
                 
-            $table->integer('Quantity_Requested')->nullable();
+            $table->integer('Quantity_Requested')->default(0);
 
             $table->string('Attendant')->default('Unassigned');
             $table->string('Status')->default('Received');

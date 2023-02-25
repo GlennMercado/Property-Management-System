@@ -74,10 +74,10 @@ class MaintenanceController extends Controller
         
     }
 
-    public function Guest_Call_Register()
+    public function Guest_Request()
     {
         $list = DB::select("SELECT * FROM guest_requests");
-        return view('Admin.pages.HousekeepingForms.Guest_Call_Register', ['list' => $list]);
+        return view('Admin.pages.HousekeepingForms.Guest_Request', ['list' => $list]);
     }
 
     public function add_guest_request(Request $request)
@@ -96,21 +96,9 @@ class MaintenanceController extends Controller
             'roomno' => '',
             'bookno' => '',
             'guest_name'=> 'required',
-            'type_of_request' => 'required',
-            'item_request' => '',
-            'service_request' => ''
+            'item_request' => ''
             ]);
           
-        $guestrequest;
-        if($request->input('item_request') != null)
-        {
-            $guestrequest = $request->input('item_request');
-        }
-        if($request->input('service_request') != null)
-        {
-            $guestrequest = $request->input('service_request');
-        }
-        
         
 
         $add = new guest_request;
@@ -121,15 +109,14 @@ class MaintenanceController extends Controller
         $add->Room_No = $request->input('roomno');
         $add->Booking_No = $bookno;
         $add->Guest_Name = $request->input('guest_name');
-        $add->Type_of_Request = $request->input('type_of_request');
-        $add->Request = $guestrequest;
+        $add->Request = $request->input('item_request');
 
         if($add->save())
         {
             DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Request_ID' => $randID));
 
             Alert::Success('Success', '"'. $randID .'" Guest Request Successfully Recorded!');
-            return redirect('Guest_Call_Register')->with('Success', 'Data Saved');   
+            return redirect('Guest_Request')->with('Success', 'Data Saved');   
         }
         else
         {
