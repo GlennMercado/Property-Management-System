@@ -754,8 +754,120 @@
                                 {{-- Linen Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
-                                    Linen
+                                    <h3 class="mb-0 title">Linen Request </h3>
+                                    <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before
+                                        Starting,
+                                        See To It That All Inventory Are In The Storage Area</h5><br><br>
                                 </div>
+
+                                <table class="table align-items-center" id="myTabless">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:16px;">Product Name</th>
+                                                <th scope="col" style="font-size:16px;">Item Description</th>
+                                                <th scope="col" style="font-size:16px;">Available Stock</th>
+                                                <th scope="col" style="font-size:16px;">Stock Level</th>
+                                                <th scope="col" style="font-size:16px;">Stock Alert</th>
+                                                <th scope="col" style="font-size:16px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach ($list3 as $lists3)
+                                                <tr>
+                                                    <td>{{ $lists3->name }}</td>
+                                                    <td>{{ $lists3->description }}</td>
+                                                    <td>{{ $lists3->total }}</td>
+                                                    <td>{{ $lists3->Stock_Level }}</td>
+                                                    @if ($lists3->total <= $lists3->Stock_Level)
+                                                        <td><i class="bi bi-exclamation-triangle-fill"
+                                                                style="color:red;font-size:20px"></i></td>
+                                                    @else
+                                                        <td><i class="bi bi-check-square-fill"
+                                                                style="color:green;font-size:20px"></i></td>
+                                                    @endif
+                                                    <td>
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#ModalView3{{ $lists3->productid }}"
+                                                            class="btn btn-primary"><i class="bi bi-eye"
+                                                                style="padding:2px;">View</i></button>
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#ModalUpdate3{{ $lists3->productid }}"
+                                                            class="btn btn-primary"><i
+                                                                class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Modal -->
+                                                <!--View-->
+                                                <div class="modal fade text-left" id="ModalView3{{ $lists3->productid }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalCreate">View Details</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Stock Name: </p>
+                                                                        <input type="text" class="form-control"
+                                                                            name="name" value="{{ $lists3->name }}"
+                                                                            readonly>
+                                                                        <div class="invalid-feedback">
+                                                                            Stock Name empty
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Stock Description: </label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="description"
+                                                                        value="{{ $lists3->description }}" readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Stock Details empty
+                                                                    </div>
+
+                                                                    <label>Date Stock Added: </label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="date"
+                                                                        value="{{ date('m-d-Y', strtotime($lists3->created_at)) }}"
+                                                                        readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Quantity empty
+                                                                    </div>
+
+                                                                    <label>Quantity: </label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="total" value="{{ $lists3->total }}"
+                                                                        readonly>
+                                                                    <div class="invalid-feedback">
+                                                                        Quantity empty
+                                                                    </div>
+
+                                                                </div>
+                                                                <label for="exampleInputPassword1">Category: </label>
+                                                                <input type="text" class="form-control"
+                                                                    name="category" value="{{ $lists3->category }}"
+                                                                    readonly>
+                                                                <div class="invalid-feedback">
+                                                                    Stock Details empty
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-failed"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                 {{-- Supply Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
