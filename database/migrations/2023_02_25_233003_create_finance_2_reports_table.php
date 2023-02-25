@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('finance_reports', function (Blueprint $table) {
+        Schema::create('finance_2_reports', function (Blueprint $table) {
             $table->id('userid');
             $table->integer('ornum');
             $table->string('payee');
@@ -27,14 +27,6 @@ return new class extends Migration
             $table->integer('unearned');
             $table->integer('bank');
             $table->integer('cheque');
-            $table->integer('basketball');
-            $table->integer('otherincome');
-            $table->integer('parking');
-            $table->integer('managementfee');
-            $table->integer('events');
-            $table->integer('hotel');
-            $table->integer('commercialspace');
-            $table->integer('outputvat');
             
             $table->timestamps();
         });
@@ -47,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('finance_reports');
+        Schema::dropIfExists('finance_2_reports');
     }
 };

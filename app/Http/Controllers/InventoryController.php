@@ -53,6 +53,8 @@ class InventoryController extends Controller
        ]);
 
        $stock = new hotelstocks;
+
+       $stock->productid = $request->input('productid');
        $linens = $request->input('Linens');
        $guest = $request->input('GuestSupplies');
        $amenities = $request->input('Amenities');
@@ -70,7 +72,6 @@ class InventoryController extends Controller
             $stock->name = $request->input('Amenities');
         }
 
-       $stock->productid = $request->input('productid');
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');

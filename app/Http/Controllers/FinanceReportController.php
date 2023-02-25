@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\finance_reports;
+use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class FinanceReportController extends Controller
     public function index()
     {
         //
-        $count = DB::select('SELECT * FROM finance_reports');
+        $count = DB::select('SELECT * FROM finance_2_reports');
         $array = array();
 
         foreach($count as $counts)
@@ -46,51 +47,100 @@ class FinanceReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function insert(Request $request)
+    public function insertfinance(Request $request)
     {
         $this->validate($request,[
             'ornum' => 'required',
             'payee' => 'required',
             'particular' => 'required',
-            'eventdate' => 'required',
             'debit' => 'required',
-            'remark' => 'required',
             'amount' => 'required',
+            'remark' => 'required',
+            'eventdate' => 'required',
             'cash' => 'required',
             'unearned' => 'required',
             'bank' => 'required',
-            'cheque' => 'required',
-            'basketball' => 'required',
-            'otherincome' => 'required',
-            'parking' => 'required',
-            'managementfee' => 'required',
-            'hotel' => 'required',
-            'commercialspace' => 'required',
-            'events' => 'required',
-            'outputvat' => 'required'
+            'cheque' => 'required'
+            // 'basketball' => 'required',
+            // 'otherincome' => 'required',
+            // 'parking' => 'required',
+            // 'managementfee' => 'required',
+            // 'events' => 'required',
+            // 'hotel' => 'required',
+            // 'commercialspace' => 'required',
+            // 'outputvat' => 'required'
             ]);
 
-            $finance = new finance_reports;
+            $finance = new finance_2_reports;
 
             $finance->ornum = $request->input('ornum');
             $finance->payee = $request->input('payee');
-            $finance->particular = $request->input('particular');
-            $finance->eventdate = $request->input('eventdate');
-            $finance->debit = $request->input('debit');
+            $compute = $request->input('particular');
+            $finance->credit = $compute;
+            $payment = $request->input('debit');
+            $finance->debit = $payment;
             $finance->remark = $request->input('remark');
             $finance->amount = $request->input('amount');
-            $finance->cash = $request->input('cash');
-            $finance->unearned = $request->input('unearned');
-            $finance->bank = $request->input('bank');
-            $finance->cheque = $request->input('cheque');
-            $finance->basketball = $request->input('basketball');
-            $finance->otherincome = $request->input('otherincome');
-            $finance->parking = $request->input('parking');
-            $finance->managementfee = $request->input('managementfee');
-            $finance->hotel = $request->input('hotel');
-            $finance->events = $request->input('events');
-            $finance->commercialspace = $request->input('commercialspace');
-            $finance->outputvat = $request->input('outputvat');
+            $finance->eventdate = $request->input('eventdate');
+            $nopayment = '0';
+
+            //for DEBIT
+            if($payment == 'Cash')
+        {
+            $finance->cash = $request->input('amount');
+            $finance->unearned = $nopayment;
+            $finance->bank = $nopayment;
+            $finance->cheque = $nopayment;
+            
+        }
+        elseif($payment = 'Unearned')
+        {
+            $finance->cash = $nopayment;
+            $finance->unearned = $request->input('amount');
+            $finance->bank = $nopayment;
+            $finance->cheque = $nopayment;
+        }
+        elseif($payment =  'Bank')
+        {
+            $finance->cash = $nopayment;
+            $finance->unearned = $nopayment;
+            $finance->bank = $request->input('amount');
+            $finance->cheque = $nopayment;
+        }
+        elseif($payment =  'Cheque')
+        {
+            $finance->cash = $nopayment;
+            $finance->unearned = $nopayment;
+            $finance->bank = $nopayment;
+            $finance->cheque = $request->input('amount');
+        }
+
+        //for Credit
+        if($compute == 'CourtRental' || 'CourtRental/League')
+        {
+            $finance->cash = $request->input('amount');
+            $finance->unearned = $nopayment;
+            $finance->bank = $nopayment;
+            $finance->cheque = $nopayment;
+            
+        }
+        elseif($payment = 'Unearned')
+        {
+            $finance->cash = $nopayment;
+            $finance->unearned = $request->input('amount');
+            $finance->bank = $nopayment;
+            $finance->cheque = $nopayment;
+        }
+
+
+            // $finance->basketball = $request->input('basketball');
+            // $finance->otherincome = $request->input('otherincome');
+            // $finance->parking = $request->input('parking');
+            // $finance->managementfee = $request->input('managementfee');
+            // $finance->events = $request->input('events');
+            // $finance->hotel = $request->input('hotel');
+            // $finance->commercialspace = $request->input('commercialspace');
+            // $finance->outputvat = $request->input('outputvat');
 
             
         if($finance->save())

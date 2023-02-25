@@ -220,14 +220,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
 
 		//Finance Daily Report
-		Route::post('/insert', 'App\Http\Controllers\FinanceReportController@insert');
+		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
 		
 		Route::get('DailyReport', function () {
-			$list = DB::select('SELECT * FROM finance_reports');
-			$list1 = DB::select('SELECT * FROM finance_reports');
+			$list = DB::select('SELECT * FROM finance_2_reports');
 			$array = array();
-
+			$list1 = DB::select('SELECT * FROM finance_2_reports');
+ 
 			foreach($list as $lists)
 			{
 				$array[] = ['userid' => $lists->userid];
