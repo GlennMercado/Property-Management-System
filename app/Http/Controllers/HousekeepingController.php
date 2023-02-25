@@ -271,6 +271,7 @@ class HousekeepingController extends Controller
         }
 
     }
+    
     public function update_housekeeping_status($room_no, $id, $status, $req)
     {
         

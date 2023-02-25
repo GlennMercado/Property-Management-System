@@ -24,7 +24,9 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">Hotel Inventory</h5>
                             <span class="h2 font-weight-bold mb-0">
-
+                                @foreach($count as $counts)
+                                    {{$counts['counts']}}
+                                @endforeach
                             </span>
                         </div>
                         <div class="col-auto">
@@ -64,14 +66,10 @@
                 <div class="card-body" style="height: 85px;">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">Requests Inventory</h5>
+                            <h5 class="card-title text-uppercase text-muted mb-0">List of Requests</h5>
                             <span class="h2 font-weight-bold mb-0">
-                                @foreach ($list3 as $lists3)
-                                    @if ($lists3->total <= $lists3->Stock_Level)
-                                        <td style="font-size:25px;"><i>{{ $lists3->total }}</i></td>
-                                    @else
-                                        <td style="font-size:25px;">0</td>
-                                    @endif
+                                @foreach ($count2 as $counts)
+                                    {{$counts['counts']}}
                                 @endforeach
                             </span>
                         </div>

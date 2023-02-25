@@ -184,16 +184,23 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			$list3 = DB::select('SELECT * FROM stocksfunctions');
 			$list4= DB::select('SELECT * FROM hotel_room_supplies');
 			$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+			$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
 
 
 		$count = array();
+		$count2 = array();
 
 		foreach($check as $checks)
 		{
 			$count[] = ['counts' => $checks->cnt];
 		}
 
-			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count]);})->name('StockAvailability');
+		foreach($check2 as $checks)
+		{
+			$count2[] = ['counts' => $checks->cnt];
+		}
+
+			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
 			
 			//Stock Avail
 		Route::get('StockAvail', function () {
