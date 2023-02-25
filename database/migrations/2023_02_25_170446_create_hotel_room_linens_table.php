@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_room_supplies', function (Blueprint $table) {
+        Schema::create('hotel_room_linens', function (Blueprint $table) {
             $table->id();
             
             $table->integer('Room_No');
@@ -31,11 +31,13 @@ return new class extends Migration
             $table->string('Category');
 
             $table->integer('Quantity');
+
+            $table->integer('Discrepancy');
                 
             $table->integer('Quantity_Requested')->nullable();
 
             $table->string('Attendant')->default('Unassigned');
-            $table->string('Status')->default('Approved');
+            $table->string('Status')->default('Received');
             $table->text('Remarks')->nullable();
 
             $table->datetime('Date_Requested')->nullable();
@@ -52,6 +54,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel_room_supplies');
+        Schema::dropIfExists('hotel_room_linens');
     }
 };

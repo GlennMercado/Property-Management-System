@@ -26,6 +26,8 @@ class HousekeepingController extends Controller
 
         $list3 = DB::select("SELECT DISTINCT  a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No");
         $list4 = DB::select("SELECT * FROM hotel_room_supplies WHERE Category = 'Guest Supply'");
+        $list5 = DB::select("SELECT * FROM hotel_room_linens");
+
         $count = DB::select('Select * from novadeci_suites');
         $array = array();
 
@@ -34,7 +36,7 @@ class HousekeepingController extends Controller
             $array[] = ['Room_No' => $counts->Room_No];
         }
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
-                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4]
+                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]
                     );
     }
     public function hotel_housekeeping()
@@ -46,7 +48,18 @@ class HousekeepingController extends Controller
 
     public function linen_management()
     {
-        return view('Admin.pages.HousekeepingForms.Linen_Management');
+        $list = DB::select("SELECT Room_No, Date_Received, Discrepancy, SUM(Quantity) as total FROM hotel_room_linens Group By Room_No");
+        $list2 = DB::select("SELECT * FROM hotel_room_linens");
+
+        $count = DB::select('Select * from novadeci_suites');
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Room_No' => $counts->Room_No];
+        }
+        
+        return view('Admin.pages.HousekeepingForms.Linen_Management', ['list' => $list, 'list2' => $list2, 'array' => $array]);
     }
 
     public function housekeeping_reports()
@@ -111,7 +124,7 @@ class HousekeepingController extends Controller
             }
                  
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(array(
-                'Housekeeping_Status' => "Out of Service"
+                'Housekeeping_Status' => "Inspect(After Checking)"
             ));
             Alert::Success('Success', 'Supplies Successfully Requested!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');

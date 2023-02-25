@@ -298,9 +298,10 @@
                             <div class="col">
                                 <label for="exampleInputPassword1" class="text-color pt-4">Category </label>
                                 <select class="form-control" id="category" name="category" required>
-                                    <option id="lin" value="linens">Linens</option>
-                                    <option id="gu" value="guestsupplies">GuestSupplies</option>
-                                    <option id="am" value="amenities">Amenities</option>
+                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                    <option id="lin" value="Linen">Linens</option>
+                                    <option id="gu" value="Guest Supply">Guest Supplies</option>
+                                    <option id="am" value="Amenities">Amenities</option>
                                 </select>
                             </div>
                         </div>
@@ -409,7 +410,7 @@
         $(document).ready(function() {
             $("#category").change(function() {
                 var selected = $("option:selected", this).val();
-                if (selected == 'linens') {
+                if (selected == 'Linen') {
                     $('#linens').css({
                         'display': 'block'
                     });
@@ -419,7 +420,7 @@
                     $('#amenities').css({
                         'display': 'none'
                     });
-                } else if (selected == 'guestsupplies') {
+                } else if (selected == 'Guest Supply') {
                     $('#linens').css({
                         'display': 'none'
                     });
@@ -429,7 +430,7 @@
                     $('#amenities').css({
                         'display': 'none'
                     });
-                } else if (selected == 'amenities') {
+                } else if (selected == 'Amenities') {
                     $('#linens').css({
                         'display': 'none'
                     });

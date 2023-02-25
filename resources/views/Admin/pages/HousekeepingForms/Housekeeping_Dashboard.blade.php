@@ -27,7 +27,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival</a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Arrival / Departure</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -360,6 +360,15 @@
                                                                     <i class="bi bi-list-check"></i>
                                                                 </button>
                                                             @endif
+
+                                                            @if ($lists->Housekeeping_Status == 'Inspect(After Checking)' && $lists->Attendant != 'Unassigned')
+                                                                <button class="btn btn-sm"
+                                                                    style="background: #9FA6B2;  color:white;"
+                                                                    data-toggle="modal"
+                                                                    data-target="#check_linen{{ $lists->ID }}">
+                                                                        <i class="bi bi-check2-square"></i>
+                                                                </button>
+                                                            @endif
                                                         </td>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
@@ -662,6 +671,80 @@
                                                                             </div>
                                                                         </div>
                                                                         @foreach ($list4 as $lists2)
+                                                                            @if ($lists2->Room_No == $lists->Room_No)
+                                                                                <div class="row">
+                                                                                    <div class="col">
+                                                                                        <input type="hidden"
+                                                                                            name="room_no"
+                                                                                            value="{{ $lists2->Room_No }}" />
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->name }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden"
+                                                                                            name="name[]"
+                                                                                            value="{{ $lists2->name }}">
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $lists2->Quantity }}"
+                                                                                            readonly>
+                                                                                        <input type="hidden" name="quantity[]" value= "{{ $lists2->Quantity }}" />
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            name="deduction[]" value="0" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a data-dismiss="modal" class="btn">Close</a>
+                                                                        <input type="submit" value="Submit"
+                                                                            name="submit" class="btn btn-primary">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Check Linen --}}
+                                                    <div id="check_linen{{$lists->ID}}"
+                                                        class="modal hide fade" tabindex="-1">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">Room
+                                                                        {{ $lists->Room_No }} Linen
+                                                                        Checking
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="#"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p class="text-left">Item Name</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Quantity</p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <p class="text-left">Deduction</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        @foreach ($list5 as $lists2)
                                                                             @if ($lists2->Room_No == $lists->Room_No)
                                                                                 <div class="row">
                                                                                     <div class="col">

@@ -1228,12 +1228,7 @@
                                     <tbody>
                                         @foreach ($list4 as $lists4)
                                             <tr>
-                                                <td style="font-size:14px;">{{ $lists4->name }}</td>
-                                                <td style="font-size:14px;">{{ $lists4->suppliername }}</td>
-                                                <td style="font-size:14px;">{{ $lists4->description }}</td>
-                                                <td style="font-size:14px;">{{ $lists4->quantity }}</td>
-                                                <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
-                                                <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
+                                                
                                                 <td>
                                                     <button type="button" data-toggle="modal"
                                                         data-target="#ModalView4{{ $lists4->productid }}"
@@ -1250,73 +1245,7 @@
                                             <div class="modal fade" id="ModalView4{{ $lists4->productid }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">View All Details</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="card-body bg-white"
-                                                                    style="border-radius: 18px">
-                                                                    <p class="text-left">Item Name :
-                                                                        <input class="form-control" type="text"
-                                                                            name="name" value="{{ $lists4->name }}"
-                                                                            readonly>
-                                                                    </p>
-
-                                                                    <p class="text-left">Product Description :
-                                                                        <input class="form-control" type="text"
-                                                                            name="description"
-                                                                            value="{{ $lists4->description }}" readonly>
-                                                                    </p>
-
-                                                                    <p class="text-left">Purchased Date :
-                                                                        <input class="form-control" type="text"
-                                                                            name="date"
-                                                                            value="{{ date('m-d-Y', strtotime($lists4->date)) }}"
-                                                                            readonly>
-                                                                    </p>
-
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <p class="text-left">Unit :
-                                                                                <input class="form-control" type="number"
-                                                                                    placeholder="Enter Here.."
-                                                                                    name="unit"
-                                                                                    value="{{ $lists4->unit }}" readonly>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <p class="text-left">Quantity :
-                                                                                <input class="form-control" type="text"
-                                                                                    name="quantity"
-                                                                                    value="{{ $lists4->quantity }}"
-                                                                                    readonly>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <p class="text-left">Supplier Name :
-                                                                        <input class="form-control" type="text"
-                                                                            name="suppliername"
-                                                                            value="{{ $lists4->suppliername }}" readonly>
-                                                                    </p>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
-                                                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
 
 
@@ -1327,7 +1256,7 @@
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                     <label>Status: </label>
-                                                        <select class="form-control" value="{{ $lists->status}}" name="status" required>
+                                                        <select class="form-control" value="" name="status" required>
                                                         <option>Requesting</option>
                                                         <option>Paid</option>
                                                         <option>Unpaid</option>
@@ -1347,41 +1276,7 @@
                 </div>
                 <!---->
                 <!--Modalfor History-->
-                <div class="modal fade bd-example-modal-lg" id="HistoryModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <table class="table align-items-center table-flush" id="myTablessss">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col" style="font-size:14px;">Category</th>
-                                            <th scope="col" style="font-size:14px;">Item Name</th>
-                                            <th scope="col" style="font-size:14px;">Movement</th>
-                                            <th scope="col" style="font-size:14px;">Quantity</th>
-                                            <th scope="col" style="font-size:14px;">Date</th>
-                                            <th scope="col" style="font-size:14px;">Housekeeper</th>
-                                        </tr>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($list5 as $lists5)
-                                            <tr>
-                                                <td style="font-size:16px;">{{ $lists5->category }}</td>
-                                                <td style="font-size:16px;">{{ $lists5->name }}</td>
-                                                <td style="font-size:16px;">{{ $lists5->movement }}</td>
-                                                <td style="font-size:16px;">{{ $lists5->movement_quantity }}</td>
-                                                <td style="font-size:16px;">{{ $lists5->created_at }}</td>
-                                                <td style="font-size:16px;">{{ $lists5->housekeeper }}</td>
-                                            </tr>
-                                </table>
-                                @endforeach
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                
             </div>
         </div>
     </div>
