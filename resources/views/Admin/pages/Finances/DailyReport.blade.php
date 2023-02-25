@@ -166,18 +166,7 @@
                                                     @foreach ($list1 as $lists1)
                                                         @if ($lists1->userid == $arrays['userid'])
                                                             <tr>
-                                                                <td>{{ $lists1->cash }}</td>
-                                                                <td>{{ $lists1->unearned }}</td>
-                                                                <td>{{ $lists1->bank }}</td>
-                                                                <td>{{ $lists1->cheque }}</td>
-                                                                <td>{{ $lists1->basketball }}</td>
-                                                                <td>{{ $lists1->otherincome }}</td>
-                                                                <td>{{ $lists1->parking }}</td>
-                                                                <td>{{ $lists1->managementfee }}</td>
-                                                                <td>{{ $lists1->events }}</td>
-                                                                <td>{{ $lists1->hotel }}</td>
-                                                                <td>{{ $lists1->commercialspace }}</td>
-                                                                <td>{{ $lists1->outputvat }}</td>
+                                                                
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -213,18 +202,7 @@
                                                         @if ($lists1->userid == $arrays['userid'])
                                                             <tr>
                                                                 <td>{{ $lists1->particular }}</td>
-                                                                <td>{{ $lists1->cash }}</td>
-                                                                <td>{{ $lists1->unearned }}</td>
-                                                                <td>{{ $lists1->bank }}</td>
-                                                                <td>{{ $lists1->cheque }}</td>
-                                                                <td>{{ $lists1->basketball }}</td>
-                                                                <td>{{ $lists1->unearned }}</td>
-                                                                <td>{{ $lists1->otherincome }}</td>
-                                                                <td>{{ $lists1->managementfee }}</td>
-                                                                <td>{{ $lists1->events }}</td>
-                                                                <td>{{ $lists1->hotel }}</td>
-                                                                <td>{{ $lists1->commercialspace }}</td>
-                                                                <td>{{ $lists1->outputvat }}</td>
+                                                                
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -238,18 +216,16 @@
 
 
                         <!--Add -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create
-                                            Finance Proof</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="{{ url('/insert') }}" class="prevent_submit" method="POST">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Daily Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                                    <form action="{{ url('/insertfinance') }}" class="prevent_submit" method="POST">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
                                             <div class="row">
@@ -270,11 +246,11 @@
                                                 <div class="col">
                                                     <label for="Stockdetails">Particular: </label>
                                                     <select class="form-control" name="particular" required>
-                                                        <option>Court Rental</option>
-                                                        <option>Court Rental/League</option>
-                                                        <option>Venue Rental</option>
-                                                        <option>Kiosk Rental</option>
-                                                        <option>Food Stall</option>
+                                                        <option>CourtRental</option>
+                                                        <option>CourtRental/League</option>
+                                                        <option>VenueRental</option>
+                                                        <option>KioskRental</option>
+                                                        <option>FoodStall</option>
                                                         <option>Hotel</option>
                                                         <option>Hotel Other Charges</option>
                                                         <option>Function Room</option>
@@ -298,10 +274,10 @@
                                                     <label for="Stockdetails">Debit Type: </label>
                                                     <select class="form-control" name="debit"
                                                         placeholder="Enter number..." required>
-                                                        <option>Cash/GCash</option>
-                                                        <option>Unearned Income (DP from Previous Months)</option>
-                                                        <option>Bank Transfer/Direct to Bank</option>
-                                                        <option>Cheque</option>
+                                                        <option value="Cash">Cash/GCash</option>
+                                                        <option value="Unearned">Unearned Income (DP from Previous Months)</option>
+                                                        <option value="Bank">Bank Transfer/Direct to Bank</option>
+                                                        <option value="Cheque">Cheque</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -315,8 +291,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Remarks : </label>
-                                                    <select class="form-control" name="remark"
-                                                        placeholder="Enter number..." required>
+                                                    <select class="form-control" name="remark" required>
                                                         <option>DP</option>
                                                         <option>BAL</option>
                                                         <option>FULL</option>
@@ -326,19 +301,19 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Event Date: </label>
-                                                    <input type="date" class="form-control" name="eventdate" required>
-                                                        <input name="cash" value="0" hidden>
-                                                        <input name="unearned" value="0" hidden>
-                                                        <input name="bank" value="0" hidden>
-                                                        <input name="cheque" value="0" hidden>
-                                                        <input name="basketball" value="0" hidden>
-                                                        <input name="otherincome" value="0" hidden>
-                                                        <input name="parking" value="0" hidden>
-                                                        <input name="managementfee" value="0" hidden>
-                                                        <input name="events" value="0" hidden>
-                                                        <input name="hotel" value="0" hidden>
-                                                        <input name="commercialspace" value="0" hidden>
-                                                        <input name="ouputvat" value="0" hidden>
+                                                    <input type="text" class="form-control" name="eventdate" required>
+                                                        <input type="hidden" name="cash" value="1" >
+                                                        <input type="hidden"  name="unearned" value="1" hidden>
+                                                        <input type="hidden"  name="bank" value="1" hidden>
+                                                        <input type="hidden" name="cheque" value="1" hidden>
+                                                        <input type="hidden" name="basketball" value="1" hidden>
+                                                        <input type="hidden"  name="otherincome" value="1" hidden>
+                                                        <input type="hidden"  name="parking" value="1" hidden>
+                                                        <input type="hidden"  name="managementfee" value="1" hidden>
+                                                        <input type="hidden"  name="events" value="1" hidden>
+                                                        <input type="hidden"  name="hotel" value="1" hidden>
+                                                        <input type="text"  name="commercialspace" value="1" hidden>
+                                                        <input type="text"  name="ouputvat" value="1" hidden>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,10 +323,10 @@
                                                 value="Submit" />
                                         </div>
                                     </form>
+                                    </div>
+                                 </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
