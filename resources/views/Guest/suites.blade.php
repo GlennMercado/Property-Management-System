@@ -45,37 +45,64 @@
                                     </h3>
                                 </div>
                             </div>
-                            <div class="container shadow">
+                            <div class="container-fluid shadow">
                                 <h3 class="pt-2">Other rooms</h3>
                                 <div class="row gal">
-                                    <div class="col-sm-6">
-                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel3.jpg">
-                                        <h3 class="text-success font-weight-bold mt-1">₱ 2,500</h3>
-                                        <h4 class="font-weight-bold">testing</h4>
-                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
+                                    <div class="col-md-6 shadow">
+                                        <a href="">
+                                            <div class="image-container">
+                                                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/suites.png"
+                                                    alt="Card image cap" style="max-height: 12.3rem">
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="text-success font-weight-bold mt--3">₱ 3,500</h3>
+                                                <h4 class="font-weight-bold">testing</h4>
+                                                <p class="text-sm text-dark">tryasdasdasdasdasdasdasd</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel4.jpg">
-                                        <h3 class="text-success font-weight-bold mt-1">₱ 3,500</h3>
-                                        <h4 class="font-weight-bold">testing</h4>
-                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
+                                    <div class="col-md-6 shadow">
+                                        <a href="">
+                                            <div class="image-container">
+                                                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/suites.png"
+                                                    alt="Card image cap" style="max-height: 12.3rem">
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="text-success font-weight-bold mt--3">₱ 3,500</h3>
+                                                <h4 class="font-weight-bold">testing</h4>
+                                                <p class="text-sm text-dark">tryasdasdasdasdasdasdasd</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 shadow">
+                                        <a href="">
+                                            <div class="image-container">
+                                                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/suites.png"
+                                                    alt="Card image cap" style="max-height: 12.3rem">
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="text-success font-weight-bold mt--3">₱ 3,500</h3>
+                                                <h4 class="font-weight-bold">testing</h4>
+                                                <p class="text-sm text-dark">tryasdasdasdasdasdasdasd</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 shadow">
+                                        <a href="">
+                                            <div class="image-container">
+                                                <img class="card-img-top mt-3" src="{{ asset('nvdcpics') }}/suites.png"
+                                                    alt="Card image cap" style="max-height: 12.3rem">
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="text-success font-weight-bold mt--3">₱ 3,500</h3>
+                                                <h4 class="font-weight-bold">testing</h4>
+                                                <p class="text-sm text-dark">tryasdasdasdasdasdasdasd</p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="row gal">
-                                    <div class="col-sm-6">
-                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel5.jpg">
-                                        <h3 class="text-success font-weight-bold mt-1">₱ 5,500</h3>
-                                        <h4 class="font-weight-bold">testing</h4>
-                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel6.jpg">
-                                        <h3 class="text-success font-weight-bold mt-1">₱ 5,500</h3>
-                                        <h4 class="font-weight-bold">testing</h4>
-                                        <p class="text-sm">tryasdasdasdasdasdasdasd</p>
-                                    </div>
-                                </div>
-                                <a href="{{ url('/rooms') }}" class="text-dark justify-content-end text-sm"style="text-decoration:underline; cursor:pointer;">See all</a>
+                                <a href="{{ url('/rooms') }}" class="text-dark font-weight-bold"
+                                    style="text-decoration:underline; cursor:pointer;">See all</a>
                             </div>
                             {{-- <div class="row gal">
                                         <div class="col-sm-6 col-md-4 col-lg-3 item mt-4"><a
@@ -136,15 +163,17 @@
                                 <div class="col-md-6 pt-4">
                                     <p>Email <span class="text-danger">*</span></p>
                                     @foreach ($guest as $guests)
-                                        <input class="form-control" type="text" value="{{ $guests->email }}" readonly>
+                                        <input class="form-control" type="text" value="{{ $guests->email }}"
+                                            readonly>
                                     @endforeach
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
-                                    <input class="form-control" type="number" minlength="11" maxlength="11" name="mobile"
-                                        min="0" oninput="this.value = Math.abs(this.value)" required>
+                                    <input class="form-control" type="number" minlength="11" maxlength="11"
+                                        name="mobile" min="0" oninput="this.value = Math.abs(this.value)"
+                                        required>
 
                                     <div id="balls"></div>
 
@@ -447,22 +476,22 @@
 
 
                         <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
-                                                            <div class = "qrsample mx-auto d-flex justify-content-center">
-                                                            <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
-                                                            </div>
-                                                            <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
-                                                            <p class = "d-flex justify-content-center">xxxxxxxx098</p>
-                                                            <div class="mb-3 d-flex justify-content-center">
-                                                            <label for="formFile" class="form-label"></label>
-                                                            <input class="form-control w-50" type="file" id="formFile">
-                                                            </div>
-                                                            </div>
-                                                            </div>
-                                                            <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
-                                                            free of charge. If within (3) calendar days, guests will be charged of the total
-                                                            price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                                            <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-                                                            </p> -->
+                                                                <div class = "qrsample mx-auto d-flex justify-content-center">
+                                                                <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
+                                                                </div>
+                                                                <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
+                                                                <p class = "d-flex justify-content-center">xxxxxxxx098</p>
+                                                                <div class="mb-3 d-flex justify-content-center">
+                                                                <label for="formFile" class="form-label"></label>
+                                                                <input class="form-control w-50" type="file" id="formFile">
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
+                                                                free of charge. If within (3) calendar days, guests will be charged of the total
+                                                                price. Refund, In case of guaranteed reservation, is payable through check issuance
+                                                                <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
+                                                                </p> -->
 
                     </div>
                     </form>
@@ -573,8 +602,24 @@
         <!-- scroll-top button -->
         <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
         <style>
+            /* gallery */
+
+            .image-container {
+                position: relative;
+                overflow: hidden;
+            }
+
+            img {
+                transition: 0.3s ease-in-out;
+            }
+
+            .image-container:hover img {
+                transform: scale(1.2);
+            }
+
+            /*  */
             .gal img:hover {
-                transform: scale(1.01);
+                transform: scale(1.02);
             }
 
             body {
@@ -705,34 +750,34 @@
 
             /* scroll to top arrow */
             /* #myBtn {
-                                                                                                                display: none;
-                                                                                                                position: fixed;
-                                                                                                                bottom: 20px;
-                                                                                                                right: 30px;
-                                                                                                                z-index: 99;
-                                                                                                                font-size: 18px;
-                                                                                                                border: none;
-                                                                                                                outline: none;
-                                                                                                                background-color: #484848;
-                                                                                                                color: white;
-                                                                                                                cursor: pointer;
-                                                                                                                padding: 15px;
-                                                                                                                border-radius: 4px;
-                                                                                                                opacity: 0.5;
-                                                                                                                }
+                                                                                                                    display: none;
+                                                                                                                    position: fixed;
+                                                                                                                    bottom: 20px;
+                                                                                                                    right: 30px;
+                                                                                                                    z-index: 99;
+                                                                                                                    font-size: 18px;
+                                                                                                                    border: none;
+                                                                                                                    outline: none;
+                                                                                                                    background-color: #484848;
+                                                                                                                    color: white;
+                                                                                                                    cursor: pointer;
+                                                                                                                    padding: 15px;
+                                                                                                                    border-radius: 4px;
+                                                                                                                    opacity: 0.5;
+                                                                                                                    }
 
-                                                                                                                #myBtn:hover {
-                                                                                                                background-color: #555;
-                                                                                                                } */
+                                                                                                                    #myBtn:hover {
+                                                                                                                    background-color: #555;
+                                                                                                                    } */
             /* .centered {
-                                                                                                            font-size:30px;
-                                                                                                            position: absolute;
-                                                                                                            bottom: 410px;
-                                                                                                            right: 200px;
-                                                                                                            color:white;
-                                                                                                            -webkit-text-stroke-width: 1px;
-                                                                                                            -webkit-text-stroke-color: black;
-                                                                                                        } */
+                                                                                                                font-size:30px;
+                                                                                                                position: absolute;
+                                                                                                                bottom: 410px;
+                                                                                                                right: 200px;
+                                                                                                                color:white;
+                                                                                                                -webkit-text-stroke-width: 1px;
+                                                                                                                -webkit-text-stroke-color: black;
+                                                                                                            } */
             input[type="text"].disabled {
                 pointer-events: none;
                 opacity: 0.5;
