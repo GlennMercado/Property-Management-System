@@ -158,6 +158,10 @@
                                                                 data-toggle="modal"
                                                                 data-target="#ModalUpdate{{ $lists->productid }}"><i
                                                                     class="bi bi-pencil-square"></i></button>
+                                                                    <button class="btn btn-sm btn-warning btn-lg"
+                                                                data-toggle="modal"
+                                                                data-target="#ModalRoom{{ $lists->productid }}"><i
+                                                                    class="bi bi-pencil-square"></i></button>
                                                         </td>
                                                         <td style="font-size:16px;">{{ $lists->name }}</td>
                                         <td style="font-size:16px;">{{ $lists->description }}</td>
@@ -381,6 +385,73 @@
                                     </tbody>
                                     </table>
                                 </div>
+
+                                <div class="modal fade text-left"
+                                                        id="ModalRoom{{ $lists->productid }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalCreate"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalCreate">View Details</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <label class="text-left">Stock Name </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="name" value="{{ $lists->name }}"
+                                                                                readonly>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label>Stock Description </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="description"
+                                                                                value="{{ $lists->description }}"
+                                                                                readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col pt-4">
+                                                                            <label class="text-left">Date Stock Added
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="date"
+                                                                                value="{{ date('m-d-Y', strtotime($lists->created_at)) }}"
+                                                                                readonly>
+                                                                        </div>
+                                                                        <div class="col pt-4">
+                                                                            <label>Quantity </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="total"
+                                                                                value="{{ $lists->total }}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col pt-4">
+                                                                            <label for="exampleInputPassword1">Category
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="category"
+                                                                                value="{{ $lists->category }}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- <div class="form-group"> -->
+                                                                    <!-- </div> -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <!-- <button type="button" class="btn btn-failed" data-dismiss="modal">Close</button> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                 <!--Add Stock for Hotel Inventory-->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -1147,9 +1218,7 @@
                                                         class="btn btn-primary"><i
                                                             class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
                                                 </td>
-                                                <td>{{ $lists4->name }}</td>
-                                            <td>{{ $lists4->requestedquantity }}</td>
-                                            <td>{{ $lists4->daterequested }}</td>
+                                                
                                             </tr>
 
                                             <!--MODAL FOR VIEW-->
