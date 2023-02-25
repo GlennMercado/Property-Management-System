@@ -129,11 +129,11 @@
                                     </div>
                     </div>
                     <!-- <div class="invalid-feedback">
-                                                                    Stock Details empty
-                                                                    </div> -->
+                                                                        Stock Details empty
+                                                                        </div> -->
                     <!--Modal Edit / validation-->
-                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1" role="dialog"
-                        aria-hidden="true">
+                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1"
+                        role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -190,8 +190,8 @@
                                             </div>
                                         </div>
                                         <!-- <div class="invalid-feedback">
-                                                                        Stock Name empty
-                                                                    </div>        -->
+                                                                            Stock Name empty
+                                                                        </div>        -->
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Category: </label>
                                             <input type="number" class="form-control" name="category"
@@ -395,10 +395,10 @@
         </div>
     </div>
     <!-- </div>
-        
+            
+                    </div>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
 
 
 
