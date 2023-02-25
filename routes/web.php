@@ -169,7 +169,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
 		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
 		Route::get('StockPurchaseReport', function () {
-			$list = DB::select('SELECT * FROM purchasereports');
+			$list = DB::select('SELECT * FROM hotel_room_supplies');
 			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
 	
 	//Stock Availability
@@ -177,10 +177,17 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			$list = DB::select('SELECT * FROM hotelstocks');
 			$list2 = DB::select('SELECT * FROM stockscenters');
 			$list3 = DB::select('SELECT * FROM stocksfunctions');
-			$list4= DB::select('SELECT * FROM purchasereports');
-			$list5= DB::select('SELECT * FROM stockhistories');
+			$list4= DB::select('SELECT * FROM hotel_room_supplies');
+			$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
 
-			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'list5'=>$list5]);})->name('StockAvailability');
+		$count = array();
+
+		foreach($check as $checks)
+		{
+			$count[] = ['counts' => $checks->cnt];
+		}
+
+			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'list5'=>$list5, 'count'=>$count]);})->name('StockAvailability');
 			
 			//Stock Avail
 		Route::get('StockAvail', function () {
