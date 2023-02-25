@@ -55,7 +55,19 @@ class FinanceReportController extends Controller
             'eventdate' => 'required',
             'debit' => 'required',
             'remark' => 'required',
-            'amount' => 'required'
+            'amount' => 'required',
+            'cash' => 'required',
+            'unearned' => 'required',
+            'bank' => 'required',
+            'cheque' => 'required',
+            'basketball' => 'required',
+            'otherincome' => 'required',
+            'parking' => 'required',
+            'managementfee' => 'required',
+            'hotel' => 'required',
+            'commercialspace' => 'required',
+            'events' => 'required',
+            'outputvat' => 'required'
             ]);
 
             $finance = new finance_reports;
@@ -67,6 +79,19 @@ class FinanceReportController extends Controller
             $finance->debit = $request->input('debit');
             $finance->remark = $request->input('remark');
             $finance->amount = $request->input('amount');
+            $finance->cash = $request->input('cash');
+            $finance->unearned = $request->input('unearned');
+            $finance->bank = $request->input('bank');
+            $finance->cheque = $request->input('cheque');
+            $finance->basketball = $request->input('basketball');
+            $finance->otherincome = $request->input('otherincome');
+            $finance->parking = $request->input('parking');
+            $finance->managementfee = $request->input('managementfee');
+            $finance->hotel = $request->input('hotel');
+            $finance->events = $request->input('events');
+            $finance->commercialspace = $request->input('commercialspace');
+            $finance->outputvat = $request->input('outputvat');
+
             
         if($finance->save())
         {
@@ -114,6 +139,8 @@ class FinanceReportController extends Controller
                 'debit' => $debit,
                 'remark' => $remark,
                 'amount' => $amount
+                
+                
             ));
     
             Alert::Success('Success', 'Successfully Updated the Data!');

@@ -21,8 +21,6 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="col">
-
-
                                     <div class="row align-items-center">
                                         <div class="col text-right">
                                             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
@@ -122,6 +120,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        askdhajshdajshd
 
 
                                                         <div class="modal-footer">
@@ -132,316 +131,228 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- edit --}}
-                                        <div class="modal fade text-left" id="ModalUpdate{{ $arrays['userid'] }}"
-                                            tabindex="-1" role="dialog" aria-hidden="true">
-
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h2 class="modal-title">{{ __('Edit Details') }}</h2>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="POST" action="{{ url('/edit') }}"
-                                                        enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="text-left">User ID: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->userid }}" readonly>
-                                                                    <input class="form-control" type="text"
-                                                                        name="userid" value="{{ $lists->userid }}"
-                                                                        hidden>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">OR Number: </p>
-                                                                    <input type="text" class="form-control"
-                                                                        name="ornum" value="{{ $lists->ornum }}"
-                                                                        required>
-                                                                    <div class="invalid-feedback">
-                                                                        Stock Name empty
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Stockdetails">Payee: </label>
-                                                                <input type="text" class="form-control" name="payee"
-                                                                    value="{{ $lists->payee }}" required>
-
-                                                                <!--<input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>-->
-                                                                <div class="invalid-feedback">
-                                                                    Stock Details empty
-                                                                </div>
-                                                                <label>Particular: </label>
-                                                                <select class="form-control"
-                                                                    value="{{ $lists->particular }}" name="status"
-                                                                    required>
-                                                                    <option>Requesting</option>
-                                                                    <option>Paid</option>
-                                                                    <option>Unpaid</option>
-                                                                </select>
-
-                                                                <label>Event Date: </label>
-                                                                <input type="date" class="form-control"
-                                                                    name="eventdate" value="{{ $lists->eventdate }}"
-                                                                    required>
-
-                                                                <label for="Stockdetails">Debit Type: </label>
-                                                                <input type="text" class="form-control" name="debit"
-                                                                    value="{{ $lists->debit }}" required>
-
-                                                                <label for="Stockdetails">Remarks : </label>
-                                                                <input type="text" class="form-control" name="remark"
-                                                                    value="{{ $lists->remark }}">
-
-                                                                <div class="invalid-feedback">
-                                                                    Stock Details empty
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-failed" data-dismiss="modal">Close</a>
-                                                                <input type="submit" name="update" value="Update"
-                                                                    class="btn btn-success" />
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                    @endforeach
+                                    </div>
+                                    {{-- Daily Report --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-2-tab">
+                                        <!-- Projects table -->
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTables">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th colspan="4" style="font-size:18px;">Debit</th>
+                                                        <th colspan="8" style="font-size:18px;">Credit</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Cash/GCash</th>
+                                                        <th scope="col">Unearned Income</th>
+                                                        <th scope="col">Bank Transfer/Direct to Bank</th>
+                                                        <th scope="col">Cheque</th>
+                                                        <th scope="col">Basketball</th>
+                                                        <th scope="col">UnearnedIncome</th>
+                                                        <th scope="col">OtherIncome</th>
+                                                        <th scope="col">ManagementFee</th>
+                                                        <th scope="col">FunctionRoom/ConventionCenter/Events
+                                                        </th>
+                                                        <th scope="col">Hotel</th>
+                                                        <th scope="col">CommercialSpace</th>
+                                                        <th scope="col">OutputVAT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($list1 as $lists1)
+                                                        @if ($lists1->userid == $arrays['userid'])
+                                                            <tr>
+                                                                <td>{{ $lists1->cash }}</td>
+                                                                <td>{{ $lists1->unearned }}</td>
+                                                                <td>{{ $lists1->bank }}</td>
+                                                                <td>{{ $lists1->cheque }}</td>
+                                                                <td>{{ $lists1->basketball }}</td>
+                                                                <td>{{ $lists1->otherincome }}</td>
+                                                                <td>{{ $lists1->parking }}</td>
+                                                                <td>{{ $lists1->managementfee }}</td>
+                                                                <td>{{ $lists1->events }}</td>
+                                                                <td>{{ $lists1->hotel }}</td>
+                                                                <td>{{ $lists1->commercialspace }}</td>
+                                                                <td>{{ $lists1->outputvat }}</td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
-                                </div>
-                                {{-- Daily Report --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    <!-- Projects table -->
-                                    <div class="table-responsive">
-                                        ssdads
-                                        <!--<table class="table align-items-center table-flush" id="myTables">
-                                            <col>
-                                            <col>
-                                            <colgroup span="4"></colgroup>
-                                            <colgroup span="8"></colgroup>
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th colspan="4" style="font-size:18px;">Debit</th>
-                                                    <th colspan="8" style="font-size:18px;">Credit</th>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="col">Cash/GCash</th>
-                                                    <th scope="col">Unearned Income</th>
-                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                    <th scope="col">Cheque</th>
-                                                    <th scope="col">Basketball</th>
-                                                    <th scope="col">UnearnedIncome</th>
-                                                    <th scope="col">OtherIncome</th>
-                                                    <th scope="col">ManagementFee</th>
-                                                    <th scope="col">FunctionRoom/ConventionCenter/Events
-                                                    </th>
-                                                    <th scope="col">Hotel</th>
-                                                    <th scope="col">CommercialSpace</th>
-                                                    <th scope="col">OutputVAT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($list1 as $lists1)
-                                                    @if ($lists1->userid == $arrays['userid'])
-                                                        <tr>
-                                                            <td>{{ $lists1->ornum }}</td>
-                                                            <td>{{ $lists1->created_at }}</td>
-                                                            <td>{{ $lists1->payee }}</td>
-                                                            <td>{{ $lists1->particular }}</td>
-                                                        </tr>
-                                                    @else
-                                                    @endif
-                                                @endforeach
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>-->
+                                    </div>
 
-                                </div>
-
-                                {{-- Monthly Report --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-3-tab">
-                                    <div class="table-responsive">
-                                        <table class="table align-items-center table-flush" id="myTabless">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Summary</th>
-                                                    <th scope="col">Cash/GCash</th>
-                                                    <th scope="col">Unearned Income</th>
-                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                    <th scope="col">Cheque</th>
-                                                    <th scope="col">Basketball</th>
-                                                    <th scope="col">UnearnedIncome</th>
-                                                    <th scope="col">OtherIncome</th>
-                                                    <th scope="col">ManagementFee</th>
-                                                    <th scope="col">FunctionRoom/ConventionCenter/Events</th>
-                                                    <th scope="col">Hotel</th>
-                                                    <th scope="col">CommercialSpace</th>
-                                                    <th scope="col">OutputVAT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($list1 as $lists1)
-                                                    @if ($lists1->userid == $arrays['userid'])
-                                                        <tr>
-                                                            <td>{{ $lists1->ornum }}</td>
-                                                            <td>{{ $lists1->created_at }}</td>
-                                                            <td>{{ $lists1->payee }}</td>
-                                                            <td>{{ $lists1->particular }}</td>
-                                                        </tr>
-                                                    @else
-                                                    @endif
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                    {{-- Monthly Report --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-3-tab">
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTabless">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">Summary</th>
+                                                        <th scope="col">Cash/GCash</th>
+                                                        <th scope="col">Unearned Income</th>
+                                                        <th scope="col">Bank Transfer/Direct to Bank</th>
+                                                        <th scope="col">Cheque</th>
+                                                        <th scope="col">Basketball</th>
+                                                        <th scope="col">UnearnedIncome</th>
+                                                        <th scope="col">OtherIncome</th>
+                                                        <th scope="col">ManagementFee</th>
+                                                        <th scope="col">FunctionRoom/ConventionCenter/Events</th>
+                                                        <th scope="col">Hotel</th>
+                                                        <th scope="col">CommercialSpace</th>
+                                                        <th scope="col">OutputVAT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($list1 as $lists1)
+                                                        @if ($lists1->userid == $arrays['userid'])
+                                                            <tr>
+                                                                <td>{{ $lists1->particular }}</td>
+                                                                <td>{{ $lists1->cash }}</td>
+                                                                <td>{{ $lists1->unearned }}</td>
+                                                                <td>{{ $lists1->bank }}</td>
+                                                                <td>{{ $lists1->cheque }}</td>
+                                                                <td>{{ $lists1->basketball }}</td>
+                                                                <td>{{ $lists1->unearned }}</td>
+                                                                <td>{{ $lists1->otherincome }}</td>
+                                                                <td>{{ $lists1->managementfee }}</td>
+                                                                <td>{{ $lists1->events }}</td>
+                                                                <td>{{ $lists1->hotel }}</td>
+                                                                <td>{{ $lists1->commercialspace }}</td>
+                                                                <td>{{ $lists1->outputvat }}</td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        <!--Add -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create
+                                            Finance Proof</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ url('/insert') }}" class="prevent_submit" method="POST">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="text-left">OR Number : </p>
+                                                    <input type="text" class="form-control" name="ornum"
+                                                        placeholder="Enter OR Number..." required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Payee : </label>
+                                                    <input type="text" class="form-control" name="payee"
+                                                        placeholder="Enter payee..." required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Particular: </label>
+                                                    <select class="form-control" name="particular" required>
+                                                        <option>Court Rental</option>
+                                                        <option>Court Rental/League</option>
+                                                        <option>Venue Rental</option>
+                                                        <option>Kiosk Rental</option>
+                                                        <option>Food Stall</option>
+                                                        <option>Hotel</option>
+                                                        <option>Hotel Other Charges</option>
+                                                        <option>Function Room</option>
+                                                        <option>Function Room/Hotel</option>
+                                                        <option>Funciton Room/Others</option>
+                                                        <option>Management Fee</option>
+                                                        <option>Convention Center</option>
+                                                        <option>Convention Center/Hot</option>
+                                                        <option>Zumba</option>
+                                                        <option>Event Registration</option>
+                                                        <option>Parking Rental</option>
+                                                        <option>Commercial Space</option>
+                                                        <option>Electrical Charge</option>
+                                                        <option>Space Rental</option>
+                                                        <option>Other Charges</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Debit Type: </label>
+                                                    <select class="form-control" name="debit"
+                                                        placeholder="Enter number..." required>
+                                                        <option>Cash/GCash</option>
+                                                        <option>Unearned Income (DP from Previous Months)</option>
+                                                        <option>Bank Transfer/Direct to Bank</option>
+                                                        <option>Cheque</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Amount: </label>
+                                                    <input type="number" class="form-control" name="amount"
+                                                        placeholder="Enter number..." required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Remarks : </label>
+                                                    <select class="form-control" name="remark"
+                                                        placeholder="Enter number..." required>
+                                                        <option>DP</option>
+                                                        <option>BAL</option>
+                                                        <option>FULL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="Stockdetails">Event Date: </label>
+                                                    <input type="date" class="form-control" name="eventdate" required>
+                                                        <input name="cash" value="0" hidden>
+                                                        <input name="unearned" value="0" hidden>
+                                                        <input name="bank" value="0" hidden>
+                                                        <input name="cheque" value="0" hidden>
+                                                        <input name="basketball" value="0" hidden>
+                                                        <input name="otherincome" value="0" hidden>
+                                                        <input name="parking" value="0" hidden>
+                                                        <input name="managementfee" value="0" hidden>
+                                                        <input name="events" value="0" hidden>
+                                                        <input name="hotel" value="0" hidden>
+                                                        <input name="commercialspace" value="0" hidden>
+                                                        <input name="ouputvat" value="0" hidden>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                            <input type="submit" class="btn btn-success prevent_submit"
+                                                value="Submit" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--Add -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Finance Proof</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <form action="{{ url('/insert') }}" class="prevent_submit" method="POST">
-                    {{ csrf_field() }}
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <p class="text-left">OR Number : </p>
-                                <input type="text" class="form-control" name="ornum"
-                                    placeholder="Enter OR Number..." required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Payee : </label>
-                                <input type="text" class="form-control" name="payee" placeholder="Enter payee..."
-                                    required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Particular: </label>
-                                <select class="form-control" name="particular" required>
-                                    <option>Court Rental</option>
-                                    <option>Court Rental/League</option>
-                                    <option>Venue Rental</option>
-                                    <option>Kiosk Rental</option>
-                                    <option>Food Stall</option>
-                                    <option>Hotel</option>
-                                    <option>Hotel Other Charges</option>
-                                    <option>Function Room</option>
-                                    <option>Function Room/Hotel</option>
-                                    <option>Funciton Room/Others</option>
-                                    <option>Management Fee</option>
-                                    <option>Convention Center</option>
-                                    <option>Convention Center/Hot</option>
-                                    <option>Zumba</option>
-                                    <option>Event Registration</option>
-                                    <option>Parking Rental</option>
-                                    <option>Commercial Space</option>
-                                    <option>Electrical Charge</option>
-                                    <option>Space Rental</option>
-                                    <option>Other Charges</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Debit Type: </label>
-                                <select class="form-control" name="debit" placeholder="Enter number..." required>
-                                    <option>Cash/GCash</option>
-                                    <option>Unearned Income (DP from Previous Months)</option>
-                                    <option>Bank Transfer/Direct to Bank</option>
-                                    <option>Cheque</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Amount: </label>
-                                <input type="number" class="form-control" name="amount" placeholder="Enter number..."
-                                    required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Remarks : </label>
-                                <select class="form-control" name="remark" placeholder="Enter number..." required>
-                                    <option>DP</option>
-                                    <option>BAL</option>
-                                    <option>FULL</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Stockdetails">Event Date: </label>
-                                <input type="date" class="form-control" name="eventdate"
-                                    placeholder="Enter number..." required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
-                    </div>
-                </form>
             </div>
         </div>
     </div>
