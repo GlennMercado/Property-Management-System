@@ -214,13 +214,13 @@
                                             </div>
                                         </div>
                                 </div>
-
                                 {{-- Daily Report --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <!-- Projects table -->
                                     <div class="table-responsive">
-                                        <table class="table align-items-center table-flush" id="myTables">
+                                        ssdads
+                                        <!--<table class="table align-items-center table-flush" id="myTables">
                                             <col>
                                             <col>
                                             <colgroup span="4"></colgroup>
@@ -263,7 +263,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div>-->
 
                                 </div>
 
@@ -272,9 +272,7 @@
                                     aria-labelledby="tabs-icons-text-3-tab">
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush" id="myTabless">
-
                                             <thead class="thead-light">
-
                                                 <tr>
                                                     <th scope="col">Summary</th>
                                                     <th scope="col">Cash/GCash</th>
@@ -346,90 +344,6 @@
 
 
 
-                    <!--Modal Edit-->
-                    <div class="modal fade text-left" id="ModalUpdate{{ $arrays['userid'] }}" tabindex="-1"
-                        role="dialog" aria-hidden="true">
-
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title">{{ __('Edit Details') }}</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form method="POST" action="{{ url('/edit') }}" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text-left">User ID: </p>
-                                                <input class="form-control" type="text" value="{{ $lists->userid }}"
-                                                    readonly>
-                                                <input class="form-control" type="text" name="userid"
-                                                    value="{{ $lists->userid }}" hidden>
-                                            </div>
-                                            <div class="col">
-                                                <p class="text-left">OR Number: </p>
-                                                <input type="text" class="form-control" name="ornum"
-                                                    value="{{ $lists->ornum }}" required>
-                                                <div class="invalid-feedback">
-                                                    Stock Name empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Stockdetails">Payee: </label>
-                                            <input type="text" class="form-control" name="payee"
-                                                value="{{ $lists->payee }}" required>
-
-                                            <!--<input class="form-control" type="tel" minlength="11" maxlength="11" name="mobile" placeholder = "09XXXXXXXXX" required>-->
-                                            <div class="invalid-feedback">
-                                                Stock Details empty
-                                            </div>
-                                            <label>Particular: </label>
-                                            <select class="form-control" value="{{ $lists->particular }}" name="status"
-                                                required>
-                                                <option>Requesting</option>
-                                                <option>Paid</option>
-                                                <option>Unpaid</option>
-                                            </select>
-
-                                            <label>Event Date: </label>
-                                            <input type="date" class="form-control" name="eventdate"
-                                                value="{{ $lists->eventdate }}" required>
-
-                                            <label for="Stockdetails">Debit Type: </label>
-                                            <input type="text" class="form-control" name="debit"
-                                                value="{{ $lists->debit }}" required>
-
-                                            <label for="Stockdetails">Remarks : </label>
-                                            <input type="text" class="form-control" name="remark"
-                                                value="{{ $lists->remark }}">
-
-                                            <div class="invalid-feedback">
-                                                Stock Details empty
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a class="btn btn-failed" data-dismiss="modal">Close</a>
-                                            <input type="submit" name="update" value="Update"
-                                                class="btn btn-success" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!--Table Continue-->
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
 
     <!--Add -->

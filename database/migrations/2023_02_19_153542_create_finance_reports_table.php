@@ -22,17 +22,18 @@ return new class extends Migration
             $table->string('remark');
 
             $table->integer('amount');
-            $table->cash('amount');
-            $table->unearned('amount');
-            $table->bank('amount');
-            $table->cheque('amount');
-            $table->integer('amount');
-            $table->integer('amount');
-            $table->integer('amount');
-            $table->integer('amount');
-
-
-            
+            $table->integer('cash');
+            $table->integer('unearned');
+            $table->integer('bank');
+            $table->integer('cheque');
+            $table->integer('basketball');
+            $table->integer('otherincome');
+            $table->integer('parking');
+            $table->integer('managementfee');
+            $table->integer('events');
+            $table->integer('hotel');
+            $table->integer('commercialspace');
+            $table->integer('outputvat');
             
             $table->timestamps();
         });

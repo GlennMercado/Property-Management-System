@@ -608,7 +608,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                </div>
                                 <!--Modal Edit-->
                                 <div class="modal fade text-left" id="ModalUpdate2{{ $lists2->productid }}"
                                     tabindex="-1" role="dialog" aria-hidden="true">
@@ -1203,14 +1202,13 @@
                                 <table class="table align-items-center table-flush" id="myTablessss">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:16px;">Action</th>
                                             <th scope="col" style="font-size:16px;">Item Name</th>
                                             <th scope="col" style="font-size:16px;">Department</th>
                                             <th scope="col" style="font-size:16px;">Name of Supervisor</th>
                                             <th scope="col" style="font-size:16px;">Date</th>
                                             <th scope="col" style="font-size:16px;">Stock Level</th>
                                             <th scope="col" style="font-size:16px;">Stock Alert</th>
-                                            <th scope="col" style="font-size:16px;">file</th>
-                                            <th scope="col" style="font-size:16px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1222,13 +1220,6 @@
                                                 <td style="font-size:14px;">{{ $lists4->quantity }}</td>
                                                 <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
                                                 <td style="font-size:14px;">{{ $lists4->Stock_Level }}</td>
-                                                @if ($lists4->quantity <= $lists4->Stock_Level)
-                                                    <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
-                                                            style="color:red;"></i></td>
-                                                @else
-                                                    <td style="font-size:25px;"><i class="bi bi-check-square-fill"
-                                                            style="color:green;"></i></td>
-                                                @endif
                                                 <td>
                                                     <button type="button" data-toggle="modal"
                                                         data-target="#ModalView4{{ $lists4->productid }}"
@@ -1321,81 +1312,13 @@
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">Purchase Report</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form class="needs-validation"
-                                                            action="{{ url('/edit_report') }}" method="POST">
-                                                            {{ csrf_field() }}
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="card-body bg-white"
-                                                                        style="border-radius: 18px">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <input class="form-control"
-                                                                                    type="text" name="productid"
-                                                                                    value="{{ $lists4->productid }}"
-                                                                                    hidden>
-                                                                                <p class="text-left">Item Name :
-                                                                                    <input class="form-control"
-                                                                                        type="text" name="name"
-                                                                                        value="{{ $lists4->name }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="text-left">Item Description :
-                                                                            <input class="form-control" type="text"
-                                                                                placeholder="Enter Here.."
-                                                                                name="description"
-                                                                                value="{{ $lists4->description }}"
-                                                                                required>
-                                                                        </p>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Unit :
-                                                                                    <input class="form-control"
-                                                                                        type="number"
-                                                                                        placeholder="Enter Here.."
-                                                                                        name="unit"
-                                                                                        value="{{ $lists4->unit }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Quantity :
-                                                                                    <input class="form-control"
-                                                                                        type="number"
-                                                                                        placeholder="Enter Here.."
-                                                                                        name="quantity"
-                                                                                        value="{{ $lists4->quantity }}"
-                                                                                        required>
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="text-left">Supplier Name: </p>
-                                                                        <select class="form-control" name="suppliername"
-                                                                            value="{{ $lists4->productid }}" required>
-                                                                            <option>Sample Supplier 1</option>
-                                                                            <option>Sample Supplier 2</option>
-                                                                            <option>Sample Supplier 3</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-success">Submit</button>
-                                                            </div>
-                                                        </form>
+                                                    <label>Status: </label>
+                                                        <select class="form-control" value="{{ $lists->status}}" name="status" required>
+                                                        <option>Requesting</option>
+                                                        <option>Paid</option>
+                                                        <option>Unpaid</option>
+                                                        </select>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
