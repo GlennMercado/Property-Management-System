@@ -282,42 +282,43 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <label for="Stockdetails">Room Number : </label>
-                                                                <input type="number" class="form-control"
-                                                                    name="inventoryapproved" placeholder="Enter number..."
-                                                                    required>
+                                                                <select name="roomno" class="form-control" required>
+                                                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                                                @foreach ($count2 as $counts2)
+                                                                    @for ($i = $counts2['counts2']; $i <= $counts2['counts2']; $i++)
+                                                                        @if($i != 0)
+                                                                        <option value="{{$i}}">{{$i}}</option>
+                                                                        @endif
+                                                                    @endfor
+                                                                @endforeach
+                                                                </select>
+                                                                
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="Stockdetails">Item Name : </label>
-                                                                <input type="number" class="form-control"
-                                                                    name="inventoryapproved" placeholder="Enter number..."
-                                                                    required>
+                                                                <label for="Stockdetails">Category : </label>
+                                                                <input type="text" class="form-control" value="{{$lists->category}}" readonly>
+                                                                <input type="hidden" name="category" value="{{$lists->category}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="Stockdetails">Requested Quantity: </label>
-                                                                <input type="number" class="form-control"
-                                                                    name="inventoryapproved" placeholder="Enter number..."
-                                                                    required>
+                                                                <label for="Stockdetails">Product Name: </label>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{$lists->name}}" readonly>
+                                                                <input type="hidden" name="id" value="{{$lists->productid}}" />                                                                    
+                                                                <input type="hidden" name="name" value="{{$lists->name}}" />    
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="Stockdetails">Invetory to Give: </label>
+                                                                <label for="Stockdetails">Quantity </label>
                                                                 <input type="number" class="form-control"
-                                                                    name="inventoryapproved" placeholder="Enter number..."
+                                                                    name="quantity" placeholder="Enter number..."
                                                                     required>
                                                             </div>
                                                         </div>
-                                                        <label>Status: </label>
-                                                        <select class="form-control" name="status" required>
-                                                            <optiond disabled>
-                                                                </option>
-                                                                <option>Approved</option>
-                                                                <option>Denied</option>
-                                                        </select>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-outline-danger"
                                                                 data-dismiss="modal">Close</button>

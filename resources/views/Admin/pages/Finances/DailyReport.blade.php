@@ -68,6 +68,7 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">OR No.</th>
+                                                <th scope="col">Date</th>
                                                 <th scope="col">Payee</th>
                                                 <th scope="col">Particulars</th>
                                                 <th scope="col">Event Date</th>
@@ -82,6 +83,7 @@
                                             @foreach ($list as $lists)
                                                 <tr>
                                                     <td>{{ $lists->ornum }}</td>
+                                                    <td>{{ $lists->created_at }}</td>
                                                     <td>{{ $lists->payee }}</td>
                                                     <td>{{ $lists->particular }}</td>
                                                     <td>{{ $lists->eventdate }}</td>
@@ -310,8 +312,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="Stockdetails">Event Date: </label>
-                                                            <input type="date" class="form-control" name="eventdate"
-                                                                required>
+                                                            <input type="datetime-local" class="form-control" name="eventdate" required>
                                                             <input type="hidden" name="cash" value="1">
                                                             <input type="hidden" name="unearned" value="1" hidden>
                                                             <input type="hidden" name="bank" value="1" hidden>

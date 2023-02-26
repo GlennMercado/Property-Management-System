@@ -138,11 +138,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		//Inventory Management
 //Hotel
-Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'index'])->name('StockCount');
+Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'HotelStock'])->name('StockCount');
 
 Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-
+Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
 	
 	//Convention Center Inventory
 		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
