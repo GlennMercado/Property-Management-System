@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section6">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('WelcomeMap') }}">
                         <i class="ni ni-pin-3"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Map') }}</span>
                     </a>

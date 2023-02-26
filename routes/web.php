@@ -25,6 +25,8 @@ Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'We
 
 Route::get('WelcomeContactUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeContactUs'])->name('WelcomeContactUs');
 
+Route::get('WelcomeMap', [App\Http\Controllers\WelcomeController::class, 'WelcomeMap'])->name('WelcomeMap');
+
 Route::get('ContactUs', function () { return view('ContactUs');})->name('ContactUs');
 
 Route::get('Map', function () { return view('Map');})->name('Map');

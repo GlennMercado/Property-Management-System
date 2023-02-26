@@ -25,6 +25,10 @@ class WelcomeController extends Controller
      {
          return view('WelcomeContactUs');
      }
+     public function WelcomeMap()
+     {
+         return view('WelcomeMap');
+     }
      /**
       * Show the form for creating a new resource.
       *

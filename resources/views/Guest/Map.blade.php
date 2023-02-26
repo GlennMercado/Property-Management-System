@@ -3,8 +3,8 @@
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <div class="container-fluid bg-white">
-        <div class="text-center mt-7">
-            <h1 class="display-1">NVDC Properties Location</h1>
+        <div class="text-center mt-7 pb-8">
+            <h1 class="display-1 pt-4">NVDC Properties Location</h1>
             <br>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 cards1">
@@ -20,11 +20,7 @@
                     <div class="card-body">
                         <p class="card-text">Brgy, 123 General Luis, Novaliches, Lungsod Quezon, Kalakhang Maynila</p>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    
                 </div>
             </div>
             <br>
