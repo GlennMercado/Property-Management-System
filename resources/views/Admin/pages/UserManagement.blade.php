@@ -43,24 +43,27 @@
                                             <div class="card-body bg-white" style="border-radius: 18px">
                                                 <label class="text_color">Name</label>
                                                 <input type="text" class="form-control" name="name" required>
+                                                
                                                 <label class="text_color">Email</label>
                                                 <input type="email" class="form-control" name="email" required>
+                                                
                                                 <label class="text_color">Password</label>
                                                 <input type="password" class="form-control" name="password" required>
+
                                                 <label class="text_color">Confirm Password</label>
                                                 <input type="password" class="form-control">
+
                                                 <label class="text_color">User Type</label>
-                                                <select name="" id="selectbox"; class="form-control" name="User_Type" required>
-                                                    <option id="option1">Select</option>
-                                                    <option value="Guest" id="option2">Guest</option>
-                                                    <option value="Sales" id="option3">Sales & Marketing
+                                                <select class="form-control" name="User_Type" required>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Guest">Guest</option>
+                                                    <option value="Sales & Marketing">Sales & Marketing
                                                     </option>
-                                                    <option value="Finance" id="option4">Finance</option>
-                                                    <option value="Frontdesk" id="option5">Frontdesk</option>
-                                                    <option value="OperationsManager" id="option6">Operations
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="Front Desk">Front Desk</option>
+                                                    <option value="Operations Manager">Operations
                                                         Manager</option>
-                                                    <option value="Admin" id="option7">Admin</option>
-                                                    <option value="Inventory" id="option8">Inventory</option>
+                                                    <option value="Inventory">Inventory</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -95,16 +98,15 @@
                                                 <td>{{ $lists->email }}</td>
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
-                                                    <select name="" id="selectbox"; class="form-control">
-                                                        <option id="option1">{{ $lists->User_Type }}</option>
-                                                        <option value="Guest" id="option2">Guest</option>
-                                                        <option value="Sales" id="option3">Sales & Marketing</option>
-                                                        <option value="Finance" id="option4">Finance</option>
-                                                        <option value="Frontdesk" id="option5">Frontdesk</option>
-                                                        <option value="OperationsManager" id="option6">Operations
-                                                            Manager</option>
-                                                        <option value="Admin" id="option7">Admin</option>
-                                                        <option value="Inventory" id="option8">Inventory</option>
+                                                    <select name="user_type" class="form-control">
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="Guest">Guest</option>
+                                                        <option value="Sales & Marketing">Sales & Marketing</option>
+                                                        <option value="Finance">Finance</option>
+                                                        <option value="Front Desk">Front Desk</option>
+                                                        <option value="Operations Manager">Operations
+                                                            Manager</option> 
+                                                        <option value="Inventory">Inventory</option>
                                                     </select>
                                                 </td>
                                             </tr>

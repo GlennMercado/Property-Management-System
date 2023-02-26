@@ -173,6 +173,7 @@ class GuestController extends Controller
                 'venue' => 'required',
                 'caterer' => 'required',
                 'audio_visual' => 'required',
+                'inquiry_status' => '',
                 'concept' => 'required'
             ]);
             
@@ -191,6 +192,7 @@ class GuestController extends Controller
             $submit->caterer = $request->input('caterer');
             $submit->audio_visual = $request->input('audio_visual');
             $submit->concept = $request->input('concept');
+            $submit->inquiry_status = $request->input('inquiry_status');
 
 
             if($submit->save())

@@ -32,7 +32,7 @@
                             <h3>Number of pax</h3>
                             <div class="row">
                                 <div class="col">
-                                    <div class="dropdown">
+                                    {{-- <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -40,41 +40,40 @@
                                             <span>Child : 0</span>
                                             <span>Infant : 0</span>
                                         </button>
-
-
                                         <div class="dropdown-menu mx-auto" aria-labelledby="dropdownMenuButton">
                                             <form onsubmit="return validateForm()">
                                                 <div class="container">
-                                                    <div id="input1">
-                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
-                                                            onclick="decrement('adult')">-</button></span>
-                                                        <label class="pt-2" min="0">Adult: 0</label>
-                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                    <div class="mx-auto d-flex justify-content-center" id="input1">
+                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
+                                                                onclick="decrement('adult')">-</button></span>
+                                                        <label class="pt-2 " min="0" id="adultLabel">Adult: 0</label>
+                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
                                                                 onclick="increment('adult')">+</button></span>
                                                     </div>
-                                                    <div id="input2">
-                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
-                                                            onclick="decrement('child')">-</button></span>
-                                                        <label class="pt-2">Child: 0</label>
-                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                    <div class="mx-auto d-flex justify-content-center" id="input2">
+                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
+                                                                onclick="decrement('child')">-</button></span>
+                                                        <label class="pt-2" id="childLabel">Child: 0</label>
+                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
                                                                 onclick="increment('child')">+</button></span>
                                                     </div>
-                                                    <div id="input3">
-                                                        <span><button class="btn btn-count2 btn-sm btn-danger"
-                                                            onclick="decrement('infant')">-</button></span>
-                                                        <label class="pt-2">Infant: 0</label>
-                                                        <span><button class="btn btn-sm btn-count btn-success"
+                                                    <div class="mx-auto d-flex justify-content-center" id="input3">
+                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
+                                                                onclick="decrement('infant')">-</button></span>
+                                                        <label class="pt-2" id="infantLabel">Infant: 0</label>
+                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
                                                                 onclick="increment('infant')">+</button></span>
                                                     </div>
+
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-count2 btn-primary">Done</button>
-                                                        <button type="button" class="btn btn-count btn-secondary"
+                                                        <button type="submit" class="btn btn-primary">Done</button>
+                                                        <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <a href="#" class="btn btn-success mt-3">Submit</a>
@@ -155,10 +154,10 @@
                     <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                    <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                        Book Now
-                                                                                                                                    </a>
-                                                                                                                                </button> -->
+                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                Book Now
+                                                                                                                                            </a>
+                                                                                                                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -177,10 +176,10 @@
                         celebrations,
                         training/learning sessions and sports activities.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                    <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                        Book Now
-                                                                                                                                    </a>
-                                                                                                                                </button> -->
+                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                Book Now
+                                                                                                                                            </a>
+                                                                                                                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -199,10 +198,10 @@
                         convention center.</p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                    <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                        Book Now
-                                                                                                                                    </a>
-                                                                                                                                </button> -->
+                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                Book Now
+                                                                                                                                            </a>
+                                                                                                                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -223,10 +222,10 @@
                         month! </p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                    <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                        Book Now
-                                                                                                                                    </a>
-                                                                                                                                </button> -->
+                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                Book Now
+                                                                                                                                            </a>
+                                                                                                                                        </button> -->
                 </div>
             </div>
         </div>
@@ -273,33 +272,33 @@
     </div>
     <!-- section 4 -->
     <!-- <div class="container-fluid bg-white pt-6">
-                                                                                                                <div class="card-body d-flex justify-content-center">
-                                                                                                                    <div class="container">
-                                                                                                                        <div class="row g-2">
-                                                                                                                            <div class="col-3 ">
-                                                                                                                                <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
-                                                                                                                            </div>
-                                                                                                                            <div class="col-3">
-                                                                                                                                <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                                                                                                                            </div>
-                                                                                                                            <div class="col-3">
-                                                                                                                                <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                                                                                                                            </div>
-                                                                                                                            <div class="col-3">
-                                                                                                                                <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                                                                                                                                <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                                                                                                                        <div class="card-body d-flex justify-content-center">
+                                                                                                                            <div class="container">
+                                                                                                                                <div class="row g-2">
+                                                                                                                                    <div class="col-3 ">
+                                                                                                                                        <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-3">
+                                                                                                                                        <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-3">
+                                                                                                                                        <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-3">
+                                                                                                                                        <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
+                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
                                                                                                                             </div>
                                                                                                                         </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>  -->
+                                                                                                                    </div>  -->
     <!-- section 5 -->
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
@@ -462,35 +461,35 @@
 
         .image-text {
             /* position: absolute;
-                                                                                top: 44%;
-                                                                                left: 50%;
-                                                                                transform: translate(-50%, -50%);
-                                                                                color: white;
-                                                                                font-size: 36px;
-                                                                                font-weight: bold;
-                                                                                text-align: center;
-                                                                                filter: brightness(50%); */
+                                                                                        top: 44%;
+                                                                                        left: 50%;
+                                                                                        transform: translate(-50%, -50%);
+                                                                                        color: white;
+                                                                                        font-size: 36px;
+                                                                                        font-weight: bold;
+                                                                                        text-align: center;
+                                                                                        filter: brightness(50%); */
             font-family: montserrat;
             margin-bottom: -1rem;
         }
 
         .image-text2 {
             /* position: absolute;
-                                                                                top: 50%;
-                                                                                left: 50%;
-                                                                                transform: translate(-50%, -50%);
-                                                                                color: white;
-                                                                                font-weight: bold;
-                                                                                text-align: center;
-                                                                                font-size: 65px;
-                                                                                letter-spacing: 1px; */
+                                                                                        top: 50%;
+                                                                                        left: 50%;
+                                                                                        transform: translate(-50%, -50%);
+                                                                                        color: white;
+                                                                                        font-weight: bold;
+                                                                                        text-align: center;
+                                                                                        font-size: 65px;
+                                                                                        letter-spacing: 1px; */
             font-family: montserrat;
         }
 
         .group {
             display: flex;
             position: absolute;
-            top: 43%;
+            top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
@@ -696,21 +695,8 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
-        // dropdown counnt
-        function updateValue(change, id) {
-            var element = document.getElementById(id);
-            var value = parseInt(element.value);
-            value += change;
-            if (value < 0) {
-                value = 0;
-            }
-            element.value = value;
-            var dropdownButton = document.getElementById("dropdownMenuButton");
-            dropdownButton.innerHTML = "<span>Adult: " + document.getElementById("adult").value + "</span><span>Child: " +
-                document.getElementById("child").value + "</span><span>Infant: " + document.getElementById("infant").value +
-                "</span>";
-        }
-        // count
+        
+        // dropdown count
         // get the dropdown button and the input fields
         const dropdownButton = document.getElementById('dropdownMenuButton');
         const adultInput = document.getElementById('input1');
@@ -737,18 +723,17 @@
                 // } else if (event.target.classList.contains('btn-danger')) {
                 //     value--;
                 // }
-                if (event.target.classList.contains('btn-count')){
+                if (event.target.classList.contains('btn-count')) {
                     value++;
-                    if(value > 4){
+                    if (value > 4) {
                         document.getElementById("btn-count").disabled = true;
                     }
-                }else if (event.target.classList.contains('btn-count2')){
+                } else if (event.target.classList.contains('btn-count2')) {
                     value--;
-                    if(value < 0){
+                    if (value < 0) {
                         document.getElementById("btn-count2").disabled = true;
                     }
-                }
-                else{
+                } else {
                     document.getElementById("btn-count").disabled = false;
                     document.getElementById("btn-count2").disabled = false;
                 }
@@ -762,22 +747,27 @@
             });
         });
         let count = 0;
-    const countElement = document.getElementById('count');
+        const countElement = document.getElementById('count');
 
-    // validation of 4 counts
-
-    function validateForm() {
-        var adultCount = parseInt(document.getElementById("adultCount").innerText);
-        var childCount = parseInt(document.getElementById("childCount").innerText);
-        var infantCount = parseInt(document.getElementById("infantCount").innerText);
-        var totalCount = adultCount + childCount + infantCount;
-
-        if (totalCount < 4) {
-            alert("Please select at least 4 passengers.");
-            return false;
+        // validation of 4 counts
+        function countfield() {
+            var adultCount = parseInt(document.getElementById('adultLabel').innerText.split(':')[1]);
+            var childCount = parseInt(document.getElementById('childLabel').innerText.split(':')[1]);
+            var infantCount = parseInt(document.getElementById('infantLabel').innerText.split(':')[1]);
+            return adultCount + childCount + infantCount;
         }
 
-        return true;
-    }
+        function increment(field) {
+            
+            if (countfield() > 3) {
+                alert('Total number of passengers cannot exceed 4');
+            }
+        }
+
+        function decrement(field) {
+            
+        }
+
+        
     </script>
 @endsection
