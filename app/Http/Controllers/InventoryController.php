@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\hotelstocks;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_linen;
+use Carbon\Carbon;
 
 class InventoryController extends Controller
 {
@@ -14,11 +17,33 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function HotelStock()
     {
 
-       $sum = hotelstocks::where('total' < 'Stock_Level')->count();
-       return view('StockAvailability', compact('sum'));
+
+       //Hotel Inventory
+		
+		$list = DB::select('SELECT * FROM hotelstocks');
+		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+		$count = array();
+
+        $list2 = DB::select('SELECT * FROM novadeci_suites');
+        $check2 = DB::select('SELECT COUNT(*) as cnt FROM novadeci_suites');
+		$count2 = array();
+
+		foreach($check as $checks)
+		{
+			$count[] = ['counts' => $checks->cnt];
+		}
+
+        foreach($check2 as $checks2)
+		{
+			$count2[] = ['counts2' => $checks2->cnt];
+		}
+		
+
+		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count, 'count2'=>$count2]);
+	
     
     }
 
@@ -27,9 +52,128 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add_stock_room(Request $request)
+    {
+        $roomno = $request->input('roomno');
+        $prodid = $request->input('id');
+        $category = $request->input('category');
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+        $sql2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $sql3 = DB::select("SELECT * FROM hotel_room_linens WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $quantity;
+
+        if($category == "Linen")
+        {
+            if($sql3)
+            {
+                Alert::Error('Error', 'Item already exist!');
+                return redirect('StockCount')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                foreach($sql as $lists)
+                {
+                    if($lists->total < $request->input('quantity'))
+                    {
+                        Alert::Error('Error', 'Quantity Requested is Higher than Inventory Stock!');
+                        return redirect('StockCount')->with('Success', 'Data Updated');
+                    }
+                    else
+                    {
+                        $quantity = $lists->total - $request->input('quantity');
+                    }
+                }
+    
+                $datenow = Carbon::now();
+                Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+    
+                $supply = new hotel_room_linen;
+    
+                $supply->Room_No = $roomno;
+                $supply->productid = $prodid;
+                $supply->name = $request->input('name');
+                $supply->Category = $category;
+                $supply->Quantity = $request->input('quantity');
+                $supply->Date_Received = $datenow;
+    
+                if($supply->save())
+                {
+                    DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
+                    //history
+                    // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                    // values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
+    
+                    Alert::Success('Success', 'Stock Successfully Added to Room!');
+                    return redirect('StockCount')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    Alert::Error('Error', 'Stock Failed Adding to Room!');
+                    return redirect('StockCount')->with('Success', 'Data Updated');
+                }
+            }
+        }
+        elseif($category == "Guest Supply")
+        {
+            if($sql2)
+            {
+                Alert::Error('Error', 'Item already exist!');
+                return redirect('StockCount')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                foreach($sql as $lists)
+                {
+                    if($lists->total < $request->input('quantity'))
+                    {
+                        Alert::Error('Error', 'Quantity Requested is Higher than Inventory Stock!');
+                        return redirect('StockCount')->with('Success', 'Data Updated');
+                    }
+                    else
+                    {
+                        $quantity = $lists->total - $request->input('quantity');
+                    }
+                }
+    
+                $datenow = Carbon::now();
+                Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+    
+                $supply = new hotel_room_supplies;
+    
+                $supply->Room_No = $roomno;
+                $supply->productid = $prodid;
+                $supply->name = $request->input('name');
+                $supply->Category = $category;
+                $supply->Quantity = $request->input('quantity');
+                $supply->Date_Received = $datenow;
+    
+                if($supply->save())
+                {
+                    DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
+    
+                    Alert::Success('Success', 'Stock Successfully Added to Room!');
+                    return redirect('StockCount')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    Alert::Error('Error', 'Stock Failed Adding to Room!');
+                    return redirect('StockCount')->with('Success', 'Data Updated');
+                }
+            }
+        }
+        
+    }
+    public function received_supply(Request $request)
     {
         //
+        $roomno = $request->input('roomno');
+        $prodid = $request->input('id');
+        $category = $request->input('category');
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+        $sql2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $sql3 = DB::select("SELECT * FROM hotel_room_linens WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $quantity;
+
     }
 
     /**

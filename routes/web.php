@@ -93,6 +93,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Housekeeping_Reports', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
 
 
+		//Hotel
+		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
+
+		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+
 
 	//Front Desk
 		Route::get('FrontDesk', function(){
@@ -133,24 +139,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		//Inventory Management
+//Hotel
+Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'HotelStock'])->name('StockCount');
 
-
-	//Hotel Inventory
-		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
-		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-	
-		Route::get('StockCount', function () {
-		$list = DB::select('SELECT * FROM hotelstocks');
-		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
-		$count = array();
-
-		foreach($check as $checks)
-		{
-			$count[] = ['counts' => $checks->cnt];
-		}
-		
-
-		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count]);})->name('StockCount');
+Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
 	
 	//Convention Center Inventory
 		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
@@ -226,15 +220,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::get('DailyReport', function () {
 			$list = DB::select('SELECT * FROM finance_2_reports');
-			$array = array();
-			$list1 = DB::select('SELECT * FROM finance_2_reports');
- 
-			foreach($list as $lists)
-			{
-				$array[] = ['userid' => $lists->userid];
-			}
+			
 
-			return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'array' => $array, 'list1'=>$list1]);})->name('DailyReport');
+			return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
 			
 			
 

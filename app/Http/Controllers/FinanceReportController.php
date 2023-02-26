@@ -61,7 +61,6 @@ class FinanceReportController extends Controller
             'unearned' => 'required',
             'bank' => 'required',
             'cheque' => 'required',
-            'unearned' => 'required',
             'bank' => 'required'
             // 'basketball' => 'required',
             // 'otherincome' => 'required',
@@ -84,12 +83,15 @@ class FinanceReportController extends Controller
             $finance->remark = $request->input('remark');
             $finance->amount = $request->input('amount');
             $finance->eventdate = $request->input('eventdate');
-            $nopayment = '0';
+            $gross= $request->input('amount');
+            $nopayment = 0;
+            $grosspile = 1.12;
+            $grosspiles = $gross / $grosspile;
 
             //for CREDIT
             //Basketball
             if ($compute == 'CourtRental' || $compute == 'CourtRental/League') {
-                $finance->basketball = $request->input('amount');
+                $finance->basketball = $grosspiles;
                 $finance->otherincome = $nopayment;
                 $finance->parking = $nopayment;
                 $finance->managementfee = $nopayment;
