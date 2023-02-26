@@ -95,7 +95,7 @@
                                                 <td>{{ $lists->email }}</td>
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
-                                                    <select name="" id="selectbox"; class="form-control">
+                                                    <select name="" id="selectbox" class="form-control">
                                                         <option id="option1">{{ $lists->User_Type }}</option>
                                                         <option value="Guest" id="option2">Guest</option>
                                                         <option value="Sales" id="option3">Sales & Marketing</option>
