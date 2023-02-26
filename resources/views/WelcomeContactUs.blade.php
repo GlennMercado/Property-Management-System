@@ -2,15 +2,9 @@
 
 @section('content')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <div class="container-fluid bg-white mt-7">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="row d-flex justify-content-center">
+    <div class="container-fluid bg-white pt-6">
+        
+        <div class="row d-flex justify-content-center pt-8">
             <div class="col-md-6 text-center">
                 <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="max-width: 35vh; max-height: 35vh; ">
                 <h1 class="display-1">NVDC PROPERTIES</h1>
@@ -34,6 +28,5 @@
         <br>
         <br>
     </div>
-    @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>
 @endsection
