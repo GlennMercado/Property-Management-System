@@ -270,53 +270,7 @@
                                 <label for="Stockdetails">Stock Level: </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..." required>
                             </div>
-                        </div>
-                        <div class = "row">
-                            <div class = "col">
-                                <label for="exampleInputPassword1">Category: </label>
-                                <select class="form-control" name = "category" required>
-                                    <option value="Invalid">Linens :</option>
-                                    <option>Bed pad - Single</option>
-                                    <option>Fitted Sheet - Single</option>
-                                    <option>Flat Sheet - Single</option>
-                                    <option>Duvet Filler - Single</option>
-                                    <option>Duvet Cover - Single</option>
-                                    <option>Pillows</option>
-                                    <option>Bed pad - Queen</option>
-                                    <option>Fitted Sheet - Queen</option>
-                                    <option>Flat Sheet - Queen</option>
-                                    <option>Duvet Filler - Queen</option>
-                                    <option>Duvet Cover - Queen</option>
-                                    <option>Pillows Case</option>
-                                    <option>Bath Towel</option>
-                                    <option>Hand Towel</option>
-                                    <option>Bath Mat</option>
-                                    <option>Bed Ruuner Queen</option>
-                                    <option>Bed Runner Single</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Guest Supplies :</option>
-                                    <option>Bath Soap</option>
-                                    <option>Shampoo</option>
-                                    <option>Dental Kit</option>
-                                    <option>Slippers</option>
-                                    <option>Bottled Water</option>
-                                    <option>Juice</option>
-                                    <option>Coffee</option>
-                                    <option>Creamer</option>
-                                    <option>Sugar - White</>
-                                    <option>Sugar - Brown</option>
-                                    <option value="Invalid"></option>
-                                    <option value="Invalid">Amenities : </option>
-                                    <option>Kettle</option>
-                                    <option>Tray</option>
-                                    <option>Dental Glass</option>
-                                    <option>Teaspoon</option>
-                                    <option>Cup And Saucer</option>
-                                    <option>Hanger</option>
-                                    <option>Door Hang</option>
-                                    </select>
-                            </div>
-                        </div>                            
+                        </div>             
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
@@ -329,25 +283,7 @@
     
 
 <script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-      columnDefs: [{
-          orderable: true,
-          className: '',
-          targets: 0
-      }]
-  });
-  $('.datatable-Stock:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-})
-
+    
 </script>
 <style>
     .title{

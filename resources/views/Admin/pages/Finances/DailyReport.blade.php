@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    </div>
+                                </div>
                                     {{-- Daily Report --}}
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                         aria-labelledby="tabs-icons-text-2-tab">
@@ -154,19 +154,32 @@
                                                         <th scope="col">Basketball</th>
                                                         <th scope="col">UnearnedIncome</th>
                                                         <th scope="col">OtherIncome</th>
+                                                        <th scope="col">Parking Ticket/Parking Rent</th>
                                                         <th scope="col">ManagementFee</th>
                                                         <th scope="col">FunctionRoom/ConventionCenter/Events
-                                                        </th>
                                                         <th scope="col">Hotel</th>
-                                                        <th scope="col">CommercialSpace</th>
-                                                        <th scope="col">OutputVAT</th>
+                                                        <th scope="col">Commercial Spaces</th>
+                                                        <th scope="col">Output VAT</th>
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($list1 as $lists1)
                                                         @if ($lists1->userid == $arrays['userid'])
                                                             <tr>
-                                                                
+                                                            <td>{{ $lists->cash }}</td>
+                                                             <td>{{ $lists->unearned }}</td>
+                                                            <td>{{ $lists->bank }}</td>
+                                                            <td>{{ $lists->cheque }}</td>
+                                                            <td>{{ $lists->basketball }}</td>
+                                                            <td>{{ $lists->unearned }}</td>
+                                                            <td>{{ $lists->otherincome }}</td>
+                                                            <td>{{ $lists->parking }}</td>
+                                                            <td>{{ $lists->managementfee }}</td>
+                                                    <td>{{ $lists->event }}</td>
+                                                    <td>{{ $lists->hotel }}</td>
+                                                    <td>{{ $lists->commercialspace }}</td>
+                                                    <td>{{ $lists->outputvat }}</td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -190,6 +203,7 @@
                                                         <th scope="col">Basketball</th>
                                                         <th scope="col">UnearnedIncome</th>
                                                         <th scope="col">OtherIncome</th>
+                                                        <th scope="col">Parking</th>
                                                         <th scope="col">ManagementFee</th>
                                                         <th scope="col">FunctionRoom/ConventionCenter/Events</th>
                                                         <th scope="col">Hotel</th>
@@ -202,7 +216,19 @@
                                                         @if ($lists1->userid == $arrays['userid'])
                                                             <tr>
                                                                 <td>{{ $lists1->particular }}</td>
-                                                                
+                                                                <td>{{ $lists1->cash }}</td>
+                                                                <td>{{ $lists1->unearned }}</td>
+                                                                <td>{{ $lists1->bank }}</td>
+                                                                <td>{{ $lists1->cheque }}</td>
+                                                                <td>{{ $lists1->basketball }}</td>
+                                                                <td>{{ $lists1->unearned }}</td>
+                                                                <td>{{ $lists1->otherincome }}</td>
+                                                                <td>{{ $lists1->parking }}</td>
+                                                                <td>{{ $lists1->managementfee }}</td>
+                                                                <td>{{ $lists1->event }}</td>
+                                                                <td>{{ $lists1->hotel }}</td>
+                                                                <td>{{ $lists1->commercialspace }}</td>
+                                                                <td>{{ $lists1->outputvat }}</td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -210,8 +236,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
                         </div>
 
 
@@ -246,26 +270,26 @@
                                                 <div class="col">
                                                     <label for="Stockdetails">Particular: </label>
                                                     <select class="form-control" name="particular" required>
-                                                        <option>CourtRental</option>
-                                                        <option>CourtRental/League</option>
-                                                        <option>VenueRental</option>
-                                                        <option>KioskRental</option>
-                                                        <option>FoodStall</option>
-                                                        <option>Hotel</option>
-                                                        <option>Hotel Other Charges</option>
-                                                        <option>Function Room</option>
-                                                        <option>Function Room/Hotel</option>
-                                                        <option>Funciton Room/Others</option>
-                                                        <option>Management Fee</option>
-                                                        <option>Convention Center</option>
-                                                        <option>Convention Center/Hot</option>
-                                                        <option>Zumba</option>
-                                                        <option>Event Registration</option>
-                                                        <option>Parking Rental</option>
-                                                        <option>Commercial Space</option>
-                                                        <option>Electrical Charge</option>
-                                                        <option>Space Rental</option>
-                                                        <option>Other Charges</option>
+                                                        <option value="CourtRental">CourtRental</option>
+                                                        <option value="CourtRental/League">CourtRental/League</option>
+                                                        <option value="VenueR ental">Venue Rental</option>
+                                                        <option value="Kiosk Rental">Kiosk Rental</option>
+                                                        <option value="Foodstall">FoodStall</option>
+                                                        <option value="Hotel">Hotel</option>
+                                                        <option value="Hotel Other Charges">Hotel Other Charges</option>
+                                                        <option value="Function Room">Function Room</option>
+                                                        <option value="Functon Room/Hotel">Function Room/Hotel</option>
+                                                        <option value="Funciton Room/Others">Funciton Room/Others</option>
+                                                        <option value="Management Fee">Management Fee</option>
+                                                        <option value="Convention Center">Convention Center</option>
+                                                        <option value="Convention Center/Hot">Convention Center/Hot</option>
+                                                        <option value="Zumba">Zumba</option>
+                                                        <option value="Event Registration">Event Registration</option>
+                                                        <option value="Parking Rental">Parking Rental</option>
+                                                        <option value="Commercial Space">Commercial Space</option>
+                                                        <option value="Electrical Charge">Electrical Charge</option>
+                                                        <option value="Space Rental">Space Rental</option>
+                                                        <option value="Other Charges">Other Charges</option>
                                                     </select>
                                                 </div>
                                             </div>

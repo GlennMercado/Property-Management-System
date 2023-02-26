@@ -30,6 +30,14 @@ return new class extends Migration
 
             $table->integer('basketball');
             $table->integer('otherincome');
+            $table->integer('parking');
+            $table->integer('managementfee');
+            $table->integer('event');
+            $table->integer('hotel');
+            $table->integer('commercialspace');
+            $table->integer('outputvat');
+
+
             
             $table->timestamps();
         });

@@ -60,7 +60,9 @@ class FinanceReportController extends Controller
             'cash' => 'required',
             'unearned' => 'required',
             'bank' => 'required',
-            'cheque' => 'required'
+            'cheque' => 'required',
+            'unearned' => 'required',
+            'bank' => 'required'
             // 'basketball' => 'required',
             // 'otherincome' => 'required',
             // 'parking' => 'required',
@@ -76,7 +78,7 @@ class FinanceReportController extends Controller
             $finance->ornum = $request->input('ornum');
             $finance->payee = $request->input('payee');
             $compute = $request->input('particular');
-            $finance->credit = $compute;
+            $finance->particular = $compute;
             $payment = $request->input('debit');
             $finance->debit = $payment;
             $finance->remark = $request->input('remark');
@@ -84,44 +86,119 @@ class FinanceReportController extends Controller
             $finance->eventdate = $request->input('eventdate');
             $nopayment = '0';
 
-            //for DEBIT
-            if($payment == 'Cash')
-        {
-            $finance->cash = $request->input('amount');
-            $finance->unearned = $nopayment;
-            $finance->bank = $nopayment;
-            $finance->cheque = $nopayment;
-            
-        }
-        elseif($payment = 'Unearned')
-        {
-            $finance->cash = $nopayment;
-            $finance->unearned = $request->input('amount');
-            $finance->bank = $nopayment;
-            $finance->cheque = $nopayment;
-        }
-        elseif($payment =  'Bank')
-        {
-            $finance->cash = $nopayment;
-            $finance->unearned = $nopayment;
-            $finance->bank = $request->input('amount');
-            $finance->cheque = $nopayment;
-        }
-        elseif($payment =  'Cheque')
-        {
-            $finance->cash = $nopayment;
-            $finance->unearned = $nopayment;
-            $finance->bank = $nopayment;
-            $finance->cheque = $request->input('amount');
-        }
+            //for CREDIT
+            //Basketball
+            if ($compute == 'CourtRental' || $compute == 'CourtRental/League') {
+                $finance->basketball = $request->input('amount');
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
 
-        //for Credit
-        if($compute == 'CourtRental' || 'CourtRental/League')
-        {
-            $finance->basketball = $request->input('amount');
-            $finance->otherincome = $nopayment;
+                //Other Income
+            } elseif ($compute == 'VenueRental' || $compute == 'KioskRental' || $compute == 'Foodstall' || $compute == 'Space Rental' || $compute == 'Convention Center/Hot' || $compute == 'Electrical Charge' || $compute == 'Zumba' || $compute == 'Event Registration' || $compute == 'Other Charges') {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $request->input('amount');
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
+
+                //Hotel
+            } elseif ($compute == 'Hotel' || $compute == 'Hotel Other Charges') {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $request->input('amount');
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
+
+                //Function Room/ Convention Center/ Events
+            } elseif ($compute == 'Function Room' || $compute == 'Function Room/Hotel' || $compute == 'Function Rooms/Others' || $compute == 'Convention Center' || $compute == 'Convention Center/Hot') {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $request->input('amount');
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
+
+                //Management Fee
+            } elseif ($compute == 'Management Fee') {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $request->input('amount');
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
+
+                //Parking Ticket/ Parking Rental
+            } elseif ($compute == 'Parking Rental' ) {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $request->input('amount');
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $nopayment;
+
+                //Commercial Space
+            } elseif ($compute == 'Commercial Space'  ) {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $request->input('amount');
+                $finance->outputvat = $nopayment;
+            } 
+
+            //OutputVAT
+            elseif ($compute == 'OutputVAT'  ) {
+                $finance->basketball = $nopayment;
+                $finance->otherincome = $nopayment;
+                $finance->parking = $nopayment;
+                $finance->managementfee = $nopayment;
+                $finance->event = $nopayment;
+                $finance->hotel = $nopayment;
+                $finance->commercialspace = $nopayment;
+                $finance->outputvat = $request->input('amount');$nopayment;
+        } 
             
-        }
+            // For Debit
+            if ($payment == 'Cash') {
+                $finance->cash = $request->input('amount');
+                $finance->unearned = $nopayment;
+                $finance->bank = $nopayment;
+                $finance->cheque = $nopayment;
+            } elseif ($payment == 'Unearned') {
+                $finance->cash = $nopayment;
+                $finance->unearned = $request->input('amount');
+                $finance->bank = $nopayment;
+                $finance->cheque = $nopayment;
+            } elseif ($payment == 'Bank') {
+                $finance->cash = $nopayment;
+                $finance->unearned = $nopayment;
+                $finance->bank = $request->input('amount');
+                $finance->cheque = $nopayment;
+            } elseif ($payment == 'Cheque') {
+                $finance->cash = $nopayment;
+                $finance->unearned = $nopayment;
+                $finance->bank = $nopayment;
+                $finance->cheque = $request->input('amount');
+            }
         
 
 
