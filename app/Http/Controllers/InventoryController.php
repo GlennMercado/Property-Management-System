@@ -17,8 +17,21 @@ class InventoryController extends Controller
     public function index()
     {
 
-       $sum = hotelstocks::where('total' < 'Stock_Level')->count();
-       return view('StockAvailability', compact('sum'));
+
+       //Hotel Inventory
+		
+		$list = DB::select('SELECT * FROM hotelstocks');
+		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+		$count = array();
+
+		foreach($check as $checks)
+		{
+			$count[] = ['counts' => $checks->cnt];
+		}
+		
+
+		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count]);
+	
     
     }
 
