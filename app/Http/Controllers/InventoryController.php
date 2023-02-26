@@ -99,6 +99,9 @@ class InventoryController extends Controller
                 if($supply->save())
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
+
+                    // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                    // values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
     
                     Alert::Success('Success', 'Stock Successfully Added to Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
