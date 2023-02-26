@@ -31,7 +31,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control">
                                 </div>
                             </div>
                             <a href="{{ url('rooms') }}" class="btn btn-success mt-3">Submit</a>

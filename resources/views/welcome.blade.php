@@ -31,10 +31,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <input type="date" class = "form-control">   
+                                    <input type="date" class="form-control">
                                 </div>
                                 <div class="col">
-                                    <input type="date" class = "form-control">   
+                                    <input type="date" class="form-control">
                                 </div>
                             </div>
                             <a href="#" class="btn btn-success mt-3">Submit</a>
@@ -115,10 +115,10 @@
                     <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                Book Now
-                                                                                                                                            </a>
-                                                                                                                                        </button> -->
+                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                    Book Now
+                                                                                                                                                </a>
+                                                                                                                                            </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -137,10 +137,10 @@
                         celebrations,
                         training/learning sessions and sports activities.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                Book Now
-                                                                                                                                            </a>
-                                                                                                                                        </button> -->
+                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                    Book Now
+                                                                                                                                                </a>
+                                                                                                                                            </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -159,17 +159,17 @@
                         convention center.</p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                Book Now
-                                                                                                                                            </a>
-                                                                                                                                        </button> -->
+                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                    Book Now
+                                                                                                                                                </a>
+                                                                                                                                            </button> -->
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('commercial_spaces') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png"
-                            alt="Card image cap" style="max-height: 12.3rem">
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png" alt="Card image cap"
+                            style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
@@ -183,10 +183,10 @@
                         month! </p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                            <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                Book Now
-                                                                                                                                            </a>
-                                                                                                                                        </button> -->
+                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
+                                                                                                                                                    Book Now
+                                                                                                                                                </a>
+                                                                                                                                            </button> -->
                 </div>
             </div>
         </div>
@@ -233,33 +233,33 @@
     </div>
     <!-- section 4 -->
     <!-- <div class="container-fluid bg-white pt-6">
-                                                                                                                        <div class="card-body d-flex justify-content-center">
-                                                                                                                            <div class="container">
-                                                                                                                                <div class="row g-2">
-                                                                                                                                    <div class="col-3 ">
-                                                                                                                                        <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="col-3">
-                                                                                                                                        <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="col-3">
-                                                                                                                                        <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="col-3">
-                                                                                                                                        <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                                                                                                                                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>  -->
+            <div class="card-body d-flex justify-content-center">
+                <div class="container">
+                    <div class="row g-2">
+                        <div class="col-3 ">
+                            <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                            <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
+                            <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                        </div>
+                        <div class="col-3">
+                            <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                            <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
+                            <p class="uppercase d-flex justify-content-center txt txt5">17</p>
+                        </div>
+                        <div class="col-3">
+                            <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                            <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
+                            <p class="uppercase d-flex justify-content-center txt txt5">5</p>
+                        </div>
+                        <div class="col-3">
+                            <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                            <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
+                            <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
     <!-- section 5 -->
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
@@ -422,28 +422,28 @@
 
         .image-text {
             /* position: absolute;
-                                                                                        top: 44%;
-                                                                                        left: 50%;
-                                                                                        transform: translate(-50%, -50%);
-                                                                                        color: white;
-                                                                                        font-size: 36px;
-                                                                                        font-weight: bold;
-                                                                                        text-align: center;
-                                                                                        filter: brightness(50%); */
+                                                                                            top: 44%;
+                                                                                            left: 50%;
+                                                                                            transform: translate(-50%, -50%);
+                                                                                            color: white;
+                                                                                            font-size: 36px;
+                                                                                            font-weight: bold;
+                                                                                            text-align: center;
+                                                                                            filter: brightness(50%); */
             font-family: montserrat;
             margin-bottom: -1rem;
         }
 
         .image-text2 {
             /* position: absolute;
-                                                                                        top: 50%;
-                                                                                        left: 50%;
-                                                                                        transform: translate(-50%, -50%);
-                                                                                        color: white;
-                                                                                        font-weight: bold;
-                                                                                        text-align: center;
-                                                                                        font-size: 65px;
-                                                                                        letter-spacing: 1px; */
+                                                                                            top: 50%;
+                                                                                            left: 50%;
+                                                                                            transform: translate(-50%, -50%);
+                                                                                            color: white;
+                                                                                            font-weight: bold;
+                                                                                            text-align: center;
+                                                                                            font-size: 65px;
+                                                                                            letter-spacing: 1px; */
             font-family: montserrat;
         }
 
@@ -656,7 +656,7 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
-        
+
         // dropdown count
         // get the dropdown button and the input fields
         const dropdownButton = document.getElementById('dropdownMenuButton');
@@ -719,16 +719,14 @@
         }
 
         function increment(field) {
-            
+
             if (countfield() > 3) {
                 alert('Total number of passengers cannot exceed 4');
             }
         }
 
         function decrement(field) {
-            
-        }
 
-        
+        }
     </script>
 @endsection
