@@ -99,7 +99,7 @@ class InventoryController extends Controller
                 if($supply->save())
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
-
+                    //history
                     // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                     // values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
     
@@ -162,6 +162,18 @@ class InventoryController extends Controller
             }
         }
         
+    }
+    public function received_supply(Request $request)
+    {
+        //
+        $roomno = $request->input('roomno');
+        $prodid = $request->input('id');
+        $category = $request->input('category');
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+        $sql2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $sql3 = DB::select("SELECT * FROM hotel_room_linens WHERE Room_No = '$roomno' AND productid = '$prodid'");
+        $quantity;
+
     }
 
     /**
