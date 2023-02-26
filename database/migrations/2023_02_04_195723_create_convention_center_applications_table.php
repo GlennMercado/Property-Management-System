@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('convention_center_applications', function (Blueprint $table) {
             $table->id();
+            $table->string('inquiry_status');
             $table->string('client_name');
             $table->string('contact_no');
             $table->string('contact_person');

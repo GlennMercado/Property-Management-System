@@ -13,10 +13,37 @@ class EventController extends Controller
     {
         $list = DB::select('SELECT * FROM convention_center_applications');    
         return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list]);
+        $forApproval = "For Approval";
     }
-    public function EventInquiryView()
+    public function event_view($id)
     {
-        $list = DB::select('SELECT * FROM convention_center_applications');    
+        $eventid = $id;
+        $list = DB::select("SELECT * FROM convention_center_applications WHERE id = '$eventid'");    
         return view('Admin.pages.Reservations.EventInquiryView', ['list'=>$list]);
+    }
+    public function update_status(Request $request)
+    {
+        
+        try{
+        $this->validate($request,[
+            'eventid' => 'required',
+            'update_status' => 'required',
+        ]);
+        $update_status = $request->input('update_status');
+        $eventid = $request->input('eventid');
+
+        DB::table('convention_center_applications')->where('id', $eventid)->update(array
+        (
+            'inquiry_status' => $update_status,
+        ));
+        Alert::Success('Success', 'Updated!');
+        return redirect('EventInquiryForm')->with('Success', 'Status Updated');
+    }
+    catch(\Illuminate\Database\QueryException $e)
+    {
+        Alert::Error('Failed', 'Update Failed!');
+        return redirect('EventInquiryForm')->with('Failed', 'Status was not Updated');
+    }
+
     }
 }

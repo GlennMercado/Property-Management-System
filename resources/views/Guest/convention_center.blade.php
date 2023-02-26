@@ -92,6 +92,7 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <input type="text" name="inquiry_status" value="For Approval" hidden>
                                 <div class="col-md-12">
                                     <span>
                                         <br>
