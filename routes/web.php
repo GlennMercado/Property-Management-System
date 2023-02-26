@@ -20,8 +20,10 @@ Route::get('/', function () {
 
 
 
-//Homepage	
-Route::get('AboutUs', function () {return view('AboutUs');})->name('AboutUs');
+//Homepage	r
+Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
+
+Route::get('WelcomeContactUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeContactUs'])->name('WelcomeContactUs');
 
 Route::get('ContactUs', function () { return view('ContactUs');})->name('ContactUs');
 

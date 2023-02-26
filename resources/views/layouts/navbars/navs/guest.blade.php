@@ -32,13 +32,13 @@
                     </a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('about_us') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('WelcomeAboutUs') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('About Us') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('contact_us') }}">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('WelcomeContactUs') }}">
                         <i class="bi bi-telephone-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('Contact Us') }}</span>
                     </a>

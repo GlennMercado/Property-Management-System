@@ -29,51 +29,12 @@
                 <div class="row">
                     <div class="card mx-auto d-flex justify-content-center mt-8 col-md-8">
                         <div class="card-body">
-                            <h3>Number of pax</h3>
                             <div class="row">
                                 <div class="col">
-                                    {{-- <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <span>Adult : 0</span>
-                                            <span>Child : 0</span>
-                                            <span>Infant : 0</span>
-                                        </button>
-                                        <div class="dropdown-menu mx-auto" aria-labelledby="dropdownMenuButton">
-                                            <form onsubmit="return validateForm()">
-                                                <div class="container">
-                                                    <div class="mx-auto d-flex justify-content-center" id="input1">
-                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
-                                                                onclick="decrement('adult')">-</button></span>
-                                                        <label class="pt-2 " min="0" id="adultLabel">Adult: 0</label>
-                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
-                                                                onclick="increment('adult')">+</button></span>
-                                                    </div>
-                                                    <div class="mx-auto d-flex justify-content-center" id="input2">
-                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
-                                                                onclick="decrement('child')">-</button></span>
-                                                        <label class="pt-2" id="childLabel">Child: 0</label>
-                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
-                                                                onclick="increment('child')">+</button></span>
-                                                    </div>
-                                                    <div class="mx-auto d-flex justify-content-center" id="input3">
-                                                        <span class="pr-4"><button class="btn btn-count2 btn-sm btn-danger"
-                                                                onclick="decrement('infant')">-</button></span>
-                                                        <label class="pt-2" id="infantLabel">Infant: 0</label>
-                                                        <span class="pl-4"><button class="btn btn-sm btn-count btn-success"
-                                                                onclick="increment('infant')">+</button></span>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Done</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div> --}}
+                                    <input type="date" class = "form-control">   
+                                </div>
+                                <div class="col">
+                                    <input type="date" class = "form-control">   
                                 </div>
                             </div>
                             <a href="#" class="btn btn-success mt-3">Submit</a>

@@ -213,7 +213,7 @@
                             <div class="row">
                                 <div class="col-md pt-4">
                                     <p class="form-label">Number of pax <span class="text-danger">*</span></p>
-                                    <div class="dropdown">
+                                    {{-- <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -228,7 +228,8 @@
                                                         <span class="pr-4"><button
                                                                 class="btn btn-count2 btn-sm btn-danger"
                                                                 onclick="decrement('adult')">-</button></span>
-                                                        <label class="pt-2 " min="0" id="adultLabel">Adult: 0</label>
+                                                        <label class="pt-2 " min="0" id="adultLabel">Adult:
+                                                            0</label>
                                                         <span class="pl-4"><button
                                                                 class="btn btn-sm btn-count btn-success"
                                                                 onclick="increment('adult')">+</button></span>
@@ -251,20 +252,30 @@
                                                                 class="btn btn-sm btn-count btn-success"
                                                                 onclick="increment('infant')">+</button></span>
                                                     </div>
+                                                    <hr>
                                                     <input type="checkbox" id="ddCheckbox">
-                                                    <label for="mainCheckbox">add</label>
-                                                    {{-- <div class="modal-footer">
+                                                    <label for="ddCheckbox">add</label>
+                                                    <input type="text" id="textbox2" class="form-control-sm"
+                                                        value="room available for another pax" disabled>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> --}}
+                                    {{-- <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary">Done</button>
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Cancel</button>
                                                     </div> --}}
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
                                     {{-- code for pax count --}}
-
+                                    <select name="pax" class="form-control" id="pax_num" onchange="price_count()"
+                                        required>
+                                        <option selected="true" disabled="disabled">Select</option>
+                                        @for ($count = 1; $count <= 4; $count++)
+                                            <option value="{{ $count }}" id="room_pax">
+                                                {{ $count }}</option>
+                                        @endfor
+                                    </select>
                                     {{-- <select name="pax" id="textboxes" class="form-control" id="pax_num"
                                 onchange="pax_on_change()" required>
                                 <option selected disabled value="">Select</option>
@@ -467,22 +478,22 @@
 
 
                         <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
-                                                                                    <div class = "qrsample mx-auto d-flex justify-content-center">
-                                                                                    <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
-                                                                                    </div>
-                                                                                    <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
-                                                                                    <p class = "d-flex justify-content-center">xxxxxxxx098</p>
-                                                                                    <div class="mb-3 d-flex justify-content-center">
-                                                                                    <label for="formFile" class="form-label"></label>
-                                                                                    <input class="form-control w-50" type="file" id="formFile">
-                                                                                    </div>
-                                                                                    </div>
-                                                                                    </div>
-                                                                                    <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
-                                                                                    free of charge. If within (3) calendar days, guests will be charged of the total
-                                                                                    price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                                                                    <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-                                                                                    </p> -->
+                                                                                            <div class = "qrsample mx-auto d-flex justify-content-center">
+                                                                                            <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
+                                                                                            </div>
+                                                                                            <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
+                                                                                            <p class = "d-flex justify-content-center">xxxxxxxx098</p>
+                                                                                            <div class="mb-3 d-flex justify-content-center">
+                                                                                            <label for="formFile" class="form-label"></label>
+                                                                                            <input class="form-control w-50" type="file" id="formFile">
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            </div>
+                                                                                            <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
+                                                                                            free of charge. If within (3) calendar days, guests will be charged of the total
+                                                                                            price. Refund, In case of guaranteed reservation, is payable through check issuance
+                                                                                            <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
+                                                                                            </p> -->
 
                     </div>
                     </form>
@@ -744,34 +755,34 @@
 
             /* scroll to top arrow */
             /* #myBtn {
-                                                                                                                                        display: none;
-                                                                                                                                        position: fixed;
-                                                                                                                                        bottom: 20px;
-                                                                                                                                        right: 30px;
-                                                                                                                                        z-index: 99;
-                                                                                                                                        font-size: 18px;
-                                                                                                                                        border: none;
-                                                                                                                                        outline: none;
-                                                                                                                                        background-color: #484848;
-                                                                                                                                        color: white;
-                                                                                                                                        cursor: pointer;
-                                                                                                                                        padding: 15px;
-                                                                                                                                        border-radius: 4px;
-                                                                                                                                        opacity: 0.5;
-                                                                                                                                        }
+                                                                                                                                                display: none;
+                                                                                                                                                position: fixed;
+                                                                                                                                                bottom: 20px;
+                                                                                                                                                right: 30px;
+                                                                                                                                                z-index: 99;
+                                                                                                                                                font-size: 18px;
+                                                                                                                                                border: none;
+                                                                                                                                                outline: none;
+                                                                                                                                                background-color: #484848;
+                                                                                                                                                color: white;
+                                                                                                                                                cursor: pointer;
+                                                                                                                                                padding: 15px;
+                                                                                                                                                border-radius: 4px;
+                                                                                                                                                opacity: 0.5;
+                                                                                                                                                }
 
-                                                                                                                                        #myBtn:hover {
-                                                                                                                                        background-color: #555;
-                                                                                                                                        } */
+                                                                                                                                                #myBtn:hover {
+                                                                                                                                                background-color: #555;
+                                                                                                                                                } */
             /* .centered {
-                                                                                                                                    font-size:30px;
-                                                                                                                                    position: absolute;
-                                                                                                                                    bottom: 410px;
-                                                                                                                                    right: 200px;
-                                                                                                                                    color:white;
-                                                                                                                                    -webkit-text-stroke-width: 1px;
-                                                                                                                                    -webkit-text-stroke-color: black;
-                                                                                                                                } */
+                                                                                                                                            font-size:30px;
+                                                                                                                                            position: absolute;
+                                                                                                                                            bottom: 410px;
+                                                                                                                                            right: 200px;
+                                                                                                                                            color:white;
+                                                                                                                                            -webkit-text-stroke-width: 1px;
+                                                                                                                                            -webkit-text-stroke-color: black;
+                                                                                                                                        } */
             input[type="text"].disabled {
                 pointer-events: none;
                 opacity: 0.5;
@@ -832,12 +843,20 @@
             //         textboxes[i].disabled = !this.checked;
             //     }
             // });
+            // checkbox
             document.getElementById("mainCheckbox").addEventListener("change", function() {
                 // document.getElementById("checkbox1").disabled = !this.checked;
                 // document.getElementById("checkbox2").disabled = !this.checked;
                 // document.getElementById("checkbox3").disabled = !this.checked;
                 // document.getElementById("checkbox4").disabled = !this.checked;
                 document.getElementById("textbox1").disabled = !this.checked;
+            });
+            document.getElementById("ddCheckbox").addEventListener("change", function() {
+                // document.getElementById("checkbox1").disabled = !this.checked;
+                // document.getElementById("checkbox2").disabled = !this.checked;
+                // document.getElementById("checkbox3").disabled = !this.checked;
+                // document.getElementById("checkbox4").disabled = !this.checked;
+                document.getElementById("textbox2").disabled = !this.checked;
             });
 
             function changeValue() {
@@ -952,7 +971,6 @@
             });
             let count = 0;
             const countElement = document.getElementById('count');
-            
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <!-- <img class="card-img-top mt-2 ml-5 largepic" src="{{ asset('nvdcpics') }}/hotel1.jpg"> -->
