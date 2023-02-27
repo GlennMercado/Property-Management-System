@@ -45,12 +45,11 @@
                                                 @php 
                                                     $check;
                                                     $roomno = $lists->Room_No;
-                                                    $sql = \DB::select("SELECT CASE WHEN diff_rows > 0 THEN 'Different' ELSE 'Same' END AS Result FROM ( SELECT SUM(CASE WHEN Status = 'Received' THEN 0 ELSE 1 END) AS diff_rows FROM hotel_room_linens WHERE Room_No = '$roomno') AS derived");
+                                                    $sql = \DB::select("SELECT CASE WHEN diff_rows > 0 THEN 'Different' ELSE 'Same' END AS Result FROM ( SELECT SUM(CASE WHEN Status = 'Requested' THEN 0 ELSE 1 END) AS diff_rows FROM hotel_room_linens WHERE Room_No = '$roomno') AS derived");
                                                     foreach($sql as $supply)
                                                     {
                                                         $check = $supply->Result;
                                                     }
-                                                    echo $check;
                                                 @endphp
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target="#view_supply{{ $lists->Room_No }}" title="View Room Linens">
@@ -107,7 +106,7 @@
                                                                     <td>{{ $lists->Quantity }}</td>
                                                                     <td>{{ $lists->Quantity_Requested }}</td>
                                                                     <td>{{ $lists->Discrepancy }}</td>
-                                                                    <td>{{ $lists->Status}}</td>
+                                                                    <td style="white-space: pre-wrap;">{{ $lists->Status}}</td>
                                                                     @if($lists->Date_Received != null)
                                                                     <td>{{ date('M d Y', strtotime($lists->Date_Received))}}
                                                                         <br> 

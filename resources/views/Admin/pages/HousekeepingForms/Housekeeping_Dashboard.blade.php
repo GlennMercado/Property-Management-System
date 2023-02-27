@@ -753,9 +753,6 @@
                                                                             <div class="col">
                                                                                 <p class="text-left">Discrepancy</p>
                                                                             </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Status</p>
-                                                                            </div>
                                                                         </div>
                                                                         @foreach ($list5 as $lists2)
                                                                             @if ($lists2->Room_No == $lists->Room_No)
@@ -789,21 +786,7 @@
                                                                                             class="form-control"
                                                                                             name="discrepancy[]"
                                                                                             value="0" />
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <select name="status[]"
-                                                                                            class="form-control">
-                                                                                            <option value="Received"
-                                                                                                selected="true">Select
-                                                                                            </option>
-                                                                                            <option value="Laundry">Laundry
-                                                                                            </option>
-                                                                                            <option
-                                                                                                value="Returned to Inventory">
-                                                                                                Returned to Inventory
-                                                                                            </option>
-                                                                                        </select>
-                                                                                    </div>
+                                                                                    </div> 
                                                                                 </div>
                                                                                 <br>
                                                                             @endif

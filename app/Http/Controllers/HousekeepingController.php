@@ -72,6 +72,8 @@ class HousekeepingController extends Controller
             
            
             $totaldiscrepancy = array();
+            $quantity = array();
+            $status;
             
 
             for($i = 0; $i < count($request->input('name')); $i++)
@@ -83,15 +85,24 @@ class HousekeepingController extends Controller
                 }
                 else
                 {
-
+                    if($request->input('discrepancy')[$i] > 0)
+                    {
+                        $status = "Returned to Inventory";
+                    }
+                    else
+                    {
+                        $status = "Received";
+                    }
                 
                     $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
+                    $quantity[$i] = $request->input('quantity')[$i] - $request->input('discrepancy')[$i];
                     
                     DB::table('hotel_room_linens')
                         ->where(['Room_No' => $room_no, 'name' => $request->input('name')[$i]])
                         ->update([
                                 'Discrepancy' => $totaldiscrepancy[$i],
-                                'Status' => $request->input('status')[$i]    
+                                'Status' => $status,
+                                'Quantity' => $quantity[$i]    
                                 ]);
                 }
             }
@@ -111,7 +122,6 @@ class HousekeepingController extends Controller
 
     public function linen_request(Request $request)
     {
-       
         try{
             $arraysofname[] = $request->name;
             $arraysofquantity[] = $request->requested_quantity;
@@ -190,7 +200,7 @@ class HousekeepingController extends Controller
                 }
                 else
                 {
-                    $status = "Approved";
+                    $status = "Requested";
                 }
 
                 DB::table('hotel_room_supplies')
