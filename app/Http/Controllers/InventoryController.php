@@ -28,7 +28,7 @@ class InventoryController extends Controller
 		$count = array();
 
         $list2 = DB::select('SELECT * FROM novadeci_suites');
-        $check2 = DB::select('SELECT COUNT(*) as cnt FROM novadeci_suites');
+        $check2 = DB::select('SELECT * FROM novadeci_suites');
 		$count2 = array();
 
 		foreach($check as $checks)
@@ -38,7 +38,7 @@ class InventoryController extends Controller
 
         foreach($check2 as $checks2)
 		{
-			$count2[] = ['counts2' => $checks2->cnt];
+			$count2[] = ['Room_No' => $checks2->Room_No];
 		}
 		
 

@@ -19,7 +19,7 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
-        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0 GROUP BY a.Room_No');
 
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
         
@@ -76,13 +76,24 @@ class HousekeepingController extends Controller
 
             for($i = 0; $i < count($request->input('name')); $i++)
             {
-                $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
-                DB::table('hotel_room_linens')
-                    ->where(['Room_No' => $room_no, 'name' => $request->input('name')[$i]])
-                    ->update([
-                            'Discrepancy' => $totaldiscrepancy[$i],
-                            'Status' => $request->input('status')[$i]    
-                            ]);
+                if($request->input('discrepancy')[$i] > $request->input('quantity')[$i] || $request->input('discrepancy')[$i] < 0)
+                {
+                    Alert::Error('Linen Checking Failed!', 'Discrepancy is greater than quantity!');
+                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                }
+                else
+                {
+
+                
+                    $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
+                    
+                    DB::table('hotel_room_linens')
+                        ->where(['Room_No' => $room_no, 'name' => $request->input('name')[$i]])
+                        ->update([
+                                'Discrepancy' => $totaldiscrepancy[$i],
+                                'Status' => $request->input('status')[$i]    
+                                ]);
+                }
             }
 
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
@@ -211,13 +222,21 @@ class HousekeepingController extends Controller
             $quantity = array();
             for($i=0; $i < count($request->name); $i++)
             {
-                $quantity[$i] = $request->input('quantity')[$i] - $request->input('deduction')[$i];
-                
-                DB::table('hotel_room_supplies')
-                    ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
-                    ->update([
-                        'Quantity' => $quantity[$i],
-                ]);
+                if($request->input('quantity')[$i] < $request->input('deduction')[$i] || $request->input('deduction')[$i] < 0)
+                {
+                    Alert::Error('Supply Checking Failed!', 'Deduction is greater than quantity!');
+                    return redirect('Housekeeping_Dashboard')->with('Failed', 'Data Updated');
+                }
+                else
+                {  
+                    $quantity[$i] = $request->input('quantity')[$i] - $request->input('deduction')[$i];
+                    
+                    DB::table('hotel_room_supplies')
+                        ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
+                        ->update([
+                            'Quantity' => $quantity[$i],
+                    ]);
+                }
             }
                  
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(array(

@@ -77,7 +77,7 @@
                                         </div>
                                         <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" type="password" name="password" id="password">
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="toggle-password"><i class="fa fa-eye-slash"></i></span>
+                                            <span class="input-group-text" id="toggle-password" style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
                                         </div>
                                     </div>
                                     @if ($errors->has('password'))
@@ -102,7 +102,7 @@
                                     </div>
                                     <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" id="confirm-password" required>
                                     <div class="input-group-append">
-                                        <span class="input-group-text" id="toggle-confirm-password"><i class="fa fa-eye-slash"></i></span>
+                                        <span class="input-group-text" id="toggle-confirm-password" style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
                                     </div>
                                 </div>
                             </div>

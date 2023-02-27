@@ -831,7 +831,6 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:18px;">Room No</th>
-                                                <th scope="col" style="font-size:18px;">Date</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;"></th>
                                             </tr>
@@ -840,7 +839,6 @@
                                             @foreach ($list3 as $lists)
                                                 <tr>
                                                     <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Date_Requested }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
                                                     <td>
                                                         @php 
@@ -911,7 +909,11 @@
                                                                             <td>{{ $lists->name }}</td>
                                                                             <td>{{ $lists->Quantity }}</td>
                                                                             <td>{{ $lists->Quantity_Requested }}</td>
-                                                                            <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} <br> {{date('h:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            @if($lists->Date_Requested != null)
+                                                                            <td>{{ date('M j Y', strtotime($lists->Date_Requested)) }} <br> {{date('H:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            @else
+                                                                            <td></td>
+                                                                            @endif
                                                                             <td>{{ $lists->Status }}</td>
                                                                         </tr>
                                                                     @endif
