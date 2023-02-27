@@ -43,10 +43,10 @@
                                             <div class="card-body bg-white" style="border-radius: 18px">
                                                 <label class="text_color">Name</label>
                                                 <input type="text" class="form-control" name="name" required>
-                                                
+
                                                 <label class="text_color">Email</label>
                                                 <input type="email" class="form-control" name="email" required>
-                                                
+
                                                 <label class="text_color">Password</label>
                                                 <input type="password" class="form-control" name="password" required>
 
@@ -98,16 +98,6 @@
                                                 <td>{{ $lists->email }}</td>
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
-                                                    <select name="user_type" class="form-control">
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Guest">Guest</option>
-                                                        <option value="Sales & Marketing">Sales & Marketing</option>
-                                                        <option value="Finance">Finance</option>
-                                                        <option value="Front Desk">Front Desk</option>
-                                                        <option value="Operations Manager">Operations
-                                                            Manager</option> 
-                                                        <option value="Inventory">Inventory</option>
-                                                    </select>
                                                 </td>
                                             </tr>
                                         @endforeach
