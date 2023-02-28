@@ -753,9 +753,6 @@
                                                                             <div class="col">
                                                                                 <p class="text-left">Discrepancy</p>
                                                                             </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Status</p>
-                                                                            </div>
                                                                         </div>
                                                                         @foreach ($list5 as $lists2)
                                                                             @if ($lists2->Room_No == $lists->Room_No)
@@ -789,21 +786,7 @@
                                                                                             class="form-control"
                                                                                             name="discrepancy[]"
                                                                                             value="0" />
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <select name="status[]"
-                                                                                            class="form-control">
-                                                                                            <option value="Received"
-                                                                                                selected="true">Select
-                                                                                            </option>
-                                                                                            <option value="Laundry">Laundry
-                                                                                            </option>
-                                                                                            <option
-                                                                                                value="Returned to Inventory">
-                                                                                                Returned to Inventory
-                                                                                            </option>
-                                                                                        </select>
-                                                                                    </div>
+                                                                                    </div> 
                                                                                 </div>
                                                                                 <br>
                                                                             @endif
@@ -831,7 +814,6 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:18px;">Room No</th>
-                                                <th scope="col" style="font-size:18px;">Date</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;"></th>
                                             </tr>
@@ -840,7 +822,6 @@
                                             @foreach ($list3 as $lists)
                                                 <tr>
                                                     <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Date_Requested }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
                                                     <td>
                                                         @php 
@@ -911,7 +892,11 @@
                                                                             <td>{{ $lists->name }}</td>
                                                                             <td>{{ $lists->Quantity }}</td>
                                                                             <td>{{ $lists->Quantity_Requested }}</td>
-                                                                            <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} <br> {{date('h:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            @if($lists->Date_Requested != null)
+                                                                            <td>{{ date('M j Y', strtotime($lists->Date_Requested)) }} <br> {{date('H:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            @else
+                                                                            <td></td>
+                                                                            @endif
                                                                             <td>{{ $lists->Status }}</td>
                                                                         </tr>
                                                                     @endif

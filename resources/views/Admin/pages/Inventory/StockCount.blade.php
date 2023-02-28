@@ -285,7 +285,7 @@
                                                                 <select name="roomno" class="form-control" required>
                                                                     <option value="" selected="true" disabled="disabled">Select</option>
                                                                 @foreach ($count2 as $counts2)
-                                                                    @for ($i = $counts2['counts2']; $i <= $counts2['counts2']; $i++)
+                                                                    @for ($i = $counts2['Room_No']; $i <= $counts2['Room_No']; $i++)
                                                                         @if($i != 0)
                                                                         <option value="{{$i}}">{{$i}}</option>
                                                                         @endif
