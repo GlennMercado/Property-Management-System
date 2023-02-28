@@ -169,6 +169,8 @@ class HousekeepingController extends Controller
     public function housekeeping_reports()
     {
         $datenow = Carbon::now()->subDays(7);
+
+        //$datenow = Carbon::now();
         
         $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
                 ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
