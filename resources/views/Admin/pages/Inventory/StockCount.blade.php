@@ -387,48 +387,48 @@
                                 <label class="text-color">Stock Name </label>
                                 <div id="linens" style="display:none;">
                                     <select class="form-control" id="linens" name="Linens">
-                                        <option>Bed pad - Single</option>
-                                        <option>Fitted Sheet - Single</option>
-                                        <option>Flat Sheet - Single</option>
-                                        <option>Duvet Filler - Single</option>
-                                        <option>Duvet Cover - Single</option>
-                                        <option>Pillows</option>
-                                        <option>Bed pad - Queen</option>
-                                        <option>Fitted Sheet - Queen</option>
-                                        <option>Flat Sheet - Queen</option>
-                                        <option>Duvet Filler - Queen</option>
-                                        <option>Duvet Cover - Queen</option>
-                                        <option>Pillows Case</option>
-                                        <option>Bath Towel</option>
-                                        <option>Hand Towel</option>
-                                        <option>Bath Mat</option>
-                                        <option>Bed Ruuner Queen</option>
-                                        <option>Bed Runner Single</option>
+                                        <option value="Bed pad - Single">Bed pad - Single</option>
+                                        <option value="Fitted Sheet - Single">Fitted Sheet - Single</option>
+                                        <option value="Flat Sheet - Single">Flat Sheet - Single</option>
+                                        <option value="Duvet Filler - Single">Duvet Filler - Single</option>
+                                        <option value="Duvet Cover - Single">Duvet Cover - Single</option>
+                                        <option value="Pillows">Pillows</option>
+                                        <option value="Bed pad - Queen">Bed pad - Queen</option>
+                                        <option value="Fitted Sheet - Queen">Fitted Sheet - Queen</option>
+                                        <option value="Flat Sheet - Queen">Flat Sheet - Queen</option>
+                                        <option value="Duvet Filler - Queen">Duvet Filler - Queen</option>
+                                        <option value="Duvet Cover - Queen">Duvet Cover - Queen</option>
+                                        <option value="Pillows Case">Pillows Case</option>
+                                        <option value="Bath Towel">Bath Towel</option>
+                                        <option value="Hand Towel">Hand Towel</option>
+                                        <option value="Bath Mat">Bath Mat</option>
+                                        <option value="Bed Ruuner Queen">Bed Ruuner Queen</option>
+                                        <option value="Bed Runner Single">Bed Runner Single</option>
                                     </select>
                                 </div>
                                 <div id="guestsupplies" style="display:none;">
                                     <select class="form-control" id="guestsuplies" name="GuestSupplies">
-                                        <option>Bath Soap</option>
-                                        <option>Shampoo</option>
-                                        <option>Dental Kit</option>
-                                        <option>Slippers</option>
-                                        <option>Bottled Water</option>
-                                        <option>Juice</option>
-                                        <option>Coffee</option>
-                                        <option>Creamer</option>
-                                        <option>Sugar - White</option>
-                                        <option>Sugar - Brown</option>
+                                        <option value="Bath Soap">Bath Soap</option>
+                                        <option value="Shampoo">Shampoo</option>
+                                        <option value="Dental Kit">Dental Kit</option>
+                                        <option value="Slippers">Slippers</option>
+                                        <option value="Bottled Water">Bottled Water</option>
+                                        <option value="Juice">Juice</option>
+                                        <option value="Coffee">Coffee</option>
+                                        <option value="Creamer">Creamer</option>
+                                        <option value="Sugar - White">Sugar - White</option>
+                                        <option value="Sugar - Brown">Sugar - Brown</option>
                                     </select>
                                 </div>
                                 <div id="amenities" style="display:none;">
                                     <select class="form-control" id="amenities" name="Amenities">
-                                        <option>Kettle</option>
-                                        <option>Tray</option>
-                                        <option>Dental Glass</option>
-                                        <option>Teaspoon</option>
-                                        <option>Cup And Saucer</option>
-                                        <option>Hanger</option>
-                                        <option>Door Hang</option>
+                                        <option value="Kettle">Kettle</option>
+                                        <option value="Tray">Tray</option>
+                                        <option value="Dental Glass">Dental Glass</option>
+                                        <option value="Teaspoon">Teaspoon</option>
+                                        <option value="Cup And Saucer">Cup And Saucer</option>
+                                        <option value="Hanger">Hanger</option>
+                                        <option value="Door Hang">Door Hang</option>
                                     </select>
                                 </div>
                             </div>

@@ -199,28 +199,30 @@ class InventoryController extends Controller
        $stock = new hotelstocks;
 
        $stock->productid = $request->input('productid');
-       $linens = $request->input('Linens');
-       $guest = $request->input('GuestSupplies');
-       $amenities = $request->input('Amenities');
 
-       if($linens = 'Linens')
+       $category = $request->input('category');
+       $name;
+
+       if($category == 'Linen')
         {
-            $stock->name = $request->input('Linens');
+            $name = $request->input('Linens');
         }
-        elseif($guest = 'GuestSupplies')
+        elseif($category == 'Guest Supply')
         {
-            $stock->name = $request->input('GuestSupplies');
+            $name = $request->input('GuestSupplies');
         }
-        elseif($amenities =  'Amenities')
+        elseif($category == 'Amenities')
         {
-            $stock->name = $request->input('Amenities');
+            $name = $request->input('Amenities');
         }
+
 
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
        $stock->Stock_Level = $request->input('stock');
        $stock->category = $request->input('category');
+       $stock->name = $name;
 
        
        if($stock->save())

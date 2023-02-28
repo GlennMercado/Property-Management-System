@@ -95,6 +95,7 @@ class HousekeepingController extends Controller
                     }
                 
                     $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
+                    
                     $quantity[$i] = $request->input('quantity')[$i] - $request->input('discrepancy')[$i];
                     
                     DB::table('hotel_room_linens')
