@@ -160,17 +160,14 @@ Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_sto
 		Route::post('/edit_stock_function', 'App\Http\Controllers\InventoryFunctionController@edit_stock_function');
 		Route::post('/addstock_function', 'App\Http\Controllers\InventoryFunctionController@addstock_function');
 	
-		Route::get('StockFunction', function () {
-			$list = DB::select('SELECT * FROM stocksfunctions');
-			return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);})->name('StockFunction');
+		Route::get('StockFunction', [App\Http\Controllers\InventoryFunctionController::class, 'LinenRequest'])->name('StockFunction');;
 
 	//Stock Purchase Report
-		Route::post('/repo	rt', 'App\Http\Controllers\PurchaseReportController@report');
+		Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
 		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
 		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
-		Route::get('StockPurchaseReport', function () {
-			$list = DB::select('SELECT * FROM hotel_room_supplies');
-			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);})->name('StockPurchaseReport');
+		Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
+		
 	
 	//Stock Availability
 	Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
