@@ -88,6 +88,28 @@ class GuestController extends Controller
         $submit = new complaints;
         $submit->concern = $request->input('concern');
         $submit->concern_text = $request->input('concern_text');
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().$request->input('id').'-.'.$extention;
+            $path = $file->move('complaints-img/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+
+
+
+            $submit->complaints_img = $path;
+            $submit->DB_Image = $base64;
+
+
+
+        }
 
         if($submit->save())
         {
