@@ -20,8 +20,13 @@
                             <br>
                             <input name="concern_text" class="form-control" type="text" style="height: 200px">
                             <br>
+                            <p>Upload an image</p>
+                            <input type="file" name="images" class="form-control"
+                                accept="image/png, image/gif, image/jpeg"/>
+                            <br>
                             <div class="row">
-                                <button type="submit" class="btn btn-outline-success text-white bg-green justify-content-center col-md-12">
+                                <button type="submit"
+                                    class="btn btn-outline-success text-white bg-green justify-content-center col-md-12">
                                     Send
                                     <i class="ni ni-send"></i>
                                 </button>

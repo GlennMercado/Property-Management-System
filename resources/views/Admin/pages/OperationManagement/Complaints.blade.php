@@ -1,32 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards')
-    <div class="container-fluid mt--6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <div class="container-fluid mt-3">
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card shadow">
-                    <div class="card-header bg-transparent">
-                        <h3 class="mb-0">Guest Complaints</h3>
+                    <div class="card-header bg-green">
+                        <h3 class="mb-0 text-white">Guest Complaints</h3>
                     </div>
                     <div class="card-body">
                         @foreach ($list as $list)
-                                <div class="row container-fluid">
-                                    <i class="ni ni-circle-08 display-4"></i>
-                                    <p class="pl-2 font-weight-bold">{{ $list->name }}</p>
-                                    <div class="card shadow ml-2 mb-2 msgcolor" data-toggle="tooltip"
-                                        data-placement="bottom" title="{{ $list->concern }} {{ $list->created_at }}"
-                                        style="width: 100%">
-                                        <div class="card-body font-weight-bold mt--4">
-                                            <br>
-                                            <span class="text-muted">{{ $list->concern }}</span>
-                                            <br>
-                                            <span class="text-muted">{{ $list->created_at }}</span>
-                                            <br>
-                                            <span>{{ $list->concern_text }}</span>
-                                        </div>
+                            <div class="row container-fluid">
+                                <i class="ni ni-circle-08 display-4"></i>
+                                <p class="pl-2 pt-1 font-weight-bold">Anonymous</p>
+                                {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
+                                <div class="card shadow ml-2 mb-2 msgcolor gal" data-toggle="tooltip" data-placement="bottom"
+                                    title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
+                                    <div class="card-body font-weight-bold mt--4">
+                                        <br>
+                                        <span class="badge badge-pill badge-primary category">{{ $list->concern }}</span>
+                                        <span class="text-muted text-sm">{{ $list->created_at }}</span>
+                                        <br>
+                                        <span>{{ $list->concern_text }}</span>
+                                        <br>
+                                        <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                            data-gallery="complaints">
+                                            <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
+                                                data-lightbox="photos" data-gallery="complaints"
+                                                style="max-height: 350px; max-width:500px;" />
+                                        </a>
                                     </div>
                                 </div>
+                            </div>
                         @endforeach
                         {{-- DELETE MODAL --}}
                         <div class="col-md-4">
@@ -66,6 +73,14 @@
                     </div>
                 </div>
             </div>
+            <style>
+                .gal:hover{
+                    border: 1px solid rgb(115, 115, 115);
+                }
+                .category:hover{
+                    transform: scale(1.05);
+                }
+            </style>
         @endsection
 
         @push('js')

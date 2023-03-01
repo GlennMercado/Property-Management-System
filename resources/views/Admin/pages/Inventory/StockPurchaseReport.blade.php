@@ -10,12 +10,6 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="col">
-                                    <button class="btn btn-outline-primary" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#PurchaseReportModal" style="float:right;">
-                                        Make Report
-
-
-                                    </button>
                                     <h3 class="mb-0 title">Report Inventory</h3>
                                     <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before
                                         starting,
@@ -31,12 +25,14 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style="font-size:16px;">Action</th>
+                                    <th scope="col" style="font-size:16px;">Room No.</th>
                                     <th scope="col" style="font-size:16px;">Item Name</th>
                                     <th scope="col" style="font-size:16px;">RequestedQuantity</th>
                                     <th scope="col" style="font-size:16px;">DateRequested</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($list as $lists)
                                 <tr>
                                     <td>
                                         <button type="button" data-toggle="modal" data-target="#ModalView4"
@@ -46,9 +42,10 @@
                                             class="btn btn-primary"><i
                                                 class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td style="font-size:16px;">{{ $lists->Room_No }}</td>
+                                    <td style="font-size:16px;">{{ $lists->name }}</td>
+                                    <td style="font-size:16px;">{{ $lists->Quantity_Requested }}</td>
+                                    <td style="font-size:16px;">{{ $lists->Date_Requested }}</td>
                                 </tr>
 
                                 <!--MODAL FOR VIEW-->
@@ -66,42 +63,49 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Room Number : </label>
-                                                    <input type="number" class="form-control" name="inventoryapproved"
-                                                        placeholder="Enter number..." required>
+                                                    <input type="number" class="form-control" value="{{ $lists->Room_No }}"
+                                                        placeholder="Enter number..." readonly>
+                                                        <input type="number" class="form-control" value="{{ $lists->Room_No }}"
+                                                        placeholder="Enter number..." name="roomno" hidden>
                                                 </div>
+                                                <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                    name="productid" value="{{ $lists->productid }}"
+                                                                    hidden>
+                                                            </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Item Name : </label>
-                                                    <input type="number" class="form-control" name="inventoryapproved"
+                                                    <input type="number" class="form-control" name="name" value="{{ $lists->name }}"
                                                         placeholder="Enter number..." required>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Requested Quantity: </label>
-                                                    <input type="number" class="form-control" name="inventoryapproved"
-                                                        placeholder="Enter number..." required>
+                                                    <input type="number" class="form-control" name="Quantity_Requested" value="{{ $lists->Quantity_Requested }}"
+                                                        placeholder="Enter number..." readonly>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
-                                                    <label for="Stockdetails">Invetory to Give: </label>
-                                                    <input type="number" class="form-control" name="inventoryapproved"
+                                                    <label for="Stockdetails">Quantity to Give: </label>
+                                                    <input type="number" class="form-control" name="quantity"
                                                         placeholder="Enter number..." required>
                                                 </div>
                                             </div>
                                             <label>Status: </label>
                                             <select class="form-control" name="status" required>
-                                                <optiond disabled>
-                                                    </option>
-                                                    <option>Approved</option>
-                                                    <option>Denied</option>
+                                                <option disabled></option>
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Denied">Denied</option>
                                             </select>
 
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

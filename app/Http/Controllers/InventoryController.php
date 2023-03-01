@@ -28,7 +28,7 @@ class InventoryController extends Controller
 		$count = array();
 
         $list2 = DB::select('SELECT * FROM novadeci_suites');
-        $check2 = DB::select('SELECT COUNT(*) as cnt FROM novadeci_suites');
+        $check2 = DB::select('SELECT * FROM novadeci_suites');
 		$count2 = array();
 
 		foreach($check as $checks)
@@ -38,7 +38,7 @@ class InventoryController extends Controller
 
         foreach($check2 as $checks2)
 		{
-			$count2[] = ['counts2' => $checks2->cnt];
+			$count2[] = ['Room_No' => $checks2->Room_No];
 		}
 		
 
@@ -199,28 +199,30 @@ class InventoryController extends Controller
        $stock = new hotelstocks;
 
        $stock->productid = $request->input('productid');
-       $linens = $request->input('Linens');
-       $guest = $request->input('GuestSupplies');
-       $amenities = $request->input('Amenities');
 
-       if($linens = 'Linens')
+       $category = $request->input('category');
+       $name;
+
+       if($category == 'Linen')
         {
-            $stock->name = $request->input('Linens');
+            $name = $request->input('Linens');
         }
-        elseif($guest = 'GuestSupplies')
+        elseif($category == 'Guest Supply')
         {
-            $stock->name = $request->input('GuestSupplies');
+            $name = $request->input('GuestSupplies');
         }
-        elseif($amenities =  'Amenities')
+        elseif($category == 'Amenities')
         {
-            $stock->name = $request->input('Amenities');
+            $name = $request->input('Amenities');
         }
+
 
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
        $stock->Stock_Level = $request->input('stock');
        $stock->category = $request->input('category');
+       $stock->name = $name;
 
        
        if($stock->save())

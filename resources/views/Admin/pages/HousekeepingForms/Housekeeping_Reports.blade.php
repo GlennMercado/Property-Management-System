@@ -71,10 +71,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list as $lists)
                                                 @php
                                                     $count = 1;
                                                 @endphp
+                                            @foreach ($list as $lists)
                                                 <tr>
                                                     <td>{{ $count }}</td>
                                                     <td>{{ $lists->Booking_No }}</td>
@@ -132,12 +132,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list2 as $lists)
                                                 @php
-                                                    $datenow = date('Y-m-d');
                                                     $count = 1;
                                                 @endphp
-                                                @if ($lists->Date_Resolved == $datenow)
+                                            @foreach ($list2 as $lists)                                             
                                                     <tr>
                                                         <td>{{ $count }}</td>
                                                         <td>{{ $lists->Booking_No }}</td>
@@ -150,7 +148,6 @@
                                                         <td>{{ date('F j Y', strtotime($lists->Due_Date)) }}</td>
                                                         <td>{{ date('F j Y', strtotime($lists->Date_Resolved)) }}</td>
                                                     </tr>
-                                                @endif
                                                 @php $count++; @endphp
                                             @endforeach
                                         </tbody>

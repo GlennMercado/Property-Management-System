@@ -10,12 +10,6 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="col">
-
-                                    </a>
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right;">
-                                        Add Stocks
-                                    </button>
                                 </div>
                                 <h3 class="mb-0 title">Function Rooms Inventory</h3>
                                 <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before Starting, See

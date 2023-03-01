@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('concern');
             $table->string('concern_text');
             $table->timestamps();
+            $table->string('complaints_img');
+            $table->binary('DB_Image');
         });
     }
 
