@@ -13,7 +13,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 {{-- <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6> --}}
-                                <p class="text-black text-lg mb-0">Dashboard</p>
+                                <p class="text-black text-lg mb-0"><i class="bi bi-speedometer2 mr-2"></i>Dashboard</p>
                             </div>
                         </div>
                         <div class="row mt-3">
