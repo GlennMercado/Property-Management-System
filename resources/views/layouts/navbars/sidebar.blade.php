@@ -92,11 +92,11 @@
                 </li>
 
                 <!--Calendar-->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3 text-success"></i></i> {{ __('Calendar') }}
                     </a>
-                </li>
+                </li> --}}
 
 
                 <!--Calendar-->
