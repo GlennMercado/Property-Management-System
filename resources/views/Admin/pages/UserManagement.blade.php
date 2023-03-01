@@ -56,6 +56,7 @@
                                                 <label class="text_color">User Type</label>
                                                 <select class="form-control" name="User_Type" required>
                                                     <option value="Admin">Admin</option>
+                                                    <option value="Housekeeper">Housekeeper</option>
                                                     <option value="Guest">Guest</option>
                                                     <option value="Sales & Marketing">Sales & Marketing
                                                     </option>

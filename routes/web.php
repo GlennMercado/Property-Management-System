@@ -59,6 +59,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
 	//For Housekeeping and Maintenance
+
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
 		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
@@ -83,6 +84,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 		Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+
+
 
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -141,13 +144,13 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		//Inventory Management
-//Hotel
-Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'HotelStock'])->name('StockCount');
+	//Hotel
+	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'HotelStock'])->name('StockCount');
 
-Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
-Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
-	
+	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
+		
 	//Convention Center Inventory
 		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
 		Route::post('/addstock_center', 'App\Http\Controllers\InventoryCenterController@addstock_center');
@@ -268,4 +271,29 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
 });
 	
+//Housekeeper
+Route::middleware(['auth', 'Housekeeper'])->group(function(){
+	//Housekeeping Dashboard
+	Route::get('Housekeeper_Dashboard', [App\Http\Controllers\HousekeeperController::class, 'housekeeper_dashboard'])->name('Housekeeper_Dashboard');
+	//Linen Monitoring
+	Route::get('Linens_Monitoring', [App\Http\Controllers\HousekeeperController::class, 'linen_monitoring'])->name('Linens_Monitoring');
+	//Maintenance
+	Route::get('Maintenances', [App\Http\Controllers\HousekeeperController::class, 'Maintenance'])->name('Maintenances');
+	//Guest Request
+	Route::get('Guest_Requests', [App\Http\Controllers\HousekeeperController::class, 'Guest_Request'])->name('Guest_Requests');
+	//Housekeeping Reports
+	Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
+
+	Route::post('/supply_request', 'App\Http\Controllers\HousekeeperController@supply_request');
+	Route::post('/linen_request', 'App\Http\Controllers\HousekeeperController@linen_request');
+
+	Route::post('/deduct_supply', 'App\Http\Controllers\HousekeeperController@deduct_supply');
+	Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeeperController@update_housekeeping_status');
+	Route::post('/check_linen', 'App\Http\Controllers\HousekeeperController@check_linen');
+	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeeperController@assign_housekeeper');
+
+	Route::post('add_out_of_order', 'App\Http\Controllers\HousekeeperController@add_out_of_order');
+	Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\HousekeeperController@update_maintenance_status');
+
+});
 

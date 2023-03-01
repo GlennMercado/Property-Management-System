@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\add_maintenance;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-use App\Models\hotel_room_supplies;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
-use Carbon\Carbon;
+use App\Models\add_maintenance;
+use App\Models\hotel_room_supplies;
 
-class HousekeepingController extends Controller
+class HousekeeperController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function housekeeping_dashboard()
+    public function housekeeper_dashboard()
     {
         $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0 GROUP BY a.Room_No');
 
@@ -38,15 +33,9 @@ class HousekeepingController extends Controller
         {
             $array[] = ['Room_No' => $counts->Room_No];
         }
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
+        return view('Housekeeper.Housekeeper_Dashboard', 
                     ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]
                     );
-    }
-    public function hotel_housekeeping()
-    {
-        $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
-
-		return view('Admin.pages.HousekeepingForms.Hotel_Housekeeping',['list2' =>$list2]);
     }
 
     public function linen_monitoring()
@@ -62,9 +51,40 @@ class HousekeepingController extends Controller
             $array[] = ['Room_No' => $counts->Room_No];
         }
         
-        return view('Admin.pages.HousekeepingForms.Linen_Monitoring', ['list' => $list, 'list2' => $list2, 'array' => $array]);
+        return view('Housekeeper.Linen_Monitoring', ['list' => $list, 'list2' => $list2, 'array' => $array]);
     }
-    
+
+    public function Maintenance()
+    {   
+        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+        $list2 = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1');
+        
+        return view('Housekeeper.Maintenances', ['list' => $list, 'list2' => $list2]);
+    }
+
+    public function Guest_Request()
+    {
+        $list = DB::select("SELECT * FROM guest_requests");
+        return view('Housekeeper.Guest_Request', ['list' => $list]);
+    }
+
+    public function housekeeping_reports()
+    {
+        $datenow = Carbon::now()->subDays(7);
+
+        //$datenow = Carbon::now();
+        
+        $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
+                ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
+                ->whereDate('Check_Out_Date', '>=', $datenow->format('Y-m-d'))->get();
+
+        $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
+                ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
+                ->whereDate('Date_Resolved', '>=', $datenow->format('Y-m-d'))->get();
+                
+        return view('Housekeeper.Housekeeping_Reports', ['list' => $list, 'list2' => $list2]);
+    }
+
     public function check_linen(Request $request)
     {
         try
@@ -82,7 +102,7 @@ class HousekeepingController extends Controller
                 if($request->input('discrepancy')[$i] > $request->input('quantity')[$i] || $request->input('discrepancy')[$i] < 0)
                 {
                     Alert::Error('Linen Checking Failed!', 'Invalid Inputs!');
-                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                    return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
                 }
                 else
                 {
@@ -113,12 +133,12 @@ class HousekeepingController extends Controller
             
 
             Alert::Success('Success', 'Linen Successfully Checked!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');   
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');   
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Linen Checking Failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
         }
     }
 
@@ -145,7 +165,7 @@ class HousekeepingController extends Controller
                 else
                 {
                     Alert::Error('Error', 'Linen Request Failed!');
-                    return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
+                    return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
                 }
                 DB::table('hotel_room_linens')
                     ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
@@ -157,31 +177,14 @@ class HousekeepingController extends Controller
             }
                         
             Alert::Success('Success', 'Linens Successfully Requested!');
-            return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
+            return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Linen Request Failed!');
-            return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
+            return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
         }
-    }
-
-    public function housekeeping_reports()
-    {
-        $datenow = Carbon::now()->subDays(7);
-
-        //$datenow = Carbon::now();
-        
-        $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
-                ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Check_Out_Date', '>=', $datenow->format('Y-m-d'))->get();
-
-        $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
-                ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Date_Resolved', '>=', $datenow->format('Y-m-d'))->get();
-                
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports', ['list' => $list, 'list2' => $list2]);
     }
 
     public function supply_request(Request $request)
@@ -207,7 +210,7 @@ class HousekeepingController extends Controller
                 else
                 {
                     Alert::Error('Error', 'Supply Request Failed!');
-                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                    return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
                 }
 
                 DB::table('hotel_room_supplies')
@@ -220,13 +223,13 @@ class HousekeepingController extends Controller
             }
                         
             Alert::Success('Success', 'Supplies Successfully Requested!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Supply Request Failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
         }
     }
 
@@ -242,7 +245,7 @@ class HousekeepingController extends Controller
                 if($request->input('quantity')[$i] < $request->input('deduction')[$i] || $request->input('deduction')[$i] < 0)
                 {
                     Alert::Error('Supply Checking Failed!', 'Invalid Inputs!');
-                    return redirect('Housekeeping_Dashboard')->with('Failed', 'Data Updated');
+                    return redirect('Housekeeper_Dashboard')->with('Failed', 'Data Updated');
                 }
                 else
                 {  
@@ -260,13 +263,13 @@ class HousekeepingController extends Controller
                 'Housekeeping_Status' => "Inspect(After Checking)"
             ));
             Alert::Success('Success', 'Supplies Successfully Checked!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Supply Checking Failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
         }
     }
 
@@ -295,7 +298,7 @@ class HousekeepingController extends Controller
                 DB::table('hotel_room_linens')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
     
                 Alert::Success('Success', 'Attendant successfully assigned!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             }
             if($check == "arrival")
             {
@@ -306,14 +309,14 @@ class HousekeepingController extends Controller
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
     
                 Alert::Success('Success', 'Attendant Successfully Assigned!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             }
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Attendant Assigning Failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
         }
 
     }
@@ -340,7 +343,7 @@ class HousekeepingController extends Controller
                     DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
         
                     Alert::Success('Success', 'Setting Status Success!');
-                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                    return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
                 }
                 else
                 {
@@ -348,7 +351,7 @@ class HousekeepingController extends Controller
                     DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
         
                     Alert::Success('Success', 'Setting Status Success!');
-                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');    
+                    return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');    
                 }
             }
             if($stats == "Arrival")
@@ -357,21 +360,114 @@ class HousekeepingController extends Controller
                 DB::table('housekeepings')->where('ID', $hid)->update(array('Housekeeping_Status' => "Cleaned (After Inspection)", 'Attendant' => "Unassigned"));
 
                 Alert::Success('Success', 'Inspection Success!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             }         
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Error', 'Setting Status failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
         }
 
     }
 
-    
+    public function add_out_of_order(Request $request)
+    {
+        $this->validate($request,[
+            'id' => '',
+            'room_no' => '',
+            'facility_type'=> '',
+            'priority' => 'required',
+            'description' => 'required',
+            'due_date' => 'required',
+            'book_no' => 'required',
+            'discoveredby' => ''
+            ]);
 
-    
-   
+        $status = "Out of Order";
+
+        $id = $request->input('id');
+        $room_no = $request->input('room_no');
+        $facility = $request->input('facility_type');
+        $priority = $request->input('priority');
+        $description = $request->input('description');
+        $due_date = $request->input('due_date');
+        $bookno = $request->input('book_no');
+        $discoveredby = $request->input('discoveredby');
+        
+
+        $add = new out_of_order_rooms;
+
+        $add->Facility_Type = $facility;
+        $add->Room_No = $room_no;
+        $add->Description = $description;
+        $add->Priority_Level = $priority;
+        $add->Due_Date = $due_date;
+        $add->Booking_No = $bookno;
+        $add->Discovered_By = $discoveredby;
 
 
+        if($add->save())
+        {
+            DB::table('housekeepings')->where('ID', $id)->update(array('Housekeeping_Status' => $status));
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $status));
+            
+            Alert::Success('Success', 'Out of Order Room Successfully Recorded!');
+            return redirect('Maintenances')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Out of Order Room Failed Recording!');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Saved');
+        }
+        
+        
+    }
+
+    public function update_maintenance_status($id, $rno, $bno, $due)
+    {
+
+        $maintenance_id = $id;
+        $room_no = $rno;
+        $booking_no = $bno;
+        $datenow = now()->format('Y-m-d');
+        $due_date = $due; 
+        $status = "Resolved";
+        $status2 = "Late Resolved";
+        $datenow = Carbon::now();
+        $datenow = date('Y-m-d', strtotime($datenow));
+
+        
+
+        try{
+
+            if($due_date >= $datenow)
+            {
+                DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
+                DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+                DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+
+                Alert::Success('Success', 'Maintenance Successfully Updated!');
+                return redirect('Maintenances')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status2, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
+                DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+                DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+
+                Alert::Success('Success', 'Maintenance Successfully Updated!');
+                return redirect('Maintenances')->with('Success', 'Data Saved');
+            }
+            
+
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Maintenance Failed Updating!');
+            return redirect('Maintenances')->with('Success', 'Data Saved');
+        }
+    }
 }
