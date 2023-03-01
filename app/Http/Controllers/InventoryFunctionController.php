@@ -18,11 +18,11 @@ class InventoryFunctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function LinenRequest()
+    public function StockHotel()
     {
-			$list = DB::select('SELECT * FROM hotel_room_linens');
+        $list = DB::select('SELECT * FROM hotel_room_linens');
 
-			return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);
+		return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);
     }
 
     /**

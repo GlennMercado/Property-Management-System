@@ -17,7 +17,7 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function HotelStock()
+    public function StockHotel()
     {
 
 

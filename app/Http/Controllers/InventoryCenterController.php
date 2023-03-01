@@ -14,9 +14,10 @@ class InventoryCenterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function StockCenter()
     {
-        //
+		$list = DB::select('SELECT * FROM stockscenters');
+		return view('Admin.pages.Inventory.StockCenter', ['list'=>$list]);
     }
 
     /**
