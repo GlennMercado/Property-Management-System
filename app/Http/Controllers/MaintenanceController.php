@@ -116,7 +116,7 @@ class MaintenanceController extends Controller
             DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Request_ID' => $randID));
 
             Alert::Success('Success', '"'. $randID .'" Guest Request Successfully Recorded!');
-            return redirect('Guest_Request')->with('Success', 'Data Saved');   
+            return redirect('HotelReservationForm')->with('Success', 'Data Saved');   
         }
         else
         {

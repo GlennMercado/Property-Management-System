@@ -58,6 +58,10 @@ class LoginController extends Controller
             {
                 return redirect('welcome');
             }
+            elseif(auth()->user()->User_Type == 'Housekeeper')
+            {
+                return redirect('Housekeeper_Dashboard');
+            }
         }
         else
         {
