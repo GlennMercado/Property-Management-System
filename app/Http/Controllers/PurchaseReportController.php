@@ -14,10 +14,11 @@ class PurchaseReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function SupplyRequest()
     {
-        //
-        return view('StockPurchaseReport');
+			$list = DB::select('SELECT * FROM hotel_room_supplies');
+
+			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);
     }
 
     /**
@@ -36,9 +37,40 @@ class PurchaseReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function report(Request $request)
+    public function supply_approval(Request $request)
     {
-
+            $roomno = $request->input('roomno');
+            $prodid = $request->input('productid');
+            $name = $request->input('name');
+            $quantity = $request->input('quantity');
+            //$sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+            $s = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
+            $quantity;
+    
+        
+                    $datenow = Carbon::now();
+                    Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+        
+                    $supply = new hotel_room_supplies;
+        
+                    $supply->Room_No = $roomno;
+                    $supply->productid = $prodid;
+                    $supply->name = $request->input('name');
+                    $supply->Quantity = $request->input('quantity');
+                    $supply->status = $request->input('status');
+                    $supply->Date_Received = $datenow;
+    
+                    if($supply->save())
+                    {
+        
+                        Alert::Success('Success', 'Stock Updated to Room!');
+                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                    }
+                    else
+                    {
+                        Alert::Error('Error', 'Stock Failed Updating to Room!');
+                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                    }
     
     }
             
