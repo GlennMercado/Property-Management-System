@@ -166,6 +166,7 @@ Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_sto
 		Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
 		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
 		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
+		Route::post('/supply_approval', 'App\Http\Controllers\PurchaseReportController@supply_approval');
 		Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
 		
 	

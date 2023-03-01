@@ -10,7 +10,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="col">
-                                    <h3 class="mb-0 title">Report Inventory</h3>
+                                    <h3 class="mb-0 title">Supply Requests</h3>
                                     <h5 class="mb-0" style="color:#db1212; font-size:16px;">Instructions: Before
                                         starting,
                                         see to It that all inventory are in the Storage Area</h5><br><br>
@@ -59,6 +59,9 @@
                                 <div class="modal fade" id="ModalUpdate4" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <form method="POST" action="{{ url('/supply_approval') }}"
+                                    enctype="multipart/form-data">
+                                    {{ csrf_field() }}
                                         <div class="modal-content">
                                             <div class="row">
                                                 <div class="col">
@@ -77,8 +80,8 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="Stockdetails">Item Name : </label>
-                                                    <input type="number" class="form-control" name="name" value="{{ $lists->name }}"
-                                                        placeholder="Enter number..." required>
+                                                    <input type="text" class="form-control" name="name" value="{{ $lists->name }}"
+                                                        placeholder="Enter number..." readonly>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -101,8 +104,14 @@
                                                     <option value="Approved">Approved</option>
                                                     <option value="Denied">Denied</option>
                                             </select>
-
+                                            <div class="modal-footer">
+                                            <a class="btn btn-failed" data-dismiss="modal">Close</a>
+                                            <input type="submit" name="update" value="Update"
+                                                class="btn btn-success" />
                                         </div>
+
+                                        </div> 
+</form>
                                     </div>
                                 </div>
                                 @endforeach

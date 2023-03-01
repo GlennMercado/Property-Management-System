@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\stocksfunctions;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_linen;
+use Carbon\Carbon;
+use App\Models\hotelstocks;
 
 class InventoryFunctionController extends Controller
 {

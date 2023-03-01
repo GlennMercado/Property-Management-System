@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\purchasereports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_linen;
+use Carbon\Carbon;
+use App\Models\hotelstocks;
 
 class PurchaseReportController extends Controller
 {
@@ -18,7 +22,7 @@ class PurchaseReportController extends Controller
     {
 			$list = DB::select('SELECT * FROM hotel_room_supplies');
 
-			return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);
+            return view('Admin.pages.Inventory.StockPurchaseReport', ['list'=>$list]);
     }
 
     /**
@@ -43,10 +47,9 @@ class PurchaseReportController extends Controller
             $prodid = $request->input('productid');
             $name = $request->input('name');
             $quantity = $request->input('quantity');
-            //$sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+            $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
             $s = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
             $quantity;
-    
         
                     $datenow = Carbon::now();
                     Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
@@ -57,18 +60,27 @@ class PurchaseReportController extends Controller
                     $supply->productid = $prodid;
                     $supply->name = $request->input('name');
                     $supply->Quantity = $request->input('quantity');
-                    $supply->status = $request->input('status');
                     $supply->Date_Received = $datenow;
+                    $stat = $request->input('status');
+                    $supply->Status = $stat;
+
     
-                    if($supply->save())
+                    if($stat == 'Approved')
                     {
-        
-                        Alert::Success('Success', 'Stock Updated to Room!');
+                        DB::table('hotel_room_supplies')->where('productid', $prodid)->update(array
+                            (
+                                'Quantity' => $quantity,
+                                'Status' => $stat
+                            ));
+                        Alert::Success('Success', 'Stock Approved!');
                         return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
                     }
-                    else
+                    elseif($stat == 'Denied')
                     {
-                        Alert::Error('Error', 'Stock Failed Updating to Room!');
+                        Alert::Error('Error', 'Stock Denied to Approve!');
+                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                    }else{
+                        Alert::Error('Error', 'Stock Failed Updating!');
                         return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
                     }
     
