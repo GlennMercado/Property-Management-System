@@ -9,8 +9,8 @@
             <div class="col-md-8">
                 <h1 class="mt-5">Rooms</h1>
                 @foreach ($list as $list)
-                    <div class="card float-left gal" style="width: 18rem; min-height: 550px">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/hotel5.jpg" alt="Card image cap">
+                    <div class="card float-left gal col-md-3" style="min-height: 550px">
+                        <img class="card-img-top img1" src="{{$list->Hotel_Image}}" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="text-green">₱{{ $list->Rate_per_Night }}</h2>
                             <h5 class="card-title">Room {{ $list->Room_No }}</h5>
@@ -30,6 +30,10 @@
     <style>
         .gal img:hover {
             transform: scale(1.01);
+        }
+        .img1{
+            max-width: 100%;
+            height: 300px !important;
         }
     </style>
     @include('layouts.footers.guest')

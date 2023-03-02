@@ -273,6 +273,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
+	Route::get('/FAQ', [App\Http\Controllers\GuestController::class, 'FAQ'])->name('FAQ');
 });
 	
 //Housekeeper
