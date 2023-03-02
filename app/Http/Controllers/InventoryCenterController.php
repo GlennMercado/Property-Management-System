@@ -42,28 +42,28 @@ class InventoryCenterController extends Controller
             'name' => 'required',
             'description' => 'required',
             'quantity' => 'required',
-            'stock' => 'required',
-            'category' => 'required'
+            'allstock' => 'required',
+            'stock' => 'required'
        ]);
 
        $stock = new stockscenters;
 
        $stock->name = $request->input('name');
        $stock->description = $request->input('description');
+       $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
        $stock->Stock_Level = $request->input('stock');
-       $stock->category = $request->input('category');
 
        
        if($stock->save())
         {
             Alert::Success('Success', 'Stock Successfully Submitted!');
-            return redirect('StockAvailability')->with('Success', 'Data Saved');
+            return redirect('StockCenter')->with('Success', 'Data Saved');
         }
         else
         {
             Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-            return redirect('StockAvailability')->with('Error', 'Failed!');
+            return redirect('StockCenter')->with('Error', 'Failed!');
         }
     }
 
@@ -94,8 +94,7 @@ class InventoryCenterController extends Controller
                 'description' => 'required',
                 'quantity' => 'required',
                 'in' => 'required',
-                'out' => 'required',
-                'category' => 'required'
+                'out' => 'required'
             ]);
             
             $productid = $request->input('productid');
@@ -104,7 +103,6 @@ class InventoryCenterController extends Controller
             $total = $request->input('quantity');
             $in = $request->input('in');
             $out = $request->input('out');
-            $category = $request->input('category');
 
             if($in > 0)
             {
@@ -124,18 +122,17 @@ class InventoryCenterController extends Controller
                 'productid' => $productid,
                 'name' => $name,
                 'description' => $description,
-                'total' => $total,
-                'category' => $category
+                'total' => $total
             ));
     
            Alert::Success('Success', 'Stock Successfully Updated!');
-           return redirect('StockAvailability')->with('Success', 'Data Updated');
+           return redirect('StockCenter')->with('Success', 'Data Updated');
           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Stock Edit Failed!');
-            return redirect('StockAvailability')->with('Failed', 'Data not Updated');
+            return redirect('StockCenter')->with('Failed', 'Data not Updated');
         }
     }
 

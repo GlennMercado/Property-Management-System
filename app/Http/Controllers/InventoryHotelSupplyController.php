@@ -8,8 +8,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_linen;
-use Carbon\Carbon;
-use App\Models\hotelstocks;
 
 class InventoryHotelSupplyController extends Controller
 {
@@ -73,15 +71,15 @@ class InventoryHotelSupplyController extends Controller
                                 'Status' => $stat
                             ));
                         Alert::Success('Success', 'Stock Approved!');
-                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                        return redirect('StockHotelSupply')->with('Success', 'Data Updated');
                     }
                     elseif($stat == 'Denied')
                     {
                         Alert::Error('Error', 'Stock Denied to Approve!');
-                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                        return redirect('StockHotelSupply')->with('Success', 'Data Updated');
                     }else{
                         Alert::Error('Error', 'Stock Failed Updating!');
-                        return redirect('StockPurchaseReport')->with('Success', 'Data Updated');
+                        return redirect('StockHotelSupply')->with('Success', 'Data Updated');
                     }
     
     }

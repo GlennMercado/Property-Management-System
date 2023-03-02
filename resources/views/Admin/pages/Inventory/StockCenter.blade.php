@@ -28,20 +28,31 @@
                         <table class="table align-items-center table-flush datatable datatable-Stock">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope="col" style="font-size:18px;">Action</th>
                                     <th scope="col" style="font-size:18px;">Product Name</th>
                                     <th scope="col" style="font-size:18px;">Item Description</th>
+                                    <th scope="col" style="font-size:18px;">All Stock</th>
                                     <th scope="col" style="font-size:18px;">Available Stock</th>
                                     <th scope="col" style="font-size:18px;">Stock Level</th>
                                     <th scope="col" style="font-size:18px;">Stock Alert</th>
-                                    <th scope="col" style="font-size:18px;">Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @foreach ($list as $lists)
                                     <tr>
+                                        
+                                        <td>
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#ModalView{{ $lists->productid }}" class="btn-sm btn-primary btn-lg"><i
+                                                    class="bi bi-eye" style="padding:2px;"></i></button>
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#ModalUpdate{{ $lists->productid }}" class="btn-sm btn-warning btn-lg"><i
+                                                    class="bi bi-pencil-square"></i></button>
+                                        </td>
                                         <td style="font-size:16px;">{{ $lists->name }}</td>
                                         <td style="font-size:16px;">{{ $lists->description }}</td>
+                                        <td style="font-size:16px;">{{ $lists->allstock }}</td>
                                         <td style="font-size:16px;">{{ $lists->total }}</td>
                                         <td style="font-size:16px;">{{ $lists->Stock_Level }}</td>
                                         @if ($lists->total <= $lists->Stock_Level)
@@ -52,13 +63,6 @@
                                             </td>
                                         @endif
                                         <td>
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#ModalView{{ $lists->productid }}" class="btn btn-primary"><i
-                                                    class="bi bi-eye" style="padding:2px;">View</i></button>
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#ModalUpdate{{ $lists->productid }}" class="btn btn-primary"><i
-                                                    class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
-                                        </td>
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
@@ -102,6 +106,13 @@
                                                             Quantity empty
                                                         </div>
 
+                                                        <label>Overall Stock: </label>
+                                                        <input type="text" class="form-control" name="allstock"
+                                                            value="{{ $lists->allstock }}" readonly>
+                                                        <div class="invalid-feedback">
+                                                            Stock Details empty
+                                                        </div>
+
                                                         <label>Quantity: </label>
                                                         <input type="text" class="form-control" name="total"
                                                             value="{{ $lists->total }}" readonly>
@@ -110,12 +121,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <label for="exampleInputPassword1">Category: </label>
-                                                    <input type="text" class="form-control" name="category"
-                                                        value="{{ $lists->category }}" readonly>
-                                                    <div class="invalid-feedback">
-                                                        Stock Details empty
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-failed"
@@ -152,18 +158,19 @@
                                                 <p class="text-left">Stock Name: </p>
                                                 <input type="text" class="form-control" name="name"
                                                     value="{{ $lists->name }}" required>
-                                                <div class="invalid-feedback">
-                                                    Stock Name empty
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="Stockdetails">Stock Description: </label>
+
+                                            <label>Stock Description: </label>
                                             <input type="text" class="form-control" name="description"
                                                 value="{{ $lists->description }}" required>
-                                            <div class="invalid-feedback">
-                                                Stock Details empty
-                                            </div>
+
+                                            <label for="Stockdetails">Overall Stock: </label>
+                                            <input type="hidden" name="allstock" value="{{ $lists->allstock }}" />
+                                            <input type="number" class="form-control" value="{{ $lists->allstock }}"
+                                                readonly>
+
                                             <label for="Stockdetails">Quantity: </label>
                                             <input type="hidden" name="quantity" value="{{ $lists->total }}" />
                                             <input type="number" class="form-control" value="{{ $lists->total }}"
@@ -188,54 +195,6 @@
                                                         Stock Name empty
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Category: </label>
-                                            <select class="form-control" value="{{ $lists->category }}" name="category"
-                                                required>
-                                                <option value="Invalid">Linens :</option>
-                                                <option>Bed pad - Single</option>
-                                                <option>Fitted Sheet - Single</option>
-                                                <option>Flat Sheet - Single</option>
-                                                <option>Duvet Filler - Single</option>
-                                                <option>Duvet Cover - Single</option>
-                                                <option>Pillows</option>
-                                                <option>Bed pad - Queen</option>
-                                                <option>Fitted Sheet - Queen</option>
-                                                <option>Flat Sheet - Queen</option>
-                                                <option>Duvet Filler - Queen</option>
-                                                <option>Duvet Cover - Queen</option>
-                                                <option>Pillows Case</option>
-                                                <option>Bath Towel</option>
-                                                <option>Hand Towel</option>
-                                                <option>Bath Mat</option>
-                                                <option>Bed Ruuner Queen</option>
-                                                <option>Bed Runner Single</option>
-                                                <option value="Invalid"></option>
-                                                <option value="Invalid">Guest Supplies :</option>
-                                                <option>Bath Soap</option>
-                                                <option>Shampoo</option>
-                                                <option>Dental Kit</option>
-                                                <option>Slippers</option>
-                                                <option>Bottled Water</option>
-                                                <option>Juice</option>
-                                                <option>Coffee</option>
-                                                <option>Creamer</option>
-                                                <option>Sugar - White</>
-                                                <option>Sugar - Brown</option>
-                                                <option value="Invalid"></option>
-                                                <option value="Invalid">Amenities : </option>
-                                                <option>Kettle</option>
-                                                <option>Tray</option>
-                                                <option>Dental Glass</option>
-                                                <option>Teaspoon</option>
-                                                <option>Cup And Saucer</option>
-                                                <option>Hanger</option>
-                                                <option>Door Hang</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Stock Details empty
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -290,6 +249,13 @@
                                 <label for="Stockdetails">Stock Description: </label>
                                 <input type="text" class="form-control" name="description"
                                     placeholder="Enter details..." required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="Stockdetails">Overall Stock: </label>
+                                <input type="number" class="form-control" name="allstock" placeholder="Enter number..."
+                                    required>
                             </div>
                         </div>
                         <div class="row">
