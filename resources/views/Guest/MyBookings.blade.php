@@ -58,15 +58,25 @@
                                 <table class="table align-items-center">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" class="sort" data-sort="name">Project</th>
-                                            <th scope="col" class="sort" data-sort="budget">Budget</th>
-                                            <th scope="col" class="sort" data-sort="status">Status</th>
-                                            <th scope="col">Users</th>
-                                            <th scope="col" class="sort" data-sort="completion">Completion</th>
+                                            <th scope="col" class="sort" data-sort="name">Booking No.</th>
+                                            <th scope="col" class="sort" data-sort="budget">Room No.</th>
+                                            <th scope="col" class="sort" data-sort="status">No. of Pax</th>
+                                            <th scope="col">Payment Status</th>
+                                            <th scope="col" class="sort" data-sort="completion">Booking Status</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
+                                        @foreach($list as $lists)
+                                            <td>{{$lists->Booking_No}}</td>
+                                            <td>{{$lists->Room_No}}</td>
+                                            <td>{{$lists->No_of_Pax}}</td>
+                                            <td>{{$lists->Payment_Status}}</td>
+                                            <td>{{$lists->Booking_Status}}</td>
+                                            <td>
+                                                buttons
+                                            </td>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

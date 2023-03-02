@@ -45,7 +45,11 @@ class GuestController extends Controller
         return view('Guest.guest_commercial_space');
     }
     public function my_bookings(){
-        return view('Guest.MyBookings');
+
+        $email = Auth::user()->email;
+
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
+        return view('Guest.MyBookings', ['list' => $list]);
     }
     public function suites()
     {
