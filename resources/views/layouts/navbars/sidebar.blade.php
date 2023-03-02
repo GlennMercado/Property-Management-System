@@ -202,13 +202,6 @@
                     <div class="collapse" id="navbar-examples3">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
-                                    <i class="text-success">•</i> {{ __('Stock Availability') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
                                     <i class="text-success">•</i> {{ __('Hotel Inventory') }}
                                 </a>

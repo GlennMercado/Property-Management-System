@@ -31,8 +31,8 @@
                                     <th scope="col" style="font-size:18px;">Action</th>
                                     <th scope="col" style="font-size:18px;">Product Name</th>
                                     <th scope="col" style="font-size:18px;">Item Description</th>
-                                    <th scope="col" style="font-size:18px;">Available Stock</th>
                                     <th scope="col" style="font-size:18px;">All Stock</th>
+                                    <th scope="col" style="font-size:18px;">Available Stock</th>
                                     <th scope="col" style="font-size:18px;">Stock Level</th>
                                     <th scope="col" style="font-size:18px;">Stock Alert</th>
                                 </tr>
@@ -54,8 +54,8 @@
                                         </td>
                                         <td style="font-size:16px;">{{ $lists->name }}</td>
                                         <td style="font-size:16px;">{{ $lists->description }}</td>
-                                        <td style="font-size:16px;">{{ $lists->total }}</td>
                                         <td style="font-size:16px;">{{ $lists->allstock }}</td>
+                                        <td style="font-size:16px;">{{ $lists->total }}</td>
                                         <td style="font-size:16px;">{{ $lists->Stock_Level }}</td>
                                         @if ($lists->total <= $lists->Stock_Level)
                                             <td style="font-size:25px;"><i class="bi bi-exclamation-triangle-fill"
@@ -96,7 +96,7 @@
                                                         <div class="col pt-4">
                                                             <label class="text-left">All Stock </label>
                                                             <input type="text" class="form-control" name="allstock"
-                                                                value="{{ $lists->description }}" readonly>
+                                                                value="{{ $lists->allstock }}" readonly>
                                                         </div>
                                                         <div class="col pt-4">
                                                             <label>Date Stock Added </label>

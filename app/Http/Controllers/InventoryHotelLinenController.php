@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_linen;
 
 class InventoryHotelLinenController extends Controller
 {
@@ -15,7 +19,7 @@ class InventoryHotelLinenController extends Controller
     {
         $list = DB::select('SELECT * FROM hotel_room_linens');
 
-		return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);
+		return view('Admin.pages.Inventory.StockHotelLinen', ['list'=>$list]);
     }
 
     /**

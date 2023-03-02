@@ -47,6 +47,16 @@ class InventoryController extends Controller
     
     }
 
+    public function StockReport()
+    {
+       //Hotel Reports
+		$list = DB::select('SELECT * FROM stockhistories');
+
+		return view('Admin.pages.Inventory.StockReports', ['list'=>$list]);
+	
+    
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -228,12 +238,12 @@ class InventoryController extends Controller
        if($stock->save())
         {
             Alert::Success('Success', 'Stock Successfully Submitted!');
-            return redirect('StockAvailability')->with('Success', 'Data Saved');
+            return redirect('StockCount')->with('Success', 'Data Saved');
         }
         else
         {
             Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-            return redirect('StockAvailability')->with('Error', 'Failed!');
+            return redirect('StockCount')->with('Error', 'Failed!');
         }
     }
 
@@ -299,14 +309,14 @@ class InventoryController extends Controller
 
     
            Alert::Success('Success', 'Stock Successfully Updated!');
-           return redirect('StockAvailability')->with('Success', 'Data Updated');
+           return redirect('StockCount')->with('Success', 'Data Updated');
 
           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Stock Edit Failed!');
-            return redirect('StockAvailability')->with('Failed', 'Data not Updated');
+            return redirect('StockCount')->with('Failed', 'Data not Updated');
         }
     }
 
@@ -354,12 +364,12 @@ class InventoryController extends Controller
        if($stock->save())
         {
             Alert::Success('Success', 'Stock Successfully Submitted!');
-            return redirect('StockAvailability')->with('Success', 'Data Saved');
+            return redirect('StockCount')->with('Success', 'Data Saved');
         }
         else
         {
             Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-            return redirect('StockAvailability')->with('Error', 'Failed!');
+            return redirect('StockCount')->with('Error', 'Failed!');
         }
     }
 
