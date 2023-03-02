@@ -149,7 +149,7 @@
                                                             <div class="modal-footer">
                                                                 <a class="btn btn-secondary"
                                                                     data-dismiss="modal">Close</a>
-                                                                <a  href="{{ url('/update_maintenance_status', ['id' => $lists->id, 'rno' => $lists->Room_No, 'bno' => $lists->Booking_No, 'due' => $lists->Due_Date])}}" class="btn btn-success">Yes</a>
+                                                                <a  href="{{ url('/update_maintenance_stats', ['id' => $lists->id, 'rno' => $lists->Room_No, 'bno' => $lists->Booking_No, 'due' => $lists->Due_Date])}}" class="btn btn-success">Yes</a>
                                                             </div>
                                                         </div>
                                                     </div>

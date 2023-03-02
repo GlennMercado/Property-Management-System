@@ -21,7 +21,7 @@ class HousekeeperController extends Controller
         
         $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
 
-        $list3 = DB::select("SELECT a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No GROUP BY a.Room_No");
+        $list3 = DB::select("SELECT a.id, a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No GROUP BY a.Room_No");
         
         $list4 = DB::select("SELECT * FROM hotel_room_supplies WHERE Category = 'Guest Supply'");
         $list5 = DB::select("SELECT * FROM hotel_room_linens");
@@ -40,7 +40,7 @@ class HousekeeperController extends Controller
 
     public function linen_monitoring()
     {
-        $list = DB::select("SELECT a.Room_No, a.Date_Received, SUM(a.Discrepancy) as ds, SUM(a.Quantity) as total, a.Attendant, b.Status as rstats FROM hotel_room_linens a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No Group By a.Room_No");
+        $list = DB::select("SELECT a.id, a.Room_No, a.Date_Received, SUM(a.Discrepancy) as ds, SUM(a.Quantity) as total, a.Attendant, b.Status as rstats FROM hotel_room_linens a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No Group By a.Room_No");
         $list2 = DB::select("SELECT * FROM hotel_room_linens");
 
         $count = DB::select('Select * from novadeci_suites');
@@ -293,10 +293,6 @@ class HousekeeperController extends Controller
     
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
-                DB::table('hotel_room_supplies')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
-
-                DB::table('hotel_room_linens')->where('Room_No', $room_no)->update(array('Attendant' => $housekeeper));
-    
                 Alert::Success('Success', 'Attendant successfully assigned!');
                 return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             }
@@ -468,6 +464,48 @@ class HousekeeperController extends Controller
         {
             Alert::Error('Failed', 'Maintenance Failed Updating!');
             return redirect('Maintenances')->with('Success', 'Data Saved');
+        }
+    }
+
+    public function assign_housekeeper_supplies(Request $request)
+    {
+        try{
+
+            $id = $request->input('id');
+            $housekeeper = $request->input('housekeeper');
+
+            DB::table('hotel_room_supplies')->where('id', $id)->update(array(
+                'Attendant' => $housekeeper
+            ));
+
+            Alert::Success('Success', 'Attendant Successfully Assigned!');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Attendant Assigning Failed!');
+            return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
+        }
+    }
+
+    public function assign_housekeeper_linens(Request $request)
+    {
+        try{
+
+            $id = $request->input('id');
+            $housekeeper = $request->input('housekeeper');
+
+            DB::table('hotel_room_linens')->where('id', $id)->update(array(
+                'Attendant' => $housekeeper
+            ));
+
+            Alert::Success('Success', 'Attendant Successfully Assigned!');
+            return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Attendant Assigning Failed!');
+            return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
         }
     }
 }

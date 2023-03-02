@@ -119,7 +119,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                        <form method="POST" class="prevent_submit" action="{{url('/assign_housekeeper')}}" enctype="multipart/form-data">
+                                        <form method="POST" class="prevent_submit" action="{{url('/assign_housekeepers')}}" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <div class="row">
@@ -166,7 +166,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists2->Room_No, 'status' => 'Cleaned']) }}" class="btn btn-success">Yes</a>
+                                                    <a href="{{ url('/update_housekeeping_stats', ['id' => $lists2->Room_No, 'status' => 'Cleaned']) }}" class="btn btn-success">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -183,7 +183,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">  
-                                                <form action="{{ url('/add_out_of_order') }}" class="prevent_submit" method="POST"
+                                                <form action="{{ url('/add_out_of_orders') }}" class="prevent_submit" method="POST"
                                                 enctype="multipart/form-data">
                                                 {{ csrf_field() }}       
                                                     <div class="row">                                                       

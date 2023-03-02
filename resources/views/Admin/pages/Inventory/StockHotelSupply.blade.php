@@ -51,7 +51,7 @@
                                     <div class="modal fade" id="ModalUpdate4" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <form method="POST" action="{{ url('/supply_approval') }}"
+                                            <form method="POST" action="{{ url('/supply_request_approval') }}"
                                                 enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="modal-content">
@@ -70,6 +70,11 @@
                                                             <div class="col">
                                                                 <input class="form-control" type="text" name="productid"
                                                                     value="{{ $lists->productid }}" hidden>
+                                                                <input type="hidden" name="id" value="{{$lists->id}}">
+                                                                <input type="hidden" name="attendant" value="{{$lists->Attendant}}">
+                                                                <input type="hidden" name="category" value="{{$lists->Category}}">
+                                                                <input type="hidden" name="date_requested" value="{{$lists->Date_Requested}}">
+                                                                <input type="hidden" name="qty_owned" value="{{$lists->Quantity}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -82,6 +87,14 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
+                                                                <label for="Stockdetails">Quantity Owned: </label>
+                                                                <input type="number" class="form-control"
+                                                                    value="{{ $lists->Quantity}}"
+                                                                    placeholder="Enter number..." readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
                                                                 <label for="Stockdetails">Requested Quantity: </label>
                                                                 <input type="number" class="form-control"
                                                                     name="Quantity_Requested"
@@ -89,19 +102,20 @@
                                                                     placeholder="Enter number..." readonly>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Quantity to Give: </label>
-                                                                <input type="number" class="form-control" name="quantity"
-                                                                    placeholder="Enter number..." required>
-                                                            </div>
-                                                        </div>
                                                         <label>Status: </label>
-                                                        <select class="form-control" name="status" required>
+                                                        <select class="form-control" name="status" id="stats" required>
                                                         <option value="" selected="true" disabled="disabled">Select</option>
                                                             <option value="Approved">Approved</option>
                                                             <option value="Denied">Denied</option>
                                                         </select>
+
+                                                        <div class="row" style="display:none;" id="qty">
+                                                            <div class="col">
+                                                                <label for="Stockdetails">Quantity to Give: </label>
+                                                                <input type="number" class="form-control qt2" name="quantity"
+                                                                    placeholder="Enter number..." value="0">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a class="btn btn-failed" data-dismiss="modal">Close</a>
@@ -132,6 +146,28 @@
                     color: #6C6C6C;
                 }
             </style>
+            <script>
+                $(document).ready(function() {
+                    $("#stats").change(function() {
+                        var selected = $("option:selected", this).val();
+                        
+                       if(selected == "Approved")
+                       {
+                            $('#qty').css({
+                            'display': 'block'
+                            });
+                            $('.qt2').val(0);
+                       } 
+                       else if(selected == "Denied")
+                       {
+                            $('#qty').css({
+                                'display': 'none'
+                            });
+                            $('.qt2').val(0);
+                       }
+                    });
+                });
+            </script>
         @endsection
 
         @push('js')

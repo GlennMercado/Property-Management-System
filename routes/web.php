@@ -62,14 +62,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
-		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
+		Route::post('/assign_housekeepers', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
-		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
-		Route::post('/linen_request', 'App\Http\Controllers\HousekeepingController@linen_request');
+		Route::post('/supply_requests', 'App\Http\Controllers\HousekeepingController@supply_request');
+		Route::post('/linen_requests', 'App\Http\Controllers\HousekeepingController@linen_request');
 
-		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
-		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
-		Route::post('/check_linen', 'App\Http\Controllers\HousekeepingController@check_linen');
+		Route::post('/deduct_supplies', 'App\Http\Controllers\HousekeepingController@deduct_supply');
+		Route::get('/update_housekeeping_stats/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+		Route::post('/check_linens', 'App\Http\Controllers\HousekeepingController@check_linen');
 
 		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
@@ -77,15 +77,17 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 		
-		Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
+		Route::post('add_out_of_orders', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 
 		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
-		Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+		Route::get('/update_maintenance_stats/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
 
+		Route::post('/assign_housekeepers_supplies', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_supplies');
 
+		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -243,6 +245,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//Supplies Request
 	Route::get('StockHotelSupply', [App\Http\Controllers\InventoryHotelSupplyController::class, 'SupplyRequest'])->name('StockHotelSupply');
+	Route::post('/supply_request_approval', 'App\Http\Controllers\InventoryHotelSupplyController@supply_request_approval');
 
 	//Inventory Reports
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
@@ -299,6 +302,10 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 
 	Route::post('add_out_of_order', 'App\Http\Controllers\HousekeeperController@add_out_of_order');
 	Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\HousekeeperController@update_maintenance_status');
+
+	Route::post('/assign_housekeepers_supply', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_supplies');
+
+	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
 
 });
 
