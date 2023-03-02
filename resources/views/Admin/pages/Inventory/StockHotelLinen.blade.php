@@ -39,10 +39,9 @@
                                                 data-target="#ModalView{{ $lists->productid }}"><i
                                                     class="bi bi-eye"></i></button>
                                             <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
-                                                data-target="#ModalUpdate{{ $lists->productid }}"><i
+                                                data-target="#update{{$lists->id}}"><i
                                                     class="bi bi-pencil-square"></i></button>
                                         </td>
-                                        <td>{{ $lists->name }}</td>
                                         <td>{{ $lists->Room_No }}</td>
                                         <td>{{ $lists->name }}</td>
                                         <td>{{ $lists->Discrepancy }}</td>
@@ -75,21 +74,14 @@
                                         </div>
                                     </div>
                                     <!--Modal Edit-->
-                                    <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1"
-                                        role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h2 class="modal-title">{{ __('Edit Details') }}</h2>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="POST" action="{{ url('/edit_stock_function') }}"
-                                                    enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                    <div class="modal-content">
+                                    <!--MODAL FOR Update-->
+                                    <div class="modal fade" id="update{{$lists->id}}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <form method="POST" action="{{ url('/linen_request_approval') }}"
+                                                enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-content">
                                                     <div class="modal-header"></div>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -105,6 +97,12 @@
                                                             <div class="col">
                                                                 <input class="form-control" type="text" name="productid"
                                                                     value="{{ $lists->productid }}" hidden>
+                                                                <input type="hidden" name="id" value="{{$lists->id}}">
+                                                                <input type="hidden" name="attendant" value="{{$lists->Attendant}}">
+                                                                <input type="hidden" name="category" value="{{$lists->Category}}">
+                                                                <input type="hidden" name="date_requested" value="{{$lists->Date_Requested}}">
+                                                                <input type="hidden" name="qty_owned" value="{{$lists->Quantity}}">
+                                                                <input type="hidden" name="discrepancy" value="{{$lists->Discrepancy}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -117,6 +115,14 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
+                                                                <label for="Stockdetails">Quantity Owned: </label>
+                                                                <input type="number" class="form-control"
+                                                                    value="{{ $lists->Quantity}}"
+                                                                    placeholder="Enter number..." readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
                                                                 <label for="Stockdetails">Requested Quantity: </label>
                                                                 <input type="number" class="form-control"
                                                                     name="Quantity_Requested"
@@ -124,19 +130,20 @@
                                                                     placeholder="Enter number..." readonly>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Quantity to Give: </label>
-                                                                <input type="number" class="form-control" name="quantity"
-                                                                    placeholder="Enter number..." required>
-                                                            </div>
-                                                        </div>
                                                         <label>Status: </label>
-                                                        <select class="form-control" name="status" required>
+                                                        <select class="form-control" name="status" id="stats" required>
                                                         <option value="" selected="true" disabled="disabled">Select</option>
                                                             <option value="Approved">Approved</option>
                                                             <option value="Denied">Denied</option>
                                                         </select>
+
+                                                        <div class="row" style="display:none;" id="qty">
+                                                            <div class="col">
+                                                                <label for="Stockdetails">Quantity to Give: </label>
+                                                                <input type="number" class="form-control qt2" name="quantity"
+                                                                    placeholder="Enter number..." value="0">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a class="btn btn-failed" data-dismiss="modal">Close</a>
@@ -145,8 +152,7 @@
                                                     </div>
 
                                                 </div>
-                                                </form>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -335,6 +341,28 @@
         }
     </style>
     <script>
+        $(document).ready(function() {
+                    $("#stats").change(function() {
+                        var selected = $("option:selected", this).val();
+                        
+                       if(selected == "Approved")
+                       {
+                            $('#qty').css({
+                            'display': 'block'
+                            });
+                            $('.qt2').val(0);
+                       } 
+                       else if(selected == "Denied")
+                       {
+                            $('#qty').css({
+                                'display': 'none'
+                            });
+                            $('.qt2').val(0);
+                       }
+                    });
+                });
+
+
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 

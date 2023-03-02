@@ -89,6 +89,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
+
+
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
 		Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -242,6 +244,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	//Linen Request
 	Route::get('StockHotelLinen', [App\Http\Controllers\InventoryHotelLinenController::class, 'LinenRequest'])->name('StockHotelLinen');
+	Route::post('/linen_request_approval', 'App\Http\Controllers\InventoryHotelLinenController@linen_request_approval');
 
 	//Supplies Request
 	Route::get('StockHotelSupply', [App\Http\Controllers\InventoryHotelSupplyController::class, 'SupplyRequest'])->name('StockHotelSupply');

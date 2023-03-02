@@ -55,7 +55,7 @@
                                                     data-target="#view_supply{{ $lists->Room_No }}" title="View Room Linens">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
-                                                @if ($lists->rstats != 'Occupied')
+                                                @if ($lists->rstats != 'Occupied' && $lists->Attendant != 'Unassigned')
                                                     @if($check == "Different")
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#request{{ $lists->Room_No }}" title="Request Room Linens">

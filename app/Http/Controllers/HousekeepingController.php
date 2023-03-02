@@ -7,6 +7,8 @@ use App\Models\add_maintenance;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_supplies_reports;
+use App\Models\hotel_room_linens_reports;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use Carbon\Carbon;
@@ -169,19 +171,24 @@ class HousekeepingController extends Controller
 
     public function housekeeping_reports()
     {
-        $datenow = Carbon::now()->subDays(7);
+        //$datenow = Carbon::now()->subDays(7);
 
-        //$datenow = Carbon::now();
+        $datenow = Carbon::now();
         
         $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
                 ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Check_Out_Date', '>=', $datenow->format('Y-m-d'))->get();
+                ->whereDate('Check_Out_Date', '=', $datenow->format('Y-m-d'))->get();
 
         $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
                 ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Date_Resolved', '>=', $datenow->format('Y-m-d'))->get();
+                ->whereDate('Date_Resolved', '=', $datenow->format('Y-m-d'))->get();
+
+        $list3 = hotel_room_supplies_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
+
+        $list4 = hotel_room_linens_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
                 
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports', ['list' => $list, 'list2' => $list2]);
+
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports', ['list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4]);
     }
 
     public function supply_request(Request $request)

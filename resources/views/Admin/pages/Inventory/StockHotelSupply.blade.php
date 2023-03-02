@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                data-target="#ModalUpdate4"><i class="bi bi-pencil-square"></i></button>
+                                                data-target="#update{{$lists->id}}"><i class="bi bi-pencil-square"></i></button>
                                         </td>
                                         <td style="font-size:16px;">{{ $lists->Room_No }}</td>
                                         <td style="font-size:16px;">{{ $lists->name }}</td>
@@ -48,7 +48,7 @@
 
 
                                     <!--MODAL FOR Update-->
-                                    <div class="modal fade" id="ModalUpdate4" tabindex="-1" role="dialog"
+                                    <div class="modal fade" id="update{{$lists->id}}" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <form method="POST" action="{{ url('/supply_request_approval') }}"
