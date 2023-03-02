@@ -16,13 +16,13 @@ class Housekeeper
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Housekeeper')
+        if(auth()->user()->User_Type == 'Housekeeping Supervisor')
         {
             return $next($request);
         }
         else
         {
-            return redirect()->route('login')->with('error', 'you have no admin access.');
+            return redirect()->route('login')->with('Error', 'Access Denied.');
         }
         
         

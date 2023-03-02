@@ -22,7 +22,7 @@ class Guest
         }
         else
         {
-            return redirect()->route('login')->with('error', 'you have no admin access.');
+            return redirect()->route('login')->with('Error', 'Access Denied.');
         }
     }
 }
