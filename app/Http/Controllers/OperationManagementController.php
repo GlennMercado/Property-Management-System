@@ -8,25 +8,21 @@ use Illuminate\Support\Facades\DB;
 
 class OperationManagerCOntroller extends Controller
 {
+    public function OperationDashboard()
+    {
+        return view('OperationDashboard');
+    }
     public function Reservation()
     {
         return view('Reservation');
     }
-    public function RoomAvailable()
+    public function GuestReservation()
     {
-        return view('RoomAvailable');
+        return view('GuestReservation');
     }
-    public function Request()
+    public function Reports()
     {
-        return view('Request');
-    }
-    public function Complaints()
-    {
-        return view('Complaints');
-    }
-    public function Inventory()
-    {
-        return view('Inventory');
+        return view('Reports');
     }
     public function GuestFolio()
     {

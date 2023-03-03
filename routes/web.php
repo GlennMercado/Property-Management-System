@@ -140,12 +140,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Operation Management
 		//Reservation
-		Route::get('Reservation', function () {return view('Admin.pages.OperationManagement.Reservation');})->name('Reservation'); 
-		Route::get('RoomAvailable', function () {return view('Admin.pages.OperationManagement.RoomAvailable');})->name('RoomAvailable');
-		Route::get('Request', function () {return view('Admin.pages.OperationManagement.Request');})->name('Request'); 
+		Route::get('OperationDashboard', function () {return view('Admin.pages.OperationManagement.OperationDashboard');})->name('OperationDashboard'); 
+		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+		Route::get('Reports', function () {return view('Admin.pages.OperationManagement.Reports');})->name('Reports'); 
 		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
-		Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 	
