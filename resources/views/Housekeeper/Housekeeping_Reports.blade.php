@@ -42,7 +42,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
                                             href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4"
-                                            aria-selected="false"> Guest Request</a>
+                                            aria-selected="false"> Linen Request</a>
                                     </li>
                                 </ul>
                             </div>
@@ -100,15 +100,39 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Item Name</th>
+                                                <th scope="col" style="font-size:18px;">Quantity</th>
+                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Booking Status</th>
-                                                <th scope="col" style="font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                        </tbody>supply
+                                            @foreach($list3 as $lists)
+                                            <tr>
+                                                <td>{{$lists->Room_No}}</td>
+                                                <td>{{$lists->name}}</td>
+                                                <td>{{$lists->Quantity}}</td>
+                                                <td>{{$lists->Quantity_Requested}}</td>
+                                                <td>{{$lists->Attendant}}</td>
+                                                @if($lists->Status == "Approved")
+                                                <td style="color:#5cb85c;">{{$lists->Status}}</td>
+                                                @else
+                                                <td style="color:#d9534f;">{{$lists->Status}}</td>
+                                                @endif
+                                                <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} 
+                                                    <br> 
+                                                    {{date('H:i:s A', strtotime($lists->Date_Requested)) }}
+                                                </td>
+                                                <td>{{ date('F j Y', strtotime($lists->Date_Received)) }} 
+                                                    <br> 
+                                                    {{date('H:i:s A', strtotime($lists->Date_Received)) }}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
 
@@ -154,14 +178,49 @@
                                     </table>
                                 </div>
 
-                                {{-- Guest Request --}}
+                                {{-- Linen Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-4-tab">
-                                    <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
-                                        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
-                                        williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-                                        dreamcatcher
-                                        synth.</p>
+                                    <table class="table align-items-center table-flush" id="myTable2">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Item Name</th>
+                                                <th scope="col" style="font-size:18px;">Quantity</th>
+                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Discrepancy</th>
+                                                <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($list4 as $lists)
+                                            <tr>
+                                                <td>{{$lists->Room_No}}</td>
+                                                <td>{{$lists->name}}</td>
+                                                <td>{{$lists->Quantity}}</td>
+                                                <td>{{$lists->Quantity_Requested}}</td>
+                                                <td>{{$lists->Discrepancy}}</td>
+                                                <td>{{$lists->Attendant}}</td>
+                                                @if($lists->Status == "Approved")
+                                                <td style="color:#5cb85c;">{{$lists->Status}}</td>
+                                                @else
+                                                <td style="color:#d9534f;">{{$lists->Status}}</td>
+                                                @endif
+                                                <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} 
+                                                    <br> 
+                                                    {{date('H:i:s A', strtotime($lists->Date_Requested)) }}
+                                                </td>
+                                                <td>{{ date('F j Y', strtotime($lists->Date_Received)) }} 
+                                                    <br> 
+                                                    {{date('H:i:s A', strtotime($lists->Date_Received)) }}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\stocksfunctions;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_linen;
+use Carbon\Carbon;
+use App\Models\hotelstocks;
 
 class InventoryFunctionController extends Controller
 {
@@ -14,11 +18,11 @@ class InventoryFunctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function LinenRequest()
+    public function StockHotel()
     {
-			$list = DB::select('SELECT * FROM hotel_room_linens');
+        $list = DB::select('SELECT * FROM hotel_room_linens');
 
-			return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);
+		return view('Admin.pages.Inventory.StockFunction', ['list'=>$list]);
     }
 
     /**

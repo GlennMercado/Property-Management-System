@@ -13,7 +13,9 @@ class UserManagementController extends Controller
     public function UserManagement()
     {
         $list = DB::select('SELECT * FROM users');  
-        return view('Admin.pages.UserManagement', ['list'=>$list]);
+        $count = DB::select("SELECT count(*) as cnt FROM users WHERE User_Type = 'Housekeeping Supervisor' ");
+
+        return view('Admin.pages.UserManagement', ['list'=>$list, 'count' => $count]);
        
     }
     public function create_new_user(Request $request)

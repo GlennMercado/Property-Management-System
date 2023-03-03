@@ -62,14 +62,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
-		Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
+		Route::post('/assign_housekeepers', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
-		Route::post('/supply_request', 'App\Http\Controllers\HousekeepingController@supply_request');
-		Route::post('/linen_request', 'App\Http\Controllers\HousekeepingController@linen_request');
+		Route::post('/supply_requests', 'App\Http\Controllers\HousekeepingController@supply_request');
+		Route::post('/linen_requests', 'App\Http\Controllers\HousekeepingController@linen_request');
 
-		Route::post('/deduct_supply', 'App\Http\Controllers\HousekeepingController@deduct_supply');
-		Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
-		Route::post('/check_linen', 'App\Http\Controllers\HousekeepingController@check_linen');
+		Route::post('/deduct_supplies', 'App\Http\Controllers\HousekeepingController@deduct_supply');
+		Route::get('/update_housekeeping_stats/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+		Route::post('/check_linens', 'App\Http\Controllers\HousekeepingController@check_linen');
 
 		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
@@ -77,13 +77,17 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 		
-		Route::post('add_out_of_order', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
+		Route::post('add_out_of_orders', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
 
 		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
 		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
-		Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+		Route::get('/update_maintenance_stats/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
+
+		Route::post('/assign_housekeepers_supplies', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_supplies');
+
+		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
 
 
@@ -143,68 +147,49 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
-		//Inventory Management
-	//Hotel
-	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'HotelStock'])->name('StockCount');
-
-	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
-	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-	Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
-		
-	//Convention Center Inventory
-		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
-		Route::post('/addstock_center', 'App\Http\Controllers\InventoryCenterController@addstock_center');
-			
-		Route::get('StockCenter', function () {
-			$list = DB::select('SELECT * FROM stockscenters');
-		return view('Admin.pages.Inventory.StockCenter', ['list'=>$list]);})->name('StockCenter');
-
-	//Function Room Inventory
-		Route::post('/edit_stock_function', 'App\Http\Controllers\InventoryFunctionController@edit_stock_function');
-		Route::post('/addstock_function', 'App\Http\Controllers\InventoryFunctionController@addstock_function');
 	
-		Route::get('StockFunction', [App\Http\Controllers\InventoryFunctionController::class, 'LinenRequest'])->name('StockFunction');;
 
-	//Stock Purchase Report
-		Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
-		Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
-		Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
-		Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
+	// //Stock Purchase Report
+	// 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
+	// 	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
+	// 	Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
+	// 	Route::post('/supply_approval', 'App\Http\Controllers\PurchaseReportController@supply_approval');
+	// 	Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
 		
 	
 	//Stock Availability
-	Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
+	// Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
 
-		Route::get('StockAvailability', function () {
-			$list = DB::select('SELECT * FROM hotelstocks');
-			$list2 = DB::select('SELECT * FROM stockscenters');
-			$list3 = DB::select('SELECT * FROM stocksfunctions');
-			$list4= DB::select('SELECT * FROM hotel_room_supplies');
-			$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
-			$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
+	// 	Route::get('StockAvailability', function () {
+	// 		$list = DB::select('SELECT * FROM hotelstocks');
+	// 		$list2 = DB::select('SELECT * FROM stockscenters');
+	// 		$list3 = DB::select('SELECT * FROM stocksfunctions');
+	// 		$list4= DB::select('SELECT * FROM hotel_room_supplies');
+	// 		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
+	// 		$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
 
 
-		$count = array();
-		$count2 = array();
+	// 	$count = array();
+	// 	$count2 = array();
 
-		foreach($check as $checks)
-		{
-			$count[] = ['counts' => $checks->cnt];
-		}
+	// 	foreach($check as $checks)
+	// 	{
+	// 		$count[] = ['counts' => $checks->cnt];
+	// 	}
 
-		foreach($check2 as $checks)
-		{
-			$count2[] = ['counts' => $checks->cnt];
-		}
+	// 	foreach($check2 as $checks)
+	// 	{
+	// 		$count2[] = ['counts' => $checks->cnt];
+	// 	}
 
-			return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
+	// 		return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
 			
-			//Stock Avail
-		Route::get('StockAvail', function () {
-			$list = DB::select('SELECT * FROM hotelstocks');
-			$list2 = DB::select('SELECT * FROM stocksfunctions');
-			$list3 = DB::select('SELECT * FROM stockscenters');
-			return view('Admin.pages.Inventory.StockAvail',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('StockAvail');
+	// 		//Stock Avail
+	// 	Route::get('StockAvail', function () {
+	// 		$list = DB::select('SELECT * FROM hotelstocks');
+	// 		$list2 = DB::select('SELECT * FROM stocksfunctions');
+	// 		$list3 = DB::select('SELECT * FROM stockscenters');
+	// 		return view('Admin.pages.Inventory.StockAvail',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('StockAvail');
 	
 	//Finance
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
@@ -242,6 +227,34 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//User management
 		Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
 		Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
+
+
+
+	//Inventory Management
+	//Hotel Inventory
+	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'StockHotel'])->name('StockCount');
+	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
+
+	//Convention Center Inventory
+	Route::get('StockCenter', [App\Http\Controllers\InventoryCenterController::class, 'StockCenter'])->name('StockCenter');
+	Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
+	Route::post('/addstock_center', 'App\Http\Controllers\InventoryCenterController@addstock_center');
+
+	//Linen Request
+	Route::get('StockHotelLinen', [App\Http\Controllers\InventoryHotelLinenController::class, 'LinenRequest'])->name('StockHotelLinen');
+	Route::post('/linen_request_approval', 'App\Http\Controllers\InventoryHotelLinenController@linen_request_approval');
+
+	//Supplies Request
+	Route::get('StockHotelSupply', [App\Http\Controllers\InventoryHotelSupplyController::class, 'SupplyRequest'])->name('StockHotelSupply');
+	Route::post('/supply_request_approval', 'App\Http\Controllers\InventoryHotelSupplyController@supply_request_approval');
+
+	//Inventory Reports
+	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
+	
+
+
 	
 });
 
@@ -266,6 +279,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
+	Route::get('/FAQ', [App\Http\Controllers\GuestController::class, 'FAQ'])->name('FAQ');
 });
 	
 //Housekeeper
@@ -291,6 +305,10 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 
 	Route::post('add_out_of_order', 'App\Http\Controllers\HousekeeperController@add_out_of_order');
 	Route::get('/update_maintenance_status/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\HousekeeperController@update_maintenance_status');
+
+	Route::post('/assign_housekeepers_supply', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_supplies');
+
+	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
 
 });
 

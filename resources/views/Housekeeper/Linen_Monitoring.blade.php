@@ -55,7 +55,7 @@
                                                     data-target="#view_supply{{ $lists->Room_No }}" title="View Room Linens">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
-                                                @if ($lists->rstats != 'Occupied')
+                                                @if ($lists->rstats != 'Occupied' &&  $lists->Attendant != 'Unassigned')
                                                     @if($check == "Different")
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#request{{ $lists->Room_No }}" title="Request Room Linens">
@@ -63,7 +63,75 @@
                                                         </button>
                                                     @endif
                                                 @endif
-                                            </td>
+                                                @if ($lists->Attendant == 'Unassigned')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#assign3{{ $lists->id}}"
+                                                                    title="Assign Attendant">
+                                                                    <i class="bi bi-person-fill"></i> </button>
+                                                        @endif
+                                                    </td>
+
+                                                    <!--Assign Attendant-->
+                                                    <div class="modal fade" id="assign3{{ $lists->id }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-left display-4"
+                                                                        id="exampleModalLabel">View Information</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form method="POST" class="prevent_submit"
+                                                                    action="{{ url('/assign_housekeepers_linen') }}"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="card-body bg-white"
+                                                                                style="border-radius: 18px">
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $lists->id }}" />
+
+                                                                                <input type="hidden" name="room_no"
+                                                                                    value="{{ $lists->Room_No }}" />
+
+                                                                                <p class="text-left">Attendants: </p>
+                                                                                <select name="housekeeper"
+                                                                                    class="form-control" required>
+                                                                                    <option selected="true"
+                                                                                        disabled="disabled">
+                                                                                        Select</option>
+                                                                                    <option value="Marie B. Adams">Marie B.
+                                                                                        Adams
+                                                                                    </option>
+                                                                                    <option value="Nathan Dela Cruz">Nathan
+                                                                                        Dela
+                                                                                        Cruz</option>
+                                                                                    <option value="Mark Delos Santos">Mark
+                                                                                        Delos
+                                                                                        Santos</option>
+                                                                                    <option value="Jacob Del Rosario">Jacob
+                                                                                        Del
+                                                                                        Rosario</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</a>
+                                                                        <input type="submit"
+                                                                            class="btn btn-success prevent_submit"
+                                                                            value="Assign" />
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                         </tr>
                                     @endforeach
                                 </tbody>

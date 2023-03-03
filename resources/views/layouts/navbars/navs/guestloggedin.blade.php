@@ -69,19 +69,12 @@
                         <i class="bi bi-book-half"></i>
                         <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
                     </a>
-
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
                         <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
                         <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
                     </div>
                 </div>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('complaints')}}">
-                        <i class="ni ni-single-copy-04"></i>
-                        <span class="nav-link-inner--text">{{ __('Send a Complaint') }}</span>
-                    </a>
-                </li>
                 <li class="nav-item d-block d-sm-none">
                     <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
                         onclick="event.preventDefault();
@@ -146,6 +139,10 @@
                 <a href="{{ url('complaints') }}" class="dropdown-item">
                     <i class="ni ni-single-copy-04"></i>
                     <span>{{ __('Send a Complaint') }}</span>
+                </a>
+                <a href="{{ url('FAQ') }}" class="dropdown-item">
+                    <i class="ni ni-single-copy-04"></i>
+                    <span>{{ __('FAQ') }}</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item"

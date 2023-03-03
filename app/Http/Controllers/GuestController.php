@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
+use App\Models\housekeeping;
 use App\Models\convention_center_application;
 use App\Models\commercial_spaces_application;
 use App\Models\complaints;
@@ -44,7 +45,11 @@ class GuestController extends Controller
         return view('Guest.guest_commercial_space');
     }
     public function my_bookings(){
-        return view('Guest.MyBookings');
+
+        $email = Auth::user()->email;
+
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
+        return view('Guest.MyBookings', ['list' => $list]);
     }
     public function suites()
     {
@@ -78,6 +83,9 @@ class GuestController extends Controller
     public function rooms(){
         $list = DB::select('SELECT * FROM novadeci_suites');    
         return view('Guest.rooms', ['list'=>$list]);
+    }
+    public function FAQ(){
+        return view('Guest.FAQ');
     }
     public function complaints_submit(Request $request){
         $this->validate($request,[

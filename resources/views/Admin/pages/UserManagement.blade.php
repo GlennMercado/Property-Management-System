@@ -56,7 +56,12 @@
                                                 <label class="text_color">User Type</label>
                                                 <select class="form-control" name="User_Type" required>
                                                     <option value="Admin">Admin</option>
-                                                    <option value="Housekeeper">Housekeeper</option>
+                                                    @foreach($count as $counts)
+                                                    @if($counts->cnt == 0)
+                                                    <option value="Housekeeping Supervisor">Housekeeping Supervisor</option>
+                                                    @endif
+                                                    @endforeach
+                                                    <!-- <option value="Housekeeper">Housekeeper</option> -->
                                                     <option value="Guest">Guest</option>
                                                     <option value="Sales & Marketing">Sales & Marketing
                                                     </option>

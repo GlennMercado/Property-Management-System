@@ -203,7 +203,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
-                                    <i class="bi bi-clipboard-check text-success"></i> {{ __('Stock Availability') }}
+                                    <i class="text-success">•</i> {{ __('Stock Availability') }}
                                 </a>
                             </li>
                         </ul>
@@ -230,15 +230,22 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockFunction') }}">
+                                <a class="nav-link text-default" href="{{ route('StockHotelLinen') }}">
                                     <i class="text-success">•</i> {{ __('Linen Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('StockPurchaseReport') }}">
+                                <a class="nav-link text-default" href="{{ route('StockHotelSupply') }}">
                                     <i class="text-success">•</i> {{ __('Supply Request') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockReports') }}">
+                                    <i class="text-success">•</i> {{ __('Stock Reports') }}
                                 </a>
                             </li>
                         </ul>
