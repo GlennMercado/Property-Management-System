@@ -293,8 +293,11 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	//Guest Request
 	Route::get('Guest_Requests', [App\Http\Controllers\HousekeeperController::class, 'Guest_Request'])->name('Guest_Requests');
 	//Housekeeping Reports
-	Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
+	//Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
 
+	Route::get('Housekeeping_Report', ['uses' => 'App\Http\Controllers\HousekeeperController@reports', 'as' => 'Housekeeping_Report.reports']);
+		
+		
 	Route::post('/supply_request', 'App\Http\Controllers\HousekeeperController@supply_request');
 	Route::post('/linen_request', 'App\Http\Controllers\HousekeeperController@linen_request');
 

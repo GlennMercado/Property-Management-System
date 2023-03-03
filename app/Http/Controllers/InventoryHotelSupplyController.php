@@ -49,13 +49,26 @@ class InventoryHotelSupplyController extends Controller
       {
         $total_quantity = $qty_owned + $quantity_given;
 
-        $update = DB::table('hotel_room_supplies')->where('id', $id)->update(array(
-                'Quantity_Requested' => 0,
-                'Attendant' => "Unassigned",
-                'Status' => $status,
-                'Date_Received' => $datenow,
-                'Quantity' => $total_quantity
-            ));
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$id'");
+
+        foreach($sql as $lists)
+        {
+            if($lists->total < $quantity_given)
+            {
+                Alert::Error('Failed', 'Supply Request Failed!');
+                return redirect('StockHotelSupply')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                $update = DB::table('hotel_room_supplies')->where('id', $id)->update(array(
+                    'Quantity_Requested' => 0,
+                    'Attendant' => "Unassigned",
+                    'Status' => $status,
+                    'Date_Received' => $datenow,
+                    'Quantity' => $total_quantity
+                ));
+            }
+        }
       }
       else
       {

@@ -113,7 +113,7 @@
 
                 <!-- Report -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Housekeeping_Report') }}">
+                    <a class="nav-link text-default" href="{{ route('Housekeeping_Report.reports') }}">
                         <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
                     </a>
                 </li>
