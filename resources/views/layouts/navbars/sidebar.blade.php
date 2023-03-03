@@ -87,7 +87,7 @@
                 <!--Dashboard-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('home') }}">
-                        <i class="bi bi-palette text-success"></i> {{ __('Dashboard') }}
+                        <i class="bi bi-graph-up text-success"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
@@ -118,14 +118,14 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('HotelReservationForm') }}">
-                                    <i class="text-success">•</i> {{ __('Hotel Booking') }}
+                                    <i class="bi bi-journal text-success"></i> {{ __('Hotel Booking') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('EventInquiryForm') }}">
-                                    <i class="text-success">•</i> {{ __('Event Inquiry') }}
+                                    <i class="bi bi-calendar3-event text-success"></i> {{ __('Event Inquiry') }}
                                 </a>
                             </li>
                         </ul>
@@ -143,14 +143,14 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Housekeeping_Dashboard') }}">
-                                    <i class="text-success">•</i> {{ __('Dashboard') }}
+                                    <i class="bi bi-graph-up text-success"></i> {{ __('Dashboard') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Linen_Monitoring') }}">
-                                    <i class="text-success">•</i> {{ __('Linen Monitoring') }}
+                                    <i class="bi bi-ui-checks-grid text-success"></i> {{ __('Linen Monitoring') }}
                                 </a>
                             </li>
                         </ul>
@@ -164,21 +164,21 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Maintenance') }}">
-                                    <i class="text-success">•</i> {{ __('Maintenance') }}
+                                    <i class="bi bi-tools text-success"></i> {{ __('Maintenance') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Guest_Request') }}">
-                                    <i class="text-success">•</i> {{ __('Guest Request') }}
+                                    <i class="bi bi-file-earmark-text text-success"></i> {{ __('Guest Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Housekeeping_Reports') }}">
-                                    <i class="text-success">•</i> {{ __('Reports') }}
+                                    <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
                                 </a>
                             </li>
                         </ul>
@@ -196,10 +196,24 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
-                        <i class="bi bi-box text-success"></i>
+                        <i class="bi bi-clipboard-data text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples3">
+                        {{-- <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
+                                    <i class="text-success">•</i> {{ __('Stock Availability') }}
+                                </a>
+                            </li>
+                        </ul> --}}
+                        {{-- <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('StockAvail') }}">
+                                    <i class="text-success">•</i> {{ __('Stock Movement History') }}
+                                </a>
+                            </li>
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
@@ -244,7 +258,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples5" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
-                        <i class="bi bi-gear text-success"></i></i>
+                        <i class="bi bi-gear text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Operations Management') }}</span>
                     </a>
                     <!-- <div class="collapse" id="navbar-examples4">
@@ -295,28 +309,28 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
-                        <i class="bi bi-person-lines-fill text-success"></i>
+                        <i class="bi bi-cash-coin text-success"></i>
                         <span class="nav-link-text text-default">{{ __('Finances') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples13">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('FinanceDashboard') }}">
+                                    <i class="bi bi-graph-up text-success"></i> {{ __('Finance Dashboard') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('Finance') }}">
-                                    <i class="text-success"></i> {{ __('Finance') }}
+                                    <i class="bi bi-cash-coin text-success"></i> {{ __('Finance') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('DailyReport') }}">
-                                    <i class="text-success"></i> {{ __('DailyReport') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('FinanceDashboard') }}">
-                                    <i class="text-success"></i> {{ __('FinanceDashboard') }}
+                                    <i class="bi-clipboard2-check text-success"></i> {{ __('Daily Report') }}
                                 </a>
                             </li>
                         </ul>
