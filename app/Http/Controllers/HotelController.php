@@ -28,9 +28,11 @@ class HotelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function front_desk()
     {
-        //
+        $room = DB::select('SELECT a.Room_No, a.Status, a.No_of_Beds, a.Extra_Bed FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No');
+		
+        return view('Admin.pages.FrontDesk', ['room'=>$room]);
     }
 
     /**

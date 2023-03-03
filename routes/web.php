@@ -49,6 +49,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
 
 	//Reservation
+		//Front Desk
+		Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+
 		Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 		Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 		
@@ -109,10 +112,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
 
 
-	//Front Desk
-		Route::get('FrontDesk', function(){
-		$room = DB::select('SELECT * FROM novadeci_suites');
-		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
+
 	
 	//Event inquiry
 		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
