@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hotel_reservations', function (Blueprint $table) {
-            $table->string('Booking_No')->primary();
+            $table->id();
+            $table->string('Booking_No');
+            $table->unique('Booking_No');
             
             $table->integer('Room_No');
             $table->index('Room_No');

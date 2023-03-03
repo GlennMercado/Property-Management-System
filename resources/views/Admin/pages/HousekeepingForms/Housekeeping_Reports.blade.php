@@ -3,8 +3,88 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
+ 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
+
+    <script type="text/javascript">
+        $.noConflict();
+       jQuery(document).ready(function($) {
+            //Table 1 
+            var table = $('#myTable').DataTable( {
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                buttons: [ 
+                            'pageLength',
+                            {
+                                extend: 'pdfHtml5',
+                                orientation: 'landscape',
+                                pageSize: 'LEGAL'
+                            },
+                            'excel', 'colvis', 'print' 
+                        ]
+            } );
+            table.buttons().container().insertBefore( '#myTable_filter' );
+
+            //Table 2 
+            var table2 = $('#myTable2').DataTable( {
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                buttons: [ 
+                            'pageLength',
+                            {
+                                extend: 'pdfHtml5',
+                                orientation: 'landscape',
+                                pageSize: 'LEGAL'
+                            },
+                            'excel', 'colvis', 'print' 
+                        ]
+            } );
+            table2.buttons().container().insertBefore( '#myTable2_filter' );
+
+            //Table 3 
+            var table3 = $('#myTable3').DataTable( {
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                buttons: [ 
+                            'pageLength',
+                            {
+                                extend: 'pdfHtml5',
+                                orientation: 'landscape',
+                                pageSize: 'LEGAL'
+                            },
+                            'excel', 'colvis', 'print' 
+                        ]
+            } );
+            table3.buttons().container().insertBefore( '#myTable3_filter' );
+
+            //Table 4 
+            var table4 = $('#myTable4').DataTable( {
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                buttons: [ 
+                            'pageLength',
+                            {
+                                extend: 'pdfHtml5',
+                                orientation: 'landscape',
+                                pageSize: 'LEGAL'
+                            },
+                            'excel', 'colvis', 'print' 
+                        ]
+            } );
+            table4.buttons().container().insertBefore( '#myTable4_filter' );
+        } );
+    </script>
 
 
     <div class="container-fluid mt--7">
@@ -59,15 +139,15 @@
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;"> </th>
-                                                <th scope="col" style="font-size:18px;">Booking No.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility<br>Type</th>
-                                                <th scope="col" style="font-size:18px;">Housekeeping<br>Status</th>
+                                                <th scope="col" style="font-size:18px;">No.</th>
+                                                <th scope="col" style="font-size:18px;">Booking Number</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                <th scope="col" style="font-size:18px;">Check-In<br>Date</th>
-                                                <th scope="col" style="font-size:18px;">Check-Out<br>Date</th>
+                                                <th scope="col" style="font-size:18px;">Check-In Date</th>
+                                                <th scope="col" style="font-size:18px;">Check-Out Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -99,19 +179,24 @@
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">No.</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
                                                 <th scope="col" style="font-size:18px;">Item Name</th>
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
-                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Quantity Requested</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
+                                                <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date Received</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $count = 1;
+                                            @endphp
                                             @foreach($list3 as $lists)
                                             <tr>
+                                                <td>{{$count}}</td>
                                                 <td>{{$lists->Room_No}}</td>
                                                 <td>{{$lists->name}}</td>
                                                 <td>{{$lists->Quantity}}</td>
@@ -131,6 +216,7 @@
                                                     {{date('H:i:s A', strtotime($lists->Date_Received)) }}
                                                 </td>
                                             </tr>
+                                            @php $count++; @endphp
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -143,16 +229,16 @@
                                     <table class="table align-items-center table-flush" id="myTable3">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;"> </th>
-                                                <th scope="col" style="font-size:18px;">Booking No.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility<br>Type</th>
+                                                <th scope="col" style="font-size:18px;">No.</th>
+                                                <th scope="col" style="font-size:18px;">Booking Number</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Description</th>
                                                 <th scope="col" style="font-size:18px;">Discovered By</th>
                                                 <th scope="col" style="font-size:18px;">Priority Level</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Due<br>Date</th>
-                                                <th scope="col" style="font-size:18px;">Date<br>Resolved</th>
+                                                <th scope="col" style="font-size:18px;">Due Date</th>
+                                                <th scope="col" style="font-size:18px;">Date Resolved</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -181,23 +267,28 @@
                                 {{-- Linen Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-4-tab">
-                                    <table class="table align-items-center table-flush" id="myTable2">
+                                    <table class="table align-items-center table-flush" id="myTable4">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">No.</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
                                                 <th scope="col" style="font-size:18px;">Item Name</th>
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
-                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Quantity Requested</th>
                                                 <th scope="col" style="font-size:18px;">Discrepancy</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
+                                                <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date Received</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $count = 1;
+                                            @endphp
                                             @foreach($list4 as $lists)
                                             <tr>
+                                                <td>{{$count}}</td>
                                                 <td>{{$lists->Room_No}}</td>
                                                 <td>{{$lists->name}}</td>
                                                 <td>{{$lists->Quantity}}</td>
@@ -218,6 +309,7 @@
                                                     {{date('H:i:s A', strtotime($lists->Date_Received)) }}
                                                 </td>
                                             </tr>
+                                            @php $count++; @endphp
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -234,30 +326,6 @@
 
 
 
-        <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
-            });
-            $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-                $('#myTable2').DataTable();
-                $('#myTable3').DataTable();
-                $('#myTable4').DataTable();
-            });
-            // $(document).ready(function() {
-            //     $("#optionselect").change(function() {
-            //         var selected = $("option:selected", this).val();
-            //         if (selected == 'Cleaned') {
-            //             $('#cleaned, #cleaned2').show();
-            //             $('#outofservice, #outofservice2').hide();
-            //         } else if (selected == 'Out of Service') {
-            //             $('#outofservice, #outofservice2').show();
-            //             $('#cleaned, #cleaned2').hide();
-            //         }
-            //     });
-            // });
-        </script>
         <style>
             .title {
                 text-transform: uppercase;

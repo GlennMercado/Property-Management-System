@@ -72,7 +72,13 @@ class HousekeeperController extends Controller
 
     public function housekeeping_reports()
     {
-        //$datenow = Carbon::now()->subDays(7);
+        //weekly
+        //$datenow = Carbon::now()->startofweek();
+        //$endweek = Carbon::now()->endofweek();
+
+        //monthly
+        // $datenow = Carbon::now()->startOfMonth();
+        // $endmonth = Carbon::now()->endofmonth();
 
         $datenow = Carbon::now();
         
@@ -83,6 +89,11 @@ class HousekeeperController extends Controller
         $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
                 ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
                 ->whereDate('Date_Resolved', '=', $datenow->format('Y-m-d'))->get();
+
+        //monthly
+        // $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
+        // ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
+        // ->whereDate('Date_Resolved', '>=', $datenow)->whereDate('Date_Resolved', '<=', $endmonth)->get();        
 
         $list3 = hotel_room_supplies_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
 
