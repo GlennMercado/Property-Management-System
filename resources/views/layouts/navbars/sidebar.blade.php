@@ -200,20 +200,20 @@
                         <span class="nav-link-text text-default">{{ __('Inventory Management') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples3">
-                        <ul class="nav nav-sm flex-column">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockAvailability') }}">
                                     <i class="text-success">•</i> {{ __('Stock Availability') }}
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
+                        </ul> --}}
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockAvail') }}">
                                     <i class="text-success">•</i> {{ __('Stock Movement History') }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
