@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\purchasereports;
+use App\Models\hotelstocks;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
@@ -27,6 +28,8 @@ class InventoryHotelSupplyController extends Controller
 
     public function supply_request_approval(Request $request)
     {
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+
       $id = $request->input('id');
       $roomno = $request->input('roomno');
       $productid = $request->input('productid');
@@ -49,6 +52,11 @@ class InventoryHotelSupplyController extends Controller
       {
         $total_quantity = $qty_owned + $quantity_given;
 
+        foreach($sql as $lists)
+                {
+                    $total_approved = $lists->total - $request->input('Quantity_Requested');
+                }
+
         $update = DB::table('hotel_room_supplies')->where('id', $id)->update(array(
                 'Quantity_Requested' => 0,
                 'Attendant' => "Unassigned",
@@ -56,6 +64,10 @@ class InventoryHotelSupplyController extends Controller
                 'Date_Received' => $datenow,
                 'Quantity' => $total_quantity
             ));
+
+           $approved = DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $total_approved]);
+                
+        
       }
       else
       {
@@ -70,7 +82,7 @@ class InventoryHotelSupplyController extends Controller
       }
 
 
-      if($update)
+      if($update || $approved)
       {
         $add = new hotel_room_supplies_reports;
 

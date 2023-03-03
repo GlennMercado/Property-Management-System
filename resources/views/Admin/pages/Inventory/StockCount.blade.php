@@ -269,7 +269,7 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h2 class="modal-title">{{ __('Edit Details') }}</h2>
+                                                    <h2 class="modal-title">{{ __('Adding Stock in a Room') }}</h2>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&plus;</span>

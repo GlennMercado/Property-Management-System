@@ -198,8 +198,13 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Finance', function () {
 			$list = DB::select('SELECT * FROM finances');
 			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
+			
 			//Finance Dashboard
-		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
+		Route::get('FinanceDashboard', function () {
+			$list = DB::select('SELECT * FROM finance_2_reports');
+			
+
+			return view('Admin.pages.FinanceDashboard', ['list'=>$list]);})->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
