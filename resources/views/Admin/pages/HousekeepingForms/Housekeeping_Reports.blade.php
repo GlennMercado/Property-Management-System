@@ -58,17 +58,23 @@
                                 {{-- Arrival / Departure --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
+                                    <select class="form-control" style="width:20%;" id="date">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
                                     <!-- Projects table -->
-                                  
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Booking Number</th>
                                                 <th scope="col" style="font-size:18px;">Room Number</th>
-                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Booking Number</th>
                                                 <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
-                                                
+                                                <th scope="col" style="font-size:18px;">Guest Name</th>
+                                                <th scope="col" style="font-size:18px;">Check-In Date</th>
+                                                <th scope="col" style="font-size:18px;">Check-Out Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -200,6 +206,63 @@
 $.noConflict();
 
 jQuery(function($) {
+
+    var table = $('#myTable').DataTable({
+        dom: 'lBfrtip',
+        orderCellsTop: true,
+        fixedHeader: true,
+        lengthChange: false,
+        processing: true,
+        serverSide: true,
+        buttons: [ 
+                'pageLength',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL'
+                },
+                'excel', 'colvis', 'print' 
+            ],
+        ajax: {
+            url: "{{route('Housekeeping_Reports.reports')}}",
+            data:function (d){
+                d.num = 1,
+                d.date = $('#date').val()
+            }
+        },
+        columns: [
+            {data: 'Room_No'},
+            {data: 'Booking_No'},
+            {data: 'Housekeeping_Status'},
+            {data: 'Attendant'},
+            {data: 'Guest_Name'},
+            {data: 'Check_In_Date', 
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            {data: 'Check_Out_Date',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            ]
+    });
+
+    table.buttons().container().insertBefore('#myTable_filter');
+
+    $('#date').change(function(){
+         table.draw();
+    });
+
 
     var table2 = $('#myTable2').DataTable({
         dom: 'lBfrtip',
