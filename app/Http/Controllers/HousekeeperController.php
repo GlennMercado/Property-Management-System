@@ -59,7 +59,7 @@ class HousekeeperController extends Controller
 
     public function Maintenance()
     {   
-        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+        $list = DB::SELECT('SELECT *, a.id FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
         $list2 = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1');
         
         return view('Housekeeper.Maintenances', ['list' => $list, 'list2' => $list2]);

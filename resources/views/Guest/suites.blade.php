@@ -36,10 +36,10 @@
                                 </div>
                                 <div class="mt-4">
                                     <h2 class="text-success">₱ 2,500</h2>
-                                    <h3 class="font-weight-bold">testing</h3>
-                                    <p class="text-sm">
+                                    <h3 class="font-weight-bold">Hotel Rooms</h3>
+                                    <!-- <p class="text-sm">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
-                                    </p>
+                                    </p> -->
                                     <h3 class="pt-4 text-muted pb-2">
                                         Additional ₱ 1,500/pax
                                     </h3>
