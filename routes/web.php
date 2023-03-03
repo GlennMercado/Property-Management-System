@@ -92,8 +92,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
-
-
+		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
+		
+		
+		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
 		Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -102,8 +104,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
-		Route::get('Housekeeping_Reports', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
-
+		
 
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');

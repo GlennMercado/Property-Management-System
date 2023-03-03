@@ -67,7 +67,7 @@ class InventoryHotelLinenController extends Controller
         {
           $total_quantity = $qty_owned;
   
-          $update = DB::table('hotel_room_supplies')->where('id', $id)->update(array(
+          $update = DB::table('hotel_room_linens')->where('id', $id)->update(array(
                   'Quantity_Requested' => 0,
                   'Attendant' => "Unassigned",
                   'Status' => $status,
@@ -94,12 +94,12 @@ class InventoryHotelLinenController extends Controller
   
           $add->save();
   
-          Alert::Success('Success', 'Supply Request Successfully Approved!');
+          Alert::Success('Success', 'Linen Request Successfully Approved!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
         }
         else
         {
-          Alert::Error('Failed', 'Supply Request Failed!');
+          Alert::Error('Failed', 'Linen Request Failed!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
         }
     }
