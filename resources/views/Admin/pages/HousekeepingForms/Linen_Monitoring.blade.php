@@ -207,7 +207,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ url('/linen_request') }}" class="prevent_submit"
+                                            <form action="{{ url('/linen_requests') }}" class="prevent_submit"
                                                 method="POST" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="modal-body">

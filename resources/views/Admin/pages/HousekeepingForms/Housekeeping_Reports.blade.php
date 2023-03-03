@@ -3,8 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
+ 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
 
 
     <div class="container-fluid mt--7">
@@ -56,38 +59,20 @@
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <!-- Projects table -->
+                                  
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;"> </th>
-                                                <th scope="col" style="font-size:18px;">Booking No.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility<br>Type</th>
-                                                <th scope="col" style="font-size:18px;">Housekeeping<br>Status</th>
+                                                <th scope="col" style="font-size:18px;">Booking Number</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
-                                                <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                <th scope="col" style="font-size:18px;">Check-In<br>Date</th>
-                                                <th scope="col" style="font-size:18px;">Check-Out<br>Date</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                @php
-                                                    $count = 1;
-                                                @endphp
-                                            @foreach ($list as $lists)
-                                                <tr>
-                                                    <td>{{ $count }}</td>
-                                                    <td>{{ $lists->Booking_No }}</td>
-                                                    <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Facility_Type }}</td>
-                                                    <td>{{ $lists->Housekeeping_Status }}</td>
-                                                    <td>{{ $lists->Attendant }}</td>
-                                                    <td>{{ $lists->Guest_Name }}</td>
-                                                    <td>{{ date('F j Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                    <td>{{ date('F j Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                </tr>
-                                                @php $count++; @endphp
-                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -95,43 +80,28 @@
                                 {{-- Supply Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
+                                    <select class="form-control" style="width:20%;" id="date2">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
                                                 <th scope="col" style="font-size:18px;">Item Name</th>
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
-                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Quantity Requested</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
+                                                <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date Received</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($list3 as $lists)
-                                            <tr>
-                                                <td>{{$lists->Room_No}}</td>
-                                                <td>{{$lists->name}}</td>
-                                                <td>{{$lists->Quantity}}</td>
-                                                <td>{{$lists->Quantity_Requested}}</td>
-                                                <td>{{$lists->Attendant}}</td>
-                                                @if($lists->Status == "Approved")
-                                                <td style="color:#5cb85c;">{{$lists->Status}}</td>
-                                                @else
-                                                <td style="color:#d9534f;">{{$lists->Status}}</td>
-                                                @endif
-                                                <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} 
-                                                    <br> 
-                                                    {{date('H:i:s A', strtotime($lists->Date_Requested)) }}
-                                                </td>
-                                                <td>{{ date('F j Y', strtotime($lists->Date_Received)) }} 
-                                                    <br> 
-                                                    {{date('H:i:s A', strtotime($lists->Date_Received)) }}
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -139,41 +109,28 @@
                                 {{-- Maintenance --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-3-tab">
+                                    <select class="form-control" style="width:20%;" id="date3">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable3">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;"> </th>
-                                                <th scope="col" style="font-size:18px;">Booking No.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Facility<br>Type</th>
+                                                <th scope="col" style="font-size:18px;">Booking Number</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Description</th>
                                                 <th scope="col" style="font-size:18px;">Discovered By</th>
                                                 <th scope="col" style="font-size:18px;">Priority Level</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Due<br>Date</th>
-                                                <th scope="col" style="font-size:18px;">Date<br>Resolved</th>
+                                                <th scope="col" style="font-size:18px;">Due Date</th>
+                                                <th scope="col" style="font-size:18px;">Date Resolved</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                                @php
-                                                    $count = 1;
-                                                @endphp
-                                            @foreach ($list2 as $lists)                                             
-                                                    <tr>
-                                                        <td>{{ $count }}</td>
-                                                        <td>{{ $lists->Booking_No }}</td>
-                                                        <td>{{ $lists->Room_No }}</td>
-                                                        <td>{{ $lists->Facility_Type }}</td>
-                                                        <td>{{ $lists->Description }}</td>
-                                                        <td>{{ $lists->Discovered_By }}</td>
-                                                        <td>{{ $lists->Priority_Level }}</td>
-                                                        <td>{{ $lists->Status }}</td>
-                                                        <td>{{ date('F j Y', strtotime($lists->Due_Date)) }}</td>
-                                                        <td>{{ date('F j Y', strtotime($lists->Date_Resolved)) }}</td>
-                                                    </tr>
-                                                @php $count++; @endphp
-                                            @endforeach
+                                        <tbody>    
                                         </tbody>
                                     </table>
                                 </div>
@@ -181,44 +138,27 @@
                                 {{-- Linen Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-4-tab">
-                                    <table class="table align-items-center table-flush" id="myTable2">
+                                    <select class="form-control" style="width:20%;" id="date4">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
+                                    <table class="table align-items-center table-flush" id="myTable4">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Room Number</th>
                                                 <th scope="col" style="font-size:18px;">Item Name</th>
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
-                                                <th scope="col" style="font-size:18px;">Quantity <br> Requested</th>
+                                                <th scope="col" style="font-size:18px;">Quantity Requested</th>
                                                 <th scope="col" style="font-size:18px;">Discrepancy</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Requested</th>
-                                                <th scope="col" style="font-size:18px;">Date <br> Received</th>
+                                                <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Date Received</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            @foreach($list4 as $lists)
-                                            <tr>
-                                                <td>{{$lists->Room_No}}</td>
-                                                <td>{{$lists->name}}</td>
-                                                <td>{{$lists->Quantity}}</td>
-                                                <td>{{$lists->Quantity_Requested}}</td>
-                                                <td>{{$lists->Discrepancy}}</td>
-                                                <td>{{$lists->Attendant}}</td>
-                                                @if($lists->Status == "Approved")
-                                                <td style="color:#5cb85c;">{{$lists->Status}}</td>
-                                                @else
-                                                <td style="color:#d9534f;">{{$lists->Status}}</td>
-                                                @endif
-                                                <td>{{ date('F j Y', strtotime($lists->Date_Requested)) }} 
-                                                    <br> 
-                                                    {{date('H:i:s A', strtotime($lists->Date_Requested)) }}
-                                                </td>
-                                                <td>{{ date('F j Y', strtotime($lists->Date_Received)) }} 
-                                                    <br> 
-                                                    {{date('H:i:s A', strtotime($lists->Date_Received)) }}
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                        <tbody>          
                                         </tbody>
                                     </table>
                                 </div>
@@ -234,30 +174,6 @@
 
 
 
-        <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
-            });
-            $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-                $('#myTable2').DataTable();
-                $('#myTable3').DataTable();
-                $('#myTable4').DataTable();
-            });
-            // $(document).ready(function() {
-            //     $("#optionselect").change(function() {
-            //         var selected = $("option:selected", this).val();
-            //         if (selected == 'Cleaned') {
-            //             $('#cleaned, #cleaned2').show();
-            //             $('#outofservice, #outofservice2').hide();
-            //         } else if (selected == 'Out of Service') {
-            //             $('#outofservice, #outofservice2').show();
-            //             $('#cleaned, #cleaned2').hide();
-            //         }
-            //     });
-            // });
-        </script>
         <style>
             .title {
                 text-transform: uppercase;
@@ -280,6 +196,216 @@
             }
         </style>
 
+<script type="text/javascript">
+$.noConflict();
+
+jQuery(function($) {
+
+    var table2 = $('#myTable2').DataTable({
+        dom: 'lBfrtip',
+        orderCellsTop: true,
+        fixedHeader: true,
+        lengthChange: false,
+        processing: true,
+        serverSide: true,
+        buttons: [ 
+                'pageLength',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL'
+                },
+                'excel', 'colvis', 'print' 
+            ],
+        ajax: {
+            url: "{{route('Housekeeping_Reports.reports')}}",
+            data:function (d){
+                d.num = 2,
+                d.date2 = $('#date2').val()
+            }
+        },
+        columns: [
+            {data: 'Room_No'},
+            {data: 'name'},
+            {data: 'Quantity'},
+            {data: 'Quantity_Requested'},
+            {data: 'Attendant'},
+            {data: 'Status'},
+            {data: 'Date_Requested',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
+                }
+            },
+            {data: 'Date_Received',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
+                }}
+            ]
+    });
+
+    table2.buttons().container().insertBefore('#myTable2_filter');
+
+    $('#date2').change(function(){
+         table2.draw();
+    });
+
+    var table3 = $('#myTable3').DataTable({
+        dom: 'lBfrtip',
+        orderCellsTop: true,
+        fixedHeader: true,
+        lengthChange: false,
+        processing: true,
+        serverSide: true,
+        buttons: [ 
+                'pageLength',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL'
+                },
+                'excel', 'colvis', 'print' 
+            ],
+        ajax: {
+            url: "{{route('Housekeeping_Reports.reports')}}",
+            data:function (d){
+                d.num = 3,
+                d.date3 = $('#date3').val()
+            }
+        },
+        columns: [
+            {data: 'Booking_No'},
+            {data: 'Room_No'},
+            {data: 'Facility_Type'},
+            {data: 'Description'},
+            {data: 'Discovered_By'},
+            {data: 'Priority_Level'},
+            {data: 'Status'},
+            {data: 'Due_Date',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            {data: 'Date_Resolved',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            ]
+    });
+
+    table3.buttons().container().insertBefore('#myTable3_filter');
+
+    $('#date3').change(function(){
+         table3.draw();
+    });
+
+    var table4 = $('#myTable4').DataTable({
+        dom: 'lBfrtip',
+        orderCellsTop: true,
+        fixedHeader: true,
+        lengthChange: false,
+        processing: true,
+        serverSide: true,
+        buttons: [ 
+                'pageLength',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL'
+                },
+                'excel', 'colvis', 'print' 
+            ],
+        ajax: {
+            url: "{{route('Housekeeping_Reports.reports')}}",
+            data:function (d){
+                d.num = 4,
+                d.date4 = $('#date4').val()
+            }
+        },
+        columns: [
+            {data: 'Room_No'},
+            {data: 'name'},
+            {data: 'Quantity'},
+            {data: 'Quantity_Requested'},
+            {data: 'Discrepancy'},
+            {data: 'Attendant'},
+            {data: 'Status'},
+            {data: 'Date_Requested',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
+                }
+            },
+            {data: 'Date_Received',
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
+                }}
+            ]
+    });
+
+    table4.buttons().container().insertBefore('#myTable4_filter');
+
+    $('#date4').change(function(){
+         table4.draw();
+    });
+
+});
+</script>
     </div>
 @endsection
 

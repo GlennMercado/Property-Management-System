@@ -48,7 +48,7 @@
                                             <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
                                                 data-target="#ModalUpdate{{ $lists->productid }}"><i
                                                     class="bi bi-pencil-square"></i></button>
-                                            <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
+                                            <button class="btn btn-sm btn-success btn-lg" data-toggle="modal"
                                                 data-target="#ModalAdd{{ $lists->productid }}"><i
                                                     class="bi bi-plus"></i></button>
                                         </td>

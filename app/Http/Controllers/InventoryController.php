@@ -8,6 +8,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_linen;
+use App\Models\hotel_room_supplies_reports;
+use App\Models\hotel_room_linens_reports;
 use Carbon\Carbon;
 
 class InventoryController extends Controller
@@ -50,9 +52,14 @@ class InventoryController extends Controller
     public function StockReport()
     {
        //Hotel Reports
-		$list = DB::select('SELECT * FROM stockhistories');
 
-		return view('Admin.pages.Inventory.StockReports', ['list'=>$list]);
+        $datenow = Carbon::now();
+
+        $list2 = hotel_room_supplies_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
+
+        $list = hotel_room_linens_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
+
+        return view('Admin.pages.Inventory.StockReports', ['list'=>$list, 'list2'=>$list2]);
 	
     
     }
@@ -109,10 +116,7 @@ class InventoryController extends Controller
                 if($supply->save())
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
-                    //history
-                    // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                    // values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
-    
+        
                     Alert::Success('Success', 'Stock Successfully Added to Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
                 }
@@ -194,6 +198,7 @@ class InventoryController extends Controller
      */
     public function addstock(Request $request)
     {
+       //dd($request->all());
         $this->validate($request,[
             'productid' => 'required',
             'category' => 'required',

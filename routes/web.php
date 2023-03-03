@@ -49,6 +49,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
 
 	//Reservation
+		//Front Desk
+		Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+
 		Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 		Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
 		
@@ -89,8 +92,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
-
-
+		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
+		
+		
+		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
 		Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -99,8 +104,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
-		Route::get('Housekeeping_Reports', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
-
+		
 
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
@@ -109,10 +113,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
 
 
-	//Front Desk
-		Route::get('FrontDesk', function(){
-		$room = DB::select('SELECT * FROM novadeci_suites');
-		return view('Admin.pages.FrontDesk', ['room'=>$room]); })->name('FrontDesk');
+
 	
 	//Event inquiry
 		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');

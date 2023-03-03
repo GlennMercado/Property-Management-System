@@ -35,8 +35,7 @@
                                 @foreach ($list as $lists)
                                     <tr>
                                         <td>
-                                            <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                data-target="#update{{$lists->id}}"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal" data-target="#update{{$lists->id}}"><i class="bi bi-pencil-square"></i></button>
                                         </td>
                                         <td style="font-size:16px;">{{ $lists->Room_No }}</td>
                                         <td style="font-size:16px;">{{ $lists->name }}</td>

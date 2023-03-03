@@ -49,7 +49,6 @@
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
                                         <tr>
-                                    <th scope="col" style="font-size:16px;">Action</th>
                                     <th scope="col" style="font-size:16px;">Room Number</th>
                                     <th scope="col" style="font-size:16px;">Item Name</th>
                                     <th scope="col" style="font-size:16px;">Discrepancy</th>
@@ -61,15 +60,6 @@
                                         <tbody>
                                         @foreach ($list as $lists)
                                             <tr>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                        data-target="#ModalView{{ $lists->productid }}"><i
-                                                            class="bi bi-eye"></i></button>
-                                                    <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
-                                                        data-target="#ModalUpdate{{ $lists->productid }}"><i
-                                                            class="bi bi-pencil-square"></i></button>
-                                                </td>
-                                                <td>{{ $lists->name }}</td>
                                                 <td>{{ $lists->Room_No }}</td>
                                                 <td>{{ $lists->name }}</td>
                                                 <td>{{ $lists->Discrepancy }}</td>
@@ -88,24 +78,27 @@
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead>
                                             <tr>
-                                            <th scope="col" style="font-size:16px;">Action</th>
                                             <th scope="col" style="font-size:16px;">Room No.</th>
                                             <th scope="col" style="font-size:16px;">Item Name</th>
+                                            <th scope="col" style="font-size:16px;">Quantity</th>
+                                            <th scope="col" style="font-size:16px;">Attendant</th>
+                                            <th scope="col" style="font-size:16px;">Status</th>
                                             <th scope="col" style="font-size:16px;">RequestedQuantity</th>
                                             <th scope="col" style="font-size:16px;">DateRequested</th>
+                                            <th scope="col" style="font-size:16px;">DateReceived</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list as $lists)
+                                        @foreach ($list2 as $lists2)
                                             <tr>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                        data-target="#ModalUpdate4"><i class="bi bi-pencil-square"></i></button>
-                                                </td>
-                                                <td style="font-size:16px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:16px;">{{ $lists->name }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Quantity_Requested }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Date_Requested }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Room_No }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->name }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Quantity }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Attendant }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Status }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Quantity_Requested }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Date_Requested }}</td>
+                                                <td style="font-size:16px;">{{ $lists2->Date_Received }}</td>
                                             </tr>
                                             @endforeach
                                             </tbody>
