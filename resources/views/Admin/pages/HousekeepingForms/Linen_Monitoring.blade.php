@@ -143,7 +143,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room
-                                                    {{ $arrays['Room_No'] }} Supplies
+                                                    {{ $arrays['Room_No'] }} Linens
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
@@ -233,6 +233,8 @@
                                                                         value="{{ $lists->name }}" readonly>
                                                                     <input type="hidden" name="name[]"
                                                                         value="{{ $lists->name }}">
+                                                                        <input type="hidden" name="stats[]"
+                                                                            value="{{ $lists->Status }}">
                                                                 </div>
                                                                 <div class="col">
                                                                     <input type="text" class="form-control"
