@@ -27,9 +27,17 @@
             </div>
         </div>
     </div>
+    <?php
+// Sample data for sales by month
+$salesData = [1, 2, 1.5, 3, 2, 3.5];
+
+// Convert the data to a JSON-encoded string
+$dataString = json_encode($salesData);
+?>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-
+         var data = <?php echo $dataString; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -37,7 +45,7 @@
                 labels: ['Cash/GCash', 'Unearned Income', 'Bank Transfer/Direct to Bank', 'Cheque', 'Basketball', 'Unearned Income'],
                 datasets: [{
                     label: '',
-                    data: [0, 0, 0, 5, 2, 3],
+                    data: [data],
                     backgroundColor: [
                         '#55b948',
                         '#55b948',
@@ -70,6 +78,7 @@
         
         
     </script>
+    
     
 @endsection
 
