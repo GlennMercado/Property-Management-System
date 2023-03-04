@@ -38,8 +38,8 @@
                                     <h2 class="text-success">₱ 2,500</h2>
                                     <h3 class="font-weight-bold">Hotel Rooms</h3>
                                     <!-- <p class="text-sm">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
-                                    </p> -->
+                                                                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
+                                                                                                </p> -->
                                     <h3 class="pt-4 text-muted pb-2">
                                         Additional ₱ 1,500/pax
                                     </h3>
@@ -171,9 +171,9 @@
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
-                                    <input class="form-control" type="number" minlength="11" maxlength="11"
-                                        name="mobile" min="0" oninput="this.value = Math.abs(this.value)"
-                                        required>
+                                    <input class="form-control" type="number" name="mobile" min="0"
+                                        value="09" placeholder="09XXXXXXXXX"
+                                        onKeyPress="if(this.value.length==11) return false;" required>
 
                                     <div id="balls"></div>
 
@@ -351,19 +351,93 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h2 class="modal-title" id="exampleModalLongTitle">TERMS AND CONDITIONS</h2>
+                                            <h1 class="modal-title" id="exampleModalLongTitle">TERMS AND CONDITIONS</h1>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p style="text-align: justify;">
+                                            <h2>Article 1</h2>
+                                            <p class="justify-center">Any accommodation agreements or other related
+                                                contracts entered
+                                                into between the NOVADECI and the guest, including the hotel
+                                                reservations, commercial space booking, and convention center
+                                                rental shall be governed by these Terms and Conditions. All
+                                                issues that are not expressly stated in the Terms and Conditions
+                                                shall be ruled by law.</p>
 
-                                            <h2 style="text-align: center;"><b></b></h2>
+                                            <h2>Article 2</h2>
+                                            <p class="justify-center">
+                                                1. For guests who’s applying for an Hotel Reservation they
+                                                shall provide the NOVADECI the following information.
+                                            </p>
+                                            <li class="justify-center ml-4">Name of booker and guest, in case
+                                                booked by a representative.</li>
+                                            <li class="justify-center ml-4">Company name.</li>
+                                            <li class="justify-center ml-4">Contact number.</li>
+                                            <li class="justify-center ml-4">Email.</li>
+                                            <li class="justify-center ml-4">Arrival and Departure dates.</li>
+                                            <li class="justify-center ml-4">Method of payment.</li>
+                                            <li class="justify-center ml-4">Credit card details, if applicable.</li>
+                                            <li class="justify-center ml-4">Any special requests (extra pillow/mattress,
+                                                towels, etc.).</li>
+                                            <li class="justify-center ml-4">The date of stay and estimated time of arrival
+                                            </li>
+                                            <p class="justify-center pt-4">
+                                                2. Valid ID with photo or passport must be presented at Front Desk upon
+                                                check-in.
+                                            </p>
+                                            <p class="justify-center">
+                                                3. The standard check-out time is 12 NN; Check-in time is 2 PM. Early
+                                                check-in and late check-out may be requested at the Front Office and will be
+                                                subject to availability. If available, charges may apply.
+                                            </p>
+                                            <p class="justify-center">
+                                                4. The date of stay and estimated time of arrival.
+                                            </p>
+                                            <p class="justify-center">
+                                                5. If the guest wants to extend their stay over the reserved date specified
+                                                in paragraph 4, an application for a new reservation is assumed to have been
+                                                submitted at the moment the request was made.
+                                            </p>
+                                            <p class="justify-center">
+                                                6. Advance full payment is required for a successful reservation. A copy or
+                                                a screenshot of proof of payment must be sent upon making the reservation.
+                                                Full payment should be settled through:
+                                            </p>
+                                            <p class="ml-4">
+                                                (a) via Cash or Credit Card at Front Desk.
+                                            </p>
+                                            <p class="ml-4">
+                                                (b) via Online Payment.
+                                            </p>
+                                            <p class="ml-4">
+                                                (c) via Bank Deposit at least 3 banking days prior to check-in.
+                                            </p>
+                                            <p class="justify-center">
+                                                7. Night extensions may be accommodated and are subject to availability.
+                                                Charges will apply.
+                                            </p>
+                                            <p class="justify-center">
+                                                8. Reservation Confirmation will be generated for online bookings will be
+                                                sent through the guests registered email address and must be sent only once
+                                                proof of payment is validated.
+                                            </p>
+                                            <p class="justify-center">
+                                                9. Cancellation Confirmation Letter stating the reference number shall be
+                                                issued to guests, for canceled reservations.
+                                            </p>
+                                            <p class="justify-center">
+                                                10. In the event the guest did not show up on the
+                                                scheduled arrival date, with no prior amendments on reservation or notice of
+                                                cancellation, he/she will be charged the equivalent of one night’s
+                                                accommodation.</p>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
+                                                <button type="button" class="btn btn-outline-danger"
                                                     data-dismiss="modal">Close</button>
+                                                <button type="button" onclick="checkCheckbox()"
+                                                    class="btn btn-success" data-dismiss="modal">I Agree</button>
                                             </div>
                                         </div>
                                     </div>
@@ -377,7 +451,6 @@
                                 </div>
                             </div>
                             <div>
-
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
                                 <div>
                                 </div>
@@ -474,32 +547,9 @@
                                     </div> --}}
                 <div class="row mt-4">
                     <div class="col">
-
-
-
-                        <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
-                                                                                            <div class = "qrsample mx-auto d-flex justify-content-center">
-                                                                                            <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
-                                                                                            </div>
-                                                                                            <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
-                                                                                            <p class = "d-flex justify-content-center">xxxxxxxx098</p>
-                                                                                            <div class="mb-3 d-flex justify-content-center">
-                                                                                            <label for="formFile" class="form-label"></label>
-                                                                                            <input class="form-control w-50" type="file" id="formFile">
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            </div>
-                                                                                            <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
-                                                                                            free of charge. If within (3) calendar days, guests will be charged of the total
-                                                                                            price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                                                                            <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-                                                                                            </p> -->
-
+                        <!-- <p class = " d-flex justify-content-center">scan here to pay</p>                                                                                                                                                   </p> -->
                     </div>
                     </form>
-
-
-
                 </div>
                 <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -608,6 +658,16 @@
         <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button> -->
         <style>
             /* gallery */
+            /* disable arrows input type number */
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
 
             .image-container {
                 position: relative;
@@ -755,34 +815,34 @@
 
             /* scroll to top arrow */
             /* #myBtn {
-                                                                                                                                                display: none;
-                                                                                                                                                position: fixed;
-                                                                                                                                                bottom: 20px;
-                                                                                                                                                right: 30px;
-                                                                                                                                                z-index: 99;
-                                                                                                                                                font-size: 18px;
-                                                                                                                                                border: none;
-                                                                                                                                                outline: none;
-                                                                                                                                                background-color: #484848;
-                                                                                                                                                color: white;
-                                                                                                                                                cursor: pointer;
-                                                                                                                                                padding: 15px;
-                                                                                                                                                border-radius: 4px;
-                                                                                                                                                opacity: 0.5;
-                                                                                                                                                }
+                                                                                                                                                                                                            display: none;
+                                                                                                                                                                                                            position: fixed;
+                                                                                                                                                                                                            bottom: 20px;
+                                                                                                                                                                                                            right: 30px;
+                                                                                                                                                                                                            z-index: 99;
+                                                                                                                                                                                                            font-size: 18px;
+                                                                                                                                                                                                            border: none;
+                                                                                                                                                                                                            outline: none;
+                                                                                                                                                                                                            background-color: #484848;
+                                                                                                                                                                                                            color: white;
+                                                                                                                                                                                                            cursor: pointer;
+                                                                                                                                                                                                            padding: 15px;
+                                                                                                                                                                                                            border-radius: 4px;
+                                                                                                                                                                                                            opacity: 0.5;
+                                                                                                                                                                                                            }
 
-                                                                                                                                                #myBtn:hover {
-                                                                                                                                                background-color: #555;
-                                                                                                                                                } */
+                                                                                                                                                                                                            #myBtn:hover {
+                                                                                                                                                                                                            background-color: #555;
+                                                                                                                                                                                                            } */
             /* .centered {
-                                                                                                                                            font-size:30px;
-                                                                                                                                            position: absolute;
-                                                                                                                                            bottom: 410px;
-                                                                                                                                            right: 200px;
-                                                                                                                                            color:white;
-                                                                                                                                            -webkit-text-stroke-width: 1px;
-                                                                                                                                            -webkit-text-stroke-color: black;
-                                                                                                                                        } */
+                                                                                                                                                                                                        font-size:30px;
+                                                                                                                                                                                                        position: absolute;
+                                                                                                                                                                                                        bottom: 410px;
+                                                                                                                                                                                                        right: 200px;
+                                                                                                                                                                                                        color:white;
+                                                                                                                                                                                                        -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                                        -webkit-text-stroke-color: black;
+                                                                                                                                                                                                    } */
             input[type="text"].disabled {
                 pointer-events: none;
                 opacity: 0.5;
@@ -794,6 +854,10 @@
             }
         </style>
         <script>
+            function checkCheckbox() {
+                var checkbox = document.getElementById("customCheckRegister");
+                checkbox.checked = true;
+            }
             $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
                 var dateToday = new Date();
                 var month = dateToday.getMonth() + 1;
