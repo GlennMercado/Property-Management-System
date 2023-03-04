@@ -38,8 +38,8 @@
                                     <h2 class="text-success">₱ 2,500</h2>
                                     <h3 class="font-weight-bold">Hotel Rooms</h3>
                                     <!-- <p class="text-sm">
-                                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
-                                                                        </p> -->
+                                                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
+                                                                            </p> -->
                                     <h3 class="pt-4 text-muted pb-2">
                                         Additional ₱ 1,500/pax
                                     </h3>
@@ -437,7 +437,7 @@
 
 
                 </div>
-
+               
                 {{-- modal submit --}}
                 {{-- WAG TATANGGALIN --}}
                 {{-- <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -529,22 +529,22 @@
 
 
                         <!-- <p class = " d-flex justify-content-center">scan here to pay</p>
-                                                                                                                                <div class = "qrsample mx-auto d-flex justify-content-center">
-                                                                                                                                <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
-                                                                                                                                </div>
-                                                                                                                                <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
-                                                                                                                                <p class = "d-flex justify-content-center">xxxxxxxx098</p>
-                                                                                                                                <div class="mb-3 d-flex justify-content-center">
-                                                                                                                                <label for="formFile" class="form-label"></label>
-                                                                                                                                <input class="form-control w-50" type="file" id="formFile">
-                                                                                                                                </div>
-                                                                                                                                </div>
-                                                                                                                                </div>
-                                                                                                                                <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
-                                                                                                                                free of charge. If within (3) calendar days, guests will be charged of the total
-                                                                                                                                price. Refund, In case of guaranteed reservation, is payable through check issuance
-                                                                                                                                <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
-                                                                                                                                </p> -->
+                                                                                                                                    <div class = "qrsample mx-auto d-flex justify-content-center">
+                                                                                                                                    <img src="{{ asset('nvdcpics') }}/nvdcqr.png" class = "" alt="">
+                                                                                                                                    </div>
+                                                                                                                                    <h3 class = "text-uppercase mt-4 d-flex justify-content-center">novadeci properties</h3>
+                                                                                                                                    <p class = "d-flex justify-content-center">xxxxxxxx098</p>
+                                                                                                                                    <div class="mb-3 d-flex justify-content-center">
+                                                                                                                                    <label for="formFile" class="form-label"></label>
+                                                                                                                                    <input class="form-control w-50" type="file" id="formFile">
+                                                                                                                                    </div>
+                                                                                                                                    </div>
+                                                                                                                                    </div>
+                                                                                                                                    <p class = "text-justify">Any cancellation done more than (3) calendar days before check in date will be
+                                                                                                                                    free of charge. If within (3) calendar days, guests will be charged of the total
+                                                                                                                                    price. Refund, In case of guaranteed reservation, is payable through check issuance
+                                                                                                                                    <a href="#" class = "text-success" data-toggle="modal" data-target="#PolicyModal">Company Policy</a>
+                                                                                                                                    </p> -->
 
                     </div>
                     </form>
@@ -813,34 +813,34 @@
 
             /* scroll to top arrow */
             /* #myBtn {
-                                                                                                                                                                                    display: none;
-                                                                                                                                                                                    position: fixed;
-                                                                                                                                                                                    bottom: 20px;
-                                                                                                                                                                                    right: 30px;
-                                                                                                                                                                                    z-index: 99;
-                                                                                                                                                                                    font-size: 18px;
-                                                                                                                                                                                    border: none;
-                                                                                                                                                                                    outline: none;
-                                                                                                                                                                                    background-color: #484848;
-                                                                                                                                                                                    color: white;
-                                                                                                                                                                                    cursor: pointer;
-                                                                                                                                                                                    padding: 15px;
-                                                                                                                                                                                    border-radius: 4px;
-                                                                                                                                                                                    opacity: 0.5;
-                                                                                                                                                                                    }
+                                                                                                                                                                                        display: none;
+                                                                                                                                                                                        position: fixed;
+                                                                                                                                                                                        bottom: 20px;
+                                                                                                                                                                                        right: 30px;
+                                                                                                                                                                                        z-index: 99;
+                                                                                                                                                                                        font-size: 18px;
+                                                                                                                                                                                        border: none;
+                                                                                                                                                                                        outline: none;
+                                                                                                                                                                                        background-color: #484848;
+                                                                                                                                                                                        color: white;
+                                                                                                                                                                                        cursor: pointer;
+                                                                                                                                                                                        padding: 15px;
+                                                                                                                                                                                        border-radius: 4px;
+                                                                                                                                                                                        opacity: 0.5;
+                                                                                                                                                                                        }
 
-                                                                                                                                                                                    #myBtn:hover {
-                                                                                                                                                                                    background-color: #555;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                        #myBtn:hover {
+                                                                                                                                                                                        background-color: #555;
+                                                                                                                                                                                        } */
             /* .centered {
-                                                                                                                                                                                font-size:30px;
-                                                                                                                                                                                position: absolute;
-                                                                                                                                                                                bottom: 410px;
-                                                                                                                                                                                right: 200px;
-                                                                                                                                                                                color:white;
-                                                                                                                                                                                -webkit-text-stroke-width: 1px;
-                                                                                                                                                                                -webkit-text-stroke-color: black;
-                                                                                                                                                                            } */
+                                                                                                                                                                                    font-size:30px;
+                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                    bottom: 410px;
+                                                                                                                                                                                    right: 200px;
+                                                                                                                                                                                    color:white;
+                                                                                                                                                                                    -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                    -webkit-text-stroke-color: black;
+                                                                                                                                                                                } */
             input[type="text"].disabled {
                 pointer-events: none;
                 opacity: 0.5;
@@ -852,6 +852,9 @@
             }
         </style>
         <script>
+            // textbox disable/enable
+
+
             function checkCheckbox() {
                 var checkbox = document.getElementById("customCheckRegister");
                 checkbox.checked = true;

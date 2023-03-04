@@ -92,7 +92,7 @@ class InventoryController extends Controller
                 {
                     if($lists->total < $request->input('quantity'))
                     {
-                        Alert::Error('Error', 'Quantity Requested is Higher than Inventory Stock!');
+                        Alert::Error('Error', 'The requested quantity exceeds the available stock!');
                         return redirect('StockCount')->with('Success', 'Data Updated');
                     }
                     else
@@ -117,12 +117,12 @@ class InventoryController extends Controller
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
         
-                    Alert::Success('Success', 'Stock Successfully Added to Room!');
+                    Alert::Success('Success', 'Successfully added to room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
                 }
                 else
                 {
-                    Alert::Error('Error', 'Stock Failed Adding to Room!');
+                    Alert::Error('Error', 'Failed Adding to Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
                 }
             }
@@ -140,7 +140,7 @@ class InventoryController extends Controller
                 {
                     if($lists->total < $request->input('quantity'))
                     {
-                        Alert::Error('Error', 'Quantity Requested is Higher than Inventory Stock!');
+                        Alert::Error('Error', 'The requested quantity exceeds the available stock!');
                         return redirect('StockCount')->with('Success', 'Data Updated');
                     }
                     else
@@ -165,12 +165,12 @@ class InventoryController extends Controller
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
     
-                    Alert::Success('Success', 'Stock Successfully Added to Room!');
+                    Alert::Success('Success', 'Successfully Added to Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
                 }
                 else
                 {
-                    Alert::Error('Error', 'Stock Failed Adding to Room!');
+                    Alert::Error('Error', 'Failed Adding Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
                 }
             }
@@ -244,7 +244,7 @@ class InventoryController extends Controller
        
        if($stock->save())
         {
-            Alert::Success('Success', 'Stock Successfully Submitted!');
+            Alert::Success('Success', 'Stock Successfully Added!');
             return redirect('StockCount')->with('Success', 'Data Saved');
         }
         else
@@ -315,14 +315,14 @@ class InventoryController extends Controller
             ));
 
     
-           Alert::Success('Success', 'Stock Successfully Updated!');
+           Alert::Success('Success', 'Successfully Updated!');
            return redirect('StockCount')->with('Success', 'Data Updated');
 
           
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Failed', 'Stock Edit Failed!');
+            Alert::Error('Failed', 'Edit Failed!');
             return redirect('StockCount')->with('Failed', 'Data not Updated');
         }
     }
@@ -370,7 +370,7 @@ class InventoryController extends Controller
        
        if($stock->save())
         {
-            Alert::Success('Success', 'Stock Successfully Submitted!');
+            Alert::Success('Success', 'Successfully Submitted!');
             return redirect('StockCount')->with('Success', 'Data Saved');
         }
         else
