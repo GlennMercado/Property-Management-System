@@ -63,7 +63,7 @@
                                         <option value="Daily">Daily</option>
                                         <option value="Weekly">Weekly</option>
                                         <option value="Monthly">Monthly</option>
-                                    </select>
+                                    </select>  
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
@@ -227,7 +227,8 @@ jQuery(function($) {
             url: "{{route('Housekeeping_Reports.reports')}}",
             data:function (d){
                 d.num = 1,
-                d.date = $('#date').val()
+                d.date = $('#date').val(),
+                d.search = $('#search1').val()
             }
         },
         columns: [
@@ -257,6 +258,8 @@ jQuery(function($) {
             ]
     });
 
+    $('#myTable_filter input[type="search"]').prop('id', 'search1');
+
     table.buttons().container().insertBefore('#myTable_filter');
 
     $('#date').change(function(){
@@ -284,7 +287,8 @@ jQuery(function($) {
             url: "{{route('Housekeeping_Reports.reports')}}",
             data:function (d){
                 d.num = 2,
-                d.date2 = $('#date2').val()
+                d.date2 = $('#date2').val(),
+                d.search2 = $('#search2').val()
             }
         },
         columns: [
@@ -330,6 +334,8 @@ jQuery(function($) {
             ]
     });
 
+    $('#myTable2_filter input[type="search"]').prop('id', 'search2');
+
     table2.buttons().container().insertBefore('#myTable2_filter');
 
     $('#date2').change(function(){
@@ -356,7 +362,8 @@ jQuery(function($) {
             url: "{{route('Housekeeping_Reports.reports')}}",
             data:function (d){
                 d.num = 3,
-                d.date3 = $('#date3').val()
+                d.date3 = $('#date3').val(),
+                d.search3 = $('#search3').val()
             }
         },
         columns: [
@@ -388,6 +395,8 @@ jQuery(function($) {
             ]
     });
 
+    $('#myTable3_filter input[type="search"]').prop('id', 'search3');
+
     table3.buttons().container().insertBefore('#myTable3_filter');
 
     $('#date3').change(function(){
@@ -414,7 +423,8 @@ jQuery(function($) {
             url: "{{route('Housekeeping_Reports.reports')}}",
             data:function (d){
                 d.num = 4,
-                d.date4 = $('#date4').val()
+                d.date4 = $('#date4').val(),
+                d.search4 = $('#search4').val()
             }
         },
         columns: [
@@ -460,6 +470,8 @@ jQuery(function($) {
                 }}
             ]
     });
+
+    $('#myTable4_filter input[type="search"]').prop('id', 'search4');
 
     table4.buttons().container().insertBefore('#myTable4_filter');
 
