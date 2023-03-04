@@ -66,48 +66,56 @@
                                         </tr>
                                     </thead>
                                     <tbody class="list">
-                                        @foreach($list as $lists)
-                                        @if($lists->Booking_Status != "Checked-Out" && $lists->IsArchived != 1)
-                                        <tr>
-                                            <td>{{$lists->Room_No}}</td>
-                                            <td>{{$lists->No_of_Pax}}</td>
-                                            <td>{{$lists->Payment_Status}}</td>
-                                            <td>{{$lists->Booking_Status}}</td>
-                                            <td>
-                                                @if($lists->Payment_Status == "Paid")
-                                                    <!--View Button-->
-                                                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                                data-target="#view_qr{{ $lists->Booking_No }}"> 
-                                                        View QR
-                                                    </button>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                            <!--View-->
-                                            <div class="modal fade" id="view_qr{{ $lists->Booking_No }}" tabindex="-1"
-                                                role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                                                Hotel Reservation QR CODE
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
+                                        @foreach ($list as $lists)
+                                            @if ($lists->Booking_Status != 'Checked-Out' && $lists->IsArchived != 1)
+                                                <tr>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->No_of_Pax }}</td>
+                                                    <td>{{ $lists->Payment_Status }}</td>
+                                                    {{-- <td>{{$lists->Booking_Status}}</td> --}}
+                                                    {{-- button for uploading proof of payment --}}
+                                                    <td><button type="button" class="btn btn-sm btn-outline-primary"
+                                                            data-toggle="modal" data-target="#exampleModal">
+                                                            Upload Payment
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        @if ($lists->Payment_Status == 'Paid')
+                                                            <!--View Button-->
+                                                            <button class="btn btn-sm btn-outline-primary"
+                                                                data-toggle="modal"
+                                                                data-target="#view_qr{{ $lists->Booking_No }}">
+                                                                View QR
                                                             </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            {!! QrCode::size(200)->generate($lists->Booking_No) !!}
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <!--View-->
+                                                <div class="modal fade" id="view_qr{{ $lists->Booking_No }}" tabindex="-1"
+                                                    role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    Hotel Reservation QR CODE
+                                                                </p>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body d-flex justify-content-center">
+                                                                {!! QrCode::size(200)->generate($lists->Booking_No) !!}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -117,7 +125,26 @@
                     </div>
                 </div>
             </div>
-
+            {{-- Proof of Payment Modal --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title" id="exampleModalLabel">Send Proof of Payment</h1>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="file" class = "form-control">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <!-- Finished Booking -->
             <div class="col-xl-8 order-xl-1 mt-10">
                 <div class="card bg-secondary shadow">
@@ -140,42 +167,46 @@
                                         </tr>
                                     </thead>
                                     <tbody class="list">
-                                        @foreach($list as $lists)
-                                            @if($lists->Booking_Status == "Checked-Out" && $lists->IsArchived == 1)
+                                        @foreach ($list as $lists)
+                                            @if ($lists->Booking_Status == 'Checked-Out' && $lists->IsArchived == 1)
                                                 <tr>
-                                                    <td>{{$lists->Room_No}}</td>
-                                                    <td>{{$lists->No_of_Pax}}</td>
-                                                    <td>{{$lists->Payment_Status}}</td>
-                                                    <td>{{$lists->Booking_Status}}</td>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->No_of_Pax }}</td>
+                                                    <td>{{ $lists->Payment_Status }}</td>
+                                                    <td>{{ $lists->Booking_Status }}</td>
                                                     <td>
-                                                        @if($lists->Payment_Status == "Paid")
+                                                        @if ($lists->Payment_Status == 'Paid')
                                                             <!--View QR Button-->
-                                                            <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                                        data-target="#view_qr{{ $lists->Booking_No }}"> 
+                                                            <button class="btn btn-sm btn-outline-primary"
+                                                                data-toggle="modal"
+                                                                data-target="#view_qr{{ $lists->Booking_No }}">
                                                                 View QR
                                                             </button>
                                                         @endif
                                                     </td>
                                                 </tr>
                                                 <!--View QR-->
-                                                <div class="modal fade" id="view_qr{{ $lists->Booking_No }}" tabindex="-1"
-                                                    role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="view_qr{{ $lists->Booking_No }}"
+                                                    tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                                                <p class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
                                                                     Hotel Reservation QR CODE
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                </p>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
+                                                            <div class="modal-body d-flex justify-content-center">
                                                                 {!! QrCode::size(200)->generate($lists->Booking_No) !!}
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <a class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</a>
                                                                 <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                             </div>
                                                         </div>
