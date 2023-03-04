@@ -76,7 +76,7 @@
                                                     {{-- button for uploading proof of payment --}}
                                                     <td><button type="button" class="btn btn-sm btn-outline-primary"
                                                             data-toggle="modal" data-target="#exampleModal">
-                                                            Upload Payment
+                                                            View Payment
                                                         </button>
                                                     </td>
                                                     <td>
