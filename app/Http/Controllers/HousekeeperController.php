@@ -108,7 +108,22 @@ class HousekeeperController extends Controller
                                 ->where('hotel_reservations.Check_Out_Date', '<=', $endmonth)
                                 ->get();
                     }
-                    
+
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search');
+
+                            $converttodate = strtotime($search);
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('housekeepings.Booking_No', 'LIKE', "%$search%")
+                                ->orwhere('housekeepings.Attendant', 'LIKE', "%$search%")
+                                ->orwhere('hotel_reservations.Guest_Name', 'LIKE', "%$search%")
+                                ->orwhere('housekeepings.Housekeeping_Status', 'LIKE', "%$search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_In_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" )
+                                ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
+                        });
+                    }          
                 })
                 ->make(true);   
             } 
@@ -143,6 +158,21 @@ class HousekeeperController extends Controller
 
                         $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
                                 ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
+                    }
+
+                    if (!empty($request->get('search2'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search2');
+
+                            $converttodate = strtotime($search);
+
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('name', 'LIKE', "%$search%")
+                                ->orwhere('Attendant', 'LIKE', "%$search%")
+                                ->orwhere('Status', 'LIKE', "%$search%")      
+                                ->orwhere(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), 'LIKE', "%$date_search%");
+                        });
                     }
                 })
                 ->make(true);   
@@ -179,6 +209,22 @@ class HousekeeperController extends Controller
                         $instance->where('Date_Resolved', '>=', $startweek)
                                 ->where('Date_Resolved', '<=', $endweek);
                     }
+                    if (!empty($request->get('search3'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search3');
+                            $converttodate = strtotime($search);
+
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('Booking_No', 'LIKE', "%$search%")
+                                ->orwhere('Room_No', 'LIKE', "%$search%")
+                                ->orwhere('Status', 'LIKE', "%$search%")
+                                ->orwhere('Priority_Level', 'LIKE', "%$search%")
+                                ->orwhere('Discovered_By', 'LIKE', "%$search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(Due_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(Date_Resolved,'%Y-%m-%d'))"), 'LIKE', "%$date_search%");
+                        });
+                    }
                 })
                 ->make(true);  
             } 
@@ -214,10 +260,25 @@ class HousekeeperController extends Controller
                         $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
                                 ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
                     }
+
+                    if (!empty($request->get('search4'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search4');
+
+                            $converttodate = strtotime($search);
+
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('name', 'LIKE', "%$search%")
+                                ->orwhere('Attendant', 'LIKE', "%$search%")
+                                ->orwhere('Status', 'LIKE', "%$search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), 'LIKE', "%$date_search%");
+                        });
+                    }
                 })
                 ->make(true);  
             }    
-        }      
+        }     
         return view('Housekeeper.Housekeeping_Reports');
     }
 
