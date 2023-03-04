@@ -8,13 +8,16 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 mt-5 banner1">
                 <a href="{{ url('convention_center') }}">
-                <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
+                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
                 </a>
+            </div>
+            <div class="col-md-8 mt-3">
+
             </div>
             <div class="col-md-8">
                 @foreach ($list as $list)
                     <div class="card float-left gal col-md-3 mt-2" style="min-height: 550px">
-                        <img class="card-img-top img1 mt-3" src="{{$list->Hotel_Image}}" alt="Card image cap">
+                        <img class="card-img-top img1 mt-3" src="{{ $list->Hotel_Image }}" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="text-green">₱{{ $list->Rate_per_Night }}</h2>
                             <h5 class="card-title">Room {{ $list->Room_No }}</h5>
@@ -31,21 +34,23 @@
             </div>
         </div>
     </div>
+    <script></script>
     <style>
         .gal img:hover {
             transform: scale(1.01);
         }
-        .img1{
+
+        .img1 {
             max-width: 100%;
             height: 200px !important;
         }
-        .banner1{
+
+        .banner1 {
             height: 60%;
             width: 100%;
         }
-        .banner1 img{
 
-        }
+        .banner1 img {}
     </style>
     @include('layouts.footers.guest')
 @endsection

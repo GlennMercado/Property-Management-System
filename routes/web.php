@@ -31,7 +31,7 @@ Route::get('ContactUs', function () { return view('ContactUs');})->name('Contact
 
 Route::get('Map', function () { return view('Map');})->name('Map');
 
-
+Route::get('Welcomerooms', [App\Http\Controllers\WelcomeController::class, 'Welcomerooms'])->name('Welcomerooms');
 
 
 Auth::routes(['verify' => true]);

@@ -102,7 +102,7 @@
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-3">
                 <div class="image-container">
-                    <a href="{{ url('rooms') }}">
+                    <a href="{{ url('Welcomerooms') }}">
                         <img class="card-img-top" src="{{ asset('nvdcpics') }}/suites.png" alt="Card image cap"
                             style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
@@ -114,11 +114,7 @@
                     <p class="txt" style="font-weight:bold;">Suites</p>
                     <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                    Book Now
-                                                                                                                                                </a>
-                                                                                                                                            </button> -->
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                      </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -136,11 +132,7 @@
                     <p class="card-text txt">Venue for personal and corporate
                         celebrations,
                         training/learning sessions and sports activities.</p>
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                    Book Now
-                                                                                                                                                </a>
-                                                                                                                                            </button> -->
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                           </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -157,12 +149,7 @@
                     <p class="card-title txt" style="font-weight:bold;">Function Rooms</p>
                     <p class="card-text txt">Function room basic inclusions for either social event or trainings/seminar or
                         convention center.</p>
-
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                    Book Now
-                                                                                                                                                </a>
-                                                                                                                                            </button> -->
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -181,12 +168,7 @@
                         Properties,
                         we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
-
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                                                                                                                                <a href="{{ route('login') }}" class="text-white">
-                                                                                                                                                    Book Now
-                                                                                                                                                </a>
-                                                                                                                                            </button> -->
+                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                   </button> -->
                 </div>
             </div>
         </div>
@@ -233,33 +215,33 @@
     </div>
     <!-- section 4 -->
     <!-- <div class="container-fluid bg-white pt-6">
-            <div class="card-body d-flex justify-content-center">
-                <div class="container">
-                    <div class="row g-2">
-                        <div class="col-3 ">
-                            <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
-                        </div>
-                        <div class="col-3">
-                            <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                        </div>
-                        <div class="col-3">
-                            <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                        </div>
-                        <div class="col-3">
-                            <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                <div class="card-body d-flex justify-content-center">
+                    <div class="container">
+                        <div class="row g-2">
+                            <div class="col-3 ">
+                                <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
+                                <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                            </div>
+                            <div class="col-3">
+                                <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
+                                <p class="uppercase d-flex justify-content-center txt txt5">17</p>
+                            </div>
+                            <div class="col-3">
+                                <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
+                                <p class="uppercase d-flex justify-content-center txt txt5">5</p>
+                            </div>
+                            <div class="col-3">
+                                <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
+                                <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>  -->
+            </div>  -->
     <!-- section 5 -->
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
@@ -337,80 +319,6 @@
             </div>
         </div>
     </div>
-    <!-- section 7  -->
-    <div class="container-fluid bg-white pt-6" id="section7">
-        <div class="card-body">
-            <div class="d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
-                    Nvdc</p>
-            </div>
-            <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Frequently asked questions</p>
-        </div>
-    </div>
-    <div class="container-fluid bg-white pt-2">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Convention center
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hotel
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            function rooms
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4 mb-8">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            commercial spaces
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- scroll-top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
     <style>
@@ -422,28 +330,28 @@
 
         .image-text {
             /* position: absolute;
-                                                                                            top: 44%;
-                                                                                            left: 50%;
-                                                                                            transform: translate(-50%, -50%);
-                                                                                            color: white;
-                                                                                            font-size: 36px;
-                                                                                            font-weight: bold;
-                                                                                            text-align: center;
-                                                                                            filter: brightness(50%); */
+                                                                                                top: 44%;
+                                                                                                left: 50%;
+                                                                                                transform: translate(-50%, -50%);
+                                                                                                color: white;
+                                                                                                font-size: 36px;
+                                                                                                font-weight: bold;
+                                                                                                text-align: center;
+                                                                                                filter: brightness(50%); */
             font-family: montserrat;
             margin-bottom: -1rem;
         }
 
         .image-text2 {
             /* position: absolute;
-                                                                                            top: 50%;
-                                                                                            left: 50%;
-                                                                                            transform: translate(-50%, -50%);
-                                                                                            color: white;
-                                                                                            font-weight: bold;
-                                                                                            text-align: center;
-                                                                                            font-size: 65px;
-                                                                                            letter-spacing: 1px; */
+                                                                                                top: 50%;
+                                                                                                left: 50%;
+                                                                                                transform: translate(-50%, -50%);
+                                                                                                color: white;
+                                                                                                font-weight: bold;
+                                                                                                text-align: center;
+                                                                                                font-size: 65px;
+                                                                                                letter-spacing: 1px; */
             font-family: montserrat;
         }
 

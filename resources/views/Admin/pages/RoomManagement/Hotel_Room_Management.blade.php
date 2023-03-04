@@ -127,7 +127,7 @@
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" style="font-size:18px;"> </th>
+                                        <th scope="col" style="font-size:18px;">Action</th>
                                         <th scope="col" style="font-size:18px;">Room No.</th>
                                         <th scope="col" style="font-size:18px;">Room Size</th>
                                         <th scope="col" style="font-size:18px;">No. of Beds</th>
