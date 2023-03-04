@@ -8,10 +8,10 @@
         </button>
         <!-- Brand -->
         <div class="sidenav-header align-items-center">
-            <a class="navbar-brand pt-0" href="{{ route('home') }}">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('nvdcpics') }}/nvdc-logo2.png" style="height: 65px; width: 185px">
             </a>
         </div>
-        <img src="{{ asset('nvdcpics') }}/nvdc-logo2.png" style="height: 65px; width: 185px">
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
@@ -88,7 +88,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <!--Dashboard-->
-                <li class="nav-item">
+                <li class="nav-item {{ 'home' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('home') }}">
                         <i class="bi bi-graph-up text-light"></i> {{ __('Dashboard') }}
                     </a>
@@ -103,7 +103,7 @@
 
 
                 <!--Calendar-->
-                <li class="nav-item">
+                <li class="nav-item {{ 'Hotel_Room_Management' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('Dashboard') }}">
                         <i class="bi bi-house text-light"></i> {{ __('Room Management') }}
                     </a>
@@ -119,14 +119,14 @@
                     </a>
                     <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-journal text-light"></i> {{ __('Hotel Booking') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'EventInquiryForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('EventInquiryForm') }}">
                                     <i class="bi bi-calendar3-event text-light"></i> {{ __('Event Inquiry') }}
                                 </a>
@@ -144,14 +144,14 @@
                     </a>
                     <div class="collapse" id="navbar-examples4">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Housekeeping_Dashboard' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Housekeeping_Dashboard') }}">
                                     <i class="bi bi-graph-up text-light"></i> {{ __('Dashboard') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Linen_Monitoring' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Linen_Monitoring') }}">
                                     <i class="bi bi-ui-checks-grid text-light"></i> {{ __('Linen Monitoring') }}
                                 </a>
@@ -165,14 +165,14 @@
                             </li>
                         </ul> --}}
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Maintenance' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Maintenance') }}">
                                     <i class="bi bi-tools text-light"></i> {{ __('Maintenance') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Housekeeping_Reports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Housekeeping_Reports.reports') }}">
                                     <i class="bi bi-journal-bookmark text-light"></i> {{ __('Reports') }}
                                 </a>
@@ -182,7 +182,7 @@
                 </li>
 
                 {{-- Commercial Space --}}
-                <li class="nav-item">
+                <li class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
                         <i class="bi bi-shop text-light"></i> {{ __('Commercial Space') }}
                     </a>
@@ -211,35 +211,35 @@
                             </li>
                         </ul> --}}
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'StockCount' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockCount') }}">
                                     <i class="bi bi-archive text-light"></i> {{ __('Hotel Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'StockCenter' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockCenter') }}">
                                     <i class="bi bi-box-seam text-light"></i> {{ __('Convention Center Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'StockHotelLinen' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockHotelLinen') }}">
                                     <i class="bi bi-question-circle text-light"></i> {{ __('Linen Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'StockHotelSupply' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockHotelSupply') }}">
                                     <i class="bi bi-boxes text-light"></i> {{ __('Supply Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">
                                     <i class="bi bi-list-task text-light"></i> {{ __('Stock Reports') }}
                                 </a>
@@ -267,7 +267,7 @@
 
                     <div class="collapse" id="navbar-examples5">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'OperationDashboard' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('OperationDashboard') }}">
                                     <i class="bi bi-graph-up text-light"></i> {{ __('Dashboard') }}
                                 </a>
@@ -282,14 +282,14 @@
                             </li>
                             <div class="collapse" id="navbar-examples7">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
+                                    <li class="nav-item {{ 'Complaints' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('Complaints') }}">
                                             <i class="bi bi-question-circle text-light"></i> {{ __('Complaints') }}
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
+                                    <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('Guest_Request') }}">
                                             <i class="bi bi-file-earmark-text text-light"></i>
                                             {{ __('Guest Request') }}
@@ -299,14 +299,14 @@
                             </div>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Guest_Reservation' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Guest_Reservation') }}">
                                     <i class="bi bi-person-badge text-light"></i> {{ __('Guest Reservation') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Reports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Reports') }}">
                                     <i class="bi bi-journal-bookmark text-light"></i> {{ __('Reports') }}
                                 </a>
@@ -323,21 +323,21 @@
                     </a>
                     <div class="collapse" id="navbar-examples13">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'FinanceDashboard' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceDashboard') }}">
                                     <i class="bi bi-graph-up text-light"></i> {{ __('Finance Dashboard') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'Finance' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Finance') }}">
                                     <i class="bi bi-cash-coin text-light"></i> {{ __('Finance') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('DailyReport') }}">
                                     <i class="bi-clipboard2-check text-light"></i> {{ __('Daily Report') }}
                                 </a>
@@ -346,7 +346,7 @@
                     </div>
                 </li>
                 {{-- User Management --}}
-                <li class="nav-item">
+                <li class="nav-item {{ 'UserManagement' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('UserManagement') }}">
                         <i class="bi bi-shop text-light"></i> {{ __('User Management') }}
                     </a>
@@ -369,6 +369,9 @@
         <style>
             .txt1 {
                 font-weight: 600;
+            }
+            .act1 {
+                background-color: rgb(88, 93, 105);
             }
         </style>
     </div>

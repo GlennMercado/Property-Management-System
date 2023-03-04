@@ -12,12 +12,12 @@
                             <div class="text-muted text-center mt-2 mb-1"><Strong
                                     style="font-size:30px; letter-spacing:2px;">{{ __('Sign up') }}</strong></div>
                             <!-- <div class="text-center">
-                                            <a href="#" class="btn btn-neutral btn-icon">
-                                                <span class="btn-inner--icon"><img
-                                                        src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
-                                                <span class="btn-inner--text">{{ __('Google') }}</span>
-                                            </a>
-                                        </div> -->
+                                                <a href="#" class="btn btn-neutral btn-icon">
+                                                    <span class="btn-inner--icon"><img
+                                                            src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
+                                                    <span class="btn-inner--text">{{ __('Google') }}</span>
+                                                </a>
+                                            </div> -->
                         </div>
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
@@ -33,7 +33,8 @@
                                         <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Name') }}" type="text" name="name"
                                             value="{{ old('name') }}" required autofocus maxlength="32"
-                                            pattern="[A-Za-z0-9 ]+" title="Username should only contain uppercase and lowercase letters. e.g. John">
+                                            pattern="[A-Za-z0-9 ]+"
+                                            title="Username should only contain uppercase and lowercase letters. e.g. John">
                                     </div>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -75,9 +76,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                         </div>
-                                        <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" type="password" name="password" id="password">
+                                        <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Password') }}" type="password" name="password"
+                                            id="password">
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="toggle-password" style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
+                                            <span class="input-group-text" id="toggle-password" style="cursor:pointer;"><i
+                                                    class="fa fa-eye-slash"></i></span>
                                         </div>
                                     </div>
                                     @if ($errors->has('password'))
@@ -95,17 +99,19 @@
                                         name="password_confirmation" required>
                                 </div>
                             </div> --}}
-                            <div class="form-group">
-                                <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" id="confirm-password" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="toggle-confirm-password" style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="{{ __('Confirm Password') }}"
+                                            type="password" name="password_confirmation" id="confirm-password" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="toggle-confirm-password"
+                                                style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="row my-4">
                                     <div class="col-12">
@@ -550,24 +556,26 @@
         })()
         // see password
 
-         // Password toggle
-    var passwordToggle = document.getElementById('toggle-password');
-    var password = document.getElementById('password');
+        // Password toggle
+        var passwordToggle = document.getElementById('toggle-password');
+        var password = document.getElementById('password');
 
-    passwordToggle.addEventListener('click', function() {
-        var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        passwordToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>';
-    });
+        passwordToggle.addEventListener('click', function() {
+            var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            passwordToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
+                '<i class="fa fa-eye"></i>';
+        });
 
-    // Confirm password toggle
-    var confirmToggle = document.getElementById('toggle-confirm-password');
-    var confirmPassword = document.getElementById('confirm-password');
+        // Confirm password toggle
+        var confirmToggle = document.getElementById('toggle-confirm-password');
+        var confirmPassword = document.getElementById('confirm-password');
 
-    confirmToggle.addEventListener('click', function() {
-        var type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-        confirmToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>';
-    });
+        confirmToggle.addEventListener('click', function() {
+            var type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            confirmToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
+                '<i class="fa fa-eye"></i>';
+        });
     </script>
 @endsection

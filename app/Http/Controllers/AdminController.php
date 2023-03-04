@@ -6,14 +6,12 @@ use App\Models\hotel_reservations;
 use Illuminate\Support\Facades\DB;
 
 
-
 class AdminController extends Controller
 {
     public function index()
-    {
+    { 
         return view('Admin.admindashboard');
     }
-   
 
     public function Calendar(Request $request)
     {

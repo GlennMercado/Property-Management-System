@@ -4,12 +4,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <div class="container-fluid mt-3">
+        <h1 class="display-2"><i class="bi bi-question-circle"></i> Guest Complaints</h1>
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card shadow">
-                    <div class="card-header bg-green">
-                        <h3 class="mb-0 text-white">Guest Complaints</h3>
-                    </div>
                     <div class="card-body">
                         @foreach ($list as $list)
                             <div class="row container-fluid">
