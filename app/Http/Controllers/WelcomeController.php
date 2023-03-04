@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\hotel_reservations;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-
 class WelcomeController extends Controller
 {
     /**
@@ -28,6 +28,10 @@ class WelcomeController extends Controller
      public function WelcomeMap()
      {
          return view('WelcomeMap');
+     }
+     public function Welcomerooms(){
+        $list = DB::select('SELECT * FROM novadeci_suites');    
+        return view('Welcomerooms', ['list'=>$list]);
      }
      /**
       * Show the form for creating a new resource.

@@ -43,9 +43,6 @@
                                         <td style="font-size:16px;">{{ $lists->Date_Requested }}</td>
                                     </tr>
 
-
-
-
                                     <!--MODAL FOR Update-->
                                     <div class="modal fade" id="update{{$lists->id}}" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\purchasereports;
+use App\Models\hotelstocks;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
@@ -27,6 +28,8 @@ class InventoryHotelSupplyController extends Controller
 
     public function supply_request_approval(Request $request)
     {
+        $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
+
       $id = $request->input('id');
       $roomno = $request->input('roomno');
       $productid = $request->input('productid');
@@ -83,7 +86,7 @@ class InventoryHotelSupplyController extends Controller
       }
 
 
-      if($update)
+      if($update || $approved)
       {
         $add = new hotel_room_supplies_reports;
 

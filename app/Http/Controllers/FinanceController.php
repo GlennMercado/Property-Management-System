@@ -14,9 +14,18 @@ class FinanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function finance_chart()
     {
-        //
+        $count = DB::select('SELECT * FROM finance_2_reports');
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['ornum' => $counts->ornum];
+        }
+        return view('Admin.pages.Finances.DailyReport', 
+                    ['array' => $array]
+                    );
     }
 
     /**

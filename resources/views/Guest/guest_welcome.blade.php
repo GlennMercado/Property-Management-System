@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <div class="position-relative">
-        <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="Your Background Image">
+        <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 700px; width: 100%">
         <div class="position-absolute d-flex align-items-center text-center"
             style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
             <div class="container mx-auto">
@@ -12,35 +12,6 @@
                     Welcome to</h1>
                 <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
-                <div class="group">
-                    <a href="#section2">
-                        <p class="mr-2 p1 d-none d-lg-block">hotels </p>
-                    </a>
-                    <a href="{{ url('convention_center') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">convention center </p>
-                    </a>
-                    <a href="{{ url('function_room') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">function rooms </p>
-                    </a>
-                    <a href="{{ url('commercial_spaces') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">commercial spaces </p>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="card mx-auto d-flex justify-content-center mt-8 col-md-8">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-                            <a href="{{ url('rooms') }}" class="btn btn-success mt-3">Submit</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -107,7 +78,7 @@
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-3">
                 <div class="image-container">
-                    <a href="{{ url('suites') }}">
+                    <a href="{{ url('rooms') }}">
                         <img class="card-img-top" src="{{ asset('nvdcpics') }}/suites.png" alt="Card image cap"
                             style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
@@ -120,10 +91,10 @@
                     <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                <a href="{{ route('login') }}" class="text-white">
-                                    Book Now
-                                </a>
-                            </button> -->
+                                            <a href="{{ route('login') }}" class="text-white">
+                                                Book Now
+                                            </a>
+                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -142,10 +113,10 @@
                         celebrations,
                         training/learning sessions and sports activities.</p>
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                <a href="{{ route('login') }}" class="text-white">
-                                    Book Now
-                                </a>
-                            </button> -->
+                                            <a href="{{ route('login') }}" class="text-white">
+                                                Book Now
+                                            </a>
+                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -164,10 +135,10 @@
                         convention center.</p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                <a href="{{ route('login') }}" class="text-white">
-                                    Book Now
-                                </a>
-                            </button> -->
+                                            <a href="{{ route('login') }}" class="text-white">
+                                                Book Now
+                                            </a>
+                                        </button> -->
                 </div>
             </div>
             <div class="col-md-3">
@@ -188,10 +159,10 @@
                         month! </p>
 
                     <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">
-                                <a href="{{ route('login') }}" class="text-white">
-                                    Book Now
-                                </a>
-                            </button> -->
+                                            <a href="{{ route('login') }}" class="text-white">
+                                                Book Now
+                                            </a>
+                                        </button> -->
                 </div>
             </div>
         </div>
@@ -238,33 +209,33 @@
     </div>
     <!-- section 4 -->
     <!-- <div class="container-fluid bg-white pt-6">
-            <div class="card-body d-flex justify-content-center">
-                <div class="container">
-                    <div class="row g-2">
-                        <div class="col-3 ">
-                            <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="container">
+                                <div class="row g-2">
+                                    <div class="col-3 ">
+                                        <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                        </div>
-                        <div class="col-3">
-                            <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                        </div>
-                        <div class="col-3">
-                            <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                            <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                            <p class="uppercase d-flex justify-content-center txt txt5">1</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>  -->
+                    </div>  -->
     <!-- section 5 -->
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
@@ -342,80 +313,6 @@
             </div>
         </div>
     </div>
-    <!-- section 7  -->
-    <div class="container-fluid bg-white pt-6">
-        <div class="card-body">
-            <div class="d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
-                    Nvdc</p>
-            </div>
-            <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">Frequently asked questions</p>
-        </div>
-    </div>
-    <div class="container-fluid bg-white pt-2">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Convention center
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hotel
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            function rooms
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="dropdown show d-flex justify-content-center pt-4 mb-8">
-                        <a class="btn dropdown-toggle uppercase txt5" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            commercial spaces
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Answer 1</a>
-                            <a class="dropdown-item" href="#">Answer 2</a>
-                            <a class="dropdown-item" href="#">Answer 3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- scroll-top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
     <style>
@@ -427,28 +324,28 @@
 
         .image-text {
             /* position: absolute;
-        top: 44%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-        filter: brightness(50%); */
+                    top: 44%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    font-size: 36px;
+                    font-weight: bold;
+                    text-align: center;
+                    filter: brightness(50%); */
             font-family: montserrat;
             margin-bottom: -1rem;
         }
 
         .image-text2 {
             /* position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        font-size: 65px;
-        letter-spacing: 1px; */
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    font-weight: bold;
+                    text-align: center;
+                    font-size: 65px;
+                    letter-spacing: 1px; */
             font-family: montserrat;
         }
 
@@ -701,18 +598,17 @@
                 // } else if (event.target.classList.contains('btn-danger')) {
                 //     value--;
                 // }
-                if (event.target.classList.contains('btn-count')){
+                if (event.target.classList.contains('btn-count')) {
                     value++;
-                    if(value > 4){
+                    if (value > 4) {
                         document.getElementById("btn-count").disabled = true;
                     }
-                }else if (event.target.classList.contains('btn-count2')){
+                } else if (event.target.classList.contains('btn-count2')) {
                     value--;
-                    if(value < 0){
+                    if (value < 0) {
                         document.getElementById("btn-count2").disabled = true;
                     }
-                }
-                else{
+                } else {
                     document.getElementById("btn-count").disabled = false;
                     document.getElementById("btn-count2").disabled = false;
                 }
@@ -726,23 +622,23 @@
             });
         });
         let count = 0;
-    const countElement = document.getElementById('count');
+        const countElement = document.getElementById('count');
 
-    // validation of 4 counts
+        // validation of 4 counts
 
-    function validateForm() {
-        var adultCount = parseInt(document.getElementById("adultCount").innerText);
-        var childCount = parseInt(document.getElementById("childCount").innerText);
-        var infantCount = parseInt(document.getElementById("infantCount").innerText);
-        var totalCount = adultCount + childCount + infantCount;
+        function validateForm() {
+            var adultCount = parseInt(document.getElementById("adultCount").innerText);
+            var childCount = parseInt(document.getElementById("childCount").innerText);
+            var infantCount = parseInt(document.getElementById("infantCount").innerText);
+            var totalCount = adultCount + childCount + infantCount;
 
-        if (totalCount < 4) {
-            alert("Please select at least 4 passengers.");
-            return false;
+            if (totalCount < 4) {
+                alert("Please select at least 4 passengers.");
+                return false;
+            }
+
+            return true;
         }
-
-        return true;
-    }
     </script>
     @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>

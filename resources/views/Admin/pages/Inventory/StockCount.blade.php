@@ -13,7 +13,7 @@
 
                                     </a>
                                     <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right;">
+                                        data-target="#exampleModal" style="float:right">
                                         Add Stock
                                     </button>
                                 </div>

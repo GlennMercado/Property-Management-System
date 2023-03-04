@@ -231,6 +231,8 @@ class InventoryController extends Controller
             $name = $request->input('Amenities');
         }
 
+        
+
 
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
