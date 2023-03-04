@@ -92,8 +92,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
-
-
+		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
+		
+		
+		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
 		Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -102,8 +104,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
-		Route::get('Housekeeping_Reports', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_reports'])->name('Housekeeping_Reports');
-
+		
 
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
@@ -139,12 +140,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Operation Management
 		//Reservation
-		Route::get('Reservation', function () {return view('Admin.pages.OperationManagement.Reservation');})->name('Reservation'); 
-		Route::get('RoomAvailable', function () {return view('Admin.pages.OperationManagement.RoomAvailable');})->name('RoomAvailable');
-		Route::get('Request', function () {return view('Admin.pages.OperationManagement.Request');})->name('Request'); 
+		Route::get('OperationDashboard', function () {return view('Admin.pages.OperationManagement.OperationDashboard');})->name('OperationDashboard'); 
+		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+		Route::get('Reports', function () {return view('Admin.pages.OperationManagement.Reports');})->name('Reports'); 
 		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
-		Route::get('Inventory', function () {return view('Admin.pages.OperationManagement.Inventory');})->name('Inventory'); 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 	
@@ -298,8 +298,11 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	//Guest Request
 	Route::get('Guest_Requests', [App\Http\Controllers\HousekeeperController::class, 'Guest_Request'])->name('Guest_Requests');
 	//Housekeeping Reports
-	Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
+	//Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
 
+	Route::get('Housekeeping_Report', ['uses' => 'App\Http\Controllers\HousekeeperController@reports', 'as' => 'Housekeeping_Report.reports']);
+		
+		
 	Route::post('/supply_request', 'App\Http\Controllers\HousekeeperController@supply_request');
 	Route::post('/linen_request', 'App\Http\Controllers\HousekeeperController@linen_request');
 

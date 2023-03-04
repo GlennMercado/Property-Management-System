@@ -102,7 +102,7 @@
                 <!--Calendar-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Dashboard') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Room Management') }}
+                        <i class="bi bi-house text-success"></i> {{ __('Room Management') }}
                     </a>
                 </li>
 
@@ -170,14 +170,7 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Guest_Request') }}">
-                                    <i class="bi bi-file-earmark-text text-success"></i> {{ __('Guest Request') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Housekeeping_Reports') }}">
+                                <a class="nav-link text-default" href="{{ route('Housekeeping_Reports.reports') }}">
                                     <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
                                 </a>
                             </li>
@@ -187,7 +180,7 @@
 
                 {{-- Commercial Space --}}
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">     
+                    <a class="nav-link text-default" href="{{ route('CommercialSpaceForm') }}">
                         <i class="bi bi-shop text-success"></i> {{ __('Commercial Space') }}
                     </a>
                 </li>
@@ -217,35 +210,35 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCount') }}">
-                                    <i class="text-success">•</i> {{ __('Hotel Inventory') }}
+                                    <i class="bi bi-archive text-success"></i> {{ __('Hotel Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockCenter') }}">
-                                    <i class="text-success">•</i> {{ __('Convention Center Inventory') }}
+                                    <i class="bi bi-box-seam text-success"></i> {{ __('Convention Center Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockHotelLinen') }}">
-                                    <i class="text-success">•</i> {{ __('Linen Request') }}
+                                    <i class="bi bi-question-circle text-success"></i> {{ __('Linen Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockHotelSupply') }}">
-                                    <i class="text-success">•</i> {{ __('Supply Request') }}
+                                    <i class="bi bi-boxes text-success"></i> {{ __('Supply Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-default" href="{{ route('StockReports') }}">
-                                    <i class="text-success">•</i> {{ __('Stock Reports') }}
+                                    <i class="bi bi-list-task text-success"></i> {{ __('Stock Reports') }}
                                 </a>
                             </li>
                         </ul>
@@ -268,44 +261,57 @@
                                 <i class="bi bi-box text-success"></i>
                                 <span class="nav-link-text text-default">{{ __('Reservations') }}</span>
                             </a> -->
+
                     <div class="collapse" id="navbar-examples5">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Reservation') }}">
-                                    <i class="text-success">•</i> {{ __('Reservations') }}
+                                <a class="nav-link text-default" href="{{ route('OperationDashboard') }}">
+                                    <i class="bi bi-graph-up text-success"></i> {{ __('Dashboard') }}
+                                </a>
+                            </li>
+                            {{-- Dropdown pt2 --}}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#navbar-examples7" data-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="navbar-examples7">
+                                    <i class="bi bi-person-lines-fill text-success"></i>
+                                    <span class="nav-link-text text-default">{{ __('Guest Call Register') }}</span>
+                                </a>
+                            </li>
+                            <div class="collapse" id="navbar-examples7">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-default" href="{{ route('Complaints') }}">
+                                            <i class="bi bi-question-circle text-success"></i> {{ __('Complaints') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-default" href="{{ route('Guest_Request') }}">
+                                            <i class="bi bi-file-earmark-text text-success"></i>
+                                            {{ __('Guest Request') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-default" href="{{ route('Guest_Reservation') }}">
+                                    <i class="bi bi-person-badge text-success"></i> {{ __('Guest Reservation') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('RoomAvailable') }}">
-                                    <i class="text-success">•</i> {{ __('Room Available') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Request') }}">
-                                    <i class="text-success">•</i> {{ __('Request') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Complaints') }}">
-                                    <i class="text-success">•</i> {{ __('Complaints') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-default" href="{{ route('Inventory') }}">
-                                    <i class="text-success">•</i> {{ __('Inventory') }}
+                                <a class="nav-link text-default" href="{{ route('Reports') }}">
+                                    <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <!-- </div> -->
+                </li>
+                <!-- </div> -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
@@ -337,10 +343,10 @@
                     </div>
                 </li>
                 {{-- User Management --}}
-                <a class="nav-link text-default" href="{{ route('UserManagement') }}">
-                    <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('UserManagement') }}">
                         <i class="bi bi-shop text-success"></i> {{ __('User Management') }}
-                </a>
+                    </a>
                 </li>
                 <!-- Divider -->
                 <hr class="my-3">

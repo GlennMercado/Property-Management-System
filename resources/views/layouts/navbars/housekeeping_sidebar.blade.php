@@ -86,35 +86,35 @@
                 <!-- Dashboard -->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Housekeeper_Dashboard') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Dashboard') }}
+                        <i class="bi bi-graph-up text-success"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
                 <!-- Linen Monitoring -->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Linens_Monitoring') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Linen Monitoring') }}
+                        <i class="bi bi-ui-checks-grid text-success"></i> {{ __('Linen Monitoring') }}
                     </a>
                 </li>
 
                 <!-- Maintenance-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Maintenances') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Maintenance') }}
+                        <i class="bi bi-tools text-success"></i> {{ __('Maintenance') }}
                     </a>
                 </li>
 
                 <!-- Guest Request -->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Guest_Requests') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Guest Request') }}
+                        <i class="bi bi-file-earmark-text text-success"></i> {{ __('Guest Request') }}
                     </a>
                 </li>
 
                 <!-- Report -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Housekeeping_Report') }}">
-                            <i class="bi bi-house text-success"></i> {{ __('Reports') }}
+                    <a class="nav-link text-default" href="{{ route('Housekeeping_Report.reports') }}">
+                        <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
                     </a>
                 </li>
 

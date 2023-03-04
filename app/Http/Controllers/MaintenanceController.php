@@ -14,7 +14,7 @@ class MaintenanceController extends Controller
 {
     public function Maintenance()
     {   
-        $list = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+        $list = DB::SELECT('SELECT *, a.id FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
         $list2 = DB::SELECT('SELECT * FROM out_of_order_rooms a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1');
         
         return view('Admin.pages.HousekeepingForms.Maintenance', ['list' => $list, 'list2' => $list2]);
@@ -128,7 +128,6 @@ class MaintenanceController extends Controller
 
     public function update_maintenance_status($id, $rno, $bno, $due)
     {
-
         $maintenance_id = $id;
         $room_no = $rno;
         $booking_no = $bno;
@@ -146,6 +145,7 @@ class MaintenanceController extends Controller
             if($due_date >= $datenow)
             {
                 DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
+               
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
                 DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
                 DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));

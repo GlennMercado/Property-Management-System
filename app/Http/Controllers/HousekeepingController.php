@@ -12,6 +12,7 @@ use App\Models\hotel_room_linens_reports;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use Carbon\Carbon;
+use DataTables;
 
 class HousekeepingController extends Controller
 {
@@ -169,28 +170,155 @@ class HousekeepingController extends Controller
         }
     }
 
-    public function housekeeping_reports()
-    {
-        //$datenow = Carbon::now()->subDays(7);
+    public function reports(Request $request)
+    {   
+        if($request->ajax()){
+            if($request->get('num') == 1)
+            {
+                $data = housekeepings::join('hotel_reservations', 'housekeepings.Booking_No', '=', 'hotel_reservations.Booking_No')
+                        ->select('housekeepings.*', 'hotel_reservations.Guest_Name', 'hotel_reservations.Check_In_Date', 'hotel_reservations.Check_Out_Date')
+                        ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1);
 
-        $datenow = Carbon::now();
-        
-        $list = housekeepings::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "housekeepings.Booking_No")
-                ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Check_Out_Date', '=', $datenow->format('Y-m-d'))->get();
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '=', $now)->get();
+                    }
+                    elseif($request->get('date') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startweek)
+                                ->where('hotel_reservations.Check_Out_Date', '<=', $endweek)
+                                ->get();
+                    }
+                    elseif($request->get('date') == "Monthly")
+                    {
+                        $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startmonth)
+                                ->where('hotel_reservations.Check_Out_Date', '<=', $endmonth)
+                                ->get();
+                    }
+                    
+                })
+                ->make(true);   
+            } 
+            elseif($request->get('num') == 2)
+            {
+                $data = hotel_room_supplies_reports::select("*");
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date2') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date2') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                    
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '=', $now);
+                    }
+                    elseif($request->get('date2') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
 
-        $list2 = out_of_order_rooms::select("*")->join("hotel_reservations", "hotel_reservations.Booking_No", "=", "out_of_order_rooms.Booking_No")
-                ->where('out_of_order_rooms.Status', '=', 'Resolved')->where('out_of_order_rooms.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1)
-                ->whereDate('Date_Resolved', '=', $datenow->format('Y-m-d'))->get();
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
+                                ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
+                    }
+                    elseif($request->get('date2') == "Monthly")
+                    {
+                        $startweek = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofmonth()->format('Y-m-d');
 
-        $list3 = hotel_room_supplies_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
+                                ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
+                    }
+                })
+                ->make(true);   
+            } 
+            elseif($request->get('num') == 3)
+            {
+                $data =out_of_order_rooms::select("*")->where('IsArchived', '=', 1);
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date3') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date3') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                    
+                        $instance->where('Date_Resolved', '=', $now);
+                    }
+                    elseif($request->get('date3') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
 
-        $list4 = hotel_room_linens_reports::select("*")->whereDate('Date_Received', '=', $datenow)->get();
-                
+                        $instance->where('Date_Resolved', '>=', $startweek)
+                                ->where('Date_Resolved', '<=', $endweek);
+                    }
+                    elseif($request->get('date3') == "Monthly")
+                    {
+                        $startweek = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofmonth()->format('Y-m-d');
 
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports', ['list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4]);
+                        $instance->where('Date_Resolved', '>=', $startweek)
+                                ->where('Date_Resolved', '<=', $endweek);
+                    }
+                })
+                ->make(true);  
+            } 
+            elseif($request->get('num') == 4)
+            {
+                $data = hotel_room_linens_reports::select("*");
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date4') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date4') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                    
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '=', $now);
+                    }
+                    elseif($request->get('date4') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
+
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
+                                ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
+                    }
+                    elseif($request->get('date4') == "Monthly")
+                    {
+                        $startweek = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofmonth()->format('Y-m-d');
+
+                        $instance->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '>=', $startweek)
+                                ->where(DB::raw("(STR_TO_DATE(Date_Received,'%Y-%m-%d'))"), '<=', $endweek);
+                    }
+                })
+                ->make(true);  
+            }    
+        }
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
     }
-
     public function supply_request(Request $request)
     {
        
