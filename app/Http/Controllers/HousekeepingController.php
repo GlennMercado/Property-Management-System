@@ -144,22 +144,28 @@ class HousekeepingController extends Controller
                 if($request->input('requested_quantity')[$i] > 0)
                 {
                     $status = "Requested";
-                }
-                else
-                {
-                    Alert::Error('Error', 'Linen Request Failed!');
-                    return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
-                }
-                DB::table('hotel_room_linens')
+
+                    DB::table('hotel_room_linens')
                     ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
                     ->update([
                         'Quantity_Requested' => $request->requested_quantity[$i], 
                         'Date_Requested' => $date_requested,
                         'Status' => $status, 
                 ]);
+                }
+                elseif($request->input('requested_quantity')[$i] == 0)
+                {
+                    $status = $request->input('stats')[$i];
+                }
+                else
+                {
+                    Alert::Error('Error', 'Linen Request Failed!');
+                    return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
+                }
+                
             }
                         
-            Alert::Success('Success', 'Linens Successfully Requested!');
+            Alert::Success('Success', 'Linens Successfully Updated!');
             return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
             
         }
@@ -399,6 +405,10 @@ class HousekeepingController extends Controller
                 {
                     $status = "Requested";
                 }
+                elseif($request->input('requested_quantity')[$i] == 0)
+                {
+                    $status = $request->input('stats')[$i];
+                }
                 else
                 {
                     Alert::Error('Error', 'Supply Request Failed!');
@@ -414,7 +424,7 @@ class HousekeepingController extends Controller
                 ]);
             }
                         
-            Alert::Success('Success', 'Supplies Successfully Requested!');
+            Alert::Success('Success', 'Supplies Successfully Updated!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
         }

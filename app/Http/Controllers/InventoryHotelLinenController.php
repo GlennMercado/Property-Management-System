@@ -107,7 +107,7 @@ class InventoryHotelLinenController extends Controller
   
           $add->save();
   
-          Alert::Success('Success', 'Linen Request Successfully Approved!');
+          Alert::Success('Success', 'Linen Request Successfully Updated!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
         }
         else

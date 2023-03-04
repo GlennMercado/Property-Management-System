@@ -233,6 +233,8 @@
                                                                         value="{{ $lists->name }}" readonly>
                                                                     <input type="hidden" name="name[]"
                                                                         value="{{ $lists->name }}">
+                                                                    <input type="hidden" name="stats[]"
+                                                                        value="{{ $lists->Status }}">
                                                                 </div>
                                                                 <div class="col">
                                                                     <input type="text" class="form-control"

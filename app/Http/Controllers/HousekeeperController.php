@@ -357,6 +357,10 @@ class HousekeeperController extends Controller
                 {
                     $status = "Requested";
                 }
+                elseif($request->input('requested_quantity')[$i] == 0)
+                {
+                    $status = $request->input('stats')[$i];
+                }
                 else
                 {
                     Alert::Error('Error', 'Linen Request Failed!');
@@ -371,7 +375,7 @@ class HousekeeperController extends Controller
                 ]);
             }
                         
-            Alert::Success('Success', 'Linens Successfully Requested!');
+            Alert::Success('Success', 'Linens Successfully Updated!');
             return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
             
         }
@@ -402,6 +406,10 @@ class HousekeeperController extends Controller
                 {
                     $status = "Requested";
                 }
+                elseif($request->input('requested_quantity')[$i] == 0)
+                {
+                    $status = $request->input('stats')[$i];
+                }
                 else
                 {
                     Alert::Error('Error', 'Supply Request Failed!');
@@ -417,7 +425,7 @@ class HousekeeperController extends Controller
                 ]);
             }
                         
-            Alert::Success('Success', 'Supplies Successfully Requested!');
+            Alert::Success('Success', 'Supplies Successfully Updated!');
             return redirect('Housekeeper_Dashboard')->with('Success', 'Data Updated');
             
         }
