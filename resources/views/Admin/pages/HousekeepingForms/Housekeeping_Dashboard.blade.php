@@ -835,14 +835,14 @@
                                                         @endphp
                                                         <button type="button" class="btn btn-sm btn-primary"
                                                             data-toggle="modal"
-                                                            data-target="#view_supply{{ $lists->Room_No }}">
+                                                            data-target="#view_supply{{ $lists->Room_No }}" title="View Information">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
                                                         @if ($lists->rstats != 'Occupied' && $lists->Attendant != "Unassigned")
                                                             @if($check == "Different")
                                                             <button type="button" class="btn btn-sm btn-success"
                                                                 data-toggle="modal"
-                                                                data-target="#request_supply{{ $lists->Room_No }}">
+                                                                data-target="#request_supply{{ $lists->Room_No }}" title="Request Supply">
                                                                 <i class="bi bi-box-arrow-in-down-left"></i>
                                                             </button>
                                                             @endif

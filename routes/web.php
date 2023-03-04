@@ -42,6 +42,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+	
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@admin_edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
@@ -198,8 +199,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Finance', function () {
 			$list = DB::select('SELECT * FROM finances');
 			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
-			//Finance Dashboard
-		Route::get('FinanceDashboard', function () {return view('Admin.pages.FinanceDashboard');})->name('FinanceDashboard');
+			
+			//Finance Dashboards
+		Route::get('FinanceDashboard', function () {
+			$list = DB::select('SELECT * FROM finance_2_reports');
+			return view('Admin.pages.FinanceDashboard', ['list'=>$list]);})->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');

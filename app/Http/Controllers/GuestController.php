@@ -134,7 +134,7 @@ class GuestController extends Controller
     {
         $email = Auth::user()->email;
 
-        $check = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
+        $check = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email' AND IsArchived = 0");
 
         if($check)
         {
