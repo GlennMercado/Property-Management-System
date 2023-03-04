@@ -13,7 +13,7 @@
 
                                     </a>
                                     <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right;">
+                                        data-target="#exampleModal" style="float:right">
                                         Add Stock
                                     </button>
                                 </div>
@@ -291,7 +291,7 @@
                                     </div>
                     </div>
 
-                    <!--ADD DETAILS MODAL FOR ROOM STOCK-->nventory
+                    <!--ADD DETAILS MODAL FOR ROOM STOCK-->
                     <div class="modal fade text-left" id="ModalAdd{{ $lists->productid }}" tabindex="-1"
                         role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-md" role="document">

@@ -37,7 +37,7 @@ $dataString = json_encode($salesData);
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-         var data = <?php echo $dataString; ?>;
+         var data = <?php echo $salesData; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
