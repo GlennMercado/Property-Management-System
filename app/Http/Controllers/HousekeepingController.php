@@ -220,7 +220,6 @@ class HousekeepingController extends Controller
                                 ->orwhere('housekeepings.Attendant', 'LIKE', "%$search%")
                                 ->orwhere('hotel_reservations.Guest_Name', 'LIKE', "%$search%")
                                 ->orwhere('housekeepings.Housekeeping_Status', 'LIKE', "%$search%")
-                                ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_In_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" )
                                 ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
                         });
                     }          
@@ -321,7 +320,6 @@ class HousekeepingController extends Controller
                                 ->orwhere('Status', 'LIKE', "%$search%")
                                 ->orwhere('Priority_Level', 'LIKE', "%$search%")
                                 ->orwhere('Discovered_By', 'LIKE', "%$search%")
-                                ->orwhere(DB::raw("(STR_TO_DATE(Due_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%")
                                 ->orwhere(DB::raw("(STR_TO_DATE(Date_Resolved,'%Y-%m-%d'))"), 'LIKE', "%$date_search%");
                         });
                     }
