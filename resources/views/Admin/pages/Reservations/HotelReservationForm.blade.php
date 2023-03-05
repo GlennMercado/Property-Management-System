@@ -602,7 +602,7 @@
                                                             <input type="text" class="form-control" value="{{$lists->Guest_Name}}" readonly>
 
                                                             
-                                                            <p class="text-left">Item Request </p>
+                                                            <p class="text-left">Request </p>
                                                             <input type="text" name="item_request" id="req2" class="form-control">
                                                             
                                                         </div>
