@@ -141,7 +141,7 @@ class MaintenanceController extends Controller
         
     }
 
-    public function update_request($id, $bs)
+    public function update_service_request($id, $bs)
     {
         try{
             $datenow = Carbon::now()->format('Y-m-d');
@@ -166,18 +166,18 @@ class MaintenanceController extends Controller
             if($sql)
             {
                 Alert::Success('Success', 'Guest Request Successfully Updated!');
-                return redirect('Guest_Request')->with('Success', 'Data Saved');
+                return redirect('Requests')->with('Success', 'Data Saved');
             }
             else
             {
                 Alert::Error('Failed', 'Guest Request Failed Updating!');
-                return redirect('Guest_Request')->with('Failed', 'Data Saved');
+                return redirect('Requests')->with('Failed', 'Data Saved');
             }
 
         }
         catch(\Illuminate\Database\QueryException $e){
             Alert::Error('Failed', 'Guest Request Failed Updating!');
-            return redirect('Guest_Request')->with('Failed', 'Data Saved');
+            return redirect('Requests')->with('Failed', 'Data Saved');
         }
     }
 
@@ -230,7 +230,7 @@ class MaintenanceController extends Controller
 
     public function Operation_Requests()
     {
-        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Item Request' ");
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No");
     
         return view('Admin.pages.OperationManagement.Requests', ['list' => $list]);
     }

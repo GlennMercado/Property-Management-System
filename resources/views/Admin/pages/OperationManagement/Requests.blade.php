@@ -47,6 +47,7 @@
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Guest Name</th>
                                                 <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Type of Request</th>
                                                 <th scope="col" style="font-size:18px;">Request</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
                                                 <th scope="col" style="font-size:18px;"> </th>
@@ -58,21 +59,28 @@
                                                 <td style="font-size:15px;">{{$lists->Request_ID}}</td>
                                                 <td style="font-size:15px;">{{$lists->Room_No}}</td>
                                                 <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
-                                                <td style="font-size:15px;">{{$lists->Date_Requested = date('M d, Y')}}</td>
+                                                <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
+                                                <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
                                                 <td style="font-size:15px;">{{$lists->Request}}</td>
                                                 <td style="font-size:15px;">{{$lists->Status}}</td>
                                                 <td>
-                                                    @if($lists->Status == "Ongoing")
+                                                    @if($lists->Status == "Ongoing" && $lists->Type_of_Request == "Service Request")
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                        data-target="#request_id{{ $lists->Request_ID }}" title="Request Room Linens">
+                                                        data-target="#service_request_id{{ $lists->Request_ID }}" title="Request Room Linens">
                                                         <i class="bi bi-box-arrow-in-down-left"></i>
+                                                    </button>  
+                                                    @endif
+                                                    @if($lists->Status == "Ongoing" && $lists->Type_of_Request == "Item Request")
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#item_request_id{{ $lists->Request_ID }}" title="Request Room Linens">
+                                                        <i class="bi bi-plus"></i>
                                                     </button>  
                                                     @endif
                                                 </td>
                                             </tr>
 
-                                            <!--Assign Attendant-->
-                                            <div class="modal fade" id="request_id{{ $lists->Request_ID }}"
+                                            <!--Update Service Request-->
+                                            <div class="modal fade" id="service_request_id{{ $lists->Request_ID }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,12 +94,40 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h3 class="text-center">Update Guest Request?</h3>
+                                                            <h3 class="text-center">Update Service Request?</h3>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</a>
-                                                            <a href="#" class="btn btn-success">Yes</a>
+                                                            <a href="{{ url('/update_service_request', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Update Item Request-->
+                                            <div class="modal fade" id="item_request_id{{ $lists->Request_ID }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Update Request</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="text-center">Wala pa</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</a>
+
+                                                            <input type="submit" value="Submit" class="btn btn-success">
                                                         </div>
                                                     
                                                     </div>

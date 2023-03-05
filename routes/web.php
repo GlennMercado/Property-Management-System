@@ -95,7 +95,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 		
-		Route::get('/update_request/{id}/{bs}', 'App\Http\Controllers\MaintenanceController@update_request');
+		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\MaintenanceController@update_service_request');
 		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -305,7 +305,6 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	//Route::get('Housekeeping_Report', [App\Http\Controllers\HousekeeperController::class, 'housekeeping_reports'])->name('Housekeeping_Report');
 
 	Route::get('Housekeeping_Report', ['uses' => 'App\Http\Controllers\HousekeeperController@reports', 'as' => 'Housekeeping_Report.reports']);
-		
 		
 	Route::post('/supply_request', 'App\Http\Controllers\HousekeeperController@supply_request');
 	Route::post('/linen_request', 'App\Http\Controllers\HousekeeperController@linen_request');

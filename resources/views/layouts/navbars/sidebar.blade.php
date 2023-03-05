@@ -297,7 +297,7 @@
                                 </ul>
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="#">
+                                        <a class="nav-link text-light" href="{{route('Requests')}}">
                                             <i class="bi bi-file-earmark-text text-white"></i>
                                             {{ __('Guest Request') }}
                                         </a>

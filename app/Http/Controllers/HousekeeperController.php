@@ -67,7 +67,7 @@ class HousekeeperController extends Controller
 
     public function Guest_Request()
     {
-        $list = DB::select("SELECT * FROM guest_requests");
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Service Request' ");
         return view('Housekeeper.Guest_Request', ['list' => $list]);
     }
 
