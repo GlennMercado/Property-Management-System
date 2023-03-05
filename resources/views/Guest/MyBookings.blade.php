@@ -75,8 +75,8 @@
                                                     {{-- <td>{{$lists->Booking_Status}}</td> --}}
                                                     {{-- button for uploading proof of payment --}}
                                                     <td><button type="button" class="btn btn-sm btn-outline-primary"
-                                                            data-toggle="modal" data-target="#exampleModal">
-                                                            Upload Payment
+                                                            data-toggle="modal" data-target="#ViewPayment">
+                                                            View Payment
                                                         </button>
                                                     </td>
                                                     <td>
@@ -88,6 +88,17 @@
                                                                 View QR
                                                             </button>
                                                         @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($lists->Payment_Status == 'Paid')
+                                                        <button type="button" class="btn btn-sm btn-outline-danger d-none"
+                                                            data-toggle="modal"
+                                                            data-target="#CancelBooking">Cancel</button>
+                                                    @else
+                                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                                            data-toggle="modal"
+                                                            data-target="#CancelBooking">Cancel</button>
+                                                    @endif
                                                     </td>
                                                 </tr>
                                                 <!--View-->
@@ -126,25 +137,47 @@
                 </div>
             </div>
             {{-- Proof of Payment Modal --}}
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="ViewPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title" id="exampleModalLabel">Send Proof of Payment</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="exampleModalLabel">Send Proof of Payment</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      <input type="file" class = "form-control">
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+            {{-- Cancel Booking Modal --}}
+            <div class="modal fade" id="CancelBooking" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel?</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            You won't be able to revert a booking cancellation once you confirm it.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Finished Booking -->
             <div class="col-xl-8 order-xl-1 mt-10">
                 <div class="card bg-secondary shadow">

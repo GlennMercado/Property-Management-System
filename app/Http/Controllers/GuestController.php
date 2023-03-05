@@ -121,7 +121,7 @@ class GuestController extends Controller
 
         if($submit->save())
         {
-            Alert::Success('Success', 'Complaint was sent successfully submitted!');
+            Alert::Success('Success', 'Feedback Submitted!');
             return redirect('/complaints')->with('Success', 'Data Saved');
         }
         else

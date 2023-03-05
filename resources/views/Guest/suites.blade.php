@@ -422,10 +422,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col d-flex justify-content-center">
+                                <div class="col-md-12 d-flex justify-content-center">
                                     <input type="submit"
                                         class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt-2"
-                                        value="Submit" style="width:40%;" data-toggle="modal" data-target="#submit" />
+                                        value="Submit" style="width:40%;" data-target="#submit" />
+                                </div>
+                                {{-- This button used for flow of booking --}}
+                                <div class="col-md-12 d-flex justify-content-center pt-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btnpreview">
+                                        Submit
+                                      </button>
                                 </div>
                             </div>
                             <div>
@@ -433,18 +439,14 @@
                                 <div>
                                 </div>
                             </div>
-                    </div>
-
-
-                </div>
-
+                    </div>             
                 {{-- modal submit --}}
                 {{-- WAG TATANGGALIN --}}
-                {{-- <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="btnpreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3 class="modal-title" id="exampleModalLabel">Reservation Information</h3>
+                                            <h2 class="modal-title" id="exampleModalLabel">Billing Information</h2>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -512,17 +514,24 @@
                                                     <div class="col-md-6 text-sm mt-2">   
                                                         2,500                                     
                                                     </div>
+                                                    <div class="col-md-12 container-fluid d-flex justify-content-center">
+                                                        <img class="img-fluid pt-6" src="{{ asset('nvdcpics') }}/nvdcqr.png"
+                                                        alt="Card image cap" style = "max-height: 12.3rem">
+                                                    </div>
+                                                    <div class="col-md-12 mx-auto d-flex justify-content-center mt-4">
+                                                        <input type="file" class = "form-control">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <a href="{{ url('/my_bookings') }}"><button type="button" class="btn btn-success">Done</button></a>
                                         </div>
                                         </div>
                                     </div>
-                                    </div> --}}
+                                    </div>
                 <div class="row mt-4">
                     <div class="col">
 
@@ -852,6 +861,9 @@
             }
         </style>
         <script>
+            // textbox disable/enable
+
+
             function checkCheckbox() {
                 var checkbox = document.getElementById("customCheckRegister");
                 checkbox.checked = true;
