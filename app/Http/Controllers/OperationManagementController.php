@@ -20,6 +20,10 @@ class OperationManagerCOntroller extends Controller
     {
         return view('GuestReservation');
     }
+    public function OperationRooms()
+    {
+        return view('OperationRooms');
+    }
     public function Reports()
     {
         return view('Reports');

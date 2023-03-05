@@ -313,6 +313,13 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'OperationRooms' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('OperationRooms') }}">
+                                    <i class="bi bi-journal-bookmark text-white"></i> {{ __('Rooms') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Reports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Reports') }}">
                                     <i class="bi bi-journal-bookmark text-white"></i> {{ __('Reports') }}
