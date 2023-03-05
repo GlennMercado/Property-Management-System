@@ -74,65 +74,65 @@
 
                                         <!--Assign Attendant-->
                                         <div class="modal fade" id="assign3{{ $lists->id }}"
-                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-left display-4"
-                                                                        id="exampleModalLabel">View Information</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">View Information</h5>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form method="POST" class="prevent_submit"
+                                                        action="{{ url('/assign_housekeepers_linens') }}"
+                                                        enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="card-body bg-white"
+                                                                    style="border-radius: 18px">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $lists->id }}" />
+
+                                                                    <input type="hidden" name="room_no"
+                                                                        value="{{ $lists->Room_No }}" />
+
+                                                                    <p class="text-left">Attendants: </p>
+                                                                    <select name="housekeeper"
+                                                                        class="form-control" required>
+                                                                        <option selected="true"
+                                                                            disabled="disabled">
+                                                                            Select</option>
+                                                                        <option value="Marie B. Adams">Marie B.
+                                                                            Adams
+                                                                        </option>
+                                                                        <option value="Nathan Dela Cruz">Nathan
+                                                                            Dela
+                                                                            Cruz</option>
+                                                                        <option value="Mark Delos Santos">Mark
+                                                                            Delos
+                                                                            Santos</option>
+                                                                        <option value="Jacob Del Rosario">Jacob
+                                                                            Del
+                                                                            Rosario</option>
+                                                                    </select>
                                                                 </div>
-                                                                <form method="POST" class="prevent_submit"
-                                                                    action="{{ url('/assign_housekeepers_linens') }}"
-                                                                    enctype="multipart/form-data">
-                                                                    {{ csrf_field() }}
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="card-body bg-white"
-                                                                                style="border-radius: 18px">
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists->id }}" />
-
-                                                                                <input type="hidden" name="room_no"
-                                                                                    value="{{ $lists->Room_No }}" />
-
-                                                                                <p class="text-left">Attendants: </p>
-                                                                                <select name="housekeeper"
-                                                                                    class="form-control" required>
-                                                                                    <option selected="true"
-                                                                                        disabled="disabled">
-                                                                                        Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B.
-                                                                                        Adams
-                                                                                    </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan
-                                                                                        Dela
-                                                                                        Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark
-                                                                                        Delos
-                                                                                        Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob
-                                                                                        Del
-                                                                                        Rosario</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <a class="btn btn-secondary"
-                                                                            data-dismiss="modal">Close</a>
-                                                                        <input type="submit"
-                                                                            class="btn btn-success prevent_submit"
-                                                                            value="Assign" />
-                                                                    </div>
-                                                                </form>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</a>
+                                                            <input type="submit"
+                                                                class="btn btn-success prevent_submit"
+                                                                value="Assign" />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>

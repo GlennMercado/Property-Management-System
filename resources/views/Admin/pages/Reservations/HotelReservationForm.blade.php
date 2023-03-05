@@ -253,8 +253,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            
+                                        
                             <!-- Reserved -->
                             <div id="reserved" style="display:none;">
                                 <table class="table align-items-center table-flush" id="myTable2">
@@ -449,7 +448,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            @endif
+                                            
 
                                             <!--View-->
                                             <div class="modal fade" id="views1{{ $lists->Booking_No }}" tabindex="-1"
@@ -588,6 +587,7 @@
                                                         <form action="{{ url('/add_guest_request') }}" class="prevent_submit" method="POST"
                                                         enctype="multipart/form-data">
                                                         {{ csrf_field() }}
+
                                                         <div class="modal-body">
                                                             <p class="text-left">Room No.</p>
                                                             <input type="hidden" name="roomno" value="{{$lists->Room_No}}">
@@ -601,10 +601,24 @@
                                                             <input type="hidden" name="guest_name" value="{{$lists->Guest_Name}}">
                                                             <input type="text" class="form-control" value="{{$lists->Guest_Name}}" readonly>
 
-                                                            
-                                                            <p class="text-left">Request </p>
-                                                            <input type="text" name="item_request" id="req2" class="form-control">
-                                                            
+                                                            <p class="text-left">Type of Request </p>
+
+                                                            <select name="type_of_request" class="form-control" id="category">
+                                                                <option value="" selected="true" disabled="disabled">Select</option>
+                                                                <option value="Service Request">Service Request</option>
+                                                                <option value="Item Request">Item Request</option>
+                                                            </select>
+
+                                                            <div id="r_items" style="display:none;">
+                                                                <p class="text-left">Item Request </p>
+                                                                <input type="text" name="item_request" id="req2" class="form-control">
+                                                            </div>
+
+                                                            <div id="r_services" style="display:none;">
+                                                                <p class="text-left">Service Request </p>
+                                                                <input type="text" name="service_request" id="req2" class="form-control">
+                                                            </div>
+                                                           
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
@@ -614,6 +628,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -766,7 +781,24 @@
 
             $('.chck').attr('min', maxDate);
         });
+        $(document).ready(function() {
+            $("#category").change(function() {
+                var selecteds = $("option:selected", this).val();
 
+                if(selecteds == "Service Request")
+                {
+                    $('#r_services').css({'display': 'block'});
+                    $('#r_items').css({'display': 'none'});
+                }
+                else if(selecteds == "Item Request")
+                {
+                    $('#r_services').css({'display': 'none'});
+                    $('#r_items').css({'display': 'block'});
+                }
+                
+            });
+        });
+                
         $(document).ready(function() {
             $("#optionselect").change(function() {
                 var selected = $("option:selected", this).val();

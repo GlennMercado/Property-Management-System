@@ -133,8 +133,13 @@ class HotelController extends Controller
         
             if($check)
             {
+                $facility = "Hotel Room";
+
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+
+                DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
         
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
