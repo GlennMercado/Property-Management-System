@@ -12,7 +12,7 @@
                                 <div class="col">
                                 </div>
                                 <h3 class="mb-0 title">Hotel Linen Requests</h3>
-                                <h5 class="mb-0" style="color:#6C6C6C; font-size:16px;">Instructions: Before Starting, See
+                                <h5 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before Starting, See
                                     To It That All Inventory Are In The Storage Area</h5>
                             </div>
                         </div>
@@ -35,18 +35,18 @@
                                 @foreach ($list as $lists)
                                     <tr>
                                         <td>
-                                            <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                data-target="#ModalView{{ $lists->productid }}"><i
-                                                    class="bi bi-eye"></i></button>
-                                            <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
-                                                data-target="#update{{$lists->id}}"><i
-                                                    class="bi bi-pencil-square"></i></button>
+                                            <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
+                                                data-target="#ModalView{{ $lists->productid }}"><i class="bi bi-eye"
+                                                    title="View Linen"></i></button>
+                                            <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
+                                                data-target="#update{{ $lists->id }}"><i class="bi bi-pencil-square"
+                                                    title="Update Linen"></i></button>
                                         </td>
-                                        <td>{{ $lists->Room_No }}</td>
-                                        <td>{{ $lists->name }}</td>
-                                        <td>{{ $lists->Discrepancy }}</td>
-                                        <td>{{ $lists->Quantity_Requested }}</td>
-                                        <td>{{ $lists->Status }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                        <td style="font-size:14px;">{{ $lists->name }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Discrepancy }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Quantity_Requested }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Status }}</td>
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
@@ -75,18 +75,21 @@
                                     </div>
                                     <!--Modal Edit-->
                                     <!--MODAL FOR Update-->
-                                    <div class="modal fade" id="update{{$lists->id}}" tabindex="-1" role="dialog"
+                                    <div class="modal fade" id="update{{ $lists->id }}" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <form method="POST" action="{{ url('/linen_request_approval') }}"
                                                 enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="modal-content">
-                                                    <div class="modal-header"></div>
+                                                    <div class="modal-header">
+                                                        <h1>Update Linen</h1>
+                                                    </div>
                                                     <div class="modal-body">
+
                                                         <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Room Number : </label>
+                                                            <div class="col-md-6">
+                                                                <label for="Stockdetails">Room Number </label>
                                                                 <input type="number" class="form-control"
                                                                     value="{{ $lists->Room_No }}"
                                                                     placeholder="Enter number..." readonly>
@@ -94,54 +97,71 @@
                                                                     value="{{ $lists->Room_No }}"
                                                                     placeholder="Enter number..." name="roomno" hidden>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="form-control" type="text" name="productid"
-                                                                    value="{{ $lists->productid }}" hidden>
-                                                                <input type="hidden" name="id" value="{{$lists->id}}">
-                                                                <input type="hidden" name="attendant" value="{{$lists->Attendant}}">
-                                                                <input type="hidden" name="category" value="{{$lists->Category}}">
-                                                                <input type="hidden" name="date_requested" value="{{$lists->Date_Requested}}">
-                                                                <input type="hidden" name="qty_owned" value="{{$lists->Quantity}}">
-                                                                <input type="hidden" name="discrepancy" value="{{$lists->Discrepancy}}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Item Name : </label>
+                                                            <div class="col-md-6">
+                                                                <label for="Stockdetails">Item Name </label>
                                                                 <input type="text" class="form-control" name="name"
                                                                     value="{{ $lists->name }}"
                                                                     placeholder="Enter number..." readonly>
                                                             </div>
+
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Quantity Owned: </label>
+                                                            <div class="col-md pt-2">
+                                                                <label for="Stockdetails">Quantity Owned </label>
                                                                 <input type="number" class="form-control"
-                                                                    value="{{ $lists->Quantity}}"
+                                                                    value="{{ $lists->Quantity }}"
                                                                     placeholder="Enter number..." readonly>
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col">
-                                                                <label for="Stockdetails">Requested Quantity: </label>
+                                                            <div class="col-md pt-2">
+                                                                <label for="Stockdetails">Requested Quantity </label>
                                                                 <input type="number" class="form-control"
                                                                     name="Quantity_Requested"
                                                                     value="{{ $lists->Quantity_Requested }}"
                                                                     placeholder="Enter number..." readonly>
                                                             </div>
                                                         </div>
-                                                        <label>Status: </label>
-                                                        <select class="form-control" name="status" id="stats" required>
-                                                        <option value="" selected="true" disabled="disabled">Select</option>
-                                                            <option value="Approved">Approved</option>
-                                                            <option value="Denied">Denied</option>
-                                                        </select>
-
+                                                        <div class="row">
+                                                            <div class="col-md pt-2">
+                                                                <label>Status </label>
+                                                                <select class="form-control" name="status"
+                                                                    id="stats" required>
+                                                                    <option value="" selected="true"
+                                                                        disabled="disabled">
+                                                                        Select</option>
+                                                                    <option value="Approved">Approved</option>
+                                                                    <option value="Denied">Denied</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                         <div class="row" style="display:none;" id="qty">
                                                             <div class="col">
-                                                                <label for="Stockdetails">Quantity to Give: </label>
-                                                                <input type="number" class="form-control qt2" name="quantity"
-                                                                    placeholder="Enter number..." value="0">
+                                                                <label for="Stockdetails">Quantity to Give </label>
+                                                                <input type="number" class="form-control qt2"
+                                                                    name="quantity" placeholder="Enter number..."
+                                                                    value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md">
+                                                                <div class="col">
+                                                                    <input class="form-control" type="text"
+                                                                        name="productid" value="{{ $lists->productid }}"
+                                                                        hidden>
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $lists->id }}">
+                                                                    <input type="hidden" name="attendant"
+                                                                        value="{{ $lists->Attendant }}">
+                                                                    <input type="hidden" name="category"
+                                                                        value="{{ $lists->Category }}">
+                                                                    <input type="hidden" name="date_requested"
+                                                                        value="{{ $lists->Date_Requested }}">
+                                                                    <input type="hidden" name="qty_owned"
+                                                                        value="{{ $lists->Quantity }}">
+                                                                    <input type="hidden" name="discrepancy"
+                                                                        value="{{ $lists->Discrepancy }}">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -269,64 +289,64 @@
         </div>
     </div>
     <!-- </div>
-                
-                        </div>
-                    </div>
-                </div> -->
+                            
+                                    </div>
+                                </div>
+                            </div> -->
 
 
 
 
 
     <!--Validation
-                   <script>
-                       (function() {
-                           'use strict';
-                           window.addEventListener('load', function() {
-                               var forms = document.getElementsByClassName('needs-validation');
-                               var validation = Array.prototype.filter.call(forms, function(form) {
-                                   form.addEventListener('submit', function(event) {
-                                       if (form.checkValidity() === false) {
-                                           event.preventDefault();
-                                           event.stopPropagation();
-                                       }
-                                       form.classList.add('was-validated');
-                                   }, false);
-                               });
-                           }, false);
-                       })();
+                               <script>
+                                   (function() {
+                                       'use strict';
+                                       window.addEventListener('load', function() {
+                                           var forms = document.getElementsByClassName('needs-validation');
+                                           var validation = Array.prototype.filter.call(forms, function(form) {
+                                               form.addEventListener('submit', function(event) {
+                                                   if (form.checkValidity() === false) {
+                                                       event.preventDefault();
+                                                       event.stopPropagation();
+                                                   }
+                                                   form.classList.add('was-validated');
+                                               }, false);
+                                           });
+                                       }, false);
+                                   })();
 
 
-                       <
-                       script >
-                           $(function() {
-                               let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+                                   <
+                                   script >
+                                       $(function() {
+                                           let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 
-                               $.extend(true, $.fn.dataTable.defaults, {
-                                   order: [
-                                       [1, 'desc']
-                                   ],
-                                   pageLength: 100,
-                                   columnDefs: [{
-                                       orderable: true,
-                                       className: '',
-                                       targets: 0
-                                   }]
-                               });
-                               $('.datatable-Stock:not(.ajaxTable)').DataTable({
-                                   buttons: dtButtons
-                               })
-                               $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-                                   $($.fn.dataTable.tables(true)).DataTable()
-                                       .columns.adjust();
-                               });
-                           })
-                   </script>
-                   </script>-->
+                                           $.extend(true, $.fn.dataTable.defaults, {
+                                               order: [
+                                                   [1, 'desc']
+                                               ],
+                                               pageLength: 100,
+                                               columnDefs: [{
+                                                   orderable: true,
+                                                   className: '',
+                                                   targets: 0
+                                               }]
+                                           });
+                                           $('.datatable-Stock:not(.ajaxTable)').DataTable({
+                                               buttons: dtButtons
+                                           })
+                                           $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                                               $($.fn.dataTable.tables(true)).DataTable()
+                                                   .columns.adjust();
+                                           });
+                                       })
+                               </script>
+                               </script>-->
     <style>
         .title {
             text-transform: uppercase;
-            font-size: 25px;
+            font-size: 20px;
             letter-spacing: 2px;
         }
 
@@ -342,25 +362,22 @@
     </style>
     <script>
         $(document).ready(function() {
-                    $("#stats").change(function() {
-                        var selected = $("option:selected", this).val();
-                        
-                       if(selected == "Approved")
-                       {
-                            $('#qty').css({
-                            'display': 'block'
-                            });
-                            $('.qt2').val(0);
-                       } 
-                       else if(selected == "Denied")
-                       {
-                            $('#qty').css({
-                                'display': 'none'
-                            });
-                            $('.qt2').val(0);
-                       }
+            $("#stats").change(function() {
+                var selected = $("option:selected", this).val();
+
+                if (selected == "Approved") {
+                    $('#qty').css({
+                        'display': 'block'
                     });
-                });
+                    $('.qt2').val(0);
+                } else if (selected == "Denied") {
+                    $('#qty').css({
+                        'display': 'none'
+                    });
+                    $('.qt2').val(0);
+                }
+            });
+        });
 
 
         $(function() {
