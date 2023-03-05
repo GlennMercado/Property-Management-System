@@ -153,6 +153,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
+		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
 	
 
 	// //Stock Purchase Report
