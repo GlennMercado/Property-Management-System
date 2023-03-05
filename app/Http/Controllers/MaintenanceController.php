@@ -76,12 +76,14 @@ class MaintenanceController extends Controller
 
     public function Guest_Request()
     {
-        $list = DB::select("SELECT * FROM guest_requests");
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Service Request' ");
         return view('Admin.pages.HousekeepingForms.Guest_Request', ['list' => $list]);
     }
 
     public function add_guest_request(Request $request)
     {
+
+        
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         // generate a pin based on 2 * 7 digits + a random character
@@ -99,7 +101,19 @@ class MaintenanceController extends Controller
             'item_request' => ''
             ]);
           
-        
+        $type_of_request = $request->input('type_of_request');
+
+        $guest_request;
+
+        if($type_of_request == "Service Request")
+        {
+            $guest_request = $request->input('service_request');
+        }
+        elseif($type_of_request == "Item Request")
+        {
+            $guest_request = $request->input('item_request');
+        }
+
 
         $add = new guest_request;
  
@@ -109,7 +123,8 @@ class MaintenanceController extends Controller
         $add->Room_No = $request->input('roomno');
         $add->Booking_No = $bookno;
         $add->Guest_Name = $request->input('guest_name');
-        $add->Request = $request->input('item_request');
+        $add->Type_of_Request = $type_of_request;
+        $add->Request = $guest_request;
 
         if($add->save())
         {
@@ -124,6 +139,46 @@ class MaintenanceController extends Controller
             return redirect('HotelReservationForm')->with('Failed', 'Data Saved');
         }
         
+    }
+
+    public function update_request($id, $bs)
+    {
+        try{
+            $datenow = Carbon::now()->format('Y-m-d');
+            $req_id = $id;
+            
+            $status;
+
+            if($bs == "Checked-Out")
+            {
+                $status = "Unaccomplished";
+            }
+            else
+            {
+                $status = "Accomplished";
+            }
+            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update([
+                'Status' => $status,
+                'Date_Updated' => $datenow,
+                'IsArchived' => 1
+            ]);
+
+            if($sql)
+            {
+                Alert::Success('Success', 'Guest Request Successfully Updated!');
+                return redirect('Guest_Request')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Guest Request Failed Updating!');
+                return redirect('Guest_Request')->with('Failed', 'Data Saved');
+            }
+
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            Alert::Error('Failed', 'Guest Request Failed Updating!');
+            return redirect('Guest_Request')->with('Failed', 'Data Saved');
+        }
     }
 
     public function update_maintenance_status($id, $rno, $bno, $due)
@@ -171,5 +226,12 @@ class MaintenanceController extends Controller
             Alert::Error('Failed', 'Maintenance Failed Updating!');
             return redirect('Maintenance')->with('Success', 'Data Saved');
         }
+    }
+
+    public function Operation_Requests()
+    {
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Item Request' ");
+    
+        return view('Admin.pages.OperationManagement.Requests', ['list' => $list]);
     }
 }

@@ -71,7 +71,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--Update-->
+                                            <!--Assign Attendant-->
                                             <div class="modal fade" id="request_id{{ $lists->Request_ID }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
@@ -91,7 +91,7 @@
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</a>
-                                                            <a href="{{ url('/update_request', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
+                                                            <a href="#" class="btn btn-success">Yes</a>
                                                         </div>
                                                     
                                                     </div>
