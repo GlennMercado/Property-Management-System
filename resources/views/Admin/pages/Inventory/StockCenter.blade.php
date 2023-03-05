@@ -84,30 +84,30 @@
 
                                                     <div class="row">
                                                         <div class="col">
-                                                            <p class="text-left">Stock Name: </p>
+                                                            <p class="text-left">Stock Name </p>
                                                             <input type="text" class="form-control" name="name"
                                                                 value="{{ $lists->name }}" readonly>
                                                            
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Stock Description: </label>
+                                                        <label>Stock Description </label>
                                                         <input type="text" class="form-control" name="description"
                                                             value="{{ $lists->description }}" readonly>
                                                        
 
-                                                        <label>Date Stock Added: </label>
+                                                        <label>Date Stock Added </label>
                                                         <input type="text" class="form-control" name="date"
                                                             value="{{ date('m-d-Y', strtotime($lists->created_at)) }}"
                                                             readonly>
                                                         
 
-                                                        <label>Overall Stock: </label>
+                                                        <label>Overall Stock </label>
                                                         <input type="text" class="form-control" name="allstock"
                                                             value="{{ $lists->allstock }}" readonly>
                                                        
 
-                                                        <label>Quantity: </label>
+                                                        <label>Quantity </label>
                                                         <input type="text" class="form-control" name="total"
                                                             value="{{ $lists->total }}" readonly>
                                                        
@@ -140,47 +140,47 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="text-left">Stock ID: </p>
+                                                <p class="text-left">Stock ID </p>
                                                 <input class="form-control" type="text"
                                                     value="{{ $lists->productid }}" readonly>
                                                 <input class="form-control" type="text" name="productid"
                                                     value="{{ $lists->productid }}" hidden>
                                             </div>
                                             <div class="col">
-                                                <p class="text-left">Stock Name: </p>
+                                                <p class="text-left">Stock Name </p>
                                                 <input type="text" class="form-control" name="name"
                                                     value="{{ $lists->name }}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
 
-                                            <label>Stock Description: </label>
+                                            <label>Stock Description </label>
                                             <input type="text" class="form-control" name="description"
                                                 value="{{ $lists->description }}" required>
 
-                                            <label for="Stockdetails">Overall Stock: </label>
+                                            <label for="Stockdetails">Overall Stock </label>
                                             <input type="hidden" name="allstock" value="{{ $lists->allstock }}" />
                                             <input type="number" class="form-control" value="{{ $lists->allstock }}"
                                                 readonly>
 
-                                            <label for="Stockdetails">Quantity: </label>
+                                            <label for="Stockdetails">Quantity </label>
                                             <input type="hidden" name="quantity" value="{{ $lists->total }}" />
                                             <input type="number" class="form-control" value="{{ $lists->total }}"
                                                 readonly>
 
-                                            <label for="Stockdetails">Stock Level: </label>
+                                            <label for="Stockdetails">Stock Level </label>
                                             <input type="hidden" name="stock" value="{{ $lists->Stock_Level }}" />
                                             <input type="number" class="form-control" value="{{ $lists->Stock_Level }}"
                                                 readonly>
 
                                             <div class="row">
                                                 <div class="col">
-                                                    <p class="text-left">Stock In: </p>
+                                                    <p class="text-left">Stock In </p>
                                                     <input class="form-control" type="number" name="in"
                                                         value="0">
                                                 </div>
                                                 <div class="col">
-                                                    <p class="text-left">Stock Out: </p>
+                                                    <p class="text-left">Stock Out </p>
                                                     <input type="number" class="form-control" name="out"
                                                         value="0">
                                                     <div class="invalid-feedback">
@@ -230,7 +230,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <p class="text-left">Stock Name: </p>
+                                <p class="text-left">Stock Name </p>
                                 <input type="text" class="form-control" name="name" placeholder="Enter name..."
                                     required>
 
@@ -238,28 +238,28 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="Stockdetails">Stock Description: </label>
+                                <label for="Stockdetails">Stock Description </label>
                                 <input type="text" class="form-control" name="description"
                                     placeholder="Enter details..." required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="Stockdetails">Overall Stock: </label>
+                                <label for="Stockdetails">Overall Stock </label>
                                 <input type="number" class="form-control" name="allstock"
                                     min="0" value="0" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="Stockdetails">Quantity: </label>
+                                <label for="Stockdetails">Quantity </label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..."
                                     required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="Stockdetails">Stock Level: </label>
+                                <label for="Stockdetails">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
                                     required>
                             </div>

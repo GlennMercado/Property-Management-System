@@ -14,20 +14,21 @@
                                 <i class="ni ni-circle-08 display-4"></i>
                                 <p class="pl-2 pt-1 font-weight-bold">Anonymous</p>
                                 {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
-                                <div class="card shadow ml-2 mb-2 msgcolor gal" data-toggle="tooltip" data-placement="bottom"
+                                <div class="card shadow mb-2 msgcolor gal" data-toggle="tooltip" data-placement="bottom"
                                     title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
                                     <div class="card-body font-weight-bold mt--4">
                                         <br>
-                                        <span class="badge badge-pill badge-primary category">{{ $list->concern }}</span>
-                                        <span class="text-muted text-sm">{{ $list->created_at }}</span>
+                                        <span class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
+                                        <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
                                         <br>
-                                        <span>{{ $list->concern_text }}</span>
                                         <br>
-                                        <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                        <span class = "ml-1">{{ $list->concern_text }}</span>
+                                        <br>
+                                        {{-- <a href="{{ $list->complaints_img }}" data-lightbox="photos"
                                             data-gallery="complaints">
                                             <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
                                                 data-lightbox="photos" data-gallery="complaints"
-                                                style="max-height: 350px; max-width:500px;" />
+                                                style="max-height: 350px; max-width:500px;" /> --}}
                                         </a>
                                     </div>
                                 </div>
