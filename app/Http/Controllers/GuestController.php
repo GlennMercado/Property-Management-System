@@ -56,8 +56,10 @@ class GuestController extends Controller
         $room_id = $id;
         $room_list = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$room_id'");
         $email = Auth::user()->email;
+
         $room = DB::select("SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No");
-		$guest = DB::select("SELECT * FROM users WHERE email = '$email'");
+		
+        $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
         
         return view('Guest.suites', ['guest'=>$guest, 'room'=>$room, 'room_list'=>$room_list]);
     }
