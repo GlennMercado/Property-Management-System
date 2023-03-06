@@ -12,19 +12,21 @@
                     <div class="col-md-4 p-3 ml-2 d-flex justify-content-center">
                         <div class="lightbox-gallery">
                             <div class="container shadow">
-                                @foreach ($room_list as $room_list)
+                                
+                                @foreach ($room_list as $lists)
                                     <div class="row gal">
                                         <div class="col-sm-12 col-md-12 col-lg-12 item">
-                                            <a href="{{ $room_list->Hotel_Image }}" data-lightbox="photos">
-                                                <img class="img-fluid mt-3" src="{{ $room_list->Hotel_Image }}">
+                                            <a href="{{ $lists->Hotel_Image }}" data-lightbox="photos">
+                                                <img class="img-fluid mt-3" src="{{ $lists->Hotel_Image }}">
                                             </a>
                                         </div>
+
                                     </div>
                                     <div class="mt-4">
-                                        <h2 class="text-success currency">{{ $room_list->Rate_per_Night }}</h2>
-                                        <h3 class="font-weight-bold">Room {{ $room_list->Room_No }}</h3>
-                                        <h3 class="font-weight-bold">Size {{ $room_list->Room_Size }}</h3>
-                                        <h3 class="font-weight-bold">{{ $room_list->No_of_Beds }} Bed</h3>
+                                        <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
+                                        <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
+                                        <h3 class="font-weight-bold">Size {{ $lists->Room_Size }}</h3>
+                                        <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
                                         <h3 class="pt-4 text-muted pb-2">
                                             Additional ₱ 1,500/pax
                                         </h3>
@@ -36,18 +38,18 @@
 
                                 <h3 class="pt-2">Other rooms</h3>
                                 <div class="row gal">
-                                    @foreach ($room as $room)
+                                    @foreach ($room as $lists)
                                         <div class="col-md-6 shadow">
-                                            <a href="{{ url('/suites', ['id' => $room->Room_No]) }}">
+                                            <a href="{{ url('/suites', ['id' => $lists->Room_No]) }}">
                                                 <div class="image-container">
-                                                    <img class="card-img-top mt-3" src="{{ $room->Hotel_Image }}"
+                                                    <img class="card-img-top mt-3" src="{{ $lists->Hotel_Image }}"
                                                         alt="Card image cap" style="max-height: 12.3rem">
                                                 </div>
                                                 <div class="card-body">
                                                     <h3 class="text-success font-weight-bold mt--3 currency">
-                                                        {{ $room->Rate_per_Night }}</h3>
-                                                    <h4 class="font-weight-bold">Room {{ $room->Room_No }}</h4>
-                                                    <p class="text-sm text-dark">{{ $room->No_of_Beds }}Bed</p>
+                                                        {{ $lists->Rate_per_Night }}</h3>
+                                                    <h4 class="font-weight-bold">Room {{ $lists->Room_No }}</h4>
+                                                    <p class="text-sm text-dark">{{ $lists->No_of_Beds }}Bed</p>
                                                 </div>
                                             </a>
                                         </div>
@@ -94,9 +96,9 @@
                                 </div>
 
                                 <div class="col-md pt-4">
-                                    <p>Room No <span class="text-danger">*</span></p>
-                                    @foreach ($room_list as $rooms)
-                                        <input type="text" class="form-control" value="{{ $rooms->Room_No }}" readonly>
+                                    <p>Room No</p>
+                                    @foreach($room_list as $lists)
+                                        <input type="text" class="form-control" value="{{$lists->Room_No}}"readonly>
                                     @endforeach
                                 </div>
                             </div>
