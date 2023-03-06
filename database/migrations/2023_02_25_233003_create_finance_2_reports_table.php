@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('particular');
             $table->string('debit');
             $table->string('remark');
-            $table->integer('amount');
+            $table->double('amount');
             $table->string('eventdate');
 
             $table->integer('cash');

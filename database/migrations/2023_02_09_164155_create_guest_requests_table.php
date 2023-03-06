@@ -22,11 +22,13 @@ return new class extends Migration
 
             $table->string('Booking_No');
             $table->index('Booking_No');
-            $table->foreign('Booking_No')->references('Booking_No')->on('hotel_reservations')->onDelete('cascade')->onUpdate('cascade');
-            
+            $table->foreign('Booking_No')->references('Booking_No')->on('hotel_reservations')->onDelete('cascade')->onUpdate('cascade');         
 
             $table->string('Guest_Name');
             $table->date('Date_Requested')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('Date_Updated')->nullable();
+
+            $table->string("Type_of_Request");
             $table->string('Request');
             
             $table->string('Status')->default('Ongoing');

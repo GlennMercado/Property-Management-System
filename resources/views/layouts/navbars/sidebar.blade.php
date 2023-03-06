@@ -171,6 +171,14 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('Guest_Request') }}">
+                                    <i class="bi bi-file-earmark-text text-white"></i>
+                                    {{ __('Guest Request') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Housekeeping_Reports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Housekeeping_Reports.reports') }}">
                                     <i class="bi bi-journal-bookmark text-white"></i> {{ __('Reports') }}
@@ -289,7 +297,7 @@
                                 </ul>
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('Guest_Request') }}">
+                                        <a class="nav-link text-light" href="{{route('Requests')}}">
                                             <i class="bi bi-file-earmark-text text-white"></i>
                                             {{ __('Guest Request') }}
                                         </a>
@@ -301,6 +309,13 @@
                             <li class="nav-item {{ 'Guest_Reservation' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Guest_Reservation') }}">
                                     <i class="bi bi-person-badge text-white"></i> {{ __('Guest Reservation') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'OperationRooms' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('OperationRooms') }}">
+                                    <i class="bi bi-journal-bookmark text-white"></i> {{ __('Rooms') }}
                                 </a>
                             </li>
                         </ul>

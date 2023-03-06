@@ -37,12 +37,23 @@ class HousekeepingController extends Controller
         $count = DB::select('Select * from novadeci_suites');
         $array = array();
 
+        $datenow = Carbon::now()->format('Y-m-d');
+
+        $arrival = DB::select("SELECT count(*) as cnt FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0 AND b.Check_In_Date = '$datenow'");
+        $supply_request = DB::select("SELECT count(*) as cnt FROM hotel_room_supplies_reports WHERE STR_TO_DATE(Date_Received,'%Y-%m-%d') = '$datenow'");
+        $linen_request = DB::select("SELECT count(*) as cnt FROM hotel_room_linens_reports WHERE STR_TO_DATE(Date_Received,'%Y-%m-%d') = '$datenow'");
+        $maintenance = DB::select("SELECT count(*) as cnt FROM out_of_order_rooms WHERE Date_Resolved = '$datenow'");
+
         foreach($count as $counts)
         {
             $array[] = ['Room_No' => $counts->Room_No];
         }
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
-                    ['list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]
+                    [
+                    'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
+                    'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
+                    'linen' => $linen_request, 'maintenance' => $maintenance
+                    ]
                     );
     }
     public function hotel_housekeeping()

@@ -295,7 +295,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="Stockdetails">Amount: </label>
-                                                            <input type="number" class="form-control" name="amount"
+                                                            <input type="number" class="form-control" name="amount" step="0.01"
                                                                 placeholder="Enter number..." required>
                                                         </div>
                                                     </div>

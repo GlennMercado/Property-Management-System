@@ -19,6 +19,67 @@
                                 <h2 class="mb-0 title">Housekeeping Dashboard</h3>
                             </div>
                         </div>
+
+                        <!-- Count Box -->
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body rounded" style="background-color:#156C45;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                            @foreach($arrival as $count)
+                                                {{$count->cnt}}
+                                            @endforeach
+                                        </h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                            Arrival
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body rounded" style="background-color:#23B271;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                            @foreach($supply as $count)
+                                                {{$count->cnt}}
+                                            @endforeach
+                                        </h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                            Supply Request
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                            @foreach($linen as $count)
+                                                {{$count->cnt}}
+                                            @endforeach
+                                        </h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                            Linen Request
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                            @foreach($maintenance as $count)
+                                                {{$count->cnt}}
+                                            @endforeach
+                                        </h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                            Maintenance
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <br>
                         <div class="row align-items-center">
                             <div class="col text-right">
