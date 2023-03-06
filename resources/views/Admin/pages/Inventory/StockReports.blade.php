@@ -56,7 +56,6 @@
                                     <th scope="col" style="font-size:16px;">Status</th>
                                      </tr>
                                     </thead>
-
                                         <tbody>
                                         @foreach ($list as $lists)
                                             <tr>
@@ -91,35 +90,26 @@
                                     <tbody>
                                         @foreach ($list2 as $lists2)
                                             <tr>
-                                                <td style="font-size:16px;">{{ $lists2->Room_No }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->name }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Quantity }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Attendant }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Status }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Quantity_Requested }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Date_Requested }}</td>
-                                                <td style="font-size:16px;">{{ $lists2->Date_Received }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->name }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Quantity }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Attendant }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Quantity_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Date_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Date_Received }}</td>
                                             </tr>
                                             @endforeach
                                             </tbody>
                                             </table>
-                                        </div>
-
-                                
-
-                                
+                                        </div>                              
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <br>
-
-
-
-
         <script>
             $('.prevent_submit').on('submit', function() {
                 $('.prevent_submit').attr('disabled', 'true');
