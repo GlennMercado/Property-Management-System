@@ -47,7 +47,7 @@
                                                     title="View Stock"></i></button>
                                             <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
                                                 data-target="#ModalUpdate{{ $lists->productid }}"><i
-                                                    class="bi bi-pencil-square" title="Edit Stock"></i></button>
+                                                    class="bi bi-arrow-clockwise" title="Update Stock"></i></button>
                                             <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
                                                 data-target="#ModalAdd{{ $lists->productid }}"><i class="bi bi-plus"
                                                     title="Add Stock"></i></button>
@@ -131,14 +131,14 @@
                                     </div>
 
 
-                                    <!--Modal Edit / validation-->
+                                    <!--Modal Update / validation-->
                                     <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}"
                                         tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-md" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <div class="container">
-                                                        <h1 class="modal-title">Edit Details</h1>
+                                                        <h1 class="modal-title">Update Details</h1>
                                                     </div>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
@@ -273,24 +273,22 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- <div class="invalid-feedback">
-                                                                                                                                                        Stock Name empty
-                                                                                                                                                    </div>        -->
 
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-outline-danger"
-                                                            data-dismiss="modal">Close</button>
-                                                        <!-- <a class="btn btn-failed" data-dismiss="modal">Close</a> -->
-                                                        <input type="submit" name="update" value="Update"
-                                                            class="btn btn-success" />
+                                                        <!-- <div class="invalid-feedback">
+                                                                        Stock Name empty
+                                                                        </div>        -->
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                            <!-- <a class="btn btn-failed" data-dismiss="modal">Close</a> -->
+                                                            <input type="submit" name="update" value="Update"
+                                                                class="btn btn-success" />
+                                                        </div>
                                                     </div>
-                                            </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
-                    </div>
-
                     <!--ADD DETAILS MODAL FOR ROOM STOCK-->
                     <div class="modal fade text-left" id="ModalAdd{{ $lists->productid }}" tabindex="-1"
                         role="dialog" aria-hidden="true">
@@ -305,47 +303,51 @@
                                 <form method="POST" action="{{ url('/add_stock_room') }}"
                                     enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="Stockdetails">Product Name: </label>
-                                                <input type="text" class="form-control" value="{{ $lists->name }}"
-                                                    readonly>
-                                                <input type="hidden" name="id" value="{{ $lists->productid }}" />
-                                                <input type="hidden" name="name" value="{{ $lists->name }}" />
+                                    <div class="container">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="Stockdetails">Product Name: </label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $lists->name }}" readonly>
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $lists->productid }}" />
+                                                    <input type="hidden" name="name" value="{{ $lists->name }}" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="Stockdetails">Category : </label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $lists->category }}" readonly>
+                                                    <input type="hidden" name="category"
+                                                        value="{{ $lists->category }}">
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="Stockdetails">Category : </label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ $lists->category }}" readonly>
-                                                <input type="hidden" name="category" value="{{ $lists->category }}">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pt-4">
-                                                <label for="Stockdetails">Room Number : </label>
-                                                <select name="roomno" class="form-control" required>
-                                                    <option value="" selected="true" disabled="disabled">Select
-                                                    </option>
-                                                    @foreach ($count2 as $counts2)
-                                                        @for ($i = $counts2['Room_No']; $i <= $counts2['Room_No']; $i++)
-                                                            @if ($i != 0)
-                                                                <option value="{{ $i }}">
-                                                                    {{ $i }}</option>
-                                                            @endif
-                                                        @endfor
-                                                    @endforeach
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-md-6 pt-4">
+                                                    <label for="Stockdetails">Room Number : </label>
+                                                    <select name="roomno" class="form-control" required>
+                                                        <option value="" selected="true" disabled="disabled">Select
+                                                        </option>
+                                                        @foreach ($count2 as $counts2)
+                                                            @for ($i = $counts2['Room_No']; $i <= $counts2['Room_No']; $i++)
+                                                                @if ($i != 0)
+                                                                    <option value="{{ $i }}">
+                                                                        {{ $i }}</option>
+                                                                @endif
+                                                            @endfor
+                                                        @endforeach
+                                                    </select>
 
-                                            </div>
-                                            <div class="col-md-6 pt-4">
-                                                <label for="Stockdetails">Quantity </label>
-                                                <input type="number" class="form-control" name="quantity"
-                                                    placeholder="Enter number..." min="0"
-                                                    onKeyPress="if(this.value.length==5) return false;" required>
+                                                </div>
+                                                <div class="col-md-6 pt-4">
+                                                    <label for="Stockdetails">Quantity </label>
+                                                    <input type="number" class="form-control" name="quantity"
+                                                        placeholder="Enter number..." min="0"
+                                                        onKeyPress="if(this.value.length==5) return false;" required>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="modal-footer pt-4">
                                             <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                             <input type="submit" name="update" value="Update"
                                                 class="btn btn-success" />
@@ -355,7 +357,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--Table Continue-->
                     @endforeach
                     </tbody>
@@ -407,10 +408,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row pt-4">
                             <div class="col">
                                 {{-- <label class="text-color">Stock Name </label> --}}
                                 <div id="linens" style="display:none;">
+                                    <label for="">Choose Linen</label>
                                     <select class="form-control" id="linens" name="Linens">
                                         <option value="Bed pad - Single">Bed pad - Single</option>
                                         <option value="Fitted Sheet - Single">Fitted Sheet - Single</option>
@@ -432,6 +434,7 @@
                                     </select>
                                 </div>
                                 <div id="guestsupplies" style="display:none;">
+                                    <label for="">Choose Supply</label>
                                     <select class="form-control" id="guestsuplies" name="GuestSupplies">
                                         <option value="Bath Soap">Bath Soap</option>
                                         <option value="Shampoo">Shampoo</option>
@@ -446,6 +449,7 @@
                                     </select>
                                 </div>
                                 <div id="amenities" style="display:none;">
+                                    <label for="">Choose Amenities</label>
                                     <select class="form-control" id="amenities" name="Amenities">
                                         <option value="Kettle">Kettle</option>
                                         <option value="Tray">Tray</option>
@@ -484,8 +488,7 @@
                             <div class="col">
                                 <label for="Stockdetails" class="text-color pt-4">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
-                                onKeyPress="if(this.value.length==2) return false;"    
-                                required>
+                                    onKeyPress="if(this.value.length==2) return false;" required>
                             </div>
                         </div>
                     </div>
@@ -498,19 +501,11 @@
             </div>
         </div>
     </div>
-
-
     <!-- </div>
-                                                                                        
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div> -->
-
-
-
-
-
-
+                                                                                                        
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
