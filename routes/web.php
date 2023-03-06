@@ -85,7 +85,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
-		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 		Route::get('/update_maintenance_stats/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
 
@@ -94,8 +93,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
 		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
-		
-		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\MaintenanceController@update_service_request');
 		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -149,12 +146,17 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		
 		
-		Route::get('Requests', [App\Http\Controllers\MaintenanceController::class, 'Operation_Requests'])->name('Requests');
+		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
+
+		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
+		
+		Route::post('add_guest_request', 'App\Http\Controllers\OperationManagementController@add_guest_request');
 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
 	
+		Route::post('/setstats', 'App\Http\Controllers\OperationManagementController@setstats');
 
 	// //Stock Purchase Report
 		// 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
@@ -323,6 +325,8 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	Route::post('/assign_housekeepers_supply', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_supplies');
 
 	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
-
+	
+	Route::get('/update_service_requests/{id}/{bs}', 'App\Http\Controllers\HousekeeperController@update_service_request');
+		
 });
 

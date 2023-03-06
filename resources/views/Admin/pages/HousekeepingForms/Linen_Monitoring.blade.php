@@ -27,11 +27,11 @@
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" style="font-size:18px;">Room <br> No.</th>
-                                        <th scope="col" style="font-size:18px;">Total <br> Linen</th>
-                                        <th scope="col" style="font-size:18px;">Total <br> Discrepancy</th>
-                                        <th scope="col" style="font-size:18px;">Attendant</th>
-                                        <th scope="col" style="font-size:18px;">Action</th>
+                                        <th scope="col" style="font-size:14px;">Room <br> No.</th>
+                                        <th scope="col" style="font-size:14px;">Total <br> Linen</th>
+                                        <th scope="col" style="font-size:14px;">Total <br> Discrepancy</th>
+                                        <th scope="col" style="font-size:14px;">Attendant</th>
+                                        <th scope="col" style="font-size:14px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -298,7 +298,7 @@
         <style>
             .title {
                 text-transform: uppercase;
-                font-size: 25px;
+                font-size: 20px;
                 letter-spacing: 2px;
             }
 

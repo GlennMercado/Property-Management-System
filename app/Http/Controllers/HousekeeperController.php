@@ -723,4 +723,45 @@ class HousekeeperController extends Controller
             return redirect('Linens_Monitoring')->with('Success', 'Data Updated');
         }
     }
+
+    public function update_service_request($id, $bs)
+    {
+        try{
+            $datenow = Carbon::now()->format('Y-m-d');
+            $req_id = $id;
+            
+            $status;
+
+            if($bs == "Checked-Out")
+            {
+                $status = "Unaccomplished";
+            }
+            else
+            {
+                $status = "Accomplished";
+            }
+            
+            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update([
+                'Status' => $status,
+                'Date_Updated' => $datenow,
+                'IsArchived' => 1
+            ]);
+
+            if($sql)
+            {
+                Alert::Success('Successfully Updated!', 'Guest Request '.$status.'!');
+                return redirect('Guest_Requests')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Guest Request Failed Updating!');
+                return redirect('Guest_Requests')->with('Failed', 'Data Saved');
+            }
+
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            Alert::Error('Failed', 'Guest Request Failed Updating!');
+            return redirect('Guest_Requests')->with('Failed', 'Data Saved');
+        }
+    }
 }

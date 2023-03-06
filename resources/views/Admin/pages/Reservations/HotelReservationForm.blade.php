@@ -611,7 +611,18 @@
 
                                                             <div id="r_items" style="display:none;">
                                                                 <p class="text-left">Item Request </p>
-                                                                <input type="text" name="item_request" id="req2" class="form-control">
+                                                                <select name="item_request" class="form-control">
+                                                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                                                    @php
+                                                                    $supply = \DB::select("SELECT * FROM hotel_reservations a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No WHERE b.Room_No = '$lists->Room_No' GROUP BY b.name"); 
+                                                                    @endphp
+                                                                    @foreach($supply as $supplies)
+                                                                        <option value="{{$supplies->name}}">{{$supplies->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <p class="text-left">Quantity</p>
+                                                                <input type="hidden" name="qty" value="{{$lists->No_of_Pax}}" >
+                                                                <input type="number" class="form-control" value="{{$lists->No_of_Pax}}" readonly/>
                                                             </div>
 
                                                             <div id="r_services" style="display:none;">
