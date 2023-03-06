@@ -11,8 +11,8 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
-    <div class="container-fluid mt--7">
-        <div class="container-fluid mt--6">
+    <div class="container-fluid mt--9">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class=" col ">
                     <div class="card">
@@ -36,7 +36,7 @@
                                         @foreach ($list as $lists)
                                             <tr>
                                                 <td>
-                                                        <a href="{{ url('/event_view', ['id' => $lists->id]) }}"
+                                                        <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
                                                             class="btn btn-sm btn-success" style="cursor:pointer;"
                                                             data-toggle="tooltip" data-placement="top" title="View">
                                                             <i class="bi bi-eye"></i>
@@ -47,38 +47,38 @@
                                                             <i class="bi bi-pencil-square"></i></button>
                                                 </td>
                                                 <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
-                                                <td>{{$lists->inquiry_status}}</td>
+                                                <td><span class="badge badge-pill badge-lg badge-success">{{$lists->inquiry_status}}</span></td>
                                                 <td>
-                                                    Name: {{ $lists->client_name }}
-                                                    <br>Contact Number:
+                                                    <span class="font-weight-bold">Name: </span>{{ $lists->client_name }}
+                                                    <br><span class="font-weight-bold">Contact Number: </span>
                                                     {{ $lists->contact_no }}
                                                     <br>
-                                                    Billing Address:
+                                                    <span class="font-weight-bold">Billing Address: </span>
                                                     {{ $lists->billing_address }}
                                                     <br>
-                                                    Email: {{ $lists->email_address }}
+                                                    <span class="font-weight-bold">Email: </span> {{ $lists->email_address }}
                                                 </td>
-                                                <td>Name: {{ $lists->contact_person }}
+                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }}
                                                     <br>
-                                                    Contact Number:
+                                                    <span class="font-weight-bold">Contact Number: </span>
                                                     {{ $lists->contact_person_no }}
                                                 </td>
-                                                <td>Event name: {{ $lists->event_name }}
+                                                <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}
                                                     <br>
-                                                    Event Type:
+                                                    <span class="font-weight-bold">Event Type:</span>
                                                     {{ $lists->event_type }}
                                                     <br>
-                                                    Event Date: {{ $lists->event_date }}
+                                                    <span class="font-weight-bold">Event Date: </span> {{ $lists->event_date }}
                                                     <br>
-                                                    No. of Guest: {{ $lists->no_of_guest }}
+                                                    <span class="font-weight-bold">No. of Guest: </span>{{ $lists->no_of_guest }}
                                                     <br>
-                                                    Venue: {{ $lists->venue }}
+                                                    <span class="font-weight-bold">Venue: </span>{{ $lists->venue }}
                                                     <br>
-                                                    Caterer: {{ $lists->caterer }}
+                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists->caterer }}
                                                     <br>
-                                                    Audio/Visual: {{ $lists->audio_visual }}
+                                                    <span class="font-weight-bold">Audio/Visual: </span> {{ $lists->audio_visual }}
                                                     <br>
-                                                    Events and Concep Styling: {{ $lists->concept }}
+                                                    <span class="font-weight-bold">Events and Concep Styling: </span> {{ $lists->concept }}
                                                 </td>
                                             </tr>
                                     </tbody>

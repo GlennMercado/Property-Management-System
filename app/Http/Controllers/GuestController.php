@@ -51,15 +51,15 @@ class GuestController extends Controller
         $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
         return view('Guest.MyBookings', ['list' => $list]);
     }
-    public function suites()
+    public function suites($id)
     {
+        $room_id = $id;
+        $room_list = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$room_id'");
         $email = Auth::user()->email;
-        
-        $list = DB::select('SELECT * FROM hotel_reservations');
-        $room = DB::select('SELECT a.Room_No, a.Status, a.No_of_Beds, a.Extra_Bed FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No');
+        $room = DB::select("SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No");
 		$guest = DB::select("SELECT * FROM users WHERE email = '$email'");
         
-        return view('Guest.suites', ['list'=>$list, 'room'=>$room, 'guest'=>$guest]);
+        return view('Guest.suites', ['guest'=>$guest, 'room'=>$room, 'room_list'=>$room_list]);
     }
     public function convention_center()
     {
@@ -81,8 +81,8 @@ class GuestController extends Controller
         return view('Guest.complaints');
     }
     public function rooms(){
-        $list = DB::select('SELECT * FROM novadeci_suites');    
-        return view('Guest.rooms', ['list'=>$list]);
+        $room = DB::select('SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No');
+        return view('Guest.rooms', ['room'=>$room]);
     }
     public function FAQ(){
         return view('Guest.FAQ');

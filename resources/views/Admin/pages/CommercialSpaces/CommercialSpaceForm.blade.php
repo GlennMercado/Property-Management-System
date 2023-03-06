@@ -54,44 +54,74 @@
                                                     <tbody>
                                                         @foreach ($list as $lists)
                                                             <tr>
-                                                                <td class="row">
-                                                                    <div class="col-md-1">
-                                                                        <a href="{{url('/commercial_space_view', ['id' => $lists->id]) }}" class="btn btn-sm btn-success" style="cursor:pointer;">
-                                                                            <i class="bi bi-eye"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <button type="submit"
-                                                                            class="btn btn-sm btn-primary" title="Edit">
-                                                                            <i class="bi bi-pencil-square"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <button type="submit" class="btn btn-sm btn-danger"
-                                                                            title="Delete">
-                                                                            <i class="ni ni-fat-remove"></i></button>
-                                                                    </div>
-                                                                </td>
-                                                                <td>{{ $lists->id }}</td>
                                                                 <td>
-                                                                    Business Name: {{ $lists->business_name }} <br>
-                                                                    Business Style: {{ $lists->business_style }} <br>
-                                                                    Business Address: {{ $lists->business_address }} <br>
-                                                                    Email/Website/FB: {{ $lists->email_website_fb }} <br>
-                                                                    Business Landline: {{ $lists->business_landline_no }}
-                                                                    <br>
-                                                                    Business Mobile No.: {{ $lists->business_mobile_no }}
-                                                                    <br>
-
+                                                                    <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
+                                                                        target="blank" class="btn btn-sm btn-success"
+                                                                        style="cursor:pointer;">
+                                                                        <i class="bi bi-eye"></i>
+                                                                    </a>
+                                                                    <button type="submit" class="btn btn-sm btn-primary"
+                                                                        title="Edit">
+                                                                        <i class="bi bi-pencil-square"></i></button>
                                                                 </td>
-                                                                <td>Owner Name: {{ $lists->name_of_owner }} <br>
-                                                                    Spouse: {{ $lists->spouse }} <br>
-                                                                    Home Address: {{ $lists->home_address }} <br>
-                                                                    Landline: {{ $lists->landline }} <br>
-                                                                    Mobile: {{ $lists->mobile_no }} <br>
-                                                                    Tax Identification No.:
-                                                                    {{ $lists->tax_identification_no }} <br>
-                                                                    Tax Cert or Valid ID:
-                                                                    {{ $lists->tax_cert_valid_gov_id }} <br>
+                                                                <td><span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->id }}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="tbltxt">Business Name: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Style: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Address: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Email/Website/FB: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Landline: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Mobile No: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
+                                                                    <br>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="tbltxt">Owner Name: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Spouse: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Home Address: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Landline: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Mobile: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Tax Identification No: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Tax Cert or Valid ID: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
+                                                                    <br>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -113,6 +143,10 @@
         </div>
     </div>
     <style>
+        .tbltxt {
+            font-size: 18px;
+        }
+
         .title {
             text-transform: uppercase;
             font-size: 25px;

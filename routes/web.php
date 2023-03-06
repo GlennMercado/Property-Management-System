@@ -272,7 +272,9 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');
 	Route::get('/guest_event', [App\Http\Controllers\GuestController::class, 'guest_event'])->name('guest_event');
 	Route::get('/guest_commercial', [App\Http\Controllers\GuestController::class, 'guest_commercial'])->name('guest_commercial');
-	Route::get('/suites', [App\Http\Controllers\GuestController::class, 'suites'])->name('suites');
+	// Route::get('/suites', [App\Http\Controllers\GuestController::class, 'suites'])->name('suites');
+	Route::get('/suites/{id}', 'App\Http\Controllers\GuestController@suites');
+	// 
 	Route::get('/convention_center', [App\Http\Controllers\GuestController::class, 'convention_center'])->name('convention_center');
 	Route::get('/function_room', [App\Http\Controllers\GuestController::class, 'function_room'])->name('function_room');
 	Route::get('/commercial_spaces', [App\Http\Controllers\GuestController::class, 'commercial_spaces'])->name('commercial_spaces');

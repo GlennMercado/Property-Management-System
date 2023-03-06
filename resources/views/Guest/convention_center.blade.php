@@ -201,7 +201,6 @@
                     </div>
                     </form>
                     <div class="col-md-4" style="margin-top: 12%">
-                        <h2 class="ml-3 title1" style="font-size: 2.5rem;">Convention Center</h2>
                         <!-- Gallery -->
                         <div class="row shadow p-3 mb-5 gal" style="margin: 15px">
                             <div class="col-md-12">
@@ -422,14 +421,14 @@
                 }
 
                 /* .centered {
-                                                                                                                                                                                                                font-size:30px;
-                                                                                                                                                                                                            position: absolute;
-                                                                                                                                                                                                            bottom: 410px;
-                                                                                                                                                                                                            right: 200px;
-                                                                                                                                                                                                            color:white;
-                                                                                                                                                                                                            -webkit-text-stroke-width: 1px;
-                                                                                                                                                                                                            -webkit-text-stroke-color: black;
-                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                    font-size:30px;
+                                                                                                                                                                                                                position: absolute;
+                                                                                                                                                                                                                bottom: 410px;
+                                                                                                                                                                                                                right: 200px;
+                                                                                                                                                                                                                color:white;
+                                                                                                                                                                                                                -webkit-text-stroke-width: 1px;
+                                                                                                                                                                                                                -webkit-text-stroke-color: black;
+                                                                                                                                                                                                                } */
             </style>
             <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
             <script>
@@ -443,7 +442,7 @@
                         $("#specify_venue_text").empty();
                         $("#specify_venue_text").val('yes');
                         $('#specify_venue_text').removeAttr('required');
-                    } else {
+                    } else if ($(this).val() == "venue_value_no") {
                         $("#specify_venue_text").show();
                         $("#specify_venue_text").val('');
                         $('#specify_venue_text').attr('required', true);
@@ -455,7 +454,7 @@
                         $("#specify_caterer_text").empty();
                         $("#specify_caterer_text").val('yes');
                         $('#specify_caterer_text').removeAttr('required');
-                    } else {
+                    } else if ($(this).val() == "caterer_value_no") {
                         $("#specify_caterer_text").show();
                         $("#specify_caterer_text").val('');
                         $('#specify_caterer_text').attr('required', true);
@@ -467,7 +466,7 @@
                         $("#specify_audio_visual_text").empty();
                         $("#specify_audio_visual_text").val('yes');
                         $('#specify_audio_visual_text').removeAttr('required');
-                    } else {
+                    } else if ($(this).val() == "audio_visual_value_no") {
                         $("#specify_audio_visual_text").show();
                         $("#specify_audio_visual_text").val('');
                         $('#specify_audio_visual_text').attr('required', true);
@@ -479,7 +478,7 @@
                         $("#specify_concept_text").empty();
                         $("#specify_concept_text").val('yes');
                         $('#specify_concept_text').removeAttr('required');
-                    } else {
+                    } else if ($(this).val() == "concept_value_no") {
                         $("#specify_concept_text").show();
                         $("#specify_concept_text").val('');
                         $('#specify_concept_text').attr('required', true);

@@ -86,14 +86,6 @@
                             <p>Venue<span class="text-danger">*</span></p>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="radio" name="venue" value="yes" id="venueYes" disabled>
-                                    Yes
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="venue" value="venue_value_no" id="venueNo" disabled>
-                                    No (If no, please specify)
-                                </div>
-                                <div class="col-md-4">
                                     <input value="{{ $list->venue }}" class="form-control-sm" type="text"
                                         name="venue" id="specify_venue_text" maxlength="32" disabled>
                                 </div>
@@ -106,14 +98,6 @@
                             <br>
                             <p>Caterer <span class="text-danger">*</span></p>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <input type="radio" name="caterer" value="yes" disabled>
-                                    Yes
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="caterer" value="caterer_value_no" disabled>
-                                    No (If no, please specify)
-                                </div>
                                 <div class="col-md-4">
                                     <input value="{{ $list->caterer }}" class="form-control-sm" type="text"
                                         name="caterer" id="specify_caterer_text" maxlength="32" disabled>
@@ -128,14 +112,6 @@
                             <p>Audio/Visual <span class="text-danger">*</span></p>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="radio" name="audio_visual" value="yes" disabled>
-                                    Yes
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="audio_visual" value="audio_visual_value_no" disabled>
-                                    No (If no, please specify)
-                                </div>
-                                <div class="col-md-4">
                                     <input value="{{ $list->audio_visual }}" class="form-control-sm" type="text"
                                         name="audio_visual" id="specify_audio_visual_text" maxlength="32" disabled>
                                 </div>
@@ -148,14 +124,6 @@
                             <br>
                             <p>Event Concept And Styling <span class="text-danger">*</span></p>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <input type="radio" name="concept" value="yes" disabled>
-                                    Yes
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="concept" value="concept_value_no" disabled>
-                                    No (If no, please specify)
-                                </div>
                                 <div class="col-md-4">
                                     <input value="{{ $list->concept }}" class="form-control-sm" type="text"
                                         name="concept" id="specify_concept_text" maxlength="32" disabled>

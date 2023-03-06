@@ -26,21 +26,6 @@
                         <p class="mr-2 p1 d-none d-lg-block">commercial spaces </p>
                     </a>
                 </div>
-                <div class="row">
-                    <div class="card mx-auto d-flex justify-content-center mt-8 col-md-8">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-                            <a href="#" class="btn btn-success mt-3">Submit</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -15,19 +15,20 @@
 
             </div>
             <div class="col-md-8">
-                @foreach ($list as $list)
+                @foreach ($room as $room)
                     <div class="card float-left gal col-md-3 mt-2" style="min-height: 550px">
-                        <img class="card-img-top img1 mt-3" src="{{ $list->Hotel_Image }}" alt="Card image cap">
+                        <img class="card-img-top img1 mt-3" src="{{ $room->Hotel_Image }}" alt="Card image cap">
                         <div class="card-body">
-                            <h2 class="text-green">₱{{ $list->Rate_per_Night }}</h2>
-                            <h5 class="card-title">Room {{ $list->Room_No }}</h5>
+                            <h2 class="text-green">₱{{ $room->Rate_per_Night }}</h2>
+                            <h5 class="card-title">Room {{ $room->Room_No }}</h5>
                             <p class="card-text">
-                            <h4 class="text-muted">Room Size:</h4> {{ $list->Room_Size }}
+                            <h4 class="text-muted">Room Size:</h4> {{ $room->Room_Size }}
                             <br>
-                            <h4 class="text-muted">Number of Beds:</h4> {{ $list->No_of_Beds }}
+                            <h4 class="text-muted">Number of Beds:</h4> {{ $room->No_of_Beds }}
                             </p>
-                            <a href="#" class="text-decoration-none"><button
-                                    class="form-control bg-green text-white">Reserve Now</button></a>
+                            <a href="{{ url('/suites', ['id' => $room->Room_No]) }}" class="text-decoration-none">
+                                <button class="form-control bg-green text-white">Reserve Now</button>
+                            </a>
                         </div>
                     </div>
                 @endforeach

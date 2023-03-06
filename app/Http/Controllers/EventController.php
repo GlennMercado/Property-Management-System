@@ -23,7 +23,6 @@ class EventController extends Controller
     }
     public function update_status(Request $request)
     {
-        
         try{
         $this->validate($request,[
             'eventid' => 'required',
