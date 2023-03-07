@@ -245,6 +245,14 @@
                                 </a>
                             </li>
                         </ul>
+
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'GuestRequest' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('GuestRequest') }}">
+                                    <i class="bi bi-boxes text-white"></i> {{ __('Guest Request') }}
+                                </a>
+                            </li>
+                        </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">

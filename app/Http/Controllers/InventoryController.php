@@ -260,9 +260,10 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function GuestRequest()
     {
-        //
+        $guest_reqeust = DB::select("SELECT * FROM guest_requests WHERE Type_of_Request = 'Item Request' AND Status = 'Approved'");
+        return view('Admin.pages.Inventory.GuestRequest', ['list' => $guest_reqeust]);
     }
 
     /**
@@ -387,9 +388,52 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function guest_request_update($id, $qty, $name)
     {
-        //
+        try
+        {
+            $request_id = $id;
+            $quantity = $qty;
+            $product_name = $name;
+
+            $inventory_quantity;
+            $sql = DB::select("SELECT * FROM hotelstocks WHERE name = '$product_name'");
+
+            foreach($sql as $lists)
+            {
+                $inventory_quantity = $lists->total;
+            }
+
+            if($quantity > $inventory_quantity || $inventory_quantity == 0)
+            {
+                Alert::Error('Out of Stock', ''.$product_name.' is Out of Stock!');
+                return redirect('GuestRequest')->with('Error', 'Failed!');
+            }
+            else
+            {
+                $totalstock = $inventory_quantity - $quantity;
+
+                $update1 = DB::table('hotelstocks')->where('name', $product_name)->update(['total' => $totalstock]);
+
+                $update2 = DB::table('guest_requests')->where('Request_ID', $request_id)->update(['Status' => "Dispersed"]);
+
+                if($update1 && $update2)
+                {
+                    Alert::Success('Success', 'Request Successfully Updated!');
+                    return redirect('GuestRequest')->with('Success', 'Successful');
+                }
+                else
+                {
+                    Alert::Error('Failed', 'Updating Request Failed!');
+                    return redirect('GuestRequest')->with('Error', 'Failed!');
+                }      
+            }
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Updating Request Failed!');
+            return redirect('GuestRequest')->with('Error', 'Failed!');
+        }
     }
 
     /**

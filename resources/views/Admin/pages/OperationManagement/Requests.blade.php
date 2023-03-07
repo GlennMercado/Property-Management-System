@@ -34,6 +34,11 @@
                                             href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
                                             aria-selected="false"> Item Request </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
+                                            href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
+                                            aria-selected="false"> Archives </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -60,7 +65,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach($list as $lists)
-                                                @if($lists->Type_of_Request == "Service Request")
+                                                @if($lists->Type_of_Request == "Service Request" && $lists->IsArchived == 0)
                                                 <tr>
                                                     <td style="font-size:15px;">{{$lists->Request_ID}}</td>
                                                     <td style="font-size:15px;">{{$lists->Room_No}}</td>
@@ -140,7 +145,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach($list as $lists)
-                                                @if($lists->Type_of_Request == "Item Request")
+                                                @if($lists->Type_of_Request == "Item Request" && $lists->IsArchived == 0)
                                                 <tr>
                                                     <td style="font-size:15px;">{{$lists->Request_ID}}</td>
                                                     <td style="font-size:15px;">{{$lists->Room_No}}</td>
@@ -156,8 +161,41 @@
                                                             <i class="bi bi-box-arrow-in-down-left"></i>
                                                         </button>  
                                                         @endif
-                                                    </td>
-                                                </tr>
+                                                        @if($lists->Status == "Dispersed")
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update_request_id{{ $lists->Request_ID }}">
+                                                            <i class="bi bi-box-arrow-in-down-left"></i>
+                                                        </button>  
+                                                    @endif
+                                                </td>
+                                            </tr>
+
+                                                <!--Update Request-->
+                                                <div class="modal fade" id="update_request_id{{ $lists->Request_ID }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">Update Request</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h3 class="text-center">Update Request?</h3>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</a>
+                                                                <a href="{{ url('/update_item_request', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <!--Update Item Request-->
                                                 <div class="modal fade" id="item_request_id{{ $lists->Request_ID }}"
@@ -200,6 +238,41 @@
                                     </table> 
                                        
                                 </div>
+
+                                <div class="tab-pane fade show" id="tabs-icons-text-3" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-3-tab">
+                                    
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="myTable3">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Request ID.</th>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Guest Name</th>
+                                                <th scope="col" style="font-size:18px;">Date Requested</th>
+                                                <th scope="col" style="font-size:18px;">Type of Request</th>
+                                                <th scope="col" style="font-size:18px;">Request</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($list as $lists)
+                                                @if($lists->IsArchived == 1)
+                                                <tr>
+                                                    <td style="font-size:15px;">{{$lists->Request_ID}}</td>
+                                                    <td style="font-size:15px;">{{$lists->Room_No}}</td>
+                                                    <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
+                                                    <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
+                                                    <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
+                                                    <td style="font-size:15px;">{{$lists->Request}}</td>
+                                                    <td style="font-size:15px;">{{$lists->Status}}</td>
+                                                </tr>
+                                                @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table> 
+                                       
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,7 +293,7 @@
     jQuery(document).ready(function($) {
         $('#myTable').DataTable();
         $('#myTable2').DataTable();
-        $('#myTable4').DataTable();
+        $('#myTable3').DataTable();
     });
     // $(document).ready(function() {
     //     $("#optionselect").change(function() {

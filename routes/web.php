@@ -138,24 +138,27 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Operation Management
 		//Reservation
-		Route::get('OperationDashboard', function () {return view('Admin.pages.OperationManagement.OperationDashboard');})->name('OperationDashboard'); 
 		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
 		Route::get('Reports', function () {return view('Admin.pages.OperationManagement.Reports');})->name('Reports'); 
 		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 		
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		
-		
+		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
+
 		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
 
 		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
 		
+		Route::get('/update_item_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_item_request');
+		
 		Route::post('add_guest_request', 'App\Http\Controllers\OperationManagementController@add_guest_request');
 
 		//Guest Receipt
-		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
-		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
-	
+		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 	
+
+		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
+
 		Route::post('/setstats', 'App\Http\Controllers\OperationManagementController@setstats');
 
 	// //Stock Purchase Report
@@ -265,6 +268,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Inventory Reports
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
 	
+	Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
+
+
+	Route::get('/req_up/{id}/{qty}/{name}', 'App\Http\Controllers\InventoryController@guest_request_update');
+
 
 
 	

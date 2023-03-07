@@ -11,7 +11,19 @@ class OperationManagementCOntroller extends Controller
 {
     public function OperationDashboard()
     {
-        return view('OperationDashboard');
+        $now = Carbon::now()->format('Y-m-d');
+        $count1 = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Requested = '$now' ");
+        $count2 = DB::table('complaints')->select(DB::raw('count(*) as cnt'))
+                    ->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '=', $now)->get();
+        $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
+        $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Reserved'");
+        $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
+        $room4 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
+        
+        return view('Admin.pages.OperationManagement.OperationDashboard',
+                    ['count1'=>$count1, 'count2' => $count2,
+                     'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3, 'room4'=>$room4
+                    ]);
     }
     public function Reservation()
     {
@@ -23,7 +35,8 @@ class OperationManagementCOntroller extends Controller
     }
     public function OperationRooms()
     {
-        return view('OperationRooms');
+        $rooms = DB::SELECT("SELECT * FROM novadeci_suites ");
+        return view('Admin.pages.OperationManagement.OperationRooms', ['list' => $rooms]);
     }
     public function Reports()
     {
@@ -39,10 +52,20 @@ class OperationManagementCOntroller extends Controller
         try{
 
             $req_id = $request->input('request_id');
-            $stats = $request->input('stats');
+            $stats;
+            $sql;
 
-            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update(['Status' => $stats]);
-
+            if($request->input('stats') == "Approved")
+            {
+                $stats = $request->input('stats');
+                $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update(['Status' => $stats]);
+            }
+            else
+            {
+                $stats = $request->input('stats');
+                $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update(['Status' => $stats, 'IsArchived' => 1]);
+            }
+        
             if($sql)
             {
                 Alert::Success('Success', 'Guest Request Successfully Updated!');
@@ -169,6 +192,38 @@ class OperationManagementCOntroller extends Controller
             {
                 Alert::Error('Failed', 'Guest Request Failed Updating!');
                 return redirect('Guest_Request')->with('Failed', 'Data Saved');
+            }
+
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            Alert::Error('Failed', 'Guest Request Failed Updating!');
+            return redirect('Guest_Request')->with('Failed', 'Data Saved');
+        }
+    }
+
+    public function update_item_request($id, $bs)
+    {
+        try{
+            $datenow = Carbon::now()->format('Y-m-d');
+            $req_id = $id;
+            
+            $status = "Accomplished";
+           
+            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update([
+                'Status' => $status,
+                'Date_Updated' => $datenow,
+                'IsArchived' => 1
+            ]);
+
+            if($sql)
+            {
+                Alert::Success('Successfully Updated!', 'Guest Request '.$status.'!');
+                return redirect('Requests')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Guest Request Failed Updating!');
+                return redirect('Requests')->with('Failed', 'Data Saved');
             }
 
         }
