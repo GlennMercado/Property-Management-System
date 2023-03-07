@@ -18,17 +18,18 @@
                                     title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
                                     <div class="card-body font-weight-bold mt--4">
                                         <br>
-                                        <span class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
+                                        <span
+                                            class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
                                         <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
                                         <br>
                                         <br>
-                                        <span class = "ml-1">{{ $list->concern_text }}</span>
+                                        <span class="ml-1">{{ $list->concern_text }}</span>
                                         <br>
-                                        {{-- <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                        <a href="{{ $list->complaints_img }}" data-lightbox="photos"
                                             data-gallery="complaints">
                                             <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
                                                 data-lightbox="photos" data-gallery="complaints"
-                                                style="max-height: 350px; max-width:500px;" /> --}}
+                                                style="max-height: 350px; max-width:500px;" />
                                         </a>
                                     </div>
                                 </div>
@@ -73,10 +74,11 @@
                 </div>
             </div>
             <style>
-                .gal:hover{
+                .gal:hover {
                     border: 1px solid rgb(115, 115, 115);
                 }
-                .category:hover{
+
+                .category:hover {
                     transform: scale(1.05);
                 }
             </style>

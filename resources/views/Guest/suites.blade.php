@@ -16,8 +16,8 @@
                                 @foreach ($room_list as $lists)
                                     <div class="row gal">
                                         <div class="col-sm-12 col-md-12 col-lg-12 item">
-                                            <a href="{{ $lists->Hotel_Image }}" data-lightbox="photos">
-                                                <img class="img-fluid mt-3" src="{{ $lists->Hotel_Image }}">
+                                            <a href="{{url($lists->Hotel_Image)}}" data-lightbox="photos">
+                                                <img class="img-fluid mt-3" src="{{url($lists->Hotel_Image)}}">
                                             </a>
                                         </div>
 
@@ -42,7 +42,7 @@
                                         <div class="col-md-6 shadow">
                                             <a href="{{ url('/suites', ['id' => $lists->Room_No]) }}">
                                                 <div class="image-container">
-                                                    <img class="card-img-top mt-3" src="{{ $lists->Hotel_Image }}"
+                                                    <img class="card-img-top mt-3" src="{{url($lists->Hotel_Image)}}"
                                                         alt="Card image cap" style="max-height: 12.3rem">
                                                 </div>
                                                 <div class="card-body">
@@ -420,8 +420,7 @@
                                                         </div>
                                                     @endforeach
                                                     <div class="col-md-12 container-fluid d-flex justify-content-center">
-                                                        <img
-                                                            src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->merge('\public\nvdc-logo.png')->size(300)->generate('123123123')) }}" />
+                                                        {!! QrCode::size(250)->generate("09234234242") !!}
                                                     </div>
                                                     <div class="col-md-12">
                                                         <p class="text-center mb-0">Upload your proof of payment here:</p>

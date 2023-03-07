@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\hotel_reservations;
+use App\Models\guest_request;
+use App\Models\complaints;
 use Illuminate\Support\Facades\DB;
-
 
 class AdminController extends Controller
 {
     public function index()
     { 
-        return view('Admin.admindashboard');
+        $reservations = hotel_reservations::where('Booking_Status', 'Reserved')->count();
+        $guest_request = guest_request::count();
+        $guest_complaints = complaints::count();
+        return view('Admin.admindashboard', compact('reservations', 'guest_request', 'guest_complaints'));
     }
 
     public function Calendar(Request $request)
