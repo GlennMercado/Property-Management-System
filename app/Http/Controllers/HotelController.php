@@ -163,7 +163,6 @@ class HotelController extends Controller
             $bookno = $id;
             $roomno = $no;
             $isarchived = $check;
-            
             $status = $stats;
             
             if($status == "Checked-In")

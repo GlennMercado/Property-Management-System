@@ -18,21 +18,21 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-3" style="width: 100%;">
+                            <div class="col-md-3 pads" style="width: 100%;">
                                 <div class="card card-stats">
                                     <!-- Card body -->
-                                    <div class="card-body shadow bg-gradient-blue card1">
+                                    <div class="card-body shadow bg-blue card1">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
                                                     Reservation</h3>
                                             </div>
-                                            
+
                                             <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
                                                 <i class="bi bi-person-check-fill"></i>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="d-flex justify-content-center">
                                             <span class="h2 font-weight-bold mb-0 text-white display-3">
                                                 {{ $reservations }} </span>
@@ -43,21 +43,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="width: 100%;">
+                            <div class="col-md-3 pads" style="width: 100%;">
                                 <div class="card card-stats">
                                     <!-- Card body -->
-                                    <div class="card-body shadow bg-gradient-info card1">
+                                    <div class="card-body shadow bg-default card1">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
-                                                Request</h3>
+                                                    Request</h3>
                                             </div>
-                                            
+
                                             <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
                                                 <i class="bi bi-person-lines-fill"></i>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="d-flex justify-content-center">
                                             <span class="h2 font-weight-bold mb-0 text-white display-3">
                                                 {{ $guest_request }} </span>
@@ -68,7 +68,82 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="width: 100%;">
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-default card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
+                                                    Complaints</h3>
+                                            </div>
+
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                                <i class="bi bi-emoji-angry-fill"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $guest_complaints }} </span>
+                                        </div>
+                                        <p class="mt-3 mb-0">
+                                            <span class="text-nowrap text-white">Click to view</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-default card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Report
+                                                    Count</h3>
+                                            </div>
+
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                                <i class="bi bi-123"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $reservations }} </span>
+                                        </div>
+                                        <p class="mt-3 mb-0">
+                                            <span class="text-nowrap text-white">Click to view</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-gradient-danger card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
+                                                    Complaints</h3>
+                                            </div>
+
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                                <i class="bi bi-emoji-angry-fill"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $guest_complaints }} </span>
+                                        </div>
+                                        <p class="mt-3 mb-0">
+                                            <span class="text-nowrap text-white">Click to view</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body shadow bg-gradient-danger card1">
@@ -93,24 +168,49 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="width: 100%;">
+                            <div class="col-md-3 pads" style="width: 100%;">
                                 <div class="card card-stats">
                                     <!-- Card body -->
-                                    <div class="card-body shadow bg-gradient-default card1">
+                                    <div class="card-body shadow bg-gradient-danger card1">
                                         <div class="d-flex justify-content-between">
-                                             <div>
-                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">Report
-                                            Count</h3>
+                                            <div>
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
+                                            Complaints</h3>
                                         </div>
                                         
                                         <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
-                                            <i class="bi bi-123"></i>
+                                            <i class="bi bi-emoji-angry-fill"></i>
                                         </div>
                                         </div>
-                                       
+                                        
                                         <div class="d-flex justify-content-center">
                                             <span class="h2 font-weight-bold mb-0 text-white display-3">
-                                                {{ $reservations }} </span>
+                                                {{ $guest_complaints }} </span>
+                                        </div>
+                                        <p class="mt-3 mb-0">
+                                            <span class="text-nowrap text-white">Click to view</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-gradient-danger card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
+                                            Complaints</h3>
+                                        </div>
+                                        
+                                        <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                            <i class="bi bi-emoji-angry-fill"></i>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $guest_complaints }} </span>
                                         </div>
                                         <p class="mt-3 mb-0">
                                             <span class="text-nowrap text-white">Click to view</span>
@@ -163,6 +263,10 @@
             display: flex;
             justify-content: space-between;
             flex-direction: column;
+        }
+        .pads{
+            padding: 0;
+            margin-top: 1px;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
