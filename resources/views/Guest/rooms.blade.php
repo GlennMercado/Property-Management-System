@@ -13,6 +13,9 @@
                     <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
                 </a>
             </div>
+            <div class="col-md-8 mt-3">
+
+            </div>
             <div class="col-md-8">
                 @foreach ($room as $room)
                     <div class="card float-left gal col-md-3 mt-2" style="min-height: 550px">

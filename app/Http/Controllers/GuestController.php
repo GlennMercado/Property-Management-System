@@ -82,7 +82,7 @@ class GuestController extends Controller
         return view('Guest.complaints');
     }
     public function rooms(){
-        $room = DB::select("SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No WHERE a.Status = 'Vacant for Accommodation' GROUP BY a.Room_No");
+        $room = DB::select('SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No');
         return view('Guest.rooms', ['room'=>$room]);
     }
     public function FAQ(){

@@ -30,7 +30,6 @@ return new class extends Migration
 
             $table->string("Type_of_Request");
             $table->string('Request');
-            $table->integer('Quantity')->nullable();
             
             $table->string('Status')->default('Ongoing');
             $table->boolean('IsArchived')->default(false);
