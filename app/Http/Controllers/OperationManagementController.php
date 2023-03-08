@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\stocksfunctions;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Models\guest_request;
 use Carbon\Carbon;
 
 class OperationManagementCOntroller extends Controller
