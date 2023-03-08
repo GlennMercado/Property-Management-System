@@ -37,50 +37,66 @@
                                         <p class="mt-3 mb-0">
                                             <span class="text-nowrap text-white">Click to view</span>
                                         </p>
-                                        <div class="progress-wrapper">
-                                            <div class="progress-info">
-                                                <div class="progress-label">
-                                                    <span class="bg-white">Percentage</span>
-                                                </div>
-                                                <div class="progress-percentage">
-                                                    <span class="text-white">60%</span>
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-default" role="progressbar" aria-valuenow="60"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="width: 100%;">
+                            <div class="col-md-3 pads" style="width: 100%;">
                                 <div class="card card-stats">
                                     <!-- Card body -->
-                                    <div class="card-body shadow bg-gradient-info" class="height: 250px">
-                                        <div class="row">
-                                            <div class="col">
+                                    <div class="card-body shadow bg-default card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
                                                 <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
                                                     Request</h3>
-                                                <span class="h2 font-weight-bold mb-0 text-white display-3">200</span>
                                             </div>
-                                            <div class="col-auto">
-                                                <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
-                                                    <i class="bi bi-person-lines-fill"></i>
-                                                </div>
+
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                                <i class="bi bi-person-lines-fill"></i>
                                             </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $guest_request }} </span>
                                         </div>
                                         <p class="mt-3 mb-0">
                                             <span class="text-nowrap text-white">Click to view</span>
                                         </p>
-                                        <div class="progress-wrapper">
-                                            <div class="progress-info">
-                                                <div class="progress-label">
-                                                    <span class="bg-white">Percentage</span>
-                                                </div>
-                                                <div class="progress-percentage">
-                                                    <span class="text-white">60%</span>
-                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-default card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Guest
+                                                    Complaints</h3>
+                                            </div>
+
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow">
+                                                <i class="bi bi-emoji-angry-fill"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="h2 font-weight-bold mb-0 text-white display-3">
+                                                {{ $guest_complaints }} </span>
+                                        </div>
+                                        <p class="mt-3 mb-0">
+                                            <span class="text-nowrap text-white">Click to view</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pads" style="width: 100%;">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body shadow bg-default card1">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Try</h3>
                                             </div>
                                             <div class="progress">
                                                 <div class="progress-bar bg-default" role="progressbar" aria-valuenow="60"

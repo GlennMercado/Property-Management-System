@@ -150,7 +150,9 @@
                                             <td style="font-size:16px;">{{ $lists->Room_No }}</td>
                                             <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
                                             <td style="font-size:16px;">{{ $lists->No_of_Beds }}</td>
-                                            <td style="font-size:16px;">{{ $lists->Status }}</td>
+                                            <td style="font-size:16px;">
+                                                <span class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>
+                                            </td>
 
                                         </tr>
 
