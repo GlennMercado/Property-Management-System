@@ -60,7 +60,6 @@ class GuestController extends Controller
         $room = DB::select("SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No");
 		
         $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
-        
         return view('Guest.suites', ['guest'=>$guest, 'room'=>$room, 'room_list'=>$room_list]);
     }
     public function convention_center()
@@ -106,19 +105,10 @@ class GuestController extends Controller
             $filename = time().$request->input('id').'-.'.$extention;
             $path = $file->move('complaints-img/', $filename);
 
-            
-            //add image to database (which is not advisable)
-            //$path2 = $request->file('images')->getRealPath();
-            //$logo = file_get_contents($path2);
             $base64 = base64_encode($extention);
-
-
 
             $submit->complaints_img = $path;
             $submit->DB_Image = $base64;
-
-
-
         }
 
         if($submit->save())
@@ -162,7 +152,8 @@ class GuestController extends Controller
                 'gName' => 'required',
                 'mobile' => 'required',
                 'room_no' => 'required',
-                'pax' => 'required'
+                'pax' => 'required',
+                'gcash_account' => 'required',
             ]);
             
 
@@ -175,7 +166,22 @@ class GuestController extends Controller
             $reserve->Guest_Name = $request->input('gName');
             $reserve->Mobile_Num = $request->input('mobile');
             $reserve->No_of_Pax = $request->input('pax');
+            $reserve->Payment = $request->input('payment');
             $reserve->Room_No = $request->input('room_no');
+            $reserve->gcash_account_name = $request->input('gcash_account');
+
+            if($request->hasfile('images'))
+            {
+                $file = $request->file('images');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().$request->input('id').'-.'.$extension;
+                $path = $file->move('payments-img/', $filename);
+
+                $base64 = base64_encode($extension);
+
+                $reserve->Proof_Image = $path;
+                $reserve->DB_Proof_Image = $base64;
+            }
 
             if($reserve->save())
             {

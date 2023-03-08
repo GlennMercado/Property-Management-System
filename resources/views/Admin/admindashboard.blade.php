@@ -99,8 +99,7 @@
                                     <div class="card-body shadow bg-default card1">
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Report
-                                                    Count</h3>
+                                                <h3 class="card-title text-uppercase text-muted mb-0 text-white">Try</h3>
                                             </div>
 
                                             <div class="icon icon-shape bg-dark text-white rounded-circle shadow">

@@ -1,6 +1,3 @@
-        
-        /* SUITES */
-        
         /* cuurency */
         .currency:before {
             content: '₱';
@@ -176,7 +173,3 @@
             pointer-events: auto;
             opacity: 1;
         }
-
-
-
-        /* SUITES */

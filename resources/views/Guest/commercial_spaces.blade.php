@@ -1,5 +1,6 @@
 @extends('layouts.guest', ['class' => 'bg-light'])
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css') }}/commercial_spaces.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
@@ -37,20 +38,17 @@
 
                                     <p class="pt-4">Landline No. <span class="text-danger">*</span> </p>
                                     <input type="number" onKeyPress="if(this.value.length==8) return false;"
-                                        name="business_landline_no" class="form-control"
-                                        placeholder="09XXXXXXXX"
-                                        required>
+                                        name="business_landline_no" class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                                 <div class="col-md">
                                     <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
-                                        name="business_mobile_no" class="form-control"
-                                        placeholder="09XXXXXXXX" required>
+                                        name="business_mobile_no" class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>
 
                             <!-- <h4>Owner Details </h4>
-                                                                                                                            <h4>For Single Proprietorship </h4> -->
+                                                                                                                                <h4>For Single Proprietorship </h4> -->
                             <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                             <input type="text" name="name_of_owner" class="form-control"
                                 placeholder="Enter Name of Owner" maxlength="64" required>
@@ -78,11 +76,12 @@
                             </div> --}}
                             <br>
                             <p>Spouse <span class="text-danger">*</span> </p>
-                            <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse" maxlength="64" required>
+                            <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse"
+                                maxlength="64" required>
                             <br>
                             <p>Home Address <span class="text-danger">*</span> </p>
-                            <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address" maxlength="128"
-                                required>
+                            <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address"
+                                maxlength="128" required>
                             <div class="row">
                                 <div class="col">
                                     <br>
@@ -102,7 +101,8 @@
                             <br>
                             <p>Tax Identification No. <span class="text-danger">*</span> </p>
                             <input type="number" name="tax_identification_no" class="form-control"
-                                placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==12) return false;" required>
+                                placeholder="Enter Tax Identification No."
+                                onKeyPress="if(this.value.length==12) return false;" required>
                             <br>
                             <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                                     class="text-danger">*</span> </p>
@@ -122,17 +122,6 @@
 
                 </div>
             </form>
-            {{-- <div class="image-grid">
-                <div class="image-container">
-                    <img class="hw-20 img" src="{{ asset('nvdcpics') }}/cspaces2.jpg" style="width:100%;">
-                    <h1 class="image-text">Commercial Space</h1>
-                    <div class="btn-container">
-                        <!-- <a href = "#section2" class="btn btn-outline-light">Events</a> -->
-                        <a href="#section2" class="btn btn-outline-light">Inquire Now</a>
-                    </div>
-                </div>
-            </div> --}}
-            <!-- section 2 -->
             <div class="position-relative">
                 <div class="image-grid pt-6">
                     <div class="image-container">
@@ -150,87 +139,5 @@
             </div>
         </div>
     </div>
-    <style>
-        /* Information */
-        .img {
-            height: 700px;
-            object-fit: cover;
-            filter: brightness(50%)
-        }
-
-        .image-text {
-            position: absolute;
-            top: 11%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 36px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .btn-container {
-            position: absolute;
-            top: 350px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
-        }
-
-        p {
-            font-family: montserrat;
-            text-align: justify;
-            font-size: 18px;
-        }
-
-        h1,
-        h3,
-        .text {
-            font-family: montserrat;
-        }
-
-        .scrl {
-            scroll-behavior: smooth;
-        }
-
-        .title {
-            letter-spacing: 1px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .scrl {
-            scroll-behavior: smooth;
-        }
-
-        .animate__animated {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-
-        .parent {
-            display: flex;
-            justify-content: center;
-        }
-
-        @media (max-width: 800px) {
-            .btn-container {
-                top: 400px;
-            }
-        }
-
-        /* .centered {
-                                                font-size:30px;
-                                              position: absolute;
-                                              bottom: 410px;
-                                              right: 200px;
-                                              color:white;
-                                              -webkit-text-stroke-width: 1px;
-                                              -webkit-text-stroke-color: black;
-                                            } */
-    </style>
     @include('layouts.footers.guest')
 @endsection

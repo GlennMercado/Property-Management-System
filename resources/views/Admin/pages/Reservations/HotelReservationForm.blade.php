@@ -37,63 +37,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="row align-items-center">
-                                                
-                                                <div class="col">
-                                                    <div class="card-body" style="background:lightgray; border:solid black 1px; cursor:pointer;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5 class="card-title text-uppercase mb-0">Arrival</h5>
-                                                                <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col">
-                                                    <div class="card-body" style="background:lightgreen; border:solid black 1px; cursor:pointer;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5 class="card-title text-uppercase mb-0">Check In</h5>
-                                                                <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col">
-                                                    <div class="card-body" style="background:#FFCCCB; border:solid black 1px; cursor:pointer;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5 class="card-title text-uppercase mb-0">Check Out</h5>
-                                                                <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                               
-                                                <div class="col">
-                                                    <div class="card-body" style="background:#e27602; border:solid black 2px; cursor:pointer;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5 class="card-title text-uppercase mb-0">Due Out</h5>
-                                                                <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col">
-                                                    <div class="card-body" style="background:white; border:solid black 2px; cursor:pointer;">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5 class="card-title text-uppercase mb-0">Room Vacant</h5>
-                                                                <span class="h2 font-weight-bold mb-0">2,356</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -103,11 +46,12 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col" style="font-size:17px;">Action</th>
-                                            <th scope="col" style="font-size:17px;">Booking Number</th>
+                                            <th scope="col" style="font-size:17px;">Booking No.</th>
                                             <th scope="col" style="font-size:17px;">Room No.</th>
                                             <th scope="col" style="font-size:17px;">Guest Name</th>
                                             <th scope="col" style="font-size:17px;">Check in Date</th>
                                             <th scope="col" style="font-size:17px;">Check out Date</th>
+                                            <th scope="col" style="font-size:17px;">Payment</th>
                                             <th scope="col" style="font-size:17px;">Payment Status</th>
                                         </tr>
                                     </thead>
@@ -132,7 +76,12 @@
                                                     <td>{{ $lists->Guest_Name }}</td>
                                                     <td>{{ $lists->Check_In_Date }}</td>
                                                     <td>{{ $lists->Check_Out_Date }}</td>
-                                                    <td>{{ $lists->Payment_Status }}</td>
+                                                    <td>{{ $lists->Payment }}</td>
+                                                    <td>
+                                                        <span class="badge badge-info">
+                                                            {{ $lists->Payment_Status }}
+                                                        </span>
+                                                    </td>
                                                 </tr>
                                             @endif
 

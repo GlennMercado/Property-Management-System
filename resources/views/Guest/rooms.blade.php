@@ -1,6 +1,8 @@
 @extends('layouts.guest', ['class' => 'bg-light'])
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css') }}/rooms.css">
+    <script src="{{ asset('Javascript') }}/suites.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
@@ -12,11 +14,8 @@
                 </a>
             </div>
             <div class="col-md-8">
-                try
-            </div>
-            <div class="col-md-12">
                 @foreach ($room as $room)
-                    <div class="card float-left gal col-md-2 mt-2" style="min-height: 550px">
+                    <div class="card float-left gal col-md-3 mt-2" style="min-height: 550px">
                         <img class="card-img-top img1 mt-3" src="{{ $room->Hotel_Image }}" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="text-green">₱{{ $room->Rate_per_Night }}</h2>
@@ -35,23 +34,5 @@
             </div>
         </div>
     </div>
-    <script></script>
-    <style>
-        .gal img:hover {
-            transform: scale(1.01);
-        }
-
-        .img1 {
-            max-width: 100%;
-            height: 200px !important;
-        }
-
-        .banner1 {
-            height: 60%;
-            width: 100%;
-        }
-
-        .banner1 img {}
-    </style>
     @include('layouts.footers.guest')
 @endsection

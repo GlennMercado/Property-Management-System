@@ -33,16 +33,15 @@ return new class extends Migration
 
             $table->boolean('IsArchived')->default(false);
 
-            $table->double('Down_Payment')->nullable();
-            $table->double('Balance')->nullable();
-            $table->double('Full_Payment')->nullable();
+            $table->string('gcash_account_name');
+            $table->double('Payment')->nullable();
 
             $table->date('Check_In_Date');
             $table->date('Check_Out_Date');
             $table->date('Check_Out_Extension')->nullable();
 
-            $table->string('Proof_Image')->nullable();
-            $table->binary('DB_Proof_Image')->nullable();
+            $table->string('Proof_Image');
+            $table->binary('DB_Proof_Image');
 
             $table->timestamps();
         });
