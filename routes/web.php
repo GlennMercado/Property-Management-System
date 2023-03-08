@@ -155,50 +155,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
 	
-
-	// //Stock Purchase Report
-		// 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
-		// 	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
-		// 	Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
-		// 	Route::post('/supply_approval', 'App\Http\Controllers\PurchaseReportController@supply_approval');
-		// 	Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
-			
-		
-		//Stock Availability
-		// Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
-
-		// 	Route::get('StockAvailability', function () {
-		// 		$list = DB::select('SELECT * FROM hotelstocks');
-		// 		$list2 = DB::select('SELECT * FROM stockscenters');
-		// 		$list3 = DB::select('SELECT * FROM stocksfunctions');
-		// 		$list4= DB::select('SELECT * FROM hotel_room_supplies');
-		// 		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
-		// 		$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
-
-
-		// 	$count = array();
-		// 	$count2 = array();
-
-		// 	foreach($check as $checks)
-		// 	{
-		// 		$count[] = ['counts' => $checks->cnt];
-		// 	}
-
-		// 	foreach($check2 as $checks)
-		// 	{
-		// 		$count2[] = ['counts' => $checks->cnt];
-		// 	}
-
-		// 		return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
-				
-		// 		//Stock Avail
-		// 	Route::get('StockAvail', function () {
-		// 		$list = DB::select('SELECT * FROM hotelstocks');
-		// 		$list2 = DB::select('SELECT * FROM stocksfunctions');
-		// 		$list3 = DB::select('SELECT * FROM stockscenters');
-		// 		return view('Admin.pages.Inventory.StockAvail',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('StockAvail');
-	
-	//Finance
+		//Finance
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
 		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
 		
