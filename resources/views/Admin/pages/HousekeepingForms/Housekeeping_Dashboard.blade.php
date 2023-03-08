@@ -137,7 +137,7 @@
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view{{ $lists->ID }}"> <i
+                                                                data-target="#view1{{ $lists->ID }}"> <i
                                                                     class="bi bi-eye"></i>
                                                             </button>
 
@@ -163,7 +163,7 @@
                                                     </tr>
 
                                                     <!--View-->
-                                                    <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                    <div class="modal fade" id="view1{{ $lists->ID }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -396,7 +396,7 @@
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view2{{ $lists->ID }}"
+                                                                data-target="#view3{{ $lists->ID }}"
                                                                 title="View Information"> <i class="bi bi-eye"></i>
                                                             </button>
 
@@ -445,7 +445,7 @@
                                                     </tr>
 
                                                     <!--View-->
-                                                    <div class="modal fade" id="view2{{ $lists->ID }}" tabindex="-1"
+                                                    <div class="modal fade" id="view3{{ $lists->ID }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1133,14 +1133,14 @@
                                                     <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                     <td>
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->ID }}"> <i
+                                                            data-target="#view4{{ $lists->ID }}"> <i
                                                                 class="bi bi-eye"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
 
                                                 <!--View-->
-                                                <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                <div class="modal fade" id="view4{{ $lists->ID }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
