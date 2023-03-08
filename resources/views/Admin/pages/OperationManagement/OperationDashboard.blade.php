@@ -13,78 +13,98 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 {{-- <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6> --}}
-                                <p class="text-black text-lg mb-0"><i class="bi bi-graph-up mr-2"></i>Dashboard</p>
+                                <p class="text-black text-lg mb-0"><i class="bi bi-graph-up mr-2"></i>Operation Management
+                                    Dashboard</p>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#156C45;">
+                                    <div class="card-body-md rounded" style="background-color:#156C45;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">100</h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
-                                            Request</h2>
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Guest
+                                            Request</h5>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#23B271;">
+                                    <div class="card-body-md rounded" style="background-color:#23B271;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">200</h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Guest
                                             Reservation
-                                        </h2>
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                    <div class="card-body-sm rounded" style="background-color:#38474D;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">20</h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
-                                            Complaints
-                                        </h2>
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Guest
+                                            Reviews
+                                        </h5>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                    <div class="card-body-sm rounded" style="background-color:#38474D;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">10</h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Report
-                                            Count
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Vacant
+                                            Rooms
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <div class="card-body-sm rounded" style="background-color:#38474D;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">10</h1>
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Occupied
+                                            Rooms
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <div class="card-body-sm rounded" style="background-color:#38474D;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">10</h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Room for
+                                            Cleaning
                                         </h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container-fluid">
-                            <p class="text-lg pt-6"><i class="bi bi-bar-chart-line mr-2"></i>Insights</p>
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="mx-auto d-flex justify-content-center pt-4">Guest Reservation</h2>
-                                    <div class="row mx-auto d-flex justify-content-center">
-                                        <div class="col-md">
-                                            <canvas id="myChart"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="mx-auto d-flex justify-content-center pt-4">Guest Complaints</h2>
-                                    <div class="row mx-auto d-flex justify-content-center">
-                                        <div class="col-md">
-                                            <canvas id="myChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="mx-auto d-flex justify-content-center pt-4">Guest Request</h2>
-                                    <div class="row mx-auto d-flex justify-content-center">
-                                        <div class="col-md">
-                                            <canvas id="myChart3"></canvas>
+                            <p class="text-lg pt-6">List of Due-out Guests</p>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div class="tab-content" id="myTabContent">
+                                        {{-- Arrival / Departure --}}
+                                        <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                            aria-labelledby="tabs-icons-text-1-tab">
+                                            <select class="form-control" style="width:20%;" id="date">
+                                                <option value="All">All Records</option>
+                                                <option value="Daily">Daily</option>
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                            </select>
+                                            <!-- Projects table -->
+                                            <table class="table align-items-center table-flush" id="myTable">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="font-size:18px;">ID</th>
+                                                        <th scope="col" style="font-size:18px;">Guest Name</th>
+                                                        <th scope="col" style="font-size:18px;">Arrival/Departure</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -95,120 +115,76 @@
             </div>
         </div>
     </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: '',
-                    data: [0, 0, 0, 5, 2, 3],
-                    backgroundColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+    <script type="text/javascript">
+        $.noConflict();
+
+        jQuery(function($) {
+
+            var table = $('#myTable').DataTable({
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                processing: true,
+                serverSide: true,
+                buttons: [
+                    'pageLength',
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'portrait',
+                        pageSize: 'LEGAL'
+                    },
+                    'excel', 'colvis', 'print'
+                ],
+                ajax: {
+                    url: "{{ route('Housekeeping_Reports.reports') }}",
+                    data: function(d) {
+                        d.num = 1,
+                            d.date = $('#date').val(),
+                            d.search = $('#search1').val()
+                    }
+                },
+                columns: [{
+                        data: 'ID'
+                    },
+                    {
+                        data: 'Guest_Name'
+                    },
+                        data: 'Check_In_Date',
+                        render: function(data) {
+                            var date = new Date(data);
+                            var month = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"
+                            ];
+
+                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                .getFullYear();
                         }
-                    }]
-                }
-            }
-        });
-        // second graph
-        var ctx2 = document.getElementById('myChart2').getContext('2d');
-        var myChart2 = new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: '',
-                    data: [0, 0, 0, 5, 2, 3],
-                    backgroundColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                    },
+                    {
+                        data: 'Check_Out_Date',
+                        render: function(data) {
+                            var date = new Date(data);
+                            var month = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"
+                            ];
+
+                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                .getFullYear();
                         }
-                    }]
-                }
-            }
-        });
-        // third graph
-        var ctx3 = document.getElementById('myChart3').getContext('2d');
-        var myChart3 = new Chart(ctx3, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: '',
-                    data: [0, 0, 0, 5, 2, 3],
-                    backgroundColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderColor: [
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948',
-                        '#55b948'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
+                    },
+                ]
+            });
+
+            $('#myTable_filter input[type="search"]').prop('id', 'search1');
+
+            table.buttons().container().insertBefore('#myTable_filter');
+
+            $('#date').change(function() {
+                table.draw();
+            });
         });
     </script>
 @endsection
