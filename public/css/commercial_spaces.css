@@ -1,0 +1,70 @@
+ /* Information */
+ .img {
+    height: 700px;
+    object-fit: cover;
+    filter: brightness(50%)
+}
+
+.image-text {
+    position: absolute;
+    top: 11%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-container {
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    font-family: montserrat;
+    text-align: justify;
+    font-size: 18px;
+}
+
+h1,
+h3,
+.text {
+    font-family: montserrat;
+}
+
+.scrl {
+    scroll-behavior: smooth;
+}
+
+.title {
+    letter-spacing: 1px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.scrl {
+    scroll-behavior: smooth;
+}
+
+.animate__animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 800px) {
+    .btn-container {
+        top: 400px;
+    }
+}

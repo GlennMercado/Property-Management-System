@@ -1,0 +1,85 @@
+input[type="number"]::-webkit-outer-spin-button,
+                input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type="number"] {
+                    -moz-appearance: textfield;
+                }
+
+                .gal img:hover {
+                    transform: scale(1.05);
+                }
+
+                .title1:hover {
+                    transform: scale(1.01);
+                    cursor: pointer;
+                }
+
+                .img {
+                    height: 700px;
+                    object-fit: cover;
+                    filter: brightness(50%)
+                }
+
+                .image-text {
+                    position: absolute;
+                    top: 11%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    font-size: 36px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .btn-container {
+                    position: absolute;
+                    top: 350px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100%;
+                    text-align: center;
+                }
+
+                p {
+                    font-family: montserrat;
+                    text-align: justify;
+                    font-size: 18px;
+                }
+
+                h1,
+                h3,
+                .text {
+                    font-family: montserrat;
+                }
+
+                .title {
+                    font-family: montserrat;
+                    letter-spacing: 1px;
+                }
+
+                .scrl {
+                    scroll-behavior: smooth;
+                }
+
+                .animate__animated {
+                    animation-duration: 1s;
+                    animation-fill-mode: both;
+                }
+
+                .parent {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                html {
+                    scroll-behavior: smooth;
+                }
+
+                @media (max-width: 800px) {
+                    .btn-container {
+                        top: 400px;
+                    }
+                }
