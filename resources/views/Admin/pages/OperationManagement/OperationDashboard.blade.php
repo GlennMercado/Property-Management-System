@@ -20,13 +20,18 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#156C45;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room1 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Vacant for <br> Accommodation 
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">100</h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
+                                            Request</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body rounded" style="background-color:#23B271;">
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">200</h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
+                                            Reservation
                                         </h2>
                                     </div>
                                 </div>
@@ -34,27 +39,9 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#38474D;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room2 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Reserved
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body rounded" style="background-color:#156C45;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room3 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Occupied 
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">20</h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Guest
+                                            Complaints
                                         </h2>
                                     </div>
                                 </div>
@@ -62,50 +49,14 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#38474D;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room4 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Vacant for Cleaning
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">10</h1>
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Report
+                                            Count
                                         </h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body rounded" style="background-color:#156C45;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($count1 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Guest Request 
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body rounded" style="background-color:#38474D;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($count2 as $counts)
-                                                {{$counts->cnt}}
-                                            @endforeach
-                                        </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                                            Guest Complaints
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="container-fluid">
                             <p class="text-lg pt-6"><i class="bi bi-bar-chart-line mr-2"></i>Insights</p>
                             <div class="row">

@@ -49,7 +49,6 @@
                                                 <th scope="col" style="font-size:18px;">Date Requested</th>
                                                 <th scope="col" style="font-size:18px;">Request</th>
                                                 <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;"> </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,41 +60,7 @@
                                                 <td style="font-size:15px;">{{$lists->Date_Requested = date('M d, Y')}}</td>
                                                 <td style="font-size:15px;">{{$lists->Request}}</td>
                                                 <td style="font-size:15px;">{{$lists->Status}}</td>
-                                                <td>
-                                                    @if($lists->Status == "Approved" && $lists->Type_of_Request == "Service Request")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#service_request_id{{ $lists->Request_ID }}">
-                                                            <i class="bi bi-box-arrow-in-down-left"></i>
-                                                        </button>  
-                                                    @endif
-                                                </td>
                                             </tr>
-                                             <!--Update Service Request-->
-                                                <div class="modal fade" id="service_request_id{{ $lists->Request_ID }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">Update Request</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h3 class="text-center">Update Service Request?</h3>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</a>
-                                                                <a href="{{ url('/update_service_requests', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
-                                                            </div>
-                                                        
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endforeach
                                         </tbody>
                                     </table>

@@ -26,8 +26,8 @@
                                         <th scope="col" style="font-size:16px;">Action</th>
                                         <th scope="col" style="font-size:16px;">Room No.</th>
                                         <th scope="col" style="font-size:16px;">Item Name</th>
-                                        <th scope="col" style="font-size:16px;">Requested Quantity</th>
-                                        <th scope="col" style="font-size:16px;">Date Requested</th>
+                                        <th scope="col" style="font-size:16px;">RequestedQuantity</th>
+                                        <th scope="col" style="font-size:16px;">DateRequested</th>
                                     </tr>
                                 </thead>
                                 <tbody>

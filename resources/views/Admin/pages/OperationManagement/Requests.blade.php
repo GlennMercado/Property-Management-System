@@ -20,28 +20,18 @@
                             </div>
                         </div>
                         <br>
-                        <div class="row align-items-center">
+                        <!-- <div class="row align-items-center">
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                     role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Service Request</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                            aria-selected="false"> Item Request </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                            aria-selected="false"> Archives </a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Guest Request</a>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -65,213 +55,87 @@
                                         </thead>
                                         <tbody>
                                             @foreach($list as $lists)
-                                                @if($lists->Type_of_Request == "Service Request" && $lists->IsArchived == 0)
-                                                <tr>
-                                                    <td style="font-size:15px;">{{$lists->Request_ID}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Room_No}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
-                                                    <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Status}}</td>
-                                                    <td>
-                                                        @if($lists->Status == "Ongoing")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#service_request_id{{ $lists->Request_ID }}">
-                                                            <i class="bi bi-box-arrow-in-down-left"></i>
-                                                        </button>  
-                                                        @endif
-                                                    </td>
-                                                </tr>
-
-                                                <!--Update Service Request-->
-                                                <div class="modal fade" id="service_request_id{{ $lists->Request_ID }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">Update Request</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST" class="prevent_submit"
-                                                                action="{{url('/setstats')}}"
-                                                                enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                            <div class="modal-body">
-                                                                <input type="hidden" name="request_id" value="{{$lists->Request_ID}}">
-                                                                <p class="text-left">Setting Status: </p>
-                                                                <select name="stats" class="form-control" required>
-                                                                    <option value="" selected="true" disabled="disabled">Select</option>
-                                                                    <option value="Approved">Approved</option>
-                                                                    <option value="Denied">Denied</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                                <input type="submit" value="Submit" class="btn btn-success">
-                                                            </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                               
-                                                @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="tab-pane fade show" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    
-                                       <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable2">
-                                        <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Request ID.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                <th scope="col" style="font-size:18px;">Date Requested</th>
-                                                <th scope="col" style="font-size:18px;">Type of Request</th>
-                                                <th scope="col" style="font-size:18px;">Request</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
-                                                <th scope="col" style="font-size:18px;"> </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($list as $lists)
-                                                @if($lists->Type_of_Request == "Item Request" && $lists->IsArchived == 0)
-                                                <tr>
-                                                    <td style="font-size:15px;">{{$lists->Request_ID}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Room_No}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
-                                                    <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Status}}</td>
-                                                    <td>
-                                                        @if($lists->Status == "Ongoing" && $lists->Type_of_Request == "Item Request")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#item_request_id{{ $lists->Request_ID }}">
-                                                            <i class="bi bi-box-arrow-in-down-left"></i>
-                                                        </button>  
-                                                        @endif
-                                                        @if($lists->Status == "Dispersed")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#update_request_id{{ $lists->Request_ID }}">
-                                                            <i class="bi bi-box-arrow-in-down-left"></i>
-                                                        </button>  
+                                                <td style="font-size:15px;">{{$lists->Request_ID}}</td>
+                                                <td style="font-size:15px;">{{$lists->Room_No}}</td>
+                                                <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
+                                                <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
+                                                <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
+                                                <td style="font-size:15px;">{{$lists->Request}}</td>
+                                                <td style="font-size:15px;">{{$lists->Status}}</td>
+                                                <td>
+                                                    @if($lists->Status == "Ongoing" && $lists->Type_of_Request == "Service Request")
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#service_request_id{{ $lists->Request_ID }}" title="Request Room Linens">
+                                                        <i class="bi bi-box-arrow-in-down-left"></i>
+                                                    </button>  
+                                                    @endif
+                                                    @if($lists->Status == "Ongoing" && $lists->Type_of_Request == "Item Request")
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#item_request_id{{ $lists->Request_ID }}" title="Request Room Linens">
+                                                        <i class="bi bi-plus"></i>
+                                                    </button>  
                                                     @endif
                                                 </td>
                                             </tr>
 
-                                                <!--Update Request-->
-                                                <div class="modal fade" id="update_request_id{{ $lists->Request_ID }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">Update Request</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h3 class="text-center">Update Request?</h3>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</a>
-                                                                <a href="{{ url('/update_item_request', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
-                                                            </div>
-                                                        
+                                            <!--Update Service Request-->
+                                            <div class="modal fade" id="service_request_id{{ $lists->Request_ID }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Update Request</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="text-center">Update Service Request?</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</a>
+                                                            <a href="{{ url('/update_service_request', ['id' => $lists->Request_ID, 'bs' => $lists->Booking_Status])}}" class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <!--Update Item Request-->
-                                                <div class="modal fade" id="item_request_id{{ $lists->Request_ID }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">Update Request</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form method="POST" class="prevent_submit"
-                                                                action="{{url('/setstats')}}"
-                                                                enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                            <div class="modal-body">
-                                                                <input type="hidden" name="request_id" value="{{$lists->Request_ID}}">
-                                                                <p class="text-left">Setting Status: </p>
-                                                                <select name="stats" class="form-control" required>
-                                                                    <option value="" selected="true" disabled="disabled">Select</option>
-                                                                    <option value="Approved">Approved</option>
-                                                                    <option value="Denied">Denied</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                                <input type="submit" value="Submit" class="btn btn-success">
-                                                            </div>
-                                                            </form>
+                                            <!--Update Item Request-->
+                                            <div class="modal fade" id="item_request_id{{ $lists->Request_ID }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Update Request</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="text-center">Wala pa</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</a>
+
+                                                            <input type="submit" value="Submit" class="btn btn-success">
+                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
-                                                @endif
+                                            </div>
                                             @endforeach
                                         </tbody>
-                                    </table> 
-                                       
-                                </div>
-
-                                <div class="tab-pane fade show" id="tabs-icons-text-3" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-3-tab">
-                                    
-                                    <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable3">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" style="font-size:18px;">Request ID.</th>
-                                                <th scope="col" style="font-size:18px;">Room No.</th>
-                                                <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                <th scope="col" style="font-size:18px;">Date Requested</th>
-                                                <th scope="col" style="font-size:18px;">Type of Request</th>
-                                                <th scope="col" style="font-size:18px;">Request</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($list as $lists)
-                                                @if($lists->IsArchived == 1)
-                                                <tr>
-                                                    <td style="font-size:15px;">{{$lists->Request_ID}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Room_No}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Guest_Name}}</td>
-                                                    <td style="font-size:15px;">{{date('M d, Y', strtotime($lists->Date_Requested))}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Type_of_Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Request}}</td>
-                                                    <td style="font-size:15px;">{{$lists->Status}}</td>
-                                                </tr>
-                                                @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table> 
-                                       
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +157,7 @@
     jQuery(document).ready(function($) {
         $('#myTable').DataTable();
         $('#myTable2').DataTable();
-        $('#myTable3').DataTable();
+        $('#myTable4').DataTable();
     });
     // $(document).ready(function() {
     //     $("#optionselect").change(function() {

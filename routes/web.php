@@ -85,6 +85,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Guest_Request', [App\Http\Controllers\MaintenanceController::class, 'Guest_Request'])->name('Guest_Request');
 
+		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 		Route::get('/update_maintenance_stats/{id}/{rno}/{bno}/{due}', 'App\Http\Controllers\MaintenanceController@update_maintenance_status');
 
@@ -93,6 +94,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
 		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
+		
+		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\MaintenanceController@update_service_request');
 		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -138,72 +141,21 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Operation Management
 		//Reservation
+		Route::get('OperationDashboard', function () {return view('Admin.pages.OperationManagement.OperationDashboard');})->name('OperationDashboard'); 
 		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
 		Route::get('Reports', function () {return view('Admin.pages.OperationManagement.Reports');})->name('Reports'); 
 		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 		
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		
-		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
-
-		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
-
-		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
 		
-		Route::get('/update_item_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_item_request');
-		
-		Route::post('add_guest_request', 'App\Http\Controllers\OperationManagementController@add_guest_request');
+		Route::get('Requests', [App\Http\Controllers\MaintenanceController::class, 'Operation_Requests'])->name('Requests');
 
 		//Guest Receipt
-		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 	
-
-		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
-
-		Route::post('/setstats', 'App\Http\Controllers\OperationManagementController@setstats');
-
-	// //Stock Purchase Report
-		// 	Route::post('/report', 'App\Http\Controllers\PurchaseReportController@report');
-		// 	Route::post('/edit_report', 'App\Http\Controllers\PurchaseReportController@edit_report');
-		// 	Route::post('/add', 'App\Http\Controllers\PurchaseReportController@add');
-		// 	Route::post('/supply_approval', 'App\Http\Controllers\PurchaseReportController@supply_approval');
-		// 	Route::get('StockPurchaseReport', [App\Http\Controllers\PurchaseReportController::class, 'SupplyRequest'])->name('StockPurchaseReport');
-			
-		
-		//Stock Availability
-		// Route::post('/addrequest', 'App\Http\Controllers\PurchaseReportController@addrequest');
-
-		// 	Route::get('StockAvailability', function () {
-		// 		$list = DB::select('SELECT * FROM hotelstocks');
-		// 		$list2 = DB::select('SELECT * FROM stockscenters');
-		// 		$list3 = DB::select('SELECT * FROM stocksfunctions');
-		// 		$list4= DB::select('SELECT * FROM hotel_room_supplies');
-		// 		$check = DB::select('SELECT COUNT(*) as cnt FROM hotelstocks');
-		// 		$check2 = DB::select("SELECT COUNT(*) as cnt FROM hotel_room_supplies WHERE Status = 'Requested'");
-
-
-		// 	$count = array();
-		// 	$count2 = array();
-
-		// 	foreach($check as $checks)
-		// 	{
-		// 		$count[] = ['counts' => $checks->cnt];
-		// 	}
-
-		// 	foreach($check2 as $checks)
-		// 	{
-		// 		$count2[] = ['counts' => $checks->cnt];
-		// 	}
-
-		// 		return view('Admin.pages.Inventory.StockAvailability',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4, 'count'=>$count, 'count2' => $count2]);})->name('StockAvailability');
-				
-		// 		//Stock Avail
-		// 	Route::get('StockAvail', function () {
-		// 		$list = DB::select('SELECT * FROM hotelstocks');
-		// 		$list2 = DB::select('SELECT * FROM stocksfunctions');
-		// 		$list3 = DB::select('SELECT * FROM stockscenters');
-		// 		return view('Admin.pages.Inventory.StockAvail',['list'=>$list, 'list2'=>$list2, 'list3'=>$list3]);})->name('StockAvail');
+		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
+		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
 	
-	//Finance
+		//Finance
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
 		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
 		
@@ -268,11 +220,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Inventory Reports
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
 	
-	Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
-
-
-	Route::get('/req_up/{id}/{qty}/{name}', 'App\Http\Controllers\InventoryController@guest_request_update');
-
 
 
 	
@@ -333,8 +280,6 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	Route::post('/assign_housekeepers_supply', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_supplies');
 
 	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
-	
-	Route::get('/update_service_requests/{id}/{bs}', 'App\Http\Controllers\HousekeeperController@update_service_request');
-		
+
 });
 
