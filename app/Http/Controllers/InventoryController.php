@@ -273,8 +273,8 @@ class InventoryController extends Controller
             $name = $request->input('name');
             $description = $request->input('description');
             $total = $request->input('quantity');
-            $in = $request->input('hotelin');
-            $out = $request->input('hotelout');
+            $in = $request->input('in');
+            $out = $request->input('out');
             $category = $request->input('category');
 
             if($in > 0)

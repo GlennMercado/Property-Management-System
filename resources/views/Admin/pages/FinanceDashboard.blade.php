@@ -13,7 +13,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col">
-                                    <h2 class="mx-auto d-flex justify-content-center pt-4">Finance Monthly</h2>
+                                    <h2 class="mx-auto d-flex justify-content-center pt-4">Finance Daily</h2>
                                     <div class="row mx-auto d-flex justify-content-center">
                                         <div class="col-md">
                                             <canvas id="myChart"></canvas>
@@ -27,34 +27,24 @@
             </div>
         </div>
     </div>
-    // Sample data for sales by month
-    <?php
-// Sample data for sales by month
-$salesData = [];
+    
 
-foreach ($list as $lists) {
-    array_push($salesData, $lists->bank, $lists->cash);
-}
-
-// Convert the data to a JSON-encoded string
-$dataString = json_encode($salesData);
-?>@foreach ($list as $lists)
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script>
+@foreach ($list as $lists)
     <?php
-        // Sample data for sales by month
-        $salesData = [ $lists->bank, 2, 1.5, 3, 2, 3.5 ];
-        // Convert the data to a JSON-encoded string
-        $dataString = json_encode($salesData);
+    // Sample data for sales by daily
+    $salesData = [$lists->cash, $lists->unearned, $lists->otherincome, $lists->parking, $lists->managementfee, $lists->event, $lists->hotel, $lists->commercialspace];
+    // Convert the data to a JSON-encoded string
+    $dataString = json_encode($salesData);
     ?>
 @endforeach
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script>
-         var data = <?php echo $dataString; ?>;
+    var data = <?php echo $dataString; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Cash/GCash', 'Unearned Income', 'Bank Transfer/Direct to Bank', 'Cheque', 'Basketball', 'Unearned Income'],
+                labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)', 'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event', 'Hotel', 'Commercial Space'],
                 datasets: [{
                     label: '',
                     data: data,
@@ -64,9 +54,13 @@ $dataString = json_encode($salesData);
                         '#55b948',
                         '#55b948',
                         '#55b948',
+                        '#55b948',
+                        '#55b948',
                         '#55b948'
                     ],
                     borderColor: [
+                        '#55b948',
+                        '#55b948',
                         '#55b948',
                         '#55b948',
                         '#55b948',

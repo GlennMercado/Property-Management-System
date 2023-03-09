@@ -2,6 +2,20 @@
 
 @section('content')
     @include('layouts.headers.cards')
+
+    <!-- Script tag for datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+            });
+        </script>
+
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -25,7 +39,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style="font-size:16px;">Action</th>
@@ -161,6 +175,31 @@
                                                                         hidden>
                                                                 </div>
                                                             </div>
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-md-6 pt-4">
+                                                                    <label class="text-left">Stock Category : </label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="category" value="{{ $lists->category }}"
+                                                                        required maxlength="32" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 pt-4">
+                                                                        <label class="text-left">Stock Name </label>
+                                                                        <input type="text" class="form-control"
+                                                                        name="name" value="{{ $lists->name }}"
+                                                                        required maxlength="32" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md">
+                                                                        <label for="Stockdetails">Stock Description:
+                                                                        </label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="description"
+                                                                            value="{{ $lists->description }}" required
+                                                                            maxlength="32" pattern="[A-Za-z0-9 ]+"
+                                                                            title="Stock Description should only contain Uppercase, lowercase letters and numbers."></div>
+                                                            </div>
                                                             <div class="row">
                                                                 <div class="col-md-6 pt-4">
                                                                     <label for="Stockdetails">Quantity: </label>
@@ -178,25 +217,6 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-6 pt-4">
-                                                                    <label class="text-left">Stock Name </label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="name" value="{{ $lists->name }}"
-                                                                        required maxlength="32">
-                                                                </div>
-                                                                <div class="col-md-6 pt-4">
-                                                                    <div class="form-group">
-                                                                        <label for="Stockdetails">Stock Description:
-                                                                        </label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="description"
-                                                                            value="{{ $lists->description }}" required
-                                                                            maxlength="32" pattern="[A-Za-z0-9 ]+"
-                                                                            title="Stock Description should only contain Uppercase, lowercase letters and numbers.">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
                                                                 <div class="col-md-6 ">
                                                                     <label class="text-left">Stock In </label>
                                                                     <input class="form-control" type="number"
@@ -208,68 +228,6 @@
                                                                     <input type="number" class="form-control"
                                                                         name="out" value="0"
                                                                         onKeyPress="if(this.value.length==5) return false;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row pt-4">
-                                                                <div class="col-md">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputPassword1">Category:
-                                                                        </label>
-                                                                        <input type="number" class="form-control"
-                                                                            name="category"
-                                                                            value="{{ $lists->category }}" hidden>
-                                                                        <select class="form-control"
-                                                                            value="{{ $lists->category }}"
-                                                                            name="category" required>
-                                                                            <option value="Invalid" class="cat"
-                                                                                disabled>Linens
-                                                                            </option>
-                                                                            <option>Bed pad - Single</option>
-                                                                            <option>Fitted Sheet - Single</option>
-                                                                            <option>Flat Sheet - Single</option>
-                                                                            <option>Duvet Filler - Single</option>
-                                                                            <option>Duvet Cover - Single</option>
-                                                                            <option>Pillows</option>
-                                                                            <option>Bed pad - Queen</option>
-                                                                            <option>Fitted Sheet - Queen</option>
-                                                                            <option>Flat Sheet - Queen</option>
-                                                                            <option>Duvet Filler - Queen</option>
-                                                                            <option>Duvet Cover - Queen</option>
-                                                                            <option>Pillows Case</option>
-                                                                            <option>Bath Towel</option>
-                                                                            <option>Hand Towel</option>
-                                                                            <option>Bath Mat</option>
-                                                                            <option>Bed Ruuner Queen</option>
-                                                                            <option>Bed Runner Single</option>
-                                                                            <option value="Invalid"></option>
-                                                                            <option value="Invalid" class="cat">Guest
-                                                                                Supplies
-                                                                            </option>
-                                                                            <option>Bath Soap</option>
-                                                                            <option>Shampoo</option>
-                                                                            <option>Dental Kit</option>
-                                                                            <option>Slippers</option>
-                                                                            <option>Bottled Water</option>
-                                                                            <option>Juice</option>
-                                                                            <option>Coffee</option>
-                                                                            <option>Creamer</option>
-                                                                            <option>Sugar - White</option>
-                                                                            <option>Sugar - Brown</option>
-                                                                            <option value="Invalid"></option>
-                                                                            <option value="Invalid" class="cat">
-                                                                                Amenities</option>
-                                                                            <option>Kettle</option>
-                                                                            <option>Tray</option>
-                                                                            <option>Dental Glass</option>
-                                                                            <option>Teaspoon</option>
-                                                                            <option>Cup And Saucer</option>
-                                                                            <option>Hanger</option>
-                                                                            <option>Door Hang</option>
-                                                                        </select>
-                                                                        <div class="invalid-feedback">
-                                                                            Stock Details empty
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -545,6 +503,7 @@
             });
         });
     </script>
+   
     <style>
         /* disable arrows input type number */
         input[type="number"]::-webkit-outer-spin-button,

@@ -119,18 +119,6 @@
                 $('#myTable').DataTable();
                 $('#myTable2').DataTable();
             });
-            // $(document).ready(function() {
-            //     $("#optionselect").change(function() {
-            //         var selected = $("option:selected", this).val();
-            //         if (selected == 'Cleaned') {
-            //             $('#cleaned, #cleaned2').show();
-            //             $('#outofservice, #outofservice2').hide();
-            //         } else if (selected == 'Out of Service') {
-            //             $('#outofservice, #outofservice2').show();
-            //             $('#cleaned, #cleaned2').hide();
-            //         }
-            //     });
-            // });
         </script>
         <style>
             .title {

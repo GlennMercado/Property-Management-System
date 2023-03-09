@@ -86,8 +86,11 @@ class FinanceReportController extends Controller
             $gross= $request->input('amount');
             $nopayment = 0;
             $grosspile = 1.12;
+            $output = .12;
             $grosspiles = $gross / $grosspile;
+            $outvat = $output * $grosspiles;
 
+dd($outvat);
             //for CREDIT
             //Basketball
             if ($compute == 'CourtRental' || $compute == 'CourtRental/League') {
@@ -98,7 +101,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Other Income
             } elseif ($compute == 'VenueRental' || $compute == 'KioskRental' || $compute == 'Foodstall' || $compute == 'Space Rental' || $compute == 'Convention Center/Hot' || $compute == 'Electrical Charge' || $compute == 'Zumba' || $compute == 'Event Registration' || $compute == 'Other Charges') {
@@ -109,7 +112,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Hotel
             } elseif ($compute == 'Hotel' || $compute == 'Hotel Other Charges') {
@@ -120,7 +123,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $request->input('amount');
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Function Room/ Convention Center/ Events
             } elseif ($compute == 'Function Room' || $compute == 'Function Room/Hotel' || $compute == 'Function Rooms/Others' || $compute == 'Convention Center' || $compute == 'Convention Center/Hot') {
@@ -131,7 +134,7 @@ class FinanceReportController extends Controller
                 $finance->event = $request->input('amount');
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Management Fee
             } elseif ($compute == 'Management Fee') {
@@ -142,7 +145,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Parking Ticket/ Parking Rental
             } elseif ($compute == 'Parking Rental' ) {
@@ -153,7 +156,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
 
                 //Commercial Space
             } elseif ($compute == 'Commercial Space'  ) {
@@ -164,7 +167,7 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $request->input('amount');
-                $finance->outputvat = $nopayment;
+                $finance->outputvat = $outvat;
             } 
 
             //OutputVAT
@@ -176,7 +179,6 @@ class FinanceReportController extends Controller
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
-                $finance->outputvat = $request->input('amount');$nopayment;
         } 
             
             // For Debit

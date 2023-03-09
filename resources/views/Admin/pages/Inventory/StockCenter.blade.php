@@ -2,6 +2,9 @@
 
 @section('content')
     @include('layouts.headers.cards')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
@@ -14,7 +17,7 @@
                                     </a>
                                     <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                         data-target="#exampleModal" style="float:right;">
-                                        Add Stocks
+                                        Add Stock
                                     </button>
                                 </div>
                                 <h3 class="mb-0 title">Convention Center Inventory</h3>
@@ -25,7 +28,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style="font-size:18px;">Action</th>
@@ -64,7 +67,6 @@
                                             <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i>
                                             </td>
                                         @endif
-                                        <td>
                                     </tr>
                                     <!-- Modal -->
                                     <!--View-->
@@ -273,6 +275,15 @@
             </div>
         </div>
     </div>
+    <script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+            });
+        </script>
     <style>
         .title {
             text-transform: uppercase;

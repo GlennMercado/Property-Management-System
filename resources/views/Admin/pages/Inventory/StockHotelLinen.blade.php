@@ -19,7 +19,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style="font-size:16px;">Action</th>
@@ -288,61 +288,9 @@
             </div>
         </div>
     </div>
-    <!-- </div>
-                            
-                                    </div>
-                                </div>
-                            </div> -->
+    
 
-
-
-
-
-    <!--Validation
-                               <script>
-                                   (function() {
-                                       'use strict';
-                                       window.addEventListener('load', function() {
-                                           var forms = document.getElementsByClassName('needs-validation');
-                                           var validation = Array.prototype.filter.call(forms, function(form) {
-                                               form.addEventListener('submit', function(event) {
-                                                   if (form.checkValidity() === false) {
-                                                       event.preventDefault();
-                                                       event.stopPropagation();
-                                                   }
-                                                   form.classList.add('was-validated');
-                                               }, false);
-                                           });
-                                       }, false);
-                                   })();
-
-
-                                   <
-                                   script >
-                                       $(function() {
-                                           let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-
-                                           $.extend(true, $.fn.dataTable.defaults, {
-                                               order: [
-                                                   [1, 'desc']
-                                               ],
-                                               pageLength: 100,
-                                               columnDefs: [{
-                                                   orderable: true,
-                                                   className: '',
-                                                   targets: 0
-                                               }]
-                                           });
-                                           $('.datatable-Stock:not(.ajaxTable)').DataTable({
-                                               buttons: dtButtons
-                                           })
-                                           $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-                                               $($.fn.dataTable.tables(true)).DataTable()
-                                                   .columns.adjust();
-                                           });
-                                       })
-                               </script>
-                               </script>-->
+    
     <style>
         .title {
             text-transform: uppercase;
@@ -360,6 +308,19 @@
             text-transform: uppercase;
         }
     </style>
+
+    <!-- Script tag for datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+            });
+        </script>
     <script>
         $(document).ready(function() {
             $("#stats").change(function() {
