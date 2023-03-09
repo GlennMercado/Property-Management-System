@@ -150,7 +150,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
 		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
 		Route::post('/set_stats', 'App\Http\Controllers\OperationManagementController@set_stats');
-
+		Route::get('/update_item_request/{id}', 'App\Http\Controllers\OperationManagementController@update_item_request');
+		
 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
@@ -221,6 +222,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//Inventory Reports
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
 	
+
+	//Guest Request
+	Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
+	Route::get('/req_up/{id}/{qty}/{name}', 'App\Http\Controllers\InventoryController@req_up');
 
 
 	

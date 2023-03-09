@@ -114,7 +114,6 @@ class MaintenanceController extends Controller
             $guest_request = $request->input('item_request');
         }
 
-
         $add = new guest_request;
  
         $bookno = $request->input('bookno');
@@ -125,6 +124,7 @@ class MaintenanceController extends Controller
         $add->Guest_Name = $request->input('guest_name');
         $add->Type_of_Request = $type_of_request;
         $add->Request = $guest_request;
+        $add->Quantity = $request->input('qty');
 
         if($add->save())
         {

@@ -163,6 +163,12 @@
                                                         <i class="bi bi-box-arrow-in-down-left"></i>
                                                     </button>  
                                                     @endif
+                                                    @if($lists->Status == "Dispersed")
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#update_item_request{{ $lists->Request_ID }}" title="Request Room Linens">
+                                                        <i class="bi bi-box-arrow-in-down-left"></i>
+                                                    </button>  
+                                                    @endif
                                                 </td>
                                             </tr>
 
@@ -201,6 +207,32 @@
                                                         </div>
 
                                                         </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Update Item Request-->
+                                            <div class="modal fade" id="update_item_request{{ $lists->Request_ID }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Update Request</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="text-center">Update Status?</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</a>
+                                                            <a href="{{url('update_item_request', ['id'=>$lists->Request_ID])}}" class="btn btn-success">Yes</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

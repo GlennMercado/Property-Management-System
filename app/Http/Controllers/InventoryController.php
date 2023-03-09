@@ -254,23 +254,7 @@ class InventoryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit_stock(Request $request)
     {
         try
@@ -392,14 +376,59 @@ class InventoryController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function GuestRequest()
     {
-        //
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No where a.Status = 'Approved' AND a.Type_of_Request = 'Item Request'");
+    
+        return view('Admin.pages.Inventory.GuestRequest', ['list' => $list]);
+    }
+
+    public function req_up($id, $qty, $name)
+    {
+      try
+      {
+        $request_id = $id;
+        $requested_quantity = $qty;
+        $item_name = $name;
+
+        $available_quantity;
+        $item = DB::select("SELECT * FROM hotelstocks WHERE name = '$item_name'");
+
+        foreach($item as $lists)
+        {
+            $available_quantity = $lists->total;
+        }
+    
+        if($available_quantity < $requested_quantity)
+        {
+            Alert::Error('Failed', 'Insufficient Stock!');
+            return redirect('GuestRequest')->with('Failed', 'Data not Updated');
+        }
+        else
+        {
+            $total = $available_quantity - $requested_quantity;
+
+            $inventory = DB::table('hotelstocks')->where('name', $item_name)->update(['total' => $total]);
+            $guestrequest = DB::table('guest_requests')->where('Request_ID', $request_id)->update(['Status' => "Dispersed"]);
+
+            if($inventory && $guestrequest)
+            {
+                Alert::Success('Success', 'Requested Item Successfully Dispersed!');
+                return redirect('GuestRequest')->with('Failed', 'Data not Updated');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Request updating failed!');
+                return redirect('GuestRequest')->with('Failed', 'Data not Updated');
+            }
+        }
+
+
+      }
+      catch(\Illuminate\Database\QueryException $e)
+      {
+        Alert::Error('Failed', 'Request updating failed!');
+        return redirect('GuestRequest')->with('Failed', 'Data not Updated');
+      }
     }
 }

@@ -80,6 +80,38 @@ class OperationManagementCOntroller extends Controller
         }
         catch(\Illuminate\Database\QueryException $e){
             Alert::Error('Failed', 'Guest Request Failed Updating!');
+            return redirect('Guest_Request')->with('Failed', 'Data Saved');
+        }
+    }
+
+    public function update_item_request($id)
+    {
+        try{
+            $datenow = Carbon::now()->format('Y-m-d');
+            $req_id = $id;
+            
+            $status = "Accomplished";
+
+            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update([
+                'Status' => $status,
+                'Date_Updated' => $datenow,
+                'IsArchived' => 1
+            ]);
+
+            if($sql)
+            {
+                Alert::Success('Success', 'Guest Request Successfully Updated!');
+                return redirect('Requests')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Guest Request Failed Updating!');
+                return redirect('Requests')->with('Failed', 'Data Saved');
+            }
+
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            Alert::Error('Failed', 'Guest Request Failed Updating!');
             return redirect('Requests')->with('Failed', 'Data Saved');
         }
     }
@@ -90,8 +122,16 @@ class OperationManagementCOntroller extends Controller
         $request_id = $request->input('request_id');
         $status = $request->input('status');
 
-        $sql = DB::table('guest_requests')->where('Request_ID', $request_id)->update(['Status' => $status]);
-
+        $sql;
+        if($status == "Approved")
+        {
+            $sql = DB::table('guest_requests')->where('Request_ID', $request_id)->update(['Status' => $status]);
+        }
+        else
+        {
+            $sql = DB::table('guest_requests')->where('Request_ID', $request_id)->update(['Status' => $status, 'IsArchived' => 1]);
+        }
+        
         if($sql)
         {
             Alert::Success('Success', 'Guest Request Successfully Updated!');
