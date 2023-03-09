@@ -587,8 +587,14 @@
 
                                                                     <div id="r_items" style="display:none;">
                                                                         <p class="text-left">Item Request </p>
-                                                                        <input type="text" name="item_request"
-                                                                            id="req2" class="form-control">
+                                                                        
+                                                                    <input type="hidden" name="qty" value="{{$lists->No_of_Pax}}">
+                                                                        <select name="item_request" class="form-control">
+                                                                            <option value="" selected="true" disabled="disabled">Select</option>
+                                                                            @foreach($supply as $supplies)
+                                                                            <option value="{{$supplies->name}}">{{$supplies->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
 
                                                                     <div id="r_services" style="display:none;">

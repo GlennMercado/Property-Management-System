@@ -246,6 +246,13 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'GuestRequest' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('GuestRequest') }}">
+                                    <i class="bi bi-boxes text-white"></i> {{ __('Guest Request') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">
                                     <i class="bi bi-list-task text-white"></i> {{ __('Stock Reports') }}
@@ -296,7 +303,7 @@
                                     </li>
                                 </ul>
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
+                                    <li class="nav-item {{ 'Requests' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{route('Requests')}}">
                                             <i class="bi bi-file-earmark-text text-white"></i>
                                             {{ __('Guest Request') }}
@@ -321,7 +328,7 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Reports' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Reports') }}">
+                                <a class="nav-link text-light" href="{{ route('Reports.Operation_Reports') }}">
                                     <i class="bi bi-journal-bookmark text-white"></i> {{ __('Reports') }}
                                 </a>
                             </li>
