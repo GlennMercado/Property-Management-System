@@ -76,7 +76,7 @@ class MaintenanceController extends Controller
 
     public function Guest_Request()
     {
-        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Service Request' ");
+        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.Type_of_Request = 'Service Request' AND a.Status != 'Ongoing'");
         return view('Admin.pages.HousekeepingForms.Guest_Request', ['list' => $list]);
     }
 
@@ -141,46 +141,6 @@ class MaintenanceController extends Controller
         
     }
 
-    public function update_service_request($id, $bs)
-    {
-        try{
-            $datenow = Carbon::now()->format('Y-m-d');
-            $req_id = $id;
-            
-            $status;
-
-            if($bs == "Checked-Out")
-            {
-                $status = "Unaccomplished";
-            }
-            else
-            {
-                $status = "Accomplished";
-            }
-            $sql = DB::table('guest_requests')->where('Request_ID', $req_id)->update([
-                'Status' => $status,
-                'Date_Updated' => $datenow,
-                'IsArchived' => 1
-            ]);
-
-            if($sql)
-            {
-                Alert::Success('Success', 'Guest Request Successfully Updated!');
-                return redirect('Requests')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Failed', 'Guest Request Failed Updating!');
-                return redirect('Requests')->with('Failed', 'Data Saved');
-            }
-
-        }
-        catch(\Illuminate\Database\QueryException $e){
-            Alert::Error('Failed', 'Guest Request Failed Updating!');
-            return redirect('Requests')->with('Failed', 'Data Saved');
-        }
-    }
-
     public function update_maintenance_status($id, $rno, $bno, $due)
     {
         $maintenance_id = $id;
@@ -228,10 +188,5 @@ class MaintenanceController extends Controller
         }
     }
 
-    public function Operation_Requests()
-    {
-        $list = DB::select("SELECT * FROM guest_requests a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No");
-    
-        return view('Admin.pages.OperationManagement.Requests', ['list' => $list]);
-    }
+
 }

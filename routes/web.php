@@ -95,8 +95,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 		
-		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\MaintenanceController@update_service_request');
-		
 		Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
 		Route::post('/add_rooms', 'App\Http\Controllers\RoomController@add_rooms');
@@ -149,7 +147,10 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		
 		
-		Route::get('Requests', [App\Http\Controllers\MaintenanceController::class, 'Operation_Requests'])->name('Requests');
+		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
+		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
+		Route::post('/set_stats', 'App\Http\Controllers\OperationManagementController@set_stats');
+
 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
