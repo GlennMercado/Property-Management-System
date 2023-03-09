@@ -88,9 +88,9 @@ class FinanceReportController extends Controller
             $grosspile = 1.12;
             $output = .12;
             $grosspiles = $gross / $grosspile;
-            $outvat = $output * $grosspiles;
-
-dd($outvat);
+            $grosspiless = $gross / $grosspile;
+            $outvat = $output * $grosspiless;
+            
             //for CREDIT
             //Basketball
             if ($compute == 'CourtRental' || $compute == 'CourtRental/League') {
@@ -104,9 +104,9 @@ dd($outvat);
                 $finance->outputvat = $outvat;
 
                 //Other Income
-            } elseif ($compute == 'VenueRental' || $compute == 'KioskRental' || $compute == 'Foodstall' || $compute == 'Space Rental' || $compute == 'Convention Center/Hot' || $compute == 'Electrical Charge' || $compute == 'Zumba' || $compute == 'Event Registration' || $compute == 'Other Charges') {
+            } elseif ($compute == 'Venue Rental' || $compute == 'Kiosk Rental' || $compute == 'Foodstall' || $compute == 'Space Rental' || $compute == 'Convention Center/Hot' || $compute == 'Electrical Charge' || $compute == 'Zumba' || $compute == 'Event Registration' || $compute == 'Other Charges') {
                 $finance->basketball = $nopayment;
-                $finance->otherincome = $request->input('amount');
+                $finance->otherincome = $grosspiles;
                 $finance->parking = $nopayment;
                 $finance->managementfee = $nopayment;
                 $finance->event = $nopayment;
@@ -121,7 +121,7 @@ dd($outvat);
                 $finance->parking = $nopayment;
                 $finance->managementfee = $nopayment;
                 $finance->event = $nopayment;
-                $finance->hotel = $request->input('amount');
+                $finance->hotel = $grosspiles;
                 $finance->commercialspace = $nopayment;
                 $finance->outputvat = $outvat;
 
@@ -131,7 +131,7 @@ dd($outvat);
                 $finance->otherincome = $nopayment;
                 $finance->parking = $nopayment;
                 $finance->managementfee = $nopayment;
-                $finance->event = $request->input('amount');
+                $finance->event = $grosspiles;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
                 $finance->outputvat = $outvat;
@@ -141,7 +141,7 @@ dd($outvat);
                 $finance->basketball = $nopayment;
                 $finance->otherincome = $nopayment;
                 $finance->parking = $nopayment;
-                $finance->managementfee = $request->input('amount');
+                $finance->managementfee = $grosspiles;
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
@@ -151,7 +151,7 @@ dd($outvat);
             } elseif ($compute == 'Parking Rental' ) {
                 $finance->basketball = $nopayment;
                 $finance->otherincome = $nopayment;
-                $finance->parking = $request->input('amount');
+                $finance->parking = $grosspiles;
                 $finance->managementfee = $nopayment;
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
@@ -166,7 +166,7 @@ dd($outvat);
                 $finance->managementfee = $nopayment;
                 $finance->event = $nopayment;
                 $finance->hotel = $nopayment;
-                $finance->commercialspace = $request->input('amount');
+                $finance->commercialspace = $grosspiles;
                 $finance->outputvat = $outvat;
             } 
 

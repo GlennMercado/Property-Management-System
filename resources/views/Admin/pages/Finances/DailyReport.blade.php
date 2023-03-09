@@ -55,15 +55,16 @@
                     <!--Start of Cards-->
                     <div class="container">
                         <div class="card-body">
-                            <button type="button" class="btn btn-outline-primary mb-4" data-toggle="modal"
-                                data-target="#exampleModal" style="float:right">
-                                Add Finance
-                            </button>
                             <div class="table-responsive">
                                 <div class="tab-content" id="myTabContent">
                                     {{-- ORs --}}
                                     <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                         aria-labelledby="tabs-icons-text-1-tab">
+                                        <button type="button" class="btn btn-outline-primary mb-4" data-toggle="modal"
+                                        data-target="#exampleModal" style="float:right">
+                                        Add Finance
+                                            </button>
+
 
                                         <table class="table align-items-center table-flush" style="align-items:center"
                                             id="myTable">
@@ -77,7 +78,6 @@
                                                     <th scope="col">Amount</th>
                                                     <th scope="col">Remarks</th>
                                                     <th scope="col">Debit Type</th>
-                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
 
@@ -92,16 +92,6 @@
                                                         <td>{{ $lists->amount }}</td>
                                                         <td>{{ $lists->remark }}</td>
                                                         <td>{{ $lists->debit }}</td>
-                                                        <td>
-                                                            <button type="button" data-toggle="modal"
-                                                                data-target="#ModalView{{ $lists->userid }}"
-                                                                class="btn btn-primary"><i class="bi bi-eye"
-                                                                    style="padding:2px;">View</i></button>
-                                                            <button type="button" data-toggle="modal"
-                                                                data-target="#ModalUpdate{{ $lists->userid }}"
-                                                                class="btn btn-primary"><i
-                                                                    class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
-                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
