@@ -173,3 +173,13 @@
             pointer-events: auto;
             opacity: 1;
         }
+        /* submit btn */
+        .btn_submit{
+            width: 100%;
+            cursor: not-allowed;
+        }
+        /* gcash image */
+        .gcash{
+            width: 90%;
+            height: 55px;
+        }
