@@ -5,8 +5,9 @@
     <script src="{{ asset('Javascript') }}/convention_center.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
         <div class="image-container" style="height: 25vh">
             <a href="{{ asset('nvdcpics') }}/convention2.jpg" data-lightbox="photos">
                 <img class="hw-20 img" src="{{ asset('nvdcpics') }}/convention2.jpg" style="width:100%; height: 50vh">

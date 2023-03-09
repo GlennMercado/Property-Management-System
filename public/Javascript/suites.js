@@ -128,12 +128,35 @@ function changeValue() {
         document.getElementById("balls").appendChild(yourTextboxes);
     }
 }
-
 function pax_on_change() {
     changeValue();
     price_count();
 }
-
+function enable_txt() {
+    var checkbox = document.getElementById("mainCheckbox");
+    var txtbox = document.getElementById("textbox1");
+    if(checkbox.checked == true){
+        txtbox.disabled = false;
+    }else{
+        txtbox.disabled = true;
+        txtbox.value = "";
+    }
+}
+function show_txt(){
+    var checkbox = document.getElementById("checkbox1");
+    var show = document.getElementById("special_request");
+    var txt1 = document.getElementById("special_request_txt1");
+    var txt2 = document.getElementById("special_request_txt2");
+    var txt3 = document.getElementById("special_request_txt3");
+    if(checkbox.checked == true){
+        show.hidden = false;
+    }else{
+        show.hidden = true;
+        txt1.value = "";
+        txt2.value = "";
+        txt3.value = "";
+    }
+}
 // function incrementValue(id) {
 //     var input = document.getElementById(id);
 //     var value = parseInt(input.value, 10);

@@ -170,45 +170,32 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row pt-4">
-                                <div class="col-md">
-                                    <div class="form-check form-check-input">
-                                        <input type="checkbox" id="mainCheckbox">
-                                        <label for="mainCheckbox">Make this booking for someone else?</label>
-                                        <br><br>
-                                        {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Make this booking for someone else?
-                                    </label>  --}}
-                                    </div>
-                                </div>
+                            <div class="pt-4">
+                                <input type="checkbox" onclick="enable_txt()" id="mainCheckbox">
+                                <label for="mainCheckbox">Make this booking for someone else?</label>
+                                <p>Full Name</p>
+                                <input type="text" id="textbox1" class="form-control" disabled>
                             </div>
-
-                            <h3 class="pt-6">Guest Information</h3>
-
-                            <div class="row">
-                                <div class="col-md">
-                                    <p>Full Name</p>
-                                    <input type="text" id="textbox1" class="form-control" disabled>
-                                </div>
+                            <div class="pt-4">
+                                <input type="checkbox" onclick="show_txt()" id="checkbox1">
+                                <label for="checkbox1">Do you have any special request?</label>
                             </div>
-                            <h3 class="pt-4">Do you have any special request?</h3>
-                            <h5>Extras</h5>
-                            <div class="row">
-                                <div class="col-md  pt-4">
+                            <br>
+                            <div class="row" id="special_request" hidden>
+                                <div class="col-md  pt-1">
                                     <p>Pillow</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt1" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
-                                <div class="col-md  pt-4">
+                                <div class="col-md  pt-1">
                                     <p>Towel</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt2" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
-                                <div class="col-md  pt-4">
+                                <div class="col-md  pt-1">
                                     <p>Mattress</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt3" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
                             </div>
                             {{-- PRICE --}}
@@ -424,17 +411,20 @@
                                                         {!! QrCode::size(170)->generate('0923423424') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Gcash account name <span class="text-danger">*</span></p>
+                                                        <p class="text-center">Gcash account name <span class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" id="gcash_acc" onkeyup="enable_submit()" name="gcash_account" class="form-control"
-                                                            maxlength="32">
+                                                        <input type="text" id="gcash_acc" onkeyup="enable_submit()"
+                                                            name="gcash_account" class="form-control" maxlength="32">
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <p>Upload your proof of payment here <span class="text-danger">*</span></p>
+                                                    <div class="col-md-12 mt-1">
+                                                        <p class="text-center">Upload your proof of payment here <span
+                                                                class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                        <input type="file" onchange="enable_submit()" id="gcash_img" placeholder="Ex: John Doe" name="images" class="form-control">
+                                                        <input type="file" onchange="enable_submit()" id="gcash_img"
+                                                            placeholder="Ex: John Doe" name="images"
+                                                            class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
