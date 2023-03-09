@@ -81,19 +81,19 @@ function price_count() {
         payment = room2pax * days;
         room_price.value = payment;
         sub.innerHTML = room2pax;
-        dproomprice.innerHTML = payment;
+        dproomprice.innerHTML = payment.toLocaleString('en-US');
     } else if (pax_num.value == 3) {
         totalprice = room2pax + per_pax_price;
         payment = totalprice * days;
         room_price.value = payment;
         sub.innerHTML = totalprice;
-        dproomprice.innerHTML = payment;
+        dproomprice.innerHTML = payment.toLocaleString('en-US');
     } else if (pax_num.value == 4) {
         totalprice = room2pax + (per_pax_price * 2);
         payment = totalprice * days;
         room_price.value = payment;
         sub.innerHTML = totalprice;
-        dproomprice.innerHTML = payment;
+        dproomprice.innerHTML = payment.toLocaleString('en-US');
     }
     pass();
 }

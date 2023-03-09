@@ -209,7 +209,7 @@
                                 </div>
                             </div>
                             {{-- PRICE --}}
-                            <input class="form-control" id="room_price" type="hidden">
+                            <input class="form-control" id="room_price" name="payment" type="hidden">
                             {{-- PRICE HIDDEN --}}
                             <br>
                             <div class="row">
@@ -406,7 +406,7 @@
                                                         <h4 class="text-muted">Per-pax subtotal: <span class="text-muted"
                                                                 id="subtotal"></span> </h4>
                                                         <h3>Total Payment:</h3>
-                                                        <h2 class="display-2 mt--3 text-green" id="dp"></h2>
+                                                        <h2 class="display-2 mt--3 text-green currency" id="dp"></h2>
                                                     </div>
                                                 </div>
                                                 @endforeach
@@ -415,10 +415,16 @@
                                                         {!! QrCode::size(170)->generate('09234234242') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p class="text-center mb-0">Upload your proof of payment here:</p>
+                                                        <p class="mb-0">Gcash account name:</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" name="gcash_account" class="form-control" maxlength="32">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p class="mb-0">Upload your proof of payment here:</p>
                                                     </div>
                                                     <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                        <input type="file" class="form-control">
+                                                        <input type="file" name="images" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
