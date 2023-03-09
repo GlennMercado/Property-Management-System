@@ -24,7 +24,8 @@ class OperationManagementCOntroller extends Controller
     }
     public function OperationRooms()
     {
-        return view('OperationRooms');
+        $list = DB::select("SELECT * FROM novadeci_suites");
+        return view('Admin.pages.OperationManagement.OperationRooms', ['list' => $list]);
     }
     public function Reports()
     {

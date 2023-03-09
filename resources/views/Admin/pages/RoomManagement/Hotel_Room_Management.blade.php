@@ -151,7 +151,13 @@
                                             <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
                                             <td style="font-size:16px;">{{ $lists->No_of_Beds }}</td>
                                             <td style="font-size:16px;">
-                                                <span class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>
+                                                @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Reserved")
+                                                <span class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>                 
+                                                @elseif($lists->Status == "Occupied" || $lists->Status == "Vacant for Cleaning")
+                                                <span class="badge badge-pill badge-warning badge-lg">{{ $lists->Status }}</span>
+                                                @elseif($lists->Status == "Out of Order")
+                                                <span class="badge badge-pill badge-danger badge-lg">{{ $lists->Status }}</span>
+                                                @endif
                                             </td>
 
                                         </tr>

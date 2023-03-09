@@ -148,15 +148,18 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		
 		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
+		
 		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
 		Route::post('/set_stats', 'App\Http\Controllers\OperationManagementController@set_stats');
 		Route::get('/update_item_request/{id}', 'App\Http\Controllers\OperationManagementController@update_item_request');
 		
+		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
+		
+	
 
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
-		Route::get('OperationRooms', function () {return view('Admin.pages.OperationManagement.OperationRooms');})->name('OperationRooms'); 
-	
+		
 		//Finance
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
 		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
