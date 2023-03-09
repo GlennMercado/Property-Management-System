@@ -3,10 +3,6 @@
             content: '₱';
         }
 
-        .currency:after {
-            content: '.00';
-        }
-
         /* currency */
         /* gallery */
         /* disable arrows input type number */

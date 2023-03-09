@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="card-body">
             <div class="container bg-white mt-1" id="conventionCenter">
@@ -74,7 +75,8 @@
                                     <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
                                     <input class="form-control" id="mobile" type="number" name="mobile" min="0"
                                         value="" placeholder="09XXXXXXXXX"
-                                        onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()" required>
+                                        onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
+                                        required>
                                     <div id="balls"></div>
                                 </div>
                             </div>
@@ -91,13 +93,13 @@
                             <div class="row">
                                 <div class="col-md pt-4">
                                     <p>Check in Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn" type="date"
-                                        onkeydown="return false" required />
+                                    <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
+                                        type="date" onkeydown="return false" required />
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Check out Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date2" onkeyup="enable_button()" name="checkOut" type="date"
-                                        onkeydown="return false" required>
+                                    <input class="form-control chck" id="date2" onkeyup="enable_button()"
+                                        name="checkOut" type="date" onkeydown="return false" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -158,7 +160,8 @@
                                                             data-dismiss="modal">Cancel</button>
                                                     </div> --}}
                                     {{-- code for pax count --}}
-                                    <select name="pax" class="form-control" onchange="enable_button()" id="pax_num" required>
+                                    <select name="pax" class="form-control" onchange="enable_button()" id="pax_num"
+                                        required>
                                         <option selected="true" disabled="disabled">Select</option>
                                         @for ($count = 1; $count <= 4; $count++)
                                             <option value="{{ $count }}" id="room_pax">
@@ -335,7 +338,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex justify-content-center pt-4">
-                                <button type="button" id="submit_button" class="btn btn-success btn_submit" onclick="price_count()" data-toggle="modal" data-target="#btnpreview" disabled>
+                                <button type="button" id="submit_button" class="btn btn-success btn_submit"
+                                    onclick="price_count()" data-toggle="modal" data-target="#btnpreview" disabled>
                                     Submit
                                 </button>
                             </div>
@@ -395,7 +399,7 @@
                                                 </div>
                                                 <div class="row shadow p-3 mt-2">
                                                     <div class="col-md-6 text-sm font-weight-bold">
-                                                        <h3>Payment medthod:</h3>
+                                                        <h3>Payment method:</h3>
                                                     </div>
                                                     <div class="col-md-6 text-sm font-weight-bold">
                                                         <img class="gcash" src="{{ asset('nvdcpics') }}/Gcash.webp">
@@ -406,22 +410,28 @@
                                                         <h4 class="text-muted">Per-pax subtotal: <span class="text-muted"
                                                                 id="subtotal"></span> </h4>
                                                         <h3>Total Payment:</h3>
-                                                        <h2 class="display-2 mt--3 text-green currency" id="dp"></h2>
+                                                        <h2 class="display-2 mt--3 text-green currency" id="dp">
+                                                        </h2>
                                                     </div>
                                                 </div>
                                                 @endforeach
                                                 <div class="row shadow p-3 mt-2">
+                                                    <div class="col-md-12">
+                                                        <p class="font-weight-bold text-center">NVDC Properties: 0923423424
+                                                        </p>
+                                                    </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
-                                                        {!! QrCode::size(170)->generate('09234234242') !!}
+                                                        {!! QrCode::size(170)->generate('0923423424') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p class="mb-0">Gcash account name:</p>
+                                                        <p>Gcash account name:</p>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" name="gcash_account" class="form-control" maxlength="32">
+                                                        <input type="text" name="gcash_account" class="form-control"
+                                                            maxlength="32">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p class="mb-0">Upload your proof of payment here:</p>
+                                                        <p>Upload your proof of payment here:</p>
                                                     </div>
                                                     <div class="col-md-12 mx-auto d-flex justify-content-center">
                                                         <input type="file" name="images" class="form-control">

@@ -122,98 +122,82 @@ function pax_on_change() {
     price_count();
 }
 
-function incrementValue(id) {
-    var input = document.getElementById(id);
-    var value = parseInt(input.value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    input.value = value;
-}
+// function incrementValue(id) {
+//     var input = document.getElementById(id);
+//     var value = parseInt(input.value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value++;
+//     input.value = value;
+// }
 
-function decrementValue(id) {
-    var input = document.getElementById(id);
-    var value = parseInt(input.value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    input.value = value;
-}
-// Add event listeners for input 1
-document.querySelector('#input1 .inc').addEventListener('click', function () {
-    incrementValue('input1');
-});
-document.querySelector('#input1 .dec').addEventListener('click', function () {
-    decrementValue('input1');
-});
-// Add event listeners for input 2
-document.querySelector('#input2 .inc').addEventListener('click', function () {
-    incrementValue('input2');
-});
-document.querySelector('#input2 .dec').addEventListener('click', function () {
-    decrementValue('input2');
-});
-const textbox = document.getElementById('mytextbox');
-let value = parseInt(textbox.value);
-textbox.addEventListener('keydown', function (event) {
-    if (event.keyCode == 38) { // up arrow
-        value++;
-        textbox.value = value;
-    } else if (event.keyCode == 40) { // down arrow
-        value--;
-        textbox.value = value;
-    }
-});
+// function decrementValue(id) {
+//     var input = document.getElementById(id);
+//     var value = parseInt(input.value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value--;
+//     input.value = value;
+// }
+// document.querySelector('#input1 .inc').addEventListener('click', function () {
+//     incrementValue('input1');
+// });
+// document.querySelector('#input1 .dec').addEventListener('click', function () {
+//     decrementValue('input1');
+// });
+// document.querySelector('#input2 .inc').addEventListener('click', function () {
+//     incrementValue('input2');
+// });
+// document.querySelector('#input2 .dec').addEventListener('click', function () {
+//     decrementValue('input2');
+// });
+// const textbox = document.getElementById('mytextbox');
+// let value = parseInt(textbox.value);
+// textbox.addEventListener('keydown', function (event) {
+//     if (event.keyCode == 38) {
+//         textbox.value = value;
+//     } else if (event.keyCode == 40) {
+//         value--;
+//         textbox.value = value;
+//     }
+// });
 
 
-// dropdown count
-// get the dropdown button and the input fields
-const dropdownButton = document.getElementById('dropdownMenuButton');
-const adultInput = document.getElementById('input1');
-const childInput = document.getElementById('input2');
-const infantInput = document.getElementById('input3');
+// const dropdownButton = document.getElementById('dropdownMenuButton');
+// const adultInput = document.getElementById('input1');
+// const childInput = document.getElementById('input2');
+// const infantInput = document.getElementById('input3');
 
-// add event listeners to the plus and minus buttons
-const buttons = document.querySelectorAll('.btn-count, .btn-count2');
-buttons.forEach(button => {
-    button.addEventListener('click', event => {
-        // prevent default form submission
-        event.preventDefault();
+// const buttons = document.querySelectorAll('.btn-count, .btn-count2');
+// buttons.forEach(button => {
+//     button.addEventListener('click', event => {
+//         event.preventDefault();
 
-        // get the parent element of the clicked button
-        const parent = event.target.parentElement.parentElement;
+//         const parent = event.target.parentElement.parentElement;
 
-        // get the label and current value of the input field
-        const label = parent.querySelector('label').textContent;
-        let value = parseInt(label.split(': ')[1]);
+//         const label = parent.querySelector('label').textContent;
+//         let value = parseInt(label.split(': ')[1]);
 
-        // increment or decrement the value depending on which button was clicked
-        // if (event.target.classList.contains('btn-success')) {
-        //     value++;
-        // } else if (event.target.classList.contains('btn-danger')) {
-        //     value--;
-        // }
-        if (event.target.classList.contains('btn-count')) {
-            value++;
-            if (value > 4) {
-                document.getElementById("btn-count").disabled = true;
-            }
-        } else if (event.target.classList.contains('btn-count2')) {
-            value--;
-            if (value < 0) {
-                document.getElementById("btn-count2").disabled = true;
-            }
-        } else {
-            document.getElementById("btn-count").disabled = false;
-            document.getElementById("btn-count2").disabled = false;
-        }
-        // update the label and dropdown button text
-        parent.querySelector('label').textContent = `${label.split(': ')[0]}: ${value}`;
-        dropdownButton.querySelectorAll('span').forEach(span => {
-            if (span.textContent.includes(label.split(': ')[0])) {
-                span.textContent = `${label.split(': ')[0]}: ${value}`;
-            }
-        });
-    });
-});
-let count = 0;
-const countElement = document.getElementById('count');
+//         if (event.target.classList.contains('btn-count')) {
+//             value++;
+//             if (value > 4) {
+//                 document.getElementById("btn-count").disabled = true;
+//             }
+//         } else if (event.target.classList.contains('btn-count2')) {
+//             value--;
+//             if (value < 0) {
+//                 document.getElementById("btn-count2").disabled = true;
+//             }
+//         } else {
+//             document.getElementById("btn-count").disabled = false;
+//             document.getElementById("btn-count2").disabled = false;
+//         }
+//         parent.querySelector('label').textContent = `${label.split(': ')[0]}: ${value}`;
+//         dropdownButton.querySelectorAll('span').forEach(span => {
+//             if (span.textContent.includes(label.split(': ')[0])) {
+//                 span.textContent = `${label.split(': ')[0]}: ${value}`;
+//             }
+//         });
+//     });
+// });
+// let count = 0;
+// const countElement = document.getElementById('count');
 
