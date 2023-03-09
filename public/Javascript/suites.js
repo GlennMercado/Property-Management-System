@@ -1,7 +1,7 @@
 // pass values
 // 
 
-const { isEmpty } = require("lodash");
+const { isEmpty, isNull } = require("lodash");
 
 // textbox disable/enable
 function checkCheckbox() {
@@ -30,10 +30,13 @@ function pass() {
     var date1 = document.getElementById('date1');
     var date2 = document.getElementById('date2');
     var pax1 = document.getElementById('pax_num');
+    var rpn1 = document.getElementById('rpn');
     // page value pass to modal
     var mobile2 = document.getElementById('mobile2');
     var date_pass = document.getElementById('date_pass1');
     var date_pass2 = document.getElementById('date_pass2');
+    var rpn2 = document.getElementById('2pax');
+    rpn2.innerHTML = rpn1.value;
     mobile2.innerHTML = mobile1.value;
     date_pass.innerHTML = date1.value;
     date_pass2.innerHTML = date2.value;
@@ -41,11 +44,16 @@ function pass() {
 // enable disable submit validation
 function enable_button() {
     var mobile_num = document.getElementById("mobile");
+    var date1 = document.getElementById("date1");
+    var date2 = document.getElementById("date2");
+    var pax = document.getElementById("pax_num");
     var submit_button1 = document.getElementById("submit_button");
-    if(mobile_num.value ==""){
+    if (pax.value == "" || mobile_num.value == "" || date1.value == "" || date2.value == "") {
         submit_button1.disabled = true;
-    }else{
+        submit_button1.style.cursor = "not-allowed";
+    } else {
         submit_button1.disabled = false;
+        submit_button1.style.cursor = "pointer";
     }
 }
 function price_count() {
@@ -62,7 +70,9 @@ function price_count() {
     var dproomprice = document.getElementById("dp");
     var room_price = document.getElementById("room_price");
     var per_pax_price = 1500;
-    var room2pax = 2500;
+    var rpn1 = document.getElementById("rpn").value;
+    var room2pax = Number(rpn1);
+    var sub = document.getElementById("subtotal");
     // pax total
     var totalprice;
     // payment price
@@ -70,16 +80,19 @@ function price_count() {
     if (pax_num.value == 1 || pax_num.value == 2) {
         payment = room2pax * days;
         room_price.value = payment;
+        sub.innerHTML = room2pax;
         dproomprice.innerHTML = payment;
     } else if (pax_num.value == 3) {
         totalprice = room2pax + per_pax_price;
         payment = totalprice * days;
         room_price.value = payment;
+        sub.innerHTML = totalprice;
         dproomprice.innerHTML = payment;
     } else if (pax_num.value == 4) {
         totalprice = room2pax + (per_pax_price * 2);
         payment = totalprice * days;
         room_price.value = payment;
+        sub.innerHTML = totalprice;
         dproomprice.innerHTML = payment;
     }
     pass();
