@@ -396,6 +396,7 @@ class HousekeepingController extends Controller
         }
         return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
     }
+    
     public function supply_request(Request $request)
     {
        

@@ -7,12 +7,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\guest_request;
 use Carbon\Carbon;
+use DataTables;
+use App\Models\complaints;
 
 class OperationManagementCOntroller extends Controller
 {
     public function OperationDashboard()
     {
-        return view('OperationDashboard');
+        return view('Admin.pages.OperationManagement.OperationDashboard');
     }
     public function Reservation()
     {
@@ -27,9 +29,109 @@ class OperationManagementCOntroller extends Controller
         $list = DB::select("SELECT * FROM novadeci_suites");
         return view('Admin.pages.OperationManagement.OperationRooms', ['list' => $list]);
     }
-    public function Reports()
+    public function Operation_Reports(Request $request)
     {
-        return view('Reports');
+        if($request->ajax()){
+            if($request->get('num') == 1)
+            {
+                $data = guest_request::select('*')->where('IsArchived', 1);
+                
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                        $instance->where('Date_Updated', '=', $now)->get();
+                    }
+                    elseif($request->get('date') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
+                        $instance->where('Date_Updated', '>=', $startweek)
+                                ->where('Date_Updated', '<=', $endweek)
+                                ->get();
+                    }
+                    elseif($request->get('date') == "Monthly")
+                    {
+                        $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
+                        $instance->where('Date_Updated', '>=', $startmonth)
+                                ->where('Date_Updated', '<=', $endmonth)
+                                ->get();
+                    }
+
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search');
+
+                            $converttodate = strtotime($search);
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('Request_ID', 'LIKE', "%$search%")
+                                ->orwhere('Booking_No', 'LIKE', "%$search%")
+                                ->orwhere('Guest_Name', 'LIKE', "%$search%")
+                                ->orwhere('Date_Updated', 'LIKE', "%$date_search%")
+                                ->orwhere('Room_No', 'LIKE', "%$search%" );
+                        });
+                    }          
+                })
+                ->make(true);   
+            }
+            elseif($request->get('num') == 2)
+            {
+                $data = complaints::select('*');
+                
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date2') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date2') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                        $instance->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '=', $now)->get();
+                    }
+                    elseif($request->get('date2') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
+                        $instance->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '>=', $startweek)
+                                ->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '<=', $endweek)
+                                ->get();
+                    }
+                    elseif($request->get('date2') == "Monthly")
+                    {
+                        $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
+                        $instance->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '>=', $startmonth)
+                                ->where(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), '<=', $endmonth)
+                                ->get();
+                    }
+
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search2');
+
+                            $converttodate = strtotime($search);
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('concern', 'LIKE', "%$search%")
+                                ->orwhere('concern_text', 'LIKE', "%$search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(created_at,'%Y-%m-%d'))"), 'LIKE', "%$date_search%");
+                        });
+                    }          
+                })
+                ->make(true);   
+            }    
+        }
+        return view('Admin.pages.OperationManagement.Reports');
     }
     public function GuestFolio()
     {

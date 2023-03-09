@@ -328,7 +328,7 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Reports' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Reports') }}">
+                                <a class="nav-link text-light" href="{{ route('Reports.Operation_Reports') }}">
                                     <i class="bi bi-journal-bookmark text-white"></i> {{ __('Reports') }}
                                 </a>
                             </li>

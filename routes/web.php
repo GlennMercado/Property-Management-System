@@ -139,10 +139,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	
 	//Operation Management
 		//Reservation
-		Route::get('OperationDashboard', function () {return view('Admin.pages.OperationManagement.OperationDashboard');})->name('OperationDashboard'); 
 		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
-		Route::get('Reports', function () {return view('Admin.pages.OperationManagement.Reports');})->name('Reports'); 
+
 		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
+		
+		Route::get('Reports', ['uses' => 'App\Http\Controllers\OperationManagementController@Operation_Reports', 'as' => 'Reports.Operation_Reports']);
 		
 		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 		
@@ -154,6 +155,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('/update_item_request/{id}', 'App\Http\Controllers\OperationManagementController@update_item_request');
 		
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
+		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
 		
 	
 
