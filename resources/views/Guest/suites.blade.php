@@ -406,7 +406,7 @@
                                                         <h4 class="text-muted">Per-pax subtotal: <span class="text-muted"
                                                                 id="subtotal"></span> </h4>
                                                         <h3>Total Payment:</h3>
-                                                        <h2 class="display-2 mt--3 currency text-green" id="dp"></h2>
+                                                        <h2 class="display-2 mt--3 text-green" id="dp"></h2>
                                                     </div>
                                                 </div>
                                                 @endforeach
