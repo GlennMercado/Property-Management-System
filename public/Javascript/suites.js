@@ -56,6 +56,18 @@ function enable_button() {
         submit_button1.style.cursor = "pointer";
     }
 }
+function enable_submit() {
+    var acc = document.getElementById("gcash_acc");
+    var g_img = document.getElementById("gcash_img");
+    var submit_button2 = document.getElementById("submit_button2");
+    if (acc.value == "" || g_img.value == "") {
+        submit_button2.disabled = true;
+        submit_button2.style.cursor = "not-allowed";
+    } else {
+        submit_button2.disabled = false;
+        submit_button2.style.cursor = "pointer";
+    }
+}
 function price_count() {
     // days
     var d1 = document.getElementById("date1").value;

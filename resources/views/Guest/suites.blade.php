@@ -424,25 +424,25 @@
                                                         {!! QrCode::size(170)->generate('0923423424') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Gcash account name:</p>
+                                                        <p>Gcash account name <span class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" name="gcash_account" class="form-control"
+                                                        <input type="text" id="gcash_acc" onkeyup="enable_submit()" name="gcash_account" class="form-control"
                                                             maxlength="32">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Upload your proof of payment here:</p>
+                                                        <p>Upload your proof of payment here <span class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                        <input type="file" name="images" class="form-control">
+                                                        <input type="file" onchange="enable_submit()" id="gcash_img" placeholder="Ex: John Doe" name="images" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit"
-                                                class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4"
-                                                value="Submit" style="width:40%;" data-target="#submit" />
+                                            <input type="submit" id="submit_button2"
+                                                class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit"
+                                                value="Submit" style="width:40%;" data-target="#submit" disabled />
                                         </div>
                                     </div>
                                 </div>
