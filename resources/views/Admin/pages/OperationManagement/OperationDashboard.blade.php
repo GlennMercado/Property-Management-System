@@ -2,6 +2,12 @@
 
 @section('content')
     @include('layouts.headers.cards')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
+ 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
+
 
     <div class="container-fluid mt--7">
 
@@ -86,12 +92,6 @@
                                         {{-- Arrival / Departure --}}
                                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                             aria-labelledby="tabs-icons-text-1-tab">
-                                            <select class="form-control" style="width:20%;" id="date">
-                                                <option value="All">All Records</option>
-                                                <option value="Daily">Daily</option>
-                                                <option value="Weekly">Weekly</option>
-                                                <option value="Monthly">Monthly</option>
-                                            </select>
                                             <!-- Projects table -->
                                             <table class="table align-items-center table-flush" id="myTable">
                                                 <thead class="thead-light">
@@ -121,69 +121,20 @@
         $.noConflict();
 
         jQuery(function($) {
-
             var table = $('#myTable').DataTable({
                 dom: 'lBfrtip',
                 orderCellsTop: true,
                 fixedHeader: true,
                 lengthChange: false,
-                processing: true,
-                serverSide: true,
-                buttons: [
-                    'pageLength',
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'portrait',
-                        pageSize: 'LEGAL'
-                    },
-                    'excel', 'colvis', 'print'
-                ],
-                ajax: {
-                    url: "{{ route('Housekeeping_Reports.reports') }}",
-                    data: function(d) {
-                        d.num = 1,
-                            d.date = $('#date').val(),
-                            d.search = $('#search1').val()
-                    }
-                },
-                columns: [{
-                        data: 'ID'
-                    },
-                    {
-                        data: 'Guest_Name'
-                    },
-                        data: 'Check_In_Date',
-                        render: function(data) {
-                            var date = new Date(data);
-                            var month = ["January", "February", "March", "April", "May", "June",
-                                "July", "August", "September", "October", "November", "December"
-                            ];
-
-                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
-                                .getFullYear();
-                        }
-                    },
-                    {
-                        data: 'Check_Out_Date',
-                        render: function(data) {
-                            var date = new Date(data);
-                            var month = ["January", "February", "March", "April", "May", "June",
-                                "July", "August", "September", "October", "November", "December"
-                            ];
-
-                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
-                                .getFullYear();
-                        }
-                    },
-                ]
-            });
-
-            $('#myTable_filter input[type="search"]').prop('id', 'search1');
-
-            table.buttons().container().insertBefore('#myTable_filter');
-
-            $('#date').change(function() {
-                table.draw();
+                buttons: [ 
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'portrait',
+                            pageSize: 'LEGAL'
+                        },
+                        'excel', 'colvis', 'print' 
+                    ]
             });
         });
     </script>
