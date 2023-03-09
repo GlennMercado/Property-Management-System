@@ -14,7 +14,14 @@ class OperationManagementCOntroller extends Controller
 {
     public function OperationDashboard()
     {
-        return view('Admin.pages.OperationManagement.OperationDashboard');
+        $now = Carbon::now()->format('Y-m-d');
+        $request_count = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Updated = '$now'");
+
+        $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
+        $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
+        $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
+
+        return view('Admin.pages.OperationManagement.OperationDashboard', ['request_count'=>$request_count, 'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3]);
     }
     public function Reservation()
     {

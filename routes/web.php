@@ -291,6 +291,7 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	Route::post('/assign_housekeepers_supply', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_supplies');
 
 	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
-
+	Route::get('/update_service_requests/{id}/{bs}', 'App\Http\Controllers\HousekeeperController@update_service_request');
+		
 });
 

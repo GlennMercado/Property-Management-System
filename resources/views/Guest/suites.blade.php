@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="card-body">
             <div class="container bg-white mt-1" id="conventionCenter">
@@ -74,7 +75,8 @@
                                     <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
                                     <input class="form-control" id="mobile" type="number" name="mobile" min="0"
                                         value="" placeholder="09XXXXXXXXX"
-                                        onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()" required>
+                                        onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
+                                        required>
                                     <div id="balls"></div>
                                 </div>
                             </div>
@@ -91,13 +93,13 @@
                             <div class="row">
                                 <div class="col-md pt-4">
                                     <p>Check in Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn" type="date"
-                                        onkeydown="return false" required />
+                                    <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
+                                        type="date" onkeydown="return false" required />
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Check out Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date2" onkeyup="enable_button()" name="checkOut" type="date"
-                                        onkeydown="return false" required>
+                                    <input class="form-control chck" id="date2" onkeyup="enable_button()"
+                                        name="checkOut" type="date" onkeydown="return false" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -158,7 +160,8 @@
                                                             data-dismiss="modal">Cancel</button>
                                                     </div> --}}
                                     {{-- code for pax count --}}
-                                    <select name="pax" class="form-control" onchange="enable_button()" id="pax_num" required>
+                                    <select name="pax" class="form-control" onchange="enable_button()" id="pax_num"
+                                        required>
                                         <option selected="true" disabled="disabled">Select</option>
                                         @for ($count = 1; $count <= 4; $count++)
                                             <option value="{{ $count }}" id="room_pax">
@@ -167,45 +170,32 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row pt-4">
-                                <div class="col-md">
-                                    <div class="form-check form-check-input">
-                                        <input type="checkbox" id="mainCheckbox">
-                                        <label for="mainCheckbox">Make this booking for someone else?</label>
-                                        <br><br>
-                                        {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Make this booking for someone else?
-                                    </label>  --}}
-                                    </div>
-                                </div>
+                            <div class="pt-4">
+                                <input type="checkbox" onclick="enable_txt()" id="mainCheckbox">
+                                <label for="mainCheckbox">Make this booking for someone else?</label>
+                                <p>Full Name</p>
+                                <input type="text" id="textbox1" class="form-control" disabled>
                             </div>
-
-                            <h3 class="pt-6">Guest Information</h3>
-
-                            <div class="row">
-                                <div class="col-md">
-                                    <p>Full Name</p>
-                                    <input type="text" id="textbox1" class="form-control" disabled>
-                                </div>
+                            <div class="pt-4">
+                                <input type="checkbox" onclick="show_txt()" id="checkbox1">
+                                <label for="checkbox1">Do you have any special request?</label>
                             </div>
-                            <h3 class="pt-4">Do you have any special request?</h3>
-                            <h5>Extras</h5>
-                            <div class="row">
-                                <div class="col-md  pt-4">
+                            <br>
+                            <div class="row" id="special_request" hidden>
+                                <div class="col-md  pt-1">
                                     <p>Pillow</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt1" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
-                                <div class="col-md  pt-4">
+                                <div class="col-md  pt-1">
                                     <p>Towel</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt2" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
-                                <div class="col-md  pt-4">
+                                <div class="col-md  pt-1">
                                     <p>Mattress</p>
-                                    <input type="number" class="form-control" min="0" max="5"
-                                        value="0">
+                                    <input type="number" id="special_request_txt3" class="form-control" min="0"
+                                        max="5" value="0">
                                 </div>
                             </div>
                             {{-- PRICE --}}
@@ -335,7 +325,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex justify-content-center pt-4">
-                                <button type="button" id="submit_button" class="btn btn-success btn_submit" onclick="price_count()" data-toggle="modal" data-target="#btnpreview" disabled>
+                                <button type="button" id="submit_button" class="btn btn-success btn_submit"
+                                    onclick="price_count()" data-toggle="modal" data-target="#btnpreview" disabled>
                                     Submit
                                 </button>
                             </div>
@@ -395,7 +386,7 @@
                                                 </div>
                                                 <div class="row shadow p-3 mt-2">
                                                     <div class="col-md-6 text-sm font-weight-bold">
-                                                        <h3>Payment medthod:</h3>
+                                                        <h3>Payment method:</h3>
                                                     </div>
                                                     <div class="col-md-6 text-sm font-weight-bold">
                                                         <img class="gcash" src="{{ asset('nvdcpics') }}/Gcash.webp">
@@ -406,33 +397,42 @@
                                                         <h4 class="text-muted">Per-pax subtotal: <span class="text-muted"
                                                                 id="subtotal"></span> </h4>
                                                         <h3>Total Payment:</h3>
-                                                        <h2 class="display-2 mt--3 text-green currency" id="dp"></h2>
+                                                        <h2 class="display-2 mt--3 text-green currency" id="dp">
+                                                        </h2>
                                                     </div>
                                                 </div>
                                                 @endforeach
                                                 <div class="row shadow p-3 mt-2">
+                                                    <div class="col-md-12">
+                                                        <p class="font-weight-bold text-center">NVDC Properties: 0923423424
+                                                        </p>
+                                                    </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
-                                                        {!! QrCode::size(170)->generate('09234234242') !!}
+                                                        {!! QrCode::size(170)->generate('0923423424') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p class="mb-0">Gcash account name:</p>
+                                                        <p class="text-center">Gcash account name <span class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" name="gcash_account" class="form-control" maxlength="32">
+                                                        <input type="text" id="gcash_acc" onkeyup="enable_submit()"
+                                                            name="gcash_account" class="form-control" maxlength="32">
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <p class="mb-0">Upload your proof of payment here:</p>
+                                                    <div class="col-md-12 mt-1">
+                                                        <p class="text-center">Upload your proof of payment here <span
+                                                                class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                        <input type="file" name="images" class="form-control">
+                                                        <input type="file" onchange="enable_submit()" id="gcash_img"
+                                                            placeholder="Ex: John Doe" name="images"
+                                                            class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit"
-                                                class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4"
-                                                value="Submit" style="width:40%;" data-target="#submit" />
+                                            <input type="submit" id="submit_button2"
+                                                class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit"
+                                                value="Submit" style="width:40%;" data-target="#submit" disabled />
                                         </div>
                                     </div>
                                 </div>

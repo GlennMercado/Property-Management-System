@@ -3,10 +3,6 @@
             content: '₱';
         }
 
-        .currency:after {
-            content: '.00';
-        }
-
         /* currency */
         /* gallery */
         /* disable arrows input type number */
@@ -181,5 +177,5 @@
         /* gcash image */
         .gcash{
             width: 90%;
-            height: 55px;
+            height: 60px;
         }
