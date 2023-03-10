@@ -52,7 +52,15 @@
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-content">
-                                                        <div class="modal-header"></div>
+                                                    <div class="modal-header">
+                                                        <div class="container">
+                                                            <h1 class="modal-title">Requests Approval</h1>
+                                                        </div>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col">
