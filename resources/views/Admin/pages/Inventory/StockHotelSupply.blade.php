@@ -166,16 +166,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
-            });
-            $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
+         $(document).ready(function() {
                 $("#stats").change(function() {
                     var selected = $("option:selected", this).val();
 
@@ -192,7 +183,14 @@
                     }
                 });
             });
-        </script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+            });
+    </script>
     @endsection
 
     @push('js')
