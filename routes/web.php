@@ -18,8 +18,6 @@ Route::get('/', function () {
 });
 
 
-
-
 //Homepage	r
 Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
 
@@ -260,6 +258,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
 	Route::get('/FAQ', [App\Http\Controllers\GuestController::class, 'FAQ'])->name('FAQ');
+	Route::get('/BookingEmail', [App\http\Controllers\GuestController::class, 'BookingEmail'])->name('BookingEmail');
 });
 	
 //Housekeeper
