@@ -218,22 +218,25 @@
                                                 {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <div class="row">
-                                                        <div class="col">
-                                                            <p class="text-left">OR Number : </p>
+                                                        <div class="col-md">
+                                                            <label class="text-left">Official Receipt Number </label>
                                                             <input type="number" class="form-control" name="ornum"
+                                                            onKeyPress="if(this.value.length==15) return false;"
                                                                 placeholder="Enter OR Number..." required>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <label for="Stockdetails">Payee : </label>
+                                                        <div class="col-md">
+                                                            <label for="Stockdetails">Payee </label>
                                                             <input type="text" class="form-control" name="payee"
-                                                                placeholder="Enter payee..." required>
+                                                            maxlength = "32"
+                                                                placeholder="Enter Name..." required>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col">
-                                                            <label for="Stockdetails">Particular: </label>
+                                                       
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md pt-2">
+                                                            <label for="Stockdetails">Particular </label>
                                                             <select class="form-control" name="particular" required>
                                                                 <option value="CourtRental">CourtRental</option>
                                                                 <option value="CourtRental/League">CourtRental/League
@@ -268,10 +271,8 @@
                                                                 <option value="Other Charges">Other Charges</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <label for="Stockdetails">Debit Type: </label>
+                                                        <div class="col-md pt-2">
+                                                            <label for="Stockdetails">Debit Type </label>
                                                             <select class="form-control" name="debit"
                                                                 placeholder="Enter number..." required>
                                                                 <option value="Cash">Cash/GCash</option>
@@ -285,15 +286,20 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col">
+                                                        
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md pt-2">
                                                             <label for="Stockdetails">Amount: </label>
                                                             <input type="number" class="form-control" name="amount"
-                                                                step="0.01" placeholder="Enter number..." required>
+                                                                step="0.01" placeholder="Enter number..." 
+                                                                onKeyPress="if(this.value.length==6) return false;"
+                                                                required>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col">
-                                                            <label for="Stockdetails">Remarks : </label>
+                                                        <div class="col-md pt-2">
+                                                            <label for="Stockdetails">Remarks </label>
                                                             <select class="form-control" name="remark" required>
                                                                 <option>DP</option>
                                                                 <option>BAL</option>
@@ -302,7 +308,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-md pt-2">
                                                             <label for="Stockdetails">Event Date: </label>
                                                             <input type="datetime-local" class="form-control"
                                                                 name="eventdate" required>
@@ -342,6 +348,17 @@
         </div>
     </div>
     <style>
+          /* disable arrows input type number */
+          input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
         .title {
             text-transform: uppercase;
             font-size: 20px;
