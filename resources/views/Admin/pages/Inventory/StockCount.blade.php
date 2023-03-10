@@ -24,8 +24,6 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="col">
-
-                                    </a>
                                     <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                         data-target="#exampleModal" style="float:right">
                                         Add Stock
@@ -458,7 +456,7 @@
                             <div class="col">
                                 <label for="Stockdetails" class="text-color pt-4">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
-                                    onKeyPress="if(this.value.length==2) return false;" required>
+                                    onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
                     </div>
