@@ -236,39 +236,38 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col">
-                                <p class="text-left">Stock Name </p>
+                            <div class="col-md">
+                                <label class="text-left">Stock Name </label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter name..."
-                                    required>
-
+                                    maxlength="32" pattern="[A-Za-z]+"
+                                    title="Stock Name should only contain Uppercase, lowercase letters." required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col-md">
                                 <label for="Stockdetails">Stock Description </label>
                                 <input type="text" class="form-control" name="description"
-                                    placeholder="Enter details..." required>
+                                    placeholder="Enter details..." 
+                                    maxlength="32" pattern="[A-Za-z 0-9]+"
+                                    title="Stock Description should only contain Uppercase, lowercase letters." required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Overall Stock </label>
                                 <input type="number" class="form-control" name="allstock" min="0"
-                                    value="0" required>
+                                    placeholder="Enter number..." onKeyPress="if(this.value.length==6) return false;"
+                                    required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Quantity </label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..."
-                                    required>
+                                    min="0" onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
-                                    required>
+                                    min="0" onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
                     </div>
@@ -290,6 +289,17 @@
         });
     </script>
     <style>
+        /* disable arrows input type number */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
         .title {
             text-transform: uppercase;
             font-size: 20px;
@@ -304,6 +314,10 @@
         .cat {
             color: #000000;
             text-transform: uppercase;
+        }
+
+        p {
+            font-family: montserrat;
         }
 
         /* disable arrows input type number */
