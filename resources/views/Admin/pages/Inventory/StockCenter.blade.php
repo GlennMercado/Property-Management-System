@@ -26,104 +26,109 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" style="font-size:18px;">Action</th>
-                                    <th scope="col" style="font-size:18px;">Product Name</th>
-                                    <th scope="col" style="font-size:18px;">Item Description</th>
-                                    <th scope="col" style="font-size:18px;">All Stock</th>
-                                    <th scope="col" style="font-size:18px;">Available Stock</th>
-                                    <th scope="col" style="font-size:18px;">Stock Level</th>
-                                    <th scope="col" style="font-size:18px;">Stock Alert</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($list as $lists)
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <!-- Projects table -->
+                            <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
+                                <thead class="thead-light">
                                     <tr>
-
-                                        <td>
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#ModalView{{ $lists->productid }}"
-                                                class="btn-sm btn-primary btn-lg"><i class="bi bi-eye"
-                                                    style="padding:2px;"></i></button>
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#ModalUpdate{{ $lists->productid }}"
-                                                class="btn-sm btn-warning btn-lg"><i
-                                                    class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td style="font-size:16px;">{{ $lists->name }}</td>
-                                        <td style="font-size:16px;">{{ $lists->description }}</td>
-                                        <td style="font-size:16px;">{{ $lists->allstock }}</td>
-                                        <td style="font-size:16px;">{{ $lists->total }}</td>
-                                        <td style="font-size:16px;">{{ $lists->Stock_Level }}</td>
-                                        @if ($lists->total <= $lists->Stock_Level)
-                                            <td><i class="bi bi-exclamation-triangle-fill"
-                                                    style="color:red;font-size:20px"></i></td>
-                                        @else
-                                            <td><i class="bi bi-check-square-fill" style="color:green;font-size:20px"></i>
-                                            </td>
-                                        @endif
+                                        <th scope="col" style="font-size:18px;">Action</th>
+                                        <th scope="col" style="font-size:18px;">Product Name</th>
+                                        <th scope="col" style="font-size:18px;">Item Description</th>
+                                        <th scope="col" style="font-size:18px;">All Stock</th>
+                                        <th scope="col" style="font-size:18px;">Available Stock</th>
+                                        <th scope="col" style="font-size:18px;">Stock Level</th>
+                                        <th scope="col" style="font-size:18px;">Stock Alert</th>
                                     </tr>
-                                    <!-- Modal -->
-                                    <!--View-->
-                                    <div class="modal fade text-left" id="ModalView{{ $lists->productid }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-left display-4" id="exampleModalCreate">View
-                                                        Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
+                                </thead>
 
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <p class="text-left">Stock Name </p>
-                                                            <input type="text" class="form-control" name="name"
-                                                                value="{{ $lists->name }}" readonly>
-                                                           
+                                <tbody>
+                                    @foreach ($list as $lists)
+                                        <tr>
+
+                                            <td>
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#ModalView{{ $lists->productid }}"
+                                                    class="btn-sm btn-primary btn-lg"><i class="bi bi-eye"
+                                                        style="padding:2px;"></i></button>
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#ModalUpdate{{ $lists->productid }}"
+                                                    class="btn-sm btn-warning btn-lg"><i
+                                                        class="bi bi-pencil-square"></i></button>
+                                            </td>
+                                            <td style="font-size:16px;">{{ $lists->name }}</td>
+                                            <td style="font-size:16px;">{{ $lists->description }}</td>
+                                            <td style="font-size:16px;">{{ $lists->allstock }}</td>
+                                            <td style="font-size:16px;">{{ $lists->total }}</td>
+                                            <td style="font-size:16px;">{{ $lists->Stock_Level }}</td>
+                                            @if ($lists->total <= $lists->Stock_Level)
+                                                <td><i class="bi bi-exclamation-triangle-fill"
+                                                        style="color:red;font-size:20px"></i></td>
+                                            @else
+                                                <td><i class="bi bi-check-square-fill"
+                                                        style="color:green;font-size:20px"></i>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                        <!-- Modal -->
+                                        <!--View-->
+                                        <div class="modal fade text-left" id="ModalView{{ $lists->productid }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4" id="exampleModalCreate">
+                                                            View
+                                                            Details</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p class="text-left">Stock Name </p>
+                                                                <input type="text" class="form-control" name="name"
+                                                                    value="{{ $lists->name }}" readonly>
+
+                                                            </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label>Stock Description </label>
+                                                            <input type="text" class="form-control" name="description"
+                                                                value="{{ $lists->description }}" readonly>
+
+
+                                                            <label>Date Stock Added </label>
+                                                            <input type="text" class="form-control" name="date"
+                                                                value="{{ date('m-d-Y', strtotime($lists->created_at)) }}"
+                                                                readonly>
+
+
+                                                            <label>Overall Stock </label>
+                                                            <input type="text" class="form-control" name="allstock"
+                                                                value="{{ $lists->allstock }}" readonly>
+
+
+                                                            <label>Quantity </label>
+                                                            <input type="text" class="form-control" name="total"
+                                                                value="{{ $lists->total }}" readonly>
+
+
+                                                        </div>
+
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Stock Description </label>
-                                                        <input type="text" class="form-control" name="description"
-                                                            value="{{ $lists->description }}" readonly>
-                                                       
-
-                                                        <label>Date Stock Added </label>
-                                                        <input type="text" class="form-control" name="date"
-                                                            value="{{ date('m-d-Y', strtotime($lists->created_at)) }}"
-                                                            readonly>
-                                                        
-
-                                                        <label>Overall Stock </label>
-                                                        <input type="text" class="form-control" name="allstock"
-                                                            value="{{ $lists->allstock }}" readonly>
-                                                       
-
-                                                        <label>Quantity </label>
-                                                        <input type="text" class="form-control" name="total"
-                                                            value="{{ $lists->total }}" readonly>
-                                                       
-
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-failed"
+                                                            data-dismiss="modal">Close</button>
                                                     </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-failed"
-                                                        data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                        </div>
                     </div>
                     <!--Modal Edit-->
                     <div class="modal fade text-left" id="ModalUpdate{{ $lists->productid }}" tabindex="-1"
@@ -231,39 +236,38 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col">
-                                <p class="text-left">Stock Name </p>
+                            <div class="col-md">
+                                <label class="text-left">Stock Name </label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter name..."
-                                    required>
-
+                                    maxlength="32" pattern="[A-Za-z]+"
+                                    title="Stock Name should only contain Uppercase, lowercase letters." required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col-md">
                                 <label for="Stockdetails">Stock Description </label>
                                 <input type="text" class="form-control" name="description"
-                                    placeholder="Enter details..." required>
+                                    placeholder="Enter details..." 
+                                    maxlength="32" pattern="[A-Za-z 0-9]+"
+                                    title="Stock Description should only contain Uppercase, lowercase letters." required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Overall Stock </label>
-                                <input type="number" class="form-control" name="allstock"
-                                    min="0" value="0" required>
+                                <input type="number" class="form-control" name="allstock" min="0"
+                                    placeholder="Enter number..." onKeyPress="if(this.value.length==6) return false;"
+                                    required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Quantity </label>
                                 <input type="number" class="form-control" name="quantity" placeholder="Enter number..."
-                                    required>
+                                    min="0" onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md pt-4">
                                 <label for="Stockdetails">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
-                                    required>
+                                    min="0" onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
                     </div>
@@ -276,15 +280,26 @@
         </div>
     </div>
     <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
-            });
-            $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-            });
-        </script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+        });
+    </script>
     <style>
+        /* disable arrows input type number */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
         .title {
             text-transform: uppercase;
             font-size: 20px;
@@ -299,6 +314,10 @@
         .cat {
             color: #000000;
             text-transform: uppercase;
+        }
+
+        p {
+            font-family: montserrat;
         }
 
         /* disable arrows input type number */
