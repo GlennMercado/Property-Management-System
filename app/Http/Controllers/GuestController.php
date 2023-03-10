@@ -12,13 +12,16 @@ use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
+use Mail;
+
 class GuestController extends Controller
 {
     public function welcome()
-    {
-       
-        
+    {   
         return view('Guest.guest_welcome');
+    }
+    public function BookingEmail(){
+        return view('Guest.BookingEmail');
     }
     public function about_us()
     {
@@ -185,6 +188,12 @@ class GuestController extends Controller
 
             if($reserve->save())
             {
+                $data=['name'=>"Glenn", 'data'=>"Hello world"];
+                $user['to']='glennlainardmercado@gmail.com';
+                Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
+                    $messages->to($user['to']);
+                    $messages->subject('Hello');
+                });
                 Alert::Success('Success', 'Reservation was successfully submitted!');
                 return redirect('/welcome')->with('Success', 'Data Saved');
             }
