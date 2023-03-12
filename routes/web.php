@@ -171,9 +171,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
 			
 			//Finance Dashboards
-		Route::get('FinanceDashboard', function () {
-			$list = DB::select('SELECT * FROM finance_2_reports');
-			return view('Admin.pages.FinanceDashboard', ['list'=>$list]);})->name('FinanceDashboard');
+			Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');

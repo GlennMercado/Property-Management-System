@@ -17,9 +17,10 @@ class FinanceReportController extends Controller
      */
     public function index()
     {
-        //
+        
         $count = DB::select('SELECT * FROM finance_2_reports');
         $array = array();
+        
 
         foreach($count as $counts)
         {
@@ -28,6 +29,10 @@ class FinanceReportController extends Controller
         return view('Admin.pages.Finances.DailyReport', 
                     ['array' => $array]
                     );
+
+       
+    
+
         
     }
 
@@ -90,6 +95,8 @@ class FinanceReportController extends Controller
             $grosspiles = $gross / $grosspile;
             $grosspiless = $gross / $grosspile;
             $outvat = $output * $grosspiless;
+
+            
             
             //for CREDIT
             //Basketball
