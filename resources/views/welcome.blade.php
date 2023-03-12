@@ -4,28 +4,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <div class="position-relative">
-        <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="Your Background Image">
+        <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 700px; width: 100%">
         <div class="position-absolute d-flex align-items-center text-center"
             style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
             <div class="container mx-auto">
-                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#e0e0e0">
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#B4B4B4">
                     Welcome to</h1>
-                <h1 class="image-text font-weight-light uppercase text-uppercase display-1 pb-4 text-white">Novadeci
+                <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
-                <div class="group">
-                    <a href="#section2">
-                        <p class="mr-2 p1 d-none d-lg-block">hotels </p>
-                    </a>
-                    <a href="{{ url('convention_center') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">convention center </p>
-                    </a>
-                    <a href="{{ url('function_room') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">function rooms </p>
-                    </a>
-                    <a href="{{ url('commercial_spaces') }}">
-                        <p class="mr-2 p1 d-none d-lg-block">commercial spaces </p>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
