@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="#section7">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ route('FAQs') }}">
                         <i class="bi bi-question-circle-fill"></i>
                         <span class="nav-link-inner--text text-uppercase">{{ __('FAQs') }}</span>
                     </a>

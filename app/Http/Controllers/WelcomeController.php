@@ -29,6 +29,10 @@ class WelcomeController extends Controller
      {
          return view('WelcomeMap');
      }
+     public function FAQs()
+     {
+        return view('FAQs');
+     }
      public function Welcomerooms(){
         $list = DB::select('SELECT * FROM novadeci_suites');    
         return view('Welcomerooms', ['list'=>$list]);
