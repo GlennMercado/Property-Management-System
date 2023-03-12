@@ -176,28 +176,7 @@
                                 <p>Full Name</p>
                                 <input type="text" id="textbox1" class="form-control" disabled>
                             </div>
-                            <div class="pt-4">
-                                <input type="checkbox" onclick="show_txt()" id="checkbox1">
-                                <label for="checkbox1">Do you have any special request?</label>
-                            </div>
-                            <br>
-                            <div class="row" id="special_request" hidden>
-                                <div class="col-md  pt-1">
-                                    <p>Pillow</p>
-                                    <input type="number" id="special_request_txt1" class="form-control" min="0"
-                                        max="5" value="0">
-                                </div>
-                                <div class="col-md  pt-1">
-                                    <p>Towel</p>
-                                    <input type="number" id="special_request_txt2" class="form-control" min="0"
-                                        max="5" value="0">
-                                </div>
-                                <div class="col-md  pt-1">
-                                    <p>Mattress</p>
-                                    <input type="number" id="special_request_txt3" class="form-control" min="0"
-                                        max="5" value="0">
-                                </div>
-                            </div>
+                            {{-- Deleted special request --}}
                             {{-- PRICE --}}
                             <input class="form-control" id="room_price" name="payment" type="hidden">
                             {{-- PRICE HIDDEN --}}
