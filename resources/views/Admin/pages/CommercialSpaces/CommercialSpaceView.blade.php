@@ -37,7 +37,7 @@
                 </div>
 
                 <!-- <h4>Owner Details </h4>
-                                                                                                <h4>For Single Proprietorship </h4> -->
+                                                                                                    <h4>For Single Proprietorship </h4> -->
                 <h4 class="pt-4">Name of owner </h4>
                 <input type="text" name="name_of_owner" class="form-control" value="{{ $list->name_of_owner }}" disabled>
                 {{-- <div class="row ml-3 mt-4">
