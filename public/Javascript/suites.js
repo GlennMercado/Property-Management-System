@@ -115,23 +115,6 @@ document.getElementById("mainCheckbox").addEventListener("change", function () {
 document.getElementById("ddCheckbox").addEventListener("change", function () {
     document.getElementById("textbox2").disabled = !this.checked;
 });
-
-function changeValue() {
-    var textboxNumbers = document.getElementById("textboxes").value;
-    balls.innerHTML = '';
-    var i;
-    for (i = 0; i < textboxNumbers; i++) {
-        var yourTextboxes = document.createElement("INPUT");
-        yourTextboxes.setAttribute("type", "text");
-        yourTextboxes.classList.add("form-control");
-        yourTextboxes.setAttribute("placeholder", "Enter Name Here");
-        document.getElementById("balls").appendChild(yourTextboxes);
-    }
-}
-function pax_on_change() {
-    changeValue();
-    price_count();
-}
 function enable_txt() {
     var checkbox = document.getElementById("mainCheckbox");
     var txtbox = document.getElementById("textbox1");

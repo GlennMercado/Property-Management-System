@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\finances;
+use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -33,9 +34,14 @@ class FinanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function finance_dash()
     {
         //
+        //Finance Dashboards
+		$list = DB::select('SELECT * FROM finance_2_reports');
+        $basketball_sum = finance_2_reports::sum('basketball');
+
+            return view('Admin.pages.FinanceDashboard', ['list'=>$list], compact('basketball_sum'));
     }
 
     /**

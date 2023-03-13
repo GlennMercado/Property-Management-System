@@ -59,7 +59,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-
+		Route::get('/guest_folio/{id}', 'App\Http\Controllers\HotelController@guest_folio');
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
 	//For Housekeeping and Maintenance
@@ -171,9 +171,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
 			
 			//Finance Dashboards
-		Route::get('FinanceDashboard', function () {
-			$list = DB::select('SELECT * FROM finance_2_reports');
-			return view('Admin.pages.FinanceDashboard', ['list'=>$list]);})->name('FinanceDashboard');
+			Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');

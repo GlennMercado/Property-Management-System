@@ -31,8 +31,7 @@ class HotelController extends Controller
      */
     public function front_desk()
     {
-        $room = DB::select('SELECT a.Room_No, a.Status, a.No_of_Beds, a.Extra_Bed FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No');
-		
+        $room = DB::select('SELECT a.Room_No, a.Status, a.No_of_Beds, a.Extra_Bed, a.Rate_per_Night FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No');
         return view('Admin.pages.FrontDesk', ['room'=>$room]);
     }
 
@@ -285,7 +284,6 @@ class HotelController extends Controller
                     return redirect('HotelReservationForm')->with('Success', 'Data Updated');
                 }
             }
-            
     }
     /**
      * Display the specified resource.
@@ -330,6 +328,11 @@ class HotelController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function guest_folio($id){
+        $guest_folio_id = $id;    
+        $list = DB::select("SELECT * FROM hotel_reservations  WHERE id = '$guest_folio_id'");    
+        return view('Admin.pages.Reservations.GuestFolio', ['list'=>$list]);
     }
 
 }

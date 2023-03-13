@@ -21,7 +21,7 @@
                                 <h3 class="mb-0 title">Hotel Booking</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ route('FrontDesk') }}" class="btn btn-outline-success">
+                                <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
                                     Book Now
                                 </a>
                             </div>
@@ -375,37 +375,46 @@
                                 <table class="table align-items-center table-flush" id="myTable3">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:17px;">Action</th>
                                             <th scope="col" style="font-size:17px;">Booking Number</th>
                                             <th scope="col" style="font-size:17px;">Room No.</th>
                                             <th scope="col" style="font-size:17px;">Guest Name</th>
                                             <th scope="col" style="font-size:17px;">Payment</th>
-                                            <th scope="col" style="font-size:17px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             @if ($lists->Booking_Status == 'Checked-In' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                                 <tr>
+                                                    <td>
+                                                        <!--View Button-->
+                                                        <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                            data-target="#views1{{ $lists->Booking_No }}" title="View">
+                                                            <i class="bi bi-eye-fill"></i>
+                                                        </button>
+                                                        <!--Update Reservation/Room Status Button-->
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update_booking_status2{{ $lists->Booking_No }}"
+                                                            title="Update">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                        </button>
+                                                        <!--Guest Request Button-->
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#request{{ $lists->Booking_No }}"
+                                                            title="Request">
+                                                            <i class="bi bi-plus-square"></i>
+                                                        </button>
+                                                        {{-- Guest Folio --}}                                                      
+                                                        <a href="{{ url('/guest_folio', ['id' => $lists->id]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
+                                                            style="cursor:pointer;">
+                                                            <i class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
                                                     <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
                                                     <td style="font-size:15px;">{{ $lists->Room_No }}</td>
                                                     <td style="font-size:15px;">{{ $lists->Guest_Name }}</td>
                                                     <td style="font-size:15px;">{{ $lists->Payment_Status }}</td>
-                                                    <td>
-                                                        <!--View Button-->
-                                                        <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#views1{{ $lists->Booking_No }}"> <i
-                                                                class="bi bi-eye-fill"></i> </button>
-                                                        <!--Update Reservation/Room Status Button-->
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#update_booking_status2{{ $lists->Booking_No }}">
-                                                            <i class="bi bi-arrow-repeat"></i></button>
-
-                                                        <!--Guest Request Button-->
-                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#request{{ $lists->Booking_No }}">
-                                                            <i class="bi bi-plus-square"></i>
-                                                        </button>
-                                                    </td>
                                                 </tr>
 
 
@@ -500,7 +509,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <!--Update Status-->
                                                 <div class="modal fade"
                                                     id="update_booking_status2{{ $lists->Booking_No }}" tabindex="-1"
@@ -587,12 +595,15 @@
 
                                                                     <div id="r_items" style="display:none;">
                                                                         <p class="text-left">Item Request </p>
-                                                                        
-                                                                    <input type="hidden" name="qty" value="{{$lists->No_of_Pax}}">
+
+                                                                        <input type="hidden" name="qty"
+                                                                            value="{{ $lists->No_of_Pax }}">
                                                                         <select name="item_request" class="form-control">
-                                                                            <option value="" selected="true" disabled="disabled">Select</option>
-                                                                            @foreach($supply as $supplies)
-                                                                            <option value="{{$supplies->name}}">{{$supplies->name}}</option>
+                                                                            <option value="" selected="true"
+                                                                                disabled="disabled">Select</option>
+                                                                            @foreach ($supply as $supplies)
+                                                                                <option value="{{ $supplies->name }}">
+                                                                                    {{ $supplies->name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -626,27 +637,27 @@
                                 <table class="table align-items-center table-flush" id="myTable4">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:17px;">Action</th>
                                             <th scope="col" style="font-size:17px;">Booking Number</th>
                                             <th scope="col" style="font-size:17px;">Room No.</th>
                                             <th scope="col" style="font-size:17px;">Guest Name</th>
                                             <th scope="col" style="font-size:17px;">Payment Status</th>
-                                            <th scope="col" style="font-size:17px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             @if ($lists->IsArchived == true)
                                                 <tr>
-                                                    <td>{{ $lists->Booking_No }}</td>
-                                                    <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Guest_Name }}</td>
-                                                    <td>{{ $lists->Payment_Status }}</td>
                                                     <td>
                                                         <!--View Button-->
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                             data-target="#view4{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
                                                     </td>
+                                                    <td>{{ $lists->Booking_No }}</td>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Guest_Name }}</td>
+                                                    <td>{{ $lists->Payment_Status }}</td>
                                                 </tr>
                                             @endif
 

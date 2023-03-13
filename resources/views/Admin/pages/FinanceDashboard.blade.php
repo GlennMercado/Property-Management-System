@@ -31,17 +31,17 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-@foreach ($list as $lists)
+
     <?php
     // Sample data for sales by daily
-    $salesData = [$lists->cash, $lists->unearned, $lists->otherincome, $lists->parking, $lists->managementfee, $lists->event, $lists->hotel, $lists->commercialspace];
+    $salesData = [$basketball_sum];
     // Convert the data to a JSON-encoded string
     $dataString = json_encode($salesData);
     ?>
-@endforeach
+
     var data = <?php echo $dataString; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var myChart = new Chart(ctx, {s
             type: 'bar',
             data: {
                 labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)', 'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event', 'Hotel', 'Commercial Space'],
