@@ -59,7 +59,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-
+		Route::get('/guest_folio/{id}', 'App\Http\Controllers\HotelController@guest_folio');
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 
 	//For Housekeeping and Maintenance
