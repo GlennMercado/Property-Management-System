@@ -245,8 +245,7 @@
                             <div class="col-md">
                                 <label for="Stockdetails">Stock Description </label>
                                 <input type="text" class="form-control" name="description"
-                                    placeholder="Enter details..." 
-                                    maxlength="32" pattern="[A-Za-z 0-9]+"
+                                    placeholder="Enter details..." maxlength="32" pattern="[A-Za-z 0-9]+"
                                     title="Stock Description should only contain Uppercase, lowercase letters." required>
                             </div>
                         </div>
@@ -317,8 +316,9 @@
         }
 
         p {
-            font-family: montserrat;
+            font-family: sans-serif;
         }
+
 
         /* disable arrows input type number */
         input[type="number"]::-webkit-outer-spin-button,
