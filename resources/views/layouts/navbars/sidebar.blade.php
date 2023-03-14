@@ -115,13 +115,13 @@
                                 </a>
                             </li>
                         </ul>
-                        {{-- <ul class="nav nav-sm flex-column">
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('Key_Management') }}">
-                                    <i class="text-light">•</i> {{ __('Key Management') }}
+                                <a class="nav-link text-white" href="{{ route('LostandFound') }}">
+                                    <i class="bi bi-ui-checks-grid text-white"></i> {{ __('Lost and Found') }}
                                 </a>
                             </li>
-                        </ul> --}}
+                        </ul> 
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Maintenance' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Maintenance') }}">

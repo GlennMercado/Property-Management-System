@@ -11,6 +11,7 @@ use App\Models\hotel_room_supplies_reports;
 use App\Models\hotel_room_linens_reports;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
+use App\Models\lost_and_found;
 use Carbon\Carbon;
 use DataTables;
 
@@ -56,11 +57,79 @@ class HousekeepingController extends Controller
                     ]
                     );
     }
+
     public function hotel_housekeeping()
     {
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
 
 		return view('Admin.pages.HousekeepingForms.Hotel_Housekeeping',['list2' =>$list2]);
+    }
+
+    public function LostandFound()
+    {
+        $check = DB::select('SELECT * FROM novadeci_suites');
+		$count = array();
+
+        foreach($check as $checks)
+		{
+			$count[] = ['Room_No' => $checks->Room_No];
+		}
+
+        $list = DB::select("SELECT * FROM lost_and_founds");
+        return view('Admin.pages.HousekeepingForms.LostandFound', ['count'=>$count, 'list' => $list]);
+    }
+
+    public function add_lost_item(Request $request)
+    {
+        $roomno = $request->input('room_no');
+        $facility = $request->input('facility');
+        $item = $request->input('item');
+        $img = $request->input('images');
+        $foundby = $request->input('foundby');
+        $item_desc = $request->input('item_desc');
+
+        $add = new lost_and_found;
+
+        if($facility == "Hotel Room")
+        {
+            $add->Facility_Type = $facility;
+            $add->Room_No = $roomno;
+            $add->Item = $item;
+            $add->Found_By = $foundby;
+            $add->Item_Description = $item_desc;
+        }
+        else
+        {
+            $add->Facility_Type = $facility;
+            $add->Item = $item;
+            $add->Found_By = $foundby;
+            $add->Item_Description = $item_desc;
+        }
+
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Lost-Item- '.$item.'-.'.$extention;
+            $path = $file->move('lost_and_found/', $filename);
+
+            $base64 = base64_encode($extention);
+
+            $add->Item_Image = $path;
+            $add->DB_Image = $base64;
+        }
+
+        if($add->save())
+        {
+            Alert::Success('Success', 'Lost Item Successfully Recorded!');
+            return redirect('LostandFound')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Lost Item Failed Recording!');
+            return redirect('LostandFound')->with('Failed', 'Data Saved');
+        }
     }
 
     public function linen_monitoring()

@@ -77,7 +77,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
-		Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
+		Route::get('LostandFound', [App\Http\Controllers\HousekeepingController::class, 'LostandFound'])->name('LostandFound');
+		
+		Route::post('/add_lost_item', 'App\Http\Controllers\HousekeepingController@add_lost_item');
 
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 		
