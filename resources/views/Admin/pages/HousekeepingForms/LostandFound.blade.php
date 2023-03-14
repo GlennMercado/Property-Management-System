@@ -5,11 +5,11 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    
+
 
     <div class="container-fluid mt--7">
         <br>
-        
+
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
@@ -26,8 +26,8 @@
                         </div>
 
                         <!-- Add Modal -->
-                        <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
+                        <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -43,41 +43,44 @@
                                             <div class="row">
                                                 <div class="card-body bg-white" style="border-radius: 18px">
                                                     <div class="row">
-                                                        <p class="text-left">Facility Type</p>
-                                                        <select name="facility" id="facility_type" class="form-control">
-                                                            <option selected="true" disabled="disabled">Select</option>
-                                                            <option value="Hotel Room">Hotel Room</option>
-                                                            <option value="Convention Center">Convention Center</option>
-                                                            <option value="Function Room">Function Room</option>
-                                                        </select>
+                                                        <div class="col-md">
+                                                            <p class="text-left">Facility Type</p>
+                                                            <select name="facility" id="facility_type" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
+                                                                <option value="Hotel Room">Hotel Room</option>
+                                                                <option value="Convention Center">Convention Center</option>
+                                                                <option value="Function Room">Function Room</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div class="row" id="hotel" style="display:none;">
-                                                        <div class="col">
+                                                        <div class="col-md-6 pt-2">
                                                             <p class="text-left">Room No. </p>
                                                             <select name="room_no" class="form-control">
                                                                 <option selected="true" disabled="disabled">Select</option>
                                                                 @foreach ($count as $counts)
                                                                     @for ($i = $counts['Room_No']; $i <= $counts['Room_No']; $i++)
                                                                         @if ($i != 0)
-                                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                                            <option value="{{ $i }}">
+                                                                                {{ $i }}</option>
                                                                         @endif
                                                                     @endfor
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                        <div class="col-md">
+                                                            
+                                                        </div>
                                                     </div>
                                                     <div id="all" style="display:none;">
-                                                        <p class="text-left">Item</p>
+                                                        <p class="text-left">Items</p>
                                                         <input type="text" name="item" class="form-control">
-
                                                         <p class="text-left">Item Description</p>
                                                         <input type="text" name="item_desc" class="form-control">
 
                                                         <p class="text-left">Found By</p>
-                                                        <select name="foundby"
-                                                            class="form-control" required>
-                                                            <option selected="true"
-                                                                disabled="disabled">
+                                                        <select name="foundby" class="form-control" required>
+                                                            <option selected="true" disabled="disabled">
                                                                 Select</option>
                                                             <option value="Marie B. Adams">Marie B.
                                                                 Adams
@@ -95,16 +98,16 @@
 
                                                         <p class="text-left">Item Image </p>
                                                         <input type="file" name="images" class="form-control"
-                                                        accept="image/png, image/gif, image/jpeg" required />
+                                                            accept="image/png, image/gif, image/jpeg" required />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
-                                                <input type="submit" class="btn btn-success prevent_submit" value="Add"
-                                                    name="submit">
-                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
+                                            <input type="submit" class="btn btn-success prevent_submit" value="Add"
+                                                name="submit">
                                         </div>
                                     </form>
                                 </div>
@@ -134,122 +137,132 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="tab-content" id="myTabContent">
-                                {{--Lost and Found --}}
+                                {{-- Lost and Found --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style = "font-size:18px;">Facility Type</th>
-                                                <th scope="col" style = "font-size:18px;">Room No.</th>
-                                                <th scope="col" style = "font-size:18px;">Item</th>
-                                                <th scope="col" style = "font-size:18px;">Found By</th>
-                                                <th scope="col" style = "font-size:18px;">Date Found</th>
-                                                <th scope="col" style = "font-size:18px;">Status</th>
-                                                <th scope="col" style = "font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Item</th>
+                                                <th scope="col" style="font-size:18px;">Found By</th>
+                                                <th scope="col" style="font-size:18px;">Date Found</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($list as $lists)
-                                                <td>{{$lists->Facility_Type}}</td>
-                                                <td>{{$lists->Room_No}}</td>
-                                                <td>{{$lists->Item}}</td>
-                                                <td>{{$lists->Found_By}}</td>
-                                                <td>{{date('F j, Y', strtotime($lists->Date_Found))}}</td>
-                                                <td>{{$lists->Status}}</td>
+                                            @foreach ($list as $lists)
+                                                <td>{{ $lists->Facility_Type }}</td>
+                                                <td>{{ $lists->Room_No }}</td>
+                                                <td>{{ $lists->Item }}</td>
+                                                <td>{{ $lists->Found_By }}</td>
+                                                <td>{{ date('F j, Y', strtotime($lists->Date_Found)) }}</td>
+                                                <td>{{ $lists->Status }}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                        data-target="#view{{ $lists->id}}" title="View Room Linens">
+                                                        data-target="#view{{ $lists->id }}" title="View Room Linens">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
 
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                        data-target="#update{{ $lists->id}}" title="View Room Linens">
+                                                        data-target="#update{{ $lists->id }}"
+                                                        title="View Room Linens">
                                                         <i class="bi bi-arrow-repeat"></i>
                                                     </button>
 
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                        data-target="#update2{{ $lists->id}}" title="View Room Linens">
+                                                        data-target="#update2{{ $lists->id }}"
+                                                        title="View Room Linens">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </td>
 
                                                 <!-- View -->
-                                                <div id="view{{ $lists->id}}" class="modal hide fade" tabindex="-1">
+                                                <div id="view{{ $lists->id }}" class="modal hide fade"
+                                                    tabindex="-1">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                                                   View Information
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    View Information
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p class="text-left">Item Name</p>
-                                                                <input type="text" class="form-control" value="{{$lists->Item}}" readonly>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->Item }}" readonly>
                                                                 <br>
                                                                 <p class="text-left">Item Description</p>
-                                                                <input type="text" class="form-control" value="{{$lists->Item_Description}}" readonly>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->Item_Description }}" readonly>
                                                                 <br>
                                                                 <img src="{{ $lists->Item_Image }}"
                                                                     class="card-img-top" />
-                                                                <br><br>                             
+                                                                <br><br>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
+                                                                    data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <!-- Update -->
-                                                <div id="update{{ $lists->id}}" class="modal hide fade" tabindex="-1">
+                                                <div id="update{{ $lists->id }}" class="modal hide fade"
+                                                    tabindex="-1">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                                                   Update Status
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    Update Status
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h3>Update Status?</h3>                            
+                                                                <h3>Update Status?</h3>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
+                                                                    data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <!-- Disposed/Auctioned -->
-                                                <div id="update2{{ $lists->id}}" class="modal hide fade" tabindex="-1">
+                                                <div id="update2{{ $lists->id }}" class="modal hide fade"
+                                                    tabindex="-1">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                                                   Update Status
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    Update Status
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h3>Disposed or Auctioned?</h3>                            
+                                                                <h3>Disposed or Auctioned?</h3>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
+                                                                    data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -266,14 +279,14 @@
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style = "font-size:18px;">Room No.</th>
-                                                <th scope="col" style = "font-size:18px;">Facility Type</th>
-                                                <th scope="col" style = "font-size:18px;">Description</th>
-                                                <th scope="col" style = "font-size:18px;">Discovered By</th>
-                                                <th scope="col" style = "font-size:18px;">Priority Level</th>
-                                                <th scope="col" style = "font-size:18px;">Status</th>
-                                                <th scope="col" style = "font-size:18px;">Due Date</th>
-                                                <th scope="col" style = "font-size:18px;">Action</th>
+                                                <th scope="col" style="font-size:18px;">Room No.</th>
+                                                <th scope="col" style="font-size:18px;">Facility Type</th>
+                                                <th scope="col" style="font-size:18px;">Description</th>
+                                                <th scope="col" style="font-size:18px;">Discovered By</th>
+                                                <th scope="col" style="font-size:18px;">Priority Level</th>
+                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Due Date</th>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -292,62 +305,65 @@
 
 
 
-<script>
-        $(document).ready(function() {
-            $("#facility_type").change(function() {
-                var selecteds = $("option:selected", this).val();
+        <script>
+            $(document).ready(function() {
+                $("#facility_type").change(function() {
+                    var selecteds = $("option:selected", this).val();
 
-                if (selecteds == "Hotel Room") {
-                    $('#hotel').css({
-                        'display': 'block'
-                    });
-                    $('#all').css({
-                        'display': 'block'
-                    });
-                } else {
-                    $('#hotel').css({
-                        'display': 'none'
-                    });
-                    $('#all').css({
-                        'display': 'block'
-                    });
-                }
+                    if (selecteds == "Hotel Room") {
+                        $('#hotel').css({
+                            'display': 'block'
+                        });
+                        $('#all').css({
+                            'display': 'block'
+                        });
+                    } else {
+                        $('#hotel').css({
+                            'display': 'none'
+                        });
+                        $('#all').css({
+                            'display': 'block'
+                        });
+                    }
 
+                });
             });
-        });
-    $('.prevent_submit').on('submit', function() {
-        $('.prevent_submit').attr('disabled', 'true');
-    });
-    $.noConflict();
-    jQuery(document).ready(function($) {
-        $('#myTable').DataTable();
-        $('#myTable2').DataTable();
-    });
-</script>
-<style>
-    .title {
-        text-transform: uppercase;
-        font-size: 25px;
-        letter-spacing: 2px;
-    }
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
+            });
+            $.noConflict();
+            jQuery(document).ready(function($) {
+                $('#myTable').DataTable();
+                $('#myTable2').DataTable();
+            });
+        </script>
+        <style>
+            .title {
+                text-transform: uppercase;
+                font-size: 25px;
+                letter-spacing: 2px;
+            }
 
-    .category {
-        font-size: 22px;
-        color: #5BDF4A;
-    }
+            .category {
+                font-size: 22px;
+                color: #5BDF4A;
+            }
 
-    .category2 {
-        font-size: 22px;
-        color: #E46000;
-    }
+            .category2 {
+                font-size: 22px;
+                color: #E46000;
+            }
 
-    .tab {
-        font-size: 100px;
-    }
-</style>
+            p {
+                font-family: sans-serif;
+            }
 
-</div>
+            .tab {
+                font-size: 100px;
+            }
+        </style>
 
+    </div>
 @endsection
 
 @push('js')
