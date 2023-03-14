@@ -164,16 +164,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		
-		//Finance
+		//Financemodule
+		//Archives
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
 		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
-		
-		Route::get('Finance', function () {
-			$list = DB::select('SELECT * FROM finances');
-			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
+		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
 			
-			//Finance Dashboards
-			Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
+		//Finance Dashboards
+		Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');

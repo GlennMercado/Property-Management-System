@@ -310,16 +310,16 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Finance' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Finance') }}">
-                                    <i class="bi bi-cash-coin text-white"></i> {{ __('Finance') }}
+                            <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('DailyReport') }}">
+                                    <i class="bi-clipboard2-check text-white"></i> {{ __('Daily Report') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('DailyReport') }}">
-                                    <i class="bi-clipboard2-check text-white"></i> {{ __('Daily Report') }}
+                            <li class="nav-item {{ 'Finance' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
+                                    <i class="bi bi-cash-coin text-white"></i> {{ __('FinanceArchives') }}
                                 </a>
                             </li>
                         </ul>
