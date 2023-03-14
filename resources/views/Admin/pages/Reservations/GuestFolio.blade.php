@@ -9,30 +9,46 @@
             </div>
         </div>
         <div class="d-flex">
-            <div class="p-2 font-weight-bold display-4">Brgy, 123 General Luis, Novaliches, Quezon City</div>
-            <div class="ml-auto font-weight-bold">Name:</div>
+            <div class="font-weight-bold display-4">Brgy, 123 General Luis, Novaliches, Quezon City</div>
         </div>
         <div class="d-flex">
-            <div class="ml-auto font-weight-bold">Booking No: </div>
+            <div class="font-weight-bold">Name: John</div>
         </div>
         <div class="d-flex">
-            <div class="ml-auto font-weight-bold">Phone No:</div>
+            <div class="font-weight-bold">Booking No: 12312312</div>
         </div>
         <div class="d-flex">
-            <div class="ml-auto font-weight-bold">Email:</div>
+            <div class="font-weight-bold">Phone No: 09123123123</div>
         </div>
-        <div class="d-flex justify-content-around mt-5 b1">
-                <P class="font-weight-bold text-muted">PAX NUMBER</P>
-                <P class="font-weight-bold text-muted">ROOM NUMBER</P>
-                <P class="font-weight-bold text-muted">ROOM DESCRIPTION</P>
-                <P class="font-weight-bold text-muted">SUBTOTAL</P>
+        <div class="d-flex">
+            <div class="font-weight-bold">Email: g@gmail.com</div>
         </div>
-        <div class="d-flex justify-content-around mt-2">
-                <h2 class="display-3">txt</h2>
-                <h2 class="display-3">txt</h2>
-                <h2 class="display-3">txt</h2>
-                <h2 class="display-3 text-green">txt</h2>
-        </div>
+        <table class="mt-5" style="width: 100%">
+            <thead style="border-bottom: 2px solid rgb(167, 167, 167)">
+                <tr>
+                    <th>
+                        <P class="font-weight-bold text-muted">PAX NUMBER</P>
+                    </th>
+                    <th>
+                        <P class="font-weight-bold text-muted">ROOM NUMBER</P>
+                    </th>
+                    <th>
+                        <P class="font-weight-bold text-muted">ROOM DESCRIPTION</P>
+                    </th>
+                    <th>
+                        <P class="font-weight-bold text-muted">SUBTOTAL</P>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h2 class="display-5">2</h2></td>
+                    <td><h2 class="display-5">1</h2></td>
+                    <td><h2 class="display-5">1 Twin Sized Bed</h2></td>
+                    <td><h2 class="display-5 text-green">₱2,500</h2></td>
+                </tr>
+            </tbody>
+        </table>
         <div class="">
             <div class="d-flex justify-content-around mt-6">
                 <div class="p-2">
@@ -47,9 +63,9 @@
             </div>
             <div class="b2">
                 <div class="d-flex justify-content-around">
-                        <p class="text-dark display-3">12/12/12</p>
-                        <p class="text-dark display-3">14</p>
-                        <p class="display-3 text-green">P2,500</p>
+                    <p class="text-dark display-3">12/12/12</p>
+                    <p class="text-dark display-3">1</p>
+                    <p class="display-3 text-green">P2,500</p>
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-2">
