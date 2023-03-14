@@ -1,7 +1,2 @@
-<div class="header bg-gradient-green pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-        <div class="header-body">
-            
-        </div>
-    </div>
+<div class="header bg-green pt-md-9">
 </div>

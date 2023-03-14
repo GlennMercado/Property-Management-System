@@ -183,8 +183,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md text-center">
-                                    <span
-                                        class="text-muted">{{ __('By clicking the submit button below, I hereby agree to and accept the') }}
+                                    <span class="text-muted">{{ __('By clicking the submit button below, I hereby agree to and accept the') }}
                                         <a href="#ModalPrivacyPolicy" data-toggle="modal" data-target="#ModalTerms">Terms
                                             &
                                             Conditions</a></span>

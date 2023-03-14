@@ -2,19 +2,145 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    <style>
-        .hcolor {
-            color: #8898aa;
-        }
-    </style>
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl">
-                <div class="card shadow">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-shadow">
+                            <div class="card-header">
+                                <div class="d-flex">
+                                    <span class="p-2">Guest Folio</span>
+                                    <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white ml-auto">
+                                        Add charges
+                                        <i class="bi bi-plus-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="font-weight-bold text-muted">NAME: <span class="text-dark">John</span></p>
+                                    <p class="font-weight-bold ml-auto text-muted">ARRIVAL DATE/TIME: <span
+                                            class="text-dark">12/12/12</span></p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="font-weight-bold mt--3 text-muted">ROOM: <span class="text-dark">1</span></p>
+                                    <p class="font-weight-bold ml-auto mt--3 text-muted">DEPARTURE DATE/TIME: <span
+                                            class="text-dark">12/12/12</span></p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="font-weight-bold mt--3 text-muted">PAX: <span class="text-dark">2</span></p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="font-weight-bold mt--3 text-muted">DAYS: <span class="text-dark">2</span></p>
+                                </div>
+                                <p class="font-weight-bold mt--2 text-muted">ADDITIONAL CHARGES</p>
+                                <div class="d-flex flex-column table-container">
+                                    <table class="table1">
+                                        <thead style="border-bottom: 2px solid rgb(167, 167, 167)">
+                                            <tr>
+                                                <th class="font-weight-bold text-muted">ITEM</th>
+                                                <th class="font-weight-bold text-muted">PRICE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-bold text-dark">LINEN</td>
+                                                <td class="font-weight bold text-dark">P200</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-center mt-5">
+                                    <p class="font-weight-bold text-muted p-1">TOTAL PAYMENT: </p>
+                                    <p class="display-4 text-green">P2,500</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 card card-shadow">
+                        <div class="card-header">
+                            Reservations Dashboard
+                        </div>
+                        <div class="card-body row justify-content-center">
+                            <div class="d-flex">
+                                <div class="card">
+                                    <!-- Card body -->
+                                    <div class="card-body" style="background-color:rgb(55, 40, 168); width:200px;">
+                                        <div class="d-flex">
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">Reserved</h3>
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow ml-auto"
+                                                style="height: 35px; width: 35px;">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white display-4">25</p>
+                                        </div>
+                                        <a href="#" class="text-white">Click to view</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="card">
+                                    <!-- Card body -->
+                                    <div class="card-body" style="background-color: rgb(90, 177, 39); width:200px;">
+                                        <div class="d-flex">
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">CHECKED IN</h3>
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow ml-auto"
+                                                style="height: 35px; width: 35px;">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white display-4">25</p>
+                                        </div>
+                                        <a href="#" class="text-white">Click to view</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="card">
+                                    <!-- Card body -->
+                                    <div class="card-body" style="background-color: rgb(134, 26, 153); width:200px;">
+                                        <div class="d-flex">
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">PENDING</h3>
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow ml-auto"
+                                                style="height: 35px; width: 35px;">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white display-4">25</p>
+                                        </div>
+                                        <a href="#" class="text-white">Click to view</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="card">
+                                    <!-- Card body -->
+                                    <div class="card-body" style="background-color: rgb(176, 31, 31); width:200px">
+                                        <div class="d-flex">
+                                            <h3 class="card-title text-uppercase text-muted mb-0 text-white">CANCELLED</h3>
+                                            <div class="icon icon-shape bg-dark text-white rounded-circle shadow ml-auto"
+                                                style="height: 35px; width: 35px;">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white display-4">25</p>
+                                        </div>
+                                        <a href="#" class="text-white">Click to view</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-2">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
@@ -60,7 +186,7 @@
                                             @if ($lists->IsArchived == false && $lists->Payment_Status == 'Pending')
                                                 <tr>
                                                     <td>
-                                                        <!--View Button-->
+                                                        {{-- view button --}}
                                                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                             data-target="#view{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-eye-fill"></i> </button>
@@ -86,9 +212,9 @@
                                             @endif
 
                                             <!--View-->
-                                            <div class="modal fade" id="view{{ $lists->Booking_No }}" tabindex="-1"
+                                            <div class="modal fade bd-example-modal-lg" id="view{{ $lists->Booking_No }}" tabindex="-1"
                                                 role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title text-left display-4"
@@ -404,7 +530,7 @@
                                                             title="Request">
                                                             <i class="bi bi-plus-square"></i>
                                                         </button>
-                                                        {{-- Guest Folio --}}                                                      
+                                                        {{-- Guest Folio --}}
                                                         <a href="{{ url('/guest_folio', ['id' => $lists->id]) }}"
                                                             target="blank" class="btn btn-sm btn-success"
                                                             style="cursor:pointer;">
@@ -760,6 +886,47 @@
             </div>
         </div>
     </div>
+    <style>
+        .table-container {
+            height: 10em;
+        }
+
+        .table1 {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        .table1 thead {
+            /* head takes the height it requires,
+            and it's not scaled when table is resized */
+            flex: 0 0 auto;
+            width: calc(100% - 0.9em);
+        }
+
+        .table1 tbody {
+            /* body takes all the remaining available space */
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+        .table1 tbody tr {
+            width: 100%;
+        }
+
+        .table1 thead,
+        .table1 tbody tr {
+            display: table;
+            table-layout: fixed;
+        }
+
+        /* decorations */
+        .table-container {
+            padding: 0.3em;
+        }
+    </style>
     <script type="text/javascript">
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');

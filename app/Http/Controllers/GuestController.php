@@ -121,7 +121,7 @@ class GuestController extends Controller
         }
         else
         {
-            Alert::Error('Failed', 'Complaint was not sent');
+            Alert::Error('Failed', 'Feedback not sent');
             return redirect('/complaints')->with('Error', 'Failed!');
         }
     }
@@ -133,7 +133,7 @@ class GuestController extends Controller
 
         if($check)
         {
-            Alert::Error('Failed', 'You have already booked a hotel reservation!');
+            Alert::Error('Failed', 'Reservation already booked!');
             return redirect('/welcome')->with('Error', 'Failed');
         }
         else
@@ -194,7 +194,7 @@ class GuestController extends Controller
                     $messages->to($user['to']);
                     $messages->subject('Hello');
                 });
-                Alert::Success('Success', 'Reservation was successfully submitted!');
+                Alert::Success('Success', 'Reservation submitted successfully!');
                 return redirect('/welcome')->with('Success', 'Data Saved');
             }
             else
@@ -244,7 +244,7 @@ class GuestController extends Controller
 
             if($submit->save())
             {
-                Alert::Success('Success', 'Inquiry was sent successfully submitted!');
+                Alert::Success('Success', 'Inquiry submitted successfully!');
                 return redirect('/convention_center')->with('Success', 'Data Saved');
             }
             else
@@ -290,12 +290,12 @@ class GuestController extends Controller
 
             if($submit->save())
             {
-                Alert::Success('Success', 'Inquiry was sent successfully submitted!');
+                Alert::Success('Success', 'Inquiry submitted successfully!');
                 return redirect('/commercial_spaces')->with('Success', 'Data Saved');
             }
             else
             {
-                Alert::Error('Failed', 'Inquiry was not sent');
+                Alert::Error('Failed', 'Inquiry not sent');
                 return redirect('/commercial_spaces')->with('Error', 'Failed!');
             }
     }

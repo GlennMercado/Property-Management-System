@@ -70,7 +70,7 @@
                         <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
+                        <a class="dropdown-item" href="{{ url('rooms') }}">Suite</a>
                         <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
                         <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
                     </div>
