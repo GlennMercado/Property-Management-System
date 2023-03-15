@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     { 
         $guest_complaints = complaints::count();
-        $reserved_guests = hotel_reservations::where('Payment_Status','Reserve')->count();
+        $reserved_guests = hotel_reservations::where('Payment_Status','Paid')->count();
         return view('Admin.admindashboard', compact('guest_complaints', 'reserved_guests'));
     }
 

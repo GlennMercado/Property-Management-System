@@ -69,7 +69,7 @@
                                     <div class="card-block">
                                         <h4 class="m-b-20 text-white">Reserved</h4>
                                         <h2 class="text-right text-white">
-                                            <i class="bi bi-book-fill f-left"></i><span>486</span>
+                                            <i class="bi bi-book-fill f-left"></i><span>{{ $reserved_guests }}</span>
                                         </h2>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                     <div class="card-block">
                                         <h4 class="m-b-20 text-white">Checked in</h4>
                                         <h2 class="text-right text-white">
-                                            <i class="bi bi-bookmark-check-fill f-left"></i><span>486</span>
+                                            <i class="bi bi-bookmark-check-fill f-left"></i><span>{{ $checked_guests }}</span>
                                         </h2>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                     <div class="card-block">
                                         <h4 class="m-b-20 text-white">Pending</h4>
                                         <h2 class="text-right text-white">
-                                            <i class="bi bi-clock-history f-left"></i><span>486</span>
+                                            <i class="bi bi-clock-history f-left"></i><span>{{ $checked_out_guests }}</span>
                                         </h2>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="card-block">
                                         <h4 class="m-b-20 text-white">Cancelled</h4>
                                         <h2 class="text-right text-white">
-                                            <i class="bi bi-x-octagon-fill f-left"></i><span>486</span>
+                                            <i class="bi bi-x-octagon-fill f-left"></i><span></span>
                                         </h2>
                                     </div>
                                 </div>
@@ -114,12 +114,12 @@
                                             <i class="icon-pencil primary font-large-2 mr-2 text-white"></i>
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="text-white">Total Posts</h4>
-                                            <span class="text-white">Monthly blog posts</span>
+                                            <h4 class="text-white">Expected No. of Arriving Guest</h4>
+                                            <span class="text-white">Today's count</span>
                                         </div>
                                         <div class="align-self-center">
-                                            <h1 class="text-white">18,000</h1>
-                                        </div>
+                                            <h1 class="text-white">{{ $count_daily }}</h1>
+                                        </div>                                     
                                     </div>
                                 </div>
                             </div>
