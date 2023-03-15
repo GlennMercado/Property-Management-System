@@ -80,7 +80,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('LostandFound', [App\Http\Controllers\HousekeepingController::class, 'LostandFound'])->name('LostandFound');
 		
 		Route::post('/add_lost_item', 'App\Http\Controllers\HousekeepingController@add_lost_item');
-
+		
+		Route::post('/update_lost_item_status', 'App\Http\Controllers\HousekeepingController@update_lost_item_status');
+		Route::post('/auctioned_or_disposed_item', 'App\Http\Controllers\HousekeepingController@auctioned_or_disposed_item');
+		
+		
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 		
 		Route::post('add_out_of_orders', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
@@ -291,6 +295,14 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 
 	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
 	Route::get('/update_service_requests/{id}/{bs}', 'App\Http\Controllers\HousekeeperController@update_service_request');
+		
+
+	Route::get('LostandFounds', [App\Http\Controllers\HousekeeperController::class, 'LostandFound'])->name('LostandFounds');
+		
+	Route::post('/add_lost_items', 'App\Http\Controllers\HousekeeperController@add_lost_items');
+	
+	Route::post('/update_lost_items_status', 'App\Http\Controllers\HousekeeperController@update_lost_items_status');
+	Route::post('/auctioned_or_disposed_items', 'App\Http\Controllers\HousekeeperController@auctioned_or_disposed_items');
 		
 });
 

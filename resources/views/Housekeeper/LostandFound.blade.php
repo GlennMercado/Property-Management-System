@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.housekeeper')
 
 @section('content')
     @include('layouts.headers.cards')
@@ -36,7 +36,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ url('add_lost_item') }}" class="prevent_submit" method="POST"
+                                    <form action="{{ url('add_lost_items') }}" class="prevent_submit" method="POST"
                                         enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
@@ -233,7 +233,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ url('update_lost_item_status') }}" class="prevent_submit" method="POST"
+                                                            <form action="{{ url('update_lost_items_status') }}" class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
                                                                 <div class="modal-body">
@@ -268,7 +268,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ url('auctioned_or_disposed_item') }}" class="prevent_submit" method="POST"
+                                                            <form action="{{ url('auctioned_or_disposed_items') }}" class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
                                                             {{csrf_field()}}
                                                             <div class="modal-body">

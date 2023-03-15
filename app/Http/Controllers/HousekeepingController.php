@@ -132,6 +132,55 @@ class HousekeepingController extends Controller
         }
     }
 
+    public function update_lost_item_status(Request $request)
+    {
+       $lost_id = $request->input('id');
+       $claimed_by = $request->input('claimed_by');
+       $datenow = Carbon::now()->format('Y-m-d');
+
+       $update = DB::table('lost_and_founds')->where('id', $lost_id)->update([
+            'Status' => "Claimed",
+            'Date_Claimed' => $datenow,
+            'Claimed_By' => $claimed_by,
+            'IsArchived' => 1
+       ]);
+
+       if($update)
+       {
+            Alert::Success('Success', 'Lost Item Successfully Claimed!');
+            return redirect('LostandFound')->with('Success', 'Data Saved');
+       }
+       else
+       {
+            Alert::Error('Failed', 'Lost Item Failed Updating!');
+            return redirect('LostandFound')->with('Success', 'Data Saved');
+       }
+       
+    }
+
+    public function auctioned_or_disposed_item(Request $request)
+    {
+        $lost_id = $request->input('lost_id');
+        $status = $request->input('status');
+
+        $update = DB::table('lost_and_founds')->where('id', $lost_id)->update([
+            'Status' => $status,
+            'IsArchived' => 1
+        ]);
+
+        if($update)
+        {
+                Alert::Success('Success', 'Lost Item Successfully '.$status.'!');
+                return redirect('LostandFound')->with('Success', 'Data Saved');
+        }
+        else
+        {
+                Alert::Error('Failed', 'Lost Item Failed Updating!');
+                return redirect('LostandFound')->with('Success', 'Data Saved');
+        }
+
+    }
+    
     public function linen_monitoring()
     {
         $list = DB::select("SELECT a.id, a.Room_No, a.Date_Received, SUM(a.Discrepancy) as ds, SUM(a.Quantity) as total, a.Attendant, b.Status as rstats FROM hotel_room_linens a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No Group By a.Room_No");
