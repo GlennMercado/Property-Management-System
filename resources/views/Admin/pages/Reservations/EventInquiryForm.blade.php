@@ -11,7 +11,7 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
-    <div class="container-fluid mt--9">
+    <div class="container-fluid mt--7">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class=" col ">

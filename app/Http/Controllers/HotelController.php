@@ -21,7 +21,7 @@ class HotelController extends Controller
         $list = DB::select('SELECT * FROM hotel_reservations');
 		$room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  
-        return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room, 'supply' => $supply]);
+        return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room, 'supply'=>$supply]);
     }
      
     /**
