@@ -96,11 +96,18 @@
                         <i class="bi bi-ui-checks-grid text-success"></i> {{ __('Linen Monitoring') }}
                     </a>
                 </li>
-
+                
                 <!-- Maintenance-->
                 <li class="nav-item">
                     <a class="nav-link text-default" href="{{ route('Maintenances') }}">
                         <i class="bi bi-tools text-success"></i> {{ __('Maintenance') }}
+                    </a>
+                </li>
+
+                 <!-- Lost and Found -->
+                 <li class="nav-item">
+                    <a class="nav-link text-default" href="{{ route('LostandFounds') }}">
+                        <i class="bi bi-tools text-success"></i> {{ __('Lost and Found') }}
                     </a>
                 </li>
 
