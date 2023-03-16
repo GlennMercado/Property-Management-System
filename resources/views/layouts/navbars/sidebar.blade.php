@@ -41,14 +41,14 @@
                 </li>
 
                 <!--Calendar-->
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link text-dark" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color: green"></i></i> {{ __('Calendar') }}
                     </a>
-                </li> --}}
+                </li> 
 
 
-                <!--Calendar-->
+                <!--Room Management-->
                 <li class="nav-item {{ 'Hotel_Room_Management' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-dark" href="{{ route('Dashboard') }}">
                         <i class="bi bi-door-open-fill" style="color: green"></i> {{ __('Room Management') }}

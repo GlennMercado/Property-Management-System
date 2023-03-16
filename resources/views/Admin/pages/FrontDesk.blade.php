@@ -44,9 +44,9 @@
                                                     <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
                                                         {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
                                                 @endif
-                                                <input type="hidden" id="rpn" value="{{ $rooms->Rate_per_Night }}">
-                                            @endforeach
                                         </select>
+                                        <input type="hidden" id="rpn" value="{{ $rooms->Rate_per_Night }}">
+                                        @endforeach
                                     </div>
                                     <div class="col-6 pt-4">
                                         <p class="text-left label">Number of Pax </p>
@@ -133,8 +133,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit" value="Submit"
-                                        style="width:50%;" />
+                                    <input type="submit"
+                                        class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit"
+                                        value="Submit" style="width:50%;" />
                                 </div>
                             </div>
                         </div>

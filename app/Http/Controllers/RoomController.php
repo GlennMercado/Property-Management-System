@@ -113,7 +113,6 @@ class RoomController extends Controller
                 'room_size' => 'required',
                 'no_of_beds' => 'required',
                 'extra_bed' => 'required',
-                'no_of_pax' => 'required',
                 'rate_per_night' => 'required'
             ]);
 
@@ -121,7 +120,6 @@ class RoomController extends Controller
             $room_size = $request->input('room_size');
             $numbed = $request->input('no_of_beds');
             $extra = $request->input('extra_bed');
-            $pax = $request->input('no_of_pax');
             $rate = $request->input('rate_per_night');
             
 
@@ -131,7 +129,6 @@ class RoomController extends Controller
                 'Room_Size' => $room_size,
                 'No_of_Beds' => $numbed,
                 'Extra_Bed' => $extra,
-                'No_Pax_Per_Room' => $pax,
                 'Rate_per_Night' => $rate
             ));
 
