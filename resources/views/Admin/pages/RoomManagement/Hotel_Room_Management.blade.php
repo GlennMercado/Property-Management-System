@@ -86,16 +86,7 @@
                                                             <option value="One (1)">One (1)</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col">
-                                                        <p class="text-left">No. of Pax per Room </p>
-                                                        <select name="no_of_pax" class="form-control"required>
-                                                            <option selected disabled value="">Select</option>
-                                                            @for ($count = 1; $count <= 4; $count++)
-                                                                <option value="{{ $count }}"> {{ $count }}
-                                                                </option>
-                                                            @endfor
-                                                        </select>
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 <br>
@@ -198,9 +189,6 @@
                                                                 <input class="form-control" type="text"
                                                                     value="{{ $lists->Extra_Bed }}" readonly>
                                                                 <br>
-                                                                <p class="text-left">No. of Pax per Room </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->No_Pax_Per_Room }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>

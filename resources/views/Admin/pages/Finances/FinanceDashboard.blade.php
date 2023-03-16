@@ -31,17 +31,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-
     <?php
     // Sample data for sales by daily
-    $salesData = [$basketball_sum];
+    $salesData = [$basketball_sum,1,2,4,2,2,9,2];
     // Convert the data to a JSON-encoded string
     $dataString = json_encode($salesData);
     ?>
 
     var data = <?php echo $dataString; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {s
+        var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)', 'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event', 'Hotel', 'Commercial Space'],
@@ -81,7 +80,6 @@
                 }
             }
         });
-        
         
     </script>
     

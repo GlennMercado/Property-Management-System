@@ -41,7 +41,16 @@ class FinanceController extends Controller
 		$list = DB::select('SELECT * FROM finance_2_reports');
         $basketball_sum = finance_2_reports::sum('basketball');
 
-            return view('Admin.pages.FinanceDashboard', ['list'=>$list], compact('basketball_sum'));
+            return view('Admin.pages.Finances.FinanceDashboard', ['list'=>$list], compact('basketball_sum'));
+    }
+
+    public function finance_archives()
+    {
+        //
+        //Finance Dashboards
+		$list = DB::select('SELECT * FROM finances');
+
+            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list]);
     }
 
     /**

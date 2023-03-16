@@ -5,14 +5,43 @@ use Illuminate\Http\Request;
 use App\Models\hotel_reservations;
 use Illuminate\Support\Facades\DB;
 use App\Models\complaints;
+use App\Models\novadeci_suites;
+use App\Models\convention_center_application;
+use App\Models\commercial_spaces_application;
 
 class AdminController extends Controller
 {
     public function index()
     { 
-        $guest_complaints = complaints::count();
-        $reserved_guests = hotel_reservations::where('Payment_Status','Reserve')->count();
-        return view('Admin.admindashboard', compact('guest_complaints', 'reserved_guests'));
+        // Room Management Data
+        $vacant = novadeci_suites::where('Status', 'Vacant for Accommodation')->count();
+        $occupied = novadeci_suites::where('Status', 'Occupied')->count();
+        $reserved = novadeci_suites::where('Status', 'Reserved')->count();
+        $vacant_cleaning = novadeci_suites::where('Status', 'Vacant for Cleaning')->count();
+        // Front Desk Data
+        $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count();
+        $pending_guests = hotel_reservations::where('Booking_Status','Pending')->count();
+        $checked_guests = hotel_reservations::where('Payment_Status','Checked-In')->count();
+        $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count();
+        // Event Inquiry
+        $inquiries = convention_center_application::count();
+        // Commercial Spaces Applications
+        $comm_applications = commercial_spaces_application::count();
+
+
+
+        return view('Admin.admindashboard', 
+        compact(
+            'vacant', 
+            'reserved', 
+            'occupied', 
+            'vacant_cleaning', 
+            'reserved_guests',
+            'pending_guests',
+            'checked_guests', 
+            'checked_out_guests',
+            'inquiries',
+            'comm_applications'));
     }
 
     public function Calendar(Request $request)

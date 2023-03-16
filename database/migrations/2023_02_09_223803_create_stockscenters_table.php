@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('category');
-
+            
+            $table->integer('allstock');
             $table->integer('total');
             $table->integer('Stock_Level');
             

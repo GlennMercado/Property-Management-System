@@ -23,7 +23,7 @@ return new class extends Migration
             $table->String('Room_Size');
             $table->String('No_of_Beds');
             $table->string('Extra_Bed');
-            $table->integer('No_Pax_Per_Room');
+            //$table->integer('No_Pax_Per_Room');
             $table->string('Status')->default('Vacant for Accommodation');
             $table->integer('Rate_per_Night');
             //$table->string('Membership');

@@ -17,11 +17,16 @@ class HotelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function hotel_reservation_form()
-    {
+    {   
+        $count_daily = hotel_reservations::whereDate('Check_In_Date', DB::raw('CURDATE()'))->count();
+        $count_daily1 = hotel_reservations::whereDate('Check_Out_Date', DB::raw('CURDATE()'))->count();
+        $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
+        $checked_guests = hotel_reservations::where('Payment_Status','Checked-In')->count(); 
+        $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count(); 
         $list = DB::select('SELECT * FROM hotel_reservations');
 		$room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  
-        return view('Admin.pages.Reservations.HotelReservationForm', ['list'=>$list, 'room'=>$room, 'supply' => $supply]);
+        return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
      
     /**

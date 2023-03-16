@@ -77,8 +77,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
 		
-		Route::get('LostandFound', function () {return view('Admin.pages.HousekeepingForms.LostandFound');})->name('LostandFound');
-
+		Route::get('LostandFound', [App\Http\Controllers\HousekeepingController::class, 'LostandFound'])->name('LostandFound');
+		
+		Route::post('/add_lost_item', 'App\Http\Controllers\HousekeepingController@add_lost_item');
+		
+		Route::post('/update_lost_item_status', 'App\Http\Controllers\HousekeepingController@update_lost_item_status');
+		Route::post('/auctioned_or_disposed_item', 'App\Http\Controllers\HousekeepingController@auctioned_or_disposed_item');
+		
+		
 		Route::get('Maintenance', [App\Http\Controllers\MaintenanceController::class, 'Maintenance'])->name('Maintenance');
 		
 		Route::post('add_out_of_orders', 'App\Http\Controllers\MaintenanceController@add_out_of_order');
@@ -162,16 +168,14 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		//Guest Receipt
 		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
 		
-		//Finance
+		//Financemodule
+		//Archives
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
 		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
-		
-		Route::get('Finance', function () {
-			$list = DB::select('SELECT * FROM finances');
-			return view('Admin.pages.Finance', ['list'=>$list]);})->name('Finance');
+		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
 			
-			//Finance Dashboards
-			Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
+		//Finance Dashboards
+		Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
@@ -291,6 +295,14 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 
 	Route::post('/assign_housekeepers_linen', 'App\Http\Controllers\HousekeeperController@assign_housekeeper_linens');
 	Route::get('/update_service_requests/{id}/{bs}', 'App\Http\Controllers\HousekeeperController@update_service_request');
+		
+
+	Route::get('LostandFounds', [App\Http\Controllers\HousekeeperController::class, 'LostandFound'])->name('LostandFounds');
+		
+	Route::post('/add_lost_items', 'App\Http\Controllers\HousekeeperController@add_lost_items');
+	
+	Route::post('/update_lost_items_status', 'App\Http\Controllers\HousekeeperController@update_lost_items_status');
+	Route::post('/auctioned_or_disposed_items', 'App\Http\Controllers\HousekeeperController@auctioned_or_disposed_items');
 		
 });
 

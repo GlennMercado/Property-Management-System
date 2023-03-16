@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.housekeeper')
 
 @section('content')
     @include('layouts.headers.cards')
@@ -36,7 +36,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ url('add_lost_item') }}" class="prevent_submit" method="POST"
+                                    <form action="{{ url('add_lost_items') }}" class="prevent_submit" method="POST"
                                         enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
@@ -46,7 +46,7 @@
                                                         <div class="col-md">
                                                             <p class="text-left">Facility Type</p>
                                                             <select name="facility" id="facility_type" class="form-control">
-                                                                <option selected="true" disabled="disabled" selected disabled value="">Select</option>
+                                                                <option selected="true" disabled="disabled">Select</option>
                                                                 <option value="Hotel Room">Hotel Room</option>
                                                                 <option value="Convention Center">Convention Center</option>
                                                                 <option value="Function Room">Function Room</option>
@@ -54,10 +54,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="row" id="hotel" style="display:none;">
-                                                        <div class="col-md pt-2">
+                                                        <div class="col-md-6 pt-2">
                                                             <p class="text-left">Room No. </p>
-                                                            <select name="room_no" class="form-control" required>
-                                                                <option selected="true" disabled="disabled" selected disabled value="">Select</option>
+                                                            <select name="room_no" class="form-control">
+                                                                <option selected="true" disabled="disabled">Select</option>
                                                                 @foreach ($count as $counts)
                                                                     @for ($i = $counts['Room_No']; $i <= $counts['Room_No']; $i++)
                                                                         @if ($i != 0)
@@ -68,17 +68,19 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                        <div class="col-md">
+                                                            
+                                                        </div>
                                                     </div>
                                                     <div id="all" style="display:none;">
-                                                        <p class="text-left mt-2">Items</p>
-                                                        <input type="text" name="item" class="form-control" required>
-                                                        <p class="text-left mt-2">Item Description</p>
-                                                        <input type="text" name="item_desc" class="form-control"
-                                                        maxlength = "32" required>
+                                                        <p class="text-left">Items</p>
+                                                        <input type="text" name="item" class="form-control">
+                                                        <p class="text-left">Item Description</p>
+                                                        <input type="text" name="item_desc" class="form-control">
 
-                                                        <p class="text-left mt-2">Found By</p>
+                                                        <p class="text-left">Found By</p>
                                                         <select name="foundby" class="form-control" required>
-                                                            <option selected="true" disabled="disabled" selected disabled value="">
+                                                            <option selected="true" disabled="disabled">
                                                                 Select</option>
                                                             <option value="Marie B. Adams">Marie B.
                                                                 Adams
@@ -94,7 +96,7 @@
                                                                 Rosario</option>
                                                         </select>
 
-                                                        <p class="text-left mt-2">Item Image </p>
+                                                        <p class="text-left">Item Image </p>
                                                         <input type="file" name="images" class="form-control"
                                                             accept="image/png, image/gif, image/jpeg" required />
                                                     </div>
@@ -231,7 +233,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ url('update_lost_item_status') }}" class="prevent_submit" method="POST"
+                                                            <form action="{{ url('update_lost_items_status') }}" class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
                                                                 <div class="modal-body">
@@ -239,14 +241,11 @@
                                                                     <input type="hidden" name="id" value="{{$lists->id}}">
 
                                                                     <p class="text-left">Claimed By: </p>
-                                                                    <input type="text" class="form-control" name="claimed_by" 
-                                                                    pattern="[A-Za-z ]+"
-                                                                    title="Only Uppercase and lowercase letters is required."
-                                                                    required>
+                                                                    <input type="text" class="form-control" name="claimed_by" required>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button class="btn btn-outline-danger"
-                                                                        data-dismiss="modal">Cancel</button>
+                                                                    <a class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Cancel</a>
                                                                     <input type="submit" class="btn btn-success">
                                                                 </div>
                                                             </form>
@@ -269,7 +268,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ url('auctioned_or_disposed_item') }}" class="prevent_submit" method="POST"
+                                                            <form action="{{ url('auctioned_or_disposed_items') }}" class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
                                                             {{csrf_field()}}
                                                             <div class="modal-body">
@@ -363,7 +362,7 @@
                                                                 <p class="text-left">Claimed By</p>
                                                                 <input type="text" class="form-control" value="{{$lists->Claimed_By}}" readonly>
                                                             
-                                                                <p class="text-left mt-2">Date Claimed</p>
+                                                                <p class="text-left">Date Claimed</p>
                                                                 <input type="text" class="form-control" value="{{$lists->Date_Claimed}}" readonly>
                                                             </div>
                                                             <div class="modal-footer">

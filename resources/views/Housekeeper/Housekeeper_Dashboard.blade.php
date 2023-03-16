@@ -24,7 +24,7 @@
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#156C45;">
+                                    <div class="card-body rounded" style="background-color:#2AD587;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
                                             @foreach($arrival as $count)
                                                 {{$count->cnt}}
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#23B271;">
+                                    <div class="card-body rounded" style="background-color:#34C99D;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
                                             @foreach($supply as $count)
                                                 {{$count->cnt}}
@@ -52,7 +52,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                    <div class="card-body rounded" style="background-color:#39C3A8;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
                                             @foreach($linen as $count)
                                                 {{$count->cnt}}
@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:#38474D;">
+                                    <div class="card-body rounded" style="background-color:#43B7BE;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
                                             @foreach($maintenance as $count)
                                                 {{$count->cnt}}
