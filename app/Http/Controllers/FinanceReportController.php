@@ -295,6 +295,70 @@ class FinanceReportController extends Controller
         //
     }
 
+    public function reports(Request $request)
+    {   
+        
+        if($request->ajax()){
+            if($request->get('num') == 1)
+            {
+                $data = housekeepings::select('housekeepings.*', 'hotel_reservations.Guest_Name', 'hotel_reservations.Check_In_Date', 'hotel_reservations.Check_Out_Date')
+                        ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1);
+
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->filter(function ($instance) use ($request)
+                {
+                    if($request->get('date') == "All"){
+                        $instance->get();
+                    }
+                    elseif($request->get('date') == "Daily")
+                    {
+                        $now = Carbon::now()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '=', $now)->get();
+                    }
+                    elseif($request->get('date') == "Weekly")
+                    {
+                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
+                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startweek)
+                                ->where('hotel_reservations.Check_Out_Date', '<=', $endweek)
+                                ->get();
+                    }
+                    elseif($request->get('date') == "Monthly")
+                    {
+                        $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
+                        $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
+                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startmonth)
+                                ->where('hotel_reservations.Check_Out_Date', '<=', $endmonth)
+                                ->get();
+                    }
+
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function($w) use($request){
+                            $search = $request->get('search');
+
+                            $converttodate = strtotime($search);
+                            $date_search = date('Y-m-d', $converttodate);
+
+                            $w->orwhere('housekeepings.Booking_No', 'LIKE', "%$search%")
+                                ->orwhere('housekeepings.Attendant', 'LIKE', "%$search%")
+                                ->orwhere('hotel_reservations.Guest_Name', 'LIKE', "%$search%")
+                                ->orwhere('housekeepings.Housekeeping_Status', 'LIKE', "%$search%")
+                                ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
+                        });
+                    }          
+                })
+                ->make(true);   
+            } 
+            
+            
+    
+                
+                 
+        }
+        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

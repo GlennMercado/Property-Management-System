@@ -48,23 +48,35 @@ class InventoryCenterController extends Controller
 
        $stock = new stockscenters;
 
-       $stock->name = $request->input('name');
+
+       $name = $request->input('name');
+       $stock->name = $name;
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
        $stock->Stock_Level = $request->input('stock');
+       $stock->name = $name;
 
-       
-       if($stock->save())
-        {
-            Alert::Success('Success', 'Stock Successfully Submitted!');
-            return redirect('StockCenter')->with('Success', 'Data Saved');
-        }
-        else
-        {
-            Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
-            return redirect('StockCenter')->with('Error', 'Failed!');
-        }
+       $sql = DB::select("SELECT * FROM stockscenters WHERE name = '$name'");
+
+       if($sql)
+       {
+           Alert::Error('Error', 'Stock Already Exist!');
+           return redirect('StockCenter')->with('Success', 'Failed');
+       }
+       else
+       {
+        if($stock->save())
+            {
+                Alert::Success('Success', 'Stock Successfully Submitted!');
+                return redirect('StockCenter')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
+                return redirect('StockCenter')->with('Error', 'Failed!');
+            }
+    }
     }
 
     /**
