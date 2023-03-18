@@ -6,7 +6,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col-md-8">
+            {{-- <div class="col-md-8">
                 <div class="card card-shadow">
                     <div class="card-header">
                         <div class="d-flex">
@@ -56,74 +56,64 @@
                             </div>
                         </div>
                 </div>
-            </div>
-            <div class="col-md-4 card card-shadow">
-                <div class="card-header">
-                    Reservations Dashboard
+            </div> --}}
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Reserved</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-book-fill f-left"></i><span>{{ $reserved_guests }}</span>
+                        </h2>
+                    </div>
                 </div>
-                <div class="card-body row justify-content-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-xl-6">
-                                <div class="card bg-c-blue order-card">
-                                    <div class="card-block">
-                                        <h4 class="m-b-20 text-white">Reserved</h4>
-                                        <h2 class="text-right text-white">
-                                            <i class="bi bi-book-fill f-left"></i><span>{{ $reserved_guests }}</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xl-6">
-                                <div class="card bg-c-green order-card">
-                                    <div class="card-block">
-                                        <h4 class="m-b-20 text-white">Checked in</h4>
-                                        <h2 class="text-right text-white">
-                                            <i class="bi bi-bookmark-check-fill f-left"></i><span>{{ $checked_guests }}</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xl-6">
-                                <div class="card bg-c-yellow order-card">
-                                    <div class="card-block">
-                                        <h4 class="m-b-20 text-white">Pending</h4>
-                                        <h2 class="text-right text-white">
-                                            <i class="bi bi-clock-history f-left"></i><span>{{ $checked_out_guests }}</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xl-6">
-                                <div class="card bg-c-pink order-card">
-                                    <div class="card-block">
-                                        <h4 class="m-b-20 text-white">Cancelled</h4>
-                                        <h2 class="text-right text-white">
-                                            <i class="bi bi-x-octagon-fill f-left"></i><span></span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card overflow-hidden bg-green">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media align-items-stretch">
-                                        <div class="align-self-center">
-                                            <i class="icon-pencil primary font-large-2 mr-2 text-white"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="text-white">Expected No. of Arriving Guest</h4>
-                                            <span class="text-white">Today's count</span>
-                                        </div>
-                                        <div class="align-self-center">
-                                            <h1 class="text-white">{{ $count_daily }}</h1>
-                                        </div>                                     
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Checked in</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-bookmark-check-fill f-left"></i><span>{{ $checked_guests }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Pending</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-clock-history f-left"></i><span>{{ $checked_out_guests }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Cancelled</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-x-octagon-fill f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-primary order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Arriving</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-box-arrow-in-up-left f-left"></i><span>{{ $count_daily }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-orange order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Departing</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-box-arrow-down-right f-left"></i><span>{{ $count_daily1 }}</span>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -205,8 +195,7 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4"
-                                                            id="exampleModalLabel">
+                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">
                                                             Hotel Reservation
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
