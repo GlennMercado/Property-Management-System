@@ -6,9 +6,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="#">
-            <h1 class="text-green">NOVADECI</h1>
-        </a>
+        <!-- Brand -->
+        <div class="sidenav-header d-flex justify-content-center">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('nvdcpics') }}/nvdc-logo4.png" style="height: 45px; width: 210px">
+            </a>
+        </div>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
@@ -85,43 +88,43 @@
 
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Housekeeper_Dashboard') }}">
-                        <i class="bi bi-graph-up text-success"></i> {{ __('Dashboard') }}
+                    <a class="nav-link text-dark" href="{{ route('Housekeeper_Dashboard') }}">
+                        <i class="bi bi-graph-up" style = "color: green"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
                 <!-- Linen Monitoring -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Linens_Monitoring') }}">
-                        <i class="bi bi-ui-checks-grid text-success"></i> {{ __('Linen Monitoring') }}
+                    <a class="nav-link text-dark" href="{{ route('Linens_Monitoring') }}">
+                        <i class="bi bi-ui-checks-grid" style = "color: green"></i> {{ __('Linen Monitoring') }}
                     </a>
                 </li>
                 
                 <!-- Maintenance-->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Maintenances') }}">
-                        <i class="bi bi-tools text-success"></i> {{ __('Maintenance') }}
+                    <a class="nav-link text-dark" href="{{ route('Maintenances') }}">
+                        <i class="bi bi-tools" style = "color: green"></i> {{ __('Maintenance') }}
                     </a>
                 </li>
 
                  <!-- Lost and Found -->
                  <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('LostandFounds') }}">
-                        <i class="bi bi-tools text-success"></i> {{ __('Lost and Found') }}
+                    <a class="nav-link text-dark" href="{{ route('LostandFounds') }}">
+                        <i class="bi bi-tools" style = "color: green"></i> {{ __('Lost and Found') }}
                     </a>
                 </li>
 
                 <!-- Guest Request -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Guest_Requests') }}">
-                        <i class="bi bi-file-earmark-text text-success"></i> {{ __('Guest Request') }}
+                    <a class="nav-link text-dark" href="{{ route('Guest_Requests') }}">
+                        <i class="bi bi-file-earmark-text" style = "color: green"></i> {{ __('Guest Request') }}
                     </a>
                 </li>
 
                 <!-- Report -->
                 <li class="nav-item">
-                    <a class="nav-link text-default" href="{{ route('Housekeeping_Report.reports') }}">
-                        <i class="bi bi-journal-bookmark text-success"></i> {{ __('Reports') }}
+                    <a class="nav-link text-dark" href="{{ route('Housekeeping_Report.reports') }}">
+                        <i class="bi bi-journal-bookmark" style = "color: green"></i> {{ __('Reports') }}
                     </a>
                 </li>
 
@@ -135,5 +138,22 @@
                 <hr class="my-3">
 
         </div>
+        <footer>
+            <span id='clock' class="text-dark d-none d-lg-block" style="font-size: 12px"></span>
+            <div class="copyright text-muted" style="font-size: 12px">
+                &copy; {{ now()->year }} <a href="#" class="font-weight-bold ml-1"
+                    target="_blank">InTeractive Solutions</a>
+            </div>
+        </footer>
+        <script type="text/javascript">
+            var clockElement = document.getElementById('clock');
+
+            function clock() {
+                clockElement.textContent = new Date().toString();
+            }
+
+            setInterval(clock, 1000);
+        </script>
     </div>
 </nav>
+
