@@ -26,8 +26,9 @@
                                         <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
                                         <input type="hidden" id="rpn" value="{{ $lists->Rate_per_Night }}">
                                         <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
-                                        <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq.m</h3>
+                                        <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq m</h3>
                                         <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
+                                        <h3>Standard Check in time is 12:00PM</h3>
                                         <h3 class="pt-4 text-muted pb-2">
                                             Additional ₱ 1,500/pax
                                         </h3>
@@ -69,7 +70,8 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 @foreach ($guest as $guests)
-                                    <input type="hidden" name="gName" value="{{ $guests->name }}" />
+                                    <input type="hidden" id="guest_name1" value="{{ $guests->name }}">
+                                    <input type="hidden" id="guest_name" name="gName" value="{{ $guests->name }}" />
                                 @endforeach
                                 <div class="col-md pt-4">
                                     <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
@@ -160,8 +162,8 @@
                                                             data-dismiss="modal">Cancel</button>
                                                     </div> --}}
                                     {{-- code for pax count --}}
-                                    <select name="pax" class="form-control" onchange="enable_button()" id="pax_num"
-                                        required>
+                                    <select name="pax" class="form-control" onchange="enable_button()"
+                                        id="pax_num" required>
                                         <option selected="true" disabled="disabled">Select</option>
                                         @for ($count = 1; $count <= 4; $count++)
                                             <option value="{{ $count }}" id="room_pax">
@@ -183,7 +185,8 @@
                             <br>
                             <div class="row">
                                 <div class="col-md text-center">
-                                    <span class="text-muted">{{ __('By clicking the submit button below, I hereby agree to and accept the') }}
+                                    <span
+                                        class="text-muted">{{ __('By clicking the submit button below, I hereby agree to and accept the') }}
                                         <a href="#ModalPrivacyPolicy" data-toggle="modal" data-target="#ModalTerms">Terms
                                             &
                                             Conditions</a></span>
@@ -389,7 +392,8 @@
                                                         {!! QrCode::size(170)->generate('0923423424') !!}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p class="text-center">Gcash account name <span class="text-danger">*</span></p>
+                                                        <p class="text-center">Gcash account name <span
+                                                                class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <input type="text" id="gcash_acc" onkeyup="enable_submit()"

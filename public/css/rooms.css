@@ -1,4 +1,4 @@
-.gal img:hover {
+.gal:hover {
     transform: scale(1.01);
 }
 
