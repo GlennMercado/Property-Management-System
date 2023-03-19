@@ -545,7 +545,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($list as $lists)
-                                        @if ($lists->Booking_Status == 'Checked-In' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
+                                        @if ($lists->Booking_Status == 'Checked-In' || $lists->Booking_Status == 'Checking(Before Check-Out)' || $lists->Booking_Status == 'Room Checked' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                             <tr>
                                                 <td>
                                                     <!--View Button-->
@@ -554,16 +554,25 @@
                                                         <i class="bi bi-eye-fill"></i>
                                                     </button>
                                                     <!--Update Reservation/Room Status Button-->
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                        data-target="#update_booking_status2{{ $lists->Booking_No }}"
-                                                        title="Update">
-                                                        <i class="bi bi-arrow-repeat"></i>
-                                                    </button>
-                                                    <!--Guest Request Button-->
-                                                    <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                        data-target="#request{{ $lists->Booking_No }}" title="Request">
-                                                        <i class="bi bi-plus-square"></i>
-                                                    </button>
+                                                    @if($lists->Booking_Status == "Checked-In")
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update_booking_status11{{ $lists->Booking_No }}"
+                                                            title="Update">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                        </button>
+                                                                                                            <!--Guest Request Button-->
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#request{{ $lists->Booking_No }}" title="Request">
+                                                            <i class="bi bi-plus-square"></i>
+                                                        </button>
+                                                    @endif
+                                                    @if($lists->Booking_Status == "Room Checked")
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update_booking_status2{{ $lists->Booking_No }}"
+                                                            title="Update">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                        </button>
+                                                    @endif
                                                     {{-- Guest Folio --}}
                                                     <button class="btn btn-sm btn-outline-primary"
                                                         data-target="#views1{{ $lists->Booking_No }}"
@@ -693,6 +702,35 @@
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                             <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
+                                                                class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Update Status-->
+                                            <div class="modal fade" id="update_booking_status11{{ $lists->Booking_No }}"
+                                                tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">
+                                                                Hotel Reservation
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Check Room Before Check-Out?</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checking(Before Check-Out)']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>

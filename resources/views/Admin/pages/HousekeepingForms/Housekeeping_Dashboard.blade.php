@@ -137,7 +137,7 @@
                                             @php $datenow = date('Y-m-d'); @endphp
 
                                             @foreach ($list as $lists)
-                                                @if ($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != 'Checked-In')
+                                                @if ($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status == 'Reserved')
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
@@ -411,7 +411,7 @@
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
 
-                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
+                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned' && $lists->Front_Desk_Status == "Checked-Out")
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->ID }}"
                                                                     title="Update Housekeeping Status">
@@ -422,6 +422,7 @@
                                                                     title="Update Room to Out of Order">
                                                                     <i class="bi bi-tools"></i> </button>
                                                             @endif
+
                                                             @if ($lists->Housekeeping_Status == 'Inspect' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
@@ -703,7 +704,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_stats', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_stats', ['id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -834,6 +835,8 @@
                                                                                         <input type="hidden"
                                                                                             name="name[]"
                                                                                             value="{{ $lists2->name }}">
+
+                                                                                            <input type="hidden" name="booking_no" value ={{$lists->Booking_No}}>
                                                                                     </div>
                                                                                     <div class="col">
                                                                                         <input type="text"

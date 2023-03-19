@@ -34,7 +34,7 @@
                                     <div class="col-6 pt-4">
                                         <p class="text-left label">Name </p>
                                         <input class="form-control" id="name1" type="text" name="gName"
-                                            placeholder="Name" pattern="[A-Za-z]+"
+                                            placeholder="Name"
                                             title="Name should only contain uppercase and lowercase letters." maxlength="32"
                                             required>
                                     </div>
