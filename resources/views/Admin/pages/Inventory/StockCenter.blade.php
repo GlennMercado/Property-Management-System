@@ -5,24 +5,33 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Convention Center Inventory</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Inventory</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Convention Center Inventory</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <div class="col">
-
-                                    </a>
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right;">
-                                        Add Stock
-                                    </button>
-                                </div>
-                                <h3 class="mb-0 title">Convention Center Inventory</h3>
-                                <h5 class="mb-0" style="color:#6C6C6C; font-size:1px;">Instructions: Before Starting, See
-                                    To It That All Inventory Are In The Storage Area</h5>
+                                <h4 class="mb-0" style="color:#6C6C6C;">Instructions: Before Starting, See
+                                    To It That All Inventory Are In The Storage Area</h4>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                    data-target="#exampleModal" style="float:right;">
+                                    Add Stock
+                                </button>
                             </div>
                         </div>
                     </div>

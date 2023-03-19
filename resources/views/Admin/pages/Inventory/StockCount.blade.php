@@ -16,22 +16,33 @@
         });
     </script>
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Hotel Stocks</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Inventory</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Hotel Stocks</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <div class="col">
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#exampleModal" style="float:right">
-                                        Add Stock
-                                    </button>
-                                </div>
-                                <h3 class="mb-0 title">Hotel Stocks</h3>
-                                <h5 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before starting, see
-                                    to It that all inventory are in the Storage Area</h5>
+                                <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before starting, see
+                                    to It that all inventory are in the Storage Area</h4>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                    data-target="#exampleModal" style="float:right">
+                                    Add Stock
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -111,8 +122,9 @@
                                                         <div class="row">
                                                             <div class="col pt-4">
                                                                 <label class="text-left">All Stock </label>
-                                                                <input type="text" class="form-control" name="allstock"
-                                                                    value="{{ $lists->allstock }}" readonly>
+                                                                <input type="text" class="form-control"
+                                                                    name="allstock" value="{{ $lists->allstock }}"
+                                                                    readonly>
                                                             </div>
                                                             <div class="col pt-4">
                                                                 <label>Date Stock Added </label>
@@ -238,8 +250,8 @@
                                                             </div>
 
                                                             <!-- <div class="invalid-feedback">
-                                                                                Stock Name empty
-                                                                                </div>        -->
+                                                                                    Stock Name empty
+                                                                                    </div>        -->
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
@@ -470,10 +482,10 @@
         </div>
     </div>
     <!-- </div>
-                                                                                                                
+                                                                                                                    
+                                                                                                                            </div>
                                                                                                                         </div>
-                                                                                                                    </div>
-                                                                                                                </div> -->
+                                                                                                                    </div> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

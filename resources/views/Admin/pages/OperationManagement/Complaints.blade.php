@@ -3,8 +3,20 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    <div class="container-fluid mt-3">
-        <h1 class="display-2"><i class="bi bi-question-circle"></i> Guest Complaints</h1>
+    <div class="row align-items-center py-4 ml-2">
+        <div class="col-lg-12 col-12">
+            <h6 class="h2 text-dark d-inline-block mb-0">Complaints</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                    <li class="breadcrumb-item">Operation Management</li>
+                    <li class="breadcrumb-item">Guest Call Register</li>
+                    <li class="breadcrumb-item active text-dark" aria-current="page">Complaints</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card shadow">
@@ -18,11 +30,12 @@
                                     title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
                                     <div class="card-body font-weight-bold mt--4">
                                         <br>
-                                        <span class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
+                                        <span
+                                            class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
                                         <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
                                         <br>
                                         <br>
-                                        <span class = "ml-1">{{ $list->concern_text }}</span>
+                                        <span class="ml-1">{{ $list->concern_text }}</span>
                                         <br>
                                         {{-- <a href="{{ $list->complaints_img }}" data-lightbox="photos"
                                             data-gallery="complaints">
@@ -73,10 +86,11 @@
                 </div>
             </div>
             <style>
-                .gal:hover{
+                .gal:hover {
                     border: 1px solid rgb(115, 115, 115);
                 }
-                .category:hover{
+
+                .category:hover {
                     transform: scale(1.05);
                 }
             </style>

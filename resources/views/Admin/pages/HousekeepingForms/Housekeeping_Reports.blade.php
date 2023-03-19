@@ -3,26 +3,33 @@
 @section('content')
     @include('layouts.headers.cards')
 
- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
- 
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js">
+    </script>
 
 
-    <div class="container-fluid mt--7">
-        <br>
-
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Reports</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Housekeeping</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Reports</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h2 class="mb-0 title">Reports</h3>
-                            </div>
-                        </div>
-                        <br>
                         <div class="row align-items-center">
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
@@ -50,7 +57,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <br>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -63,7 +69,7 @@
                                         <option value="Daily">Daily</option>
                                         <option value="Weekly">Weekly</option>
                                         <option value="Monthly">Monthly</option>
-                                    </select>  
+                                    </select>
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
@@ -78,7 +84,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -107,7 +113,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -136,7 +142,7 @@
                                                 <th scope="col" style="font-size:18px;">Date Resolved</th>
                                             </tr>
                                         </thead>
-                                        <tbody>    
+                                        <tbody>
                                         </tbody>
                                     </table>
                                 </div>
@@ -164,7 +170,7 @@
                                                 <th scope="col" style="font-size:18px;">Date Received</th>
                                             </tr>
                                         </thead>
-                                        <tbody>          
+                                        <tbody>
                                         </tbody>
                                     </table>
                                 </div>
@@ -202,285 +208,357 @@
             }
         </style>
 
-<script type="text/javascript">
-$.noConflict();
+        <script type="text/javascript">
+            $.noConflict();
 
-jQuery(function($) {
+            jQuery(function($) {
 
-    var table = $('#myTable').DataTable({
-        dom: 'lBfrtip',
-        orderCellsTop: true,
-        fixedHeader: true,
-        lengthChange: false,
-        processing: true,
-        serverSide: true,
-        buttons: [ 
-                'pageLength',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'portrait',
-                    pageSize: 'LEGAL'
-                },
-                'excel', 'colvis', 'print' 
-            ],
-        ajax: {
-            url: "{{route('Housekeeping_Reports.reports')}}",
-            data:function (d){
-                d.num = 1,
-                d.date = $('#date').val(),
-                d.search = $('#search1').val()
-            }
-        },
-        columns: [
-            {data: 'Room_No'},
-            {data: 'Booking_No'},
-            {data: 'Housekeeping_Status'},
-            {data: 'Attendant'},
-            {data: 'Guest_Name'},
-            {data: 'Check_In_Date', 
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
+                var table = $('#myTable').DataTable({
+                    dom: 'lBfrtip',
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: true,
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'portrait',
+                            pageSize: 'LEGAL'
+                        },
+                        'excel', 'colvis', 'print'
+                    ],
+                    ajax: {
+                        url: "{{ route('Housekeeping_Reports.reports') }}",
+                        data: function(d) {
+                            d.num = 1,
+                                d.date = $('#date').val(),
+                                d.search = $('#search1').val()
+                        }
+                    },
+                    columns: [{
+                            data: 'Room_No'
+                        },
+                        {
+                            data: 'Booking_No'
+                        },
+                        {
+                            data: 'Housekeeping_Status'
+                        },
+                        {
+                            data: 'Attendant'
+                        },
+                        {
+                            data: 'Guest_Name'
+                        },
+                        {
+                            data: 'Check_In_Date',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-                }
-            },
-            {data: 'Check_Out_Date',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear();
+                            }
+                        },
+                        {
+                            data: 'Check_Out_Date',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-                }
-            },
-            ]
-    });
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear();
+                            }
+                        },
+                    ]
+                });
 
-    $('#myTable_filter input[type="search"]').prop('id', 'search1');
+                $('#myTable_filter input[type="search"]').prop('id', 'search1');
 
-    table.buttons().container().insertBefore('#myTable_filter');
+                table.buttons().container().insertBefore('#myTable_filter');
 
-    $('#date').change(function(){
-         table.draw();
-    });
+                $('#date').change(function() {
+                    table.draw();
+                });
 
 
-    var table2 = $('#myTable2').DataTable({
-        dom: 'lBfrtip',
-        orderCellsTop: true,
-        fixedHeader: true,
-        lengthChange: false,
-        processing: true,
-        serverSide: true,
-        buttons: [ 
-                'pageLength',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'portrait',
-                    pageSize: 'LEGAL'
-                },
-                'excel', 'colvis', 'print' 
-            ],
-        ajax: {
-            url: "{{route('Housekeeping_Reports.reports')}}",
-            data:function (d){
-                d.num = 2,
-                d.date2 = $('#date2').val(),
-                d.search2 = $('#search2').val()
-            }
-        },
-        columns: [
-            {data: 'Room_No'},
-            {data: 'name'},
-            {data: 'Quantity'},
-            {data: 'Quantity_Requested'},
-            {data: 'Attendant'},
-            {data: 'Status'},
-            {data: 'Date_Requested',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var seconds = date.getSeconds();
-                    var ampm = hours >= 12 ? 'pm' : 'am';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // the hour '0' should be '12'
-                    minutes = minutes < 10 ? '0'+minutes : minutes;
-                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+                var table2 = $('#myTable2').DataTable({
+                    dom: 'lBfrtip',
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: true,
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'portrait',
+                            pageSize: 'LEGAL'
+                        },
+                        'excel', 'colvis', 'print'
+                    ],
+                    ajax: {
+                        url: "{{ route('Housekeeping_Reports.reports') }}",
+                        data: function(d) {
+                            d.num = 2,
+                                d.date2 = $('#date2').val(),
+                                d.search2 = $('#search2').val()
+                        }
+                    },
+                    columns: [{
+                            data: 'Room_No'
+                        },
+                        {
+                            data: 'name'
+                        },
+                        {
+                            data: 'Quantity'
+                        },
+                        {
+                            data: 'Quantity_Requested'
+                        },
+                        {
+                            data: 'Attendant'
+                        },
+                        {
+                            data: 'Status'
+                        },
+                        {
+                            data: 'Date_Requested',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
+                                var hours = date.getHours();
+                                var minutes = date.getMinutes();
+                                var seconds = date.getSeconds();
+                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                hours = hours % 12;
+                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
-                }
-            },
-            {data: 'Date_Received',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var seconds = date.getSeconds();
-                    var ampm = hours >= 12 ? 'pm' : 'am';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // the hour '0' should be '12'
-                    minutes = minutes < 10 ? '0'+minutes : minutes;
-                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear() + "<br>" + strTime;
+                            }
+                        },
+                        {
+                            data: 'Date_Received',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
+                                var hours = date.getHours();
+                                var minutes = date.getMinutes();
+                                var seconds = date.getSeconds();
+                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                hours = hours % 12;
+                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
-                }}
-            ]
-    });
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear() + "<br>" + strTime;
+                            }
+                        }
+                    ]
+                });
 
-    $('#myTable2_filter input[type="search"]').prop('id', 'search2');
+                $('#myTable2_filter input[type="search"]').prop('id', 'search2');
 
-    table2.buttons().container().insertBefore('#myTable2_filter');
+                table2.buttons().container().insertBefore('#myTable2_filter');
 
-    $('#date2').change(function(){
-         table2.draw();
-    });
+                $('#date2').change(function() {
+                    table2.draw();
+                });
 
-    var table3 = $('#myTable3').DataTable({
-        dom: 'lBfrtip',
-        orderCellsTop: true,
-        fixedHeader: true,
-        lengthChange: false,
-        processing: true,
-        serverSide: true,
-        buttons: [ 
-                'pageLength',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'portrait',
-                    pageSize: 'LEGAL'
-                },
-                'excel', 'colvis', 'print' 
-            ],
-        ajax: {
-            url: "{{route('Housekeeping_Reports.reports')}}",
-            data:function (d){
-                d.num = 3,
-                d.date3 = $('#date3').val(),
-                d.search3 = $('#search3').val()
-            }
-        },
-        columns: [
-            {data: 'Booking_No'},
-            {data: 'Room_No'},
-            {data: 'Facility_Type'},
-            {data: 'Description'},
-            {data: 'Discovered_By'},
-            {data: 'Priority_Level'},
-            {data: 'Status'},
-            {data: 'Due_Date',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
+                var table3 = $('#myTable3').DataTable({
+                    dom: 'lBfrtip',
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: true,
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'portrait',
+                            pageSize: 'LEGAL'
+                        },
+                        'excel', 'colvis', 'print'
+                    ],
+                    ajax: {
+                        url: "{{ route('Housekeeping_Reports.reports') }}",
+                        data: function(d) {
+                            d.num = 3,
+                                d.date3 = $('#date3').val(),
+                                d.search3 = $('#search3').val()
+                        }
+                    },
+                    columns: [{
+                            data: 'Booking_No'
+                        },
+                        {
+                            data: 'Room_No'
+                        },
+                        {
+                            data: 'Facility_Type'
+                        },
+                        {
+                            data: 'Description'
+                        },
+                        {
+                            data: 'Discovered_By'
+                        },
+                        {
+                            data: 'Priority_Level'
+                        },
+                        {
+                            data: 'Status'
+                        },
+                        {
+                            data: 'Due_Date',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-                }
-            },
-            {data: 'Date_Resolved',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear();
+                            }
+                        },
+                        {
+                            data: 'Date_Resolved',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-                }
-            },
-            ]
-    });
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear();
+                            }
+                        },
+                    ]
+                });
 
-    $('#myTable3_filter input[type="search"]').prop('id', 'search3');
+                $('#myTable3_filter input[type="search"]').prop('id', 'search3');
 
-    table3.buttons().container().insertBefore('#myTable3_filter');
+                table3.buttons().container().insertBefore('#myTable3_filter');
 
-    $('#date3').change(function(){
-         table3.draw();
-    });
+                $('#date3').change(function() {
+                    table3.draw();
+                });
 
-    var table4 = $('#myTable4').DataTable({
-        dom: 'lBfrtip',
-        orderCellsTop: true,
-        fixedHeader: true,
-        lengthChange: false,
-        processing: true,
-        serverSide: true,
-        buttons: [ 
-                'pageLength',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'portrait',
-                    pageSize: 'LEGAL'
-                },
-                'excel', 'colvis', 'print' 
-            ],
-        ajax: {
-            url: "{{route('Housekeeping_Reports.reports')}}",
-            data:function (d){
-                d.num = 4,
-                d.date4 = $('#date4').val(),
-                d.search4 = $('#search4').val()
-            }
-        },
-        columns: [
-            {data: 'Room_No'},
-            {data: 'name'},
-            {data: 'Quantity'},
-            {data: 'Quantity_Requested'},
-            {data: 'Discrepancy'},
-            {data: 'Attendant'},
-            {data: 'Status'},
-            {data: 'Date_Requested',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var seconds = date.getSeconds();
-                    var ampm = hours >= 12 ? 'pm' : 'am';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // the hour '0' should be '12'
-                    minutes = minutes < 10 ? '0'+minutes : minutes;
-                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+                var table4 = $('#myTable4').DataTable({
+                    dom: 'lBfrtip',
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: true,
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'portrait',
+                            pageSize: 'LEGAL'
+                        },
+                        'excel', 'colvis', 'print'
+                    ],
+                    ajax: {
+                        url: "{{ route('Housekeeping_Reports.reports') }}",
+                        data: function(d) {
+                            d.num = 4,
+                                d.date4 = $('#date4').val(),
+                                d.search4 = $('#search4').val()
+                        }
+                    },
+                    columns: [{
+                            data: 'Room_No'
+                        },
+                        {
+                            data: 'name'
+                        },
+                        {
+                            data: 'Quantity'
+                        },
+                        {
+                            data: 'Quantity_Requested'
+                        },
+                        {
+                            data: 'Discrepancy'
+                        },
+                        {
+                            data: 'Attendant'
+                        },
+                        {
+                            data: 'Status'
+                        },
+                        {
+                            data: 'Date_Requested',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
+                                var hours = date.getHours();
+                                var minutes = date.getMinutes();
+                                var seconds = date.getSeconds();
+                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                hours = hours % 12;
+                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
-                }
-            },
-            {data: 'Date_Received',
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var seconds = date.getSeconds();
-                    var ampm = hours >= 12 ? 'pm' : 'am';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // the hour '0' should be '12'
-                    minutes = minutes < 10 ? '0'+minutes : minutes;
-                    var strTime = hours + ':' + minutes + ':' + seconds +' ' + ampm;
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear() + "<br>" + strTime;
+                            }
+                        },
+                        {
+                            data: 'Date_Received',
+                            render: function(data) {
+                                var date = new Date(data);
+                                var month = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"
+                                ];
+                                var hours = date.getHours();
+                                var minutes = date.getMinutes();
+                                var seconds = date.getSeconds();
+                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                hours = hours % 12;
+                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + "<br>" + strTime;
-                }}
-            ]
-    });
+                                return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                    .getFullYear() + "<br>" + strTime;
+                            }
+                        }
+                    ]
+                });
 
-    $('#myTable4_filter input[type="search"]').prop('id', 'search4');
+                $('#myTable4_filter input[type="search"]').prop('id', 'search4');
 
-    table4.buttons().container().insertBefore('#myTable4_filter');
+                table4.buttons().container().insertBefore('#myTable4_filter');
 
-    $('#date4').change(function(){
-         table4.draw();
-    });
+                $('#date4').change(function() {
+                    table4.draw();
+                });
 
-});
-</script>
+            });
+        </script>
     </div>
 @endsection
 

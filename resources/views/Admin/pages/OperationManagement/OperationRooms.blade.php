@@ -6,20 +6,23 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
-
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Rooms</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Operation Management</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Rooms</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <!--Room Management-->
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0 title">Operation Rooms</h3>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
                     <div class="card-body">
                         <!--Table-->
                         <div class="table-responsive">

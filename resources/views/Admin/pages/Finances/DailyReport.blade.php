@@ -13,7 +13,19 @@
         });
     </script> -->
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Daily Report</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Finance</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Daily Report</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="col-xl">
             <div class="card shadow">
                 <div class="card-header border-0">
@@ -25,9 +37,8 @@
                                     Add
                                 </button>
                             </div>
-                            <h3 class="mb-0 title">Finance</h3>
                             <div class="row align-items-center">
-                                <div class="col-md-12 text-right pt-4">
+                                <div class="col-md-12 text-right pt-4 mt-4">
                                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                         role="tablist">
                                         <li class="nav-item">
@@ -227,18 +238,17 @@
                                                         <div class="col-md">
                                                             <label class="text-left">Official Receipt Number </label>
                                                             <input type="number" class="form-control" name="ornum"
-                                                            onKeyPress="if(this.value.length==15) return false;"
+                                                                onKeyPress="if(this.value.length==15) return false;"
                                                                 placeholder="Enter OR Number..." required>
                                                         </div>
                                                         <div class="col-md">
                                                             <label for="Stockdetails">Payee </label>
                                                             <input type="text" class="form-control" name="payee"
-                                                            maxlength = "32"
-                                                                placeholder="Enter Name..." required>
+                                                                maxlength="32" placeholder="Enter Name..." required>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                       
+
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md pt-2">
@@ -292,13 +302,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        
+
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md pt-2">
                                                             <label for="Stockdetails">Amount: </label>
                                                             <input type="number" class="form-control" name="amount"
-                                                                step="0.01" placeholder="Enter number..." 
+                                                                step="0.01" placeholder="Enter number..."
                                                                 onKeyPress="if(this.value.length==6) return false;"
                                                                 required>
                                                         </div>
@@ -354,8 +364,8 @@
         </div>
     </div>
     <style>
-          /* disable arrows input type number */
-          input[type="number"]::-webkit-outer-spin-button,
+        /* disable arrows input type number */
+        input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
@@ -373,60 +383,75 @@
     </style>
 
     <script type="text/javascript">
-$.noConflict();
+        $.noConflict();
 
-jQuery(function($) {
+        jQuery(function($) {
 
-    var table = $('#myTable').DataTable({
-        dom: 'lBfrtip',
-        orderCellsTop: true,
-        fixedHeader: true,
-        lengthChange: false,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            // url: "",
-            data:function (d){
-                d.num = 1,
-                d.date = $('#date').val(),
-                d.search = $('#search1').val()
-            }
-        },
-        columns: [
-            {data: 'ornum' },
-            {data: 'created_at', 
-                render: function(data){
-                    var date = new Date(data);
-                    var month = [ "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December" ];
+            var table = $('#myTable').DataTable({
+                dom: 'lBfrtip',
+                orderCellsTop: true,
+                fixedHeader: true,
+                lengthChange: false,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    // url: "",
+                    data: function(d) {
+                        d.num = 1,
+                            d.date = $('#date').val(),
+                            d.search = $('#search1').val()
+                    }
+                },
+                columns: [{
+                        data: 'ornum'
+                    },
+                    {
+                        data: 'created_at',
+                        render: function(data) {
+                            var date = new Date(data);
+                            var month = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"
+                            ];
 
-                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-                }
-            },
-            {data: 'payee' },
-            {data: 'particular' },
-            {data: 'eventdate' },
-            {data: 'amount' },
-            {data: 'remark' },
-            {data: 'debit' },
-            ]
-    });
+                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
+                                .getFullYear();
+                        }
+                    },
+                    {
+                        data: 'payee'
+                    },
+                    {
+                        data: 'particular'
+                    },
+                    {
+                        data: 'eventdate'
+                    },
+                    {
+                        data: 'amount'
+                    },
+                    {
+                        data: 'remark'
+                    },
+                    {
+                        data: 'debit'
+                    },
+                ]
+            });
 
-    $('#myTable_filter input[type="search"]').prop('id', 'search1');
+            $('#myTable_filter input[type="search"]').prop('id', 'search1');
 
-    table.buttons().container().insertBefore('#myTable_filter');
+            table.buttons().container().insertBefore('#myTable_filter');
 
-    $('#date').change(function(){
-         table.draw();
-    });
+            $('#date').change(function() {
+                table.draw();
+            });
 
-});
+        });
 
-jQuery(document).ready(function($) {
+        jQuery(document).ready(function($) {
             $('#myTables').DataTable();
             $('#myTabless').DataTable();
         });
-
     </script>
 @endsection
 

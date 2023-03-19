@@ -5,29 +5,31 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-
-
-    <div class="container-fluid mt--7">
-        <br>
-
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Housekeeping Dashboard</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Housekeeping</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h2 class="mb-0 title">Housekeeping Dashboard</h3>
-                            </div>
-                        </div>
-
                         <!-- Count Box -->
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#2AD587;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($arrival as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($arrival as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -40,8 +42,8 @@
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#34C99D;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($supply as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($supply as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -52,11 +54,12 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body rounded" style="background-color:
+                                    <div class="card-body rounded"
+                                        style="background-color:
                                     #39C3A8;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($linen as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($linen as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -69,8 +72,8 @@
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#43B7BE;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($maintenance as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($maintenance as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -849,7 +852,7 @@
                                                                                             class="form-control"
                                                                                             name="discrepancy[]"
                                                                                             value="0" />
-                                                                                    </div> 
+                                                                                    </div>
                                                                                 </div>
                                                                                 <br>
                                                                             @endif
@@ -887,34 +890,35 @@
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
                                                     <td>
-                                                        @php 
+                                                        @php
                                                             $check;
                                                             $roomno = $lists->Room_No;
                                                             $sql = \DB::select("SELECT CASE WHEN diff_rows > 0 THEN 'Different' ELSE 'Same' END AS Result FROM ( SELECT SUM(CASE WHEN Status = 'Requested' THEN 0 ELSE 1 END) AS diff_rows FROM hotel_room_supplies WHERE Room_No = '$roomno') AS derived");
-                                                            foreach($sql as $supply)
-                                                            {
+                                                            foreach ($sql as $supply) {
                                                                 $check = $supply->Result;
                                                             }
                                                         @endphp
                                                         <button type="button" class="btn btn-sm btn-primary"
                                                             data-toggle="modal"
-                                                            data-target="#view_supply{{ $lists->Room_No }}" title="View Information">
+                                                            data-target="#view_supply{{ $lists->Room_No }}"
+                                                            title="View Information">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
-                                                        @if ($lists->rstats != 'Occupied' && $lists->Attendant != "Unassigned")
-                                                            @if($check == "Different")
-                                                            <button type="button" class="btn btn-sm btn-success"
-                                                                data-toggle="modal"
-                                                                data-target="#request_supply{{ $lists->Room_No }}" title="Request Supply">
-                                                                <i class="bi bi-box-arrow-in-down-left"></i>
-                                                            </button>
+                                                        @if ($lists->rstats != 'Occupied' && $lists->Attendant != 'Unassigned')
+                                                            @if ($check == 'Different')
+                                                                <button type="button" class="btn btn-sm btn-success"
+                                                                    data-toggle="modal"
+                                                                    data-target="#request_supply{{ $lists->Room_No }}"
+                                                                    title="Request Supply">
+                                                                    <i class="bi bi-box-arrow-in-down-left"></i>
+                                                                </button>
                                                             @endif
                                                         @endif
                                                         @if ($lists->Attendant == 'Unassigned')
-                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#assign3{{ $lists->id}}"
-                                                                    title="Assign Attendant">
-                                                                    <i class="bi bi-person-fill"></i> </button>
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#assign3{{ $lists->id }}"
+                                                                title="Assign Attendant">
+                                                                <i class="bi bi-person-fill"></i> </button>
                                                         @endif
                                                     </td>
 
@@ -1023,10 +1027,13 @@
                                                                             <td>{{ $lists->name }}</td>
                                                                             <td>{{ $lists->Quantity }}</td>
                                                                             <td>{{ $lists->Quantity_Requested }}</td>
-                                                                            @if($lists->Date_Requested != null)
-                                                                            <td>{{ date('M j Y', strtotime($lists->Date_Requested)) }} <br> {{date('H:i:s A', strtotime($lists->Date_Requested)) }}</td>
+                                                                            @if ($lists->Date_Requested != null)
+                                                                                <td>{{ date('M j Y', strtotime($lists->Date_Requested)) }}
+                                                                                    <br>
+                                                                                    {{ date('H:i:s A', strtotime($lists->Date_Requested)) }}
+                                                                                </td>
                                                                             @else
-                                                                            <td></td>
+                                                                                <td></td>
                                                                             @endif
                                                                             <td>{{ $lists->Status }}</td>
                                                                         </tr>
@@ -1070,7 +1077,7 @@
                                                                 </div>
                                                             </div>
                                                             @foreach ($list4 as $lists)
-                                                                @if ($lists->Room_No == $arrays['Room_No'] && $lists->Status != "Requested")
+                                                                @if ($lists->Room_No == $arrays['Room_No'] && $lists->Status != 'Requested')
                                                                     <div class="row">
                                                                         <div class="col">
                                                                             <input type="hidden" name="room_no"
@@ -1080,7 +1087,7 @@
                                                                             <input type="hidden" name="name[]"
                                                                                 value="{{ $lists->name }}">
                                                                             <input type="hidden" name="stats[]"
-                                                                            value="{{ $lists->Status }}">
+                                                                                value="{{ $lists->Status }}">
                                                                         </div>
                                                                         <div class="col">
                                                                             <input type="text" class="form-control"

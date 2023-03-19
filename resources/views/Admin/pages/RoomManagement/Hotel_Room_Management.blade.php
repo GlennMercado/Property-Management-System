@@ -7,23 +7,28 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Room Management</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Room Management</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <!--Room Management-->
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0 title">Room Management</h3>
-                            </div>
-                            <div class="col text-right">
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_rooms">
-                                    Add Room
-                                </button>
-                            </div>
+                        <div class="col text-right">
+                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_rooms">
+                                Add Room
+                            </button>
                         </div>
-                        <br>
                     </div>
                     <!-- Add Modal -->
                     <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -62,7 +67,6 @@
                                                             required>
                                                     </div>
                                                 </div>
-                                                <br>
                                                 <!--Add Asset Column-->
                                                 <div class="row">
                                                     <div class="col">
@@ -86,7 +90,7 @@
                                                             <option value="One (1)">One (1)</option>
                                                         </select>
                                                     </div>
-                                                    
+
                                                 </div>
 
                                                 <br>
@@ -142,12 +146,15 @@
                                             <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
                                             <td style="font-size:16px;">{{ $lists->No_of_Beds }}</td>
                                             <td style="font-size:16px;">
-                                                @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Reserved")
-                                                <span class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>                 
-                                                @elseif($lists->Status == "Occupied" || $lists->Status == "Vacant for Cleaning")
-                                                <span class="badge badge-pill badge-warning badge-lg">{{ $lists->Status }}</span>
-                                                @elseif($lists->Status == "Out of Order")
-                                                <span class="badge badge-pill badge-danger badge-lg">{{ $lists->Status }}</span>
+                                                @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Reserved')
+                                                    <span
+                                                        class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>
+                                                @elseif($lists->Status == 'Occupied' || $lists->Status == 'Vacant for Cleaning')
+                                                    <span
+                                                        class="badge badge-pill badge-warning badge-lg">{{ $lists->Status }}</span>
+                                                @elseif($lists->Status == 'Out of Order')
+                                                    <span
+                                                        class="badge badge-pill badge-danger badge-lg">{{ $lists->Status }}</span>
                                                 @endif
                                             </td>
 

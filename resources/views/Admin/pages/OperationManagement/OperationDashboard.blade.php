@@ -2,34 +2,41 @@
 
 @section('content')
     @include('layouts.headers.cards')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
- 
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js">
+    </script>
 
 
-    <div class="container-fluid mt--7">
-
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Operation Management Dashboard</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Operation Management</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Operation Management Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             {{-- -xl-4 mb-5 mb-xl-0 --}}
             <div class="col">
                 <div class="card bg-gradient-white shadow">
                     <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                {{-- <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6> --}}
-                                <p class="text-black text-lg mb-0"><i class="bi bi-graph-up mr-2"></i>Operation Management
-                                    Dashboard</p>
-                            </div>
-                        </div>
                         <div class="row mt-3">
                             <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body-md rounded" style="background-color:#2AD587;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($request_count as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($request_count as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
@@ -62,8 +69,8 @@
                                 <div class="card">
                                     <div class="card-body-sm rounded" style="background-color:#39C3A8;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room1 as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($room1 as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">Vacant
@@ -76,8 +83,8 @@
                                 <div class="card">
                                     <div class="card-body-sm rounded" style="background-color:#3EBDB3;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room2 as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($room2 as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">Occupied
@@ -90,8 +97,8 @@
                                 <div class="card">
                                     <div class="card-body-sm rounded" style="background-color:#43B7BE;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            @foreach($room3 as $count)
-                                                {{$count->cnt}}
+                                            @foreach ($room3 as $count)
+                                                {{ $count->cnt }}
                                             @endforeach
                                         </h1>
                                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Room for
@@ -143,15 +150,15 @@
                 orderCellsTop: true,
                 fixedHeader: true,
                 lengthChange: false,
-                buttons: [ 
-                        'pageLength',
-                        {
-                            extend: 'pdfHtml5',
-                            orientation: 'portrait',
-                            pageSize: 'LEGAL'
-                        },
-                        'excel', 'colvis', 'print' 
-                    ]
+                buttons: [
+                    'pageLength',
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'portrait',
+                        pageSize: 'LEGAL'
+                    },
+                    'excel', 'colvis', 'print'
+                ]
             });
         });
     </script>

@@ -3,10 +3,20 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Finance Dashboard</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Finance</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Finance Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
-            {{-- -xl-4 mb-5 mb-xl-0 --}}
             <div class="col">
                 <div class="card bg-gradient-white shadow">
                     <div class="card-header bg-transparent">
@@ -27,23 +37,26 @@
             </div>
         </div>
     </div>
-    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-    <?php
-    // Sample data for sales by daily
-    $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
-    // Convert the data to a JSON-encoded string
-    $dataString = json_encode($salesData);
-    ?>
+        <?php
+        // Sample data for sales by daily
+        $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
+        // Convert the data to a JSON-encoded string
+        $dataString = json_encode($salesData);
+        ?>
 
-    var data = <?php echo $dataString; ?>;
+        var data = <?php echo $dataString; ?>;
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)', 'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event', 'Hotel', 'Commercial Space'],
+                labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)',
+                    'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event',
+                    'Hotel', 'Commercial Space'
+                ],
                 datasets: [{
                     label: '',
                     data: data,
@@ -80,10 +93,7 @@
                 }
             }
         });
-        
     </script>
-    
-    
 @endsection
 
 @push('js')

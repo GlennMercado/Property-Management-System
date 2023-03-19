@@ -4,7 +4,19 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Hotel Booking</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Front Desk</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Hotel Booking</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             {{-- <div class="col-md-8">
                 <div class="card card-shadow">
@@ -120,16 +132,12 @@
             <div class="card shadow mt--3 col-md-12">
                 <div class="card-header">
                     <div class="row align-items-center">
-                        <div class="col">
-                            <h3 class="title">Hotel Booking</h3>
-                        </div>
                         <div class="col text-right">
                             <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
                                 Book Now
                             </a>
                         </div>
                     </div>
-                    <br>
                     <div class="row align-items-center">
                         <div class="col-md-4">
                             <select class="form-control" style="border:2px solid" id="optionselect">
@@ -195,7 +203,8 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">
                                                             Hotel Reservation
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
@@ -216,9 +225,7 @@
                                                                     value="{{ $lists->Room_No }}" readonly>
                                                             </div>
                                                         </div>
-
                                                         <br>
-
                                                         <div class="row">
                                                             <div class="col">
                                                                 <p class="text-left">Number of Pax: </p>

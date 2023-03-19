@@ -11,14 +11,23 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Event Inquiry</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Front Desk</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Event Inquiry</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class=" col ">
+                <div class=" col">
                     <div class="card">
-                        <div class="card-header bg-transparent">
-                            <h2 class="mb-0 title">Event Inquiry List</h2>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive t1">
                                 <table class="table align-items-center table-flush" id="myTable">
@@ -36,18 +45,19 @@
                                         @foreach ($list as $lists)
                                             <tr>
                                                 <td>
-                                                        <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
-                                                            class="btn btn-sm btn-success" style="cursor:pointer;"
-                                                            data-toggle="tooltip" data-placement="top" title="View">
-                                                            <i class="bi bi-eye"></i>
-                                                        </a>
-                                                        <button type="submit" data-toggle="modal"
-                                                            data-target="#exampleModal" title="Update Status"
-                                                            class="btn btn-sm btn-primary">
-                                                            <i class="bi bi-pencil-square"></i></button>
+                                                    <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
+                                                        class="btn btn-sm btn-success" style="cursor:pointer;"
+                                                        data-toggle="tooltip" data-placement="top" title="View">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                    <button type="submit" data-toggle="modal" data-target="#exampleModal"
+                                                        title="Update Status" class="btn btn-sm btn-primary">
+                                                        <i class="bi bi-pencil-square"></i></button>
                                                 </td>
                                                 <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
-                                                <td><span class="badge badge-pill badge-lg badge-success">{{$lists->inquiry_status}}</span></td>
+                                                <td><span
+                                                        class="badge badge-pill badge-lg badge-success">{{ $lists->inquiry_status }}</span>
+                                                </td>
                                                 <td>
                                                     <span class="font-weight-bold">Name: </span>{{ $lists->client_name }}
                                                     <br><span class="font-weight-bold">Contact Number: </span>
@@ -56,29 +66,35 @@
                                                     <span class="font-weight-bold">Billing Address: </span>
                                                     {{ $lists->billing_address }}
                                                     <br>
-                                                    <span class="font-weight-bold">Email: </span> {{ $lists->email_address }}
+                                                    <span class="font-weight-bold">Email: </span>
+                                                    {{ $lists->email_address }}
                                                 </td>
                                                 <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }}
                                                     <br>
                                                     <span class="font-weight-bold">Contact Number: </span>
                                                     {{ $lists->contact_person_no }}
                                                 </td>
-                                                <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}
+                                                <td><span class="font-weight-bold">Event Name: </span>
+                                                    {{ $lists->event_name }}
                                                     <br>
                                                     <span class="font-weight-bold">Event Type:</span>
                                                     {{ $lists->event_type }}
                                                     <br>
-                                                    <span class="font-weight-bold">Event Date: </span> {{ $lists->event_date }}
+                                                    <span class="font-weight-bold">Event Date: </span>
+                                                    {{ $lists->event_date }}
                                                     <br>
-                                                    <span class="font-weight-bold">No. of Guest: </span>{{ $lists->no_of_guest }}
+                                                    <span class="font-weight-bold">No. of Guest:
+                                                    </span>{{ $lists->no_of_guest }}
                                                     <br>
                                                     <span class="font-weight-bold">Venue: </span>{{ $lists->venue }}
                                                     <br>
                                                     <span class="font-weight-bold">Caterer: </span> {{ $lists->caterer }}
                                                     <br>
-                                                    <span class="font-weight-bold">Audio/Visual: </span> {{ $lists->audio_visual }}
+                                                    <span class="font-weight-bold">Audio/Visual: </span>
+                                                    {{ $lists->audio_visual }}
                                                     <br>
-                                                    <span class="font-weight-bold">Events and Concep Styling: </span> {{ $lists->concept }}
+                                                    <span class="font-weight-bold">Events and Concep Styling: </span>
+                                                    {{ $lists->concept }}
                                                 </td>
                                             </tr>
                                     </tbody>
@@ -102,15 +118,16 @@
                                 {{ csrf_field() }}
                                 <div class="modal-body">
                                     <p>ID</p>
-                                    <input type="text" class="form-control" value="{{$lists->id}}" readonly>
+                                    <input type="text" class="form-control" value="{{ $lists->id }}" readonly>
 
-                                    <input type="hidden" name="eventid" value="{{$lists->id}}" />
-                                    
+                                    <input type="hidden" name="eventid" value="{{ $lists->id }}" />
+
                                     <p>Name</p>
-                                    <input type="text" class="form-control" value="{{$lists->client_name}}" readonly>
-                                    
+                                    <input type="text" class="form-control" value="{{ $lists->client_name }}" readonly>
+
                                     <select name="update_status" class="form-control" required>
-                                        <option selected="true" disabled="disabled" value="">{{ $lists->inquiry_status }}</option>
+                                        <option selected="true" disabled="disabled" value="">
+                                            {{ $lists->inquiry_status }}</option>
                                         <option value="Approved">Approved</option>
                                         <option value="Disapproved">Disapproved</option>
                                     </select>

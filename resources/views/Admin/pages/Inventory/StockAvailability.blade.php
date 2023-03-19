@@ -5,11 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-
-
-    <div class="container-fluid mt--7">
-        <br>
-
+    <div class="container-fluid mt--8">
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">

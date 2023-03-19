@@ -2,20 +2,30 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Supply Request</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Inventory</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Supply Request
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
-                            <div class="col">
                                 <div class="col">
-                                    <h3 class="mb-0 title">Supply Requests</h3>
                                     <h5 class="mb-0" style="font-size:14px;">Instructions: Before
                                         starting,
                                         see to It that all inventory are in the Storage Area</h5><br><br>
                                 </div>
-                            </div>
                         </div>
                         <div class="table-responsive">
 
@@ -52,15 +62,15 @@
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <div class="container">
-                                                            <h1 class="modal-title">Requests Approval</h1>
+                                                        <div class="modal-header">
+                                                            <div class="container">
+                                                                <h1 class="modal-title">Requests Approval</h1>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col">
@@ -163,10 +173,10 @@
         </style>
 
         <!-- Script tag for datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <script>
-         $(document).ready(function() {
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
                 $("#stats").change(function() {
                     var selected = $("option:selected", this).val();
 
@@ -190,7 +200,7 @@
             jQuery(document).ready(function($) {
                 $('#myTable').DataTable();
             });
-    </script>
+        </script>
     @endsection
 
     @push('js')

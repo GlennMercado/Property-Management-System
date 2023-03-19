@@ -11,12 +11,22 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">User Management</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">User Management</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class=" col ">
                 <div class="card">
                     <div class="card-header bg-transparent row">
-                        <h3 class="mb-0 col-md-6">User Management</h3>
                         <div class="col text-right">
                             <button class="btn btn-outline-primary bg-success text-white" data-toggle="modal"
                                 data-target="#add_rooms">

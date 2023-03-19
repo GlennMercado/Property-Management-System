@@ -2,25 +2,21 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
-    <div class="container-fluid mt--7">
-        <link rel="stylesheet" type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="container-fluid mt--8">
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Dashboard</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="header-body">
-                <div class="row align-items-center py-4">
-                    <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-dark d-inline-block mb-0">Dashboard</h6>
-                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                                <li class="breadcrumb-item active text-dark" aria-current="page">Dashboard</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-xl-6 col-md-6 mb-4">
                         <div class="card card-stats">
@@ -50,7 +46,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Departing Guests Today</h5>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Departing Guests Today
+                                            </h5>
                                             <span class="h2 font-weight-bold mb-0">{{ $checked_guests }}</span>
                                         </div>
                                         <div class="col-auto">
@@ -76,8 +73,7 @@
                                             <span class="h2 font-weight-bold mb-0">{{ $pending_guests }}</span>
                                         </div>
                                         <div class="col-auto">
-                                            <div
-                                                class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                            <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
                                                 <i class="bi bi-arrow-repeat"></i>
                                             </div>
                                         </div>
@@ -99,7 +95,7 @@
                                             <span class="h2 font-weight-bold mb-0">{{ $reserved_guests }}</span>
                                         </div>
                                         <div class="col-auto">
-                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                            <div class="icon icon-shape bg-green text-white rounded-circle shadow">
                                                 <i class="bi bi-book"></i>
                                             </div>
                                         </div>
@@ -121,7 +117,7 @@
                                             <span class="h2 font-weight-bold mb-0">{{ $checked_guests }}</span>
                                         </div>
                                         <div class="col-auto">
-                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                                                 <i class="bi bi-door-open"></i>
                                             </div>
                                         </div>
@@ -144,7 +140,7 @@
                                             <span class="h2 font-weight-bold mb-0">5</span>
                                         </div>
                                         <div class="col-auto">
-                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <div class="icon icon-shape bg-red text-white rounded-circle shadow">
                                                 <i class="ni ni-chart-bar-32"></i>
                                             </div>
                                         </div>
@@ -157,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-5">
+                <div class="row mt-5 mb-4">
                     <div class="col-xl-6">
                         <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
                         <canvas id="doughnutChart"></canvas>
