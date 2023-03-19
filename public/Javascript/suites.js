@@ -108,6 +108,7 @@ function price_count() {
         dproomprice.innerHTML = payment.toLocaleString('en-US');
     }
     pass();
+    someoneElse();
 }
 document.getElementById("mainCheckbox").addEventListener("change", function () {
     document.getElementById("textbox1").disabled = !this.checked;
@@ -115,6 +116,17 @@ document.getElementById("mainCheckbox").addEventListener("change", function () {
 document.getElementById("ddCheckbox").addEventListener("change", function () {
     document.getElementById("textbox2").disabled = !this.checked;
 });
+function someoneElse(){
+    var checkbox = document.getElementById("mainCheckbox");
+    var txtbox = document.getElementById("textbox1");
+    var gname = document.getElementById("guest_name");
+    var gname1 = document.getElementById("guest_name1");
+    if (checkbox.checked == true){
+        gname.value = txtbox.value;
+    }else{
+        gname.value = gname1.value;
+    }
+}
 function enable_txt() {
     var checkbox = document.getElementById("mainCheckbox");
     var txtbox = document.getElementById("textbox1");
@@ -122,7 +134,6 @@ function enable_txt() {
         txtbox.disabled = false;
     }else{
         txtbox.disabled = true;
-        txtbox.value = "";
     }
 }
 function show_txt(){

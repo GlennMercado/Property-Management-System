@@ -21,7 +21,7 @@ class AdminController extends Controller
         // Front Desk Data
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count();
         $pending_guests = hotel_reservations::where('Booking_Status','Pending')->count();
-        $checked_guests = hotel_reservations::where('Payment_Status','Checked-In')->count();
+        $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count();
         $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count();
         // Event Inquiry
         $inquiries = convention_center_application::count();

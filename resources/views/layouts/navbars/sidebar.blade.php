@@ -1,5 +1,5 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark" id="sidenav-main"
-    style="background-color:rgb(50, 55, 69)">
+    style="background-color:rgb(54, 59, 69)">
     <div class="container-fluid">
         <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -9,11 +9,11 @@
         <!-- Brand -->
         <div class="sidenav-header d-flex justify-content-center">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('nvdcpics') }}/nvdc-logo4.png" style="height: 45px; width: 210px">
+                <img src="{{ asset('nvdcpics') }}/nvdc-logo6.png" style="height: 60px; width: 210px">
             </a>
         </div>
         <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main" style="background-color:rgb(54, 59, 69)">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
@@ -37,13 +37,13 @@
                 <!--Dashboard-->
                 <li class="nav-item {{ 'home' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('home') }}">
-                        <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
+                        <i class="bi bi-display" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
                 <!--Calendar-->
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="{{ route('Calendar') }}">
+                    <a class="nav-link text-dark" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
                     </a>
                 </li> 
