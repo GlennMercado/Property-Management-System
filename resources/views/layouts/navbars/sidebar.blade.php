@@ -42,7 +42,7 @@
                 </li>
 
                 <!--Calendar-->
-                <li class="nav-item {{ 'Calendar' == request()->path() ? 'act1' : '' }}">
+                <li class="nav-item">
                     <a class="nav-link text-light" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
                     </a>
