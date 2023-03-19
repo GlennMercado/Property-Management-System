@@ -40,8 +40,15 @@ class FinanceController extends Controller
         //Finance Dashboards
 		$list = DB::select('SELECT * FROM finance_2_reports');
         $basketball_sum = finance_2_reports::sum('basketball');
+        $unearned_sum = finance_2_reports::sum('unearned');
+        $otherincome_sum = finance_2_reports::sum('otherincome');
+        $parking_sum = finance_2_reports::sum('parking');
+        $managementfee_sum = finance_2_reports::sum('managementfee');
+        $event_sum = finance_2_reports::sum('event');
+        $hotel_sum = finance_2_reports::sum('hotel');
+        $commercialspace_sum = finance_2_reports::sum('commercialspace');
 
-            return view('Admin.pages.Finances.FinanceDashboard', ['list'=>$list], compact('basketball_sum'));
+            return view('Admin.pages.Finances.FinanceDashboard', ['list'=>$list], compact('basketball_sum', 'unearned_sum', 'otherincome_sum', 'parking_sum', 'managementfee_sum', 'event_sum', 'hotel_sum', 'commercialspace_sum'));
     }
 
     public function finance_archives()

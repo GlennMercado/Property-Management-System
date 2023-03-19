@@ -233,7 +233,6 @@ class InventoryController extends Controller
 
         
 
-
        $stock->description = $request->input('description');
        $stock->allstock = $request->input('allstock');
        $stock->total = $request->input('quantity');
@@ -241,7 +240,15 @@ class InventoryController extends Controller
        $stock->category = $request->input('category');
        $stock->name = $name;
 
-       
+       $sql = DB::select("SELECT * FROM hotelstocks WHERE name = '$name'");
+
+    if($sql)
+    {
+        Alert::Error('Error', 'Stock Already Exist!');
+        return redirect('StockCount')->with('Success', 'Failed');
+    }
+    else
+    {
        if($stock->save())
         {
             Alert::Success('Success', 'Stock Successfully Added!');
@@ -252,6 +259,7 @@ class InventoryController extends Controller
             Alert::Error('Error', 'Stock Submission Failed!, Please Try again.');
             return redirect('StockCount')->with('Error', 'Failed!');
         }
+    }
     }
 
 

@@ -4,14 +4,14 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <script>
+    <!-- <script>
         $.noConflict();
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
             $('#myTables').DataTable();
             $('#myTabless').DataTable();
         });
-    </script>
+    </script> -->
 
     <div class="container-fluid mt--7">
         <div class="col-xl">
@@ -62,6 +62,12 @@
                                 {{-- ORs --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
+                                    <select class="form-control" style="width:20%;" id="date">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
                                     <table class="table align-items-center table-flush" style="align-items:center"
                                         id="myTable">
                                         <thead class="thead-light">
@@ -365,6 +371,63 @@
             letter-spacing: 2px;
         }
     </style>
+
+    <script type="text/javascript">
+$.noConflict();
+
+jQuery(function($) {
+
+    var table = $('#myTable').DataTable({
+        dom: 'lBfrtip',
+        orderCellsTop: true,
+        fixedHeader: true,
+        lengthChange: false,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            // url: "",
+            data:function (d){
+                d.num = 1,
+                d.date = $('#date').val(),
+                d.search = $('#search1').val()
+            }
+        },
+        columns: [
+            {data: 'ornum' },
+            {data: 'created_at', 
+                render: function(data){
+                    var date = new Date(data);
+                    var month = [ "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December" ];
+
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            {data: 'payee' },
+            {data: 'particular' },
+            {data: 'eventdate' },
+            {data: 'amount' },
+            {data: 'remark' },
+            {data: 'debit' },
+            ]
+    });
+
+    $('#myTable_filter input[type="search"]').prop('id', 'search1');
+
+    table.buttons().container().insertBefore('#myTable_filter');
+
+    $('#date').change(function(){
+         table.draw();
+    });
+
+});
+
+jQuery(document).ready(function($) {
+            $('#myTables').DataTable();
+            $('#myTabless').DataTable();
+        });
+
+    </script>
 @endsection
 
 @push('js')

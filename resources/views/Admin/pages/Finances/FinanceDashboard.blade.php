@@ -33,7 +33,7 @@
     <script>
     <?php
     // Sample data for sales by daily
-    $salesData = [$basketball_sum,1,2,4,2,2,9,2];
+    $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
     // Convert the data to a JSON-encoded string
     $dataString = json_encode($salesData);
     ?>
