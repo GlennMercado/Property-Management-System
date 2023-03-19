@@ -240,10 +240,63 @@ class HotelController extends Controller
                 if($isarchived == false)
                 {
                     $hstatus = "Inspect";
-                    $roomstats = "Vacant for Cleaning";
+                    $roomstats = "Vacant for Accommodation";
                     DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array(
                         'Booking_Status' => $status,
                         'isarchived' => true
+                    ));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
+
+                    DB::table('housekeepings')->where('Booking_No', $bookno)->update(['Front_Desk_Status' => "Checked-Out"]);
+
+                    $sql2 = DB::select("SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No WHERE a.Booking_No = '$bookno'");
+                    $attendant;
+                    $keyid;
+
+                    foreach($sql2 as $lists)
+                    {
+                        $attendant = $lists->Attendant;
+                        $keyid = $lists->Key_ID;
+                    }
+
+                    if($attendant != "Unassigned")
+                    {
+                        $due_time = Carbon::now();
+                        Carbon::createFromFormat('Y-m-d H:i:s', $due_time);
+                        
+                        $due_time = Carbon::now()->addHour(2);
+
+                        $issued_time = Carbon::now();
+                        Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
+
+
+                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
+
+                        Alert::Success('Success', 'Booking Successfully Checked Out!');
+                        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+
+                    }
+                    else
+                    {
+                        Alert::Success('Success', 'Booking Successfully Checked Out!');
+                        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                    }
+                }
+                else
+                {
+                    Alert::Error('Error', 'Reservation is not available!');
+                    return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                }
+            }
+            if($status == "Checking(Before Check-Out)")
+            {
+                if($isarchived == false)
+                {
+                    $hstatus = "Inspect";
+                    $roomstats = "Vacant for Cleaning";
+                    DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array(
+                        'Booking_Status' => $status,
                     ));
                     DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
 

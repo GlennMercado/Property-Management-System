@@ -202,6 +202,7 @@ class HousekeepingController extends Controller
         try
         {
             $room_no = $request->input('room_no');
+            $bookingid = $request->input('booking_no');
             
            
             $totaldiscrepancy = array();
@@ -238,10 +239,14 @@ class HousekeepingController extends Controller
                                 'Status' => $status,
                                 'Quantity' => $quantity[$i]    
                                 ]);
+                                
                 }
             }
 
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
+
+            DB::table('hotel_reservations')->where('Booking_No', $bookingid)->update(['Booking_Status' => "Room Checked"]);
+
             
 
             Alert::Success('Success', 'Linen Successfully Checked!');
@@ -691,15 +696,13 @@ class HousekeepingController extends Controller
         }
     }
 
-    public function update_housekeeping_status($room_no, $id, $status, $req)
+    public function update_housekeeping_status($id, $status, $req)
     {
         
         try
         {           
-            $available = "Vacant for Accommodation";
             $hid = $id;
             $reqid = $req;
-            $roomno = $room_no;
             $stats = $status;
             $archive = true;
             
@@ -710,16 +713,16 @@ class HousekeepingController extends Controller
                 {               
                     DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
                     DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
-                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
-        
+                    //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
+                   
                     Alert::Success('Success', 'Setting Status Success!');
                     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
                 }
                 else
                 {
                     DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
-                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
-        
+                    //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
+                  
                     Alert::Success('Success', 'Setting Status Success!');
                     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');    
                 }
