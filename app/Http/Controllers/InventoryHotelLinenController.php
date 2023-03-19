@@ -106,7 +106,9 @@ class InventoryHotelLinenController extends Controller
           $add->Discrepancy = $discrepancy;
   
           $add->save();
-  
+
+          DB::table('list_of_housekeepers')->where('Housekeepers_Name', $attendant)->update(['Status' => "Available"]);
+                    
           Alert::Success('Success', 'Linen Request Successfully Updated!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
         }
