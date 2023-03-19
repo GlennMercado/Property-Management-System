@@ -364,61 +364,64 @@
                                                         </div>
                                                         <div class="col-md-6 text-sm mt-2" id="date_pass2">
                                                         </div>
-                                                </div>
-                                                <div class="row shadow p-3 mt-2">
-                                                    <div class="col-md-6 text-sm font-weight-bold">
-                                                        <h3>Payment method:</h3>
-                                                    </div>
-                                                    <div class="col-md-6 text-sm font-weight-bold">
-                                                        <img class="gcash" src="{{ asset('nvdcpics') }}/Gcash.webp">
-                                                    </div>
-                                                    <div class="col-md-12 text-sm font-weight-bold">
-                                                        <h4 class="text-muted mt-2">Room price(2 pax): <span
-                                                                class="text-muted" id="2pax"></span> </h4>
-                                                        <h4 class="text-muted">Per-pax subtotal: <span class="text-muted"
-                                                                id="subtotal"></span> </h4>
-                                                        <h3>Total Payment:</h3>
-                                                        <h2 class="display-2 mt--3 text-green currency" id="dp">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                                <div class="row shadow p-3 mt-2">
-                                                    <div class="col-md-12">
-                                                        <p class="font-weight-bold text-center">NVDC Properties: 0923423424
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-12 d-flex justify-content-center">
-                                                        {!! QrCode::size(170)->generate('0923423424') !!}
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <p class="text-center">Gcash account name <span
-                                                                class="text-danger">*</span></p>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <input type="text" id="gcash_acc" onkeyup="enable_submit()"
-                                                            name="gcash_account" class="form-control" maxlength="32">
-                                                    </div>
-                                                    <div class="col-md-12 mt-1">
-                                                        <p class="text-center">Upload your proof of payment here <span
-                                                                class="text-danger">*</span></p>
-                                                    </div>
-                                                    <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                        <input type="file" onchange="enable_submit()" id="gcash_img"
-                                                            placeholder="Ex: John Doe" name="images"
-                                                            class="form-control">
+                                                        <div class="row shadow p-3 mt-2">
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <h3>Payment method:</h3>
+                                                            </div>
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <img class="gcash"
+                                                                    src="{{ asset('nvdcpics') }}/Gcash.webp">
+                                                            </div>
+                                                            <div class="col-md-12 text-sm font-weight-bold">
+                                                                <h4 class="text-muted mt-2">Room price(2 pax): <span
+                                                                        class="text-muted" id="2pax"></span> </h4>
+                                                                <h4 class="text-muted">Per-pax subtotal: <span
+                                                                        class="text-muted" id="subtotal"></span> </h4>
+                                                                <h3>Total Payment:</h3>
+                                                                <h2 class="display-2 mt--3 text-green currency"
+                                                                    id="dp">
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                    <div class="row shadow p-3 mt-2">
+                                                        <div class="col-md-12">
+                                                            <p class="font-weight-bold text-center">NVDC Properties:
+                                                                0923423424
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-12 d-flex justify-content-center">
+                                                            {!! QrCode::size(170)->generate('0923423424') !!}
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <p class="text-center">Gcash account name <span
+                                                                    class="text-danger">*</span></p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <input type="text" id="gcash_acc"
+                                                                onkeyup="enable_submit()" name="gcash_account"
+                                                                class="form-control" maxlength="32">
+                                                        </div>
+                                                        <div class="col-md-12 mt-1">
+                                                            <p class="text-center">Upload your proof of payment here <span
+                                                                    class="text-danger">*</span></p>
+                                                        </div>
+                                                        <div class="col-md-12 mx-auto d-flex justify-content-center">
+                                                            <input type="file" onchange="enable_submit()"
+                                                                id="gcash_img" placeholder="Ex: John Doe" name="images"
+                                                                class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" id="submit_button2"
-                                                class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit"
-                                                value="Submit" style="width:40%;" data-target="#submit" disabled />
+                                            <div class="modal-footer">
+                                                <input type="submit" id="submit_button2"
+                                                    class="mx-auto d-flex justify-content-center btn btn-success prevent_submit mt--4 btn_submit"
+                                                    value="Submit" style="width:40%;" data-target="#submit" disabled />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                         <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">

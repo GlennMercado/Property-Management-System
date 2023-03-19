@@ -4,6 +4,8 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -130,23 +132,19 @@
                 </div>
             </div>
             <div class="card shadow mt--3 col-md-12">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col text-right">
-                            <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
-                                Book Now
-                            </a>
-                        </div>
+                <div class="card-header row d-flex">
+                    <div class="col-md-4">
+                        <select class="form-control" style="border:2px solid" id="optionselect">
+                            <option value="Pending" selected="true">Pending</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Checked-In">Checked-In</option>
+                            <option value="Finished">Finished</option>
+                        </select>
                     </div>
-                    <div class="row align-items-center">
-                        <div class="col-md-4">
-                            <select class="form-control" style="border:2px solid" id="optionselect">
-                                <option value="Pending" selected="true">Pending</option>
-                                <option value="Reserved">Reserved</option>
-                                <option value="Checked-In">Checked-In</option>
-                                <option value="Finished">Finished</option>
-                            </select>
-                        </div>
+                    <div class="col text-right">
+                        <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
+                            Book Now
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -293,24 +291,77 @@
                                                     <div class="modal-header">
                                                         <h3 class="modal-title text-left display-4"
                                                             id="exampleModalLabel">
-                                                            Hotel Reservation
+                                                            Proof of Payment
                                                         </h3>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <h4 class="text-center">Change <span
-                                                                style="color:red;">{{ $lists->Guest_Name }}</span>
-                                                            Payment
-                                                            Status to Paid? </h4>
+                                                    <div class="modal-body row">
+                                                        <div class="col-md-6 text-sm font-weight-bold">
+                                                            Room no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm">
+                                                            {{ $lists->Room_No }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Name:
+                                                        </div>
+
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Guest_Name }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Email:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Email }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Mobile no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Mobile_Num }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check in date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_In_Date }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check out date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_Out_Date }}
+                                                        </div>
+                                                        <a href="{{ url($lists->Proof_Image) }}" data-lightbox="photos">
+                                                            <img src="{{ url($lists->Proof_Image) }}"
+                                                                class="card-img-top p-5" />
+                                                        </a>
+                                                        <div class="row p-3 mt-2">
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <h3 class="p-2">Payment method:</h3>
+                                                            </div>
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <img class="gcash"
+                                                                    src="{{ asset('nvdcpics') }}/Gcash.webp"
+                                                                    style="width: 200px; height: 60px">
+                                                            </div>
+                                                            <div class="col-md-12 text-sm font-weight-bold mt-4">
+                                                                <h3 class="p-2">Total Payment:</h3>
+                                                                <h2 class="display-2 mt--3 text-green p-2" id="currency">
+                                                                    ₱{{ $lists->Payment }}
+                                                                </h2>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                         <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
                                                         <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
-                                                            class="btn btn-success">Yes</a>
+                                                            class="btn btn-success">Approve Payment</a>
                                                     </div>
                                                 </div>
                                             </div>
