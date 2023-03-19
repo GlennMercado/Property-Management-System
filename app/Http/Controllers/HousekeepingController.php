@@ -12,6 +12,7 @@ use App\Models\hotel_room_linens_reports;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use App\Models\lost_and_found;
+use App\Models\List_of_Housekeepers;
 use Carbon\Carbon;
 use DataTables;
 
@@ -49,11 +50,15 @@ class HousekeepingController extends Controller
         {
             $array[] = ['Room_No' => $counts->Room_No];
         }
+
+        $housekeeper = DB::select("SELECT * FROM list_of_housekeepers WHERE Status = 'Available'");
+
         return view('Admin.pages.HousekeepingForms.Housekeeping_Dashboard', 
                     [
                     'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
                     'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
-                    'linen' => $linen_request, 'maintenance' => $maintenance
+                    'linen' => $linen_request, 'maintenance' => $maintenance,
+                    'housekeeper' => $housekeeper
                     ]
                     );
     }
@@ -75,8 +80,11 @@ class HousekeepingController extends Controller
 			$count[] = ['Room_No' => $checks->Room_No];
 		}
 
+        $housekeeper = DB::select("SELECT * FROM list_of_housekeepers WHERE Status = 'Available'");
+
+
         $list = DB::select("SELECT * FROM lost_and_founds");
-        return view('Admin.pages.HousekeepingForms.LostandFound', ['count'=>$count, 'list' => $list]);
+        return view('Admin.pages.HousekeepingForms.LostandFound', ['count'=>$count, 'list' => $list, 'housekeeper' => $housekeeper]);
     }
 
     public function add_lost_item(Request $request)
@@ -193,8 +201,10 @@ class HousekeepingController extends Controller
         {
             $array[] = ['Room_No' => $counts->Room_No];
         }
+        $housekeeper = DB::select("SELECT * FROM list_of_housekeepers WHERE Status = 'Available'");
+
         
-        return view('Admin.pages.HousekeepingForms.Linen_Monitoring', ['list' => $list, 'list2' => $list2, 'array' => $array]);
+        return view('Admin.pages.HousekeepingForms.Linen_Monitoring', ['housekeeper'=>$housekeeper, 'list' => $list, 'list2' => $list2, 'array' => $array]);
     }
     
     public function check_linen(Request $request)
@@ -630,6 +640,8 @@ class HousekeepingController extends Controller
     
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
+                DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+
                 Alert::Success('Success', 'Attendant successfully assigned!');
                 return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             }
@@ -665,6 +677,8 @@ class HousekeepingController extends Controller
                 'Attendant' => $housekeeper
             ));
 
+            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+
             Alert::Success('Success', 'Attendant Successfully Assigned!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
@@ -686,6 +700,9 @@ class HousekeepingController extends Controller
                 'Attendant' => $housekeeper
             ));
 
+            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+
+
             Alert::Success('Success', 'Attendant Successfully Assigned!');
             return redirect('Linen_Monitoring')->with('Success', 'Data Updated');
         }
@@ -696,7 +713,7 @@ class HousekeepingController extends Controller
         }
     }
 
-    public function update_housekeeping_status($id, $status, $req)
+    public function update_housekeeping_status($hk, $id, $status, $req)
     {
         
         try
@@ -705,6 +722,7 @@ class HousekeepingController extends Controller
             $reqid = $req;
             $stats = $status;
             $archive = true;
+            $housekeeper = $hk;
             
             
             if($stats == "Cleaned")
@@ -715,6 +733,8 @@ class HousekeepingController extends Controller
                     DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
                     //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
                    
+                    DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Available"]);
+                    
                     Alert::Success('Success', 'Setting Status Success!');
                     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
                 }
@@ -723,6 +743,8 @@ class HousekeepingController extends Controller
                     DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
                     //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
                   
+                    DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Available"]);
+                    
                     Alert::Success('Success', 'Setting Status Success!');
                     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');    
                 }
@@ -744,6 +766,32 @@ class HousekeepingController extends Controller
 
     }
 
+    public function List_of_Housekeepers()
+    {
+        $housekeeper = DB::select("SELECT * FROM list_of_housekeepers");
+        return view('Admin.pages.HousekeepingForms.Housekeeper', ['list' => $housekeeper]);
+    }
+
+    public function add_housekeeper(Request $request)
+    {
+        $name = $request->input('housekeeper');
+
+        $add = new List_of_Housekeepers;
+
+        $add->Housekeepers_Name = $name;
+
+        if($add->save())
+        {
+            Alert::Success('Success', 'Adding Housekeeper Success!');
+            return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Error', 'Adding Housekeeper Failed!');
+            return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+        }
+
+    }
     
 
     

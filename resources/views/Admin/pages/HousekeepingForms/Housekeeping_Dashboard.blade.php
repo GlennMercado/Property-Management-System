@@ -245,18 +245,11 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B.
-                                                                                        Adams
-                                                                                    </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan
-                                                                                        Dela
-                                                                                        Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark
-                                                                                        Delos
-                                                                                        Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob
-                                                                                        Del
-                                                                                        Rosario</option>
+                                                                                        @foreach($housekeeper as $housekeepers)
+                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
+                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                        </option>
+                                                                                    @endforeach  
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -306,7 +299,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_stats', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -561,18 +554,11 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B.
-                                                                                        Adams
-                                                                                    </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan
-                                                                                        Dela
-                                                                                        Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark
-                                                                                        Delos
-                                                                                        Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob
-                                                                                        Del
-                                                                                        Rosario</option>
+                                                                                    @foreach($housekeeper as $housekeepers)
+                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
+                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                        </option>
+                                                                                    @endforeach      
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -704,7 +690,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_stats', ['id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -959,18 +945,11 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                    <option value="Marie B. Adams">Marie B.
-                                                                                        Adams
-                                                                                    </option>
-                                                                                    <option value="Nathan Dela Cruz">Nathan
-                                                                                        Dela
-                                                                                        Cruz</option>
-                                                                                    <option value="Mark Delos Santos">Mark
-                                                                                        Delos
-                                                                                        Santos</option>
-                                                                                    <option value="Jacob Del Rosario">Jacob
-                                                                                        Del
-                                                                                        Rosario</option>
+                                                                                        @foreach($housekeeper as $housekeepers)
+                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
+                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                        </option>
+                                                                                    @endforeach  
                                                                                 </select>
                                                                             </div>
                                                                         </div>

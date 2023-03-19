@@ -132,11 +132,11 @@
                                             @php $datenow = date('Y-m-d'); @endphp
 
                                             @foreach ($list as $lists)
-                                                @if ($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status != 'Checked-In')
+                                                @if ($lists->IsArchived == false && $lists->Check_In_Date == $datenow && $lists->Front_Desk_Status == 'Reserved')
                                                     <tr>
                                                         <td>
                                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                data-target="#view{{ $lists->ID }}"> <i
+                                                                data-target="#view1{{ $lists->ID }}"> <i
                                                                     class="bi bi-eye"></i>
                                                             </button>
 
@@ -162,7 +162,7 @@
                                                     </tr>
 
                                                     <!--View-->
-                                                    <div class="modal fade" id="view{{ $lists->ID }}" tabindex="-1"
+                                                    <div class="modal fade" id="view1{{ $lists->ID }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -301,7 +301,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -406,7 +406,7 @@
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
 
-                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned')
+                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned' && $lists->Front_Desk_Status == "Checked-Out")
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->ID }}"
                                                                     title="Update Housekeeping Status">
@@ -698,7 +698,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_status', ['roomno' => $lists->Room_No, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_status', ['id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>

@@ -107,6 +107,14 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'List_of_Housekeepers' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('List_of_Housekeepers') }}">
+                                    <i class="bi bi-clipboard2-data-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Housekeepers') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Linen_Monitoring' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Linen_Monitoring') }}">
                                     <i class="bi bi-clipboard2-data-fill" style="color:rgb(224, 223, 223)"></i>

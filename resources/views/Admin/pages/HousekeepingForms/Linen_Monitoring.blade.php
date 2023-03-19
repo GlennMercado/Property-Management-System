@@ -108,18 +108,11 @@
                                                                         <option selected="true"
                                                                             disabled="disabled">
                                                                             Select</option>
-                                                                        <option value="Marie B. Adams">Marie B.
-                                                                            Adams
-                                                                        </option>
-                                                                        <option value="Nathan Dela Cruz">Nathan
-                                                                            Dela
-                                                                            Cruz</option>
-                                                                        <option value="Mark Delos Santos">Mark
-                                                                            Delos
-                                                                            Santos</option>
-                                                                        <option value="Jacob Del Rosario">Jacob
-                                                                            Del
-                                                                            Rosario</option>
+                                                                            @foreach($housekeeper as $housekeepers)
+                                                                                <option value="{{$housekeepers->Housekeepers_Name}}">
+                                                                                    {{$housekeepers->Housekeepers_Name}}
+                                                                                </option>
+                                                                            @endforeach  
                                                                     </select>
                                                                 </div>
                                                             </div>

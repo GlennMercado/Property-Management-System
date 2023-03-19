@@ -66,13 +66,17 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
 
+		Route::get('List_of_Housekeepers', [App\Http\Controllers\HousekeepingController::class, 'List_of_Housekeepers'])->name('List_of_Housekeepers');
+
+		Route::post('/add_housekeeper', 'App\Http\Controllers\HousekeepingController@add_housekeeper');
+
 		Route::post('/assign_housekeepers', 'App\Http\Controllers\HousekeepingController@assign_housekeeper');
 
 		Route::post('/supply_requests', 'App\Http\Controllers\HousekeepingController@supply_request');
 		Route::post('/linen_requests', 'App\Http\Controllers\HousekeepingController@linen_request');
 
 		Route::post('/deduct_supplies', 'App\Http\Controllers\HousekeepingController@deduct_supply');
-		Route::get('/update_housekeeping_stats/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
+		Route::get('/update_housekeeping_stats/{hk}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeepingController@update_housekeeping_status');
 		Route::post('/check_linens', 'App\Http\Controllers\HousekeepingController@check_linen');
 
 		Route::get('Linen_Monitoring', [App\Http\Controllers\HousekeepingController::class, 'linen_monitoring'])->name('Linen_Monitoring');
@@ -284,7 +288,8 @@ Route::middleware(['auth', 'Housekeeper'])->group(function(){
 	Route::post('/linen_request', 'App\Http\Controllers\HousekeeperController@linen_request');
 
 	Route::post('/deduct_supply', 'App\Http\Controllers\HousekeeperController@deduct_supply');
-	Route::get('/update_housekeeping_status/{room_no}/{id}/{status}/{req}', 'App\Http\Controllers\HousekeeperController@update_housekeeping_status');
+	
+	Route::get('/update_housekeeping_status/{id}/{status}/{req}', 'App\Http\Controllers\HousekeeperController@update_housekeeping_status');
 	Route::post('/check_linen', 'App\Http\Controllers\HousekeeperController@check_linen');
 	Route::post('/assign_housekeeper', 'App\Http\Controllers\HousekeeperController@assign_housekeeper');
 

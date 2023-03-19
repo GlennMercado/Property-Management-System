@@ -36,7 +36,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Add Room</h5>
+                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Add Lost Item</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -88,18 +88,11 @@
                                                         <option selected="true" disabled="disabled" selected disabled
                                                             value="">
                                                             Select</option>
-                                                        <option value="Marie B. Adams">Marie B.
-                                                            Adams
-                                                        </option>
-                                                        <option value="Nathan Dela Cruz">Nathan
-                                                            Dela
-                                                            Cruz</option>
-                                                        <option value="Mark Delos Santos">Mark
-                                                            Delos
-                                                            Santos</option>
-                                                        <option value="Jacob Del Rosario">Jacob
-                                                            Del
-                                                            Rosario</option>
+                                                            @foreach($housekeeper as $housekeepers)
+                                                                <option value="{{$housekeepers->Housekeepers_Name}}">
+                                                                    {{$housekeepers->Housekeepers_Name}}
+                                                                </option>
+                                                            @endforeach  
                                                     </select>
 
                                                     <p class="text-left mt-2">Item Image </p>
