@@ -43,7 +43,7 @@
 
                 <!--Calendar-->
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('Calendar') }}">
+                    <a class="nav-link text-light" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
                     </a>
                 </li> 
