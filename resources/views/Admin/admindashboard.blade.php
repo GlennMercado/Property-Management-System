@@ -19,7 +19,7 @@
             <div class="header-body">
                 <div class="row">
                     <div class="col-xl-6 col-md-6 mb-4">
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6 mb-4">
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
 
-                        <div class="card card-stats">
+                        <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
                                 <div class="card-body">
                                     <div class="row">
@@ -153,14 +153,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-5 mb-4">
+                <div class="row mt-3">
                     <div class="col-xl-6">
                         <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
-                        <canvas id="doughnutChart"></canvas>
+                        <canvas class="p-3" id="doughnutChart"></canvas>
                     </div>
                     <div class="col-xl-6">
                         <h2>Finance</h2>
-                        <canvas id="myChart"></canvas>
+                        <canvas class="p-3" id="myChart"></canvas>
                     </div>
                 </div>
             </div>
