@@ -73,6 +73,13 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'GuestFolio' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
+                                    <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Guest Folio') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'EventInquiryForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('EventInquiryForm') }}">
                                     <i class="bi bi-calendar-event-fill" style="color:rgb(224, 223, 223)"></i>
