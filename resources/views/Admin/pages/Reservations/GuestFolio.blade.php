@@ -34,33 +34,64 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col" style="font-size:15px;">Action</th>
-                                            <th scope="col" style="font-size:15px;">Payment</th>
-                                            <th scope="col" style="font-size:15px;">Room Number</th>
-                                            <th scope="col" style="font-size:15px;">Name</th>
-                                            <th scope="col" style="font-size:15px;">Pax</th>
-                                            <th scope="col" style="font-size:15px;">Check In</th>
-                                            <th scope="col" style="font-size:15px;">Check Out</th>
+                                            <th scope="col" style="font-size:15px;">Guest list</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                        data-target="" title="Update">
-                                                        <i class="bi bi-eye-fill"></i>
+                                                    <button class="btn btn-sm bg-green text-white" data-toggle="modal"
+                                                        data-target=".bd-example-modal-lg" title="Add Charges" onclick="details()">
+                                                        Add charges
+                                                        <i class="bi bi-plus-circle text-white"></i>
                                                     </button>
                                                 </td>
-                                                <td>{{ $lists->Payment }}</td>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Guest_Name }}</td>
-                                                <td>{{ $lists->No_of_Pax }}</td>
-                                                <td>{{ $lists->Check_In_Date }}</td>
-                                                <td>{{ $lists->Check_Out_Date }}</td>
+                                                <td id="g1">
+                                                    NAME: <span class="font-weight-bold">{{ $lists->Guest_Name }}</span>
+                                                    <br>
+                                                    PAYMENT: <span class="font-weight-bold">{{ $lists->Payment }}</span>
+                                                    <br>
+                                                    ROOM NUMBER: <span class="font-weight-bold">{{ $lists->Room_No }}</span>
+                                                    <br>
+                                                    NUMBER OF PAX: <span
+                                                        class="font-weight-bold">{{ $lists->No_of_Pax }}</span> <br>
+                                                    DATE OF ARRIVAL: <span
+                                                        class="font-weight-bold">{{ $lists->Check_In_Date }}</span> <br>
+                                                    DATE OF DEPARTURE: <span
+                                                        class="font-weight-bold">{{ $lists->Check_Out_Date }}</span> <br>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                            <!-- Large modal -->
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Charges</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Add Charges
+                                            <select class="form-control" name="Charges" id="">
+                                                <option value="">Towel = ₱200</option>
+                                                <option value="">Linen = ₱150</option>
+                                                <option value="">Bed Pad = ₱200</option>
+                                                <option value="">Others</option>
+                                            </select>
+                                            <input type="text" class="form-control mt-3" placeholder="Enter Price" hidden>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button type="button" class="btn bg-green text-white">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,8 +99,10 @@
             </div>
         </div>
     </div>
+    <script>
+        
+    </script>
 @endsection
-
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
