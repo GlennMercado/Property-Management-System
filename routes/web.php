@@ -59,9 +59,9 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-		Route::get('/guest_folio/{id}', 'App\Http\Controllers\HotelController@guest_folio');
+		Route::get('/invoice/{id}', 'App\Http\Controllers\HotelController@invoice');
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
-
+		Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
 	//For Housekeeping and Maintenance
 
 		Route::get('Housekeeping_Dashboard', [App\Http\Controllers\HousekeepingController::class, 'housekeeping_dashboard'])->name('Housekeeping_Dashboard');
@@ -166,12 +166,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
-		
-	
-
-		//Guest Receipt
-		Route::get('GuestFolio', function () {return view('Admin.pages.OperationManagement.GuestFolio');})->name('GuestFolio'); 
-		
 		//Financemodule
 		//Archives
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');

@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\hotel_reservations;
 use App\Models\housekeepings;
-use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -387,10 +386,10 @@ class HotelController extends Controller
     {
         //
     }
-    public function guest_folio($id){
-        $guest_folio_id = $id;    
-        $list = DB::select("SELECT * FROM hotel_reservations  WHERE id = '$guest_folio_id'");    
-        return view('Admin.pages.Reservations.GuestFolio', ['list'=>$list]);
+    public function invoice($id){
+        $invoice_id = $id;
+        $list = DB::select("SELECT * FROM hotel_reservations  WHERE id = '$invoice_id'");    
+        return view('Admin.pages.Reservations.Invoice', ['list'=>$list]);
     }
 
 }

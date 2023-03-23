@@ -13,7 +13,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+                                    <img src="{{ asset('nvdcpics') }}/user1.png" class="rounded-circle" style="width: heigh">
                                 </a>
                             </div>
                         </div>
@@ -34,7 +34,9 @@
                             <h3>
                                 {{ auth()->user()->name }}<span class="font-weight-light"></span>
                             </h3>
-                            
+                            <h3>
+                                {{ auth()->user()->User_Type }}
+                            </h3>
                         </div>
                     </div>
                 </div>

@@ -20,9 +20,11 @@ class AdminController extends Controller
         $vacant_cleaning = novadeci_suites::where('Status', 'Vacant for Cleaning')->count();
         // Front Desk Data
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count();
-        $pending_guests = hotel_reservations::where('Booking_Status','Pending')->count();
+        $pending_guests = hotel_reservations::where('Payment_Status','Pending')->count();
         $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count();
         $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count();
+        // Arriving/Departing
+        $arriving = DB::table('hotel_reservations')->select(DB::raw('*'))->whereRaw('Date(Check_In_Date) = CURDATE()')->count();
         // Event Inquiry
         $inquiries = convention_center_application::count();
         // Commercial Spaces Applications

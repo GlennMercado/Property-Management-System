@@ -39,7 +39,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-xl-6 col-md-6 mb-4">
                         <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
@@ -69,7 +69,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Pending Reservations</h5>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Pending</h5>
                                             <span class="h2 font-weight-bold mb-0">{{ $pending_guests }}</span>
                                         </div>
                                         <div class="col-auto">

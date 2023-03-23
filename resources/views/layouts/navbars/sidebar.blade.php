@@ -42,7 +42,7 @@
                 </li>
 
                 <!--Calendar-->
-                <li class="nav-item">
+                <li class="nav-item {{ 'Calendar' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
                     </a>
@@ -69,6 +69,13 @@
                             <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Hotel Booking') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'GuestFolio' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
+                                    <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Guest Folio') }}
                                 </a>
                             </li>
                         </ul>

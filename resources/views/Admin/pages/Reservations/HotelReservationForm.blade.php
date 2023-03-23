@@ -573,12 +573,12 @@
                                                             <i class="bi bi-arrow-repeat"></i>
                                                         </button>
                                                     @endif
-                                                    {{-- Guest Folio --}}
-                                                    <button class="btn btn-sm btn-outline-primary"
-                                                        data-target="#views1{{ $lists->Booking_No }}"
-                                                        title="Guest Folio">
+                                                    {{-- Invoice --}}
+                                                    <a href="{{ url('/invoice', ['id' => $lists->id]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
                                                         <i class="bi bi-file-earmark-text"></i>
-                                                    </button>
+                                                    </a>
                                                 </td>
                                                 <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:15px;">{{ $lists->Room_No }}</td>
