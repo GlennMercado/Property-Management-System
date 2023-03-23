@@ -301,8 +301,7 @@ class FinanceReportController extends Controller
         if($request->ajax()){
             if($request->get('num') == 1)
             {
-                $data = housekeepings::select('housekeepings.*', 'hotel_reservations.Guest_Name', 'hotel_reservations.Check_In_Date', 'hotel_reservations.Check_Out_Date')
-                        ->where('housekeepings.IsArchived', '=', 1)->where('hotel_reservations.IsArchived', '=', 1);
+                $data = finance_2_reports::select('finance_2_reports.*');
 
                 return Datatables::of($data)
                 ->addIndexColumn()
@@ -356,7 +355,7 @@ class FinanceReportController extends Controller
                 
                  
         }
-        return view('Admin.pages.HousekeepingForms.Housekeeping_Reports');
+        return view('Admin.pages.Finances.DailyReport');
     }
 
     /**
