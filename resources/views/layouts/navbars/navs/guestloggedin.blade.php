@@ -6,12 +6,9 @@
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-
             <span class="avatar avatar-sm rounded-circle">
-                <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+                <img src="{{ asset('nvdcpics') }}/user2.png" class="rounded-circle">
             </span>
-
-            </a>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <!-- Collapse header -->
@@ -19,7 +16,7 @@
                 <div class="row">
                     <div class="col-2 collapse-brand">
                         <a href="{{ route('welcome') }}">
-                            <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+                            <img src="{{ asset('nvdcpics') }}/user2.png" class="rounded-circle">
                         </a>
                     </div>
                     <div class="col mt-1 collapse-brand">
@@ -83,31 +80,6 @@
                         <span class="nav-link-inner--text">{{ __('Logout') }}</span>
                     </a>
                 </li>
-                <!--<div class="btn-group">
-                     <button type="button" class="btn dropdown-toggle" style = "background-color:#30BC6C; color:white;" data-toggle="dropdown" aria-haspopup="" aria-expanded="false">
-                    <i class="bi bi-book-half mr-md-2"></i>Book Now
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url('suites') }}">Suite</a>
-                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
-                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
-                    </div> -->
-                <!-- <div class="dropdown nav-item">
-                    <p class="dropbtn nav-link nav-link-icon">Book Now</p>
-                        <div class="dropdown-content">
-                            <a href="{{ url('suites') }}">Suites</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </div> -->
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link nav-link-icon text-default" href="#" data-toggle="modal"
-                        data-target="#ticket">
-                        <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('Submit a Ticket') }}</span>
-                    </a>
-                </li> -->
             </ul>
         </div>
     </div>
@@ -117,7 +89,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                        <img src="{{ asset('nvdcpics') }}/user.png" class="rounded-circle">
+                        <img src="{{ asset('nvdcpics') }}/user2.png" class="rounded-circle">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
                         <span class="mb-0 text-white font-weight-bold">{{ auth()->user()->name }}</span>
