@@ -93,10 +93,6 @@
                                                 <th scope="col">Debit Type</th>
                                             </tr>
                                         </thead>
-
-                                        <tbody>
-                                            
-                                        </tbody>
                                     </table>
                                     <!-- Modal -->
                                     <!--View-->
@@ -316,6 +312,7 @@
                 </div>
             </div>
         </div>
+    </div>
     
     <style>
         /* disable arrows input type number */
@@ -360,7 +357,7 @@
                         data: 'ornum'
                     },
                     {
-                        data: 'created_at',
+                        data: 'eventdate',
                         render: function(data) {
                             var date = new Date(data);
                             var month = ["January", "February", "March", "April", "May", "June",
@@ -407,7 +404,10 @@
             $('#myTabless').DataTable();
         });
     </script>
+    
     </div>
+
+    
 @endsection
 
 @push('js')

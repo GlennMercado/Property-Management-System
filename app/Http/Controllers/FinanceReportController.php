@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\finances;
 use App\Models\finance_reports;
 use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -313,22 +314,22 @@ class FinanceReportController extends Controller
                     elseif($request->get('date') == "Daily")
                     {
                         $now = Carbon::now()->format('Y-m-d');
-                        $instance->where('hotel_reservations.Check_Out_Date', '=', $now)->get();
+                        $instance->where('finance_2_reports.eventdate', '=', $now)->get();
                     }
                     elseif($request->get('date') == "Weekly")
                     {
                         $startweek = Carbon::now()->startofweek()->format('Y-m-d');
                         $endweek = Carbon::now()->endofweek()->format('Y-m-d');
-                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startweek)
-                                ->where('hotel_reservations.Check_Out_Date', '<=', $endweek)
+                        $instance->where('finance_2_reports.eventdate', '>=', $startweek)
+                                ->where('finance_2_reports.eventdate', '<=', $endweek)
                                 ->get();
                     }
                     elseif($request->get('date') == "Monthly")
                     {
                         $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
                         $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
-                        $instance->where('hotel_reservations.Check_Out_Date', '>=', $startmonth)
-                                ->where('hotel_reservations.Check_Out_Date', '<=', $endmonth)
+                        $instance->where('finance_2_reports.eventdate', '>=', $startmonth)
+                                ->where('finance_2_reports.eventdate', '<=', $endmonth)
                                 ->get();
                     }
 
@@ -339,11 +340,11 @@ class FinanceReportController extends Controller
                             $converttodate = strtotime($search);
                             $date_search = date('Y-m-d', $converttodate);
 
-                            $w->orwhere('housekeepings.Booking_No', 'LIKE', "%$search%")
-                                ->orwhere('housekeepings.Attendant', 'LIKE', "%$search%")
-                                ->orwhere('hotel_reservations.Guest_Name', 'LIKE', "%$search%")
-                                ->orwhere('housekeepings.Housekeeping_Status', 'LIKE', "%$search%")
-                                ->orwhere(DB::raw("(STR_TO_DATE(hotel_reservations.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
+                            // $w->orwhere('finances.Booking_No', 'LIKE', "%$search%")
+                            //     ->orwhere('finances.Attendant', 'LIKE', "%$search%")
+                            //     ->orwhere('finances.Guest_Name', 'LIKE', "%$search%")
+                            //     ->orwhere('finances.Housekeeping_Status', 'LIKE', "%$search%")
+                            //     ->orwhere(DB::raw("(STR_TO_DATE(finances.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
                         });
                     }          
                 })
