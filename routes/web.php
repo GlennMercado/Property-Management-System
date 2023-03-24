@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //Homepage	r
 Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
 
@@ -35,6 +34,7 @@ Route::get('Welcomerooms', [App\Http\Controllers\WelcomeController::class, 'Welc
 
 
 Auth::routes(['verify' => true]);
+
 
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
@@ -166,6 +166,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
+		
 		//Financemodule
 		//Archives
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
@@ -203,6 +204,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	//User management
 		Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
 		Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
+
+		Route::get('/enable_disable_user/{id}/{em}/{endis}', 'App\Http\Controllers\UserManagementController@enable_disable_user');
 
 
 

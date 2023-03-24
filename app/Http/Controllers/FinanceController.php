@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\finances;
+use App\Models\hotel_reservations;
 use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
@@ -53,11 +53,19 @@ class FinanceController extends Controller
 
     public function finance_archives()
     {
-        //
-        //Finance Dashboards
-		$list = DB::select('SELECT * FROM finances');
+      
 
+        $list = DB::select('SELECT * FROM hotel_reservations');
+        $sql = DB::select("SELECT * FROM hotel_reservations WHERE Payment_Status = 'Paid'");
+
+
+        if ($sql) {
             return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list]);
+
+        } else{
+            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list]);
+
+        }
     }
 
     /**
