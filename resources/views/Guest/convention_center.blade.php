@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{{ asset('js/convention.js') }}"></script>
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="image-container" style="height: 25vh">
             <a href="{{ asset('nvdcpics') }}/convention2.jpg" data-lightbox="photos">
@@ -30,39 +31,49 @@
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Client Name <span class="text-danger">*</span></p>
-                                    <input type="text" name="client_name" class="form-control"
-                                        placeholder="Enter client name" maxlength="64" required>
+                                    <input type="text" id="name" name="client_name" class="form-control"
+                                        placeholder="Enter client name" maxlength="64" onchange="validateName()">
+                                    <p id="name-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots" name="contact_no"
-                                        class="form-control" placeholder="09XXXXXXXX" required>
+                                        class="form-control" placeholder="09XXXXXXXX" id="contact"
+                                        onchange="validateContact()">
+                                    <p id="contact-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Contact Person <span class="text-danger">*</span></p>
                                     <input type="text" name="contact_person" class="form-control"
-                                        placeholder="Enter contact person" maxlength="64" required>
+                                        placeholder="Enter contact person" maxlength="64" id="contactperson"
+                                        onchange="validateContactPerson()">
+                                    <p id="cp-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Person Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
-                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX" required>
+                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
+                                        id="ContactPersonNum" onchange="validateContactPersonNum()">
+                                    <p id="ContactPersonNum-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Billing Address <span class="text-danger">*</span></p>
                                     <input type="text" name="billing_address" maxlength="82" class="form-control"
-                                        placeholder="Enter billing address" required>
+                                        placeholder="Enter billing address" id="address" onchange="validateAddress()">
+                                    <p id="address-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Email <span class="text-danger">*</span></p>
                                     <input type="email" name="email_address" class="form-control"
-                                        placeholder="Enter email address" maxlength="32" required>
+                                        placeholder="Enter email address" maxlength="32" id="email"
+                                        onchange="validateEmail()">
+                                    <p id="email-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
 
@@ -72,7 +83,9 @@
                                 <div class="col-md pt-4">
                                     <p>Event Name <span class="text-danger">*</span></p>
                                     <input type="text" name="event_name" class="form-control"
-                                        placeholder="Enter event name" maxlength="64" required>
+                                        placeholder="Enter event name" maxlength="64" 
+                                        id="Eventname"
+                                        onchange = "validateEventname()">
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
@@ -83,8 +96,8 @@
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Event Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control" name="event_date" type="date" onkeydown="return false"
-                                        id="example-datetime-local-input" required>
+                                    <input class="form-control" name="event_date" type="date"
+                                        onkeydown="return false" id="example-datetime-local-input" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <span>
@@ -266,78 +279,7 @@
                     </div>
                 </div>
             </div>
-            <script>
-                $(document).on("click", '[data-toggle="lightbox"]', function(event) {
-                    event.preventDefault();
-                    $(this).ekkoLightbox();
-                });
-                $("input[name='venue']").change(function() {
-                    if ($(this).val() == "yes") {
-                        $("#specify_venue_text").hide();
-                        $("#specify_venue_text").empty();
-                        $("#specify_venue_text").val('yes');
-                        $('#specify_venue_text').removeAttr('required');
-                    } else if ($(this).val() == "venue_value_no") {
-                        $("#specify_venue_text").show();
-                        $("#specify_venue_text").val('');
-                        $('#specify_venue_text').attr('required', true);
-                    }
-                })
-                $("input[name='caterer']").change(function() {
-                    if ($(this).val() == "yes") {
-                        $("#specify_caterer_text").hide();
-                        $("#specify_caterer_text").empty();
-                        $("#specify_caterer_text").val('yes');
-                        $('#specify_caterer_text').removeAttr('required');
-                    } else if ($(this).val() == "caterer_value_no") {
-                        $("#specify_caterer_text").show();
-                        $("#specify_caterer_text").val('');
-                        $('#specify_caterer_text').attr('required', true);
-                    }
-                })
-                $("input[name='audio_visual']").change(function() {
-                    if ($(this).val() == "yes") {
-                        $("#specify_audio_visual_text").hide();
-                        $("#specify_audio_visual_text").empty();
-                        $("#specify_audio_visual_text").val('yes');
-                        $('#specify_audio_visual_text').removeAttr('required');
-                    } else if ($(this).val() == "audio_visual_value_no") {
-                        $("#specify_audio_visual_text").show();
-                        $("#specify_audio_visual_text").val('');
-                        $('#specify_audio_visual_text').attr('required', true);
-                    }
-                })
-                $("input[name='concept']").change(function() {
-                    if ($(this).val() == "yes") {
-                        $("#specify_concept_text").hide();
-                        $("#specify_concept_text").empty();
-                        $("#specify_concept_text").val('yes');
-                        $('#specify_concept_text').removeAttr('required');
-                    } else if ($(this).val() == "concept_value_no") {
-                        $("#specify_concept_text").show();
-                        $("#specify_concept_text").val('');
-                        $('#specify_concept_text').attr('required', true);
-                    }
-                })
-                $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
-                    var dateToday = new Date();
-                    var month = dateToday.getMonth() + 1;
-                    var day = dateToday.getDate();
-                    var year = dateToday.getFullYear();
 
-                    if (month < 10)
-                        month = '0' + month.toString();
-                    if (day < 10)
-                        day = '0' + day.toString();
-
-                    var maxDate = year + '-' + month + '-' + day;
-
-                    $('.chck').attr('min', maxDate);
-                });
-                $('.prevent_submit').on('submit', function() {
-                    $('.prevent_submit').attr('disabled', 'true');
-                });
-            </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
             </body>
             @include('layouts.footers.guest')
