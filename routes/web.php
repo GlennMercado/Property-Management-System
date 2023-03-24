@@ -179,11 +179,13 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
 		
-		Route::get('DailyReport', function () {
-			$list = DB::select('SELECT * FROM finance_2_reports');
+		// Route::get('DailyReport', function () {
+		// 	$list = DB::select('SELECT * FROM finance_2_reports');
 			
 
-			return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
+		// 	return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
+
+			Route::get('DailyReport', ['uses' => 'App\Http\Controllers\FinanceReportController@reports', 'as' => 'DailyReport.reports']);
 			
 			
 

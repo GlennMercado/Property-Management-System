@@ -80,7 +80,7 @@
                                         <option value="Monthly">Monthly</option>
                                     </select>
                                     <table class="table align-items-center table-flush" style="align-items:center"
-                                        id="myTable">
+                                        id="myTable1">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">OR No.</th>
@@ -93,21 +93,6 @@
                                                 <th scope="col">Debit Type</th>
                                             </tr>
                                         </thead>
-
-                                        <tbody>
-                                            @foreach ($list as $lists)
-                                                <tr>
-                                                    <td>{{ $lists->ornum }}</td>
-                                                    <td>{{ $lists->created_at }}</td>
-                                                    <td>{{ $lists->payee }}</td>
-                                                    <td>{{ $lists->particular }}</td>
-                                                    <td>{{ $lists->eventdate }}</td>
-                                                    <td>{{ $lists->amount }}</td>
-                                                    <td>{{ $lists->remark }}</td>
-                                                    <td>{{ $lists->debit }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
                                     </table>
                                     <!-- Modal -->
                                     <!--View-->
@@ -145,25 +130,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($list as $lists)
-                                                    <tr>
-                                                        <td>{{ $lists->ornum }}</td>
-                                                        <td>{{ $lists->payee }}</td>
-                                                        <td>{{ $lists->cash }}</td>
-                                                        <td>{{ $lists->unearned }}</td>
-                                                        <td>{{ $lists->bank }}</td>
-                                                        <td>{{ $lists->cheque }}</td>
-                                                        <td>{{ $lists->basketball }}</td>
-                                                        <td>{{ $lists->unearned }}</td>
-                                                        <td>{{ $lists->otherincome }}</td>
-                                                        <td>{{ $lists->parking }}</td>
-                                                        <td>{{ $lists->managementfee }}</td>
-                                                        <td>{{ $lists->event }}</td>
-                                                        <td>{{ $lists->hotel }}</td>
-                                                        <td>{{ $lists->commercialspace }}</td>
-                                                        <td>{{ $lists->outputvat }}</td>
-                                                    </tr>
-                                                @endforeach
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -193,24 +160,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($list as $lists)
-                                                    <tr>
-                                                        <td>{{ $lists->particular }}</td>
-                                                        <td>{{ $lists->cash }}</td>
-                                                        <td>{{ $lists->unearned }}</td>
-                                                        <td>{{ $lists->bank }}</td>
-                                                        <td>{{ $lists->cheque }}</td>
-                                                        <td>{{ $lists->basketball }}</td>
-                                                        <td>{{ $lists->unearned }}</td>
-                                                        <td>{{ $lists->otherincome }}</td>
-                                                        <td>{{ $lists->parking }}</td>
-                                                        <td>{{ $lists->managementfee }}</td>
-                                                        <td>{{ $lists->event }}</td>
-                                                        <td>{{ $lists->hotel }}</td>
-                                                        <td>{{ $lists->commercialspace }}</td>
-                                                        <td>{{ $lists->outputvat }}</td>
-                                                    </tr>
-                                                @endforeach
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -363,6 +313,7 @@
             </div>
         </div>
     </div>
+    
     <style>
         /* disable arrows input type number */
         input[type="number"]::-webkit-outer-spin-button,
@@ -387,7 +338,7 @@
 
         jQuery(function($) {
 
-            var table = $('#myTable').DataTable({
+            var table = $('#myTable1').DataTable({
                 dom: 'lBfrtip',
                 orderCellsTop: true,
                 fixedHeader: true,
@@ -395,7 +346,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    // url: "",
+                    url: "{{ route('DailyReport.reports') }}",
                     data: function(d) {
                         d.num = 1,
                             d.date = $('#date').val(),
@@ -406,7 +357,7 @@
                         data: 'ornum'
                     },
                     {
-                        data: 'created_at',
+                        data: 'eventdate',
                         render: function(data) {
                             var date = new Date(data);
                             var month = ["January", "February", "March", "April", "May", "June",
@@ -453,6 +404,10 @@
             $('#myTabless').DataTable();
         });
     </script>
+    
+    </div>
+
+    
 @endsection
 
 @push('js')
