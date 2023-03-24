@@ -26,9 +26,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
-        }
+        // if (auth()->user()->id == 1) {
+        //     return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
+        // }
 
         auth()->user()->update($request->all());
 
