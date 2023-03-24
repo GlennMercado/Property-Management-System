@@ -166,6 +166,7 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
+		
 		//Financemodule
 		//Archives
 		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
