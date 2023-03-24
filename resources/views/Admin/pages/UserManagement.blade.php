@@ -114,8 +114,72 @@
                                                 <td>{{ $lists->email }}</td>
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
+                                                @if($lists->IsDisabled == false)
+                                                <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
+                                                    data-target="#disable{{ $lists->id }}"><i class="bi bi-person"></i>
+                                                </button>
+                                                @else
+                                                <button class="btn btn-sm btn-success btn-lg" data-toggle="modal"
+                                                    data-target="#enable{{ $lists->id }}"><i class="bi bi-person"></i>
+                                                </button>
+                                                @endif
+                                                <!--Edit Button-->
+                                                <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
+                                                    data-target="#edit{{ $lists->id }}"> <i
+                                                        class="bi bi-pencil-square"></i> 
+                                                </button>
                                                 </td>
                                             </tr>
+
+                                            <!-- Disable Modal -->
+                                            <div class="modal fade" id="disable{{ $lists->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Disable Users</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Do you want to disable <span class="text-danger">{{ $lists->name }}</span> access?</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                            <a href="{{url('/enable_disable_user', ['id' => $lists->id, 'em' => $lists->email, 'endis' => 'Disabled'])}}" class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Enable Modal -->
+                                            <div class="modal fade" id="enable{{ $lists->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Enable Users</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Do you want to enable <span class="text-success">{{ $lists->name }}</span> access?</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                            <a href="{{url('/enable_disable_user', ['id' => $lists->id, 'em' => $lists->email, 'endis' => 'Enabled'])}}" class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </tbody>
                             </div>

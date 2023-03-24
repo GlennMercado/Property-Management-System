@@ -50,17 +50,23 @@ class LoginController extends Controller
         
         if(auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password'])))
         {
-            if(auth()->user()->User_Type == 'Admin')
+
+            if(auth()->user()->User_Type == 'Admin' && auth()->user()->IsDisabled == 0)
             {
                 return redirect('home');
             }
-            elseif(auth()->user()->User_Type == 'Guest')
+            elseif(auth()->user()->User_Type == 'Guest' && auth()->user()->IsDisabled == 0)
             {
                 return redirect('welcome');
             }
             elseif(auth()->user()->User_Type == 'Housekeeping Supervisor')
             {
                 return redirect('Housekeeper_Dashboard');
+            }
+            else
+            {
+                auth()->logout();
+                return redirect('/login')->withStats(__('User Access Disabled.'));
             }
         }
         else
