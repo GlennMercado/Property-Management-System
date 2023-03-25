@@ -37,15 +37,16 @@ Auth::routes(['verify' => true]);
 
 
 //Admin
-Route::middleware(['auth', 'Admin'])->group(function(){
-	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
-		
+Route::middleware(['auth'])->group(function(){
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@admin_edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-
+});
+Route::middleware(['auth', 'Admin'])->group(function(){
+	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
+		
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 

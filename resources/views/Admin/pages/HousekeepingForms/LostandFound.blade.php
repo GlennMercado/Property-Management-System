@@ -11,13 +11,23 @@
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
                 <h6 class="h2 text-dark d-inline-block mb-0">Lost and Found</h6>
-                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item">Housekeeping</li>
-                        <li class="breadcrumb-item active text-dark" aria-current="page">Lost and Found</li>
-                    </ol>
-                </nav>
+                @if(Auth::user()->User_Type == "Admin")
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item">Housekeeping</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                        </ol>
+                    </nav>
+                @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item">Housekeeping</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                        </ol>
+                    </nav>
+                @endif
             </div>
         </div>
         <div class="row">
