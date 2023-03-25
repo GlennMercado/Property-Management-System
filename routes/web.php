@@ -36,7 +36,7 @@ Route::get('Welcomerooms', [App\Http\Controllers\WelcomeController::class, 'Welc
 Auth::routes(['verify' => true]);
 
 
-//Admin
+//For authenticated users or logged in
 Route::middleware(['auth'])->group(function(){
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 
@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
+
+//Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
 		
