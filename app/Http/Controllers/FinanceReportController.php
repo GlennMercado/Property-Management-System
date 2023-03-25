@@ -302,8 +302,9 @@ class FinanceReportController extends Controller
         if($request->ajax()){
             if($request->get('num') == 1)
             {
-                $data = finance_2_reports::select('finance_2_reports.*');
-
+                // $data = finance_2_reports::select('finance_2_reports.*');
+                $data = DB::select('SELECT * FROM finance_2_reports');
+dd($data);
                 return Datatables::of($data)
                 ->addIndexColumn()
                 ->filter(function ($instance) use ($request)
