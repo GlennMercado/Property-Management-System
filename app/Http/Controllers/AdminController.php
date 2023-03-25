@@ -51,18 +51,21 @@ class AdminController extends Controller
         $room = DB::select('SELECT * FROM novadeci_suites');
         $events = array();
 
-        $bookings = hotel_reservations::all();
+        $bookings = DB::select("SELECT * FROM hotel_reservations WHERE Booking_Status != 'Pending'");
        
+        $list = DB::select("SELECT * FROM hotel_reservations");
         
         foreach($bookings as $booking)
         {
             $events[] = [
                 'title' => $booking->Room_No.' - '.$booking->Guest_Name,
                 'start' => $booking->Check_In_Date,
-                'end' => $booking->Check_Out_Date
+                'end' => $booking->Check_Out_Date,
+                'id' => $booking->Booking_No,
+                'status' => $booking->Booking_Status
             ];
         }
-        return view('Admin.pages.Calendar', ['room'=>$room, 'events'=>$events]);
+        return view('Admin.pages.Calendar', ['room'=>$room, 'events'=>$events, 'list' => $list]);
     }
     public function hotel_sched(Request $request)
     {
