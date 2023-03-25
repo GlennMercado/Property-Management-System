@@ -25,13 +25,27 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Booking Information</h5>
+                                    <h2 class="modal-title" id="exampleModalLabel">Booking Information</h2>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    {{$lists->Booking_No}}
+                                    <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
+                                    <h3 class="text-left">Room Number: <span style="font-weight:normal;">{{$lists->Room_No}}</span> </h3>
+                                    <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> </h3>
+                                    <h3 class="text-left">Mobile Number: <span style="font-weight:normal;">{{$lists->Mobile_Num}}</span> </h3>
+                                    @if($lists->Booking_Status == "Reserved")
+                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Booking_Status}}</span> </h3>
+                                    @elseif($lists->Booking_Status == "Checked-In")
+                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #5cb85c;">{{$lists->Booking_Status}}</span> </h3>
+                                    @elseif($lists->Booking_Status == "Checked-Out")
+                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #f0ad4e;">{{$lists->Booking_Status}}</span> </h3>
+                                    @elseif($lists->Booking_Status == "Cancelled")
+                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Booking_Status}}</span> </h3>
+                                    @endif
+                                    <h3 class="text-left">Checked-In Date: <span style="font-weight:normal;">{{date('F j, Y', strtotime($lists->Check_In_Date))}}</span> </h3>
+                                    <h3 class="text-left">Checked-Out Date: <span style="font-weight:normal;">{{date('F j, Y', strtotime($lists->Check_Out_Date))}}</span> </h3>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
