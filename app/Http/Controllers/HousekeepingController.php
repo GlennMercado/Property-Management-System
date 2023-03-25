@@ -12,6 +12,7 @@ use App\Models\hotel_room_linens_reports;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use App\Models\lost_and_found;
+use Illuminate\Support\Facades\Auth;
 use App\Models\List_of_Housekeepers;
 use Carbon\Carbon;
 use DataTables;
@@ -25,6 +26,10 @@ class HousekeepingController extends Controller
      */
     public function housekeeping_dashboard()
     {
+        $role = Auth::user()->User_Type;
+
+        $user = DB::select("SELECT * FROM users WHERE User_Type = '$role'");
+
         $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0 GROUP BY a.Room_No');
 
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
@@ -58,7 +63,7 @@ class HousekeepingController extends Controller
                     'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
                     'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
                     'linen' => $linen_request, 'maintenance' => $maintenance,
-                    'housekeeper' => $housekeeper
+                    'housekeeper' => $housekeeper, 'role' => $user
                     ]
                     );
     }

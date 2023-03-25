@@ -63,7 +63,7 @@ class LoginController extends Controller
                 }
                 elseif(auth()->user()->User_Type == 'Housekeeping Supervisor')
                 {
-                    return redirect('Housekeeper_Dashboard');
+                    return redirect('Housekeeping_Dashboard');
                 }
                 else
                 {
