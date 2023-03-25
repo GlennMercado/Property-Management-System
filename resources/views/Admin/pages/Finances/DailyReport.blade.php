@@ -93,6 +93,9 @@
                                                 <th scope="col">Debit Type</th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+
+                                          </tbody>
                                     </table>
                                     <!-- Modal -->
                                     <!--View-->
@@ -335,7 +338,6 @@
 
     <script type="text/javascript">
         $.noConflict();
-
         jQuery(function($) {
 
             var table = $('#myTable1').DataTable({
@@ -385,23 +387,16 @@
                     },
                     {
                         data: 'debit'
-                    },
+                    }
                 ]
             });
 
-            $('#myTable_filter input[type="search"]').prop('id', 'search1');
-
-            table.buttons().container().insertBefore('#myTable_filter');
+            $('#myTable_filter input[type="search"]').prop('userid', 'search1');
 
             $('#date').change(function() {
                 table.draw();
             });
 
-        });
-
-        jQuery(document).ready(function($) {
-            $('#myTables').DataTable();
-            $('#myTabless').DataTable();
         });
     </script>
     
