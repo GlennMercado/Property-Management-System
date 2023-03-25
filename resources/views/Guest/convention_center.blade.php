@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="image-container" style="height: 25vh">
             <a href="{{ asset('nvdcpics') }}/convention2.jpg" data-lightbox="photos">
@@ -30,39 +31,49 @@
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Client Name <span class="text-danger">*</span></p>
-                                    <input type="text" name="client_name" class="form-control"
-                                        placeholder="Enter client name" maxlength="64" required>
+                                    <input type="text" id="name" name="client_name" class="form-control"
+                                        placeholder="Enter client name" maxlength="64" onchange="validateName()">
+                                    <p id="name-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots" name="contact_no"
-                                        class="form-control" placeholder="09XXXXXXXX" required>
+                                        class="form-control" placeholder="09XXXXXXXX" id="contact"
+                                        onchange="validateContact()">
+                                    <p id="contact-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Contact Person <span class="text-danger">*</span></p>
                                     <input type="text" name="contact_person" class="form-control"
-                                        placeholder="Enter contact person" maxlength="64" required>
+                                        placeholder="Enter contact person" maxlength="64" id="contactperson"
+                                        onchange="validateContactPerson()">
+                                    <p id="cp-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Person Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
-                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX" required>
+                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
+                                        id="ContactPersonNum" onchange="validateContactPersonNum()">
+                                    <p id="ContactPersonNum-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Billing Address <span class="text-danger">*</span></p>
                                     <input type="text" name="billing_address" maxlength="82" class="form-control"
-                                        placeholder="Enter billing address" required>
+                                        placeholder="Enter billing address" id="address" onchange="validateAddress()">
+                                    <p id="address-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Email <span class="text-danger">*</span></p>
                                     <input type="email" name="email_address" class="form-control"
-                                        placeholder="Enter email address" maxlength="32" required>
+                                        placeholder="Enter email address" maxlength="32" id="email"
+                                        onchange="validateEmail()">
+                                    <p id="email-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
 
@@ -72,25 +83,35 @@
                                 <div class="col-md pt-4">
                                     <p>Event Name <span class="text-danger">*</span></p>
                                     <input type="text" name="event_name" class="form-control"
-                                        placeholder="Enter event name" maxlength="64" required>
+                                        placeholder="Enter event name" maxlength="64" id="Event"
+                                        onchange="validateEvent()">
+                                    <p id="event-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
                                     <input type="text" name="event_type" class="form-control"
-                                        placeholder="Enter event type" maxlength="32" required>
+                                        placeholder="Enter event type" maxlength="32" id="EventType"
+                                        onchange="validateEventType()">
+                                    <p id="eventType-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Event Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control" name="event_date" type="date" onkeydown="return false"
-                                        id="example-datetime-local-input" required>
+                                    <input class="form-control" name="event_date" type="date"
+                                        onkeydown="return false" id="example-datetime-local-input" 
+                                        id="my-date"
+                                        onchange="validateDate()">
+                                        <p id="date-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                                 <div class="col-md pt-4">
                                     <span>
                                         <p>Expected No. of Guest <span class="text-danger">*</span></p>
                                         <input type="number" name="no_of_guest" class="form-control"
-                                            placeholder="Enter expected no. of guest" required>
+                                            placeholder="Enter expected no. of guest" 
+                                            id="No"
+                                            onchange="validateNo()">
+                                            <p id="no-error" style="color: red; font-size: 14px;"></p>
                                     </span>
                                 </div>
                             </div>
@@ -267,6 +288,155 @@
                 </div>
             </div>
             <script>
+                function validateName() {
+                    const nameInput = document.getElementById("name");
+                    const name = nameInput.value.trim(); 
+                    const nameError = document.getElementById("name-error");
+
+                    
+                    if (!/^[a-zA-Z\s]+$/.test(name)) {
+                        nameInput.classList.add("invalid");
+                        nameError.textContent = "Please enter a valid name (letters and spaces only)";
+                    } else {
+                        nameInput.classList.remove("invalid");
+                        nameError.textContent = "";
+                    }
+                }
+
+                function validateContact() {
+                    const contactInput = document.getElementById("contact");
+                    const contact = contactInput.value.trim(); 
+                    const contactError = document.getElementById("contact-error");
+
+                    
+                    if (!/^\+?\d{8,15}$/.test(contact)) {
+                        contactInput.classList.add("invalid");
+                        contactError.textContent =
+                            "Please enter a valid contact number (11 digits only)";
+                    } else {
+                        contactInput.classList.remove("invalid");
+                        contactError.textContent = "";
+                    }
+                }
+
+                function validateContactPerson() {
+                    const contactpersonInput = document.getElementById("contactperson");
+                    const contactperson = contactpersonInput.value.trim();
+                    const contactpersonError = document.getElementById("cp-error");
+
+                    
+                    if (!/^[a-zA-Z\s]+$/.test(contactperson)) {
+                        contactpersonInput.classList.add("invalid");
+                        contactpersonError.textContent = "Please enter a valid name (letters and spaces only)";
+                    } else {
+                        contactpersonInput.classList.remove("invalid");
+                        contactpersonError.textContent = "";
+                    }
+                }
+
+                function validateContactPersonNum() {
+                    const ContactPersonNumInput = document.getElementById("ContactPersonNum");
+                    const ContactPersonNum = ContactPersonNumInput.value.trim(); 
+                    const ContactPersonNumError = document.getElementById("ContactPersonNum-error");
+
+                   
+                    if (!/^\+?\d{8,15}$/.test(ContactPersonNum)) {
+                        ContactPersonNumInput.classList.add("invalid");
+                        ContactPersonNumError.textContent =
+                            "Please enter a valid contact number (11 digits only)";
+                    } else {
+                        ContactPersonNumInput.classList.remove("invalid");
+                        ContactPersonNumError.textContent = "";
+                    }
+                }
+
+                function validateAddress() {
+                    const addressInput = document.getElementById("address");
+                    const address = addressInput.value.trim(); 
+                    const addressError = document.getElementById("address-error");
+
+                   
+                    if (address.length === 0) {
+                        addressInput.classList.add("invalid");
+                        addressError.textContent = "Please enter your address";
+                    } else {
+                        addressInput.classList.remove("invalid");
+                        addressError.textContent = "";
+                    }
+                }
+
+                function validateEmail() {
+                    const emailInput = document.getElementById("email");
+                    const email = emailInput.value.trim(); 
+                    const emailError = document.getElementById("email-error");
+
+              
+                    if (email.length === 0) {
+                        emailInput.classList.add("invalid");
+                        emailError.textContent = "Please enter your email address";
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        emailInput.classList.add("invalid");
+                        emailError.textContent = "Please enter a valid email address";
+                    } else {
+                        emailInput.classList.remove("invalid");
+                        emailError.textContent = "";
+                    }
+                }
+
+                function validateEvent() {
+                    const EventInput = document.getElementById("Event");
+                    const Event = EventInput.value.trim(); 
+                    const EventError = document.getElementById("event-error");
+
+                   
+                    if (!/^[a-zA-Z\s]+$/.test(Event)) {
+                        EventInput.classList.add("invalid");
+                        EventError.textContent = "Please enter a valid name (letters and spaces only)";
+                    } else {
+                        EventInput.classList.remove("invalid");
+                        EventError.textContent = "";
+                    }
+                }
+
+                function validateEventType() {
+                    const EventTypeInput = document.getElementById("EventType");
+                    const EventType = EventTypeInput.value.trim(); 
+                    const EventTypeError = document.getElementById("eventType-error");
+
+                  
+                    if (!/^[a-zA-Z\s]+$/.test(EventType)) {
+                        EventTypeInput.classList.add("invalid");
+                        EventTypeError.textContent = "Please enter a valid name (letters and spaces only)";
+                    } else {
+                        EventTypeInput.classList.remove("invalid");
+                        EventTypeError.textContent = "";
+                    }
+                }
+
+                function validateDate() {
+                    var inputDate = document.getElementById("my-date").value;
+                    var isValid = new Date(inputDate).toString() !== "Invalid Date";
+                    if (!isValid) {
+                        alert("Please enter a valid date.");
+                        document.getElementById("my-date").value = "";
+                    }
+                }
+
+                // function validateNo() {
+                //     const NoInput = document.getElementById("No");
+                //     const No = NoInput.value.trim(); // remove leading/trailing whitespace
+                //     const NoError = document.getElementById("no-error");
+
+                //     // Check if contact number is valid
+                //     if (!/^\+?\d{8,15}$/.test(No)) {
+                //         NoInput.classList.add("invalid");
+                //         NoError.textContent =
+                //             "Please enter a valid number (2 max digits only)";
+                //     } else {
+                //         NoInput.classList.remove("invalid");
+                //         NoError.textContent = "";
+                //     }
+                // }
                 $(document).on("click", '[data-toggle="lightbox"]', function(event) {
                     event.preventDefault();
                     $(this).ekkoLightbox();
