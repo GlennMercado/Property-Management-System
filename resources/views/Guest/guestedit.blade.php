@@ -6,8 +6,8 @@
         <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 400px; width: 100%">
         <div class="position-absolute d-flex align-items-center text-center"
             style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
-            <div class="container mx-auto mt-7">
-                <h1 class="image-text uppercase text-uppercase display-2 text-white">
+            <div class="container mx-auto mt-7 ">
+                <h1 class="image-text uppercase text-uppercase display-3 text-white">
                     Hello {{ auth()->user()->name }}!
                 </h1>
             </div>

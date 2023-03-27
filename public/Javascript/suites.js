@@ -8,22 +8,6 @@ function checkCheckbox() {
     var checkbox = document.getElementById("customCheckRegister");
     checkbox.checked = true;
 }
-$(document).ready(function () { //DISABLED PAST DATES IN APPOINTMENT DATE
-    var dateToday = new Date();
-    var month = dateToday.getMonth() + 1;
-    var day = dateToday.getDate();
-    var year = dateToday.getFullYear();
-    if (month < 10)
-        month = '0' + month.toString();
-    if (day < 10)
-        day = '0' + day.toString();
-    var maxDate = year + '-' + month + '-' + day;
-    $('.chck').attr('min', maxDate);
-});
-
-$('.prevent_submit').on('submit', function () {
-    $('.prevent_submit').attr('disabled', 'true');
-});
 function pass() {
     // page
     var mobile1 = document.getElementById('mobile');
@@ -67,7 +51,13 @@ function enable_submit() {
         submit_button2.disabled = false;
         submit_button2.style.cursor = "pointer";
     }
+    loadfile(event);
 }
+function loadfile(event){
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+}
+
 function price_count() {
     // days
     var d1 = document.getElementById("date1").value;

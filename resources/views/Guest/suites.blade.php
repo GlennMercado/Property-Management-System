@@ -406,8 +406,11 @@
                                                             <p class="text-center">Upload your proof of payment here <span
                                                                     class="text-danger">*</span></p>
                                                         </div>
-                                                        <div class="col-md-12 mx-auto d-flex justify-content-center">
-                                                            <input type="file" onchange="enable_submit()"
+                                                        <div class="col-md-12 d-flex justify-content-center">
+                                                            <img id="output" class="img-fluid" />
+                                                        </div>
+                                                        <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
+                                                            <input type="file" onchange="enable_submit(event)"
                                                                 id="gcash_img" placeholder="Ex: John Doe" name="images"
                                                                 class="form-control">
                                                         </div>
@@ -441,5 +444,23 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+            var maxDate = year + '-' + month + '-' + day;
+            $('.chck').attr('min', maxDate);
+        });
+
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+    </script>
     @include('layouts.footers.guest')
 @endsection
