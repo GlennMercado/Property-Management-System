@@ -50,7 +50,6 @@ class GuestController extends Controller
     public function my_bookings(){
 
         $email = Auth::user()->email;
-
         $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
         return view('Guest.MyBookings', ['list' => $list]);
     }
