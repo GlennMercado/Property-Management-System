@@ -196,20 +196,21 @@
                                                                             style="border-radius: 18px">
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
+                                                                            @if($lists->Facility_Status == "Reserved")
+                                                                                <h3 class="text-left">Room Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Facility_Status}}</span> </h3>
+                                                                            @elseif($lists->Facility_Status == "Occupied")
+                                                                                <h3 class="text-left">Room Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Facility_Status}}</span> </h3>
+                                                                            @endif
 
-                                                                            <p class="text-left">Room Status : </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $lists->Facility_Status }}"
-                                                                                readonly>
+                                                                            @if($lists->Front_Desk_Status == "Reserved")
+                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Front_Desk_Status}}</span> </h3>
+                                                                            @elseif($lists->Front_Desk_Status == "Checked-In")
+                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #5cb85c;">{{$lists->Front_Desk_Status}}</span> </h3>
+                                                                            @elseif($lists->Front_Desk_Status == "Checked-Out")
+                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Front_Desk_Status}}</span> </h3>
+                                                                            @endif
+                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Attendant}}</span> </h3>
 
-                                                                            <p class="text-left">Front Desk Status: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $lists->Front_Desk_Status }}"
-                                                                                readonly>
-
-                                                                            <p class="text-left">Attendant: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $lists->Attendant }}" readonly>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -475,47 +476,19 @@
                                                                                     <input type="hidden" name="id"
                                                                                         value="{{ $lists2->ID }}" />
 
-                                                                                    <p class="text-left">Room No: </p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{ $lists2->Room_No }}"
-                                                                                        readonly>
+                                                                                        <h3 class="text-left">Room Number: <span style="font-weight:normal;">{{$lists2->Room_No}}</span> </h3>
 
-                                                                                    <p class="text-left">Guest Name: </p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{ $lists2->Guest_Name }}"
-                                                                                        readonly>
+                                                                                        <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists2->Guest_Name}}</span> </h3>
 
-                                                                                    <p class="text-left">Date_Requested:
-                                                                                    </p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}"
-                                                                                        readonly>
+                                                                                        <h3 class="text-left">Date Requested: <span style="font-weight:normal;">{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}{{$lists->Mobile_Num}}</span> </h3>
                                                                                 @endforeach
                                                                             @endif
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
-
-                                                                            <p class="text-left">Housekeeping Status: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $lists->Housekeeping_Status }}"
-                                                                                readonly>
-
-                                                                            <p class="text-left">Attendant: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $lists->Attendant }}" readonly>
-
-                                                                            <p class="text-left">Checked In Date: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
-                                                                                readonly>
-
-                                                                            <p class="text-left">Checked Out Date: </p>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
-                                                                                readonly>
+                                                                            <h3 class="text-left">Housekeeping Status: <span style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span> </h3>
+                                                                            <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{ $lists->Attendant }}</span> </h3>        
+                                                                            <h3 class="text-left">Checked-In Date: <span style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span> </h3>
+                                                                            <h3 class="text-left">Check-Out Date: <span style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span> </h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1159,28 +1132,11 @@
                                                                         style="border-radius: 18px">
                                                                         <input type="hidden" name="id"
                                                                             value="{{ $lists->ID }}" />
-
-                                                                        <p class="text-left">Booking No.: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Booking_No }}" readonly>
-
-                                                                        <p class="text-left">Guest Name: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Guest_Name }}" readonly>
-
-                                                                        <p class="text-left">Facility Status: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Facility_Status }}"
-                                                                            readonly>
-
-                                                                        <p class="text-left">Front Desk Status: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Front_Desk_Status }}"
-                                                                            readonly>
-
-                                                                        <p class="text-left">Attendant: </p>
-                                                                        <input type="text" class="form-control"
-                                                                            value="{{ $lists->Attendant }}" readonly>
+                                                                        <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{ $lists->Booking_No }}</span> </h3>
+                                                                        <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span> </h3>
+                                                                        <h3 class="text-left">Room Status: <span style="font-weight:normal;">{{ $lists->Facility_Status }}</span> </h3>
+                                                                        <h3 class="text-left">Front Desk Status: <span style="font-weight:normal;">{{ $lists->Front_Desk_Status }}</span> </h3>
+                                                                        <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{ $lists->Attendant }}</span> </h3>        
                                                                     </div>
                                                                 </div>
                                                             </div>

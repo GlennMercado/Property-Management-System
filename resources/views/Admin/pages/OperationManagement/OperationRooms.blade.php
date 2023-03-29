@@ -94,9 +94,6 @@
                                                                 <input class="form-control" type="text"
                                                                     value="{{ $lists->Extra_Bed }}" readonly>
                                                                 <br>
-                                                                <p class="text-left">No. of Pax per Room </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->No_Pax_Per_Room }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>

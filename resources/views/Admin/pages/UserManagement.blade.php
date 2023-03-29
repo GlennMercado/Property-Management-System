@@ -115,7 +115,7 @@
                                                 <td>{{ $lists->User_Type }}</td>
                                                 <td>
                                                 @if($lists->IsDisabled == false)
-                                                <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
+                                                <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
                                                     data-target="#disable{{ $lists->id }}"><i class="bi bi-person"></i>
                                                 </button>
                                                 @else
@@ -124,7 +124,7 @@
                                                 </button>
                                                 @endif
                                                 <!--Edit Button-->
-                                                <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
+                                                <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
                                                     data-target="#edit{{ $lists->id }}"> <i
                                                         class="bi bi-pencil-square"></i> 
                                                 </button>
