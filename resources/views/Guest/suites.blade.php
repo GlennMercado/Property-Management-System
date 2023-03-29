@@ -28,7 +28,7 @@
                                         <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
                                         <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq m</h3>
                                         <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
-                                        <h3>Standard Check in time is 12:00PM</h3>
+                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard check-in / out time is after 1400 hours (02:00 pm) and the check-out time is 12:00 noon.</h3>
                                         <h3 class="pt-4 text-muted pb-2">
                                             Additional ₱ 1,500/pax
                                         </h3>
