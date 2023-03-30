@@ -76,9 +76,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
 		Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
 
+		Route::post('/edit_user', 'App\Http\Controllers\UserManagementController@edit_user');
+
 		Route::get('/enable_disable_user/{id}/{em}/{endis}', 'App\Http\Controllers\UserManagementController@enable_disable_user');
 
 		Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
+
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
 

@@ -719,8 +719,7 @@ class HousekeepingController extends Controller
     }
 
     public function update_housekeeping_status($hk, $id, $status, $req)
-    {
-        
+    {   
         try
         {           
             $hid = $id;
@@ -781,19 +780,32 @@ class HousekeepingController extends Controller
     {
         $name = $request->input('housekeeper');
 
-        $add = new List_of_Housekeepers;
+        $sql = DB::select("SELECT * FROM list_of_housekeepers WHERE Housekeepers_Name = '$name'");
 
-        $add->Housekeepers_Name = $name;
-
-        if($add->save())
+        if($sql)
         {
-            Alert::Success('Success', 'Adding Housekeeper Success!');
+            Alert::Error('Failed', 'Housekeeper Already Exist!');
             return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
         }
         else
         {
-            Alert::Error('Error', 'Adding Housekeeper Failed!');
-            return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+    
+            $add = new List_of_Housekeepers;
+
+            $add->Housekeepers_Name = $name;
+            
+
+            if($add->save())
+            {
+                Alert::Success('Success', 'Adding Housekeeper Success!');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                Alert::Error('Error', 'Adding Housekeeper Failed!');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            } 
+              
         }
 
     }

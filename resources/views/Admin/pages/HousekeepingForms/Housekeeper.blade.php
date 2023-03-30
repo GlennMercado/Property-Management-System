@@ -70,7 +70,7 @@
                     </div>
 
                     <br>
-                    <div class="row align-items-center">
+                    <!-- <div class="row align-items-center">
                         <div class="col text-right">
                             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                 role="tablist">
@@ -86,13 +86,13 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <br>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="tab-content" id="myTabContent">
-                            {{-- Lost and Found --}}
+                            {{-- List of Housekeepers --}}
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
                                 <!-- Projects table -->
