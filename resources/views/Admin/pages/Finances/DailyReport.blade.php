@@ -210,16 +210,16 @@
                                                                 <option value="CourtRental">CourtRental</option>
                                                                 <option value="CourtRental/League">CourtRental/League
                                                                 </option>
-                                                                <option value="VenueR ental">Venue Rental</option>
+                                                                <option value="Venue Rental">Venue Rental</option>
                                                                 <option value="Kiosk Rental">Kiosk Rental</option>
                                                                 <option value="Foodstall">FoodStall</option>
                                                                 <option value="Hotel">Hotel</option>
                                                                 <option value="Hotel Other Charges">Hotel Other Charges
                                                                 </option>
                                                                 <option value="Function Room">Function Room</option>
-                                                                <option value="Functon Room/Hotel">Function Room/Hotel
+                                                                <option value="Function Room/Hotel">Function Room/Hotel
                                                                 </option>
-                                                                <option value="Funciton Room/Others">Funciton
+                                                                <option value="Function Room/Others">Function
                                                                     Room/Others
                                                                 </option>
                                                                 <option value="Management Fee">Management Fee</option>
@@ -337,6 +337,7 @@
     </style>
 
     <script type="text/javascript">
+        
         $.noConflict();
         jQuery(function($) {
 
