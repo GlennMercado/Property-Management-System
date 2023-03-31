@@ -88,7 +88,8 @@
                                                 </div>
                                                 <div id="all" style="display:none;">
                                                     <p class="text-left mt-2">Items</p>
-                                                    <input type="text" name="item" class="form-control" required>
+                                                    <input type="text" name="item" class="form-control" 
+                                                    maxlength="32" required>
                                                     <p class="text-left mt-2">Item Description</p>
                                                     <input type="text" name="item_desc" class="form-control"
                                                         maxlength="32" required>
