@@ -127,7 +127,7 @@
                     <br>
                     <div class="row align-items-center">
                         <div class="col text-right">
-                            <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
+                            <ul class="nav nav-pills nav-fill flex-column flex-md-row container-fluid" id="tabs-icons-text"
                                 role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
@@ -154,45 +154,46 @@
                                 <table class="table align-items-center table-flush" id="myTable">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:18px;">Action</th>
                                             <th scope="col" style="font-size:18px;">Facility Type</th>
                                             <th scope="col" style="font-size:18px;">Room No.</th>
                                             <th scope="col" style="font-size:18px;">Item</th>
                                             <th scope="col" style="font-size:18px;">Found By</th>
                                             <th scope="col" style="font-size:18px;">Date Found</th>
-                                            <th scope="col" style="font-size:18px;">Status</th>
-                                            <th scope="col" style="font-size:18px;">Action</th>
+                                            <th scope="col" style="font-size:18px;">Status</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             @if ($lists->IsArchived == false)
                                                 <tr>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#view{{ $lists->id }}"
+                                                            title="View Item">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update{{ $lists->id }}"
+                                                            title="Update Item">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                        </button>
+
+                                                        <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                            data-target="#update2{{ $lists->id }}"
+                                                            title="Auction/Dispose Item">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+
                                                     <td>{{ $lists->Facility_Type }}</td>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Item }}</td>
                                                     <td>{{ $lists->Found_By }}</td>
                                                     <td>{{ date('F j, Y', strtotime($lists->Date_Found)) }}</td>
                                                     <td>{{ $lists->Status }}</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->id }}"
-                                                            title="View Room Linens">
-                                                            <i class="bi bi-eye"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#update{{ $lists->id }}"
-                                                            title="View Room Linens">
-                                                            <i class="bi bi-arrow-repeat"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#update2{{ $lists->id }}"
-                                                            title="View Room Linens">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-
+                                                   
                                                     <!-- View -->
                                                     <div id="view{{ $lists->id }}" class="modal hide fade"
                                                         tabindex="-1">
@@ -303,8 +304,8 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <a class="btn btn-outline-danger"
-                                                                            data-dismiss="modal">Close</a>
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
                                                                         <input type="submit" class="btn btn-success">
                                                                     </div>
                                                                 </form>
@@ -325,35 +326,32 @@
                                 <table class="table align-items-center table-flush" id="myTable2">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col" style="font-size:18px;">Action</th>
                                             <th scope="col" style="font-size:18px;">Facility Type</th>
                                             <th scope="col" style="font-size:18px;">Room No.</th>
                                             <th scope="col" style="font-size:18px;">Item</th>
                                             <th scope="col" style="font-size:18px;">Found By</th>
                                             <th scope="col" style="font-size:18px;">Date Found</th>
-                                            <th scope="col" style="font-size:18px;">Status</th>
-                                            <th scope="col" style="font-size:18px;">Action</th>
+                                            <th scope="col" style="font-size:18px;">Status</th>         
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list as $lists)
                                             @if ($lists->IsArchived == true)
                                                 <tr>
-                                                    <td>{{ $lists->Facility_Type }}</td>
-                                                    <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Item }}</td>
-                                                    <td>{{ $lists->Found_By }}</td>
-                                                    <td>{{ date('F j, Y', strtotime($lists->Date_Found)) }}</td>
-                                                    <td>{{ $lists->Status }}</td>
                                                     <td>
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                             data-target="#view2{{ $lists->id }}"
                                                             title="View Room Linens">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
-
-
                                                     </td>
-
+                                                    <td>{{ $lists->Facility_Type }}</td>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Item }}</td>
+                                                    <td>{{ $lists->Found_By }}</td>
+                                                    <td>{{ date('F j, Y', strtotime($lists->Date_Found)) }}</td>
+                                                    <td>{{ $lists->Status }}</td>
                                                     <!-- View -->
                                                     <div id="view2{{ $lists->id }}" class="modal hide fade"
                                                         tabindex="-1">
