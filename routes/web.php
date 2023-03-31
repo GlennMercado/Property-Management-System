@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/try', function(){
+	return view('Admin.pages.RoomManagement.try');
+});
+
 //Homepage	r
 Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
 
