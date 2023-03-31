@@ -1,5 +1,5 @@
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <!-- jQuery library -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 <!-- jQuery datepicker library -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
@@ -7,21 +7,37 @@
 
 <label for="date">Date:</label>
 <input type="text" id="date" name="date">
+
+<input type="text" id="datepicker" name="datepicker">
 <script>
-    var disabledDates = [
-  "2023-03-24",
-  "2023-03-27",
-  "2023-04-01"
-];
-$(function() {
-  // Initialize the Datepicker on the input field
-  $("#date").datepicker({
-    beforeShowDay: function(date) {
-      var disabledDates = [
-        "2023-03-24",
-        "2023-03-27",
-        "2023-04-01"
-      ];
+//     var disabledDates = [
+//   "2023-03-24",
+//   "2023-03-27",
+//   "2023-04-01"
+// ];
+
+var disabledDates = [];
+function getDisabledDates() {
+  // Send an AJAX request to your Laravel route to get the disabled dates
+  $.ajax({
+    url: '{{ route("get.date", "1") }}',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      disabledDates = response.start;
+      // Disable the dates returned by the server
+      // $.each(response.start, function(index, value) {
+      //   $('#datepicker')
+      //     .find('option[value="' + value + '"]')
+      //     .attr('disabled', true);
+      // });
+    }
+  });
+}
+
+$(function(){
+  $("#datepicker").datepicker({
+    beforeShowDay:function(date){
 
       // Format the date as "yyyy-mm-dd"
       var year = date.getFullYear();
@@ -29,14 +45,25 @@ $(function() {
       var day = date.getDate().toString().padStart(2, "0");
       var formattedDate = year + "-" + month + "-" + day;
 
-      // Check if the date is in the disabledDates array and disable it if it is
       if ($.inArray(formattedDate, disabledDates) != -1) {
         return [false, "disabled-date", "This date is disabled"];
       } else {
         return [true, ""];
       }
+
     }
   });
 });
+
+window.onload = function() {
+  // Call the setAppointmentDates function on page load
+  getDisabledDates();
+};
+
+
+
+
+
+
 
 </script>

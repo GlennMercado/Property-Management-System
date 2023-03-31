@@ -353,9 +353,12 @@ class HotelController extends Controller
 
     public function front_desk_getdate($id)
     {
-        $data = DB::table('hotel_reservations')->pluck('Check_In_Date')->toArray();
-        
-        return response()->json($data);
+        $min = DB::table('hotel_reservations')->where('Room_No', $id)->pluck('Check_In_Date')->toArray();
+        $max = DB::table('hotel_reservations')->where('Room_No', $id)->pluck('Check_Out_Date')->toArray();
+        return response()->json([
+            'start' => $min,
+            'end' => $max
+        ]);
     }
 
     public function edit($id)

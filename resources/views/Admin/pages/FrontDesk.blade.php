@@ -185,7 +185,8 @@
                 $('.chck').attr('min', maxDate);
             });
 
-            var disabled_Dates = [];
+            var start_disabled_Dates = [];
+            var end_disabled_Dates = [];
 
             $(document).ready(function() {
                 $('#list_rooms').on('change', function() { 
@@ -210,7 +211,8 @@
                         async: false,
                         dataType: 'json',
                         success: function(response) {
-                            disabled_Dates = response;
+                            start_disabled_Dates = response.start;
+                            end_disabled_Dates = response.end;
                             // $.each(response, function(index, value) {
                             //     $('input[type="date"][name="checkIn"]')
                             //     .find('option[value="' + value + '"]')
@@ -225,10 +227,10 @@
                                 var year = selectedDate.getFullYear();
                                 
                                 var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
-                                
-                               
-                                if (disabled_Dates.includes(formattedDate)) {
+
+                                if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
                                     this.value = '';
+                                    alert('Date not Available');
                                 }
                             });
                         },
