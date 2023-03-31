@@ -35,6 +35,7 @@
                                     <th scope="col">Action</th>
                                     <th scope="col">Payment Status</th>
                                     <th scope="col">Amount</th>
+                                    <th scope="col">Gcash Account Name</th>
                                     <th scope="col">Reservation Number</th>
                                     <th scope="col">Guest Name</th>
                                     <th scope="col">Mobile Number</th>
@@ -53,6 +54,7 @@
                                         </td>
                                         <td>{{ $lists->Payment_Status }}</td>
                                         <td>{{ $lists->Payment }}</td>
+                                        <td>{{ $lists->gcash_account_name }}</td>
                                         <td>{{ $lists->Booking_No }}</td>
                                         <td>{{ $lists->Guest_Name }}</td>
                                         <td>{{ $lists->Mobile_Num }}</td>
@@ -125,6 +127,9 @@
                                                                     readonly>
                                                             </div>
                                                         </div>
+                                                        <br>
+                                                            <p class="text-left">Proof of Payment </p>
+                                                            <img src="{{ $lists->Proof_Image }}"  class="card-img-top" />
                                                     </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger"

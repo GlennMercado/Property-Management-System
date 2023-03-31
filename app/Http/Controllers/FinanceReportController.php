@@ -298,13 +298,13 @@ class FinanceReportController extends Controller
 
     public function reports(Request $request)
     {   
-        
+        try{
         if($request->ajax()){
             if($request->get('num') == 1)
             {
                 // $data = finance_2_reports::select('finance_2_reports.*');
                 $data = DB::select('SELECT * FROM finance_2_reports');
-dd($data);
+
                 return Datatables::of($data)
                 ->addIndexColumn()
                 ->filter(function ($instance) use ($request)
@@ -351,30 +351,22 @@ dd($data);
                 })
                 ->make(true);   
             } 
-            
-            
-    
-                
+        
+        }
+            }
+            catch(\Illuminate\Database\QueryException $e){
+
+
+                return view('Admin.pages.Finances.DailyReport');
+            }
+
+            return view('Admin.pages.Finances.DailyReport');
                  
         }
-        return view('Admin.pages.Finances.DailyReport');
-    }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
