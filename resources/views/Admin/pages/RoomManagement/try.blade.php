@@ -16,7 +16,8 @@
 //   "2023-04-01"
 // ];
 
-var disabledDates = [];
+var start_disabledDates = [];
+var end_disabledDates = [];
 function getDisabledDates() {
   // Send an AJAX request to your Laravel route to get the disabled dates
   $.ajax({
@@ -24,7 +25,8 @@ function getDisabledDates() {
     type: 'GET',
     dataType: 'json',
     success: function(response) {
-      disabledDates = response.start;
+      start_disabledDates = response.start;
+      end_disabledDates = response.end;
       // Disable the dates returned by the server
       // $.each(response.start, function(index, value) {
       //   $('#datepicker')
@@ -36,7 +38,10 @@ function getDisabledDates() {
 }
 
 $(function(){
+  var start = moment(start_disabledDates);
+  var end = moment(end_disabledDates);
   $("#datepicker").datepicker({
+    format: 'yyyy-mm-dd',
     beforeShowDay:function(date){
 
       // Format the date as "yyyy-mm-dd"
@@ -44,8 +49,11 @@ $(function(){
       var month = (date.getMonth() + 1).toString().padStart(2, "0");
       var day = date.getDate().toString().padStart(2, "0");
       var formattedDate = year + "-" + month + "-" + day;
+    
+      var d = moment(date);
 
-      if ($.inArray(formattedDate, disabledDates) != -1) {
+      //if ($.inArray(formattedDate, disabledDates) != -1) {
+      if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
         return [false, "disabled-date", "This date is disabled"];
       } else {
         return [true, ""];
