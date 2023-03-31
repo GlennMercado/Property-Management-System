@@ -346,14 +346,18 @@ class HotelController extends Controller
     
     public function front_desk_getdata($id)
     {
-        $roomno = $id;
-
         $data = novadeci_suites::where('Room_No', $id)->first();
 
         return response()->json($data);
     }
 
-    
+    public function front_desk_getdate($id)
+    {
+        $data = DB::table('hotel_reservations')->pluck('Check_In_Date')->toArray();
+        
+        return response()->json($data);
+    }
+
     public function edit($id)
     {
         //

@@ -3,6 +3,7 @@
 @section('content')
     @include('layouts.headers.cards')
     <script src="{{ asset('Javascript') }}/walk_in.js"></script>
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -51,10 +52,8 @@
                                         <select name="room_no" class="form-control" id="list_rooms" required>
                                             <option selected disabled value="">Select</option>
                                             @foreach ($room as $rooms)
-                                                @if ($rooms->Status == 'Vacant for Accommodation')
                                                     <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
                                                         {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
-                                                @endif
                                             @endforeach
                                         </select>
                                         
@@ -186,16 +185,52 @@
                 $('.chck').attr('min', maxDate);
             });
 
+            var disabled_Dates = [];
+
             $(document).ready(function() {
                 $('#list_rooms').on('change', function() { 
                     var id = $(this).val();
+                    //FOR ROOMS
                     $.ajax({
                         url: '{{ route("get.data", ":id") }}'.replace(':id', id),
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
                             $('#rpn').val(data.Rate_per_Night);
-                            alert(data.Rate_per_Night);
+                        },
+                        error: function(xhr, status, error) {
+                        // Handle any errors
+                        }
+                    });
+
+                    //FOR DATE CHECK IN
+                    $.ajax({
+                        url: '{{ route("get.date", ":id") }}'.replace(':id', id),
+                        type: 'GET',
+                        async: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            disabled_Dates = response;
+                            // $.each(response, function(index, value) {
+                            //     $('input[type="date"][name="checkIn"]')
+                            //     .find('option[value="' + value + '"]')
+                            //     .attr('disabled', true);
+                            // });
+                            var dateInput = document.getElementById('date1');
+
+                            dateInput.addEventListener('input', function () {
+                                var selectedDate = new Date(this.value);
+                                var day = selectedDate.getDate();
+                                var month = selectedDate.getMonth() + 1;
+                                var year = selectedDate.getFullYear();
+                                
+                                var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+                                
+                               
+                                if (disabled_Dates.includes(formattedDate)) {
+                                    this.value = '';
+                                }
+                            });
                         },
                         error: function(xhr, status, error) {
                         // Handle any errors
@@ -203,6 +238,24 @@
                     });
                 });
             });
+            // $(function() {
+            //     $("#date1").datepicker({
+            //         beforeShowDay: function(date) {
+            //             // Format the date as "yyyy-mm-dd"
+            //             var year = date.getFullYear();
+            //             var month = (date.getMonth() + 1).toString().padStart(2, "0");
+            //             var day = date.getDate().toString().padStart(2, "0");
+            //             var formattedDate = year + "-" + month + "-" + day;
+
+            //             // Check if the date is in the disabledDates array and disable it if it is
+            //             if ($.inArray(formattedDate, disabled_Dates) != -1) {
+            //                 return [false, "disabled-date", "This date is disabled"];
+            //             } else {
+            //                 return [true, ""];
+            //             }
+            //         }
+            //     });
+            // });
         </script>
         <style>
             /* disable arrows input type number */
@@ -210,6 +263,11 @@
             input[type="number"]::-webkit-inner-spin-button {
                 -webkit-appearance: none;
                 margin: 0;
+            }
+            .disabled-date {
+                color: #999;
+                background-color: #f9f9f9;
+                cursor: not-allowed;
             }
 
             input[type="number"] {
