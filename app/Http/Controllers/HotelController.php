@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\hotel_reservations;
 use App\Models\housekeepings;
+use App\Models\novadeci_suites;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -342,23 +343,17 @@ class HotelController extends Controller
                 }
             }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function front_desk_getdata($id)
     {
-        //
+        $roomno = $id;
+
+        $data = novadeci_suites::where('Room_No', $id)->first();
+
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //

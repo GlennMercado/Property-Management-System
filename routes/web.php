@@ -76,9 +76,12 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 		Route::get('UserManagement', [App\Http\Controllers\UserManagementController::class, 'Usermanagement'])->name('UserManagement');
 		Route::post('/create_new_user', 'App\Http\Controllers\UserManagementController@create_new_user');
 
+		Route::post('/edit_user', 'App\Http\Controllers\UserManagementController@edit_user');
+
 		Route::get('/enable_disable_user/{id}/{em}/{endis}', 'App\Http\Controllers\UserManagementController@enable_disable_user');
 
 		Route::get('newpage', function () {return view('Admin.pages.newpage');})->name('newpage');
+
 	//GuestManagement
 	Route::post('guestloggedin', 'App\Http\Controllers\GuestTicketsController@ticket');
 
@@ -131,6 +134,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 	//FRONT DESK-----------------------
 		//Reservation
 		Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+		Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
 
 		Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
 		Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 

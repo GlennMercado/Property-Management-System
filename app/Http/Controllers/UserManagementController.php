@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class UserManagementController extends Controller
 {
@@ -15,10 +16,12 @@ class UserManagementController extends Controller
     {
         $email = Auth::user()->email;
 
-        $list = DB::select("SELECT * FROM users WHERE email != '$email' ");  
-        $count = DB::select("SELECT count(*) as cnt FROM users WHERE User_Type = 'Housekeeping Supervisor' ");
+        $list = DB::select("SELECT * FROM users WHERE email != '$email' and User_Type != 'Guest' and IsArchived = 0");  
+        $list2 = DB::select("SELECT * FROM users WHERE email != '$email' and User_Type = 'Guest' and IsArchived = 0");  
+        $list3 = DB::select("SELECT * FROM users WHERE IsArchived = 1");  
+        $count = DB::select("SELECT count(*) as cnt FROM users WHERE User_Type = 'Housekeeping Supervisor' and IsArchived != 1 ");
 
-        return view('Admin.pages.UserManagement', ['list'=>$list, 'count' => $count]);
+        return view('Admin.pages.UserManagement', ['list'=>$list, 'list2'=>$list2, 'list3'=>$list3,'count' => $count]);
        
     }
     public function create_new_user(Request $request)
@@ -68,7 +71,43 @@ class UserManagementController extends Controller
 
 
     }
+    public function edit_user(Request $request)
+    {
+        try
+        {
+            $id = $request->input('id');
+            $email = $request->input('email');
+            $usertype = $request->input('User_Type');
+            $current_type = $request->input('type');
 
+            if($current_type == $usertype)
+            {
+                Alert::Error('Error', "User is already ".$current_type."!");
+                return redirect('/UserManagement')->with('Error', 'error');
+            }
+            else
+            {
+                $update = DB::table('users')->where(['id' => $id, 'email'=>$email])
+                        ->update(['User_Type' => $usertype]);
+
+                if($update)
+                {
+                    Alert::Success('Success', "User role successfully changed!");
+                    return redirect('/UserManagement')->with('Error', 'error');
+                }
+                else
+                {
+                    Alert::Success('Error', "Role Changing Failed!");
+                    return redirect('/UserManagement')->with('Error', 'error');
+                }
+            }
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', $e);
+            return redirect('/UserManagement')->with('Error', 'error');
+        }
+    }
     public function enable_disable_user($id, $em, $endis)
     {
         try
@@ -81,9 +120,14 @@ class UserManagementController extends Controller
             {
                 $sql = DB::table('users')->where(['id' => $userid, 'email' => $email])->update(['IsDisabled' => 1]);
             }
-            else
+            elseif($remarks == "Enabled")
             {
                 $sql = DB::table('users')->where(['id' => $userid, 'email' => $email])->update(['IsDisabled' => 0]);
+            }
+            elseif($remarks == "Archived")
+            {
+                $datenow = Carbon::now();
+                $sql = DB::table('users')->where(['id' => $userid, 'email' => $email])->update(['IsDisabled' => 1, 'IsArchived' => 1, 'updated_at' => $datenow]);
             }
 
             if($sql)

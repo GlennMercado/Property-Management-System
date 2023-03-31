@@ -658,14 +658,14 @@ class HousekeepingController extends Controller
     
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
     
-                Alert::Success('Success', 'Attendant Successfully Assigned!');
+                Alert::Success('Success', 'Successfully Assigned an Attendant!');
                 return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             }
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Error', 'Attendant Assigning Failed!');
+            Alert::Error('Error', 'Failed Assigning Attendant!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
 
@@ -719,8 +719,7 @@ class HousekeepingController extends Controller
     }
 
     public function update_housekeeping_status($hk, $id, $status, $req)
-    {
-        
+    {   
         try
         {           
             $hid = $id;
@@ -781,19 +780,32 @@ class HousekeepingController extends Controller
     {
         $name = $request->input('housekeeper');
 
-        $add = new List_of_Housekeepers;
+        $sql = DB::select("SELECT * FROM list_of_housekeepers WHERE Housekeepers_Name = '$name'");
 
-        $add->Housekeepers_Name = $name;
-
-        if($add->save())
+        if($sql)
         {
-            Alert::Success('Success', 'Adding Housekeeper Success!');
+            Alert::Error('Failed', 'Housekeeper Already Exist!');
             return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
         }
         else
         {
-            Alert::Error('Error', 'Adding Housekeeper Failed!');
-            return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+    
+            $add = new List_of_Housekeepers;
+
+            $add->Housekeepers_Name = $name;
+            
+
+            if($add->save())
+            {
+                Alert::Success('Success', 'Housekeeper Successfully Added!');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                Alert::Error('Error', 'Adding Housekeeper Failed!');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            } 
+              
         }
 
     }

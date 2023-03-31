@@ -48,16 +48,18 @@
                                 <div class="row">
                                     <div class="col-6 pt-4">
                                         <p class="text-left label">Room No</p>
-                                        <select name="room_no" class="form-control" required>
+                                        <select name="room_no" class="form-control" id="list_rooms" required>
                                             <option selected disabled value="">Select</option>
                                             @foreach ($room as $rooms)
                                                 @if ($rooms->Status == 'Vacant for Accommodation')
                                                     <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
                                                         {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
                                                 @endif
+                                            @endforeach
                                         </select>
-                                        <input type="hidden" id="rpn" value="{{ $rooms->Rate_per_Night }}">
-                                        @endforeach
+                                        
+                                        <input type="hidden" id="rpn">
+
                                     </div>
                                     <div class="col-6 pt-4">
                                         <p class="text-left label">Number of Pax </p>
@@ -182,6 +184,24 @@
                 var maxDate = year + '-' + month + '-' + day;
 
                 $('.chck').attr('min', maxDate);
+            });
+
+            $(document).ready(function() {
+                $('#list_rooms').on('change', function() { 
+                    var id = $(this).val();
+                    $.ajax({
+                        url: '{{ route("get.data", ":id") }}'.replace(':id', id),
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#rpn').val(data.Rate_per_Night);
+                            alert(data.Rate_per_Night);
+                        },
+                        error: function(xhr, status, error) {
+                        // Handle any errors
+                        }
+                    });
+                });
             });
         </script>
         <style>
