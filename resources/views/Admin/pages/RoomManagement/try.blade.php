@@ -10,11 +10,7 @@
 
 <input type="text" id="datepicker" name="datepicker">
 <script>
-//     var disabledDates = [
-//   "2023-03-24",
-//   "2023-03-27",
-//   "2023-04-01"
-// ];
+   
 
 var start_disabledDates = [];
 var end_disabledDates = [];
@@ -36,12 +32,13 @@ function getDisabledDates() {
     }
   });
 }
-
+var disabledDates = [
+  "2023-03-24",
+  "2023-03-27",
+  "2023-04-01"
+];
 $(function(){
-  var start = moment(start_disabledDates);
-  var end = moment(end_disabledDates);
   $("#datepicker").datepicker({
-    format: 'yyyy-mm-dd',
     beforeShowDay:function(date){
 
       // Format the date as "yyyy-mm-dd"
@@ -50,10 +47,9 @@ $(function(){
       var day = date.getDate().toString().padStart(2, "0");
       var formattedDate = year + "-" + month + "-" + day;
     
-      var d = moment(date);
 
-      //if ($.inArray(formattedDate, disabledDates) != -1) {
-      if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
+      if ($.inArray(formattedDate, disabledDates) != -1) {
+      //if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
         return [false, "disabled-date", "This date is disabled"];
       } else {
         return [true, ""];
