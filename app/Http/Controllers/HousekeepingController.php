@@ -658,14 +658,14 @@ class HousekeepingController extends Controller
     
                 DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
     
-                Alert::Success('Success', 'Attendant Successfully Assigned!');
+                Alert::Success('Success', 'Successfully Assigned an Attendant!');
                 return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             }
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Error', 'Attendant Assigning Failed!');
+            Alert::Error('Error', 'Failed Assigning Attendant!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
 
@@ -797,7 +797,7 @@ class HousekeepingController extends Controller
 
             if($add->save())
             {
-                Alert::Success('Success', 'Adding Housekeeper Success!');
+                Alert::Success('Success', 'Housekeeper Successfully Added!');
                 return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
             }
             else
