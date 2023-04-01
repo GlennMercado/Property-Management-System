@@ -2,7 +2,25 @@
 
 @section('content')
     @include('layouts.headers.cards')
+    <!-- METHOD 1 -->
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- jQuery datepicker library -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+    <!-- METHOD 2 -->
+    <!-- Styles -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
+    
+    <!-- Scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+
     <script src="{{ asset('Javascript') }}/walk_in.js"></script>
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -51,10 +69,8 @@
                                         <select name="room_no" class="form-control" id="list_rooms" required>
                                             <option selected disabled value="">Select</option>
                                             @foreach ($room as $rooms)
-                                                @if ($rooms->Status == 'Vacant for Accommodation')
                                                     <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
                                                         {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
-                                                @endif
                                             @endforeach
                                         </select>
                                         
@@ -74,6 +90,9 @@
                                         <p class="text-left label pt-4">Check in Date </p> <!-- Check in Date/Time-->
                                         <input class="form-control chck" name="checkIn" type="date"
                                             onkeydown="return false" id="date1" required>
+
+                                        <input type="text" name="date" class="form-control datepicker">
+
                                     </div>
                                     <div class="col-6">
                                         <p class="text-left label pt-4">Check out Date </p> <!-- Check in Date/Time-->
@@ -165,88 +184,181 @@
 
 
 
-        <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
+<script>
+    $('.prevent_submit').on('submit', function() {
+        $('.prevent_submit').attr('disabled', 'true');
+    });
+
+    $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+        var dateToday = new Date();
+        var month = dateToday.getMonth() + 1;
+        var day = dateToday.getDate();
+        var year = dateToday.getFullYear();
+
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('.chck').attr('min', maxDate);
+    });
+
+    var start_disabled_Dates = [];
+    var end_disabled_Dates = [];
+
+    //ajax
+    $(document).ready(function() {
+        $('#list_rooms').on('change', function() { 
+            var id = $(this).val();
+            //FOR ROOMS
+            $.ajax({
+                url: '{{ route("get.data", ":id") }}'.replace(':id', id),
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#rpn').val(data.Rate_per_Night);
+                },
+                error: function(xhr, status, error) {
+                // Handle any errors
+                }
             });
 
-            $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
-                var dateToday = new Date();
-                var month = dateToday.getMonth() + 1;
-                var day = dateToday.getDate();
-                var year = dateToday.getFullYear();
+            //FOR DATE CHECK IN
+            $.ajax({
+                url: '{{ route("get.date", ":id") }}'.replace(':id', id),
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function(response) {
+                    start_disabled_Dates = response.start;
+                    end_disabled_Dates = response.end;
+                    // $.each(response, function(index, value) {
+                    //     $('input[type="date"][name="checkIn"]')
+                    //     .find('option[value="' + value + '"]')
+                    //     .attr('disabled', true);
+                    // });
+                    var dateInput = document.getElementById('date1');
 
-                if (month < 10)
-                    month = '0' + month.toString();
-                if (day < 10)
-                    day = '0' + day.toString();
+                    dateInput.addEventListener('input', function () {
+                        var selectedDate = new Date(this.value);
+                        var day = selectedDate.getDate();
+                        var month = selectedDate.getMonth() + 1;
+                        var year = selectedDate.getFullYear();
+                        
+                        var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
 
-                var maxDate = year + '-' + month + '-' + day;
-
-                $('.chck').attr('min', maxDate);
-            });
-
-            $(document).ready(function() {
-                $('#list_rooms').on('change', function() { 
-                    var id = $(this).val();
-                    $.ajax({
-                        url: '{{ route("get.data", ":id") }}'.replace(':id', id),
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#rpn').val(data.Rate_per_Night);
-                            alert(data.Rate_per_Night);
-                        },
-                        error: function(xhr, status, error) {
-                        // Handle any errors
+                        if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
+                            this.value = '';
+                            alert('Date not Available');
                         }
                     });
-                });
-            });
-        </script>
-        <style>
-            /* disable arrows input type number */
-            input[type="number"]::-webkit-outer-spin-button,
-            input[type="number"]::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-
-            input[type="number"] {
-                -moz-appearance: textfield;
-            }
-
-            .title {
-                text-transform: uppercase;
-                font-size: 25px;
-                letter-spacing: 2px;
-            }
-
-            .label {
-                font-size: 18px;
-                font-family: sans-serif;
-            }
-
-            .line {
-                border: 2px solid black;
-                width: 35%;
-                display: inline-block;
-                align-items: right;
-                margin-top: 10px;
-            }
-
-            @media (max-width: 800px) {
-                .line {
-                    width: 100%;
+                },
+                error: function(xhr, status, error) {
+                // Handle any errors
                 }
-            }
+            });
+        });
+    });
 
-            .currency::before {
-                content: '₱';
-            }
-        </style>
+//Using Method 1
+var disabledDates = [
+    "2023-03-24",
+    "2023-03-27",
+    "2023-04-01"
+];
+$(function(){
+  $(".datepicker").datepicker({
+    beforeShowDay:function(date){
 
-    </div>
+      // Format the date as "yyyy-mm-dd"
+      var year = date.getFullYear();
+      var month = (date.getMonth() + 1).toString().padStart(2, "0");
+      var day = date.getDate().toString().padStart(2, "0");
+      var formattedDate = year + "-" + month + "-" + day;
+    
+
+      if ($.inArray(formattedDate, disabledDates) != -1) {
+      //if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
+        return [false, "disabled-date", "This date is disabled"];
+      } else {
+        return [true, ""];
+      }
+
+    }
+  });
+});
+
+//Using Method 2
+// var datesDisabled = ['2023-04-01', '2023-04-05', '2023-04-10']
+// $(document).ready(function() {
+//     $('.datepicker').datepicker({
+//         format: 'yyyy-mm-dd',
+//         datesDisabled: datesDisabled,
+//         beforeShowDay: function(date) {
+//             var formattedDate = moment(date).format("YYYY-MM-DD");
+//             if (datesDisabled.includes(formattedDate)) {
+//                 return [false, "disabled-date"];
+//             }
+//             return [true, ""];
+//         }
+//     });
+// });
+
+
+
+
+</script>
+
+<style>
+    /* disable arrows input type number */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* .disabled-date {
+        color: #999;
+        background-color: #f9f9f9;
+        cursor: not-allowed;
+    } */
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    .title {
+        text-transform: uppercase;
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+
+    .label {
+        font-size: 18px;
+        font-family: sans-serif;
+    }
+
+    .line {
+        border: 2px solid black;
+        width: 35%;
+        display: inline-block;
+        align-items: right;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 800px) {
+        .line {
+            width: 100%;
+        }
+    }
+
+    .currency::before {
+        content: '₱';
+    }
+</style>
+
+</div>
 @endsection
 
 @push('js')
