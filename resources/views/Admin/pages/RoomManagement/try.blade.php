@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
 
+<!-- METHOD 2 -->
+    <!-- Styles -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
+    
+    <!-- Scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+
 <label for="date">Date:</label>
 <input type="text" id="date" name="date">
 
@@ -38,6 +47,7 @@ var disabledDates = [
   "2023-04-01"
 ];
 $(function(){
+  
   $("#datepicker").datepicker({
     beforeShowDay:function(date){
 
@@ -48,8 +58,8 @@ $(function(){
       var formattedDate = year + "-" + month + "-" + day;
     
 
-      if ($.inArray(formattedDate, disabledDates) != -1) {
-      //if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
+      //if ($.inArray(formattedDate, disabledDates) != -1) {
+      if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
         return [false, "disabled-date", "This date is disabled"];
       } else {
         return [true, ""];
@@ -66,8 +76,24 @@ window.onload = function() {
 
 
 
-
+//Using Method 2
+// var datesDisabled = ['2023-04-01', '2023-04-05', '2023-04-10']
+// $(document).ready(function() {
+//     $('.datepicker').datepicker({
+//         format: 'yyyy-mm-dd',
+//         datesDisabled: datesDisabled,
+//         beforeShowDay: function(date) {
+//             var formattedDate = moment(date).format("YYYY-MM-DD");
+//             if (datesDisabled.includes(formattedDate)) {
+//                 return [false, "disabled-date"];
+//             }
+//             return [true, ""];
+//         }
+//     });
+// });
 
 
 
 </script>
+
+

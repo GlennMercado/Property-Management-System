@@ -75,13 +75,15 @@ class HotelController extends Controller
 
   
         $datenow = now()->format('Y-m-d');
+        $checkindate = Carbon::createFromFormat('m/d/Y', $request->input('checkIn'))->format('Y-m-d');
+        $checkoutdate = Carbon::createFromFormat('m/d/Y', $request->input('checkOut'))->format('Y-m-d');
 
-        if($request->input('checkIn') == $datenow)
+        if($checkindate == $datenow)
         {
             $status = "Occupied";
             $fstats = "Checked-In";
         }
-        elseif($request->input('checkIn') > $datenow)
+        elseif($checkindate > $datenow)
         {
             $status = "Reserved";
             $fstats = "Reserved";
@@ -94,8 +96,8 @@ class HotelController extends Controller
         $roomno = $request->input('room_no');
 
         $reserve->Booking_No = $randID;
-        $reserve->Check_In_Date = $request->input('checkIn');
-        $reserve->Check_Out_Date = $request->input('checkOut');
+        $reserve->Check_In_Date = $checkindate;
+        $reserve->Check_Out_Date = $checkoutdate;
         $reserve->Guest_Name = $request->input('gName');
         $reserve->Mobile_Num = $request->input('mobile');
         $reserve->No_of_Pax = $request->input('pax');

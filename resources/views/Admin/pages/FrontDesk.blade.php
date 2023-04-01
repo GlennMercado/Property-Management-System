@@ -2,22 +2,9 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    <!-- METHOD 1 -->
-    <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
     <!-- jQuery datepicker library -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-
-    <!-- METHOD 2 -->
-    <!-- Styles -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
-    
-    <!-- Scripts -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
 
     <script src="{{ asset('Javascript') }}/walk_in.js"></script>
 
@@ -86,18 +73,27 @@
                                             @endfor
                                         </select>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6" id="dates1" style="display:none;">
                                         <p class="text-left label pt-4">Check in Date </p> <!-- Check in Date/Time-->
-                                        <input class="form-control chck" name="checkIn" type="date"
-                                            onkeydown="return false" id="date1" required>
+                                        <!-- <input class="form-control chck" name="checkIn" type="date"
+                                            onkeydown="return false" id="date1" required> -->
 
-                                        <input type="text" name="date" class="form-control datepicker">
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <input type="text" id="date1" class="form-control datepicker" name="checkIn" onkeydown="return false">
+                                            </div>
+                                        </div>
 
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6" id="dates2" style="display:none;">
                                         <p class="text-left label pt-4">Check out Date </p> <!-- Check in Date/Time-->
-                                        <input class="form-control chck" name="checkOut" type="date"
-                                            onkeydown="return false" id="date2" required>
+                                        <!-- <input class="form-control chck" name="checkOut" type="date"
+                                            onkeydown="return false" id="date2" required> -->
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control datepicker" id="date2" name="checkOut" onkeydown="return false">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br><br>
@@ -189,26 +185,7 @@
         $('.prevent_submit').attr('disabled', 'true');
     });
 
-    $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
-        var dateToday = new Date();
-        var month = dateToday.getMonth() + 1;
-        var day = dateToday.getDate();
-        var year = dateToday.getFullYear();
-
-        if (month < 10)
-            month = '0' + month.toString();
-        if (day < 10)
-            day = '0' + day.toString();
-
-        var maxDate = year + '-' + month + '-' + day;
-
-        $('.chck').attr('min', maxDate);
-    });
-
-    var start_disabled_Dates = [];
-    var end_disabled_Dates = [];
-
-    //ajax
+    //AJAX
     $(document).ready(function() {
         $('#list_rooms').on('change', function() { 
             var id = $(this).val();
@@ -232,27 +209,50 @@
                 async: false,
                 dataType: 'json',
                 success: function(response) {
+                    var start_disabled_Dates = null;
+                    var end_disabled_Dates = null;
+
+                    // var dateInput = document.getElementById('date1');
+                    // dateInput.addEventListener('input', function () {
+                    //     var selectedDate = new Date(this.value);
+                    //     var day = selectedDate.getDate();
+                    //     var month = selectedDate.getMonth() + 1;
+                    //     var year = selectedDate.getFullYear();
+                        
+                    //     var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+
+                    //     if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
+                    //         this.value = '';
+                    //         alert('Date not Available');
+                    //     }
+                    // });
+                    $('#dates1').show();
+                    $('#dates2').show();
+
+                    $(".datepicker").datepicker("destroy");
+
                     start_disabled_Dates = response.start;
                     end_disabled_Dates = response.end;
-                    // $.each(response, function(index, value) {
-                    //     $('input[type="date"][name="checkIn"]')
-                    //     .find('option[value="' + value + '"]')
-                    //     .attr('disabled', true);
-                    // });
-                    var dateInput = document.getElementById('date1');
 
-                    dateInput.addEventListener('input', function () {
-                        var selectedDate = new Date(this.value);
-                        var day = selectedDate.getDate();
-                        var month = selectedDate.getMonth() + 1;
-                        var year = selectedDate.getFullYear();
-                        
-                        var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+                    $(function(){
+                        var startDates = start_disabled_Dates;
+                        var endDates = end_disabled_Dates;
+                        $(".datepicker").datepicker({
+                            minDate: 0,
+                            buttonImageOnly: true,
+                            showOn: "both",
+                            buttonImage: "{{ asset('images') }}/calendar.png",
+                            beforeShowDay:function(date){
+                                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                                for (var i = 0; i < startDates.length; i++) {
+                                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                                        return [false, "disabled-date"];
+                                    }
+                                }
+                                return [true, ""];
 
-                        if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
-                            this.value = '';
-                            alert('Date not Available');
-                        }
+                            }
+                        });
                     });
                 },
                 error: function(xhr, status, error) {
@@ -261,54 +261,6 @@
             });
         });
     });
-
-//Using Method 1
-var disabledDates = [
-    "2023-03-24",
-    "2023-03-27",
-    "2023-04-01"
-];
-$(function(){
-  $(".datepicker").datepicker({
-    beforeShowDay:function(date){
-
-      // Format the date as "yyyy-mm-dd"
-      var year = date.getFullYear();
-      var month = (date.getMonth() + 1).toString().padStart(2, "0");
-      var day = date.getDate().toString().padStart(2, "0");
-      var formattedDate = year + "-" + month + "-" + day;
-    
-
-      if ($.inArray(formattedDate, disabledDates) != -1) {
-      //if (d.isSameOrAfter(start) && d.isSameOrBefore(end)) {
-        return [false, "disabled-date", "This date is disabled"];
-      } else {
-        return [true, ""];
-      }
-
-    }
-  });
-});
-
-//Using Method 2
-// var datesDisabled = ['2023-04-01', '2023-04-05', '2023-04-10']
-// $(document).ready(function() {
-//     $('.datepicker').datepicker({
-//         format: 'yyyy-mm-dd',
-//         datesDisabled: datesDisabled,
-//         beforeShowDay: function(date) {
-//             var formattedDate = moment(date).format("YYYY-MM-DD");
-//             if (datesDisabled.includes(formattedDate)) {
-//                 return [false, "disabled-date"];
-//             }
-//             return [true, ""];
-//         }
-//     });
-// });
-
-
-
-
 </script>
 
 <style>
@@ -318,27 +270,18 @@ $(function(){
         -webkit-appearance: none;
         margin: 0;
     }
-    /* .disabled-date {
-        color: #999;
-        background-color: #f9f9f9;
-        cursor: not-allowed;
-    } */
-
     input[type="number"] {
         -moz-appearance: textfield;
     }
-
     .title {
         text-transform: uppercase;
         font-size: 25px;
         letter-spacing: 2px;
     }
-
     .label {
         font-size: 18px;
         font-family: sans-serif;
     }
-
     .line {
         border: 2px solid black;
         width: 35%;
@@ -346,15 +289,96 @@ $(function(){
         align-items: right;
         margin-top: 10px;
     }
-
     @media (max-width: 800px) {
         .line {
             width: 100%;
         }
     }
-
     .currency::before {
         content: '₱';
+    }
+
+    /* Date Picker CSS */
+    /* Set the font and background colors for the datepicker */
+    input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+    .ui-datepicker {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        background-color: #fff;
+    }
+    .ui-datepicker-trigger {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 5px;
+        margin-right: 18px;
+        cursor:pointer;
+        background-image: url("{{ asset('images') }}/calendar.png }}");
+        background-size: 30px 30px; 
+        width: 30px; 
+        height: 30px; 
+    }
+    /* Set the color of the datepicker header */
+    .ui-datepicker-header {
+        background-color: #f0ad4e;
+        border: 1px solid #ddd;
+        color: #fff;
+    }
+
+    /* Set the color of the datepicker days */
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default {
+        background-color: #fff;
+        border: none;
+        color: #333;
+    }
+
+    /* Set the color of the selected date */
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active {
+        background-color: #f0ad4e;
+        border: none;
+        color: #fff;
+    }
+
+    /* Set the color of the datepicker hover state */
+    .ui-state-hover,
+    .ui-widget-content .ui-state-hover,
+    .ui-widget-header .ui-state-hover {
+        background-color: #f0ad4e;
+        border: none;
+        color: #fff;
+    }
+
+    /* Set the color of the datepicker today button */
+    .ui-datepicker-current-day {
+        background-color: #f0ad4e;
+        border: none;
+        color: #fff;
+    }
+
+    /* Set the color of the datepicker navigation icons */
+    .ui-icon {
+        background-image: none;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+    }
+
+    /* Set the color of the datepicker navigation buttons */
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+        background-image: none;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-weight: bold;
     }
 </style>
 

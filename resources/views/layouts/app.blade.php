@@ -27,7 +27,9 @@
 
         <!--Jquery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+
+        <!-- jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
             @if(Auth::user()->User_Type == "Admin")
                 @include('layouts.admin')
