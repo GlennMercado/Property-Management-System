@@ -69,16 +69,22 @@
                 <div class="container">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div class="tab-content" id="myTabContent">
-                                {{-- ORs --}}
-                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-1-tab">
-                                    <select class="form-control" style="width:20%;" id="date">
+                        <select class="form-control" style="width:20%;" id="date">
                                         <option value="All">All Records</option>
                                         <option value="Daily">Daily</option>
                                         <option value="Weekly">Weekly</option>
                                         <option value="Monthly">Monthly</option>
                                     </select>
+                            <div class="tab-content" id="myTabContent">
+                                {{-- ORs --}}
+                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-1-tab">
+                                    <!-- <select class="form-control" style="width:20%;" id="date">
+                                        <option value="All">All Records</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select> -->
                                     <table class="table align-items-center table-flush" style="align-items:center"
                                         id="myTable1">
                                         <thead class="thead-light">
@@ -352,8 +358,7 @@
                     url: "{{ route('DailyReport.reports') }}",
                     data: function(d) {
                         d.num = 1,
-                            d.date = $('#date').val(),
-                            d.search = $('#search1').val()
+                            d.date = $('#date').val()
                     }
                 },
                 columns: [{
@@ -388,11 +393,10 @@
                     },
                     {
                         data: 'debit'
-                    }
+                    },
                 ]
             });
 
-            $('#myTable_filter input[type="search"]').prop('userid', 'search1');
 
             $('#date').change(function() {
                 table.draw();
