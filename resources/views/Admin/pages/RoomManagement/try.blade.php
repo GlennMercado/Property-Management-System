@@ -47,7 +47,20 @@ var disabledDates = [
   "2023-04-01"
 ];
 $(function(){
-  
+   // var dateInput = document.getElementById('date1');
+                    // dateInput.addEventListener('input', function () {
+                    //     var selectedDate = new Date(this.value);
+                    //     var day = selectedDate.getDate();
+                    //     var month = selectedDate.getMonth() + 1;
+                    //     var year = selectedDate.getFullYear();
+                        
+                    //     var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+
+                    //     if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
+                    //         this.value = '';
+                    //         alert('Date not Available');
+                    //     }
+                    // });
   $("#datepicker").datepicker({
     beforeShowDay:function(date){
 

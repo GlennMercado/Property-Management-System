@@ -212,20 +212,6 @@
                     var start_disabled_Dates = null;
                     var end_disabled_Dates = null;
 
-                    // var dateInput = document.getElementById('date1');
-                    // dateInput.addEventListener('input', function () {
-                    //     var selectedDate = new Date(this.value);
-                    //     var day = selectedDate.getDate();
-                    //     var month = selectedDate.getMonth() + 1;
-                    //     var year = selectedDate.getFullYear();
-                        
-                    //     var formattedDate = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
-
-                    //     if (start_disabled_Dates.includes(formattedDate) || end_disabled_Dates.includes(formattedDate)) {
-                    //         this.value = '';
-                    //         alert('Date not Available');
-                    //     }
-                    // });
                     $('#dates1').show();
                     $('#dates2').show();
 
@@ -237,10 +223,11 @@
                     $(function(){
                         var startDates = start_disabled_Dates;
                         var endDates = end_disabled_Dates;
-                        $(".datepicker").datepicker({
+                        $("#date1").datepicker({
                             minDate: 0,
                             buttonImageOnly: true,
                             showOn: "both",
+                            format: 'yyyy-mm-dd',
                             buttonImage: "{{ asset('images') }}/calendar.png",
                             beforeShowDay:function(date){
                                 var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
@@ -253,6 +240,28 @@
 
                             }
                         });
+
+                        $("#date2").datepicker({
+                            minDate: 0,
+                            buttonImageOnly: true,
+                            showOn: "both",
+                            format: 'yyyy-mm-dd',
+                            buttonImage: "{{ asset('images') }}/calendar.png",
+                            beforeShowDay:function(date){
+                                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                                for (var i = 0; i < startDates.length; i++) {
+                                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                                        return [false, "disabled-date"];
+                                    }
+                                }
+                                var startDate = $('#date1').datepicker('getDate');
+                                // Disable dates before startDate in datepicker2
+                                return date < startDate ? [false] : [true];
+
+                                return [true, ""];
+
+                            }
+                        });
                     });
                 },
                 error: function(xhr, status, error) {
@@ -261,6 +270,33 @@
             });
         });
     });
+
+    $(function() {
+        var datepicker1 = $('#date1');
+        var datepicker2 = $('#date2');
+
+        datepicker1.datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+
+        datepicker2.datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            beforeShowDay: function(date) {
+            var startDate = datepicker1.datepicker('getDate');
+            if (startDate && date < startDate) {
+                return {
+                enabled: false
+                };
+            }
+            return {
+                enabled: true
+            };
+            }
+        });
+    });
+
 </script>
 
 <style>
@@ -300,11 +336,9 @@
 
     /* Date Picker CSS */
     /* Set the font and background colors for the datepicker */
-    input:focus {
-    outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
+    .datepicker {
+        pointer-events: none;
+    }
     .ui-datepicker {
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         font-size: 14px;
