@@ -241,6 +241,10 @@
                             },
                             onSelect: function(selectedDate) {
                                 $('#dates2').show();
+                                var minDate = new Date(selectedDate);
+                                minDate.setDate(minDate.getDate() + 1);
+                                $("#date2").datepicker("option", "minDate", minDate); 
+                                
                             }
                         });
 
@@ -264,6 +268,27 @@
 
                                 return [true, ""];
 
+                            },
+                            onSelect: function(selectedDate) {
+                                var maxDate = new Date(selectedDate);
+                                maxDate.setDate(maxDate.getDate() - 1);
+
+                                for (var i = 0; i < startDates.length; i++) {
+                                    var startDate = new Date(startDates[i]);
+                                    var endDate = new Date(endDates[i]);
+                                    if (maxDate >= startDate && maxDate <= endDate) {
+                                        $("#date2").val('');
+                                        break;
+                                    }
+                                    
+                                    var selectedDate = $(this).datepicker('getDate');
+                                    var startDate = $('#date1').datepicker('getDate');
+                                    var diff = (selectedDate - startDate)/(1000*60*60*24);
+                                    if (diff > 6) {
+                                        alert('Date selection not valid.');
+                                        $("#date2").val('');
+                                    }
+                                }
                             }
                         });
                     });
