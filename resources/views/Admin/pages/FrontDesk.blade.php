@@ -213,7 +213,8 @@
                     var end_disabled_Dates = null;
 
                     $('#dates1').show();
-                    $('#dates2').show();
+                    $('#dates2').hide();
+                    
 
                     $(".datepicker").datepicker("destroy");
 
@@ -237,7 +238,9 @@
                                     }
                                 }
                                 return [true, ""];
-
+                            },
+                            onSelect: function(selectedDate) {
+                                $('#dates2').show();
                             }
                         });
 
@@ -255,13 +258,15 @@
                                     }
                                 }
                                 var startDate = $('#date1').datepicker('getDate');
+
                                 // Disable dates before startDate in datepicker2
-                                return date < startDate ? [false] : [true];
+                                return date <= startDate ? [false] : [true];
 
                                 return [true, ""];
 
                             }
                         });
+
                     });
                 },
                 error: function(xhr, status, error) {
