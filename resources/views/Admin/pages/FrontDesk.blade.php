@@ -202,7 +202,7 @@
                 }
             });
 
-            //FOR DATE CHECK IN
+            //FOR DATE CHECK IN AND CHECK OUT
             $.ajax({
                 url: '{{ route("get.date", ":id") }}'.replace(':id', id),
                 type: 'GET',
@@ -224,6 +224,8 @@
                     $(function(){
                         var startDates = start_disabled_Dates;
                         var endDates = end_disabled_Dates;
+                        
+                        //CHECK IN DATE
                         $("#date1").datepicker({
                             minDate: 0,
                             buttonImageOnly: true,
@@ -248,6 +250,7 @@
                             }
                         });
 
+                        //CHECK OUT DATE
                         $("#date2").datepicker({
                             minDate: 0,
                             buttonImageOnly: true,
@@ -297,6 +300,7 @@
                 // Handle any errors
                 }
             });
+            
         });
     });
 
@@ -339,14 +343,17 @@
 
     /* Date Picker CSS */
     /* Set the font and background colors for the datepicker */
+
     .datepicker {
         pointer-events: none;
     }
+    
     .ui-datepicker {
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         font-size: 14px;
         background-color: #fff;
     }
+    
     .ui-datepicker-trigger {
         position: absolute;
         top: 0;
@@ -359,6 +366,7 @@
         width: 30px; 
         height: 30px; 
     }
+    
     /* Set the color of the datepicker header */
     .ui-datepicker-header {
         background-color: #f0ad4e;
