@@ -58,7 +58,7 @@
                                         <p class="text-left">Housekeeper Name: </p>
                                         <input type="text" name="housekeeper" class="form-control" 
                                         maxlength="16"
-                                        pattern="[a-zA-Z]+" title="Please enter only letters" required>
+                                        pattern="[a-zA-Z\s]+" title="Please enter only letters" required>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
