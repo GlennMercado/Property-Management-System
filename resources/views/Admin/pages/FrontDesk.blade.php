@@ -80,7 +80,7 @@
 
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <input type="text" id="date1" class="form-control datepicker" name="checkIn" onkeydown="return false">
+                                                <input type="text" id="date1" class="form-control datepicker" placeholder="MM/DD/YYYY" name="checkIn" onkeydown="return false">
                                             </div>
                                         </div>
 
@@ -91,7 +91,7 @@
                                             onkeydown="return false" id="date2" required> -->
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <input type="text" class="form-control datepicker" id="date2" name="checkOut" onkeydown="return false">
+                                                <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY" id="date2" name="checkOut" onkeydown="return false">
                                             </div>
                                         </div>
                                     </div>
