@@ -8,43 +8,73 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 mt-5 banner1">
                 <a href="{{ url('convention_center') }}">
-                <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
+                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
                 </a>
             </div>
-            <div class="col-md-8">
-                @foreach ($list as $list)
-                    <div class="card float-left gal col-md-3 mt-2" style="min-height: 550px">
-                        <img class="card-img-top img1 mt-3" src="{{$list->Hotel_Image}}" alt="Card image cap">
-                        <div class="card-body">
-                            <h2 class="text-green">₱{{ $list->Rate_per_Night }}</h2>
-                            <h5 class="card-title">Room {{ $list->Room_No }}</h5>
-                            <p class="card-text">
-                            <h4 class="text-muted">Room Size:</h4> {{ $list->Room_Size }}
-                            <br>
-                            <h4 class="text-muted">Number of Beds:</h4> {{ $list->No_of_Beds }}
-                            </p>
-                            <a href="{{url('suites')}}" class="text-decoration-none"><button
-                                    class="form-control bg-green text-white">Reserve Now</button></a>
+            @foreach ($list as $list)
+                <div class="card p-4 col-md-7 m-3 card1 rounded">
+                    <a href="{{ url('login') }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="img-fluid" src="{{ $list->Hotel_Image }}" alt="Card image cap">
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="pt-2">
+                                    Room Number {{ $list->Room_No }}
+                                </h2>
+                                <h3 class="text-dark">
+                                    <span class="badge badge-pill pills border"><i class="bi bi-wifi"></i> Free Wifi</span>
+                                    <span class="badge badge-pill pills border"><i class="bi bi-egg-fried"></i> Breakfast
+                                        Included</span>
+                                    <span class="badge badge-pill pills border"><i class="bi bi-car-front-fill"></i>
+                                        Parking</span>
+                                </h3>
+                                <h4 class="card-body">
+                                    <i class="bi bi-rulers"></i> {{ $list->Room_Size }} Square Meters
+                                    <br>
+                                    <i><img src="{{ asset('nvdcpics') }}/p1.svg" style="height: 20px; width: 20px"></i>
+                                    {{ $list->No_of_Beds }} bed
+                                    <br>
+                                    <i><img src="{{ asset('nvdcpics') }}/person1.svg" style="height: 20px; width: 20px"></i>
+                                    2 pax (Maximum of 4)
+                                    <br>
+                                    <i class="bi bi-person-plus-fill" style="font-size: 20px"></i> PHP 1,500 per additional
+                                    pax
+                                </h4>
+                                <h1 class="text-green card-footer" id="money">
+                                    PHP {{ $list->Rate_per_Night }}
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                        <div class="col-md-12 pt-4">
+                            <h4>Note: The standard check-in / out time is after 1400 hours (02:00 pm) and the check-out time
+                                is 12:00 noon.</h4>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
     <style>
-        .gal img:hover {
-            transform: scale(1.01);
+        .card1:hover {
+            background-color: aliceblue;
+            box-shadow: -1px 3px 35px 0px rgba(0, 0, 0, 0.29);
+            -webkit-box-shadow: -1px 3px 35px 0px rgba(0, 0, 0, 0.29);
+            -moz-box-shadow: -1px 3px 35px 0px rgba(0, 0, 0, 0.29);
         }
-        .img1{
-            max-width: 100%;
-            height: 200px !important;
+
+        .pills {
+            background-color: rgb(227, 237, 243);
         }
-        .banner1{
+
+        .banner1 {
             height: 60%;
             width: 100%;
         }
-        .banner1 img{
 
+        .banner1 img {
+            width: 100%;
         }
     </style>
+    <script></script>
 @endsection
