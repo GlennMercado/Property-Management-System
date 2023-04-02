@@ -97,6 +97,7 @@
                                                     {{ $lists->concept }}
                                                 </td>
                                             </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -141,7 +142,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+
             </div>
         </div>
     </div>
