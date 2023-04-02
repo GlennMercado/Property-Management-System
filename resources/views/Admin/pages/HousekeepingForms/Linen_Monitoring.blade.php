@@ -39,20 +39,16 @@
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col" style="font-size:14px;">Action</th>
                                         <th scope="col" style="font-size:14px;">Room <br> No.</th>
                                         <th scope="col" style="font-size:14px;">Total <br> Linen</th>
                                         <th scope="col" style="font-size:14px;">Total <br> Discrepancy</th>
-                                        <th scope="col" style="font-size:14px;">Attendant</th>
-                                        <th scope="col" style="font-size:14px;">Action</th>
+                                        <th scope="col" style="font-size:14px;">Attendant</th>         
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($list as $lists)
                                         <tr>
-                                            <td>{{ $lists->Room_No }}</td>
-                                            <td>{{ $lists->total }}</td>
-                                            <td>{{ $lists->ds }}</td>
-                                            <td>{{ $lists->Attendant }}</td>
                                             <td>
                                                 @php 
                                                     $check;
@@ -82,6 +78,10 @@
                                                         <i class="bi bi-person-fill"></i> </button>
                                                 @endif
                                             </td>
+                                            <td>{{ $lists->Room_No }}</td>
+                                            <td>{{ $lists->total }}</td>
+                                            <td>{{ $lists->ds }}</td>
+                                            <td>{{ $lists->Attendant }}</td>
                                         </tr>
 
                                         <!--Assign Attendant-->
