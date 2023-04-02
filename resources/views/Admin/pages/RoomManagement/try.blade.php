@@ -105,7 +105,32 @@ window.onload = function() {
 //     });
 // });
 
+// 
+// $(function() {
+//     var datepicker1 = $('#date1');
+//     var datepicker2 = $('#date2');
 
+//     datepicker1.datepicker({
+//         format: 'yyyy-mm-dd',
+//         autoclose: true
+//     });
+
+//     datepicker2.datepicker({
+//         format: 'yyyy-mm-dd',
+//         autoclose: true,
+//         beforeShowDay: function(date) {
+//         var startDate = datepicker1.datepicker('getDate');
+//         if (startDate && date < startDate) {
+//             return {
+//             enabled: false
+//             };
+//         }
+//         return {
+//             enabled: true
+//         };
+//         }
+//     });
+// });
 
 </script>
 
