@@ -56,11 +56,11 @@
                                         <select name="room_no" class="form-control" id="list_rooms" required>
                                             <option selected disabled value="">Select</option>
                                             @foreach ($room as $rooms)
-                                                    <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
-                                                        {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
+                                                <option value="{{ $rooms->Room_No }}">{{ $rooms->Room_No }} -
+                                                    {{ $rooms->No_of_Beds }} - {{ $rooms->Extra_Bed }}</option>
                                             @endforeach
                                         </select>
-                                        
+
                                         <input type="hidden" id="rpn">
 
                                     </div>
@@ -76,11 +76,12 @@
                                     <div class="col-6" id="dates1" style="display:none;">
                                         <p class="text-left label pt-4">Check in Date </p> <!-- Check in Date/Time-->
                                         <!-- <input class="form-control chck" name="checkIn" type="date"
-                                            onkeydown="return false" id="date1" required> -->
+                                                    onkeydown="return false" id="date1" required> -->
 
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <input type="text" id="date1" class="form-control datepicker" placeholder="MM/DD/YYYY" name="checkIn" onkeydown="return false">
+                                                <input type="text" id="date1" class="datepicker" name="checkIn"
+                                                    onkeydown="return false">
                                             </div>
                                         </div>
 
@@ -88,10 +89,11 @@
                                     <div class="col-6" id="dates2" style="display:none;">
                                         <p class="text-left label pt-4">Check out Date </p> <!-- Check in Date/Time-->
                                         <!-- <input class="form-control chck" name="checkOut" type="date"
-                                            onkeydown="return false" id="date2" required> -->
+                                                    onkeydown="return false" id="date2" required> -->
                                         <div class="form-group">
                                             <div class="input-group date">
-                                                <input type="text" class="form-control datepicker" placeholder="MM/DD/YYYY" id="date2" name="checkOut" onkeydown="return false">
+                                                <input type="text" class="datepicker" id="date2"
+                                                    name="checkOut" onkeydown="return false">
                                             </div>
                                         </div>
                                     </div>
@@ -180,254 +182,284 @@
 
 
 
-<script>
-    $('.prevent_submit').on('submit', function() {
-        $('.prevent_submit').attr('disabled', 'true');
-    });
-
-    //AJAX
-    $(document).ready(function() {
-        $('#list_rooms').on('change', function() { 
-            var id = $(this).val();
-            //FOR ROOMS
-            $.ajax({
-                url: '{{ route("get.data", ":id") }}'.replace(':id', id),
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#rpn').val(data.Rate_per_Night);
-                },
-                error: function(xhr, status, error) {
-                // Handle any errors
-                }
+        <script>
+            $('.prevent_submit').on('submit', function() {
+                $('.prevent_submit').attr('disabled', 'true');
             });
 
-            //FOR DATE CHECK IN AND CHECK OUT
-            $.ajax({
-                url: '{{ route("get.date", ":id") }}'.replace(':id', id),
-                type: 'GET',
-                async: false,
-                dataType: 'json',
-                success: function(response) {
-                    var start_disabled_Dates = null;
-                    var end_disabled_Dates = null;
-
-                    $('#dates1').show();
-                    $('#dates2').hide();
-                    
-
-                    $(".datepicker").datepicker("destroy");
-
-                    start_disabled_Dates = response.start;
-                    end_disabled_Dates = response.end;
-
-                    $(function(){
-                        var startDates = start_disabled_Dates;
-                        var endDates = end_disabled_Dates;
-                        
-                        //CHECK IN DATE
-                        $("#date1").datepicker({
-                            minDate: 0,
-                            buttonImageOnly: true,
-                            showOn: "both",
-                            format: 'yyyy-mm-dd',
-                            buttonImage: "{{ asset('images') }}/calendar.png",
-                            beforeShowDay:function(date){
-                                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
-                                for (var i = 0; i < startDates.length; i++) {
-                                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
-                                        return [false, "disabled-date"];
-                                    }
-                                }
-                                return [true, ""];
-                            },
-                            onSelect: function(selectedDate) {
-                                $('#dates2').show();
-                                var minDate = new Date(selectedDate);
-                                minDate.setDate(minDate.getDate() + 1);
-                                $("#date2").datepicker("option", "minDate", minDate); 
-                                
-                            }
-                        });
-
-                        //CHECK OUT DATE
-                        $("#date2").datepicker({
-                            minDate: 0,
-                            buttonImageOnly: true,
-                            showOn: "both",
-                            format: 'yyyy-mm-dd',
-                            buttonImage: "{{ asset('images') }}/calendar.png",
-                            beforeShowDay:function(date){
-                                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
-                                for (var i = 0; i < startDates.length; i++) {
-                                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
-                                        return [false, "disabled-date"];
-                                    }
-                                }
-                                var startDate = $('#date1').datepicker('getDate');
-
-                                // Disable dates before startDate in datepicker2
-                                return date <= startDate ? [false] : [true];
-
-                                return [true, ""];
-
-                            },
-                            onSelect: function(selectedDate) {
-                                var maxDate = new Date(selectedDate);
-                                maxDate.setDate(maxDate.getDate() - 1);
-
-                                for (var i = 0; i < startDates.length; i++) {
-                                    var startDate = new Date(startDates[i]);
-                                    var endDate = new Date(endDates[i]);
-                                    if (maxDate >= startDate && maxDate <= endDate) {
-                                        $("#date2").val('');
-                                        break;
-                                    }
-                                    
-                                    var selectedDate = $(this).datepicker('getDate');
-                                    var startDate = $('#date1').datepicker('getDate');
-                                    var diff = (selectedDate - startDate)/(1000*60*60*24);
-                                    if (diff > 6) {
-                                        alert('Date selection not valid.');
-                                        $("#date2").val('');
-                                    }
-                                }
-                            }
-                        });
+            //AJAX
+            $(document).ready(function() {
+                $('#list_rooms').on('change', function() {
+                    var id = $(this).val();
+                    //FOR ROOMS
+                    $.ajax({
+                        url: '{{ route('get.data', ':id') }}'.replace(':id', id),
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#rpn').val(data.Rate_per_Night);
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle any errors
+                        }
                     });
-                },
-                error: function(xhr, status, error) {
-                // Handle any errors
-                }
+
+                    //FOR DATE CHECK IN
+                    $.ajax({
+                        url: '{{ route('get.date', ':id') }}'.replace(':id', id),
+                        type: 'GET',
+                        async: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            var start_disabled_Dates = null;
+                            var end_disabled_Dates = null;
+
+                            $('#dates1').show();
+                            $('#dates2').show();
+
+                            $(".datepicker").datepicker("destroy");
+
+                            start_disabled_Dates = response.start;
+                            end_disabled_Dates = response.end;
+
+                            $(function() {
+                                var startDates = start_disabled_Dates;
+                                var endDates = end_disabled_Dates;
+                                $("#date1").datepicker({
+                                    minDate: 0,
+                                    buttonImageOnly: true,
+                                    showOn: "both",
+                                    format: 'yyyy-mm-dd',
+                                    buttonImage: "{{ asset('images') }}/calendar2.png",
+                                    beforeShowDay: function(date) {
+                                        var formattedDate = $.datepicker
+                                            .formatDate('yy-mm-dd', date);
+                                        for (var i = 0; i < startDates
+                                            .length; i++) {
+                                            if (formattedDate >= startDates[
+                                                    i] && formattedDate <=
+                                                endDates[
+                                                    i]) {
+                                                return [false, "disabled-date"];
+                                            }
+                                        }
+                                        return [true, ""];
+
+                                    }
+                                });
+
+                                $("#date2").datepicker({
+                                    minDate: 0,
+                                    buttonImageOnly: true,
+                                    showOn: "both",
+                                    format: 'yyyy-mm-dd',
+                                    buttonImage: "{{ asset('images') }}/calendar2.png",
+                                    beforeShowDay: function(date) {
+                                        var formattedDate = $.datepicker
+                                            .formatDate('yy-mm-dd', date);
+                                        for (var i = 0; i < startDates
+                                            .length; i++) {
+                                            if (formattedDate >= startDates[
+                                                    i] && formattedDate <=
+                                                endDates[
+                                                    i]) {
+                                                return [false, "disabled-date"];
+                                            }
+                                        }
+                                        var startDate = $('#date1').datepicker(
+                                            'getDate');
+                                        // Disable dates before startDate in datepicker2
+                                        return date < startDate ? [false] : [
+                                            true
+                                        ];
+
+                                        return [true, ""];
+
+                                    }
+                                });
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle any errors
+                        }
+                    });
+                });
             });
+
+            $(function() {
+                var datepicker1 = $('#date1');
+                var datepicker2 = $('#date2');
+
+                datepicker1.datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true
+                });
+
+                datepicker2.datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    beforeShowDay: function(date) {
+                        var startDate = datepicker1.datepicker('getDate');
+                        if (startDate && date < startDate) {
+                            return {
+                                enabled: false
+                            };
+                        }
+                        return {
+                            enabled: true
+                        };
+                    }
+                });
+            });
+        </script>
+
+        <style>
+            /* disable arrows input type number */
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+
+            .title {
+                text-transform: uppercase;
+                font-size: 25px;
+                letter-spacing: 2px;
+            }
+
+            .label {
+                font-size: 18px;
+                font-family: sans-serif;
+            }
+
+            .line {
+                border: 2px solid black;
+                width: 35%;
+                display: inline-block;
+                align-items: right;
+                margin-top: 10px;
+            }
+
+            @media (max-width: 800px) {
+                .line {
+                    width: 100%;
+                }
+            }
+
+            .currency::before {
+                content: '₱';
+            }
+
+            /* Date Picker CSS */
+            /* Set the font and background colors for the datepicker */
             
-        });
-    });
+            .datepicker {
+                pointer-events: none;
+                /* form-control */
+                display: block;
+                width: 100%;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
 
-</script>
+            .datepicker:focus {
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
 
-<style>
-    /* disable arrows input type number */
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-    .title {
-        text-transform: uppercase;
-        font-size: 25px;
-        letter-spacing: 2px;
-    }
-    .label {
-        font-size: 18px;
-        font-family: sans-serif;
-    }
-    .line {
-        border: 2px solid black;
-        width: 35%;
-        display: inline-block;
-        align-items: right;
-        margin-top: 10px;
-    }
-    @media (max-width: 800px) {
-        .line {
-            width: 100%;
-        }
-    }
-    .currency::before {
-        content: '₱';
-    }
+            .ui-datepicker {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                background-color: #fff;
+            }
 
-    /* Date Picker CSS */
-    /* Set the font and background colors for the datepicker */
+            .ui-datepicker-trigger {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-top: 5px;
+                margin-right: 18px;
+                cursor: pointer;
+                background-image: url("{{ asset('images') }}/calendar2.png }}");
+                background-size: 30px 30px;
+                width: 30px;
+                height: 30px;
+            }
 
-    .datepicker {
-        pointer-events: none;
-    }
-    
-    .ui-datepicker {
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 14px;
-        background-color: #fff;
-    }
-    
-    .ui-datepicker-trigger {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 5px;
-        margin-right: 18px;
-        cursor:pointer;
-        background-image: url("{{ asset('images') }}/calendar.png }}");
-        background-size: 30px 30px; 
-        width: 30px; 
-        height: 30px; 
-    }
-    
-    /* Set the color of the datepicker header */
-    .ui-datepicker-header {
-        background-color: #f0ad4e;
-        border: 1px solid #ddd;
-        color: #fff;
-    }
+            /* Set the color of the datepicker header */
+            .ui-datepicker-header {
+                background-color: #39D972;
+                border: 1px solid #ddd;
+                color: #fff;
+            }
 
-    /* Set the color of the datepicker days */
-    .ui-state-default,
-    .ui-widget-content .ui-state-default,
-    .ui-widget-header .ui-state-default {
-        background-color: #fff;
-        border: none;
-        color: #333;
-    }
+            /* Set the color of the datepicker days */
+            .ui-state-default,
+            .ui-widget-content .ui-state-default,
+            .ui-widget-header .ui-state-default {
+                background-color: #fff;
+                border: none;
+                color: #333;
+            }
 
-    /* Set the color of the selected date */
-    .ui-state-active,
-    .ui-widget-content .ui-state-active,
-    .ui-widget-header .ui-state-active {
-        background-color: #f0ad4e;
-        border: none;
-        color: #fff;
-    }
+            /* Set the color of the selected date */
+            .ui-state-active,
+            .ui-widget-content .ui-state-active,
+            .ui-widget-header .ui-state-active {
+                background-color: #6C6C6C;
+                border: none;
+                color: #fff;
+            }
 
-    /* Set the color of the datepicker hover state */
-    .ui-state-hover,
-    .ui-widget-content .ui-state-hover,
-    .ui-widget-header .ui-state-hover {
-        background-color: #f0ad4e;
-        border: none;
-        color: #fff;
-    }
+            /* Set the color of the datepicker hover state */
+            .ui-state-hover,
+            .ui-widget-content .ui-state-hover,
+            .ui-widget-header .ui-state-hover {
+                background-color: #39D972;
+                border: none;
+                color: #fff;
+            }
 
-    /* Set the color of the datepicker today button */
-    .ui-datepicker-current-day {
-        background-color: #f0ad4e;
-        border: none;
-        color: #fff;
-    }
+            /* Set the color of the datepicker today button */
+            .ui-datepicker-current-day {
+                background-color: #16BBAE;
+                border: none;
+                color: #fff;
+            }
 
-    /* Set the color of the datepicker navigation icons */
-    .ui-icon {
-        background-image: none;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-    }
+            /* Set the color of the datepicker navigation icons */
+            .ui-icon {
+                background-image: none;
+                background-color: transparent;
+                border: none;
+                color: #fff;
+            }
 
-    /* Set the color of the datepicker navigation buttons */
-    .ui-datepicker-prev,
-    .ui-datepicker-next {
-        background-image: none;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        font-weight: bold;
-    }
-</style>
+            /* Set the color of the datepicker navigation buttons */
+            .ui-datepicker-prev,
+            .ui-datepicker-next {
+                background-image: none;
+                background-color: transparent;
+                border: none;
+                color: #fff;
+                font-weight: bold;
+            }
+        </style>
 
-</div>
+    </div>
 @endsection
 
 @push('js')

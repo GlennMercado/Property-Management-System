@@ -28,7 +28,9 @@
                                         <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
                                         <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq m</h3>
                                         <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
-                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard check-in / out time is after 1400 hours (02:00 pm) and the check-out time is 12:00 noon.</h3>
+                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard
+                                            check-in / out time is after 1400 hours (02:00 pm) and the check-out time is
+                                            12:00 noon.</h3>
                                         <h3 class="pt-4 text-muted pb-2">
                                             Additional ₱ 1,500/pax
                                         </h3>
@@ -36,11 +38,15 @@
                                 @endforeach
                             </div>
                             <div class="container-fluid shadow d-none d-lg-block">
-
-                                <h3 class="pt-2">Other rooms</h3>
+                                <div class="d-flex pt-2">
+                                    <h3 class="mr-auto">Other rooms</h3>
+                                    <a href="{{ url('/rooms') }}" class="text-dark font-weight-bold"
+                                        style="text-decoration:underline; cursor:pointer;">See all
+                                    </a>
+                                </div>
                                 <div class="row gal">
-                                    @foreach ($room as $lists)
-                                        <div class="col-md-6 shadow">
+                                    @foreach (array_slice($room, 0, 4) as $lists)
+                                        <div class="col-md-6 c1">
                                             <a href="{{ url('/suites', ['id' => $lists->Room_No]) }}">
                                                 <div class="image-container">
                                                     <img class="card-img-top mt-3" src="{{ url($lists->Hotel_Image) }}"
@@ -56,8 +62,6 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <a href="{{ url('/rooms') }}" class="text-dark font-weight-bold"
-                                    style="text-decoration:underline; cursor:pointer;">See all</a>
                             </div>
                         </div>
                     </div>

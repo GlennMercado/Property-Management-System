@@ -3,6 +3,12 @@
             content: '₱';
         }
 
+        .c1:hover {
+            box-shadow: -1px 3px 22px -3px rgba(0, 0, 0, 0.28);
+            -webkit-box-shadow: -1px 3px 22px -3px rgba(0, 0, 0, 0.28);
+            -moz-box-shadow: -1px 3px 22px -3px rgba(0, 0, 0, 0.28);
+        }
+
         /* currency */
         /* gallery */
         /* disable arrows input type number */
@@ -162,13 +168,15 @@
             pointer-events: auto;
             opacity: 1;
         }
+
         /* submit btn */
-        .btn_submit{
+        .btn_submit {
             width: 100%;
             cursor: not-allowed;
         }
+
         /* gcash image */
-        .gcash{
+        .gcash {
             width: 90%;
             height: 60px;
         }

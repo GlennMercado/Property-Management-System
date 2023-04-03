@@ -42,7 +42,8 @@
                                             <td>
                                                 <!--View Button-->
                                                 <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                    data-target="#view{{ $lists->Room_No }}"> <i class="bi bi-eye"></i>
+                                                    data-target="#view{{ $lists->Room_No }}"
+                                                    title="view room"> <i class="bi bi-eye"></i>
                                                 </button>
                                             </td>
                                             <td style="font-size:16px;">{{ $lists->Room_No }}</td>

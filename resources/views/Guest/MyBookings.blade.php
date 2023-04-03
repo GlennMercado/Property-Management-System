@@ -10,12 +10,40 @@
                 </div>
             </div>
             <div class="card-body">
-                @foreach ($list as $lists)
-                    @if ($lists->Booking_Status != 'Checked-Out' && $lists->IsArchived != 1)
-                        <img src="" alt="">
-                        <p>Room {{ $lists->Room_No }}</p>
-                    @endif
-                @endforeach
+                <div class="row border rounded p-3 c1">
+                    @foreach ($list as $lists)
+                        @if ($lists->Booking_Status != 'Checked-Out' && $lists->IsArchived != 1)
+                            <div class="col-md-6">
+                                <h1>Room {{ $lists->Room_No }}</h1>
+                                <h4>
+                                    <i class="bi bi-book-fill"></i>
+                                    Booking No. {{ $lists->Booking_No }}
+                                </h4>
+                                <h4><i class="bi bi-person-badge-fill"></i> Gcash account:
+                                    {{ $lists->gcash_account_name }}
+                                </h4>
+                                <h4><i class="bi bi-people-fill"></i> Number of pax:
+                                    {{ $lists->No_of_Pax }}
+                                </h4>
+                                <h4>
+                                    <i class="bi bi-calendar-range-fill"></i>
+                                    Arrival/Departure {{ $lists->Check_In_Date }} -
+                                    {{ $lists->Check_Out_Date }}
+                                </h4>
+                            </div>
+                            <div class="col-md-6 bg-green rounded d-flex justify-content-center align-items-center">
+                                <div class="text-white display-4">PHP {{ $lists->Payment }}
+                                    <div class="badge bg-white text-green">
+                                        {{ $lists->Payment_Status }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h4 class="text-muted text-center mt-3">Click to view</h4>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         </div>
         {{-- <div class="card shadow">
@@ -209,4 +237,12 @@
             </div>
         </div>
     </div>
+    <style>
+        .c1:hover {
+            background-color: aliceblue;
+            box-shadow: 1px 1px 23px -5px rgba(0, 0, 0, 0.43);
+            -webkit-box-shadow: 1px 1px 23px -5px rgba(0, 0, 0, 0.43);
+            -moz-box-shadow: 1px 1px 23px -5px rgba(0, 0, 0, 0.43);
+        }
+    </style>
 @endsection
