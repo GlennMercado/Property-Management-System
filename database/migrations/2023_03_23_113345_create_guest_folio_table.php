@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('guest_folio', function (Blueprint $table) {
             $table->id();
+
+            $table->string('Booking_No');
+            $table->index('Booking_No');
+            $table->foreign('Booking_No')->references('Booking_No')->on('hotel_reservations')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('Description');
+
+            $table->string('Price');
+
             $table->timestamps();
         });
     }

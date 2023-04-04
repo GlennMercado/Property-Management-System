@@ -235,6 +235,65 @@
                 </div>
             </div>
         </div>
-    </div>
-    @include('layouts.footers.guest')
-@endsection
+        <div class="card bg-white shadow mt-2">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <h3 class="mb-0">{{ __('Convention Center Application') }}</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <thead>
+                            <tr>
+                                <th>CONTROL NO.</th>
+                                <th>APPLICATION STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1231231231
+                                </td>
+                                <td>
+                                    <a href="#" class="badge-md badge-pill badge-primary">Approved</a> (Please check
+                                    your email)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-white shadow mt-2">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <h3 class="mb-0">{{ __('Commercial Spaces Application') }}</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <thead>
+                            <tr>
+                                <th>APPLICATION NO.</th>
+                                <th>APPLICATION STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1231231231
+                                </td>
+                                <td>
+                                    <a href="#" class="badge-md badge-pill badge-primary">Approved</a> (Please check
+                                    your email)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @include('layouts.footers.guest')
+    @endsection

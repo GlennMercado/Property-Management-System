@@ -97,14 +97,36 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <span style="font-size: 20px;">Select charges</span>
-                                                            <select class="form-control mt-2" onchange="others()"
-                                                                name="Charges" id="charges">
-                                                                <option value="200">Towel = ₱200</option>
-                                                                <option value="150">Linen = ₱150</option>
-                                                                <option value="200">Bed Pad = ₱200</option>
-                                                                <option value="others">Others</option>
-                                                            </select>
+                                                            <div id="container">
+                                                                <section class="d-flex flex-row" id="qwer">
+                                                                    <div class="p-2">
+                                                                        <select class="form-control" onchange="others()"
+                                                                            name="inputs[0]['charges']" id="charges">
+                                                                            <option value="200">Towel</option>
+                                                                            <option value="150">Linen</option>
+                                                                            <option value="200">Bed Pad</option>
+                                                                            <option value="others">Others</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="p-2">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Quantity">
+                                                                    </div>
+                                                                    <div class="p-2">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Amount">
+                                                                    </div>
+                                                                    <div class="p-1">
+                                                                        <button class="btn btn-icon btn-success"
+                                                                            name="add" id="add" type="button"
+                                                                            style="height: 50px;">
+                                                                            <span class="btn-inner--icon">
+                                                                                <i class="bi bi-plus-circle"></i>
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
                                                             <input type="text" class="form-control mt-3"
                                                                 placeholder="Enter Price" id="charges1" hidden>
                                                             <div class="col-md-12 mt-2">
@@ -145,11 +167,16 @@
                                                                                             Hotel room
                                                                                             #{{ $lists->Room_No }}
                                                                                         </h5>
-                                                                                           <h5 class="text-sm"> {{ $lists->No_of_Pax }} pax,
-                                                                                            <span id="days"></span> day/s</h5>
+                                                                                        <h5 class="text-sm">
+                                                                                            {{ $lists->No_of_Pax }} pax,
+                                                                                            <span id="days"></span>
+                                                                                            day/s
+                                                                                        </h5>
                                                                                     </div>
                                                                                 </div>
-                                                                                <h1 class="display-4">- ₱ {{ $lists->Payment }}</h1>
+                                                                                <h1 class="display-4 text-green">
+                                                                                    PHP {{ $lists->Payment }}
+                                                                                </h1>
                                                                             </li>
                                                                             <li
                                                                                 class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg bg-green">
@@ -159,7 +186,7 @@
                                                                                             Total Payment</h3>
                                                                                     </div>
                                                                                 </div>
-                                                                                <h1 class="text-white display-2">- $ 2,500
+                                                                                <h1 class="text-white display-2"> PHP 2,500
                                                                                 </h1>
                                                                             </li>
                                                                         </ul>
@@ -185,6 +212,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function(e) {
             let date_invoice = document.getElementById("days");
@@ -195,6 +223,41 @@
             const time = Math.abs(dateTwo - dateOne);
             const days = Math.ceil(time / (1000 * 60 * 60 * 24));
             date_invoice.innerHTML = days;
+        });
+    </script>
+    <script>
+        var i = 0;
+        $('#add').click(function() {
+            i++;
+            $('#container').append(`
+            <section class="d-flex flex-row" id="qwer">
+            <div class="p-2">
+            <select class="form-control" onchange="others()" name="inputs[0]['charges']" id="charges">
+            <option value="200">Towel</option>
+            <option value="150">Linen</option>
+            <option value="200">Bed Pad</option>
+            <option value="others">Others</option>
+            </select>
+            </div>
+            <div class="p-2">
+            <input type="number" class="form-control" placeholder="Quantity">
+            </div>
+            <div class="p-2">
+            <input type="number" class="form-control"
+            placeholder="Amount">
+            </div>
+            <div class="p-1">
+            <button class="btn btn-icon btn-danger remove-row" type="button" style="height: 50px;">
+            <span class="btn-inner--icon">
+            <i class="bi bi-trash3"></i>
+            </span>
+            </button>
+            </div>
+            </section>
+            `);
+        });
+        $(document).on('click', '.remove-row', function() {
+            $(this).parents('#qwer').remove();
         });
     </script>
 @endsection
