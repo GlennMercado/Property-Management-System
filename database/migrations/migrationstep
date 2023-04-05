@@ -1,3 +1,5 @@
+----- OLD MIGRATION STEP
+
 step 1
 
 php artisan migrate:reset or drop tables manually in database
@@ -25,12 +27,13 @@ php artisan migrate
 composer require yajra/laravel-datatables-oracle
 
 
-step 1
-
-php artisan migrate:reset
-
 
 -------------- NEW -- MIGRATION STEPS
+
+step 1
+
+php artisan migrate:reset php artisan migrate:reset or drop tables manually in database
+
 
 Migration steps
 
