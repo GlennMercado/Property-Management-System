@@ -24,4 +24,32 @@ php artisan migrate
 
 composer require yajra/laravel-datatables-oracle
 
+
+step 1
+
+php artisan migrate:reset
+
+
+-------------- NEW -- MIGRATION STEPS
+
+Migration steps
+
+1.   php artisan migrate --path=/database/migrations/2014_10_12_000000_create_users_table.php
+
+2.   php artisan migrate --path=/database/migrations/2022_12_06_140802_create_novadeci_suites_table.php
+
+3.   php artisan migrate --path=/database/migrations/2022_12_06_000949_create_hotel_reservation_table.php
+
+4.   php artisan migrate --path=/database/migrations/2023_02_09_164155_create_guest_requests_table.php
+
+5.   php artisan migrate --path=/database/migrations/2023_03_23_113345_create_guest_folio_table.php
+
+6.   php artisan migrate --path=/database/migrations/2023_02_04_195723_create_convention_center_applications_table.php
+
+7.   php artisan migrate --path=/database/migrations/2023_02_09_204322_create_commercial_spaces_application_table.php
+
+
+step 2
+php artisan migrate
+
 composer require simplesoftwareio/simple-qrcode:*
