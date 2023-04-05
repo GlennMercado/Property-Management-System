@@ -31,7 +31,7 @@ return new class extends Migration
             array(
                 'name' => 'SUPER ADMIN',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('qweqweqwe'),
+                'password' => Hash::make('admin123'),
                 'User_Type' => 'Admin',
             )
         );
