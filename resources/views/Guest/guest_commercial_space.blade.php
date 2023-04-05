@@ -110,7 +110,6 @@
         <input type="submit" class="btn btn-success btn-lg btn-block"></button>
         <br>
     </div>
-    @include('layouts.footers.guest')
     <div class="container mt--5 pb-5">
     </div>
 @endsection

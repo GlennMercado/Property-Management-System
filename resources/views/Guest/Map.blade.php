@@ -31,6 +31,5 @@
 
         </div>
     </div>
-    @include('layouts.footers.guest')
     <div class="container mt--5 pb-5"></div>
 @endsection

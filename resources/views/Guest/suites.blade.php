@@ -466,5 +466,4 @@
             $('.prevent_submit').attr('disabled', 'true');
         });
     </script>
-    @include('layouts.footers.guest')
 @endsection

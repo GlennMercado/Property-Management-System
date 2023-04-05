@@ -510,5 +510,4 @@
             </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
             </body>
-            @include('layouts.footers.guest')
         @endsection
