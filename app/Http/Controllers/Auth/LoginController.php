@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
@@ -47,6 +48,21 @@ class LoginController extends Controller
             'email'=> 'required|email',
             'password' => 'required'
         ]);
+
+        $user = User::where('email', $input['email'])->first();
+        
+        // Check if the user's email has been verified
+        if ($user) 
+        {
+            if (!$user->email_verified_at) 
+            {
+                return back()->withStats(__('Your email has not been verified yet.'));
+            }
+        } 
+        else 
+        {
+            return back()->withStats(__('Login Failed.'));
+        }
         
         if(auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password'])))
         {
