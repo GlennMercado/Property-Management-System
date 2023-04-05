@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('commercial_spaces_applications', function (Blueprint $table) {
             $table->id();
+
+            $table->string('email');
+            $table->index('email');
+            $table->foreign('email')->references('email')->on('users'); 
+
             $table->string('business_name');
             $table->string('business_style');
             $table->string('business_address');

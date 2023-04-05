@@ -25,6 +25,14 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::table('users')->insert(
+            array(
+                'name' => 'SUPER ADMIN',
+                'email' => 'admin@gmail.com',
+                'password' => 'qweqweqwe',
+                'User_Type' => 'Admin',
+            )
+        );
     }
 
     /**

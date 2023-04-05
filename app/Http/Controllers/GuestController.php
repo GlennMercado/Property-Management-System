@@ -49,9 +49,13 @@ class GuestController extends Controller
     }
     public function my_bookings(){
         $email = Auth::user()->email;
-        $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
         $user_id = Auth::user()->id;
-        return view('Guest.MyBookings', ['list' => $list]);
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Email = '$email'");
+        $event = DB::select("SELECT * FROM convention_center_applications WHERE email = '$email'");
+        $event1 = DB::select("SELECT * FROM convention_center_applications WHERE email = '$email'");
+        $comm = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email'");
+        $comm1 = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email'");
+        return view('Guest.MyBookings', ['list' => $list, 'event'=>$event, 'event1'=>$event1, 'comm'=>$comm, 'comm1'=>$comm1]);
     }
     public function suites($id)
     {
@@ -224,6 +228,7 @@ class GuestController extends Controller
             ]);
             
             $submit = new convention_center_application;
+            $submit->email = Auth::user()->email;
             $submit->client_name = $request->input('client_name');
             $submit->contact_no = $request->input('contact_no');
             $submit->contact_person = $request->input('contact_person');
@@ -239,8 +244,6 @@ class GuestController extends Controller
             $submit->audio_visual = $request->input('audio_visual');
             $submit->concept = $request->input('concept');
             $submit->inquiry_status = $request->input('inquiry_status');
-
-
             if($submit->save())
             {
                 Alert::Success('Success', 'Inquiry submitted successfully!');
@@ -272,6 +275,7 @@ class GuestController extends Controller
             ]);
             
             $submit = new commercial_spaces_application;
+            $submit->email = Auth::user()->email;
             $submit->business_name = $request->input('business_name');
             $submit->business_style = $request->input('business_style');
             $submit->business_address = $request->input('business_address');

@@ -13,7 +13,7 @@
                     <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
                 </a>
             </div>
-            @foreach ($room as $list)
+            @forelse ($room as $list)
                 <div class="card p-4 col-md-7 m-3 card1 rounded">
                     <a href="{{ url('/suites', ['id' => $list->Room_No]) }}">
                         <div class="row">
@@ -54,7 +54,10 @@
                         </div>
                     </a>
                 </div>
-            @endforeach
+                @empty
+                <p class="text-center display-4">No bookings yet</p>
+                <img src="{{ asset('nvdcpics') }}/empty2.svg" class="img-fluid" style="width: 100%; height: 300px">
+            @endforelse
         </div>
     </div>
     {{-- <div class="container-fluid bg-white mt-5">
