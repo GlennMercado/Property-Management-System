@@ -37,7 +37,8 @@
                                     <i><img src="{{ asset('nvdcpics') }}/p1.svg" style="height: 20px; width: 20px"></i>
                                     {{ $list->No_of_Beds }} bed
                                     <br>
-                                    <i><img src="{{ asset('nvdcpics') }}/person1.svg" style="height: 20px; width: 20px"></i>
+                                    <i><img src="{{ asset('nvdcpics') }}/person1.svg"
+                                            style="height: 20px; width: 20px"></i>
                                     2 pax (Maximum of 4)
                                     <br>
                                     <i class="bi bi-person-plus-fill" style="font-size: 20px"></i> PHP 1,500 per additional
@@ -54,9 +55,9 @@
                         </div>
                     </a>
                 </div>
-                @empty
-                <p class="text-center display-4">No bookings yet</p>
-                <img src="{{ asset('nvdcpics') }}/empty2.svg" class="img-fluid" style="width: 100%; height: 300px">
+            @empty
+                <img src="{{ asset('nvdcpics') }}/roomempty.svg" class="img-fluid" style="width: 100%; height: 300px">
+                <p class="text-center display-4">There are no rooms available</p>
             @endforelse
         </div>
     </div>
