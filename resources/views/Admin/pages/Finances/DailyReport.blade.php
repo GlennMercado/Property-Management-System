@@ -4,14 +4,14 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <!-- <script>
+    <script>
         $.noConflict();
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
             $('#myTables').DataTable();
             $('#myTabless').DataTable();
         });
-    </script> -->
+    </script>
 
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
@@ -69,24 +69,13 @@
                 <div class="container">
                     <div class="card-body">
                         <div class="table-responsive">
-                        <select class="form-control" style="width:20%;" id="date">
-                                        <option value="All">All Records</option>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weekly</option>
-                                        <option value="Monthly">Monthly</option>
-                                    </select>
                             <div class="tab-content" id="myTabContent">
                                 {{-- ORs --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
-                                    <!-- <select class="form-control" style="width:20%;" id="date">
-                                        <option value="All">All Records</option>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weekly</option>
-                                        <option value="Monthly">Monthly</option>
-                                    </select> -->
+                                    
                                     <table class="table align-items-center table-flush" style="align-items:center"
-                                        id="myTable1">
+                                        id="myTable">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">OR No.</th>
@@ -100,7 +89,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($list as $lists)
+                                                <tr>
+                                                    <td>{{ $lists->ornum }}</td>
+                                                    <td>{{ $lists->created_at }}</td>
+                                                    <td>{{ $lists->payee }}</td>
+                                                    <td>{{ $lists->particular }}</td>
+                                                    <td>{{ $lists->eventdate }}</td>
+                                                    <td>{{ $lists->amount }}</td>
+                                                    <td>{{ $lists->remark }}</td>
+                                                    <td>{{ $lists->debit }}</td>
+                                                </tr>
+                                            @endforeach
+                                                <tfoot>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>io</td>
+                                                    <td value="amountsum"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tfoot>
                                           </tbody>
                                     </table>
                                     <!-- Modal -->
@@ -109,7 +119,6 @@
                                 {{-- Daily Report --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
-                                    <!-- Projects table -->
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush" id="myTables">
                                             <thead class="thead-light">
@@ -139,7 +148,27 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                            @foreach ($list2 as $lists2)
+                                                <tr>
+                                                    <td>{{ $lists2->ornum }}</td>
+                                                    <td>{{ $lists2->payee }}</td>
+                                                    <td>{{ $lists2->cash }}</td>
+                                                    <td>{{ $lists2->unearned }}</td>
+                                                    <td>{{ $lists2->bank }}</td>
+                                                    <td>{{ $lists2->cheque }}</td>
+                                                    <td>{{ $lists2->basketball }}</td>
+                                                    <td>{{ $lists2->unearned }}</td>
+                                                    <td>{{ $lists2->otherincome }}</td>
+                                                    <td>{{ $lists2->parking }}</td>
+                                                    <td>{{ $lists2->managementfee }}</td>
+                                                    <td>{{ $lists2->event }}</td>
+                                                    <td>{{ $lists2->hotel }}</td>
+                                                    <td>{{ $lists2->commercialspace }}</td>
+                                                    <td></td>
+
+
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -169,7 +198,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                            @foreach ($list3 as $lists3)
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ $lists3->created_at }}</td>
+                                                    <td>{{ $lists3->payee }}</td>
+                                                    <td>{{ $lists3->particular }}</td>
+                                                    <td>{{ $lists3->eventdate }}</td>
+                                                    <td>{{ $lists3->amount }}</td>
+                                                    <td>{{ $lists3->remark }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->debit }}</td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -342,68 +388,7 @@
         }
     </style>
 
-    <script type="text/javascript">
-        
-        $.noConflict();
-        jQuery(function($) {
-
-            var table = $('#myTable1').DataTable({
-                dom: 'lBfrtip',
-                orderCellsTop: true,
-                fixedHeader: true,
-                lengthChange: false,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('DailyReport.reports') }}",
-                    data: function(d) {
-                        d.num = 1,
-                            d.date = $('#date').val()
-                    }
-                },
-                columns: [{
-                        data: 'ornum'
-                    },
-                    {
-                        data: 'eventdate',
-                        render: function(data) {
-                            var date = new Date(data);
-                            var month = ["January", "February", "March", "April", "May", "June",
-                                "July", "August", "September", "October", "November", "December"
-                            ];
-
-                            return month[date.getMonth()] + " " + date.getDate() + ", " + date
-                                .getFullYear();
-                        }
-                    },
-                    {
-                        data: 'payee'
-                    },
-                    {
-                        data: 'particular'
-                    },
-                    {
-                        data: 'eventdate'
-                    },
-                    {
-                        data: 'amount'
-                    },
-                    {
-                        data: 'remark'
-                    },
-                    {
-                        data: 'debit'
-                    },
-                ]
-            });
-
-
-            $('#date').change(function() {
-                table.draw();
-            });
-
-        });
-    </script>
+   
     
     </div>
 

@@ -330,7 +330,7 @@
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('DailyReport.reports') }}">
+                                <a class="nav-link text-light" href="{{ route('DailyReport') }}">
                                     <i class="bi bi-calendar2-range-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Daily Report') }}
                                 </a>

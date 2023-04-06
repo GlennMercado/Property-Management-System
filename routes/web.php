@@ -201,8 +201,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 			
 
 		// 	return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
-
-		Route::get('DailyReport', ['uses' => 'App\Http\Controllers\FinanceReportController@reports', 'as' => 'DailyReport.reports']);
+		Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');;
 			
 	//Inventory Management
 		//Hotel

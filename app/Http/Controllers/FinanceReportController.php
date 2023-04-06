@@ -298,10 +298,7 @@ class FinanceReportController extends Controller
 
     public function reports(Request $request)
     {   
-        try{
-        if($request->ajax()){
-            if($request->get('num') == 1)
-            {
+        
                 // $data = finance_2_reports::select('finance_2_reports.*');
                 $data = DB::select('SELECT * FROM finance_2_reports');
 
@@ -352,19 +349,6 @@ class FinanceReportController extends Controller
                 ->make(true);   
             } 
         
-        }
-            }
-            catch(\Illuminate\Database\QueryException $e){
-
-
-                return view('Admin.pages.Finances.DailyReport');
-            }
-
-            return view('Admin.pages.Finances.DailyReport');
-                 
-        }
-    
-
 
     
     public function update(Request $request, $id)
