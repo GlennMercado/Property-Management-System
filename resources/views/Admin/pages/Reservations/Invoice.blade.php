@@ -69,8 +69,8 @@
                 </div>
                 <div class="b2">
                     <div class="d-flex justify-content-around">
-                        <p class="text-dark display-3">{{ $lists->Check_In_Date }}</p>
-                        <p class="text-dark display-3">{{ $lists->Check_Out_Date }}</p>
+                        <p class="text-dark display-3">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</p>
+                        <p class="text-dark display-3">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</p>
                         <p class="text-dark display-3" id="date_invoice"></p>
                         <p class="display-3 text-green cur1" id="money3">{{ $lists->Payment }}</p>
                     </div>

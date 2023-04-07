@@ -384,7 +384,7 @@
                                     <option value="" selected="true" disabled="disabled">Select</option>
                                     <option id="lin" value="Linen">Linens</option>
                                     <option id="gu" value="Guest Supply">Guest Supplies</option>
-                                    <option id="am" value="Amenities">Amenities</option>
+                                    <!-- <option id="am" value="Amenities">Amenities</option> -->
                                 </select>
                             </div>
                         </div>

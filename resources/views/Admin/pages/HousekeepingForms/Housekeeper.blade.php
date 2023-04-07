@@ -57,7 +57,7 @@
                                     <div class="modal-body">
                                         <p class="text-left">Housekeeper Name: </p>
                                         <input type="text" name="housekeeper" class="form-control" 
-                                        maxlength="16"
+                                        maxlength="20"
                                         pattern="[a-zA-Z\s]+" title="Please enter only letters" required>
                                     </div>
                                     <div class="modal-footer">

@@ -948,8 +948,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </tr>
                                             @endforeach
-                                            </tr>
                                         </tbody>
                                     </table>
 
