@@ -609,7 +609,7 @@
                                         </div>
 
                                         <!-- <h4>Owner Details </h4>
-                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
                                         <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                                         <input type="text" name="name_of_owner" class="form-control"
                                             placeholder="Enter Name of Owner" maxlength="64" required=""

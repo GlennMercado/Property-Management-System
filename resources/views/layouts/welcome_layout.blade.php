@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="{{ $class ?? '' }}" onload="pageLoadFunction()">
+<body class="{{ $class ?? '' }} bg-white" onload="pageLoadFunction()">
     <div id="preloader-background">
         <img class="img-fluid" id="centre-logo" src="{{ asset('nvdcpics') }}/nvdc-logo.png">
         <div id="circle-loader"></div>
