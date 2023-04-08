@@ -106,8 +106,8 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td>io</td>
-                                                    <td value="amountsum"></td>
+                                                    <td>Total:</td>
+                                                    <td>{{ $amount_sum }}</td>
                                                     <td></td>
                                                     <td></td>
                                                 </tfoot>
@@ -144,7 +144,6 @@
                                                     <th scope="col">Hotel</th>
                                                     <th scope="col">Commercial Spaces</th>
                                                     <th scope="col">Output VAT</th>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -165,11 +164,26 @@
                                                     <td>{{ $lists2->hotel }}</td>
                                                     <td>{{ $lists2->commercialspace }}</td>
                                                     <td></td>
-
-
                                                 </tr>
                                             @endforeach
                                             </tbody>
+                                                <tfoot>
+                                                    <td></td>
+                                                    <td>Total: </td>
+                                                    <td>{{ $cash_sum2 }}</td>
+                                                    <td>{{ $unearned_sum2 }}</td>
+                                                    <td>{{ $bank_sum2 }}</td>
+                                                    <td>{{ $cheque_sum2 }}</td>
+                                                    <td>{{ $basketball_sum2 }}</td>
+                                                    <td>{{ $unearned_sum2 }}</td>
+                                                    <td>{{ $otherincome_sum2 }}</td>
+                                                    <td>{{ $parking_sum2 }}</td>
+                                                    <td>{{ $managementfee_sum2 }}</td>
+                                                    <td>{{ $event_sum2 }}</td>
+                                                    <td>{{ $hotel_sum2 }}</td>
+                                                    <td>{{ $commercialspace_sum2}}</td>
+                                                    <td>{{ $commercialspace_sum2}}</td>
+                                                </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -181,7 +195,7 @@
                                         <table class="table align-items-center table-flush" id="myTabless">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col">Summary</th>
+                                                    <th scope="col">Payee</th>
                                                     <th scope="col">Cash/GCash</th>
                                                     <th scope="col">Unearned Income</th>
                                                     <th scope="col">Bank Transfer/Direct to Bank</th>
@@ -200,23 +214,39 @@
                                             <tbody>
                                             @foreach ($list3 as $lists3)
                                                 <tr>
-                                                    <td></td>
-                                                    <td>{{ $lists3->created_at }}</td>
                                                     <td>{{ $lists3->payee }}</td>
-                                                    <td>{{ $lists3->particular }}</td>
-                                                    <td>{{ $lists3->eventdate }}</td>
-                                                    <td>{{ $lists3->amount }}</td>
-                                                    <td>{{ $lists3->remark }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
-                                                    <td>{{ $lists3->debit }}</td>
+                                                    <td>{{ $lists3->cash }}</td>
+                                                    <td>{{ $lists3->unearned }}</td>
+                                                    <td>{{ $lists3->bank }}</td>
+                                                    <td>{{ $lists3->cheque }}</td>
+                                                    <td>{{ $lists3->basketball }}</td>
+                                                    <td>{{ $lists3->unearned }}</td>
+                                                    <td>{{ $lists3->otherincome }}</td>
+                                                    <td>{{ $lists3->parking }}</td>
+                                                    <td>{{ $lists3->managementfee }}</td>
+                                                    <td>{{ $lists3->event }}</td>
+                                                    <td>{{ $lists3->hotel }}</td>
+                                                    <td>{{ $lists3->commercialspace }}</td>
+                                                    <td>{{ $lists3->commercialspace }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
+                                            <tfoot>
+                                                    <td>Total: </td>
+                                                    <td>{{ $cash_sum3 }}</td>
+                                                    <td>{{ $unearned_sum3 }}</td>
+                                                    <td>{{ $bank_sum3 }}</td>
+                                                    <td>{{ $cheque_sum3 }}</td>
+                                                    <td>{{ $basketball_sum3 }}</td>
+                                                    <td>{{ $unearned_sum3 }}</td>
+                                                    <td>{{ $otherincome_sum3 }}</td>
+                                                    <td>{{ $parking_sum3 }}</td>
+                                                    <td>{{ $managementfee_sum3 }}</td>
+                                                    <td>{{ $event_sum3 }}</td>
+                                                    <td>{{ $hotel_sum3 }}</td>
+                                                    <td>{{ $commercialspace_sum3}}</td>
+                                                    <td>{{ $commercialspace_sum3}}</td>
+                                             </tfoot>
                                         </table>
                                     </div>
                                 </div>

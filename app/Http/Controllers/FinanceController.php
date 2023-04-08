@@ -19,19 +19,49 @@ class FinanceController extends Controller
     public function finance_report()
     {
 
-        $now = Carbon::now()->format('Y-m-d');
-
+       //Fetching Database
         $list = DB::select('SELECT * FROM finance_2_reports');
         $list2 = DB::table('finance_2_reports')->where('eventdate', '=', Carbon::now()->format('Y-m-d'))->get();
         $list3 = DB::table('finance_2_reports')
         ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
         ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
         ->get();
-    
+
+        //for Daily Report Module Sums
         $amount_sum = finance_2_reports::sum('amount');
+        $amount_sum2 = $list2->sum('amount');
+        $cash_sum2 = $list2->sum('cash');
+        $unearned_sum2 = $list2->sum('unearned');
+        $bank_sum2 = $list2->sum('bank');
+        $cheque_sum2 = $list2->sum('cheque');
+        $basketball_sum2 = $list2->sum('basketball');
+        $otherincome_sum2 = $list2->sum('otherincome');
+        $parking_sum2 = $list2->sum('parking');
+        $managementfee_sum2 = $list2->sum('managementfee');
+        $event_sum2 = $list2->sum('event');
+        $hotel_sum2 = $list2->sum('hotel');
+        $commercialspace_sum2 = $list2->sum('commercialspace');
+
+
+        //For MothlyReport
+        $cash_sum3 = $list3->sum('cash');
+        $unearned_sum3 = $list3->sum('unearned');
+        $bank_sum3 = $list3->sum('bank');
+        $cheque_sum3 = $list3->sum('cheque');
+        $basketball_sum3 = $list3->sum('basketball');
+        $otherincome_sum3 = $list3->sum('otherincome');
+        $parking_sum3 = $list3->sum('parking');
+        $managementfee_sum3 = $list3->sum('managementfee');
+        $event_sum3 = $list3->sum('event');
+        $hotel_sum3 = $list3->sum('hotel');
+        $commercialspace_sum3 = $list3->sum('commercialspace');
+
+
         $array = array();
 
-        return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'list2'=>$list2, 'list3'=>$list3], compact('amount_sum'));
+        return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'list2'=>$list2, 'list3'=>$list3], compact('amount_sum', 'amount_sum2','cash_sum2','unearned_sum2','bank_sum2',
+                    'cheque_sum2','basketball_sum2','otherincome_sum2','parking_sum2','managementfee_sum2','event_sum2','hotel_sum2','commercialspace_sum2','cash_sum3','unearned_sum3',
+                    'bank_sum3','cheque_sum3','basketball_sum3','otherincome_sum3','parking_sum3','managementfee_sum3','event_sum3','hotel_sum3','commercialspace_sum3'));
     }
 
     /**
@@ -42,7 +72,7 @@ class FinanceController extends Controller
     public function finance_dash()
     {
         //
-        //Finance Dashboards
+        //Finance Dashboards Sums
 		$list = DB::select('SELECT * FROM finance_2_reports');
         $basketball_sum = finance_2_reports::sum('basketball');
         $unearned_sum = finance_2_reports::sum('unearned');
