@@ -26,13 +26,13 @@
     height: 120px;
     border-style: solid;
     border-width: 5px;
-    border-top-color: #0080ff;
-    border-right-color: #0080ff;
+    border-top-color: #38bc6c;
+    border-right-color: #38bc6c;
     border-bottom-color: #d5eaff;
     border-left-color: #d5eaff;
     border-radius: 50%;
-    -webkit-animation: spinLoader 2s linear infinite;
-    animation: spinLoader 2s linear infinite;
+    -webkit-animation: spinLoader 0.4s linear infinite;
+    animation: spinLoader 0.4s linear infinite;
 }
 
 @-webkit-keyframes spinLoader {
@@ -68,9 +68,9 @@
 .animatePageIn {
     position: relative;
     -webkit-animation-name: animatePageIn;
-    -webkit-animation-duration: 1.8s;
+    -webkit-animation-duration: 1.7s;
     animation-name: animatePageIn;
-    animation-duration: 1.8s;
+    animation-duration: 1.7s;
 }
 
 @-webkit-keyframes animatePageIn {

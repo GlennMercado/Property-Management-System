@@ -191,14 +191,16 @@ class GuestController extends Controller
 
             if($reserve->save())
             {
-                $data=['name'=>"Glenn", 'data'=>"Hello world"];
-                $user['to']='glennlainardmercado@gmail.com';
+                Alert::Success('Success', 'Reservation submitted successfully!');
+                return redirect('/welcome')->with('Success', 'Data Saved');
+                $mail = Auth::user()->email;
+                $name = Auth::user()->name;
+                $data=['name'=>$name, 'data'=>"Hello world"];
+                $user['to']=$mail;
                 Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
                     $messages->to($user['to']);
                     $messages->subject('Hello');
                 });
-                Alert::Success('Success', 'Reservation submitted successfully!');
-                return redirect('/welcome')->with('Success', 'Data Saved');
             }
             else
             {
