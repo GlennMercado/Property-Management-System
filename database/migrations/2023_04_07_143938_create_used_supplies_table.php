@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_room_supplies', function (Blueprint $table) {
+        Schema::create('used_supplies', function (Blueprint $table) {
             $table->id();
-            
+
             $table->integer('Room_No');
             $table->index('Room_No');
             $table->foreign('Room_No')->references('Room_No')->on('novadeci_suites')->onDelete('cascade')->onUpdate('cascade');
@@ -28,21 +28,10 @@ return new class extends Migration
             $table->index('name');
             $table->foreign('name')->references('name')->on('hotelstocks')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->string('Category');
-
-            $table->integer('Quantity');
-
             $table->integer('Discrepancy')->default(0);
-                
-            $table->integer('Quantity_Requested')->default(0);
 
-            $table->string('Attendant')->default('Unassigned');
-            $table->string('Status')->default('Received');
-            $table->text('Remarks')->nullable();
-
-            $table->datetime('Date_Requested')->nullable();
-            $table->datetime('Date_Received')->nullable();
-
+            $table->interger('Price')->default(0);
+            
             $table->timestamps();
         });
     }
@@ -54,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel_room_supplies');
+        Schema::dropIfExists('used_supplies');
     }
 };

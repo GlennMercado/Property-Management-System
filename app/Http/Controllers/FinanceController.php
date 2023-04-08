@@ -7,6 +7,7 @@ use App\Models\hotel_reservations;
 use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class FinanceController extends Controller
 {
@@ -15,18 +16,22 @@ class FinanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function finance_chart()
+    public function finance_report()
     {
-        $count = DB::select('SELECT * FROM finance_2_reports');
+
+        $now = Carbon::now()->format('Y-m-d');
+
+        $list = DB::select('SELECT * FROM finance_2_reports');
+        $list2 = DB::table('finance_2_reports')->where('eventdate', '=', Carbon::now()->format('Y-m-d'))->get();
+        $list3 = DB::table('finance_2_reports')
+        ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
+        ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
+        ->get();
+    
+        $amount_sum = finance_2_reports::sum('amount');
         $array = array();
 
-        foreach($count as $counts)
-        {
-            $array[] = ['ornum' => $counts->ornum];
-        }
-        return view('Admin.pages.Finances.DailyReport', 
-                    ['array' => $array]
-                    );
+        return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'list2'=>$list2, 'list3'=>$list3], compact('amount_sum'));
     }
 
     /**

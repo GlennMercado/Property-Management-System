@@ -607,6 +607,7 @@ class HousekeepingController extends Controller
                         ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
                         ->update([
                             'Quantity' => $quantity[$i],
+                            'Discrepancy' => $request->input('deduction')[$i]
                     ]);
                 }
             }

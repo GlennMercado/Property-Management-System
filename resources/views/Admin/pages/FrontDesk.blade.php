@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
 
-    <script src="{{ asset('Javascript') }}/walk_in.js"></script>
-
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -178,167 +176,167 @@
 
         <br>
 
+<script src="{{ asset('Javascript') }}/walk_in.js"></script>
 
 
+<script>
+    $('.prevent_submit').on('submit', function() {
+        $('.prevent_submit').attr('disabled', 'true');
+    });
 
-
-        <script>
-            $('.prevent_submit').on('submit', function() {
-                $('.prevent_submit').attr('disabled', 'true');
+    //AJAX
+    $(document).ready(function() {
+        $('#list_rooms').on('change', function() {
+            var id = $(this).val();
+            //FOR ROOMS
+            $.ajax({
+                url: '{{ route('get.data', ':id') }}'.replace(':id', id),
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#rpn').val(data.Rate_per_Night);
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors
+                }
             });
 
-            //AJAX
-            $(document).ready(function() {
-                $('#list_rooms').on('change', function() {
-                    var id = $(this).val();
-                    //FOR ROOMS
-                    $.ajax({
-                        url: '{{ route('get.data', ':id') }}'.replace(':id', id),
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#rpn').val(data.Rate_per_Night);
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle any errors
-                        }
-                    });
+            //FOR DATE CHECK IN
+            $.ajax({
+                url: '{{ route('get.date', ':id') }}'.replace(':id', id),
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function(response) {
+                    var start_disabled_Dates = null;
+                    var end_disabled_Dates = null;
 
-                    //FOR DATE CHECK IN
-                    $.ajax({
-                        url: '{{ route('get.date', ':id') }}'.replace(':id', id),
-                        type: 'GET',
-                        async: false,
-                        dataType: 'json',
-                        success: function(response) {
-                            var start_disabled_Dates = null;
-                            var end_disabled_Dates = null;
+                    $('#dates1').show();
+                    $('#dates2').hide();
 
-                            $('#dates1').show();
-                            $('#dates2').hide();
+                    $(".datepicker").datepicker("destroy");
 
-                            $(".datepicker").datepicker("destroy");
+                    start_disabled_Dates = response.start;
+                    end_disabled_Dates = response.end;
 
-                            start_disabled_Dates = response.start;
-                            end_disabled_Dates = response.end;
-
-                            $(function() {
-                                var startDates = start_disabled_Dates;
-                                var endDates = end_disabled_Dates;
-                                $("#date1").datepicker({
-                                    minDate: 0,
-                                    buttonImageOnly: true,
-                                    showOn: "both",
-                                    format: 'yyyy-mm-dd',
-                                    buttonImage: "{{ asset('images') }}/calendar2.png",
-                                    beforeShowDay: function(date) {
-                                        var formattedDate = $.datepicker
-                                            .formatDate('yy-mm-dd', date);
-                                        for (var i = 0; i < startDates
-                                            .length; i++) {
-                                            if (formattedDate >= startDates[
-                                                    i] && formattedDate <=
-                                                endDates[
-                                                    i]) {
-                                                return [false, "disabled-date"];
-                                            }
-                                        }
-                                        return [true, ""];
-
-                                    },
-                                    onSelect: function(selectedDate) {
-                                        $('#dates2').show();
-                                        var minDate = new Date(selectedDate);
-                                        minDate.setDate(minDate.getDate() + 1);
-                                        $("#date2").datepicker("option", "minDate", minDate); 
-                                        
+                    $(function() {
+                        var startDates = start_disabled_Dates;
+                        var endDates = end_disabled_Dates;
+                        $("#date1").datepicker({
+                            minDate: 0,
+                            buttonImageOnly: true,
+                            showOn: "both",
+                            format: 'yyyy-mm-dd',
+                            buttonImage: "{{ asset('images') }}/calendar2.png",
+                            beforeShowDay: function(date) {
+                                var formattedDate = $.datepicker
+                                    .formatDate('yy-mm-dd', date);
+                                for (var i = 0; i < startDates
+                                    .length; i++) {
+                                    if (formattedDate >= startDates[
+                                            i] && formattedDate <=
+                                        endDates[
+                                            i]) {
+                                        return [false, "disabled-date"];
                                     }
-                                });
+                                }
+                                return [true, ""];
 
-                                $("#date2").datepicker({
-                                    minDate: 0,
-                                    buttonImageOnly: true,
-                                    showOn: "both",
-                                    format: 'yyyy-mm-dd',
-                                    buttonImage: "{{ asset('images') }}/calendar2.png",
-                                    beforeShowDay: function(date) {
-                                        var formattedDate = $.datepicker
-                                            .formatDate('yy-mm-dd', date);
-                                        for (var i = 0; i < startDates
-                                            .length; i++) {
-                                            if (formattedDate >= startDates[
-                                                    i] && formattedDate <=
-                                                endDates[
-                                                    i]) {
-                                                return [false, "disabled-date"];
-                                            }
-                                        }
-                                        var startDate = $('#date1').datepicker(
-                                            'getDate');
-                                        // Disable dates before startDate in datepicker2
-                                        return date < startDate ? [false] : [
-                                            true
-                                        ];
+                            },
+                            onSelect: function(selectedDate) {
+                                $('#dates2').show();
+                                var minDate = new Date(selectedDate);
+                                minDate.setDate(minDate.getDate() + 1);
+                                $("#date2").datepicker("option", "minDate", minDate); 
+                                
+                            }
+                        });
 
-                                        return [true, ""];
-
-                                    },
-                                    onSelect: function(selectedDate) {
-                                        var maxDate = new Date(selectedDate);
-                                        maxDate.setDate(maxDate.getDate() - 1);
-                                        for (var i = 0; i < startDates.length; i++) {
-                                            var startDate = new Date(startDates[i]);
-                                            var endDate = new Date(endDates[i]);
-                                            if (maxDate >= startDate && maxDate <= endDate) {
-                                                $("#date2").val('');
-                                                break;
-                                            }
-                                            
-                                            var selectedDate = $(this).datepicker('getDate');
-                                            var startDate = $('#date1').datepicker('getDate');
-                                            var diff = (selectedDate - startDate)/(1000*60*60*24);
-                                            if (diff > 6) {
-                                                alert('Date selection not valid.');
-                                                $("#date2").val('');
-                                            }
-                                        }
+                        $("#date2").datepicker({
+                            minDate: 0,
+                            buttonImageOnly: true,
+                            showOn: "both",
+                            format: 'yyyy-mm-dd',
+                            buttonImage: "{{ asset('images') }}/calendar2.png",
+                            beforeShowDay: function(date) {
+                                var formattedDate = $.datepicker
+                                    .formatDate('yy-mm-dd', date);
+                                for (var i = 0; i < startDates
+                                    .length; i++) {
+                                    if (formattedDate >= startDates[
+                                            i] && formattedDate <=
+                                        endDates[
+                                            i]) {
+                                        return [false, "disabled-date"];
                                     }
-                                });
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle any errors
-                        }
+                                }
+                                var startDate = $('#date1').datepicker(
+                                    'getDate');
+                                // Disable dates before startDate in datepicker2
+                                return date < startDate ? [false] : [
+                                    true
+                                ];
+
+                                return [true, ""];
+
+                            },
+                            onSelect: function(selectedDate) {
+                                var maxDate = new Date(selectedDate);
+                                maxDate.setDate(maxDate.getDate() - 1);
+                                for (var i = 0; i < startDates.length; i++) {
+                                    var startDate = new Date(startDates[i]);
+                                    var endDate = new Date(endDates[i]);
+                                    if (maxDate >= startDate && maxDate <= endDate) {
+                                        $("#date2").val('');
+                                        break;
+                                    }
+                                    
+                                    var selectedDate = $(this).datepicker('getDate');
+                                    var startDate = $('#date1').datepicker('getDate');
+                                    var diff = (selectedDate - startDate)/(1000*60*60*24);
+                                    if (diff > 6) {
+                                        alert('Date selection not valid.');
+                                        $("#date2").val('');
+                                    }
+                                }
+                            }
+                        });
                     });
-                });
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors
+                }
             });
+        });
+    });
 
-            $(function() {
-                var datepicker1 = $('#date1');
-                var datepicker2 = $('#date2');
+    $(function() {
+        var datepicker1 = $('#date1');
+        var datepicker2 = $('#date2');
 
-                datepicker1.datepicker({
-                    format: 'yyyy-mm-dd',
-                    autoclose: true
-                });
+        datepicker1.datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
 
-                datepicker2.datepicker({
-                    format: 'yyyy-mm-dd',
-                    autoclose: true,
-                    beforeShowDay: function(date) {
-                        var startDate = datepicker1.datepicker('getDate');
-                        if (startDate && date < startDate) {
-                            return {
-                                enabled: false
-                            };
-                        }
-                        return {
-                            enabled: true
-                        };
-                    }
-                });
-            });
-        </script>
+        datepicker2.datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            beforeShowDay: function(date) {
+                var startDate = datepicker1.datepicker('getDate');
+                if (startDate && date < startDate) {
+                    return {
+                        enabled: false
+                    };
+                }
+                return {
+                    enabled: true
+                };
+            }
+        });
+    });
+
+</script>
 
         <style>
             /* disable arrows input type number */

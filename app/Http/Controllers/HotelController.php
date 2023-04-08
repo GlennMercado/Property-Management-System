@@ -104,6 +104,7 @@ class HotelController extends Controller
         $reserve->Room_No = $roomno;
         $reserve->Payment_Status = $paystats;
         $reserve->Booking_Status = $fstats;
+        $reserve->Payment = $request->input('payment');
 
         if($reserve->save())
         {
@@ -393,6 +394,7 @@ class HotelController extends Controller
     public function invoice($id){
         $invoice_id = $id;
         $list = DB::select("SELECT * FROM hotel_reservations  WHERE id = '$invoice_id'");    
+        $list2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No");
         return view('Admin.pages.Reservations.Invoice', ['list'=>$list]);
     }
 
