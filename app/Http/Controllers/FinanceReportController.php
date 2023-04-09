@@ -30,10 +30,6 @@ class FinanceReportController extends Controller
         return view('Admin.pages.Finances.DailyReport', 
                     ['array' => $array]
                     );
-
-       
-    
-
         
     }
 
@@ -55,6 +51,8 @@ class FinanceReportController extends Controller
      */
     public function insertfinance(Request $request)
     {
+
+        //Requesting Value
         $this->validate($request,[
             'ornum' => 'required',
             'payee' => 'required',
@@ -68,18 +66,13 @@ class FinanceReportController extends Controller
             'bank' => 'required',
             'cheque' => 'required',
             'bank' => 'required'
-            // 'basketball' => 'required',
-            // 'otherincome' => 'required',
-            // 'parking' => 'required',
-            // 'managementfee' => 'required',
-            // 'events' => 'required',
-            // 'hotel' => 'required',
-            // 'commercialspace' => 'required',
-            // 'outputvat' => 'required'
             ]);
 
+            //Selecting Database
             $finance = new finance_2_reports;
 
+
+            //Setting the Variables
             $finance->ornum = $request->input('ornum');
             $finance->payee = $request->input('payee');
             $compute = $request->input('particular');
@@ -98,8 +91,8 @@ class FinanceReportController extends Controller
             $outvat = $output * $grosspiless;
 
             
-            
-            //for CREDIT
+            //Commputation for IntialGross Ang OutputVAT
+            //for CREDIT 
             //Basketball
             if ($compute == 'CourtRental' || $compute == 'CourtRental/League') {
                 $finance->basketball = $grosspiles;
@@ -188,7 +181,8 @@ class FinanceReportController extends Controller
                 $finance->hotel = $nopayment;
                 $finance->commercialspace = $nopayment;
         } 
-            
+
+            //Inserting the Amount Value
             // For Debit
             if ($payment == 'Cash') {
                 $finance->cash = $request->input('amount');
@@ -211,29 +205,19 @@ class FinanceReportController extends Controller
                 $finance->bank = $nopayment;
                 $finance->cheque = $request->input('amount');
             }
-        
+    
 
-
-            // $finance->basketball = $request->input('basketball');
-            // $finance->otherincome = $request->input('otherincome');
-            // $finance->parking = $request->input('parking');
-            // $finance->managementfee = $request->input('managementfee');
-            // $finance->events = $request->input('events');
-            // $finance->hotel = $request->input('hotel');
-            // $finance->commercialspace = $request->input('commercialspace');
-            // $finance->outputvat = $request->input('outputvat');
-
-            
-        if($finance->save())
-        {
-            Alert::Success('Success', 'Successfully Alerted the Finance Department!');
-            return redirect('DailyReport')->with('Success', 'Data Saved');
-        }
-        else
-        {
-            Alert::Error('Error', 'Failed!, Please Try Again.');
-            return redirect('DailyReport')->with('Success', 'Data Updated');
-        }
+            //Inserting into Database
+            if($finance->save())
+            {
+                Alert::Success('Success', 'Successfully Alerted the Finance Department!');
+                return redirect('DailyReport')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Error', 'Failed!, Please Try Again.');
+                return redirect('DailyReport')->with('Success', 'Data Updated');
+            }
     }
 
     public function edit(Request $request)
@@ -296,61 +280,7 @@ class FinanceReportController extends Controller
         //
     }
 
-    public function reports(Request $request)
-    {   
-        
-                // $data = finance_2_reports::select('finance_2_reports.*');
-                $data = DB::select('SELECT * FROM finance_2_reports');
-
-                return Datatables::of($data)
-                ->addIndexColumn()
-                ->filter(function ($instance) use ($request)
-                {
-                    if($request->get('date') == "All"){
-                        $instance->get();
-                    }
-                    elseif($request->get('date') == "Daily")
-                    {
-                        $now = Carbon::now()->format('Y-m-d');
-                        $instance->where('finance_2_reports.eventdate', '=', $now)->get();
-                    }
-                    elseif($request->get('date') == "Weekly")
-                    {
-                        $startweek = Carbon::now()->startofweek()->format('Y-m-d');
-                        $endweek = Carbon::now()->endofweek()->format('Y-m-d');
-                        $instance->where('finance_2_reports.eventdate', '>=', $startweek)
-                                ->where('finance_2_reports.eventdate', '<=', $endweek)
-                                ->get();
-                    }
-                    elseif($request->get('date') == "Monthly")
-                    {
-                        $startmonth = Carbon::now()->startofmonth()->format('Y-m-d');
-                        $endmonth = Carbon::now()->endofmonth()->format('Y-m-d');
-                        $instance->where('finance_2_reports.eventdate', '>=', $startmonth)
-                                ->where('finance_2_reports.eventdate', '<=', $endmonth)
-                                ->get();
-                    }
-
-                    if (!empty($request->get('search'))) {
-                        $instance->where(function($w) use($request){
-                            $search = $request->get('search');
-
-                            $converttodate = strtotime($search);
-                            $date_search = date('Y-m-d', $converttodate);
-
-                            // $w->orwhere('finances.Booking_No', 'LIKE', "%$search%")
-                            //     ->orwhere('finances.Attendant', 'LIKE', "%$search%")
-                            //     ->orwhere('finances.Guest_Name', 'LIKE', "%$search%")
-                            //     ->orwhere('finances.Housekeeping_Status', 'LIKE', "%$search%")
-                            //     ->orwhere(DB::raw("(STR_TO_DATE(finances.Check_Out_Date,'%Y-%m-%d'))"), 'LIKE', "%$date_search%" );
-                        });
-                    }          
-                })
-                ->make(true);   
-            } 
-        
-
-    
+   
     public function update(Request $request, $id)
     {
         //

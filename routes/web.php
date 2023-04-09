@@ -183,10 +183,8 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
 		
-		//Financemodule
+		//FinanceModules
 		//Archives
-		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
-		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
 		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
 			
 		//Finance Dashboards
@@ -195,18 +193,12 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
-		
-		// Route::get('DailyReport', function () {
-		// 	$list = DB::select('SELECT * FROM finance_2_reports');
-			
-
-		// 	return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
 		Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');;
 			
+		
 	//Inventory Management
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
-
 		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
 
