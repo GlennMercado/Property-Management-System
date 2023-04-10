@@ -47,6 +47,12 @@ class SocialAuthController extends Controller
 
             Auth::login($newUser, true);
         }
-        return redirect()->to('/welcome');
+        if(auth()->user()->IsDisabled == 0){
+            return redirect()->to('/welcome');
+        }else
+        {
+            auth()->logout();
+            return redirect('/login')->withStats(__('User access is disabled.'));
+        }
     }
 }
