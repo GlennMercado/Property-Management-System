@@ -163,7 +163,7 @@
                                                     <td>{{ $lists2->event }}</td>
                                                     <td>{{ $lists2->hotel }}</td>
                                                     <td>{{ $lists2->commercialspace }}</td>
-                                                    <td></td>
+                                                    <td>{{ $lists2->outputvat }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -182,7 +182,7 @@
                                                     <td>{{ $event_sum2 }}</td>
                                                     <td>{{ $hotel_sum2 }}</td>
                                                     <td>{{ $commercialspace_sum2}}</td>
-                                                    <td>{{ $commercialspace_sum2}}</td>
+                                                    <td>{{ $output_sum2}}</td>
                                                 </tfoot>
                                         </table>
                                     </div>
@@ -227,7 +227,7 @@
                                                     <td>{{ $lists3->event }}</td>
                                                     <td>{{ $lists3->hotel }}</td>
                                                     <td>{{ $lists3->commercialspace }}</td>
-                                                    <td>{{ $lists3->commercialspace }}</td>
+                                                    <td>{{ $lists3->outputvat }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -245,7 +245,7 @@
                                                     <td>{{ $event_sum3 }}</td>
                                                     <td>{{ $hotel_sum3 }}</td>
                                                     <td>{{ $commercialspace_sum3}}</td>
-                                                    <td>{{ $commercialspace_sum3}}</td>
+                                                    <td>{{ $output_sum3}}</td>
                                              </tfoot>
                                         </table>
                                     </div>
@@ -361,7 +361,7 @@
                                                     <div class="row">
                                                         <div class="col-md pt-2">
                                                             <label for="Stockdetails">Event Date: </label>
-                                                            <input type="datetime-local" class="form-control"
+                                                            <input type="date" class="form-control"
                                                                 name="eventdate" required>
                                                             <input type="hidden" name="cash" value="1">
                                                             <input type="hidden" name="unearned" value="1" hidden>

@@ -14,6 +14,7 @@ use App\Models\out_of_order_rooms;
 use App\Models\lost_and_found;
 use Illuminate\Support\Facades\Auth;
 use App\Models\List_of_Housekeepers;
+use App\Models\used_supplies;
 use Carbon\Carbon;
 use DataTables;
 
@@ -589,8 +590,9 @@ class HousekeepingController extends Controller
     {
         try{
             $arraysofname[] = $request->name;
-            $arraysofquantity[] = $request->requested_quantity;
+            $arraysofquantity[] = $request->quantity;
             $room_no = $request->input('room_no');
+            $booking_no = $request->input('book_num');
             $quantity = array();
             for($i=0; $i < count($request->name); $i++)
             {
@@ -604,11 +606,22 @@ class HousekeepingController extends Controller
                     $quantity[$i] = $request->input('quantity')[$i] - $request->input('deduction')[$i];
                     
                     DB::table('hotel_room_supplies')
-                        ->where(['Room_No' => $request->room_no, 'name' => $request->name[$i]])
+                        ->where(['Room_No' => $room_no, 'name' => $request->name[$i]])
                         ->update([
                             'Quantity' => $quantity[$i],
                             'Discrepancy' => $request->input('deduction')[$i]
                     ]);
+
+                    $used = new used_supplies;
+
+                    $used->Room_No = $room_no;
+                    $used->Booking_No = $booking_no;
+                    $used->productid = $request->prodid[$i];
+                    $used->name = $request->name[$i];
+                    $used->Discrepancy = $request->input('deduction')[$i];
+                    $used->Price = $request->price[$i];
+
+                    $used->save();          
                 }
             }
                  

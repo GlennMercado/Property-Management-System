@@ -149,7 +149,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-		Route::get('/invoice/{id}', 'App\Http\Controllers\HotelController@invoice');
+		Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 		Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
 	
@@ -186,10 +186,8 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
 		
-		//Financemodule
+		//FinanceModules
 		//Archives
-		Route::post('/update_info', 'App\Http\Controllers\FinanceController@update_info');
-		Route::post('/addinfo', 'App\Http\Controllers\FinanceController@addinfo');
 		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
 			
 		//Finance Dashboards
@@ -198,18 +196,12 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		//Finance Daily Report
 		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
-		
-		// Route::get('DailyReport', function () {
-		// 	$list = DB::select('SELECT * FROM finance_2_reports');
-			
-
-		// 	return view('Admin.pages.Finances.DailyReport', ['list'=>$list]);})->name('DailyReport');
 		Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');;
 			
+		
 	//Inventory Management
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
-
 		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
 
