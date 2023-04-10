@@ -574,7 +574,7 @@
                                                         </button>
                                                     @endif
                                                     {{-- Invoice --}}
-                                                    <a href="{{ url('/invoice', ['id' => $lists->id]) }}"
+                                                    <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
                                                         target="blank" class="btn btn-sm btn-success"
                                                         style="cursor:pointer;" title="Invoice">
                                                         <i class="bi bi-file-earmark-text"></i>

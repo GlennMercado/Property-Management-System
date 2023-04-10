@@ -406,11 +406,14 @@ class HotelController extends Controller
     {
         //
     }
-    public function invoice($id){
+    public function invoice($id, $bn)
+    {
         $invoice_id = $id;
-        $list = DB::select("SELECT * FROM hotel_reservations  WHERE id = '$invoice_id'");    
-        $list2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No");
-        return view('Admin.pages.Reservations.Invoice', ['list'=>$list]);
+        $booking_no = $bn;
+        $list = DB::select("SELECT * FROM hotel_reservations  WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");    
+        $list2 = DB::select("SELECT * FROM used_supplies WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");
+
+        return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2]);
     }
 
 }

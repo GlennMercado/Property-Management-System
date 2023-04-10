@@ -146,7 +146,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-		Route::get('/invoice/{id}', 'App\Http\Controllers\HotelController@invoice');
+		Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
 		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 		Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
 	
