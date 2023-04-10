@@ -79,6 +79,7 @@
                 @endforeach
                 </tbody>
             </table>
+
              <!-- Items -->
              <table class="mt-5" style="width: 100%">
                 <thead style="border-bottom: 2px solid rgb(167, 167, 167)">
@@ -117,6 +118,7 @@
                 </tbody>
             </table>
 
+            
             <div class="">
                 <div class="d-flex justify-content-around mt-6">
                     <div class="p-2">
@@ -136,6 +138,7 @@
                         <p class="display-3 text-green cur1" id="all"></p>
                     </div>      
                 </div>
+
                 <div class="d-flex justify-content-between mt-2">
                     <div class="p-4">
                         <p class="display-5 font-weight-bold">Website: nvdcproperties.com</p>
@@ -152,6 +155,10 @@
        
         </div>
         <style>
+            table{
+                text-align:center;
+            }
+
             .cur1::before{
                 content: '₱';
             }
