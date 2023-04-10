@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('Category');
 
             $table->integer('Quantity');
+
+            $table->integer('Price');
                 
             $table->integer('Quantity_Requested')->default(0);
 

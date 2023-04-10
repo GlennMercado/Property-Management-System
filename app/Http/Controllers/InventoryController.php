@@ -112,6 +112,7 @@ class InventoryController extends Controller
                 $supply->Category = $category;
                 $supply->Quantity = $request->input('quantity');
                 $supply->Date_Received = $datenow;
+                $supply->Price = $request->input('price');
     
                 if($supply->save())
                 {
@@ -160,6 +161,7 @@ class InventoryController extends Controller
                 $supply->Category = $category;
                 $supply->Quantity = $request->input('quantity');
                 $supply->Date_Received = $datenow;
+                $supply->Price = $request->input('price');
     
                 if($supply->save())
                 {
@@ -208,7 +210,8 @@ class InventoryController extends Controller
             'description' => 'required',
             'allstock' => 'required',
             'quantity' => 'required',
-            'stock' => 'required'
+            'stock' => 'required',
+            'price' => 'required'
        ]);
 
        $stock = new hotelstocks;
@@ -239,6 +242,7 @@ class InventoryController extends Controller
        $stock->Stock_Level = $request->input('stock');
        $stock->category = $request->input('category');
        $stock->name = $name;
+       $stock->price = $request->input('price');
 
        $sql = DB::select("SELECT * FROM hotelstocks WHERE name = '$name'");
 

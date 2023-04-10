@@ -726,6 +726,15 @@
                                                                                         <input type="hidden"
                                                                                             name="name[]"
                                                                                             value="{{ $lists2->name }}">
+                                                                                        <input type="hidden"
+                                                                                            name="price[]"
+                                                                                            value="{{ $lists2->Price }}">
+                                                                                        <input type="hidden"
+                                                                                            name="prodid[]"
+                                                                                            value="{{ $lists2->productid }}">
+                                                                                        <input type="hidden"
+                                                                                            name="book_num"
+                                                                                            value="{{ $lists->Booking_No }}">
                                                                                     </div>
                                                                                     <div class="col">
                                                                                         <input type="text"

@@ -56,6 +56,7 @@
                                         <th scope="col" style="font-size:16px;">Product Name</th>
                                         <th scope="col" style="font-size:16px;">Item Description</th>
                                         <th scope="col" style="font-size:16px;">All Stock</th>
+                                        <th scope="col" style="font-size:16px;">Price</th>
                                         <th scope="col" style="font-size:16px;">Available Stock</th>
                                         <th scope="col" style="font-size:16px;">Stock Level</th>
                                         <th scope="col" style="font-size:16px;">Stock Alert</th>
@@ -79,6 +80,7 @@
                                             <td style="font-size:14px;">{{ $lists->name }}</td>
                                             <td style="font-size:14px;">{{ $lists->description }}</td>
                                             <td style="font-size:14px;">{{ $lists->allstock }}</td>
+                                            <td style="font-size:14px;">{{ $lists->price }}</td>
                                             <td style="font-size:14px;">{{ $lists->total }}</td>
                                             <td style="font-size:14px;">{{ $lists->Stock_Level }}</td>
                                             @if ($lists->total <= $lists->Stock_Level)
@@ -291,6 +293,8 @@
                                                                             value="{{ $lists->productid }}" />
                                                                         <input type="hidden" name="name"
                                                                             value="{{ $lists->name }}" />
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $lists->price }}" />
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label for="Stockdetails">Category : </label>
@@ -468,6 +472,11 @@
                             <div class="col">
                                 <label for="Stockdetails" class="text-color pt-4">Stock Level </label>
                                 <input type="number" class="form-control" name="stock" placeholder="Enter number..."
+                                    onKeyPress="if(this.value.length==6) return false;" required>
+                            </div>
+                            <div class="col">
+                                <label for="Stockdetails" class="text-color pt-4">Price </label>
+                                <input type="number" class="form-control" name="price" placeholder="Enter number..."
                                     onKeyPress="if(this.value.length==6) return false;" required>
                             </div>
                         </div>
