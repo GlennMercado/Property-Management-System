@@ -1,6 +1,8 @@
 @extends('layouts.guest', ['title' => __('User Profile')])
 
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     @include('layouts.navbars.navs.guestloggedin')
     <div class="position-relative">
         <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 400px; width: 100%">
@@ -18,11 +20,14 @@
             <div class="col-md-5">
                 <div class="card card-profile shadow">
                     <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="#">
-                                    <img src="{{ asset('nvdcpics') }}/user2.png" class="rounded-circle" style="width: 180px; height: 180px">
-                                </a>
+                        <div class="lightbox-gallery">
+                            <div class="col-lg-3 order-lg-2">
+                                <div class="card-profile-image">
+                                    <a href="{{ url(auth()->user()->profile_pic) }}" data-lightbox="photos">
+                                        <img src="{{ url(auth()->user()->profile_pic) }}" class="rounded-circle"
+                                            style="width: 180px; height: 180px">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -30,14 +35,14 @@
                         <div class="d-flex justify-content-between">
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-body pt-8 pb-4">
+                        {{-- <div class="row">
                             <div class="col">
                                 <div class="card-profile-stats d-flex justify-content-center p-6 mt--6">
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="text-center">
                             <h3>
                                 {{ auth()->user()->name }}<span class="font-weight-light"></span>
@@ -117,6 +122,16 @@
                 </div>
             </div>
         </div>
-        @include('layouts.footers.auth')
     </div>
+    <style>
+        .lb-outerContainer {
+            width: auto;
+            min-height: 200px;
+        }
+
+        .lb-image {
+            width: auto !important;
+            min-height: 200px !important;
+        }
+    </style>
 @endsection

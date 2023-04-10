@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\hotel_reservations;
 use App\Models\housekeepings;
 use App\Models\novadeci_suites;
+use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -135,6 +136,7 @@ class HotelController extends Controller
         $stats = "Paid";
         $stats2 = "Reserved";
 
+
         if($isarchived == false)
         {
             $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Vacant for Accommodation'");
@@ -143,11 +145,24 @@ class HotelController extends Controller
             {
                 $facility = "Hotel Room";
 
+                //For FinanceModule Variables
+                $ornum = "Online Booking";
+                $finance_payee = DB::select("SELECT gcash_account_name FROM hotel_reservations WHERE Booking_No = '$bookno'");
+                $particular = "Hotel";
+                $debit = "Cash";
+                $remark = "FULL";
+                $finance_eventdate = "";
+                $finance_amount = DB::select("SELECT Payment FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
 
                 DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                 values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
+
+                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount ,eventdate) 
+                values (?, ?, ?, ?, ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate]);
+
         
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');

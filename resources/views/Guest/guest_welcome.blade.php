@@ -58,22 +58,6 @@
             </div>
             <div class="col-md-3">
                 <div class="image-container">
-                    <a href="{{ url('function_room') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/FunctionRooms.png" alt="Card image cap"
-                            style="max-height: 12.3rem">
-                        <div class="image-overlay card-img-top" style="max-height: 12.3rem">
-                            <p>View</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <p class="card-title txt" style="font-weight:bold;">Function Rooms</p>
-                    <p class="card-text txt">Function room basic inclusions for either social event or trainings/seminar or
-                        convention center.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="image-container">
                     <a href="{{ url('commercial_spaces') }}">
                         <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png" alt="Card image cap"
                             style="max-height: 12.3rem">

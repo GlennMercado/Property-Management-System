@@ -253,7 +253,7 @@
             <div class="card bg-white shadow mt-2">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
-                        <h3 class="mb-0">{{ __('Convention Center Application') }}</h3>
+                        <h3 class="mb-0">{{ __('Convention Center Inquiry') }}</h3>
                     </div>
                 </div>
                 <div class="card-body">
