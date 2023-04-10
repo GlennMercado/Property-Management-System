@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('google_id')->unique()->nullable();
             $table->string('User_Type')->default('Guest');
             $table->boolean('IsDisabled')->default(false);
             $table->boolean('IsArchived')->default(false);
+            $table->string('profile_pic');
             $table->rememberToken();
             $table->timestamps();
         });

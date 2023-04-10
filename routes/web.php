@@ -38,6 +38,9 @@ Route::get('Welcomerooms', [App\Http\Controllers\WelcomeController::class, 'Welc
 
 Auth::routes(['verify' => true]);
 
+Route::get('/login-google', [App\http\Controllers\API\SocialAuthController::class, 'redirectToProvider'])->name('google.login');
+
+Route::get('/auth/google/callback', [App\http\Controllers\API\SocialAuthController::class, 'handleCallback'])->name('google.login.callback');
 
 //For authenticated users or logged in
 Route::middleware(['auth'])->group(function(){
