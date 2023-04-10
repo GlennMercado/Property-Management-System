@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->integer('Discrepancy')->default(0);
 
-            $table->interger('Price')->default(0);
+            $table->integer('Price')->default(0);
             
             $table->timestamps();
         });
