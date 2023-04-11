@@ -26,4 +26,7 @@ Migration steps
 step 2
 php artisan migrate
 
+
 composer require simplesoftwareio/simple-qrcode:*
+composer require yajra/laravel-datatables-oracle
+composer require laravel/socialite
