@@ -7,7 +7,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="avatar avatar-sm rounded-circle">
-                <img src="{{ url(auth()->user()->profile_pic) }}" class="rounded-circle">
+                <img src="{{ auth()->user()->profile_pic }}" class="rounded-circle">
             </span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-2 collapse-brand">
                         <a href="{{ route('welcome') }}">
-                            <img src="{{ url(auth()->user()->profile_pic) }}" class="rounded-circle">
+                            <img src="{{ auth()->user()->profile_pic }}" class="rounded-circle">
                         </a>
                     </div>
                     <div class="col mt-1 collapse-brand">
@@ -89,7 +89,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                        <img src="{{ url(auth()->user()->profile_pic) }}" class="rounded-circle">
+                        <img src="{{ auth()->user()->profile_pic }}" class="rounded-circle">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
                         <span class="mb-0 text-white font-weight-bold">{{ auth()->user()->name }}</span>
