@@ -60,7 +60,7 @@
         <div class="col-md-7" style="margin: 0; padding: 0">
             <img src="{{ asset('nvdcpics') }}/bcourt3.jpg" class="img-fluid">
         </div>
-        <div class="col-md-5 p-6" style="background-color: rgb(57, 82, 51)">
+        <div class="col-md-5 p-6" style="background-color: rgb(51, 60, 82)">
             <h1 class="text-white">FUNCTION ROOMS</h1>
             <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure neque culpa perspiciatis
                 vero adipisci
