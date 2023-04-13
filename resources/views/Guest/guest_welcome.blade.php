@@ -116,6 +116,20 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 ad1">
+            <img src="{{ asset('nvdcpics') }}/function1.jpg" class="img-fluid">
+        </div>
+        <div class="col-md-3 col-sm-6 ad1">
+            <img src="{{ asset('nvdcpics') }}/cspaces.jpg" class="img-fluid">
+        </div>
+        <div class="col-md-3 col-sm-6 ad1">
+            <img src="{{ asset('nvdcpics') }}/function1.jpg" class="img-fluid">
+        </div>
+        <div class="col-md-3 col-sm-6 ad1">
+            <img src="{{ asset('nvdcpics') }}/cspaces.jpg" class="img-fluid">
+        </div>
+    </div>
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
             <div class="d-flex justify-content-center">

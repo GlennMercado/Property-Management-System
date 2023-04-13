@@ -85,7 +85,7 @@ html {
 }
 
 
-/* new */
+/* CAROUSEL */
 
 .carousel-inner {
     width: 100%;
@@ -203,4 +203,13 @@ a.view-demo:hover {
     background: linear-gradient(to right, #C676CF 0%, #4824FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+li.active {
+    color: white;
+}
+
+.ad1 {
+    margin: 0;
+    padding: 0;
 }
