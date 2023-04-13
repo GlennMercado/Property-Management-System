@@ -21,9 +21,14 @@ Migration steps
 
 7.   php artisan migrate --path=/database/migrations/2023_02_09_204322_create_commercial_spaces_application_table.php
 
-8.   php artisan migrate --path=/database/migrations/2023_04_07_143938_create_used_supplies_table.php
+8.   php artisan migrate --path=/database/migrations/2022_12_09_050205_create_hotelstocks_table.php
+
+9.   php artisan migrate --path=/database/migrations/2023_04_07_143938_create_used_supplies_table.php
 
 step 2
 php artisan migrate
 
+
 composer require simplesoftwareio/simple-qrcode:*
+composer require yajra/laravel-datatables-oracle
+composer require laravel/socialite
