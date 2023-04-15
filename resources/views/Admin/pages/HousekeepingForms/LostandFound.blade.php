@@ -72,7 +72,7 @@
                                                 <div class="row" id="hotel" style="display:none;">
                                                     <div class="col-md pt-2">
                                                         <p class="text-left">Room No. </p>
-                                                        <select name="room_no" class="form-control" required>
+                                                        <select name="room_no" class="form-control">
                                                             <option selected="true" disabled="disabled" selected disabled
                                                                 value="">Select</option>
                                                             @foreach ($count as $counts)

@@ -5,8 +5,12 @@
     <script src="{{ asset('Javascript') }}/suites.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="card-body">
             <div class="container bg-white mt-1" id="conventionCenter">
@@ -26,6 +30,7 @@
                                         <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
                                         <input type="hidden" id="rpn" value="{{ $lists->Rate_per_Night }}">
                                         <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
+                                        <input type="hidden" name="rn" value="{{ $lists->Room_No }}" id="rn">
                                         <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq m</h3>
                                         <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
                                         <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard
@@ -37,6 +42,10 @@
                                     </div>
                                 @endforeach
                             </div>
+                            @foreach($reserve as $reserves)
+                                <input type="hidden" name="check_in" value="{{$reserves->Check_In_Date}}" id="checkin">
+                                <input type="hidden" name="check_out" value="{{$reserves->Check_Out_Date}}" id="checkout">
+                            @endforeach
                             <div class="container-fluid shadow d-none d-lg-block">
                                 <div class="d-flex pt-2">
                                     <h3 class="mr-auto">Other rooms</h3>
@@ -99,13 +108,19 @@
                             <div class="row">
                                 <div class="col-md pt-4">
                                     <p>Check in Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
-                                        type="date" onkeydown="return false" required />
+                                    {{-- <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
+                                        type="date" onkeydown="return false" required /> --}}
+                                        <input type="text" id="date1" class="datepicker" name="checkIn"
+                                                onkeydown="return false" required>
                                 </div>
                                 <div class="col-md pt-4">
-                                    <p>Check out Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control chck" id="date2" onkeyup="enable_button()"
-                                        name="checkOut" type="date" onkeydown="return false" required>
+                                    <div id="dates2">
+                                        <p>Check out Date/Time <span class="text-danger">*</span></p>
+                                        {{-- <input class="form-control chck" id="date2" onkeyup="enable_button()"
+                                            name="checkOut" type="date" onkeydown="return false" required> --}}
+                                            <input type="text" class="datepicker" id="date2"
+                                                        name="checkOut" onkeydown="return false">
+                                        </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -315,7 +330,7 @@
                                     Submit
                                 </button>
                             </div>
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+                            {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> --}}
                             {{-- modal submit --}}
                             {{-- WAG TATANGGALIN --}}
                             <div class="modal fade" id="btnpreview" tabindex="-1" role="dialog"
@@ -449,21 +464,195 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
-            var dateToday = new Date();
-            var month = dateToday.getMonth() + 1;
-            var day = dateToday.getDate();
-            var year = dateToday.getFullYear();
-            if (month < 10)
-                month = '0' + month.toString();
-            if (day < 10)
-                day = '0' + day.toString();
-            var maxDate = year + '-' + month + '-' + day;
-            $('.chck').attr('min', maxDate);
+        $(function() {
+            var start_disabled_Dates = $("#checkin").val();
+            var end_disabled_Dates = $("#checkout").val();
+            var startDates = [start_disabled_Dates];
+            var endDates = [end_disabled_Dates];
+
+            $('#dates2').hide();
+
+            $("#date1").datepicker({
+                minDate: 0,
+                buttonImageOnly: true,
+                showOn: "both",
+                format: 'yyyy-mm-dd',
+                buttonImage: "{{ asset('images') }}/calendar2.png",
+                beforeShowDay: function(date) {
+                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                for (var i = 0; i < startDates.length; i++) {
+                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                    return [false, "disabled-date"];
+                    }
+                }
+                return [true, ""];
+                },
+                onSelect: function(selectedDate) {
+                    $('#dates2').show();
+                    var minDate = new Date(selectedDate);
+                    minDate.setDate(minDate.getDate() + 1);
+                    $("#date2").datepicker("option", "minDate", minDate);
+                }
+            });
+
+            $("#date2").datepicker({
+                minDate: 0,
+                buttonImageOnly: true,
+                showOn: "both",
+                format: 'yyyy-mm-dd',
+                buttonImage: "{{ asset('images') }}/calendar2.png",
+                beforeShowDay: function(date) {
+                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                for (var i = 0; i < startDates.length; i++) {
+                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                    return [false, "disabled-date"];
+                    }
+                }
+                var startDate = $('#date1').datepicker('getDate');
+                // Disable dates before startDate in datepicker2
+                return date < startDate ? [false] : [true];
+                },
+                onSelect: function(selectedDate) {
+                var maxDate = new Date(selectedDate);
+                maxDate.setDate(maxDate.getDate() - 1);
+                for (var i = 0; i < startDates.length; i++) {
+                    var startDate = new Date(startDates[i]);
+                    var endDate = new Date(endDates[i]);
+                    if (maxDate >= startDate && maxDate <= endDate) {
+                    $("#date2").val('');
+                    break;
+                    }
+                    
+                    var selectedDate = $(this).datepicker('getDate');
+                    var startDate = $('#date1').datepicker('getDate');
+                    var diff = (selectedDate - startDate)/(1000*60*60*24);
+                    if (diff > 6) {
+                    alert('Date selection not valid.');
+                    $("#date2").val('');
+                    }
+                }
+                }
+            });
         });
+
+        
+
+        // $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+        //     var dateToday = new Date();
+        //     var month = dateToday.getMonth() + 1;
+        //     var day = dateToday.getDate();
+        //     var year = dateToday.getFullYear();
+        //     if (month < 10)
+        //         month = '0' + month.toString();
+        //     if (day < 10)
+        //         day = '0' + day.toString();
+        //     var maxDate = year + '-' + month + '-' + day;
+        //     $('.chck').attr('min', maxDate);
+        // });
 
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
     </script>
+    <style>
+        .datepicker {
+                pointer-events: none;
+                /* form-control */
+                display: block;
+                width: 100%;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+            .datepicker:focus {
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+            .ui-datepicker {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                background-color: #fff;
+            }
+
+            .ui-datepicker-trigger {
+                position: absolute;
+                top:72px;
+                right: 0;
+                margin-right: 23px;
+                cursor: pointer;
+                background-image: url("{{ asset('images') }}/calendar2.png }}");
+                background-size: 30px 30px;
+                width: 30px;
+                height: 30px;
+            }
+
+            /* Set the color of the datepicker header */
+            .ui-datepicker-header {
+                background-color: #39D972;
+                border: 1px solid #ddd;
+                color: #fff;
+            }
+
+            /* Set the color of the datepicker days */
+            .ui-state-default,
+            .ui-widget-content .ui-state-default,
+            .ui-widget-header .ui-state-default {
+                background-color: #fff;
+                border: none;
+                color: #333;
+            }
+
+            /* Set the color of the selected date */
+            .ui-state-active,
+            .ui-widget-content .ui-state-active,
+            .ui-widget-header .ui-state-active {
+                background-color: #6C6C6C;
+                border: none;
+                color: #fff;
+            }
+
+            /* Set the color of the datepicker hover state */
+            .ui-state-hover,
+            .ui-widget-content .ui-state-hover,
+            .ui-widget-header .ui-state-hover {
+                background-color: #39D972;
+                border: none;
+                color: #fff;
+            }
+
+            /* Set the color of the datepicker today button */
+            .ui-datepicker-current-day {
+                background-color: #16BBAE;
+                border: none;
+                color: #fff;
+            }
+
+            /* Set the color of the datepicker navigation icons */
+            .ui-icon {
+                background-image: none;
+                background-color: transparent;
+                border: none;
+                color: #fff;
+            }
+
+            /* Set the color of the datepicker navigation buttons */
+            .ui-datepicker-prev,
+            .ui-datepicker-next {
+                background-image: none;
+                background-color: transparent;
+                border: none;
+                color: #fff;
+                font-weight: bold;
+            }
+    </style>
 @endsection
