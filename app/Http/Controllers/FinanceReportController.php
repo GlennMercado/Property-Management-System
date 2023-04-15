@@ -63,7 +63,6 @@ class FinanceReportController extends Controller
             'eventdate' => 'required',
             'cash' => 'required',
             'unearned' => 'required',
-            'bank' => 'required',
             'cheque' => 'required',
             'bank' => 'required'
             ]);

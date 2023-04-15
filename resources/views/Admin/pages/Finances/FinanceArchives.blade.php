@@ -2,7 +2,18 @@
 
 @section('content')
     @include('layouts.headers.cards')
-   
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+            $('#myTables').DataTable();
+        });
+    </script>
+
 
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
@@ -17,152 +28,376 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Proof of Payment</h3>
+        <div class="col-xl">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="row align-items-center">
+                                <div class="col-md-12 text-right pt-4 mt-4">
+                                    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
+                                        role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
+                                                data-toggle="tab" href="#tabs-icons-text-1" role="tab"
+                                                aria-controls="tabs-icons-text-1" aria-selected="true">Proof of Payments</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                                                href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
+                                                aria-selected="false"> Ofiicial Receipts Archive</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush" id="Table1">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Payment Status</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Gcash Account Name</th>
-                                    <th scope="col">Reservation Number</th>
-                                    <th scope="col">Guest Name</th>
-                                    <th scope="col">Mobile Number</th>
-                                </tr>
-                            </thead>
+                </div>
 
-                            <tbody>
-                                @foreach ($list as $lists)
-                                    <tr>
-                                        <td>
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#ModalView{{ $lists->id }}" class="btn btn-sm btn-primary"
-                                                title="View Finance">
-                                                <i class="bi bi-eye"></i></button>
-                                                
-                                        </td>
-                                        <td>{{ $lists->Payment_Status }}</td>
-                                        <td>{{ $lists->Payment }}</td>
-                                        <td>{{ $lists->gcash_account_name }}</td>
-                                        <td>{{ $lists->Booking_No }}</td>
-                                        <td>{{ $lists->Guest_Name }}</td>
-                                        <td>{{ $lists->Mobile_Num }}</td>
+                <!--Start of Cards-->
+                <div class="container">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="tab-content" id="myTabContent">
+                                {{-- ORs --}}
+                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-1-tab">
 
-                                    </tr>
-                                    <!-- Modal -->
-                                    <!--View-->
-                                    <div class="modal fade text-left" id="ModalView{{ $lists->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
-                                        <div class="modal-dialog modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-left display-4" id="exampleModalCreate">View
-                                                        Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                        <div class="row">
-                                                        <div class="col">
-                                                                <p class="text-left">Room Number: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->Room_No }}" readonly>
-                                                            </div>
-                                                            <div class="col">
-                                                                <p class="text-left">Payment Status: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->Payment_Status }}" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <p class="text-left">Guest Name: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->Guest_Name }}" readonly>
-                                                            </div>
-                                                            <div class="col">
-                                                                <p class="text-left">Mobile Number: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->Mobile_Num }}" readonly>
-                                                            </div>
-                                                        </div>
+                                    <table class="table align-items-center table-flush" style="align-items:center"
+                                        id="myTable">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Action</th>
+                                                <th scope="col">Payment Status</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Gcash Account Name</th>
+                                                <th scope="col">Reservation Number</th>
+                                                <th scope="col">Guest Name</th>
+                                                <th scope="col">Mobile Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list as $lists)
+                                                <tr>
+                                                    <td>
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#ModalView{{ $lists->id }}"
+                                                            class="btn btn-sm btn-primary" title="View Finance">
+                                                            <i class="bi bi-eye"></i></button>
 
-                                                        @if ($lists->Email != null)
-                                                            <br>
-                                                            <p class="text-left">Email Address: </p>
-                                                            <input class="form-control" type="text"
-                                                                value="{{ $lists->Email }}" readonly>
-                                                        @endif
+                                                    </td>
+                                                    <td>{{ $lists->Payment_Status }}</td>
+                                                    <td>{{ $lists->Payment }}</td>
+                                                    <td>{{ $lists->gcash_account_name }}</td>
+                                                    <td>{{ $lists->Booking_No }}</td>
+                                                    <td>{{ $lists->Guest_Name }}</td>
+                                                    <td>{{ $lists->Mobile_Num }}</td>
 
-                                                        <br>
-                                                            <p class="text-left">Amount: </p>
-                                                            <input class="form-control" type="text"
-                                                                value="{{ $lists->Payment }}" readonly>
-                                                        <br>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <p class="text-left">Check In Date: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
-                                                                    readonly>
+                                                </tr>
+
+                                                <!-- Modal -->
+                                                <!--View-->
+                                                <div class="modal fade text-left" id="ModalView{{ $lists->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-md" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalCreate">View
+                                                                    Details</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <div class="col">
-                                                                <p class="text-left">Check Out Date: </p>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Room Number: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Room_No }}" readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Payment Status: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Payment_Status }}" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Guest Name: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Guest_Name }}" readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Mobile Number: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Mobile_Num }}" readonly>
+                                                                    </div>
+                                                                </div>
+
+                                                                @if ($lists->Email != null)
+                                                                    <br>
+                                                                    <p class="text-left">Email Address: </p>
+                                                                    <input class="form-control" type="text"
+                                                                        value="{{ $lists->Email }}" readonly>
+                                                                @endif
+
+                                                                <br>
+                                                                <p class="text-left">Amount: </p>
                                                                 <input class="form-control" type="text"
-                                                                    value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
-                                                                    readonly>
+                                                                    value="{{ $lists->Payment }}" readonly>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Check In Date: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                                            readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Check Out Date: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                                            readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <p class="text-left">Proof of Payment </p>
+                                                                <img src="{{ $lists->Proof_Image }}"
+                                                                    class="card-img-top" />
                                                             </div>
-                                                        </div>
-                                                        <br>
-                                                            <p class="text-left">Proof of Payment </p>
-                                                            <img src="{{ $lists->Proof_Image }}"  class="card-img-top" />
-                                                    </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger"
-                                                        data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- Daily Report --}}
+                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-2-tab">
+                                    <div class="table-responsive">
+                                        <table class="table align-items-center table-flush" id="myTables">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th colspan="4" style="font-size:18px;">Debit</th>
+                                                    <th colspan="8" style="font-size:18px;">Credit</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">OR Number</th>
+                                                    <th scope="col">Payee</th>
+                                                    <th scope="col">Cash/GCash</th>
+                                                    <th scope="col">Unearned Income</th>
+                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
+                                                    <th scope="col">Cheque</th>
+                                                    <th scope="col">Basketball</th>
+                                                    <th scope="col">UnearnedIncome</th>
+                                                    <th scope="col">OtherIncome</th>
+                                                    <th scope="col">Parking Ticket/Parking Rent</th>
+                                                    <th scope="col">ManagementFee</th>
+                                                    <th scope="col">FunctionRoom/ConventionCenter/Events
+                                                    <th scope="col">Hotel</th>
+                                                    <th scope="col">Commercial Spaces</th>
+                                                    <th scope="col">Output VAT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($list2 as $lists2)
+                                                    <tr>
+                                                        <td>{{ $lists2->ornum }}</td>
+                                                        <td>{{ $lists2->payee }}</td>
+                                                        <td>{{ $lists2->cash }}</td>
+                                                        <td>{{ $lists2->unearned }}</td>
+                                                        <td>{{ $lists2->bank }}</td>
+                                                        <td>{{ $lists2->cheque }}</td>
+                                                        <td>{{ $lists2->basketball }}</td>
+                                                        <td>{{ $lists2->unearned }}</td>
+                                                        <td>{{ $lists2->otherincome }}</td>
+                                                        <td>{{ $lists2->parking }}</td>
+                                                        <td>{{ $lists2->managementfee }}</td>
+                                                        <td>{{ $lists2->event }}</td>
+                                                        <td>{{ $lists2->hotel }}</td>
+                                                        <td>{{ $lists2->commercialspace }}</td>
+                                                        <td>{{ $lists2->outputvat }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!--Table Continue-->
-                </tbody>
-                @endforeach
-                </table>
+
+
             </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    {{-- <div class="row">
+        <div class="col-xl">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Proof of Payment</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush" id="Table1">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Action</th>
+                                <th scope="col">Payment Status</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Gcash Account Name</th>
+                                <th scope="col">Reservation Number</th>
+                                <th scope="col">Guest Name</th>
+                                <th scope="col">Mobile Number</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($list as $lists)
+                                <tr>
+                                    <td>
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#ModalView{{ $lists->id }}" class="btn btn-sm btn-primary"
+                                            title="View Finance">
+                                            <i class="bi bi-eye"></i></button>
+
+                                    </td>
+                                    <td>{{ $lists->Payment_Status }}</td>
+                                    <td>{{ $lists->Payment }}</td>
+                                    <td>{{ $lists->gcash_account_name }}</td>
+                                    <td>{{ $lists->Booking_No }}</td>
+                                    <td>{{ $lists->Guest_Name }}</td>
+                                    <td>{{ $lists->Mobile_Num }}</td>
+
+                                </tr>
+                                <!-- Modal -->
+                                <!--View-->
+                                <div class="modal fade text-left" id="ModalView{{ $lists->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-left display-4" id="exampleModalCreate">View
+                                                    Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="text-left">Room Number: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ $lists->Room_No }}" readonly>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="text-left">Payment Status: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ $lists->Payment_Status }}" readonly>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="text-left">Guest Name: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ $lists->Guest_Name }}" readonly>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="text-left">Mobile Number: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ $lists->Mobile_Num }}" readonly>
+                                                    </div>
+                                                </div>
+
+                                                @if ($lists->Email != null)
+                                                    <br>
+                                                    <p class="text-left">Email Address: </p>
+                                                    <input class="form-control" type="text"
+                                                        value="{{ $lists->Email }}" readonly>
+                                                @endif
+
+                                                <br>
+                                                <p class="text-left">Amount: </p>
+                                                <input class="form-control" type="text" value="{{ $lists->Payment }}"
+                                                    readonly>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="text-left">Check In Date: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                            readonly>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="text-left">Check Out Date: </p>
+                                                        <input class="form-control" type="text"
+                                                            value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <p class="text-left">Proof of Payment </p>
+                                                <img src="{{ $lists->Proof_Image }}" class="card-img-top" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                </div>
+            </div>
+
+            <!--Table Continue-->
+            </tbody>
+            @endforeach
+            </table>
         </div>
     </div>
     </div>
     </div>
+    </div>
 
 
     </div>
-    </div>
+    </div> --}}
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <script>
-     $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#Table1').DataTable();
-            });
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#Table1').DataTable();
+        });
     </script>
     <style>
         /* disable arrows input type number */
@@ -180,7 +415,6 @@
             font-family: sans-serif;
         }
     </style>
-    
 @endsection
 
 @push('js')

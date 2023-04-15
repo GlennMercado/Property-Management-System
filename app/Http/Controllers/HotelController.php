@@ -146,12 +146,12 @@ class HotelController extends Controller
                 $facility = "Hotel Room";
 
                 //For FinanceModule Variables
-                $ornum = "Online Booking";
+                $ornum = "001";
                 $finance_payee = DB::select("SELECT gcash_account_name FROM hotel_reservations");
                 $particular = "Hotel";
                 $debit = "Cash";
                 $remark = "FULL";
-                $finance_eventdate = "";
+                $finance_eventdate = "2023-12-04";
                 $finance_amount = DB::select("SELECT Payment FROM hotel_reservations");
 
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
