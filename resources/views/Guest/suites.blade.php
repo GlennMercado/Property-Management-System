@@ -111,7 +111,7 @@
                                     {{-- <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
                                         type="date" onkeydown="return false" required /> --}}
                                         <input type="text" id="date1" class="datepicker" name="checkIn"
-                                                onkeydown="return false" required>
+                                                onkeydown="return false" autocomplete="off" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <div id="dates2">
@@ -119,7 +119,7 @@
                                         {{-- <input class="form-control chck" id="date2" onkeyup="enable_button()"
                                             name="checkOut" type="date" onkeydown="return false" required> --}}
                                             <input type="text" class="datepicker" id="date2"
-                                                        name="checkOut" onkeydown="return false">
+                                                        name="checkOut" autocomplete="off" onkeydown="return false">
                                         </div>
                                 </div>
                             </div>
