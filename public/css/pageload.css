@@ -68,9 +68,9 @@
 .animatePageIn {
     position: relative;
     -webkit-animation-name: animatePageIn;
-    -webkit-animation-duration: 1.7s;
+    -webkit-animation-duration: 1.4s;
     animation-name: animatePageIn;
-    animation-duration: 1.7s;
+    animation-duration: 1.4s;
 }
 
 @-webkit-keyframes animatePageIn {
