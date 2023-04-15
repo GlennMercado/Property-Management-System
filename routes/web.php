@@ -137,103 +137,106 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 	Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 });	
 
-	//Sales and Marketing-----------------------
-		//Reservation
-		Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
-		Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
-		Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
+//Admin and Sales and Marketing
+Route::middleware(['auth', 'AdminorSales'])->group(function(){
+	//Reservation
+	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
+	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
 
-		Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
-		Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
-		
-		Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
-		Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
-		Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-		Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
-		Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
-		Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
+	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
+
+	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
+	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
+	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
+	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
+	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+
+	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
+
+	//Event inquiry
+		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+		Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
+		Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
+	//Commercial Spaces
+		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
+		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
+		Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
+});
+
+//Admin and Operation Manager
+Route::middleware(['auth', 'AdminorOperation'])->group(function(){
+	//Reservation
+	Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+
+	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 	
-		Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
-
-		//Event inquiry
-			Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-			Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-			Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
-			Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
-		//Commercial Spaces
-			Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
-			Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
-			Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
-
-
-	//Operation Manager
-		//Reservation
-		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
-
-		Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
-		
-		Route::get('Reports', ['uses' => 'App\Http\Controllers\OperationManagementController@Operation_Reports', 'as' => 'Reports.Operation_Reports']);
-		
-		Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
-		
-		
-		Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
-		
-		Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
-		Route::post('/set_stats', 'App\Http\Controllers\OperationManagementController@set_stats');
-		Route::get('/update_item_request/{id}', 'App\Http\Controllers\OperationManagementController@update_item_request');
-		
-		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
-		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
-		
-	//Finance
-		//Archives
-		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
-			
-		//Finance Dashboards
-		Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
-
-		//Finance Daily Report
-		Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
-		Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
-		Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');;
-			
-		
-	//Inventory Manager
-		//Hotel
-		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
-		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
-		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-
-		//Hotel Inventory
-		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'StockHotel'])->name('StockCount');
-		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
-		Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
-		Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
-
-		//Convention Center Inventory
-		Route::get('StockCenter', [App\Http\Controllers\InventoryCenterController::class, 'StockCenter'])->name('StockCenter');
-		Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
-		Route::post('/addstock_center', 'App\Http\Controllers\InventoryCenterController@addstock_center');
-
-		//Linen Request
-		Route::get('StockHotelLinen', [App\Http\Controllers\InventoryHotelLinenController::class, 'LinenRequest'])->name('StockHotelLinen');
-		Route::post('/linen_request_approval', 'App\Http\Controllers\InventoryHotelLinenController@linen_request_approval');
-
-		//Supplies Request
-		Route::get('StockHotelSupply', [App\Http\Controllers\InventoryHotelSupplyController::class, 'SupplyRequest'])->name('StockHotelSupply');
-		Route::post('/supply_request_approval', 'App\Http\Controllers\InventoryHotelSupplyController@supply_request_approval');
-
-		//Inventory Reports
-		Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
-		
-
-		//Guest Request
-		Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
-		Route::get('/req_up/{id}/{qty}/{name}', 'App\Http\Controllers\InventoryController@req_up');
-
-
+	Route::get('Reports', ['uses' => 'App\Http\Controllers\OperationManagementController@Operation_Reports', 'as' => 'Reports.Operation_Reports']);
 	
+	Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
+	
+	
+	Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
+	
+	Route::get('/update_service_request/{id}/{bs}', 'App\Http\Controllers\OperationManagementController@update_service_request');
+	Route::post('/set_stats', 'App\Http\Controllers\OperationManagementController@set_stats');
+	Route::get('/update_item_request/{id}', 'App\Http\Controllers\OperationManagementController@update_item_request');
+	
+	Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
+	Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
+});	
+
+//Admin and Finance
+Route::middleware(['auth', 'AdminorFinance'])->group(function(){
+	//Archives
+	Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
+			
+	//Finance Dashboards
+	Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
+
+	//Finance Daily Report
+	Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
+	Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
+	Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');
+});
+
+//Admin and Inventory
+Route::middleware(['auth', 'AdminorInventory'])->group(function(){
+	//Hotel
+	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
+	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+
+	//Hotel Inventory
+	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'StockHotel'])->name('StockCount');
+	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
+	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	Route::post('/add_stock_room', 'App\Http\Controllers\InventoryController@add_stock_room');
+
+	//Convention Center Inventory
+	Route::get('StockCenter', [App\Http\Controllers\InventoryCenterController::class, 'StockCenter'])->name('StockCenter');
+	Route::post('/edit_stock_center', 'App\Http\Controllers\InventoryCenterController@edit_stock_center');
+	Route::post('/addstock_center', 'App\Http\Controllers\InventoryCenterController@addstock_center');
+
+	//Linen Request
+	Route::get('StockHotelLinen', [App\Http\Controllers\InventoryHotelLinenController::class, 'LinenRequest'])->name('StockHotelLinen');
+	Route::post('/linen_request_approval', 'App\Http\Controllers\InventoryHotelLinenController@linen_request_approval');
+
+	//Supplies Request
+	Route::get('StockHotelSupply', [App\Http\Controllers\InventoryHotelSupplyController::class, 'SupplyRequest'])->name('StockHotelSupply');
+	Route::post('/supply_request_approval', 'App\Http\Controllers\InventoryHotelSupplyController@supply_request_approval');
+
+	//Inventory Reports
+	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
+	
+
+	//Guest Request
+	Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
+	Route::get('/req_up/{id}/{qty}/{name}', 'App\Http\Controllers\InventoryController@req_up');
+});
 
 
 

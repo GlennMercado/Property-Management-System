@@ -471,24 +471,27 @@
                                                                     <div class="row">
                                                                         <div class="card-body bg-white"
                                                                             style="border-radius: 18px">
-                                                                            @if ($lists->Request_ID != null)
-                                                                                @foreach ($list2 as $lists2)
-                                                                                    <input type="hidden" name="id"
-                                                                                        value="{{ $lists2->ID }}" />
-
-                                                                                        <h3 class="text-left">Room Number: <span style="font-weight:normal;">{{$lists2->Room_No}}</span> </h3>
-
-                                                                                        <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists2->Guest_Name}}</span> </h3>
-
-                                                                                        <h3 class="text-left">Date Requested: <span style="font-weight:normal;">{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}{{$lists->Mobile_Num}}</span> </h3>
-                                                                                @endforeach
-                                                                            @endif
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
+                                                                                
+                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
+                                                                            <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> </h3>
                                                                             <h3 class="text-left">Housekeeping Status: <span style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span> </h3>
                                                                             <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{ $lists->Attendant }}</span> </h3>        
                                                                             <h3 class="text-left">Checked-In Date: <span style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span> </h3>
                                                                             <h3 class="text-left">Check-Out Date: <span style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span> </h3>
+
+                                                                            <br>
+                                                                            @if ($lists->Request_ID != null)
+                                                                                @foreach ($list2 as $lists2)
+                                                                                    <input type="hidden" name="guest_id"
+                                                                                        value="{{ $lists2->Request_ID }}" />
+                                                                                        <h3 class="text-left">Guest Request</h3>
+
+                                                                                        <h3 class="text-left">Request: <span style="font-weight:normal;">{{ $lists2->Request}}</span> </h3>
+                                                                                        <h3 class="text-left">Date Requested: <span style="font-weight:normal;">{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}</span> </h3>
+                                                                                @endforeach
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>

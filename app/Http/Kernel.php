@@ -68,5 +68,9 @@ class Kernel extends HttpKernel
         'Guest' => \App\Http\Middleware\Guest::class,
         'Housekeeper' => \App\Http\Middleware\Housekeeper::class,
         'AdminorHousekeeper' => \App\Http\Middleware\AdminorHousekeeper::class,
+        'AdminorSales' => \App\Http\Middleware\AdminorSales::class,
+        'AdminorOperation' => \App\Http\Middleware\AdminorOperation::class,
+        'AdminorFinance' => \App\Http\Middleware\AdminorFinance::class,
+        'AdminorInventory' => \App\Http\Middleware\AdminorInventory::class,
     ];
 }
