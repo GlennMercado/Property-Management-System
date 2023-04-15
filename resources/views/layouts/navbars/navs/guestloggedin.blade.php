@@ -1,9 +1,34 @@
 <nav class="navbar fixed-top navbar-horizontal navbar-expand-md" style="background-color: #30bc6c">
     <div class="container px-2">
         <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 50px; height: 50px; margin-right:1%;">
-        <a class="navbar-brand" href="{{ route('welcome') }}">
+        <a class="navbar-brand d-none d-xl-block" href="{{ route('welcome') }}">
             <h2 class="text-white">NVDC Properties</h2>
         </a>
+        <div class="dropdown">
+            <a class="dropdown" role="button" data-toggle="collapse" data-target="#notif"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bell text-white"></i>
+                <span class="badge badge-pill text-danger bg-white">4</span>
+            </a>
+            <ul class="dropdown-menu dm" id="notif">
+                <li>
+                    <a class="dropdown-item" href="#">lore</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Another news</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">lorem</a>
+                </li>
+            </ul>
+        </div>
+        <style>
+            .dm {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        </style>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="avatar avatar-sm rounded-circle">
