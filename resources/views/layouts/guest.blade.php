@@ -71,7 +71,7 @@
     var pageLoad;
 
     function pageLoadFunction() {
-        pageLoad = setTimeout(showPage, 150);
+        pageLoad = setTimeout(showPage, 0);
     }
 
     function showPage() {

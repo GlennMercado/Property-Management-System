@@ -1,34 +1,27 @@
 <nav class="navbar fixed-top navbar-horizontal navbar-expand-md" style="background-color: #30bc6c">
     <div class="container px-2">
-        <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 50px; height: 50px; margin-right:1%;">
-        <a class="navbar-brand d-none d-xl-block" href="{{ route('welcome') }}">
-            <h2 class="text-white">NVDC Properties</h2>
+        <a class="navbar-brand d-lg-none" href="{{ route('welcome') }}">
+            <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 100%; height: 50px; margin-right:1%;">
+        </a>
+        <a class="navbar-brand d-none d-lg-block" href="{{ route('welcome') }}">
+            <img src="{{ asset('nvdcpics') }}/nvdc-logo5.png" style="width: 100%; height: 50px; margin-right:1%;">
         </a>
         <div class="dropdown">
-            <a class="dropdown" role="button" data-toggle="collapse" data-target="#notif"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="me-3 dropdown-toggle hidden-arrow" role="button" data-target="#notif" id="navbarDropdownMenuLink"
+                role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
-                <span class="badge badge-pill text-danger bg-white">4</span>
+                <span class="badge rounded-pill badge-notification bg-danger text-white">1</span>
             </a>
-            <ul class="dropdown-menu dm" id="notif">
+            <ul class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink">
                 <li>
-                    <a class="dropdown-item" href="#">lore</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">Another news</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">lorem</a>
+                    <a class="dropdown-item d-inline-block text-truncate" href="#"
+                        style="max-width: 200px">Something else herel Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Iste necessitatibus molestiae recusandae officia cumque. Aspernatur excepturi
+                        sunt nihil voluptatem adipisci, nam dignissimos repudiandae laboriosam. Corporis exercitationem
+                        amet itaque sunt quaerat.</a>
                 </li>
             </ul>
         </div>
-        <style>
-            .dm {
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-        </style>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="avatar avatar-sm rounded-circle">
@@ -152,47 +145,3 @@
         </li>
     </ul>
 </nav>
-
-<!-- Modal -->
-<style>
-    body {
-        overflow-x: hidden;
-    }
-
-    .dropbtn {
-        color: white;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-</style>
