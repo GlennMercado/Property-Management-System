@@ -42,10 +42,17 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @foreach($reserve as $reserves)
-                                <input type="hidden" name="check_in" value="{{$reserves->Check_In_Date}}" id="checkin">
-                                <input type="hidden" name="check_out" value="{{$reserves->Check_Out_Date}}" id="checkout">
-                            @endforeach
+                            <?php
+                                $startDates = [];
+                                $endDates = [];
+                                foreach($reserve as $reserves) {
+                                    $startDates[] = $reserves->Check_In_Date;
+                                    $endDates[] = $reserves->Check_Out_Date;
+                                }
+                            ?>
+                            <input type="hidden" name="start_dates" value="<?php echo implode(',', $startDates); ?>" id="start-dates">
+                            <input type="hidden" name="end_dates" value="<?php echo implode(',', $endDates); ?>" id="end-dates">
+
                             <div class="container-fluid shadow d-none d-lg-block">
                                 <div class="d-flex pt-2">
                                     <h3 class="mr-auto">Other rooms</h3>
@@ -465,10 +472,8 @@
     </div>
     <script>
         $(function() {
-            var start_disabled_Dates = $("#checkin").val();
-            var end_disabled_Dates = $("#checkout").val();
-            var startDates = [start_disabled_Dates];
-            var endDates = [end_disabled_Dates];
+            var startDates = $("#start-dates").val().split(',');
+            var endDates = $("#end-dates").val().split(',');
 
             $('#dates2').hide();
 
@@ -479,13 +484,13 @@
                 format: 'yyyy-mm-dd',
                 buttonImage: "{{ asset('images') }}/calendar2.png",
                 beforeShowDay: function(date) {
-                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
-                for (var i = 0; i < startDates.length; i++) {
-                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
-                    return [false, "disabled-date"];
+                    var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                    for (var i = 0; i < startDates.length; i++) {
+                        if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                            return [false, "disabled-date"];
+                        }
                     }
-                }
-                return [true, ""];
+                    return [true, ""];
                 },
                 onSelect: function(selectedDate) {
                     $('#dates2').show();
@@ -502,38 +507,41 @@
                 format: 'yyyy-mm-dd',
                 buttonImage: "{{ asset('images') }}/calendar2.png",
                 beforeShowDay: function(date) {
-                var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
-                for (var i = 0; i < startDates.length; i++) {
-                    if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
-                    return [false, "disabled-date"];
+                    var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+                    for (var i = 0; i < startDates.length; i++) {
+                        if (formattedDate >= startDates[i] && formattedDate <= endDates[i]) {
+                            return [false, "disabled-date"];
+                        }
                     }
-                }
-                var startDate = $('#date1').datepicker('getDate');
-                // Disable dates before startDate in datepicker2
-                return date < startDate ? [false] : [true];
+                    var startDate = $('#date1').datepicker('getDate');
+                    // Disable dates before startDate in datepicker2
+                    return date < startDate ? [false] : [true];
                 },
                 onSelect: function(selectedDate) {
-                var maxDate = new Date(selectedDate);
-                maxDate.setDate(maxDate.getDate() - 1);
-                for (var i = 0; i < startDates.length; i++) {
-                    var startDate = new Date(startDates[i]);
-                    var endDate = new Date(endDates[i]);
-                    if (maxDate >= startDate && maxDate <= endDate) {
-                    $("#date2").val('');
-                    break;
+                    var maxDate = new Date(selectedDate);
+                    maxDate.setDate(maxDate.getDate() - 1);
+                    for (var i = 0; i < startDates.length; i++) {
+                        var startDate = new Date(startDates[i]);
+                        var endDate = new Date(endDates[i]);
+                        if (maxDate >= startDate && maxDate <= endDate) {
+                            alert('Date selection not valid.');
+                            $("#date2").val('');
+                            break;
+                        }
+                        
+                        var selectedDate = $(this).datepicker('getDate');
+                        var startDate = $('#date1').datepicker('getDate');
+                        var diff = (selectedDate - startDate)/(1000*60*60*24);
+                        if (diff > 6) {
+                            alert('Date selection not valid.');
+                            $("#date2").val('');
+                            return;
+                        }
                     }
-                    
-                    var selectedDate = $(this).datepicker('getDate');
-                    var startDate = $('#date1').datepicker('getDate');
-                    var diff = (selectedDate - startDate)/(1000*60*60*24);
-                    if (diff > 6) {
-                    alert('Date selection not valid.');
-                    $("#date2").val('');
-                    }
-                }
                 }
             });
         });
+
 
         
 
