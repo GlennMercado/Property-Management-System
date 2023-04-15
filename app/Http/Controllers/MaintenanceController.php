@@ -86,7 +86,7 @@ class MaintenanceController extends Controller
 
         
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+        $qty;
         // generate a pin based on 2 * 7 digits + a random character
         $pin = mt_rand(1000000, 9999999)
             . mt_rand(1000000, 9999999)
@@ -109,10 +109,12 @@ class MaintenanceController extends Controller
         if($type_of_request == "Service Request")
         {
             $guest_request = $request->input('service_request');
+            $qty = null;
         }
         elseif($type_of_request == "Item Request")
         {
             $guest_request = $request->input('item_request');
+            $qty = $request->input('qty');
         }
 
         $add = new guest_request;
@@ -125,7 +127,7 @@ class MaintenanceController extends Controller
         $add->Guest_Name = $request->input('guest_name');
         $add->Type_of_Request = $type_of_request;
         $add->Request = $guest_request;
-        $add->Quantity = $request->input('qty');
+        $add->Quantity = $qty;
 
         if($add->save())
         {

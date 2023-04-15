@@ -34,71 +34,78 @@
             </div>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <!--Housekeeping-->
+                <!--Inventory Management-->
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples4" data-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="navbar-examples4">
-                        <i class="bi bi-house-door-fill" style="color:rgb(224, 223, 223)"></i>
-                        <span class="nav-link-text text-light">{{ __('Housekeeping') }}</span>
+                    <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="navbar-examples3">
+                        <i class="bi bi-box-fill" style="color:rgb(224, 223, 223)"></i>
+                        <span class="nav-link-text text-light">{{ __('Inventory Management') }}</span>
                     </a>
-                    <div class="collapse" id="navbar-examples4">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Housekeeping_Dashboard' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Housekeeping_Dashboard') }}">
-                                    <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'List_of_Housekeepers' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('List_of_Housekeepers') }}">
-                                    <i class="bi bi-clipboard2-data-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Housekeepers') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Linen_Monitoring' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Linen_Monitoring') }}">
-                                    <i class="bi bi-clipboard2-data-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Linen Monitoring') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
+                    <div class="collapse" id="navbar-examples3">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('LostandFound') }}">
-                                    <i class="bi bi-question-square-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Lost and Found') }}
+                                <a class="nav-link text-light" href="{{ route('StockAvailability') }}">
+                                    <i class="text-light">•</i> {{ __('Stock Availability') }}
+                                </a>
+                            </li>
+                        </ul> --}}
+                        {{-- <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="{{ route('StockAvail') }}">
+                                    <i class="text-light">•</i> {{ __('Stock Movement History') }}
+                                </a>
+                            </li>
+                        </ul> --}}
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'StockCount' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockCount') }}">
+                                    <i class="bi bi-box-seam-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Hotel Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Maintenance' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Maintenance') }}">
-                                    <i class="bi bi-wrench-adjustable-circle-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Maintenance') }}
+                            <li class="nav-item {{ 'StockCenter' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockCenter') }}">
+                                    <i class="bi bi-box-seam-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Convention Center Inventory') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Guest_Request' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Guest_Request') }}">
-                                    <i class="bi bi-chat-dots-fill" style="color:rgb(224, 223, 223)"></i>
+                            <li class="nav-item {{ 'StockHotelLinen' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockHotelLinen') }}">
+                                    <i class="bi bi-chat-left-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Linen Request') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'StockHotelSupply' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockHotelSupply') }}">
+                                    <i class="bi bi-ui-checks" style="color:rgb(224, 223, 223)"></i> {{ __('Supply Request') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'GuestRequest' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('GuestRequest') }}">
+                                    <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Guest Request') }}
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Housekeeping_Reports' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('Housekeeping_Reports.reports') }}">
-                                    <i class="bi bi-file-earmark-text-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Reports') }}
+                            <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockReports') }}">
+                                    <i class="bi bi-clipboard-data-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Stock Reports') }}
                                 </a>
                             </li>
                         </ul>
+
                     </div>
-                </li>
+                </li>  
             </ul>
         </div>
         <footer>

@@ -147,12 +147,12 @@ class HotelController extends Controller
 
                 //For FinanceModule Variables
                 $ornum = "Online Booking";
-                $finance_payee = DB::select("SELECT gcash_account_name FROM hotel_reservations WHERE Booking_No = '$bookno'");
+                $finance_payee = DB::select("SELECT gcash_account_name FROM hotel_reservations");
                 $particular = "Hotel";
                 $debit = "Cash";
                 $remark = "FULL";
                 $finance_eventdate = "";
-                $finance_amount = DB::select("SELECT Payment FROM hotel_reservations WHERE Booking_No = '$bookno'");
+                $finance_amount = DB::select("SELECT Payment FROM hotel_reservations");
 
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
@@ -318,7 +318,7 @@ class HotelController extends Controller
                     ));
                     DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
 
-                    DB::table('housekeepings')->where('Room_No', $roomno)->update(array('Housekeeping_Status' => $hstatus, 'Front_Desk_Status' => $status, 'Facility_Status' => $roomstats));
+                    DB::table('housekeepings')->where(['Room_No' => $roomno, 'Booking_No' => $bookno])->update(array('Housekeeping_Status' => $hstatus, 'Front_Desk_Status' => $status, 'Facility_Status' => $roomstats));
 
                     $sql2 = DB::select("SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No WHERE a.Booking_No = '$bookno'");
                     $attendant;

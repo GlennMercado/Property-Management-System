@@ -35,5 +35,13 @@
                 @include('layouts.admin')
             @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
                 @include('layouts.housekeeper')
+            @elseif(Auth::user()->User_Type == "Sales and Marketing")
+                @include('layouts.sales')
+            @elseif(Auth::user()->User_Type == "Operations Manager")
+                @include('layouts.operation')
+            @elseif(Auth::user()->User_Type == "Finance")
+                @include('layouts.finance')
+            @elseif(Auth::user()->User_Type == "Inventory Manager")
+                @include('layouts.inventory')
             @endif
 </html>
