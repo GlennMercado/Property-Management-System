@@ -137,7 +137,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 	Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 });	
 
-	//FRONT DESK-----------------------
+	//Sales and Marketing-----------------------
 		//Reservation
 		Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
 		Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
@@ -166,7 +166,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 			Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
 
 
-	//Operation Management
+	//Operation Manager
 		//Reservation
 		Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
 
@@ -186,7 +186,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 		Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
 		
-		//FinanceModules
+	//Finance
 		//Archives
 		Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
 			
@@ -199,7 +199,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 		Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');;
 			
 		
-	//Inventory Management
+	//Inventory Manager
 		//Hotel
 		Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
 		Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
@@ -237,7 +237,7 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 
 
 
-		//Guest
+//Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
