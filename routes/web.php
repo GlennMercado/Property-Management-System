@@ -153,6 +153,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
 	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
 
 	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
