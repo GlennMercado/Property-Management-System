@@ -22,4 +22,23 @@ class CommercialSpacesController extends Controller
 
         return view('Admin.pages.CommercialSpaces.CommercialSpaceView', ['list'=>$list]);
     }
+
+    public function update_commercial_status(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+
+        $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Status Set to '.$status.'!');
+            return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Updating Status Failed!');
+            return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+        }
+    }
 }

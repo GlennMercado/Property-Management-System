@@ -172,6 +172,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 		Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
+		Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
 });
 
 //Admin and Operation Manager
