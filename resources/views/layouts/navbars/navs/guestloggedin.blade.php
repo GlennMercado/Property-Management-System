@@ -14,14 +14,16 @@
                     {{ auth()->user()->notifications->count() }} </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink"
-                style="width: 300px">
+                style="width: 400px">
+                <h3 class="d-flex justify-content-center p-2">Notifications</h3>
                 @forelse (auth()->user()->notifications as $notif)
                     <a class="dropdown-item d-inline-block text-truncate" href="#"
-                        style="max-width: 200px">{{ $notif->data['name'] }} Started!</a>
+                        style="max-width: 400px">{{ $notif->data['name'] }} Started!</a>
                 @empty
                     <span>There are no notifications.</span>
                 @endforelse
-
+                <br>
+                <a href="" class="d-flex justify-content-center p-3">View all</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
