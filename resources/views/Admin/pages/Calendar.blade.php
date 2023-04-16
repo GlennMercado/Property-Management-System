@@ -18,41 +18,103 @@
             <div class="card-body">
                 <div class="nav-wrapper">
                     <div id="calendar"></div>
-                    @foreach($list as $lists)
-                    <!-- Modal -->
-                    <div class="modal fade" id="booking{{$lists->Booking_No}}" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Booking Information</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
-                                    <h3 class="text-left">Room Number: <span style="font-weight:normal;">{{$lists->Room_No}}</span> </h3>
-                                    <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> </h3>
-                                    <h3 class="text-left">Mobile Number: <span style="font-weight:normal;">{{$lists->Mobile_Num}}</span> </h3>
-                                    @if($lists->Booking_Status == "Reserved")
-                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Booking_Status}}</span> </h3>
-                                    @elseif($lists->Booking_Status == "Checked-In")
-                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #5cb85c;">{{$lists->Booking_Status}}</span> </h3>
-                                    @elseif($lists->Booking_Status == "Checked-Out")
-                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #f0ad4e;">{{$lists->Booking_Status}}</span> </h3>
-                                    @elseif($lists->Booking_Status == "Cancelled")
-                                        <h3 class="text-left">Booking Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Booking_Status}}</span> </h3>
-                                    @endif
-                                    <h3 class="text-left">Checked-In Date: <span style="font-weight:normal;">{{date('F j, Y', strtotime($lists->Check_In_Date))}}</span> </h3>
-                                    <h3 class="text-left">Checked-Out Date: <span style="font-weight:normal;">{{date('F j, Y', strtotime($lists->Check_Out_Date))}}</span> </h3>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @foreach ($list as $lists)
+                        <!-- Modal -->
+                        <div class="modal fade" id="booking{{ $lists->Booking_No }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title" id="exampleModalLabel">Booking Information</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {{-- Booking Information Modal --}}
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Booking Number: </h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Room Number:</h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-weight:normal;">{{ $lists->Room_No }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Guest Name:</h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Mobile Number:</h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-weight:normal;">{{ $lists->Mobile_Num }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Mobile Number:</h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span style="font-weight:normal;">{{ $lists->Mobile_Num }}</span>
+                                            </div>
+                                        </div>
+                                        @if ($lists->Booking_Status == 'Reserved')
+                                            <h3 class="text-left">Booking Status: <span
+                                                    style="font-weight:normal; color: #5bc0de; margin-left:110px;"
+                                                    class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                        @elseif($lists->Booking_Status == 'Checked-In')
+                                            <h3 class="text-left">Booking Status: <span
+                                                    style="font-weight:normal; color: #5cb85c; margin-left:110px;"
+                                                    class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                        @elseif($lists->Booking_Status == 'Checked-Out')
+                                            <h3 class="text-left">Booking Status: <span
+                                                    style="font-weight:normal; color: #f0ad4e; margin-left:110px;"
+                                                    class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                        @elseif($lists->Booking_Status == 'Cancelled')
+                                            <h3 class="text-left">Booking Status: <span
+                                                    style="font-weight:normal; color: #d9534f; margin-left:110px;"
+                                                    class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Checked-In Date: </h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span
+                                                    style="font-weight:normal;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-left">Checked-Out Date: </h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span
+                                                    style="font-weight:normal;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -146,25 +208,21 @@
                 //     }
                 // }
                 eventRender: function(events, element) {
-                    if(events.status == "Reserved") {
+                    if (events.status == "Reserved") {
                         element.css('background-color', '#5bc0de');
-                    }
-                    else if(events.status == "Checked-In") {
+                    } else if (events.status == "Checked-In") {
                         element.css('background-color', '#5cb85c');
-                    }
-                    else if(events.status == "Checked-Out") {
+                    } else if (events.status == "Checked-Out") {
                         element.css('background-color', '#f0ad4e');
-                    }
-                    else if(events.status == "Cancelled") {
+                    } else if (events.status == "Cancelled") {
                         element.css('background-color', '#d9534f');
                     }
                 },
                 //When Booking Clicked
-                eventClick: function(events)
-                {
+                eventClick: function(events) {
                     showEventModal(events.id);
                 }
-                
+
             });
 
         });
@@ -196,11 +254,20 @@
             font-size: 25px;
             letter-spacing: 2px;
         }
-        .fc-event{
+
+        .fc-event {
             cursor: pointer;
         }
+
         .myCalendar {
             cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .str {
+                position:relative;
+                right:110px;
+            }
         }
     </style>
 @endsection
