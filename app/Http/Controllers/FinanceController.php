@@ -112,9 +112,24 @@ class FinanceController extends Controller
         $list2 = DB::select('SELECT * FROM finance_2_reports');
         $sql = DB::select("SELECT * FROM hotel_reservations WHERE Payment_Status = 'Paid'");
 
+         //for Archive Module Sums
+         $amount_sum = finance_2_reports::sum('amount');
+         $cash_sum = finance_2_reports::sum('cash');
+         $unearned_sum = finance_2_reports::sum('unearned');
+         $bank_sum = finance_2_reports::sum('bank');
+         $cheque_sum = finance_2_reports::sum('cheque');
+         $basketball_sum = finance_2_reports::sum('basketball');
+         $otherincome_sum = finance_2_reports::sum('otherincome');
+         $parking_sum = finance_2_reports::sum('parking');
+         $managementfee_sum = finance_2_reports::sum('managementfee');
+         $event_sum = finance_2_reports::sum('event');
+         $hotel_sum = finance_2_reports::sum('hotel');
+         $commercialspace_sum = finance_2_reports::sum('commercialspace');
+         $output_sum = finance_2_reports::sum('outputvat');
 
         if ($sql) {
-            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list, 'list2'=>$list2]);
+            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list, 'list2'=>$list2], compact('amount_sum', 'cash_sum', 'unearned_sum', 'bank_sum', 'cheque_sum', 'basketball_sum', 
+                        'otherincome_sum', 'parking_sum', 'managementfee_sum', 'event_sum', 'hotel_sum', 'commercialspace_sum', 'output_sum'));
 
         } 
     }

@@ -1,10 +1,53 @@
 @extends('layouts.guest', ['class' => 'bg-light'])
 @section('content')
+<link rel="stylesheet" href="{{ asset('css') }}/convention_center.css">
     <link rel="stylesheet" href="{{ asset('css') }}/commercial_spaces.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
         <div class="card-body">
+            <div id="carousel" class="carousel slide mt-6" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="{{ asset('nvdcpics') }}/bcourt3.jpg" class="img-fluid">
+                <div class="caption d-none d-lg-block">
+                    <h1>Create and share your whatever</h1>
+                    <h2>Make it easy for you to do whatever this thing does.</h2>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
+                <div class="caption d-none d-lg-block">
+                    <h1>Something and share your whatever</h1>
+                    <h2>Else it easy for you to do whatever this thing does.</h2>
+                    <a class="big-button" href="" title="">Create Project</a>
+                    <div class="clear"></div>
+                    <a class="view-demo" href="" title="">View Demo</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
+                <div class="caption d-none d-lg-block">
+                    <h1>Create and share your whatever</h1>
+                    <h2>Make it easy for you to do whatever this thing does.</h2>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
             <h1 class=" d-flex justify-content-center pt-6" id="section1">Commercial Space</h1>
             <form action="{{ url('/commercial_spaces_submit') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -22,17 +65,17 @@
                             {{-- <h4 class="pt-4">Business Information</h4> --}}
                             <p class="pt-4">Business Name <span class="text-danger">*</span></p>
                             <input type="text" name="business_name" class="form-control mt-2"
-                                placeholder="Enter Business Name" maxlength="64" required>
+                                placeholder="Enter Business Name" maxlength="32" required>
                             <p class="pt-4">Business Style/Trade Name (if different from company name) <span
                                     class="text-danger">*</span> </p>
                             <input type="text" name="business_style" class="form-control"
-                                placeholder="Enter Business Style/Trade Name" maxlength="64" required>
+                                placeholder="Enter Business Style/Trade Name" maxlength="32" required>
                             <p class="pt-4">Business Address <span class="text-danger">*</span> </p>
                             <input type="text" name="business_address" class="form-control"
                                 placeholder="Enter Business Address" maxlength="64" required>
                             <p class="pt-4">Email Address/Website/FB Page <span class="text-danger">*</span> </p>
                             <input type="text" name="email_website_fb" class="form-control"
-                                placeholder="Enter Email Address/Website/FB Page..." maxlength="64" required>
+                                placeholder="Enter Email Address/Website/FB Page..." maxlength="32" required>
                             <div class="row">
                                 <div class="col-md">
 

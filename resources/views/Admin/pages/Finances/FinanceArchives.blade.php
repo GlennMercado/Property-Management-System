@@ -192,6 +192,11 @@
                                                 <tr>
                                                     <th scope="col" style="font-size:18px;">OR Number</th>
                                                     <th scope="col" style="font-size:18px;">Payee</th>
+                                                    <th scope="col" style="font-size:18px;">Particulars</th>
+                                                    <th scope="col" style="font-size:18px;">Event Date</th>
+                                                    <th scope="col" style="font-size:18px;">Amount</th>
+                                                    <th scope="col" style="font-size:18px;">Remarks</th>
+                                                    <th scope="col" style="font-size:18px;">Debit Type</th>
                                                     <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                     <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                     <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
@@ -212,6 +217,11 @@
                                                     <tr>
                                                         <td style = "font-size:16px;">{{ $lists2->ornum }}</td>
                                                         <td style = "font-size:16px;">{{ $lists2->payee }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->particular }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->eventdate }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->amount }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->remark }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->debit }}</td>
                                                         <td style = "font-size:16px;">{{ $lists2->cash }}</td>
                                                         <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
                                                         <td style = "font-size:16px;">{{ $lists2->bank }}</td>
@@ -228,6 +238,29 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
+                                            <tfoot>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>                            
+                                            <td style = "font-size:16px;">Total: </td>
+                                            <td style = "font-size:16px;">{{ $amount_sum }}</td>
+                                            <td></td>  
+                                            <td></td>  
+                                            <td style = "font-size:16px;">{{ $cash_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $bank_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $cheque_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $basketball_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $otherincome_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $parking_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $managementfee_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $event_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $hotel_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $commercialspace_sum }}</td>
+                                            <td style = "font-size:16px;">{{ $output_sum }}</td>
+                                            <tfoot>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
