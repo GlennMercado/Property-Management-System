@@ -39,7 +39,7 @@
                                     to It that all inventory are in the Storage Area</h4>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus" data-toggle="modal"
                                     data-target="#exampleModal" style="float:right">
                                     Add Stock
                                 </button>

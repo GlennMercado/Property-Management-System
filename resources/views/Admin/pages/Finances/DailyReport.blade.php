@@ -79,14 +79,12 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                                 href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                                aria-selected="false"> Daily
-                                                Report </a>
+                                                aria-selected="false"> Daily Report </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                                 href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                                aria-selected="false"> Monthly
-                                                Report</a>
+                                                aria-selected="false"> Monthly Report</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -219,7 +217,7 @@
                             {{-- Monthly Report --}}
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-3-tab">
-                                <div class="table-responsive">
+                                <div class="table-responsive">{{ $month }}
                                     <table class="table align-items-center table-flush" id="myTabless">
                                         <thead class="thead-light">
                                             <tr>

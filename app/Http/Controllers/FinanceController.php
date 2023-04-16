@@ -30,6 +30,7 @@ class FinanceController extends Controller
         ->where('eventdate', '>=', Carbon::now()->startofweek()->format('Y-m-d'))
         ->where('eventdate', '<=', Carbon::now()->endofweek()->format('Y-m-d'))
         ->get();
+        $month = DB::table('finance_2_reports')->where('eventdate', '=', Carbon::now()->month)->get();
 
         //for Daily Report Module Sums
         $amount_sum = finance_2_reports::sum('amount');
@@ -78,7 +79,7 @@ class FinanceController extends Controller
 
         return view('Admin.pages.Finances.DailyReport', ['list'=>$list, 'list2'=>$list2, 'list3'=>$list3, 'list4'=>$list4], compact('amount_sum', 'amount_sum2','cash_sum2','unearned_sum2','bank_sum2',
                     'cheque_sum2','basketball_sum2','otherincome_sum2','parking_sum2','managementfee_sum2','event_sum2','hotel_sum2','commercialspace_sum2','output_sum2','cash_sum3','unearned_sum3',
-                    'bank_sum3','cheque_sum3','basketball_sum3','otherincome_sum3','parking_sum3','managementfee_sum3','event_sum3','hotel_sum3','commercialspace_sum3','output_sum3','daily_count','monthly_count'));
+                    'bank_sum3','cheque_sum3','basketball_sum3','otherincome_sum3','parking_sum3','managementfee_sum3','event_sum3','hotel_sum3','commercialspace_sum3','output_sum3','daily_count','monthly_count', 'month'));
     }
 
     /**

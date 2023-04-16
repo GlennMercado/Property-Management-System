@@ -27,8 +27,7 @@ class GuestController extends Controller
         if (auth()->user()) {
             $user = Auth::user();
             auth()->user()->notify(new NVDCnotif($user));
-        }
-        
+        }       
     }
     public function BookingEmail(){
         return view('Guest.BookingEmail');
@@ -191,6 +190,8 @@ class GuestController extends Controller
             $reserve->Room_No = $request->input('room_no');
             $reserve->gcash_account_name = $request->input('gcash_account');
 
+
+
             if($request->hasfile('images'))
             {
                 $file = $request->file('images');
@@ -208,6 +209,7 @@ class GuestController extends Controller
             {
                 Alert::Success('Success', 'Reservation submitted successfully!');
                 return redirect('/welcome')->with('Success', 'Data Saved');
+                
                 $mail = Auth::user()->email;
                 $name = Auth::user()->name;
                 $data=['name'=>$name, 'data'=>"Hello world"];
