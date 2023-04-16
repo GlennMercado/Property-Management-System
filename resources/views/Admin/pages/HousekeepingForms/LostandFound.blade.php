@@ -16,7 +16,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Lost and Found</li>
                         </ol>
                     </nav>
                 @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
@@ -24,7 +24,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Lost and Found</li>
                         </ol>
                     </nav>
                 @endif
@@ -57,7 +57,7 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="card-body bg-white" style="border-radius: 18px">
-                                                <div class="row">
+                                                <div class="row" id="facility">
                                                     <div class="col-md">
                                                         <p class="text-left">Facility Type</p>
                                                         <select name="facility" id="facility_type" class="form-control">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-outline-danger" id="close2" data-dismiss="modal">Close</button>
                                         <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                                         <input type="submit" class="btn btn-success prevent_submit" value="Add"
                                             name="submit">
@@ -332,6 +332,7 @@
                                             <th scope="col" style="font-size:18px;">Item</th>
                                             <th scope="col" style="font-size:18px;">Found By</th>
                                             <th scope="col" style="font-size:18px;">Date Found</th>
+                                            <th scope="col" style="font-size:18px;">Date Claimed</th>
                                             <th scope="col" style="font-size:18px;">Status</th>         
                                         </tr>
                                     </thead>
@@ -351,7 +352,17 @@
                                                     <td>{{ $lists->Item }}</td>
                                                     <td>{{ $lists->Found_By }}</td>
                                                     <td>{{ date('F j, Y', strtotime($lists->Date_Found)) }}</td>
-                                                    <td>{{ $lists->Status }}</td>
+                                                    @if($lists->Date_Claimed != null)
+                                                    <td>{{ date('F j, Y', strtotime($lists->Date_Claimed)) }}</td>
+                                                    @else
+                                                    <td></td>
+                                                    @endif
+
+                                                    @if($lists->Status == "Claimed")
+                                                    <td class="text-success">{{ $lists->Status }}</td>
+                                                    @else
+                                                    <td class="text-danger">{{ $lists->Status }}</td>
+                                                    @endif
                                                     <!-- View -->
                                                     <div id="view2{{ $lists->id }}" class="modal hide fade"
                                                         tabindex="-1">
@@ -425,6 +436,9 @@
                     $('#all').css({
                         'display': 'block'
                     });
+                    $('#facility').css({ 
+                        'display' : 'none'
+                    });
                 } else {
                     $('#hotel').css({
                         'display': 'none'
@@ -432,9 +446,27 @@
                     $('#all').css({
                         'display': 'block'
                     });
+                    $('#facility').css({ 
+                        'display' : 'none'
+                    });
                 }
 
             });
+
+            $("#close2, .close").click(function(){
+                $('#hotel').css({
+                    'display': 'none'
+                });
+                $('#all').css({
+                    'display': 'none'
+                }); 
+                $('#facility_type').val('');
+                $('#facility').css({ 
+                    'display' : 'block'
+                });
+            });
+
+
         });
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
