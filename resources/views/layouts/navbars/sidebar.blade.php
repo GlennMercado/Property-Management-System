@@ -352,8 +352,7 @@
                         <i class="bi bi-people-fill" style="color:rgb(224, 223, 223)"></i> {{ __('User Management') }}
                     </a>
                 </li>
-
-
+            </ul>
         </div>
         <footer>
             <span id='clock' class="text-light d-none d-lg-block" style="font-size: 12px"></span>

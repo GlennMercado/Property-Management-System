@@ -99,6 +99,7 @@
                         </ul>
                     </div>
                 </li>
+            </ul>
         </div>
         <footer>
             <span id='clock' class="text-light d-none d-lg-block" style="font-size: 12px"></span>

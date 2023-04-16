@@ -29,10 +29,39 @@
         <div class="col-xl">
             <div class="card shadow">
                 <div class="card-header border-0">
+
+                    <!-- Count Box -->
+                    <div class="row mt-3" style="align-items:center;justify-content:center">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body rounded" style="background-color:#2AD587;">
+                                    <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                        Daily OR Count :
+                                    </h2>
+                                    <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                        {{ $daily_count }}
+                                </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body rounded" style="background-color:#34C99D;">
+                                    <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                                        Monthly OR Count :
+                                    </h2>
+                                    <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                            {{ $monthly_count }}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row align-items-center">
                         <div class="col">
                             <div class="col-md-12 position-absolute container-fluid d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-primary mb-4" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus " data-toggle="modal"
                                     data-target="#exampleModal">
                                     Add
                                 </button>
@@ -44,7 +73,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                                 data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                                aria-controls="tabs-icons-text-1" aria-selected="true">Official
+                                                aria-controls="tabs-icons-text-1" aria-selected="true">Weekly Official
                                                 Receipt</a>
                                         </li>
                                         <li class="nav-item">
@@ -73,7 +102,7 @@
                                 {{-- ORs --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
-                                    
+
                                     <table class="table align-items-center table-flush" style="align-items:center"
                                         id="myTable">
                                         <thead class="thead-light">
@@ -89,29 +118,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list as $lists)
+                                            @foreach ($list4 as $lists4)
                                                 <tr>
-                                                    <td>{{ $lists->ornum }}</td>
-                                                    <td>{{ $lists->created_at }}</td>
-                                                    <td>{{ $lists->payee }}</td>
-                                                    <td>{{ $lists->particular }}</td>
-                                                    <td>{{ $lists->eventdate }}</td>
-                                                    <td>{{ $lists->amount }}</td>
-                                                    <td>{{ $lists->remark }}</td>
-                                                    <td>{{ $lists->debit }}</td>
+                                                    <td>{{ $lists4->ornum }}</td>
+                                                    <td>{{ $lists4->created_at }}</td>
+                                                    <td>{{ $lists4->payee }}</td>
+                                                    <td>{{ $lists4->particular }}</td>
+                                                    <td>{{ $lists4->eventdate }}</td>
+                                                    <td>{{ $lists4->amount }}</td>
+                                                    <td>{{ $lists4->remark }}</td>
+                                                    <td>{{ $lists4->debit }}</td>
                                                 </tr>
                                             @endforeach
-                                                <tfoot>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>Total:</td>
-                                                    <td>{{ $amount_sum }}</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tfoot>
-                                          </tbody>
+                                        <tfoot>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Total:</td>
+                                            <td>{{ $amount_sum }}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tfoot>
+                                        </tbody>
                                     </table>
                                     <!-- Modal -->
                                     <!--View-->
@@ -147,43 +176,43 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($list2 as $lists2)
-                                                <tr>
-                                                    <td>{{ $lists2->ornum }}</td>
-                                                    <td>{{ $lists2->payee }}</td>
-                                                    <td>{{ $lists2->cash }}</td>
-                                                    <td>{{ $lists2->unearned }}</td>
-                                                    <td>{{ $lists2->bank }}</td>
-                                                    <td>{{ $lists2->cheque }}</td>
-                                                    <td>{{ $lists2->basketball }}</td>
-                                                    <td>{{ $lists2->unearned }}</td>
-                                                    <td>{{ $lists2->otherincome }}</td>
-                                                    <td>{{ $lists2->parking }}</td>
-                                                    <td>{{ $lists2->managementfee }}</td>
-                                                    <td>{{ $lists2->event }}</td>
-                                                    <td>{{ $lists2->hotel }}</td>
-                                                    <td>{{ $lists2->commercialspace }}</td>
-                                                    <td>{{ $lists2->outputvat }}</td>
-                                                </tr>
-                                            @endforeach
+                                                @foreach ($list2 as $lists2)
+                                                    <tr>
+                                                        <td>{{ $lists2->ornum }}</td>
+                                                        <td>{{ $lists2->payee }}</td>
+                                                        <td>{{ $lists2->cash }}</td>
+                                                        <td>{{ $lists2->unearned }}</td>
+                                                        <td>{{ $lists2->bank }}</td>
+                                                        <td>{{ $lists2->cheque }}</td>
+                                                        <td>{{ $lists2->basketball }}</td>
+                                                        <td>{{ $lists2->unearned }}</td>
+                                                        <td>{{ $lists2->otherincome }}</td>
+                                                        <td>{{ $lists2->parking }}</td>
+                                                        <td>{{ $lists2->managementfee }}</td>
+                                                        <td>{{ $lists2->event }}</td>
+                                                        <td>{{ $lists2->hotel }}</td>
+                                                        <td>{{ $lists2->commercialspace }}</td>
+                                                        <td>{{ $lists2->outputvat }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                                <tfoot>
-                                                    <td></td>
-                                                    <td>Total: </td>
-                                                    <td>{{ $cash_sum2 }}</td>
-                                                    <td>{{ $unearned_sum2 }}</td>
-                                                    <td>{{ $bank_sum2 }}</td>
-                                                    <td>{{ $cheque_sum2 }}</td>
-                                                    <td>{{ $basketball_sum2 }}</td>
-                                                    <td>{{ $unearned_sum2 }}</td>
-                                                    <td>{{ $otherincome_sum2 }}</td>
-                                                    <td>{{ $parking_sum2 }}</td>
-                                                    <td>{{ $managementfee_sum2 }}</td>
-                                                    <td>{{ $event_sum2 }}</td>
-                                                    <td>{{ $hotel_sum2 }}</td>
-                                                    <td>{{ $commercialspace_sum2}}</td>
-                                                    <td>{{ $output_sum2}}</td>
-                                                </tfoot>
+                                            <tfoot>
+                                                <td></td>
+                                                <td>Total: </td>
+                                                <td>{{ $cash_sum2 }}</td>
+                                                <td>{{ $unearned_sum2 }}</td>
+                                                <td>{{ $bank_sum2 }}</td>
+                                                <td>{{ $cheque_sum2 }}</td>
+                                                <td>{{ $basketball_sum2 }}</td>
+                                                <td>{{ $unearned_sum2 }}</td>
+                                                <td>{{ $otherincome_sum2 }}</td>
+                                                <td>{{ $parking_sum2 }}</td>
+                                                <td>{{ $managementfee_sum2 }}</td>
+                                                <td>{{ $event_sum2 }}</td>
+                                                <td>{{ $hotel_sum2 }}</td>
+                                                <td>{{ $commercialspace_sum2 }}</td>
+                                                <td>{{ $output_sum2 }}</td>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -212,41 +241,41 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($list3 as $lists3)
-                                                <tr>
-                                                    <td>{{ $lists3->payee }}</td>
-                                                    <td>{{ $lists3->cash }}</td>
-                                                    <td>{{ $lists3->unearned }}</td>
-                                                    <td>{{ $lists3->bank }}</td>
-                                                    <td>{{ $lists3->cheque }}</td>
-                                                    <td>{{ $lists3->basketball }}</td>
-                                                    <td>{{ $lists3->unearned }}</td>
-                                                    <td>{{ $lists3->otherincome }}</td>
-                                                    <td>{{ $lists3->parking }}</td>
-                                                    <td>{{ $lists3->managementfee }}</td>
-                                                    <td>{{ $lists3->event }}</td>
-                                                    <td>{{ $lists3->hotel }}</td>
-                                                    <td>{{ $lists3->commercialspace }}</td>
-                                                    <td>{{ $lists3->outputvat }}</td>
-                                                </tr>
-                                            @endforeach
+                                                @foreach ($list3 as $lists3)
+                                                    <tr>
+                                                        <td>{{ $lists3->payee }}</td>
+                                                        <td>{{ $lists3->cash }}</td>
+                                                        <td>{{ $lists3->unearned }}</td>
+                                                        <td>{{ $lists3->bank }}</td>
+                                                        <td>{{ $lists3->cheque }}</td>
+                                                        <td>{{ $lists3->basketball }}</td>
+                                                        <td>{{ $lists3->unearned }}</td>
+                                                        <td>{{ $lists3->otherincome }}</td>
+                                                        <td>{{ $lists3->parking }}</td>
+                                                        <td>{{ $lists3->managementfee }}</td>
+                                                        <td>{{ $lists3->event }}</td>
+                                                        <td>{{ $lists3->hotel }}</td>
+                                                        <td>{{ $lists3->commercialspace }}</td>
+                                                        <td>{{ $lists3->outputvat }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                             <tfoot>
-                                                    <td>Total: </td>
-                                                    <td>{{ $cash_sum3 }}</td>
-                                                    <td>{{ $unearned_sum3 }}</td>
-                                                    <td>{{ $bank_sum3 }}</td>
-                                                    <td>{{ $cheque_sum3 }}</td>
-                                                    <td>{{ $basketball_sum3 }}</td>
-                                                    <td>{{ $unearned_sum3 }}</td>
-                                                    <td>{{ $otherincome_sum3 }}</td>
-                                                    <td>{{ $parking_sum3 }}</td>
-                                                    <td>{{ $managementfee_sum3 }}</td>
-                                                    <td>{{ $event_sum3 }}</td>
-                                                    <td>{{ $hotel_sum3 }}</td>
-                                                    <td>{{ $commercialspace_sum3}}</td>
-                                                    <td>{{ $output_sum3}}</td>
-                                             </tfoot>
+                                                <td>Total: </td>
+                                                <td>{{ $cash_sum3 }}</td>
+                                                <td>{{ $unearned_sum3 }}</td>
+                                                <td>{{ $bank_sum3 }}</td>
+                                                <td>{{ $cheque_sum3 }}</td>
+                                                <td>{{ $basketball_sum3 }}</td>
+                                                <td>{{ $unearned_sum3 }}</td>
+                                                <td>{{ $otherincome_sum3 }}</td>
+                                                <td>{{ $parking_sum3 }}</td>
+                                                <td>{{ $managementfee_sum3 }}</td>
+                                                <td>{{ $event_sum3 }}</td>
+                                                <td>{{ $hotel_sum3 }}</td>
+                                                <td>{{ $commercialspace_sum3 }}</td>
+                                                <td>{{ $output_sum3 }}</td>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -361,8 +390,8 @@
                                                     <div class="row">
                                                         <div class="col-md pt-2">
                                                             <label for="Stockdetails">Event Date: </label>
-                                                            <input type="date" class="form-control"
-                                                                name="eventdate" required>
+                                                            <input type="date" class="form-control" name="eventdate"
+                                                                required>
                                                             <input type="hidden" name="cash" value="1">
                                                             <input type="hidden" name="unearned" value="1" hidden>
                                                             <input type="hidden" name="bank" value="1" hidden>
@@ -383,7 +412,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type = "button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-outline-danger"
+                                                        data-dismiss="modal">Close</button>
                                                     <input type="submit" class="btn btn-success prevent_submit"
                                                         value="Submit" />
                                                 </div>
@@ -398,7 +428,7 @@
             </div>
         </div>
     </div>
-    
+
     <style>
         /* disable arrows input type number */
         input[type="number"]::-webkit-outer-spin-button,
@@ -418,11 +448,9 @@
         }
     </style>
 
-   
-    
-    </div>
 
-    
+
+    </div>
 @endsection
 
 @push('js')

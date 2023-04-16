@@ -19,6 +19,13 @@ class ResetPasswordController extends Controller
     |
     */
 
+    // $em = $request->input('email');
+    // $check = DB::select("SELECT * FROM users WHERE email = '$em' AND google_id!-null");
+
+    // if(!$check)
+    // {
+
+    // }
     use ResetsPasswords;
 
     /**
@@ -26,5 +33,5 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::welcome;
 }

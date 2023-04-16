@@ -87,8 +87,8 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
-                        alt="Card image cap" style="max-height:17rem;">
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg" alt="Card image cap"
+                        style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
                     <div style="margin-left: 7%;">
@@ -206,7 +206,28 @@
             </div>
         </div>
     </div>
+    <div class="notification--wrapper hide" id="openToast">
+        <div class="notification--reminder ptb--20 text-center col-12">
+            <h3>Welcome to NVDC Properties! our services are open to the public - both members and non-members of NOVADECI" <a class="exit--toast"
+                    href="javascript:void(0);">Got it.</a></h3>
+        </div>
+    </div>
     <!-- scroll-top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
     <div class="container mt--5 pb-5"></div>
+    <script>
+        $(document).ready(function() {
+            $("#openToast").toggleClass("hide view");
+
+            $('a.exit--toast').click(function() {
+                $("#openToast").fadeOut(1000, 0);
+            });
+
+            $(document).on('click', function(e) {
+                if ($(e.target).closest(".notification--reminder").length === 0) {
+                    $("#openToast").fadeOut(1000, 0);
+                }
+            });
+        });
+    </script>
 @endsection

@@ -11,6 +11,7 @@ use App\Models\commercial_spaces_application;
 use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 use Mail;
 
@@ -61,12 +62,14 @@ class GuestController extends Controller
     {
         $room_id = $id;
         $room_list = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$room_id'");
+
+        $reserve_check = DB::select("SELECT * FROM hotel_reservations WHERE Room_No = '$room_id'");
         $email = Auth::user()->email;
 
         $room = DB::select("SELECT * FROM novadeci_suites a INNER JOIN hotel_room_supplies b ON a.Room_No = b.Room_No INNER JOIN hotel_room_linens c ON a.Room_No = c.Room_No GROUP BY a.Room_No");
 		
         $guest = DB::select("SELECT * FROM users WHERE email = '$email'");
-        return view('Guest.suites', ['guest'=>$guest, 'room'=>$room, 'room_list'=>$room_list]);
+        return view('Guest.suites', ['guest'=>$guest, 'room'=>$room, 'room_list'=>$room_list, 'reserve' => $reserve_check]);
     }
     public function convention_center()
     {
@@ -165,10 +168,13 @@ class GuestController extends Controller
 
             $reserve = new hotel_reservations;
 
+            $checkindate = Carbon::createFromFormat('m/d/Y', $request->input('checkIn'))->format('Y-m-d');
+            $checkoutdate = Carbon::createFromFormat('m/d/Y', $request->input('checkOut'))->format('Y-m-d');
+
             $reserve->Booking_No = $randID;
             $reserve->Email = $email;
-            $reserve->Check_In_Date = $request->input('checkIn');
-            $reserve->Check_Out_Date = $request->input('checkOut');
+            $reserve->Check_In_Date = $checkindate;
+            $reserve->Check_Out_Date = $checkoutdate;
             $reserve->Guest_Name = $request->input('gName');
             $reserve->Mobile_Num = $request->input('mobile');
             $reserve->No_of_Pax = $request->input('pax');
