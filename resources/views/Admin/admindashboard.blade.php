@@ -153,12 +153,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-xl-6">
+                <div class="row mt-6" style="justify-content:center">
+                    <div class="col-xl-8">
                         <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
                         <canvas class="p-3" id="doughnutChart"></canvas>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-xl-8">
                         <h2>Finance</h2>
                         <canvas class="p-3" id="myChart"></canvas>
                     </div>
