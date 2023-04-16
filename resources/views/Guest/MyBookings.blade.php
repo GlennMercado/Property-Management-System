@@ -324,15 +324,15 @@
                                         </td>
                                         @if($comm->Status == "For Approval")
                                         <td>
-                                            <h4 class="badge-md badge-pill badge-primary">{{$comm->Status}}</h4>
+                                            <span class="badge badge-pill badge-primary badge-lg">{{$comm->Status}}</span>
                                         </td>
                                         @elseif($comm->Status == "Approved")
                                         <td>
-                                            <h4 class="badge-md badge-pill badge-success">{{$comm->Status}}</h4>
+                                            <span class="badge badge-pill badge-success badge-lg">{{$comm->Status}}</span>
                                         </td>
                                         @elseif($comm->Status == "Disapproved")
                                         <td>
-                                            <h4 class="badge-md badge-pill badge-danger">{{$comm->Status}}</h4>
+                                            <span class="badge badge-pill badge-danger badge-lg">{{$comm->Status}}</span>
                                         </td>
                                         @endif
                                         <td>
