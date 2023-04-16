@@ -193,21 +193,36 @@
                 }
             });
 
-            var ctx = document.getElementById("myChart").getContext('2d');
+        
+        <?php
+        // Sample data for sales by daily
+        $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
+        // Convert the data to a JSON-encoded string
+        $dataString = json_encode($salesData);
+        ?>
+
+        var data = <?php echo $dataString; ?>;
+                   
+
+        var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)',
+                    'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event',
+                    'Hotel', 'Commercial Space'],
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: data,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)'
                         ],
                         borderColor: [
                             'rgba(255,99,132,1)',
@@ -215,7 +230,9 @@
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -230,7 +247,7 @@
                     }
                 }
             });
-        </script>
+    </script>
     @endsection
 
     @push('js')

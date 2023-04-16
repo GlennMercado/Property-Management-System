@@ -8,6 +8,7 @@ use App\Models\complaints;
 use App\Models\novadeci_suites;
 use App\Models\convention_center_application;
 use App\Models\commercial_spaces_application;
+use App\Models\finance_2_reports;
 
 class AdminController extends Controller
 {
@@ -30,6 +31,16 @@ class AdminController extends Controller
         // Commercial Spaces Applications
         $comm_applications = commercial_spaces_application::count();
 
+     
+        //Finance Dashboards Sums
+        $basketball_sum = finance_2_reports::sum('basketball');
+        $unearned_sum = finance_2_reports::sum('unearned');
+        $otherincome_sum = finance_2_reports::sum('otherincome');
+        $parking_sum = finance_2_reports::sum('parking');
+        $managementfee_sum = finance_2_reports::sum('managementfee');
+        $event_sum = finance_2_reports::sum('event');
+        $hotel_sum = finance_2_reports::sum('hotel');
+        $commercialspace_sum = finance_2_reports::sum('commercialspace');
 
 
         return view('Admin.admindashboard', 
@@ -43,7 +54,15 @@ class AdminController extends Controller
             'checked_guests', 
             'checked_out_guests',
             'inquiries',
-            'comm_applications'));
+            'comm_applications',
+            'basketball_sum',
+            'unearned_sum',
+            'otherincome_sum',
+            'parking_sum', 
+            'managementfee_sum',
+            'event_sum',
+            'hotel_sum',
+            'commercialspace_sum'));
     }
 
     public function Calendar(Request $request)
