@@ -560,7 +560,7 @@
                                                             title="Update">
                                                             <i class="bi bi-arrow-repeat"></i>
                                                         </button>
-                                                                                                            <!--Guest Request Button-->
+                                                        <!--Guest Request Button-->
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                             data-target="#request{{ $lists->Booking_No }}" title="Request">
                                                             <i class="bi bi-plus-square"></i>

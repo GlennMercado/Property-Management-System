@@ -239,4 +239,51 @@ class RoomController extends Controller
             return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
         }
     }
+
+    public function enable_disable_rooms($id, $stats)
+    {
+        try 
+        {
+            $room_no = $id;
+            $status = $stats;
+
+            if($status == "Disabled")
+            {
+                $sql = DB::table('novadeci_suites')->where('Room_No', $room_no)->update(['Status' => $status]);
+
+                if($sql)
+                {
+                    Alert::Success('Success', 'Room Successfully '.$status.'!');
+                    return redirect('Hotel_Room_Management')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    Alert::Error('Failed', 'Room Updating Failed!');
+                    return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
+                }
+            }
+            elseif($status = "Enabled")
+            {
+                $sql2 = DB::table('novadeci_suites')->where('Room_No', $room_no)->update(['Status' => "Vacant for Accommodation"]);
+
+                if($sql2)
+                {
+                    Alert::Success('Success', 'Room Successfully '.$status.'!');
+                    return redirect('Hotel_Room_Management')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    Alert::Error('Failed', 'Room Updating Failed!');
+                    return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
+                }
+            }
+        } 
+        catch(\Illuminate\Database\QueryException $e) 
+        {
+            Alert::Error('Failed', 'Room Updating Failed!');
+            return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
+        }
+
+
+    }
 }

@@ -62,6 +62,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
 	Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
 
+	Route::get('/enable_disable_rooms/{id}/{stats}', 'App\Http\Controllers\RoomController@enable_disable_rooms');
+
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
 	// //Room Management
@@ -72,6 +74,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	// Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
 
 	// Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
+
+
 
 	//Calendar
 		//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');

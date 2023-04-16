@@ -141,6 +141,19 @@
                                                 <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}" title = "Edit Room"> <i
                                                         class="bi bi-pencil-square"></i> </button>
+                                                @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Vacant for Cleaning")
+                                                    <!--Update Button-->
+                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                        data-target="#update{{ $lists->Room_No }}" title = "Update Room">
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                    </button>
+                                                @elseif($lists->Status == "Disabled")
+                                                    <!--Update Button-->
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#update2{{ $lists->Room_No }}" title = "Update Room">
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                    </button>
+                                                @endif
                                             </td>
                                             <td style="font-size:16px;">{{ $lists->Room_No }}</td>
                                             <td style="font-size:16px;">{{ $lists->Room_Size }}</td>
@@ -149,7 +162,7 @@
                                                 @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Reserved')
                                                     <span
                                                         class="badge badge-pill badge-success badge-lg">{{ $lists->Status }}</span>
-                                                @elseif($lists->Status == 'Occupied' || $lists->Status == 'Vacant for Cleaning')
+                                                @elseif($lists->Status == 'Occupied' || $lists->Status == 'Vacant for Cleaning' || $lists->Status == 'Disabled')
                                                     <span
                                                         class="badge badge-pill badge-warning badge-lg">{{ $lists->Status }}</span>
                                                 @elseif($lists->Status == 'Out of Order')
@@ -298,6 +311,58 @@
                                                                 value="Submit" />
                                                         </div>
                                                     </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Update Modal -->
+                                        <div class="modal fade" id="update{{ $lists->Room_No }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">Room {{ $lists->Room_No }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3 class="text-center">Set Room Status to Disable?</h3>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                        <a href="{{url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => "Disabled" ])}}" class="btn btn-success">Yes</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Update Modal2 -->
+                                        <div class="modal fade" id="update2{{ $lists->Room_No }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">Room {{ $lists->Room_No }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3 class="text-center">Set Room Status to Enable?</h3>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                        <a href="{{url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => "Enabled" ])}}" class="btn btn-success">Yes</a>
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
