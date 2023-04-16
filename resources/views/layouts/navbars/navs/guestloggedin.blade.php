@@ -10,17 +10,19 @@
             <a class="me-3 dropdown-toggle hidden-arrow" role="button" data-target="#notif" id="navbarDropdownMenuLink"
                 role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
-                <span class="badge rounded-pill badge-notification bg-danger text-white">1</span>
+                <span class="badge rounded-pill badge-notification bg-danger text-white">
+                    {{ auth()->user()->notifications->count() }} </span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink" style="width: 300px">
-                <li>
+            <div class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink"
+                style="width: 300px">
+                @forelse (auth()->user()->notifications as $notif)
                     <a class="dropdown-item d-inline-block text-truncate" href="#"
-                        style="max-width: 200px">Something else herel Lorem ipsum dolor sit, amet consectetur
-                        adipisicing elit. Iste necessitatibus molestiae recusandae officia cumque. Aspernatur excepturi
-                        sunt nihil voluptatem adipisci, nam dignissimos repudiandae laboriosam. Corporis exercitationem
-                        amet itaque sunt quaerat.</a>
-                </li>
-            </ul>
+                        style="max-width: 200px">{{ $notif->data['name'] }} Started!</a>
+                @empty
+                    <span>There are no notifications.</span>
+                @endforelse
+
+            </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

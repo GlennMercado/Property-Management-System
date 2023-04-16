@@ -12,14 +12,23 @@ use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use App\Notifications\NVDCnotif;
 use Mail;
+use App\Models\User;
 
 class GuestController extends Controller
 {
     public function welcome()
     {   
         return view('Guest.guest_welcome');
+    }
+    public function notify()
+    {
+        if (auth()->user()) {
+            $user = Auth::user();
+            auth()->user()->notify(new NVDCnotif($user));
+        }
+        
     }
     public function BookingEmail(){
         return view('Guest.BookingEmail');
