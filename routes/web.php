@@ -134,6 +134,8 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 
 	Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
+	Route::post('/update_housekeepers_status', 'App\Http\Controllers\HousekeepingController@update_housekeepers_status');
+
 	Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 });	
 

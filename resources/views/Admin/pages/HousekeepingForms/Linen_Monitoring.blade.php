@@ -115,7 +115,7 @@
                                                                     <p class="text-left">Attendants: </p>
                                                                     <select name="housekeeper"
                                                                         class="form-control" required>
-                                                                        <option selected="true"
+                                                                        <option value="" selected="true"
                                                                             disabled="disabled">
                                                                             Select</option>
                                                                             @foreach($housekeeper as $housekeepers)

@@ -676,6 +676,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <!--Update Status-->
                                             <div class="modal fade" id="update_booking_status2{{ $lists->Booking_No }}"
                                                 tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
