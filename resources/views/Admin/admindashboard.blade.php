@@ -39,7 +39,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-xl-6 col-md-6 mb-4">
                         <div class="card shadow card-stats">
                             <a href="{{ route('HotelReservationForm') }}">
@@ -153,14 +153,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-6" style="justify-content:center">
-                    <div class="col-xl-8">
-                        <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
-                        <canvas class="p-3" id="doughnutChart"></canvas>
-                    </div>
-                    <div class="col-xl-8">
-                        <h2>Finance</h2>
-                        <canvas class="p-3" id="myChart"></canvas>
+                <div class="container d-flex justify-content-center">
+                    <div class="row mt-6" style="justify-content:center">
+                        <div class="col-xl-8">
+                            <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
+                            <canvas class="p-3" id="doughnutChart"></canvas>
+                        </div>
+                        <div class="col-xl-8">
+                            <h2>Finance</h2>
+                            <canvas class="p-3" id="myChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,24 +195,25 @@
                 }
             });
 
-        
-        <?php
-        // Sample data for sales by daily
-        $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
-        // Convert the data to a JSON-encoded string
-        $dataString = json_encode($salesData);
-        ?>
 
-        var data = <?php echo $dataString; ?>;
-                   
+            <?php
+            // Sample data for sales by daily
+            $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
+            // Convert the data to a JSON-encoded string
+            $dataString = json_encode($salesData);
+            ?>
 
-        var ctx = document.getElementById("myChart").getContext('2d');
+            var data = <?php echo $dataString; ?>;
+
+
+            var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)',
-                    'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event',
-                    'Hotel', 'Commercial Space'],
+                        'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event',
+                        'Hotel', 'Commercial Space'
+                    ],
                     datasets: [{
                         label: '# of Votes',
                         data: data,
@@ -247,7 +250,7 @@
                     }
                 }
             });
-    </script>
+        </script>
     @endsection
 
     @push('js')
