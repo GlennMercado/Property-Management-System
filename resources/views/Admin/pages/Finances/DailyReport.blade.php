@@ -40,7 +40,7 @@
                                     </h2>
                                     <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
                                         {{ $daily_count }}
-                                </h1>
+                                    </h1>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                         Monthly OR Count :
                                     </h2>
                                     <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                                            {{ $monthly_count }}
+                                        {{ $monthly_count }}
                                     </h1>
                                 </div>
                             </div>
@@ -95,330 +95,324 @@
                     </div>
                 </div>
                 <!--Start of Cards-->
-                <div class="container">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <div class="tab-content" id="myTabContent">
-                                {{-- ORs --}}
-                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-1-tab">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="tab-content" id="myTabContent">
+                            {{-- ORs --}}
+                            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-1-tab">
 
-                                    <table class="table align-items-center table-flush" style="align-items:center"
-                                        id="myTable">
+                                <table class="table align-items-center table-flush" style="align-items:center"
+                                    id="myTable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" style="font-size:18px;">OR No.</th>
+                                            <th scope="col" style="font-size:18px;">Date</th>
+                                            <th scope="col" style="font-size:18px;">Payee</th>
+                                            <th scope="col" style="font-size:18px;">Particulars</th>
+                                            <th scope="col" style="font-size:18px;">Event Date</th>
+                                            <th scope="col" style="font-size:18px;">Amount</th>
+                                            <th scope="col" style="font-size:18px;">Remarks</th>
+                                            <th scope="col" style="font-size:18px;">Debit Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($list4 as $lists4)
+                                            <tr>
+                                                <td style = "font-size:16px;">{{ $lists4->ornum }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->created_at }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->payee }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->particular }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->eventdate }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->amount }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->remark }}</td>
+                                                <td style = "font-size:16px;">{{ $lists4->debit }}</td>
+                                            </tr>
+                                        @endforeach
+                                    <tfoot>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style = "font-size:16px;">Total:</td>
+                                        <td style = "font-size:16px;">{{ $amount_sum }}</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tfoot>
+                                    </tbody>
+                                </table>
+                                <!-- Modal -->
+                                <!--View-->
+                            </div>
+                            {{-- Daily Report --}}
+                            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-2-tab">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush" id="myTables">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col">OR No.</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Payee</th>
-                                                <th scope="col">Particulars</th>
-                                                <th scope="col">Event Date</th>
-                                                <th scope="col">Amount</th>
-                                                <th scope="col">Remarks</th>
-                                                <th scope="col">Debit Type</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th colspan="4" style="font-size:18px;">Debit</th>
+                                                <th colspan="8" style="font-size:18px;">Credit</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">OR Number</th>
+                                                <th scope="col" style="font-size:18px;">Payee</th>
+                                                <th scope="col" style="font-size:18px;">Cash/GCash</th>
+                                                <th scope="col" style="font-size:18px;">Unearned Income</th>
+                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
+                                                <th scope="col" style="font-size:18px;">Cheque</th>
+                                                <th scope="col" style="font-size:18px;">Basketball</th>
+                                                <th scope="col" style="font-size:18px;">UnearnedIncome</th>
+                                                <th scope="col" style="font-size:18px;">OtherIncome</th>
+                                                <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent</th>
+                                                <th scope="col" style="font-size:18px;">ManagementFee</th>
+                                                <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events
+                                                <th scope="col" style="font-size:18px;">Hotel</th>
+                                                <th scope="col" style="font-size:18px;">Commercial Spaces</th>
+                                                <th scope="col" style="font-size:18px;">Output VAT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list4 as $lists4)
+                                            @foreach ($list2 as $lists2)
                                                 <tr>
-                                                    <td>{{ $lists4->ornum }}</td>
-                                                    <td>{{ $lists4->created_at }}</td>
-                                                    <td>{{ $lists4->payee }}</td>
-                                                    <td>{{ $lists4->particular }}</td>
-                                                    <td>{{ $lists4->eventdate }}</td>
-                                                    <td>{{ $lists4->amount }}</td>
-                                                    <td>{{ $lists4->remark }}</td>
-                                                    <td>{{ $lists4->debit }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->ornum }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->payee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->cash }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->bank }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->cheque }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->basketball }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->otherincome }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->parking }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->managementfee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->event }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->hotel }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->commercialspace }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists2->outputvat }}</td>
                                                 </tr>
                                             @endforeach
+                                        </tbody>
                                         <tfoot>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>Total:</td>
-                                            <td>{{ $amount_sum }}</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td style = "font-size:16px;">Total: </td>
+                                            <td style = "font-size:16px;">{{ $cash_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $bank_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $cheque_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $basketball_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $otherincome_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $parking_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $managementfee_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $event_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $hotel_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $commercialspace_sum2 }}</td>
+                                            <td style = "font-size:16px;">{{ $output_sum2 }}</td>
                                         </tfoot>
-                                        </tbody>
                                     </table>
-                                    <!-- Modal -->
-                                    <!--View-->
                                 </div>
-                                {{-- Daily Report --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    <div class="table-responsive">
-                                        <table class="table align-items-center table-flush" id="myTables">
-                                            <thead class="thead-light">
+                            </div>
+
+                            {{-- Monthly Report --}}
+                            <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush" id="myTabless">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Payee</th>
+                                                <th scope="col" style="font-size:18px;">Cash/GCash</th>
+                                                <th scope="col" style="font-size:18px;">Unearned Income</th>
+                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
+                                                <th scope="col" style="font-size:18px;">Cheque</th>
+                                                <th scope="col" style="font-size:18px;">Basketball</th>
+                                                <th scope="col" style="font-size:18px;">UnearnedIncome</th>
+                                                <th scope="col" style="font-size:18px;">OtherIncome</th>
+                                                <th scope="col" style="font-size:18px;">Parking</th>
+                                                <th scope="col" style="font-size:18px;">ManagementFee</th>
+                                                <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events</th>
+                                                <th scope="col" style="font-size:18px;">Hotel</th>
+                                                <th scope="col" style="font-size:18px;">CommercialSpace</th>
+                                                <th scope="col" style="font-size:18px;">OutputVAT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list3 as $lists3)
                                                 <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th colspan="4" style="font-size:18px;">Debit</th>
-                                                    <th colspan="8" style="font-size:18px;">Credit</th>
+                                                    <td style = "font-size:16px;">{{ $lists3->payee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->cash }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->bank }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->cheque }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->basketball }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->otherincome }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->parking }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->managementfee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->event }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->hotel }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->commercialspace }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->outputvat }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="col">OR Number</th>
-                                                    <th scope="col">Payee</th>
-                                                    <th scope="col">Cash/GCash</th>
-                                                    <th scope="col">Unearned Income</th>
-                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                    <th scope="col">Cheque</th>
-                                                    <th scope="col">Basketball</th>
-                                                    <th scope="col">UnearnedIncome</th>
-                                                    <th scope="col">OtherIncome</th>
-                                                    <th scope="col">Parking Ticket/Parking Rent</th>
-                                                    <th scope="col">ManagementFee</th>
-                                                    <th scope="col">FunctionRoom/ConventionCenter/Events
-                                                    <th scope="col">Hotel</th>
-                                                    <th scope="col">Commercial Spaces</th>
-                                                    <th scope="col">Output VAT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($list2 as $lists2)
-                                                    <tr>
-                                                        <td>{{ $lists2->ornum }}</td>
-                                                        <td>{{ $lists2->payee }}</td>
-                                                        <td>{{ $lists2->cash }}</td>
-                                                        <td>{{ $lists2->unearned }}</td>
-                                                        <td>{{ $lists2->bank }}</td>
-                                                        <td>{{ $lists2->cheque }}</td>
-                                                        <td>{{ $lists2->basketball }}</td>
-                                                        <td>{{ $lists2->unearned }}</td>
-                                                        <td>{{ $lists2->otherincome }}</td>
-                                                        <td>{{ $lists2->parking }}</td>
-                                                        <td>{{ $lists2->managementfee }}</td>
-                                                        <td>{{ $lists2->event }}</td>
-                                                        <td>{{ $lists2->hotel }}</td>
-                                                        <td>{{ $lists2->commercialspace }}</td>
-                                                        <td>{{ $lists2->outputvat }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                                <td></td>
-                                                <td>Total: </td>
-                                                <td>{{ $cash_sum2 }}</td>
-                                                <td>{{ $unearned_sum2 }}</td>
-                                                <td>{{ $bank_sum2 }}</td>
-                                                <td>{{ $cheque_sum2 }}</td>
-                                                <td>{{ $basketball_sum2 }}</td>
-                                                <td>{{ $unearned_sum2 }}</td>
-                                                <td>{{ $otherincome_sum2 }}</td>
-                                                <td>{{ $parking_sum2 }}</td>
-                                                <td>{{ $managementfee_sum2 }}</td>
-                                                <td>{{ $event_sum2 }}</td>
-                                                <td>{{ $hotel_sum2 }}</td>
-                                                <td>{{ $commercialspace_sum2 }}</td>
-                                                <td>{{ $output_sum2 }}</td>
-                                            </tfoot>
-                                        </table>
-                                    </div>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <td style = "font-size:16px;">Total: </td>
+                                            <td style = "font-size:16px;">{{ $cash_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $bank_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $cheque_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $basketball_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $unearned_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $otherincome_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $parking_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $managementfee_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $event_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $hotel_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $commercialspace_sum3 }}</td>
+                                            <td style = "font-size:16px;">{{ $output_sum3 }}</td>
+                                        </tfoot>
+                                    </table>
                                 </div>
+                            </div>
 
-                                {{-- Monthly Report --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-3-tab">
-                                    <div class="table-responsive">
-                                        <table class="table align-items-center table-flush" id="myTabless">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Payee</th>
-                                                    <th scope="col">Cash/GCash</th>
-                                                    <th scope="col">Unearned Income</th>
-                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                    <th scope="col">Cheque</th>
-                                                    <th scope="col">Basketball</th>
-                                                    <th scope="col">UnearnedIncome</th>
-                                                    <th scope="col">OtherIncome</th>
-                                                    <th scope="col">Parking</th>
-                                                    <th scope="col">ManagementFee</th>
-                                                    <th scope="col">FunctionRoom/ConventionCenter/Events</th>
-                                                    <th scope="col">Hotel</th>
-                                                    <th scope="col">CommercialSpace</th>
-                                                    <th scope="col">OutputVAT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($list3 as $lists3)
-                                                    <tr>
-                                                        <td>{{ $lists3->payee }}</td>
-                                                        <td>{{ $lists3->cash }}</td>
-                                                        <td>{{ $lists3->unearned }}</td>
-                                                        <td>{{ $lists3->bank }}</td>
-                                                        <td>{{ $lists3->cheque }}</td>
-                                                        <td>{{ $lists3->basketball }}</td>
-                                                        <td>{{ $lists3->unearned }}</td>
-                                                        <td>{{ $lists3->otherincome }}</td>
-                                                        <td>{{ $lists3->parking }}</td>
-                                                        <td>{{ $lists3->managementfee }}</td>
-                                                        <td>{{ $lists3->event }}</td>
-                                                        <td>{{ $lists3->hotel }}</td>
-                                                        <td>{{ $lists3->commercialspace }}</td>
-                                                        <td>{{ $lists3->outputvat }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                                <td>Total: </td>
-                                                <td>{{ $cash_sum3 }}</td>
-                                                <td>{{ $unearned_sum3 }}</td>
-                                                <td>{{ $bank_sum3 }}</td>
-                                                <td>{{ $cheque_sum3 }}</td>
-                                                <td>{{ $basketball_sum3 }}</td>
-                                                <td>{{ $unearned_sum3 }}</td>
-                                                <td>{{ $otherincome_sum3 }}</td>
-                                                <td>{{ $parking_sum3 }}</td>
-                                                <td>{{ $managementfee_sum3 }}</td>
-                                                <td>{{ $event_sum3 }}</td>
-                                                <td>{{ $hotel_sum3 }}</td>
-                                                <td>{{ $commercialspace_sum3 }}</td>
-                                                <td>{{ $output_sum3 }}</td>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <!--Add -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-left display-4" id="exampleModalLabel">
-                                                    Daily
-                                                    Report</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="{{ url('/insertfinance') }}" class="prevent_submit"
-                                                method="POST">
-                                                {{ csrf_field() }}
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-md">
-                                                            <label class="text-left">Official Receipt Number </label>
-                                                            <input type="number" class="form-control" name="ornum"
-                                                                onKeyPress="if(this.value.length==15) return false;"
-                                                                placeholder="Enter OR Number..." required>
-                                                        </div>
-                                                        <div class="col-md">
-                                                            <label for="Stockdetails">Payee </label>
-                                                            <input type="text" class="form-control" name="payee"
-                                                                maxlength="32" placeholder="Enter Name..." required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md pt-2">
-                                                            <label for="Stockdetails">Particular </label>
-                                                            <select class="form-control" name="particular" required>
-                                                                <option value="CourtRental">CourtRental</option>
-                                                                <option value="CourtRental/League">CourtRental/League
-                                                                </option>
-                                                                <option value="Venue Rental">Venue Rental</option>
-                                                                <option value="Kiosk Rental">Kiosk Rental</option>
-                                                                <option value="Foodstall">FoodStall</option>
-                                                                <option value="Hotel">Hotel</option>
-                                                                <option value="Hotel Other Charges">Hotel Other Charges
-                                                                </option>
-                                                                <option value="Function Room">Function Room</option>
-                                                                <option value="Function Room/Hotel">Function Room/Hotel
-                                                                </option>
-                                                                <option value="Function Room/Others">Function
-                                                                    Room/Others
-                                                                </option>
-                                                                <option value="Management Fee">Management Fee</option>
-                                                                <option value="Convention Center">Convention Center
-                                                                </option>
-                                                                <option value="Convention Center/Hot">Convention
-                                                                    Center/Hot
-                                                                </option>
-                                                                <option value="Zumba">Zumba</option>
-                                                                <option value="Event Registration">Event Registration
-                                                                </option>
-                                                                <option value="Parking Rental">Parking Rental</option>
-                                                                <option value="Commercial Space">Commercial Space
-                                                                </option>
-                                                                <option value="Electrical Charge">Electrical Charge
-                                                                </option>
-                                                                <option value="Space Rental">Space Rental</option>
-                                                                <option value="Other Charges">Other Charges</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md pt-2">
-                                                            <label for="Stockdetails">Debit Type </label>
-                                                            <select class="form-control" name="debit"
-                                                                placeholder="Enter number..." required>
-                                                                <option value="Cash">Cash/GCash</option>
-                                                                <option value="Unearned">Unearned Income (DP from
-                                                                    Previous
-                                                                    Months)</option>
-                                                                <option value="Bank">Bank Transfer/Direct to Bank
-                                                                </option>
-                                                                <option value="Cheque">Cheque</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md pt-2">
-                                                            <label for="Stockdetails">Amount: </label>
-                                                            <input type="number" class="form-control" name="amount"
-                                                                step="0.01" placeholder="Enter number..."
-                                                                onKeyPress="if(this.value.length==6) return false;"
-                                                                required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md pt-2">
-                                                            <label for="Stockdetails">Remarks </label>
-                                                            <select class="form-control" name="remark" required>
-                                                                <option>DP</option>
-                                                                <option>BAL</option>
-                                                                <option>FULL</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md pt-2">
-                                                            <label for="Stockdetails">Event Date: </label>
-                                                            <input type="date" class="form-control" name="eventdate"
-                                                                required>
-                                                            <input type="hidden" name="cash" value="1">
-                                                            <input type="hidden" name="unearned" value="1" hidden>
-                                                            <input type="hidden" name="bank" value="1" hidden>
-                                                            <input type="hidden" name="cheque" value="1" hidden>
-                                                            <input type="hidden" name="basketball" value="1"
-                                                                hidden>
-                                                            <input type="hidden" name="otherincome" value="1"
-                                                                hidden>
-                                                            <input type="hidden" name="parking" value="1" hidden>
-                                                            <input type="hidden" name="managementfee" value="1"
-                                                                hidden>
-                                                            <input type="hidden" name="events" value="1" hidden>
-                                                            <input type="hidden" name="hotel" value="1" hidden>
-                                                            <input type="text" name="commercialspace" value="1"
-                                                                hidden>
-                                                            <input type="text" name="ouputvat" value="1" hidden>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger"
-                                                        data-dismiss="modal">Close</button>
-                                                    <input type="submit" class="btn btn-success prevent_submit"
-                                                        value="Submit" />
-                                                </div>
-                                            </form>
+                            <!--Add -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                                Daily
+                                                Report</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                                        <form action="{{ url('/insertfinance') }}" class="prevent_submit"
+                                            method="POST">
+                                            {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        <label class="text-left">Official Receipt Number </label>
+                                                        <input type="number" class="form-control" name="ornum"
+                                                            onKeyPress="if(this.value.length==15) return false;"
+                                                            placeholder="Enter OR Number..." required>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <label for="Stockdetails">Payee </label>
+                                                        <input type="text" class="form-control" name="payee"
+                                                            maxlength="32" placeholder="Enter Name..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md pt-2">
+                                                        <label for="Stockdetails">Particular </label>
+                                                        <select class="form-control" name="particular" required>
+                                                            <option value="CourtRental">CourtRental</option>
+                                                            <option value="CourtRental/League">CourtRental/League
+                                                            </option>
+                                                            <option value="Venue Rental">Venue Rental</option>
+                                                            <option value="Kiosk Rental">Kiosk Rental</option>
+                                                            <option value="Foodstall">FoodStall</option>
+                                                            <option value="Hotel">Hotel</option>
+                                                            <option value="Hotel Other Charges">Hotel Other Charges
+                                                            </option>
+                                                            <option value="Function Room">Function Room</option>
+                                                            <option value="Function Room/Hotel">Function Room/Hotel
+                                                            </option>
+                                                            <option value="Function Room/Others">Function
+                                                                Room/Others
+                                                            </option>
+                                                            <option value="Management Fee">Management Fee</option>
+                                                            <option value="Convention Center">Convention Center
+                                                            </option>
+                                                            <option value="Convention Center/Hot">Convention
+                                                                Center/Hot
+                                                            </option>
+                                                            <option value="Zumba">Zumba</option>
+                                                            <option value="Event Registration">Event Registration
+                                                            </option>
+                                                            <option value="Parking Rental">Parking Rental</option>
+                                                            <option value="Commercial Space">Commercial Space
+                                                            </option>
+                                                            <option value="Electrical Charge">Electrical Charge
+                                                            </option>
+                                                            <option value="Space Rental">Space Rental</option>
+                                                            <option value="Other Charges">Other Charges</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md pt-2">
+                                                        <label for="Stockdetails">Debit Type </label>
+                                                        <select class="form-control" name="debit"
+                                                            placeholder="Enter number..." required>
+                                                            <option value="Cash">Cash/GCash</option>
+                                                            <option value="Unearned">Unearned Income (DP from
+                                                                Previous
+                                                                Months)</option>
+                                                            <option value="Bank">Bank Transfer/Direct to Bank
+                                                            </option>
+                                                            <option value="Cheque">Cheque</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md pt-2">
+                                                        <label for="Stockdetails">Amount: </label>
+                                                        <input type="number" class="form-control" name="amount"
+                                                            step="0.01" placeholder="Enter number..."
+                                                            onKeyPress="if(this.value.length==6) return false;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md pt-2">
+                                                        <label for="Stockdetails">Remarks </label>
+                                                        <select class="form-control" name="remark" required>
+                                                            <option>DP</option>
+                                                            <option>BAL</option>
+                                                            <option>FULL</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md pt-2">
+                                                        <label for="Stockdetails">Event Date: </label>
+                                                        <input type="date" class="form-control" name="eventdate"
+                                                            required>
+                                                        <input type="hidden" name="cash" value="1">
+                                                        <input type="hidden" name="unearned" value="1" hidden>
+                                                        <input type="hidden" name="bank" value="1" hidden>
+                                                        <input type="hidden" name="cheque" value="1" hidden>
+                                                        <input type="hidden" name="basketball" value="1" hidden>
+                                                        <input type="hidden" name="otherincome" value="1" hidden>
+                                                        <input type="hidden" name="parking" value="1" hidden>
+                                                        <input type="hidden" name="managementfee" value="1" hidden>
+                                                        <input type="hidden" name="events" value="1" hidden>
+                                                        <input type="hidden" name="hotel" value="1" hidden>
+                                                        <input type="text" name="commercialspace" value="1"
+                                                            hidden>
+                                                        <input type="text" name="ouputvat" value="1" hidden>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-success prevent_submit"
+                                                    value="Submit" />
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -426,7 +420,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>z
     </div>
 
     <style>

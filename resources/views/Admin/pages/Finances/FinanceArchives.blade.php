@@ -55,7 +55,6 @@
                 </div>
 
                 <!--Start of Cards-->
-                <div class="container">
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="tab-content" id="myTabContent">
@@ -86,12 +85,12 @@
                                                             <i class="bi bi-eye"></i></button>
 
                                                     </td>
-                                                    <td>{{ $lists->Payment_Status }}</td>
-                                                    <td>{{ $lists->Payment }}</td>
-                                                    <td>{{ $lists->gcash_account_name }}</td>
-                                                    <td>{{ $lists->Booking_No }}</td>
-                                                    <td>{{ $lists->Guest_Name }}</td>
-                                                    <td>{{ $lists->Mobile_Num }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->Payment_Status }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->Payment }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->gcash_account_name }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->Booking_No }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->Guest_Name }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists->Mobile_Num }}</td>
 
                                                 </tr>
 
@@ -191,41 +190,41 @@
                                                     <th colspan="8" style="font-size:18px;">Credit</th>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="col">OR Number</th>
-                                                    <th scope="col">Payee</th>
-                                                    <th scope="col">Cash/GCash</th>
-                                                    <th scope="col">Unearned Income</th>
-                                                    <th scope="col">Bank Transfer/Direct to Bank</th>
-                                                    <th scope="col">Cheque</th>
-                                                    <th scope="col">Basketball</th>
-                                                    <th scope="col">UnearnedIncome</th>
-                                                    <th scope="col">OtherIncome</th>
-                                                    <th scope="col">Parking Ticket/Parking Rent</th>
-                                                    <th scope="col">ManagementFee</th>
-                                                    <th scope="col">FunctionRoom/ConventionCenter/Events
-                                                    <th scope="col">Hotel</th>
-                                                    <th scope="col">Commercial Spaces</th>
-                                                    <th scope="col">Output VAT</th>
+                                                    <th scope="col" style="font-size:18px;">OR Number</th>
+                                                    <th scope="col" style="font-size:18px;">Payee</th>
+                                                    <th scope="col" style="font-size:18px;">Cash/GCash</th>
+                                                    <th scope="col" style="font-size:18px;">Unearned Income</th>
+                                                    <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
+                                                    <th scope="col" style="font-size:18px;">Cheque</th>
+                                                    <th scope="col" style="font-size:18px;">Basketball</th>
+                                                    <th scope="col" style="font-size:18px;">UnearnedIncome</th>
+                                                    <th scope="col" style="font-size:18px;">OtherIncome</th>
+                                                    <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent</th>
+                                                    <th scope="col" style="font-size:18px;">ManagementFee</th>
+                                                    <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events
+                                                    <th scope="col" style="font-size:18px;">Hotel</th>
+                                                    <th scope="col" style="font-size:18px;">Commercial Spaces</th>
+                                                    <th scope="col" style="font-size:18px;">Output VAT</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($list2 as $lists2)
                                                     <tr>
-                                                        <td>{{ $lists2->ornum }}</td>
-                                                        <td>{{ $lists2->payee }}</td>
-                                                        <td>{{ $lists2->cash }}</td>
-                                                        <td>{{ $lists2->unearned }}</td>
-                                                        <td>{{ $lists2->bank }}</td>
-                                                        <td>{{ $lists2->cheque }}</td>
-                                                        <td>{{ $lists2->basketball }}</td>
-                                                        <td>{{ $lists2->unearned }}</td>
-                                                        <td>{{ $lists2->otherincome }}</td>
-                                                        <td>{{ $lists2->parking }}</td>
-                                                        <td>{{ $lists2->managementfee }}</td>
-                                                        <td>{{ $lists2->event }}</td>
-                                                        <td>{{ $lists2->hotel }}</td>
-                                                        <td>{{ $lists2->commercialspace }}</td>
-                                                        <td>{{ $lists2->outputvat }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->ornum }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->payee }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->cash }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->bank }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->cheque }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->basketball }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->otherincome }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->parking }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->managementfee }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->event }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->hotel }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->commercialspace }}</td>
+                                                        <td style = "font-size:16px;">{{ $lists2->outputvat }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -235,7 +234,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
 
 
