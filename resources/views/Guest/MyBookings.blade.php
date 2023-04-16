@@ -322,14 +322,22 @@
                                         <td>
                                             {{ $comm->id }}
                                         </td>
+                                        @if($comm->Status == "For Approval")
                                         <td>
-                                            <a href="#" class="badge-md badge-pill badge-primary">For
-                                                Approval</a>
-                                            (Please check
-                                            your email)
+                                            <h4 class="badge-md badge-pill badge-primary">{{$comm->Status}}</h4>
                                         </td>
+                                        @elseif($comm->Status == "Approved")
                                         <td>
-                                            {{ $comm->created_at }}
+                                            <h4 class="badge-md badge-pill badge-success">{{$comm->Status}}</h4>
+                                        </td>
+                                        @elseif($comm->Status == "Disapproved")
+                                        <td>
+                                            <h4 class="badge-md badge-pill badge-danger">{{$comm->Status}}</h4>
+                                        </td>
+                                        @endif
+                                        <td>
+                                            {{date("F j, y", strtotime($comm->created_at))}} <br>
+                                            {{date("h:i A", strtotime($comm->created_at))}}
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
