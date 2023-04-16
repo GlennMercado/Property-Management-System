@@ -473,13 +473,55 @@
                                                                             style="border-radius: 18px">
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
-                                                                                
-                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
-                                                                            <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> </h3>
-                                                                            <h3 class="text-left">Housekeeping Status: <span style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span> </h3>
-                                                                            <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{ $lists->Attendant }}</span> </h3>        
-                                                                            <h3 class="text-left">Checked-In Date: <span style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span> </h3>
-                                                                            <h3 class="text-left">Check-Out Date: <span style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span> </h3>
+                                                                               <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <h3 class="text-left">Booking Number: </h3>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <span style="font-weight:normal;">{{$lists->Booking_No}}</span> 
+                                                                                    </div>
+                                                                               </div>
+                                                                                <div class="row">
+                                                                                        <div class="col-md-6">
+                                                                                            <h3 class="text-left">Guest Name: </h3>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> 
+                                                                                        </div>
+                                                                                    </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-6">
+                                                                                                <h3 class="text-left">Housekeeping Status:</h3>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <span style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span> 
+                                                                                            </div>
+                                                                                        </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6">
+                                                                                                    <h3 class="text-left">Attendant:</h3>     
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <span style="font-weight:normal;">{{ $lists->Attendant }}</span> 
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-6">
+                                                                                                        <h3 class="text-left">Checked-In Date:</h3>     
+                                                                                                    </div>
+                                                                                                    <div class="col-md-6">
+                                                                                                        <span style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span> 
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-6">
+                                                                                                            <h3 class="text-left">Check-Out Date:</h3> 
+                                                                                                        </div>
+                                                                                                        <div class="col-md-6">
+                                                                                                            <span style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span> 
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                            
 
                                                                             <br>
                                                                             @if ($lists->Request_ID != null)
@@ -496,8 +538,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</a>
+                                                                    <button class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -843,7 +885,7 @@
                                                                         @endforeach
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <a data-dismiss="modal" class="btn">Close</a>
+                                                                        <button data-dismiss="modal" class="btn btn-outline-danger">Close</button>
                                                                         <input type="submit" value="Submit"
                                                                             name="submit" class="btn btn-primary">
                                                                     </div>
@@ -863,16 +905,14 @@
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Room No</th>
-                                                <th scope="col" style="font-size:18px;">Attendant</th>
                                                 <th scope="col" style="font-size:18px;"></th>
+                                                <th scope="col" style="font-size:18px;">Room No</th>
+                                                <th scope="col" style="font-size:18px;">Attendant</th>    
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($list3 as $lists)
                                                 <tr>
-                                                    <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Attendant }}</td>
                                                     <td>
                                                         @php
                                                             $check;
@@ -905,7 +945,9 @@
                                                                 <i class="bi bi-person-fill"></i> </button>
                                                         @endif
                                                     </td>
-
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Attendant }}</td>
+                                                   
                                                     <!--Assign Attendant-->
                                                     <div class="modal fade" id="assign3{{ $lists->id }}"
                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -950,7 +992,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <a class="btn btn-secondary"
+                                                                        <a class="btn btn-outline-danger"
                                                                             data-dismiss="modal">Close</a>
                                                                         <input type="submit"
                                                                             class="btn btn-success prevent_submit"
@@ -1081,7 +1123,7 @@
                                                             @endforeach
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a data-dismiss="modal" class="btn">Close</a>
+                                                            <button data-dismiss="modal" class="btn btn-outline-danger">Close</button>
                                                             <input type="submit" value="Submit" name="submit"
                                                                 class="btn btn-primary">
                                                         </div>
@@ -1100,28 +1142,29 @@
                                     <table class="table align-items-center table-flush" id="myTable4">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th scope="col" style="font-size:18px;"> </th>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
                                                 <th scope="col" style="font-size:18px;">Housekeeping <br> Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
                                                 <th scope="col" style="font-size:18px;">Check Out Date</th>
-                                                <th scope="col" style="font-size:18px;"> </th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($archived as $lists)
                                                 <tr>
-                                                    <td>{{ $lists->Room_No }}</td>
-                                                    <td>{{ $lists->Facility_Type }}</td>
-                                                    <td>{{ $lists->Housekeeping_Status }}</td>
-                                                    <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                    <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                     <td>
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                             data-target="#view4{{ $lists->ID }}"> <i
                                                                 class="bi bi-eye"></i>
                                                         </button>
                                                     </td>
+                                                    <td>{{ $lists->Room_No }}</td>
+                                                    <td>{{ $lists->Facility_Type }}</td>
+                                                    <td>{{ $lists->Housekeeping_Status }}</td>
+                                                    <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                    <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>                
                                                 </tr>
 
                                                 <!--View-->
@@ -1144,17 +1187,52 @@
                                                                         style="border-radius: 18px">
                                                                         <input type="hidden" name="id"
                                                                             value="{{ $lists->ID }}" />
-                                                                        <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{ $lists->Booking_No }}</span> </h3>
-                                                                        <h3 class="text-left">Guest Name: <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span> </h3>
-                                                                        <h3 class="text-left">Room Status: <span style="font-weight:normal;">{{ $lists->Facility_Status }}</span> </h3>
-                                                                        <h3 class="text-left">Front Desk Status: <span style="font-weight:normal;">{{ $lists->Front_Desk_Status }}</span> </h3>
-                                                                        <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{ $lists->Attendant }}</span> </h3>        
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Booking Number:</h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span style="font-weight:normal;">{{ $lists->Booking_No }}</span> 
+                                                                                </div>
+                                                                            </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <h3 class="text-left">Guest Name:</h3>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span> 
+                                                                                    </div>
+                                                                                </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">
+                                                                                            <h3 class="text-left">Room Status:</h3>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <span style="font-weight:normal;">{{ $lists->Facility_Status }}</span> 
+                                                                                        </div>
+                                                                                    </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-6">
+                                                                                                <h3 class="text-left">Front Desk Status:</h3>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <span style="font-weight:normal;">{{ $lists->Front_Desk_Status }}</span> 
+                                                                                            </div>
+                                                                                        </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6">
+                                                                                                    <h3 class="text-left">Attendant:</h3>  
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <span style="font-weight:normal;">{{ $lists->Attendant }}</span> 
+                                                                                                </div>
+                                                                                            </div>                               
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</a>
+                                                                <button class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
