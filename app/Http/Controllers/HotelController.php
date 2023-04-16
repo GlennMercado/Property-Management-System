@@ -163,8 +163,8 @@ class HotelController extends Controller
                 DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                 values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
 
-                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount ,eventdate ,created_at) 
-                values (?, ?, ?, ?, ?, ?, ?,now())', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate]);
+                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount ,eventdate ,created_at, updated_at) 
+                values (?, ?, ?, ?, ?, ?, ?,now(), now())', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate]);
 
         
                 Alert::Success('Success', 'Payment successfully updated!');

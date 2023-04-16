@@ -20,7 +20,7 @@
         <div class="row align-items-center">
             <div class="card-header bg-transparent row">
                 <div class="col text-right">
-                    <button class="btn btn-outline-primary bg-success text-white" data-toggle="modal"
+                    <button class="btn bg-success text-white" data-toggle="modal"
                         data-target="#add_rooms">
                         Create New User
                     </button>
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-center">
+        <div class="row align-items-center pb-4">
             <div class="col text-right">
                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                     role="tablist">
