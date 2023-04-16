@@ -68,7 +68,7 @@
                                                     </div>
                                                 </div>
                                                 <!--Add Asset Column-->
-                                                <div class="row">
+                                                <div class="row mt-4">
                                                     <div class="col">
                                                         <p class="text-left">No. of Beds </p>
                                                         <select name="no_of_beds" class="form-control" required>
@@ -135,11 +135,11 @@
                                             <td>
                                                 <!--View Button-->
                                                 <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                    data-target="#view{{ $lists->Room_No }}"> <i class="bi bi-eye"></i>
+                                                    data-target="#view{{ $lists->Room_No }}" title = "View Room"> <i class="bi bi-eye"></i>
                                                 </button>
                                                 <!--Edit Button-->
                                                 <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
-                                                    data-target="#edit{{ $lists->Room_No }}"> <i
+                                                    data-target="#edit{{ $lists->Room_No }}" title = "Edit Room"> <i
                                                         class="bi bi-pencil-square"></i> </button>
                                             </td>
                                             <td style="font-size:16px;">{{ $lists->Room_No }}</td>
