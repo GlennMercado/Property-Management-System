@@ -195,7 +195,7 @@
 
                                                                 <div class="row">
                                                                     <div class="col-md-6 pt-4">
-                                                                        <label class="text-left">Stock Category : </label>
+                                                                        <label class="text-left">Stock Category</label>
                                                                         <input type="text" class="form-control"
                                                                             name="category"
                                                                             value="{{ $lists->category }}" required
@@ -210,7 +210,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md">
-                                                                        <label for="Stockdetails">Stock Description:
+                                                                        <label for="Stockdetails">Stock Description
                                                                         </label>
                                                                         <input type="text" class="form-control"
                                                                             name="description"
@@ -221,14 +221,14 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-6 pt-4">
-                                                                        <label for="Stockdetails">Quantity: </label>
+                                                                        <label for="Stockdetails">Quantity</label>
                                                                         <input type="hidden" name="quantity"
                                                                             value="{{ $lists->total }}" />
                                                                         <input type="number" class="form-control"
                                                                             value="{{ $lists->total }}" readonly>
                                                                     </div>
                                                                     <div class="col-md-6 pt-4">
-                                                                        <label for="Stockdetails">Stock Level: </label>
+                                                                        <label for="Stockdetails">Stock Level</label>
                                                                         <input type="hidden" name="stock"
                                                                             value="{{ $lists->Stock_Level }}" />
                                                                         <input type="number" class="form-control"
@@ -286,7 +286,7 @@
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
-                                                                        <label for="Stockdetails">Product Name: </label>
+                                                                        <label for="Stockdetails">Product Name </label>
                                                                         <input type="text" class="form-control"
                                                                             value="{{ $lists->name }}" readonly>
                                                                         <input type="hidden" name="id"
@@ -297,7 +297,7 @@
                                                                             value="{{ $lists->price }}" />
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label for="Stockdetails">Category : </label>
+                                                                        <label for="Stockdetails">Category </label>
                                                                         <input type="text" class="form-control"
                                                                             value="{{ $lists->category }}" readonly>
                                                                         <input type="hidden" name="category"
@@ -306,7 +306,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-6 pt-4">
-                                                                        <label for="Stockdetails">Room Number : </label>
+                                                                        <label for="Stockdetails">Room Number </label>
                                                                         <select name="roomno" class="form-control"
                                                                             required>
                                                                             <option value="" selected="true"
@@ -337,7 +337,7 @@
                                                             <div class="modal-footer pt-4">
                                                                 <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
-                                                                <input type="submit" name="update" value="Update"
+                                                                <input type="submit" name="update" value="Add"
                                                                     class="btn btn-success" />
                                                             </div>
                                                         </div>
@@ -354,7 +354,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
     <!--Add Stock-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
