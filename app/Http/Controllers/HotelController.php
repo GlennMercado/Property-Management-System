@@ -146,15 +146,29 @@ class HotelController extends Controller
                 $facility = "Hotel Room";
 
                 //For FinanceModule Variables
-                $ornum = "001";
-                // $finance_payee = DB::select("SELECT gcash_account_name FROM hotel_reservations");
+                // $ornum = DB::table('hotel_reservations')->where('id')->get();
                 $particular = "Hotel";
                 $debit = "Cash";
                 $remark = "FULL";
-                $finance_eventdate = "2023-04-16";
-                // $finance_amount = DB::select("SELECT Payment FROM hotel_reservations");
-                $finance_payee = DB::table('hotel_reservations')->select('Guest_Name')->first()->Guest_Name;
+                // $finance_payee = DB::table('hotel_reservations')->where('Booking_No', $bookno)->value('gcash_account_name');
                 $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
+                // $finance_eventdate = DB::select('SELECT "Check_In_Date" FROM hotel_reservations');
+                // $finance_eventdate = DB::table('hotel_reservations')->select('Check_In_Date')->first()->Check_In_Date;
+
+                $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
+
+                foreach ($reservations as $reservation) {
+                    $ornum = $reservation->id;
+                    $finance_payee = $reservation->gcash_account_name;
+                    $finance_amount = $reservation->Payment;
+                    $finance_eventdate = $reservation->Check_In_Date;
+                    // other variables and insert query here
+                }
+
+                $outvat = .12;
+                $gross = 1.12;
+                $cash = $finance_amount / $gross;
+                $vat = $outvat * $cash;
 
 
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
@@ -163,8 +177,8 @@ class HotelController extends Controller
                 DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                 values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
 
-                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount ,eventdate ,created_at, updated_at) 
-                values (?, ?, ?, ?, ?, ?, ?,now(), now())', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate]);
+                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
+                values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
 
         
                 Alert::Success('Success', 'Payment successfully updated!');
