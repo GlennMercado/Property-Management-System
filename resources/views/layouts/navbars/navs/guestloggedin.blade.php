@@ -6,13 +6,13 @@
         <a class="navbar-brand d-none d-lg-block" href="{{ route('welcome') }}">
             <img src="{{ asset('nvdcpics') }}/nvdc-logo5.png" style="width: 100%; height: 50px; margin-right:1%;">
         </a>
-        <div class="dropdown">
+        <div class="dropdown" style="cursor: pointer">
             <a class="me-3 dropdown-toggle hidden-arrow" role="button" data-target="#notif" id="navbarDropdownMenuLink"
                 role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
                 <span class="badge rounded-pill badge-notification bg-danger text-white">1</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink">
+            <ul class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink" style="width: 300px">
                 <li>
                     <a class="dropdown-item d-inline-block text-truncate" href="#"
                         style="max-width: 200px">Something else herel Lorem ipsum dolor sit, amet consectetur

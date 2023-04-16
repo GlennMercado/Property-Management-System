@@ -138,8 +138,8 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
-                        alt="Card image cap" style="max-height:17rem;">
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg" alt="Card image cap"
+                        style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
                     <div style="margin-left: 7%;">
@@ -169,33 +169,33 @@
     </div>
     <!-- section 4 -->
     <!-- <div class="container-fluid bg-white pt-6">
-                <div class="card-body d-flex justify-content-center">
-                    <div class="container">
-                        <div class="row g-2">
-                            <div class="col-3 ">
-                                <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                                <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
-                            </div>
-                            <div class="col-3">
-                                <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                                <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                            </div>
-                            <div class="col-3">
-                                <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                                <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                            </div>
-                            <div class="col-3">
-                                <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                                <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="container">
+                                <div class="row g-2">
+                                    <div class="col-3 ">
+                                        <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
+                                        <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
+                                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>  -->
+                    </div>  -->
     <!-- section 5 -->
     <div class="container-fluid bg-white pt-6 ">
         <div class="card-body ">
@@ -284,28 +284,28 @@
 
         .image-text {
             /* position: absolute;
-                                                                                                top: 44%;
-                                                                                                left: 50%;
-                                                                                                transform: translate(-50%, -50%);
-                                                                                                color: white;
-                                                                                                font-size: 36px;
-                                                                                                font-weight: bold;
-                                                                                                text-align: center;
-                                                                                                filter: brightness(50%); */
+                                                                                                        top: 44%;
+                                                                                                        left: 50%;
+                                                                                                        transform: translate(-50%, -50%);
+                                                                                                        color: white;
+                                                                                                        font-size: 36px;
+                                                                                                        font-weight: bold;
+                                                                                                        text-align: center;
+                                                                                                        filter: brightness(50%); */
             font-family: montserrat;
             margin-bottom: -1rem;
         }
 
         .image-text2 {
             /* position: absolute;
-                                                                                                top: 50%;
-                                                                                                left: 50%;
-                                                                                                transform: translate(-50%, -50%);
-                                                                                                color: white;
-                                                                                                font-weight: bold;
-                                                                                                text-align: center;
-                                                                                                font-size: 65px;
-                                                                                                letter-spacing: 1px; */
+                                                                                                        top: 50%;
+                                                                                                        left: 50%;
+                                                                                                        transform: translate(-50%, -50%);
+                                                                                                        color: white;
+                                                                                                        font-weight: bold;
+                                                                                                        text-align: center;
+                                                                                                        font-size: 65px;
+                                                                                                        letter-spacing: 1px; */
             font-family: montserrat;
         }
 
