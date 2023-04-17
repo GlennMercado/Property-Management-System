@@ -2,10 +2,9 @@
 
 @section('content')
     @include('layouts.navbars.navs.guestloggedin')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 
@@ -443,7 +442,7 @@
                                                 </div>
 
                                                 <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                        <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
                                                 <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                 </p>
                                                 <input type="text" name="name_of_owner" class="form-control"
@@ -599,7 +598,7 @@
                                                     </div>
 
                                                     <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                        <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
                                                     <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                     </p>
                                                     <input type="text" name="name_of_owner" class="form-control"
@@ -686,7 +685,7 @@
                         </div>
 
                         {{-- Set Interview --}}
-                        <div class="modal fade bd-example-modal-lg" id="comm_set_interview{{ $comm->id }}"
+                        <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
                             tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -704,6 +703,7 @@
                                         {{ csrf_field() }}
                                         <div class="modal-body">
                                             <h3 class="text-left">Set Interview Schedule</h3>
+
                                             <input type="text" id="interview" class="datepicker"
                                                 name="interview_date" onkeydown="return false" autocomplete="off"
                                                 required>
@@ -926,32 +926,34 @@
 
         <script>
             $(function() {
-                $("#interview").datepicker({
-                    minDate: 0,
-                    buttonImageOnly: true,
-                    showOn: "both",
-                    format: 'yyyy-mm-dd',
-                    buttonImage: "{{ asset('images') }}/calendar2.png",
-                    beforeShowDay: function(date) {
-                        // Convert date to yyyy-mm-dd format
-                        var year = date.getFullYear();
-                        var month = ('0' + (date.getMonth() + 1)).slice(-2);
-                        var day = ('0' + date.getDate()).slice(-2);
-                        var formattedDate = year + '-' + month + '-' + day;
+                $('.interview_modal').on('shown.bs.modal', function() {
+                    $("#interview").datepicker({
+                        minDate: 0,
+                        buttonImageOnly: true,
+                        showOn: "both",
+                        format: 'yyyy-mm-dd',
+                        buttonImage: "{{ asset('images') }}/calendar2.png",
+                        beforeShowDay: function(date) {
+                            // Convert date to yyyy-mm-dd format
+                            var year = date.getFullYear();
+                            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                            var day = ('0' + date.getDate()).slice(-2);
+                            var formattedDate = year + '-' + month + '-' + day;
 
-                        // Check if formattedDate is in startDates array
-                        var startDates = [];
+                            // Check if formattedDate is in startDates array
+                            var startDates = [];
 
-                        $("input[name='start_dates[]']").each(function() {
-                            startDates.push($(this).val());
-                        });
+                            $("input[name='start_dates[]']").each(function() {
+                                startDates.push($(this).val());
+                            });
 
-                        if (startDates.includes(formattedDate)) {
-                            return [false, 'unavailable-date'];
-                        } else {
-                            return [true, ''];
+                            if (startDates.includes(formattedDate)) {
+                                return [false, 'unavailable-date'];
+                            } else {
+                                return [true, ''];
+                            }
                         }
-                    }
+                    });
                 });
             });
         </script>
@@ -984,13 +986,18 @@
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 14px;
                 background-color: #fff;
+                z-index: 1600 !important; /* adjust the z-index to be higher than the modal's z-index */
+                position: absolute;
+                top: 42% !important;
+                left: 33% !important;
+                transform: translate(-50%, -50%);
             }
 
             .ui-datepicker-trigger {
                 position: absolute;
-                top: 72px;
+                top: 60px;
                 right: 0;
-                margin-right: 23px;
+                margin-right: 30px;
                 cursor: pointer;
                 background-image: url("{{ asset('images') }}/calendar2.png}}");
                 background-size: 30px 30px;
