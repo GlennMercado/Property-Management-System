@@ -11,8 +11,9 @@ class CommercialSpacesController extends Controller
 {
     public function commercial_spaces()
     {
-        $list = DB::select('SELECT * FROM commercial_spaces_applications');    
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceForm', ['list'=>$list]);
+        $list = DB::select('SELECT * FROM commercial_spaces_applications WHERE IsArchived = 0');   
+        $list2 = DB::select('SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1');    
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceForm', ['list'=>$list, 'list2' => $list2]);
     }
     public function commercial_space_view($id)
     {
@@ -27,18 +28,55 @@ class CommercialSpacesController extends Controller
     {
         $id = $request->input('id');
         $status = $request->input('status');
+        $remarks = $request->input('remarks');
+        $sql;
 
-        $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status]);
-
-        if($sql)
+        if($status == "Approved" || $status == "For Revision")
         {
-            Alert::Success('Success', 'Status Set to '.$status.'!');
-            return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            if($remarks != null)
+            {
+                $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status, 'Remarks' => $remarks]);
+            }
+            else
+            {
+                $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status]);
+            }
+            
+
+            if($sql)
+            {
+                Alert::Success('Success', 'Status Set to '.$status.'!');
+                return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Updating Status Failed!');
+                return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            }
         }
-        else
+        elseif($status == "Disapproved")
         {
-            Alert::Error('Failed', 'Updating Status Failed!');
-            return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            if($remarks != null)
+            {
+                $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status, 'Remarks' => $remarks]);
+            }
+            else
+            {
+                $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status]);
+            }
+            
+            $sql2 = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status, 'IsArchived' => 1]);
+
+            if($sql2)
+            {
+                Alert::Success('Success', 'Status Set to '.$status.'!');
+                return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Updating Status Failed!');
+                return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
+            }
         }
     }
 }

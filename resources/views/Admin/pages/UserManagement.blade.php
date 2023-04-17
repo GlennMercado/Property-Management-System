@@ -49,7 +49,16 @@
                                         <input type="email" class="form-control" name="email" required>
 
                                         <label class="text_color">Password</label>
-                                        <input class="form-control" type="password" name="password" id="password" required>
+
+                                        <div class="input-group input-group-alternative">
+                                            <input class="form-control" type="password" name="password" id="password"
+                                                required>
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="toggle-password"
+                                                    style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
+                                            </div>
+                                        </div>
 
                                         <label class="text_color">Confirm Password</label>
                                         <input class="form-control" type="password" name="password_confirmation"
@@ -517,6 +526,28 @@
             </div>
         </div>
         <script>
+            // Password toggle
+        var passwordToggle = document.getElementById('toggle-password');
+        var password = document.getElementById('password');
+
+        passwordToggle.addEventListener('click', function() {
+            var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            passwordToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
+                '<i class="fa fa-eye"></i>';
+        });
+
+        // Confirm password toggle
+        var confirmToggle = document.getElementById('toggle-confirm-password');
+        var confirmPassword = document.getElementById('confirm-password');
+
+        confirmToggle.addEventListener('click', function() {
+            var type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            confirmToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
+                '<i class="fa fa-eye"></i>';
+        });
+        
             // var x = document.getElementById("selectbox");
             $.noConflict();
             jQuery(document).ready(function($) {
@@ -531,16 +562,15 @@
             const confirm_password = document.getElementById("confirm_password");
 
             function validatePassword() {
-            if (password.value != confirm_password.value) {
-                confirm_password.setCustomValidity("Passwords don't match");
-            } else {
-                confirm_password.setCustomValidity("");
-            }
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords don't match");
+                } else {
+                    confirm_password.setCustomValidity("");
+                }
             }
 
             password.onchange = validatePassword;
             confirm_password.onkeyup = validatePassword;
-
         </script>
     @endsection
 
