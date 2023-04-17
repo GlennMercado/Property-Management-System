@@ -7,7 +7,7 @@
             <img src="{{ asset('nvdcpics') }}/nvdc-logo5.png" style="width: 100%; height: 50px; margin-right:1%;">
         </a>
         <div class="dropdown" style="cursor: pointer">
-            <a class="me-3 dropdown-toggle hidden-arrow" role="button" data-target="#notif" id="navbarDropdownMenuLink"
+            <a href="" class="text-dark" role="button" data-target="#notif" id="navbarDropdownMenuLink"
                 role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
                 <span class="badge rounded-pill badge-notification bg-danger text-white"
@@ -22,12 +22,16 @@
                     <div class="p-3 ml-auto"><a href="">View all</a></div>
                 </div>
                 @forelse (auth()->user()->notifications as $notif)
-                    <a class="dropdown-item d-inline-block text-truncate" href="#" style="max-width: 400px">
-                        <i class="bi bi-circle-fill text-success"></i>{{ $notif->data['name'] }} Started!
-                    </a>
+                    @if ($notif->data['link'])
+                        <a class="dropdown-item d-inline-block text-truncate text-left"
+                            href="{{ $notif->data['link'] }}" style="max-width: 400px">
+                            <i class="bi bi-info-circle-fill text-success"></i>{{ $notif->data['txt'] }}
+                        </a>
+                    @endif
                 @empty
-                <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid" style="width: 100%; height: 150px">
-                <p class="text-center display-4">There are no notifications.</p>                   
+                    <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid"
+                        style="width: 100%; height: 150px">
+                    <p class="text-center display-4">There are no notifications.</p>
                 @endforelse
             </div>
         </div>

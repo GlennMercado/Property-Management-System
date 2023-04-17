@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
+            $table->string('notif_text');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
