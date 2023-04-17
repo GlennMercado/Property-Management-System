@@ -16,7 +16,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeepers</li>
                         </ol>
                     </nav>
                 @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
@@ -24,7 +24,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeepers</li>
                         </ol>
                     </nav>
                 @endif
@@ -103,6 +103,7 @@
                                         <tr>
                                             <th scope="col" style="font-size:18px;">Housekeepers Name</th>
                                             <th scope="col" style="font-size:18px;">Status</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -110,7 +111,48 @@
                                             <tr>
                                                 <td>{{$lists->Housekeepers_Name}}</td>
                                                 <td>{{$lists->Status}}</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#edit{{ $lists->Housekeepers_Name }}" title="Update Status">
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
+
+                                            <div class="modal fade" id="edit{{ $lists->Housekeepers_Name }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title" id="exampleModalLabel">Update Status</h2>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ url('update_housekeepers_status') }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="id" value="{{$lists->id}}">
+                                                                <input type="hidden" name="name" value="{{$lists->Housekeepers_Name}}">
+                                                                <p class="text-left">Housekeepers Status: </p>
+                                                                <select name="status" class="form-control" required>
+                                                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                                                    <option value="Available">Available</option>
+                                                                    <option value="Occupied">Occupied</option>
+                                                                    <option value="On-Break">On-Break</option>
+                                                                    <option value="On-Leave">On-Leave</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <input type="submit" value="Submit" class="btn btn-success" />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>

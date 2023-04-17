@@ -213,6 +213,34 @@ class HousekeepingController extends Controller
         return view('Admin.pages.HousekeepingForms.Linen_Monitoring', ['housekeeper'=>$housekeeper, 'list' => $list, 'list2' => $list2, 'array' => $array]);
     }
     
+    public function update_housekeepers_status(Request $request)
+    {
+        try
+        {
+            $id = $request->input('id');
+            $name = $request->input('name');
+            $status = $request->input('status');
+
+            $sql = DB::table('list_of_housekeepers')->where(['id' => $id, 'Housekeepers_Name' => $name])->update(['Status' => $status]);
+
+            if($sql)
+            {
+                Alert::Success('Success!', 'Updating Status Successfully');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            }
+            else
+            {
+                Alert::Error('Updating Status Failed!', 'Failed in Updating Status');
+                return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+            }
+            
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Updating Status Failed!', 'Failed in Updating Status');
+            return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
+        }
+    }
     public function check_linen(Request $request)
     {
         try
@@ -259,7 +287,7 @@ class HousekeepingController extends Controller
                 }
             }
 
-            DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookingid, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
 
             DB::table('hotel_reservations')->where('Booking_No', $bookingid)->update(['Booking_Status' => "Room Checked"]);
 
@@ -625,7 +653,7 @@ class HousekeepingController extends Controller
                 }
             }
                  
-            DB::table('housekeepings')->where(['Room_No' => $room_no, 'IsArchived' => false])->update(array(
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $booking_no, 'IsArchived' => false])->update(array(
                 'Housekeeping_Status' => "Inspect(After Checking)"
             ));
             Alert::Success('Success', 'Supplies Successfully Checked!');

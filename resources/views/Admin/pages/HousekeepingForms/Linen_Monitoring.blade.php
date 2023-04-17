@@ -16,7 +16,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Linen Monitoring</li>
                         </ol>
                     </nav>
                 @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
@@ -24,7 +24,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Linen Monitoring</li>
                         </ol>
                     </nav>
                 @endif
@@ -115,7 +115,7 @@
                                                                     <p class="text-left">Attendants: </p>
                                                                     <select name="housekeeper"
                                                                         class="form-control" required>
-                                                                        <option selected="true"
+                                                                        <option value="" selected="true"
                                                                             disabled="disabled">
                                                                             Select</option>
                                                                             @foreach($housekeeper as $housekeepers)

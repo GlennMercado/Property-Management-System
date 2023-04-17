@@ -560,7 +560,7 @@
                                                             title="Update">
                                                             <i class="bi bi-arrow-repeat"></i>
                                                         </button>
-                                                                                                            <!--Guest Request Button-->
+                                                        <!--Guest Request Button-->
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                             data-target="#request{{ $lists->Booking_No }}" title="Request">
                                                             <i class="bi bi-plus-square"></i>
@@ -676,6 +676,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <!--Update Status-->
                                             <div class="modal fade" id="update_booking_status2{{ $lists->Booking_No }}"
                                                 tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
@@ -789,10 +790,7 @@
                                                                 </select>
 
                                                                 <div id="r_items" style="display:none;">
-                                                                    <p class="text-left">Item Request </p>
-
-                                                                    <input type="hidden" name="qty"
-                                                                        value="{{ $lists->No_of_Pax }}">
+                                                                    <p class="text-left">Item Request </p>  
                                                                     <select name="item_request" class="form-control">
                                                                         <option value="" selected="true"
                                                                             disabled="disabled">Select</option>
@@ -801,6 +799,9 @@
                                                                                 {{ $supplies->name }}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    <p class="text-left">Quantity </p>  
+                                                                    <input type="number" name="qty"
+                                                                        class="form-control">
                                                                 </div>
 
                                                                 <div id="r_services" style="display:none;">

@@ -62,6 +62,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::post('/edit_rooms', 'App\Http\Controllers\RoomController@edit_rooms');
 	Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
 
+	Route::get('/enable_disable_rooms/{id}/{stats}', 'App\Http\Controllers\RoomController@enable_disable_rooms');
+
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
 	// //Room Management
@@ -72,6 +74,8 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	// Route::post('/update_rooms', 'App\Http\Controllers\RoomController@update_rooms');
 
 	// Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
+
+
 
 	//Calendar
 		//Route::get('/Hotel_Calendar', [App\Http\Controllers\HotelController::class, 'Hotel_Calendar'])->name('Hotel_Calendar');
@@ -134,6 +138,8 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 
 	Route::post('/assign_housekeepers_linens', 'App\Http\Controllers\HousekeepingController@assign_housekeeper_linens');
 
+	Route::post('/update_housekeepers_status', 'App\Http\Controllers\HousekeepingController@update_housekeepers_status');
+
 	Route::get('Housekeeping_Reports', ['uses' => 'App\Http\Controllers\HousekeepingController@reports', 'as' => 'Housekeeping_Reports.reports']);
 });	
 
@@ -153,6 +159,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
 	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
 	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
 
 	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
@@ -165,6 +172,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 		Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
+		Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
 });
 
 //Admin and Operation Manager

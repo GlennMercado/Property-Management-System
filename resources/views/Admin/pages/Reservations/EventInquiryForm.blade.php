@@ -97,6 +97,52 @@
                                                     {{ $lists->concept }}
                                                 </td>
                                             </tr>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="POST" class="prevent_submit"
+                                                            action="{{ url('/update_status') }}"
+                                                            enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                            <div class="modal-body">
+                                                                <p>ID</p>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->id }}" readonly>
+
+                                                                <input type="hidden" name="eventid"
+                                                                    value="{{ $lists->id }}" />
+
+                                                                <p>Name</p>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->client_name }}" readonly>
+
+                                                                <select name="update_status" class="form-control" required>
+                                                                    <option selected="true" disabled="disabled"
+                                                                        value="">
+                                                                        {{ $lists->inquiry_status }}</option>
+                                                                    <option value="Approved">Approved</option>
+                                                                    <option value="Disapproved">Disapproved</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</a>
+                                                                <button type="submit"
+                                                                    class="btn btn-secondary">Save</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -104,44 +150,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form method="POST" class="prevent_submit" action="{{ url('/update_status') }}"
-                                enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <div class="modal-body">
-                                    <p>ID</p>
-                                    <input type="text" class="form-control" value="{{ $lists->id }}" readonly>
 
-                                    <input type="hidden" name="eventid" value="{{ $lists->id }}" />
-
-                                    <p>Name</p>
-                                    <input type="text" class="form-control" value="{{ $lists->client_name }}" readonly>
-
-                                    <select name="update_status" class="form-control" required>
-                                        <option selected="true" disabled="disabled" value="">
-                                            {{ $lists->inquiry_status }}</option>
-                                        <option value="Approved">Approved</option>
-                                        <option value="Disapproved">Disapproved</option>
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                    <button type="submit" class="btn btn-secondary">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->index('email');
             $table->foreign('email')->references('email')->on('users'); 
 
+            $table->string('Status')->default('For Approval');
+
             $table->string('business_name');
             $table->string('business_style');
             $table->string('business_address');
