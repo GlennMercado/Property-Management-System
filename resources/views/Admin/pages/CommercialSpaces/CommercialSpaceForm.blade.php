@@ -38,13 +38,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                         href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                        aria-selected="false"><i class="ni ni-fat-remove mr-2"></i>Disapproved
-                                        Applications</a>
+                                        aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>Tenants</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                         href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                        aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>Tenants</a>
+                                        aria-selected="false">
+                                        <i class="ni ni-fat-remove mr-2"></i>Archived Applications</a>
                                 </li>
                             </ul>
                         </div>
@@ -62,6 +62,7 @@
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
+                                                        <th scope="col" style="font-size:17px;">Remarks</th>             
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -74,11 +75,20 @@
                                                                         style="cursor:pointer;">
                                                                         <i class="bi bi-eye"></i>
                                                                     </a>
-                                                                    @if($lists->Status == "For Approval")
+                                                                    @if ($lists->Status == 'For Approval' || $lists->Status == 'Revised')
                                                                         <button class="btn btn-sm btn-success"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status{{ $lists->id }}"
                                                                             title="Update Status">
+                                                                            <i class="bi bi-arrow-repeat"></i>
+                                                                        </button>
+                                                                    @endif
+
+                                                                    @if ($lists->Status == 'For Interview')
+                                                                        <button class="btn btn-sm btn-success"
+                                                                            data-toggle="modal"
+                                                                            data-target="#update_status2{{ $lists->id }}"
+                                                                            title="Interview Result">
                                                                             <i class="bi bi-arrow-repeat"></i>
                                                                         </button>
                                                                     @endif
@@ -140,10 +150,16 @@
                                                                     <br>
                                                                 </td>
                                                                 @if ($lists->Status == 'For Approval')
-                                                                    <td class="font-weight-bold tbltxt" style="color:#f0ad4e;">{{ $lists->Status }}</td>
+                                                                    <td class="font-weight-bold tbltxt"
+                                                                        style="color:#f0ad4e;">{{ $lists->Status }}</td>
                                                                 @elseif($lists->Status == 'Approved')
-                                                                    <td class="text-success font-weight-bold tbltxt">{{ $lists->Status }}</td>
+                                                                    <td class="text-success font-weight-bold tbltxt">
+                                                                        {{ $lists->Status }}</td>
+                                                                @elseif($lists->Status == 'For Revision' || $lists->Status == 'Revised')
+                                                                    <td class="text-primary font-weight-bold tbltxt">
+                                                                        {{ $lists->Status }}</td>
                                                                 @endif
+                                                                <td>{{$lists->Remarks}}</td>
                                                             </tr>
 
                                                             <!-- Update Modal -->
@@ -170,7 +186,7 @@
                                                                             <div class="modal-body">
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->id }}">
-                                                                                <h3 class="text-left">Status</h3>
+                                                                                <h3 class="text-left">Status: </h3>
                                                                                 <select name="status"
                                                                                     class="form-control" required>
                                                                                     <option value="" selected="true"
@@ -179,7 +195,59 @@
                                                                                     </option>
                                                                                     <option value="Disapproved">Disapproved
                                                                                     </option>
+                                                                                    <option value="For Revision">For
+                                                                                        Revision</option>
                                                                                 </select>
+                                                                                <h3 class="text-left">Remarks: </h3>
+                                                                                <input type="text" name="remarks" class="form-control" />
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button class="btn btn-outline-danger"
+                                                                                    data-dismiss="modal">Close</button>
+                                                                                <input type="submit"
+                                                                                    class="btn btn-success">
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Update Modal2 -->
+                                                            <div class="modal fade" id="update_status2{{ $lists->id }}" tabindex="-1"
+                                                                role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title text-left display-4"
+                                                                                id="exampleModalLabel">Setting Application
+                                                                                Status</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form
+                                                                            action="{{ url('/update_commercial_status') }}"
+                                                                            class="prevent_submit" method="POST"
+                                                                            enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+                                                                            <div class="modal-body">
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $lists->id }}">
+                                                                                <h3 class="text-left">Interview Result:
+                                                                                </h3>
+                                                                                <select name="status"
+                                                                                    class="form-control" required>
+                                                                                    <option value="" selected="true"
+                                                                                        disabled="disabled">Select</option>
+                                                                                    <option value="Passed">Passed
+                                                                                    </option>
+                                                                                    <option value="Failed">Failed</option>
+                                                                                </select>
+                                                                                <h3 class="text-left">Remarks: </h3>
+                                                                                <input type="text" name="remarks" class="form-control" />
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button class="btn btn-outline-danger"
@@ -198,9 +266,15 @@
                                         </div>
                                     </div>
 
-                                    {{-- Disapproved Applications --}}
+                                    {{-- Tenants --}}
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                         aria-labelledby="tabs-icons-text-2-tab">
+                                        <p class="description">Try</p>
+                                    </div>
+
+                                    {{-- Disapproved Applications --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-3-tab">
                                         <div class="table-responsive">
                                             <table class="table align-items-center table-flush" id="myTable">
                                                 <thead class="thead-light">
@@ -212,7 +286,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($list as $lists)
+                                                    @foreach ($list2 as $lists)
                                                         @if ($lists->Status == 'Disapproved')
                                                             <tr>
                                                                 <td>
@@ -278,18 +352,14 @@
                                                                         class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
                                                                     <br>
                                                                 </td>
-                                                                <td class="font-weight-bold tbltxt text-danger">{{ $lists->Status }}</td>
+                                                                <td class="font-weight-bold tbltxt text-danger">
+                                                                    {{ $lists->Status }}</td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                    {{-- Tenants --}}
-                                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-3-tab">
-                                        <p class="description">Try</p>
                                     </div>
                                 </div>
                             </div>

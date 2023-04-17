@@ -279,6 +279,9 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/event_form', [App\Http\Controllers\GuestController::class, 'event_form'])->name('event_form');
 	Route::post('/convention_center_submit', 'App\Http\Controllers\GuestController@convention_center_application');
 	Route::post('/commercial_spaces_submit', 'App\Http\Controllers\GuestController@commercial_spaces_application');
+	Route::post('/edit_commercial_spaces_application', 'App\Http\Controllers\GuestController@edit_commercial_spaces_application');
+	Route::post('/set_commercial_space_schedule', 'App\Http\Controllers\GuestController@set_commercial_space_schedule	');
+
 	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');

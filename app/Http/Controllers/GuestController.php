@@ -79,7 +79,16 @@ class GuestController extends Controller
         $event1 = DB::select("SELECT * FROM convention_center_applications WHERE email = '$email'");
         $comm = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email'");
         $comm1 = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email'");
-        return view('Guest.MyBookings', ['list' => $list, 'event'=>$event, 'event1'=>$event1, 'comm'=>$comm, 'comm1'=>$comm1]);
+
+        $sql = DB::select("SELECT * FROM commercial_spaces_applications");
+        $data = array();
+
+        foreach($sql as $s)
+        {
+            $data[] = ['date' => $s->Interview_Date];
+        }
+
+        return view('Guest.MyBookings', ['list' => $list, 'event'=>$event, 'event1'=>$event1, 'comm'=>$comm, 'comm1'=>$comm1, 'data' => $data]);
     }
     public function suites($id)
     {
@@ -335,6 +344,53 @@ class GuestController extends Controller
                 Alert::Error('Failed', 'Inquiry not sent');
                 return redirect('/commercial_spaces')->with('Error', 'Failed!');
             }
+    }
+
+    public function edit_commercial_spaces_application(Request $request)
+    {
+        try{
+            $id = $request->input('id');
+
+            $sql = DB::table("commercial_spaces_applications")->where('id', $id)->update(
+                [
+                    'business_name' => $request->input('business_name'),
+                    'business_style' => $request->input('business_style'),
+                    'business_address' => $request->input('business_address'),
+                    'email_website_fb' => $request->input('email_website_fb'),
+                    'business_landline_no' => $request->input('business_landline_no'),
+                    'business_mobile_no' => $request->input('business_mobile_no'),
+                    'name_of_owner' => $request->input('name_of_owner'),
+                    'spouse' => $request->input('spouse'),
+                    'home_address' => $request->input('home_address'),
+                    'landline' => $request->input('landline'),
+                    'mobile_no' => $request->input('mobile_no'),
+                    'tax_identification_no' => $request->input('tax_identification_no'),
+                    'tax_cert_valid_gov_id' => $request->input('tax_cert_valid_gov_id'),
+                    'Status' => "Revised"
+                ]
+            );
+
+            if($sql)
+            {
+                Alert::Success('Success', 'Application Successfully Revised!');
+                return redirect('my_bookings')->with('Error', 'Failed!');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Application not Updated');
+                return redirect('my_bookings')->with('Error', 'Failed!');
+            }
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Application not Edited');
+            return redirect('my_bookings')->with('Error', 'Failed!');
+        }
+    }
+
+    public function set_commercial_space_schedule(Request $request)
+    {
+        dd($request->all());
     }
 
 }
