@@ -77,6 +77,26 @@ class LoginController extends Controller
                 {
                     return redirect('welcome');
                 }
+                elseif(auth()->user()->User_Type == 'Sales and Marketing' && auth()->user()->IsDisabled == 0)
+                {
+                    return redirect('HotelReservationForm');
+                }
+                elseif(auth()->user()->User_Type == 'Inventory Manager' && auth()->user()->IsDisabled == 0)
+                {
+                    return redirect('StockCount');
+                }
+                elseif(auth()->user()->User_Type == 'Operations Manager' && auth()->user()->IsDisabled == 0)
+                {
+                    return redirect('OperationDashboard');
+                }
+                elseif(auth()->user()->User_Type == 'Operations Manager' && auth()->user()->IsDisabled == 0)
+                {
+                    return redirect('OperationDashboard');
+                }
+                elseif(auth()->user()->User_Type == 'Finance' && auth()->user()->IsDisabled == 0)
+                {
+                    return redirect('DailyReport');
+                }
                 elseif(auth()->user()->User_Type == 'Housekeeping Supervisor')
                 {
                     return redirect('Housekeeping_Dashboard');
