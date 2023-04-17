@@ -73,7 +73,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                                 data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                                aria-controls="tabs-icons-text-1" aria-selected="true">Weekly Official
+                                                aria-controls="tabs-icons-text-1" aria-selected="true">Official
                                                 Receipt</a>
                                         </li>
                                         <li class="nav-item">
@@ -162,8 +162,8 @@
                                                 <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
                                                 <th scope="col" style="font-size:18px;">Cheque</th>
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
-                                                <th scope="col" style="font-size:18px;">UnearnedIncome</th>
-                                                <th scope="col" style="font-size:18px;">OtherIncome</th>
+                                                <th scope="col" style="font-size:18px;">Unearned Income</th>
+                                                <th scope="col" style="font-size:18px;">Other Income</th>
                                                 <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent</th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
                                                 <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events
@@ -217,7 +217,7 @@
                             {{-- Monthly Report --}}
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-3-tab">
-                                <div class="table-responsive">{{ $month }}
+                                <div class="table-responsive">
                                     <table class="table align-items-center table-flush" id="myTabless">
                                         <thead class="thead-light">
                                             <tr>
@@ -227,8 +227,8 @@
                                                 <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
                                                 <th scope="col" style="font-size:18px;">Cheque</th>
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
-                                                <th scope="col" style="font-size:18px;">UnearnedIncome</th>
-                                                <th scope="col" style="font-size:18px;">OtherIncome</th>
+                                                <th scope="col" style="font-size:18px;">Unearned Income</th>
+                                                <th scope="col" style="font-size:18px;">Other Income</th>
                                                 <th scope="col" style="font-size:18px;">Parking</th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
                                                 <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events</th>

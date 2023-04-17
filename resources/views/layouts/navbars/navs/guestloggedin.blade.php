@@ -10,20 +10,25 @@
             <a class="me-3 dropdown-toggle hidden-arrow" role="button" data-target="#notif" id="navbarDropdownMenuLink"
                 role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
-                <span class="badge rounded-pill badge-notification bg-danger text-white">
-                    {{ auth()->user()->notifications->count() }} </span>
+                <span class="badge rounded-pill badge-notification bg-danger text-white"
+                    id="ncount">{{ auth()->user()->notifications->count() }}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end" id="notif" aria-labelledby="navbarDropdownMenuLink"
-                style="width: 400px">
-                <h3 class="d-flex justify-content-center p-2">Notifications</h3>
+            <div class="dropdown-menu dropdown-menu-end scroll" id="notif" aria-labelledby="navbarDropdownMenuLink"
+                style="width: 400px;">
+                <div class="d-flex flex-row">
+                    <div class="p-2">
+                        <h2>Notifications</h2>
+                    </div>
+                    <div class="p-3 ml-auto"><a href="">View all</a></div>
+                </div>
                 @forelse (auth()->user()->notifications as $notif)
-                    <a class="dropdown-item d-inline-block text-truncate" href="#"
-                        style="max-width: 400px">{{ $notif->data['name'] }} Started!</a>
+                    <a class="dropdown-item d-inline-block text-truncate" href="#" style="max-width: 400px">
+                        <i class="bi bi-circle-fill text-success"></i>{{ $notif->data['name'] }} Started!
+                    </a>
                 @empty
-                    <span>There are no notifications.</span>
+                <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid" style="width: 100%; height: 150px">
+                <p class="text-center display-4">There are no notifications.</p>                   
                 @endforelse
-                <br>
-                <a href="" class="d-flex justify-content-center p-3">View all</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
@@ -149,3 +154,31 @@
         </li>
     </ul>
 </nav>
+<style>
+    .scroll {
+        width: 600px;
+        max-height: 500px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: center;
+        padding: 20px;
+    }
+</style>
+<script>
+    var ncount = document.getElementById("ncount");
+    if (ncount.innerHTML == "0") {
+        ncount.style = "display: none";
+    } else {
+        ncount.style = "display: inline";
+    }
+</script>
+<script>
+    setInterval(function() {
+        $.ajax({
+            url: 'http://localhost:8000/notifications/count', // Replace with your endpoint URL
+            success: function(response) {
+                $('#ncount').text(response.count);
+            }
+        });
+    }, 1000);
+</script>

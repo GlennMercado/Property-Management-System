@@ -254,6 +254,12 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 
 	Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
 
+	Route::get('/notifications/count', function () {
+		$count = auth()->user()->notifications->count();
+		return response()->json(['count' => $count]);
+	});
+
+
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
 	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
 	Route::get('/about_us', [App\Http\Controllers\GuestController::class, 'about_us'])->name('about_us');

@@ -36,7 +36,8 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before starting, see
-                                    to It that all inventory are in the Storage Area</h4>
+                                    to It that all inventory are in the Storage Area</h4><br>
+                                    <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Distribute Linen and Guest Supply Before the Availability of the room.</h4>
                             </div>
                             <div class="col">
                                 <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus" data-toggle="modal"
@@ -54,6 +55,7 @@
                                     <tr>
                                         <th scope="col" style="font-size:16px;">Action</th>
                                         <th scope="col" style="font-size:16px;">Product Name</th>
+                                        <th scope="col" style="font-size:16px;">Category</th>
                                         <th scope="col" style="font-size:16px;">Item Description</th>
                                         <th scope="col" style="font-size:16px;">All Stock</th>
                                         <th scope="col" style="font-size:16px;">Price</th>
@@ -78,6 +80,7 @@
                                                         title="Add Stock"></i></button>
                                             </td>
                                             <td style="font-size:14px;">{{ $lists->name }}</td>
+                                            <td style="font-size:14px;">{{ $lists->category }}</td>
                                             <td style="font-size:14px;">{{ $lists->description }}</td>
                                             <td style="font-size:14px;">{{ $lists->allstock }}</td>
                                             <td style="font-size:14px;">{{ $lists->price }}</td>
@@ -490,11 +493,7 @@
             </div>
         </div>
     </div>
-    <!-- </div>
-                                                                                                                    
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div> -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
