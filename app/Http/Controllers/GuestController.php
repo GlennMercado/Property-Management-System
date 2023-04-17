@@ -376,7 +376,34 @@ class GuestController extends Controller
 
     public function set_commercial_space_schedule(Request $request)
     {
-        dd($request->all());
+        try
+        {
+            $id = $request->input('id');
+            $date = Carbon::createFromFormat('m/d/Y', $request->input('interview_date'))->format('Y-m-d');
+
+            $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(
+                [
+                    'Interview_Date' => $date,
+                    'Status' => 'For Interview'
+                ]
+            );
+
+            if($sql)
+            {
+                Alert::Success('Success', 'Interview Schedule Successfully Set');
+                return redirect('my_bookings')->with('Error', 'Failed!');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Setting Schedule Failed!');
+                return redirect('my_bookings')->with('Error', 'Failed!');
+            }
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Failed', 'Application not Edited');
+            return redirect('my_bookings')->with('Error', 'Failed!');
+        }
     }
 
 }

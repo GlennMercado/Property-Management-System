@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('commercial_spaces_applications', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
 
             $table->string('email');
             $table->index('email');

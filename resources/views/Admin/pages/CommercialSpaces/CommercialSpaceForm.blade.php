@@ -62,12 +62,12 @@
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
-                                                        <th scope="col" style="font-size:17px;">Remarks</th>             
+                                                        <th scope="col" style="font-size:17px;">Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($list as $lists)
-                                                        @if ($lists->Status != 'Disapproved')
+                                                        @if ($lists->Status != 'Disapproved' && $lists->Status != 'Failed' && $lists->Status != 'Tenant')
                                                             <tr>
                                                                 <td>
                                                                     <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
@@ -92,6 +92,16 @@
                                                                             <i class="bi bi-arrow-repeat"></i>
                                                                         </button>
                                                                     @endif
+
+                                                                    @if ($lists->Status == 'Passed')
+                                                                        <button class="btn btn-sm btn-success"
+                                                                            data-toggle="modal"
+                                                                            data-target="#update_status3{{ $lists->id }}"
+                                                                            title="Interview Result">
+                                                                            <i class="bi bi-plus"></i>
+                                                                        </button>
+                                                                    @endif
+
                                                                 </td>
                                                                 <td>
                                                                     <span class="tbltxt">Business Name: </span>
@@ -149,17 +159,17 @@
                                                                         class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
                                                                     <br>
                                                                 </td>
-                                                                @if ($lists->Status == 'For Approval')
+                                                                @if ($lists->Status == 'For Approval' || $lists->Status == 'For Interview')
                                                                     <td class="font-weight-bold tbltxt"
                                                                         style="color:#f0ad4e;">{{ $lists->Status }}</td>
-                                                                @elseif($lists->Status == 'Approved')
+                                                                @elseif($lists->Status == 'Approved' || $lists->Status == 'Passed')
                                                                     <td class="text-success font-weight-bold tbltxt">
                                                                         {{ $lists->Status }}</td>
                                                                 @elseif($lists->Status == 'For Revision' || $lists->Status == 'Revised')
                                                                     <td class="text-primary font-weight-bold tbltxt">
                                                                         {{ $lists->Status }}</td>
                                                                 @endif
-                                                                <td>{{$lists->Remarks}}</td>
+                                                                <td>{{ $lists->Remarks }}</td>
                                                             </tr>
 
                                                             <!-- Update Modal -->
@@ -199,7 +209,8 @@
                                                                                         Revision</option>
                                                                                 </select>
                                                                                 <h3 class="text-left">Remarks: </h3>
-                                                                                <input type="text" name="remarks" class="form-control" />
+                                                                                <input type="text" name="remarks"
+                                                                                    class="form-control" />
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button class="btn btn-outline-danger"
@@ -213,7 +224,8 @@
                                                             </div>
 
                                                             <!-- Update Modal2 -->
-                                                            <div class="modal fade" id="update_status2{{ $lists->id }}" tabindex="-1"
+                                                            <div class="modal fade"
+                                                                id="update_status2{{ $lists->id }}" tabindex="-1"
                                                                 role="dialog" aria-labelledby="exampleModalLabel"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered"
@@ -247,7 +259,59 @@
                                                                                     <option value="Failed">Failed</option>
                                                                                 </select>
                                                                                 <h3 class="text-left">Remarks: </h3>
-                                                                                <input type="text" name="remarks" class="form-control" />
+                                                                                <input type="text" name="remarks"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button class="btn btn-outline-danger"
+                                                                                    data-dismiss="modal">Close</button>
+                                                                                <input type="submit"
+                                                                                    class="btn btn-success">
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Update Modal3 -->
+                                                            <div class="modal fade"
+                                                                id="update_status3{{ $lists->id }}" tabindex="-1"
+                                                                role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title text-left display-4"
+                                                                                id="exampleModalLabel">Setting Application
+                                                                                to Tenant</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form action="{{ url('/add_commercial_tenant') }}"
+                                                                            class="prevent_submit" method="POST"
+                                                                            enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+                                                                            <div class="modal-body">
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $lists->id }}">
+                                                                                <h3 class="text-left">Renters Fee:
+                                                                                </h3>
+                                                                                <input type="number" class="form-control"
+                                                                                    name="renters_fee" required>
+
+                                                                                <h3 class="text-left">Due Date:
+                                                                                </h3>
+                                                                                <input type="date" class="form-control"
+                                                                                    name="due_date" required>
+
+                                                                                <h3 class="text-left">Remarks:
+                                                                                </h3>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="remarks">
+
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button class="btn btn-outline-danger"
@@ -269,7 +333,101 @@
                                     {{-- Tenants --}}
                                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                         aria-labelledby="tabs-icons-text-2-tab">
-                                        <p class="description">Try</p>
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTable">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="font-size:17px;">Action</th>
+                                                        <th scope="col" style="font-size:17px;">Business Info</th>
+                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
+                                                        <th scope="col" style="font-size:17px;">Status</th>
+                                                        <th scope="col" style="font-size:17px;">Rental Fee</th>
+                                                        <th scope="col" style="font-size:17px;">Due Date</th>
+                                                        <th scope="col" style="font-size:17px;">Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($tenant as $lists)
+                                                        @if ($lists->Status == 'Tenant')
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
+                                                                        target="blank" class="btn btn-sm btn-primary"
+                                                                        style="cursor:pointer;">
+                                                                        <i class="bi bi-eye"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="tbltxt">Business Name: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Style: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Address: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Email/Website/FB: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Landline: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Business Mobile No: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
+                                                                    <br>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="tbltxt">Owner Name: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Spouse: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Home Address: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Landline: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Mobile: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Tax Identification No: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
+                                                                    <br>
+                                                                    <span class="tbltxt">Tax Cert or Valid ID: </span>
+                                                                    <span
+                                                                        class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
+                                                                    <br>
+                                                                </td>
+
+                                                                <td class="text-success font-weight-bold tbltxt">
+                                                                    {{ $lists->Status }}</td>
+                                                                <td class="font-weight-bold tbltxt">
+                                                                    {{ $lists->Rental_Fee }}</td>
+                                                                <td class="font-weight-bold tbltxt">
+                                                                    {{ $lists->Due_Date }}</td>
+                                                                <td class="font-weight-bold tbltxt">
+                                                                        {{ $lists->Remarks }}</td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
 
                                     {{-- Disapproved Applications --}}
@@ -283,11 +441,12 @@
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
+                                                        <th scope="col" style="font-size:17px;">Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($list2 as $lists)
-                                                        @if ($lists->Status == 'Disapproved')
+                                                        @if ($lists->Status == 'Disapproved' || $lists->Status == 'Failed')
                                                             <tr>
                                                                 <td>
                                                                     <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
@@ -353,7 +512,11 @@
                                                                     <br>
                                                                 </td>
                                                                 <td class="font-weight-bold tbltxt text-danger">
-                                                                    {{ $lists->Status }}</td>
+                                                                    {{ $lists->Status }}
+                                                                </td>
+                                                                <td class="font-weight-bold tbltxt">
+                                                                    {{ $lists->Remarks }}
+                                                                </td>
                                                             </tr>
                                                         @endif
                                                     @endforeach

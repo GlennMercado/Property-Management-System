@@ -329,7 +329,7 @@
                                         <td>
                                             {{ $comm->id }}
                                         </td>
-                                        @if ($comm->Status == 'For Approval')
+                                        @if ($comm->Status == 'For Approval' || $comm->Status == 'For Interview')
                                             <td>
                                                 <span
                                                     class="badge badge-pill badge-primary badge-lg">{{ $comm->Status }}</span>
@@ -702,6 +702,8 @@
                                         method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
+                                            <input type="hidden" name="id" value="{{$comm->id}}">
+
                                             <h3 class="text-left">Set Interview Schedule</h3>
 
                                             <input type="text" id="interview" class="datepicker"

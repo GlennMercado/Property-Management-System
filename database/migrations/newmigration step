@@ -27,8 +27,9 @@ Migration steps
 
 10.  php artisan migrate --path=/database/migrations/2023_04_16_231547_create_hotel_other_charges_table.php
 
-11. php artisan migrate --path=/database/migrations/2023_04_09_143246_create_notifications_table.php
+11.  php artisan migrate --path=/database/migrations/2023_04_09_143246_create_notifications_table.php
 
+12.  php artisan migrate --path=/database/migrations/2023_04_17_144721_create_commercial_spaces_tenants_table.php
 
 
 php artisan migrate
