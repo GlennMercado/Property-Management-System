@@ -11,7 +11,7 @@ use App\Models\hotel_reservations;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class NVDCnotif extends Notification
+class Approved extends Notification
 {
     use Queueable;
     public $user;
@@ -37,13 +37,15 @@ class NVDCnotif extends Notification
     }
     public function toArray($notifiable)
     {
+        $link = "http://localhost:8000/my_bookings";
         $email = Auth::user()->email;
-        $notif = DB::select("SELECT Payment_Status FROM hotel_reservations WHERE email = '$email'");
+        $notif = "You have booked successfully, your payment was approved.";
         return [
             'user_id'=>$this->user['id'],
             'name'=>$this->user['name'],
             'email'=>$this->user['email'],
-            'txt'=>[$notif],
+            'txt'=>$notif,
+            'link'=>$link,
         ];
     }
 }

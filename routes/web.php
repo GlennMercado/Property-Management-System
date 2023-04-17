@@ -253,6 +253,8 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 
 	Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
+	Route::get('/approved', [App\Http\Controllers\GuestController::class, 'approved']);
+
 
 	Route::get('/notifications/count', function () {
 		$count = auth()->user()->notifications->count();

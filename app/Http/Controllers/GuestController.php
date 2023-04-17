@@ -13,6 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Notifications\NVDCnotif;
+use App\Notifications\Approved;
 use Mail;
 use App\Models\User;
 use App\Models\Notification;
@@ -28,7 +29,20 @@ class GuestController extends Controller
         if (auth()->user()) {
             $user = Auth::user();
             auth()->user()->notify(new NVDCnotif($user));
-        }       
+        } else{
+            Alert::Error('Failed', 'sommething went wrong');
+            return redirect('/welcome')->with('Error', 'Failed');
+        }      
+    }
+    public function approved()
+    {
+        if (auth()->user()) {
+            $user = Auth::user();
+            auth()->user()->notify(new Approved($user));
+        } else{
+            Alert::Error('Failed', 'sommething went wrong');
+            return redirect('/welcome')->with('Error', 'Failed');
+        }      
     }
     public function BookingEmail(){
         return view('Guest.BookingEmail');
@@ -208,9 +222,9 @@ class GuestController extends Controller
 
             if($reserve->save())
             {
+                $this->Approved();
                 Alert::Success('Success', 'Reservation submitted successfully!');
                 return redirect('/welcome')->with('Success', 'Data Saved');
-                
                 $mail = Auth::user()->email;
                 $name = Auth::user()->name;
                 $data=['name'=>$name, 'data'=>"Hello world"];
