@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use App\Notifications\NVDCnotif;
 use Mail;
 use App\Models\User;
+use App\Models\Notification;
 
 class GuestController extends Controller
 {

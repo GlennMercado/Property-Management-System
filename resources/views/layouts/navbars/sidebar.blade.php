@@ -172,20 +172,7 @@
                         <span class="nav-link-text text-light">{{ __('Inventory Management') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples3">
-                        {{-- <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('StockAvailability') }}">
-                                    <i class="text-light">•</i> {{ __('Stock Availability') }}
-                                </a>
-                            </li>
-                        </ul> --}}
-                        {{-- <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('StockAvail') }}">
-                                    <i class="text-light">•</i> {{ __('Stock Movement History') }}
-                                </a>
-                            </li>
-                        </ul> --}}
+                        
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockCount' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockCount') }}">
@@ -321,14 +308,6 @@
                     </a>
                     <div class="collapse" id="navbar-examples13">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'FinanceDashboard' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('FinanceDashboard') }}">
-                                    <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Finance Dashboard') }}
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('DailyReport') }}">
                                     <i class="bi bi-calendar2-range-fill" style="color:rgb(224, 223, 223)"></i>
@@ -337,10 +316,10 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Finance' == request()->path() ? 'act1' : '' }}">
+                            <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Finance Archives') }}
+                                    {{ __('FinanceArchives') }}
                                 </a>
                             </li>
                         </ul>
