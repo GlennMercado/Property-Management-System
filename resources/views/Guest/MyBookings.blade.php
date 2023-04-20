@@ -305,7 +305,7 @@
                 </div>
             </div>
             {{-- Commercial spaces application --}}
-            <div class="card bg-white shadow mt-2">
+            <div class="card bg-white shadow mt-2 mb-2">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <h3 class="mb-0">{{ __('Commercial Spaces Application') }}</h3>
@@ -442,7 +442,7 @@
                                                 </div>
 
                                                 <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
                                                 <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                 </p>
                                                 <input type="text" name="name_of_owner" class="form-control"
@@ -598,7 +598,7 @@
                                                     </div>
 
                                                     <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
                                                     <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                     </p>
                                                     <input type="text" name="name_of_owner" class="form-control"
@@ -702,7 +702,7 @@
                                         method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
-                                            <input type="hidden" name="id" value="{{$comm->id}}">
+                                            <input type="hidden" name="id" value="{{ $comm->id }}">
 
                                             <h3 class="text-left">Set Interview Schedule</h3>
 
@@ -988,7 +988,8 @@
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 14px;
                 background-color: #fff;
-                z-index: 1600 !important; /* adjust the z-index to be higher than the modal's z-index */
+                z-index: 1600 !important;
+                /* adjust the z-index to be higher than the modal's z-index */
                 position: absolute;
                 top: 42% !important;
                 left: 33% !important;

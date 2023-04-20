@@ -4,17 +4,124 @@
     <link rel="stylesheet" href="{{ asset('css') }}/guest_welcome.css">
     <script src="{{ asset('Javascript') }}/guest_welcome.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <div class="position-relative">
+    <div class="position-relative d-xl-none">
         <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 700px; width: 100%">
         <div class="position-absolute d-flex align-items-center text-center"
-            style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
+            style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: rgb(255, 255, 255);">
             <div class="container mx-auto">
-                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#B4B4B4">
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#ffffff">
                     Welcome to</h1>
                 <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
             </div>
         </div>
+    </div>
+    <div id="carousel" class="carousel slide mt-6 d-none d-xl-block" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active">
+                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid">
+                <div class="caption">
+                    <h1 class="image-text font-weight-light uppercase text-uppercase" style="color:#B4B4B4">
+                        Welcome to</h1>
+                    <h1 class="image-text font-weight-bold uppercase text-white text-uppercase"
+                        style="letter-spacing: 0.1em; font-size: 3.5em">NVDC
+                        CONVENTION CENTER</h1>
+                    <a class="big-button" href="" title="">INQUIRE NOW</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/hotel4.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>Come and enjoy your day!</h1>
+                    <br>
+                    <h1>NOVADECI <span class="text-green">SUITES</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        AFFORDABLE
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CLEAN
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONFORTABLE
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        SAFE
+                    </h2>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/BCourt2.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>BASKETBALL <span class="text-green">COURT</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        SPORTS EVENTS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONCERTS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONFERENCES
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        BAZAAR AND TRADE FAIR/EXHIBIT
+                    </h2>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>A place that brings you memories.</h1>
+                    <br>
+                    <h1>FUNCTION <span class="text-green">ROOMS</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CELEBRATIONS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CORPORATE MEETINGS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        PLANNING SESSION
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        TRAINING
+                    </h2>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
     </div>
     <div class="container-fluid bg-white pt-4" id="section2">
         <div class="d-flex justify-content-center">
@@ -42,8 +149,8 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('convention_center') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.png" alt="Card image cap"
-                            style="max-height: 12.3rem">
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.png"
+                            alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
@@ -59,8 +166,8 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('commercial_spaces') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png" alt="Card image cap"
-                            style="max-height: 12.3rem">
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png"
+                            alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
@@ -87,8 +194,8 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg" alt="Card image cap"
-                        style="max-height:17rem;">
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
+                        alt="Card image cap" style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
                     <div style="margin-left: 7%;">
@@ -130,50 +237,7 @@
             <img src="{{ asset('nvdcpics') }}/cspaces.jpg" class="img-fluid">
         </div>
     </div>
-    <div class="container-fluid bg-white pt-6 ">
-        <div class="card-body ">
-            <div class="d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
-                    Nvdc</p>
-            </div>
-            <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
-        </div>
-    </div>
-    <div class="container-fluid bg-white pt-4 ">
-        <div class="card-body ">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.JPG">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- section 6 -->
-    <div class="container-fluid bg-white pt-6" id="section6">
+    <div class="container-fluid bg-white pt-6">
         <div class="card-body">
             <div class="d-flex justify-content-center">
                 <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
@@ -208,8 +272,9 @@
     </div>
     <div class="notification--wrapper hide" id="openToast">
         <div class="notification--reminder ptb--20 text-center col-12">
-            <h3>Welcome to NVDC Properties! our services are open to the public - both members and non-members of NOVADECI" <a class="exit--toast"
-                    href="javascript:void(0);">Got it.</a></h3>
+            <h3>Welcome to NVDC Properties! our services are open to the public - both members and non-members of NOVADECI"
+                <a class="exit--toast" href="javascript:void(0);">Got it.</a>
+            </h3>
         </div>
     </div>
     <!-- scroll-top button -->

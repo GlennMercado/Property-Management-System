@@ -117,6 +117,7 @@ html {
     filter: blur(2px) brightness(80%);
     -webkit-filter: blur(2px) brightness(80%);
     -moz-filter: blur(2px) brightness(80%);
+    width: 100%;
 }
 
 .caption {
@@ -213,3 +214,4 @@ li.active {
     margin: 0;
     padding: 0;
 }
+/* CAROUSEL */

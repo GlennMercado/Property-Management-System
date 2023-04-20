@@ -137,7 +137,7 @@
                 </a>
                 <a href="{{ url('my_bookings') }}" class="dropdown-item">
                     <i class="bi bi-book-half"></i>
-                    <span>{{ __('My Bookings') }}</span>
+                    <span>{{ __('My Transactions') }}</span>
                 </a>
                 <a href="{{ url('complaints') }}" class="dropdown-item">
                     <i class="ni ni-single-copy-04"></i>
