@@ -66,37 +66,37 @@
                                     id="myTable">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">Action</th>
-                                            <th scope="col">Payment Status</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Gcash Account Name</th>
-                                            <th scope="col">Reservation Number</th>
-                                            <th scope="col">Guest Name</th>
-                                            <th scope="col">Mobile Number</th>
+                                            <th scope="col" style="font-size:18px;">Action</th>
+                                            <th scope="col" style="font-size:18px;">Payment Status</th>
+                                            <th scope="col" style="font-size:18px;">Amount</th>
+                                            <th scope="col" style="font-size:18px;">Gcash Account Name</th>
+                                            <th scope="col" style="font-size:18px;">Reservation Number</th>
+                                            <th scope="col" style="font-size:18px;">Guest Name</th>
+                                            <th scope="col" style="font-size:18px;">Mobile Number</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list as $lists)
+                                        @foreach ($sql as $sqls)
                                             <tr>
                                                 <td>
                                                     <button type="button" data-toggle="modal"
-                                                        data-target="#ModalView{{ $lists->id }}"
+                                                        data-target="#ModalView{{ $sqls->id }}"
                                                         class="btn btn-sm btn-primary" title="View Finance">
                                                         <i class="bi bi-eye"></i></button>
 
                                                 </td>
-                                                <td style="font-size:16px;">{{ $lists->Payment_Status }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Payment }}</td>
-                                                <td style="font-size:16px;">{{ $lists->gcash_account_name }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Booking_No }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:16px;">{{ $lists->Mobile_Num }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Payment }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->gcash_account_name }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Mobile_Num }}</td>
 
                                             </tr>
 
                                             <!-- Modal -->
                                             <!--View-->
-                                            <div class="modal fade text-left" id="ModalView{{ $lists->id }}"
+                                            <div class="modal fade text-left" id="ModalView{{ $sqls->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-md" role="document">
@@ -115,12 +115,12 @@
                                                                 <div class="col">
                                                                     <p class="text-left">Room Number: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ $lists->Room_No }}" readonly>
+                                                                        value="{{ $sqls->Room_No }}" readonly>
                                                                 </div>
                                                                 <div class="col">
                                                                     <p class="text-left">Payment Status: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ $lists->Payment_Status }}" readonly>
+                                                                        value="{{ $sqls->Payment_Status }}" readonly>
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -128,44 +128,44 @@
                                                                 <div class="col">
                                                                     <p class="text-left">Guest Name: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ $lists->Guest_Name }}" readonly>
+                                                                        value="{{ $sqls->Guest_Name }}" readonly>
                                                                 </div>
                                                                 <div class="col">
                                                                     <p class="text-left">Mobile Number: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ $lists->Mobile_Num }}" readonly>
+                                                                        value="{{ $sqls->Mobile_Num }}" readonly>
                                                                 </div>
                                                             </div>
 
-                                                            @if ($lists->Email != null)
+                                                            @if ($sqls->Email != null)
                                                                 <br>
                                                                 <p class="text-left">Email Address: </p>
                                                                 <input class="form-control" type="text"
-                                                                    value="{{ $lists->Email }}" readonly>
+                                                                    value="{{ $sqls->Email }}" readonly>
                                                             @endif
 
                                                             <br>
                                                             <p class="text-left">Amount: </p>
                                                             <input class="form-control" type="text"
-                                                                value="{{ $lists->Payment }}" readonly>
+                                                                value="{{ $sqls->Payment }}" readonly>
                                                             <br>
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <p class="text-left">Check In Date: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                                        value="{{ date('F j, Y', strtotime($sqls->Check_In_Date)) }}"
                                                                         readonly>
                                                                 </div>
                                                                 <div class="col">
                                                                     <p class="text-left">Check Out Date: </p>
                                                                     <input class="form-control" type="text"
-                                                                        value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                                        value="{{ date('F j, Y', strtotime($sqls->Check_Out_Date)) }}"
                                                                         readonly>
                                                                 </div>
                                                             </div>
                                                             <br>
                                                             <p class="text-left">Proof of Payment </p>
-                                                            <img src="{{ $lists->Proof_Image }}" class="card-img-top" />
+                                                            <img src="{{ $sqls->Proof_Image }}" class="card-img-top" />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-outline-danger"
@@ -180,7 +180,7 @@
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="myTables">
+                                    <table class="table align-items-center table-flush" style="align-items:center" id="myTables">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th></th>

@@ -59,7 +59,7 @@
                                         <th scope="col" style="font-size:16px;">Item Description</th>
                                         <th scope="col" style="font-size:16px;">Available Stock</th>
                                         <th scope="col" style="font-size:16px;">Stock Level</th>
-                                        <th scope="col" style="font-size:16px;">All Stock</th>
+                                        <th scope="col" style="font-size:16px;">Yearly Stock</th>
                                         <th scope="col" style="font-size:16px;">Price</th>
                                         <th scope="col" style="font-size:16px;">Stock Alert</th>
                                     </tr>
