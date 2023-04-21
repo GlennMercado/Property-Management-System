@@ -61,7 +61,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <div class="col-md-12 position-absolute container-fluid d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus " data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary mb-4" data-toggle="modal"
                                     data-target="#exampleModal">
                                     Add
                                 </button>
@@ -122,7 +122,7 @@
                                                 <td style = "font-size:16px;">{{ $lists4->payee }}</td>
                                                 <td style = "font-size:16px;">{{ $lists4->particular }}</td>
                                                 <td style = "font-size:16px;">{{ $lists4->eventdate }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->amount }}</td>
+                                                <td style = "font-size:16px;">₱ {{ $lists4->amount }}</td>
                                                 <td style = "font-size:16px;">{{ $lists4->remark }}</td>
                                                 <td style = "font-size:16px;">{{ $lists4->debit }}</td>
                                             </tr>

@@ -69,7 +69,7 @@
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples3">
                         <i class="bi bi-pc-display" style="color:rgb(224, 223, 223)"></i>
-                        <span class="nav-link-text text-light">{{ __('Front Desk') }}</span>
+                        <span class="nav-link-text text-light">{{ __('Sales & Marketing') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">
