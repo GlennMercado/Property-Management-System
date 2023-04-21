@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function(){
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
-		
+	Route::get('AdminNotifications', [App\Http\Controllers\AdminController::class, 'AdminNotif'])->name('AdminNotifications');
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -66,6 +66,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
+
+	Route::get('/notifications/count', function () {
+		$count = auth()->user()->notifications->count();
+		return response()->json(['count' => $count]);
+	});
 	// //Room Management
 	// Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 

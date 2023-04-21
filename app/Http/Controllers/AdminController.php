@@ -64,7 +64,9 @@ class AdminController extends Controller
             'hotel_sum',
             'commercialspace_sum'));
     }
-
+    public function AdminNotif(){
+        return view('Admin.pages.AdminNotifications');
+    }
     public function Calendar(Request $request)
     {
         $room = DB::select('SELECT * FROM novadeci_suites');

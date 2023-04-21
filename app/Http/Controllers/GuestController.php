@@ -17,13 +17,11 @@ use App\Notifications\Success;
 use Mail;
 use App\Models\User;
 use App\Models\Notification;
-use Brian2694\Toastr\Facades\Toastr;
 
 class GuestController extends Controller
 {
     public function welcome()
     {   
-        Toastr::success('The record has been saved successfully!', 'Success', ['positionClass' => 'toast-top-right']);
         return view('Guest.guest_welcome');
     }
     // public function notify()
@@ -41,16 +39,6 @@ class GuestController extends Controller
         if (auth()->user()) {
             $user = Auth::user();
             auth()->user()->notify(new Booked($user));
-        } else{
-            Alert::Error('Failed', 'sommething went wrong');
-            return redirect('/welcome')->with('Error', 'Failed');
-        }      
-    }
-    public function success()
-    {
-        if (auth()->user()) {
-            $user = Auth::user();
-            auth()->user()->notify(new Success($user));
         } else{
             Alert::Error('Failed', 'sommething went wrong');
             return redirect('/welcome')->with('Error', 'Failed');
@@ -246,7 +234,6 @@ class GuestController extends Controller
 
             if($reserve->save())
             {
-                Toastr::success('The record has been saved successfully!', 'Success', ['positionClass' => 'toast-top-right']);
                 $this->booked();
                 return redirect('/welcome')->with('Success', 'Data Saved');
                 $mail = Auth::user()->email;
