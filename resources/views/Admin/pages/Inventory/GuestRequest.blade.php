@@ -22,14 +22,14 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before Starting, See
+                                <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Before Starting, See
                                     To It That All Inventory Are In The Storage Area</h4>
                             </div>
                         </div>
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush datatable datatable-Stock">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" style="font-size:16px;">Action</th>
@@ -126,6 +126,18 @@
             text-transform: uppercase;
         }
     </style>
+    <!-- Script tag for datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $("#stats").change(function() {

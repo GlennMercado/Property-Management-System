@@ -32,12 +32,12 @@
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
-                    <div class="card-header border-0">
+                    <div class="card-header border-0"> 
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before starting, see
-                                    to It that all inventory are in the Storage Area</h4><br>
-                                    <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Distribute Linen and Guest Supply Before the Availability of the room.</h4>
+                                <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Before starting, see
+                                    to It that all inventory are in the Storage Area</h4>
+                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Distribute Linen and Guest Supply Before the Availability of the room.</h4>
                             </div>
                             <div class="col">
                                 <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus" data-toggle="modal"
@@ -57,10 +57,10 @@
                                         <th scope="col" style="font-size:16px;">Product Name</th>
                                         <th scope="col" style="font-size:16px;">Category</th>
                                         <th scope="col" style="font-size:16px;">Item Description</th>
-                                        <th scope="col" style="font-size:16px;">All Stock</th>
-                                        <th scope="col" style="font-size:16px;">Price</th>
                                         <th scope="col" style="font-size:16px;">Available Stock</th>
                                         <th scope="col" style="font-size:16px;">Stock Level</th>
+                                        <th scope="col" style="font-size:16px;">Yearly Stock</th>
+                                        <th scope="col" style="font-size:16px;">Price</th>
                                         <th scope="col" style="font-size:16px;">Stock Alert</th>
                                     </tr>
                                 </thead>
@@ -82,10 +82,10 @@
                                             <td style="font-size:14px;">{{ $lists->name }}</td>
                                             <td style="font-size:14px;">{{ $lists->category }}</td>
                                             <td style="font-size:14px;">{{ $lists->description }}</td>
-                                            <td style="font-size:14px;">{{ $lists->allstock }}</td>
-                                            <td style="font-size:14px;">{{ $lists->price }}</td>
                                             <td style="font-size:14px;">{{ $lists->total }}</td>
                                             <td style="font-size:14px;">{{ $lists->Stock_Level }}</td>
+                                            <td style="font-size:14px;">{{ $lists->allstock }}</td>
+                                            <td style="font-size:14px;">{{ $lists->price }}</td>
                                             @if ($lists->total <= $lists->Stock_Level)
                                                 <td style="font-size:20px;"><i class="bi bi-exclamation-triangle-fill"
                                                         style="color:red;"></i></td>

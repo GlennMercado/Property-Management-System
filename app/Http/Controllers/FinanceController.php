@@ -125,7 +125,7 @@ class FinanceController extends Controller
          $output_sum = finance_2_reports::sum('outputvat');
 
         if ($sql) {
-            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list, 'list2'=>$list2], compact('amount_sum', 'cash_sum', 'unearned_sum', 'bank_sum', 'cheque_sum', 'basketball_sum', 
+            return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list, 'list2'=>$list2, 'sql'=>$sql], compact('amount_sum', 'cash_sum', 'unearned_sum', 'bank_sum', 'cheque_sum', 'basketball_sum', 
                         'otherincome_sum', 'parking_sum', 'managementfee_sum', 'event_sum', 'hotel_sum', 'commercialspace_sum', 'output_sum'));
 
         } 
