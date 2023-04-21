@@ -146,9 +146,9 @@
                                 </div>
                             </div> --}}
                             <br>
-                            <p>Spouse <span class="text-danger">*</span> </p>
+                            <p>Spouse
                             <input type="text" name="spouse" class="form-control" placeholder="Enter Spouse"
-                                maxlength="64" required>
+                                maxlength="64" >
                             <br>
                             <p>Home Address <span class="text-danger">*</span> </p>
                             <input type="text" name="home_address" class="form-control" placeholder="Enter Home Address"

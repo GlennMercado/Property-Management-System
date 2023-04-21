@@ -52,7 +52,7 @@
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable">
-                                        <thead class="thead-light">
+                                        <thead>
                                         <tr>
                                     <th scope="col" style="font-size:16px;">Room Number</th>
                                     <th scope="col" style="font-size:16px;">Item Name</th>

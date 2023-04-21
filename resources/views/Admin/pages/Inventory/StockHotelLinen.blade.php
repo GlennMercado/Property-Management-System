@@ -3,198 +3,194 @@
 @section('content')
     @include('layouts.headers.cards')
     <div class="container-fluid mt--8">
-        <div class="row">
-            <div class="row align-items-center py-4">
-                <div class="col-lg-12 col-12">
-                    <h6 class="h2 text-dark d-inline-block mb-0">Hotel Linen Request</h6>
-                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item">Inventory</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Hotel Linen Request
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
+        <div class="row align-items-center py-4">
+            <div class="col-lg-12 col-12">
+                <h6 class="h2 text-dark d-inline-block mb-0">Hotel Linen Request</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item">Inventory</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Hotel Linen Request
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h4 class="mb-0" style="color:#6C6C6C; font-size:14px;">Instructions: Before Starting, See
-                                    To It That All Inventory Are In The Storage Area</h4>
-                            </div>
+        </div>
+        <div class="col-xl">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Before Starting, See
+                                To It That All Inventory Are In The Storage Area</h4>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
-                                <thead class="thead-light">
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="font-size:16px;">Action</th>
+                                    <th scope="col" style="font-size:16px;">Room Number</th>
+                                    <th scope="col" style="font-size:16px;">Item Name</th>
+                                    <th scope="col" style="font-size:16px;">Discrepancy</th>
+                                    <th scope="col" style="font-size:16px;">Quantity Requested</th>
+                                    <th scope="col" style="font-size:16px;">Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($list as $lists)
                                     <tr>
-                                        <th scope="col" style="font-size:16px;">Action</th>
-                                        <th scope="col" style="font-size:16px;">Room Number</th>
-                                        <th scope="col" style="font-size:16px;">Item Name</th>
-                                        <th scope="col" style="font-size:16px;">Discrepancy</th>
-                                        <th scope="col" style="font-size:16px;">Quantity Requested</th>
-                                        <th scope="col" style="font-size:16px;">Status</th>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
+                                                data-target="#ModalView{{ $lists->productid }}"><i class="bi bi-eye"
+                                                    title="View Linen"></i></button>
+                                            <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
+                                                data-target="#update{{ $lists->id }}"><i class="bi bi-pencil-square"
+                                                    title="Update Linen"></i></button>
+                                        </td>
+                                        <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                        <td style="font-size:14px;">{{ $lists->name }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Discrepancy }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Quantity_Requested }}</td>
+                                        <td style="font-size:14px;">{{ $lists->Status }}</td>
                                     </tr>
-                                </thead>
+                                    <!-- Modal -->
+                                    <!--View-->
+                                    <div class="modal fade text-left" id="ModalView{{ $lists->productid }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalCreate" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-left display-4" id="exampleModalCreate">
+                                                        View
+                                                        Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Dito Yung Code -->
 
-                                <tbody>
-                                    @foreach ($list as $lists)
-                                        <tr>
-                                            <td>
-                                                <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
-                                                    data-target="#ModalView{{ $lists->productid }}"><i class="bi bi-eye"
-                                                        title="View Linen"></i></button>
-                                                <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
-                                                    data-target="#update{{ $lists->id }}"><i class="bi bi-pencil-square"
-                                                        title="Update Linen"></i></button>
-                                            </td>
-                                            <td style="font-size:14px;">{{ $lists->Room_No }}</td>
-                                            <td style="font-size:14px;">{{ $lists->name }}</td>
-                                            <td style="font-size:14px;">{{ $lists->Discrepancy }}</td>
-                                            <td style="font-size:14px;">{{ $lists->Quantity_Requested }}</td>
-                                            <td style="font-size:14px;">{{ $lists->Status }}</td>
-                                        </tr>
-                                        <!-- Modal -->
-                                        <!--View-->
-                                        <div class="modal fade text-left" id="ModalView{{ $lists->productid }}"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCreate"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalCreate">
-                                                            View
-                                                            Details</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <!-- Dito Yung Code -->
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-failed"
-                                                            data-dismiss="modal">Close</button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-failed"
+                                                        data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--Modal Edit-->
-                                        <!--MODAL FOR Update-->
-                                        <div class="modal fade" id="update{{ $lists->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <form method="POST" action="{{ url('/linen_request_approval') }}"
-                                                    enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1>Update Linen</h1>
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="Stockdetails">Room Number </label>
-                                                                    <input type="number" class="form-control"
-                                                                        value="{{ $lists->Room_No }}"
-                                                                        placeholder="Enter number..." readonly>
-                                                                    <input type="number" class="form-control"
-                                                                        value="{{ $lists->Room_No }}"
-                                                                        placeholder="Enter number..." name="roomno"
-                                                                        hidden>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="Stockdetails">Item Name </label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="name" value="{{ $lists->name }}"
-                                                                        placeholder="Enter number..." readonly>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md pt-2">
-                                                                    <label for="Stockdetails">Quantity Owned </label>
-                                                                    <input type="number" class="form-control"
-                                                                        value="{{ $lists->Quantity }}"
-                                                                        placeholder="Enter number..." readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md pt-2">
-                                                                    <label for="Stockdetails">Requested Quantity </label>
-                                                                    <input type="number" class="form-control"
-                                                                        name="Quantity_Requested"
-                                                                        value="{{ $lists->Quantity_Requested }}"
-                                                                        placeholder="Enter number..." readonly>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md pt-2">
-                                                                    <label>Status </label>
-                                                                    <select class="form-control" name="status"
-                                                                        id="stats" required>
-                                                                        <option value="" selected="true"
-                                                                            disabled="disabled">
-                                                                            Select</option>
-                                                                        <option value="Approved">Approved</option>
-                                                                        <option value="Denied">Denied</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row" style="display:none;" id="qty">
-                                                                <div class="col">
-                                                                    <label for="Stockdetails">Quantity to Give </label>
-                                                                    <input type="number" class="form-control qt2"
-                                                                        name="quantity" placeholder="Enter number..."
-                                                                        value="0">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md">
-                                                                    <div class="col">
-                                                                        <input class="form-control" type="text"
-                                                                            name="productid"
-                                                                            value="{{ $lists->productid }}" hidden>
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $lists->id }}">
-                                                                        <input type="hidden" name="attendant"
-                                                                            value="{{ $lists->Attendant }}">
-                                                                        <input type="hidden" name="category"
-                                                                            value="{{ $lists->Category }}">
-                                                                        <input type="hidden" name="date_requested"
-                                                                            value="{{ $lists->Date_Requested }}">
-                                                                        <input type="hidden" name="qty_owned"
-                                                                            value="{{ $lists->Quantity }}">
-                                                                        <input type="hidden" name="discrepancy"
-                                                                            value="{{ $lists->Discrepancy }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-failed" data-dismiss="modal">Close</a>
-                                                            <input type="submit" name="update" value="Update"
-                                                                class="btn btn-success" />
-                                                        </div>
-
+                                    </div>
+                                    <!--Modal Edit-->
+                                    <!--MODAL FOR Update-->
+                                    <div class="modal fade" id="update{{ $lists->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <form method="POST" action="{{ url('/linen_request_approval') }}"
+                                                enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1>Update Linen</h1>
                                                     </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                                    <div class="modal-body">
 
-                                        <!--Table Continue-->
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label for="Stockdetails">Room Number </label>
+                                                                <input type="number" class="form-control"
+                                                                    value="{{ $lists->Room_No }}"
+                                                                    placeholder="Enter number..." readonly>
+                                                                <input type="number" class="form-control"
+                                                                    value="{{ $lists->Room_No }}"
+                                                                    placeholder="Enter number..." name="roomno" hidden>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="Stockdetails">Item Name </label>
+                                                                <input type="text" class="form-control" name="name"
+                                                                    value="{{ $lists->name }}"
+                                                                    placeholder="Enter number..." readonly>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md pt-2">
+                                                                <label for="Stockdetails">Quantity Owned </label>
+                                                                <input type="number" class="form-control"
+                                                                    value="{{ $lists->Quantity }}"
+                                                                    placeholder="Enter number..." readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md pt-2">
+                                                                <label for="Stockdetails">Requested Quantity </label>
+                                                                <input type="number" class="form-control"
+                                                                    name="Quantity_Requested"
+                                                                    value="{{ $lists->Quantity_Requested }}"
+                                                                    placeholder="Enter number..." readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md pt-2">
+                                                                <label>Status </label>
+                                                                <select class="form-control" name="status"
+                                                                    id="stats" required>
+                                                                    <option value="" selected="true"
+                                                                        disabled="disabled">
+                                                                        Select</option>
+                                                                    <option value="Approved">Approved</option>
+                                                                    <option value="Denied">Denied</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="display:none;" id="qty">
+                                                            <div class="col">
+                                                                <label for="Stockdetails">Quantity to Give </label>
+                                                                <input type="number" class="form-control qt2"
+                                                                    name="quantity" placeholder="Enter number..."
+                                                                    value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md">
+                                                                <div class="col">
+                                                                    <input class="form-control" type="text"
+                                                                        name="productid" value="{{ $lists->productid }}"
+                                                                        hidden>
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $lists->id }}">
+                                                                    <input type="hidden" name="attendant"
+                                                                        value="{{ $lists->Attendant }}">
+                                                                    <input type="hidden" name="category"
+                                                                        value="{{ $lists->Category }}">
+                                                                    <input type="hidden" name="date_requested"
+                                                                        value="{{ $lists->Date_Requested }}">
+                                                                    <input type="hidden" name="qty_owned"
+                                                                        value="{{ $lists->Quantity }}">
+                                                                    <input type="hidden" name="discrepancy"
+                                                                        value="{{ $lists->Discrepancy }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-failed" data-dismiss="modal">Close</a>
+                                                        <input type="submit" name="update" value="Update"
+                                                            class="btn btn-success" />
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--Table Continue-->
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -202,7 +198,6 @@
     </div>
 
 
-    </div>
     </div>
 
     <!--Add Stock-->
@@ -353,8 +348,7 @@
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
         });
-    </script>
-    <script>
+        
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 

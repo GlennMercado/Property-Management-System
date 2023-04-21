@@ -22,7 +22,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                                 <div class="col">
-                                    <h5 class="mb-0" style="font-size:14px;">Instructions: Before
+                                    <h5 class="mb-0" style="color:#e40808;font-size:14px;">Instructions: Before
                                         starting,
                                         see to It that all inventory are in the Storage Area</h5><br><br>
                                 </div>
