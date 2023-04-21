@@ -49,20 +49,24 @@
                                         <input type="email" class="form-control" name="email" required>
 
                                         <label class="text_color">Password</label>
-
-                                        <div class="input-group input-group-alternative">
+                                        <div class="input-group">
                                             <input class="form-control" type="password" name="password" id="password"
                                                 required>
-
                                             <div class="input-group-append">
-                                                <span class="input-group-text" id="toggle-password"
-                                                    style="cursor:pointer;"><i class="fa fa-eye-slash"></i></span>
+                                                <span class="input-group-text toggle-password"><i
+                                                        class="fas fa-eye-slash"></i></span>
                                             </div>
                                         </div>
 
                                         <label class="text_color">Confirm Password</label>
-                                        <input class="form-control" type="password" name="password_confirmation"
-                                            id="confirm_password" required>
+                                        <div class="input-group">
+                                            <input class="form-control" type="password" name="password_confirmation"
+                                                id="confirm_password" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text toggle-password"><i
+                                                        class="fas fa-eye-slash"></i></span>
+                                            </div>
+                                        </div>
 
                                         <label class="text_color">User Type</label>
                                         <select class="form-control" name="User_Type" required>
@@ -312,14 +316,15 @@
                                                                             @endforeach
                                                                             <!-- <option value="Housekeeper">Housekeeper</option> -->
                                                                             <option value="Guest">Guest</option>
-                                                                            <option value="Sales & Marketing">Sales &
+                                                                            <option value="Sales and Marketing">Sales and
                                                                                 Marketing
                                                                             </option>
                                                                             <option value="Finance">Finance</option>
                                                                             <option value="Front Desk">Front Desk</option>
                                                                             <option value="Operations Manager">Operations
                                                                                 Manager</option>
-                                                                            <option value="Inventory">Inventory</option>
+                                                                            <option value="Inventory Manager">Inventory
+                                                                                Manager</option>
                                                                         </select>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -526,28 +531,33 @@
             </div>
         </div>
         <script>
-            // Password toggle
-        var passwordToggle = document.getElementById('toggle-password');
-        var password = document.getElementById('password');
+            const togglePassword = document.querySelectorAll('.toggle-password');
 
-        passwordToggle.addEventListener('click', function() {
-            var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            passwordToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
-                '<i class="fa fa-eye"></i>';
-        });
+            togglePassword.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    const password = toggle.parentElement.previousElementSibling;
+                    if (password.type === 'password') {
+                        password.type = 'text';
+                        toggle.innerHTML = '<i class="fas fa-eye"></i>';
+                    } else {
+                        password.type = 'password';
+                        toggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                    }
+                    this.classList.toggle('active');
+                });
+            });
 
-        // Confirm password toggle
-        var confirmToggle = document.getElementById('toggle-confirm-password');
-        var confirmPassword = document.getElementById('confirm-password');
+            // Confirm password toggle
+            var confirmToggle = document.getElementById('toggle-confirm-password');
+            var confirmPassword = document.getElementById('confirm-password');
 
-        confirmToggle.addEventListener('click', function() {
-            var type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-            confirmPassword.setAttribute('type', type);
-            confirmToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
-                '<i class="fa fa-eye"></i>';
-        });
-        
+            confirmToggle.addEventListener('click', function() {
+                var type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPassword.setAttribute('type', type);
+                confirmToggle.innerHTML = type === 'password' ? '<i class="fa fa-eye-slash"></i>' :
+                    '<i class="fa fa-eye"></i>';
+            });
+
             // var x = document.getElementById("selectbox");
             $.noConflict();
             jQuery(document).ready(function($) {

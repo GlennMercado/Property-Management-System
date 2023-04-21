@@ -10,6 +10,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\Booked;
+use App\Notifications\Success;
+use Mail;
+use App\Models\User;
+use App\Models\Notification;
+
 class HotelController extends Controller
 {
    /**
@@ -126,7 +133,18 @@ class HotelController extends Controller
 
         
     }
-
+    // SPECIFY THE USER
+    public function success()
+    {
+        if (auth()->user()) {
+            $user = Auth::user();
+            auth()->user()->notify(new Success($user));
+        } else{
+            Alert::Error('Failed', 'sommething went wrong');
+            return redirect('/welcome')->with('Error', 'Failed');
+        }      
+    }
+    // 
     public function update_payment($id, $no, $check)
     {
         $bookno = $id;
@@ -170,7 +188,7 @@ class HotelController extends Controller
                 $cash = $finance_amount / $gross;
                 $vat = $outvat * $cash;
 
-
+                $this->success();
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
 
@@ -179,8 +197,6 @@ class HotelController extends Controller
 
                 DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
                 values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
-
-        
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
@@ -196,7 +212,6 @@ class HotelController extends Controller
             return redirect('HotelReservationForm')->with('Success', 'Data Saved');
         }    
     }
-
     public function update_booking_status($id, $no, $check, $stats)
     {
             $bookno = $id;
@@ -237,7 +252,6 @@ class HotelController extends Controller
         
                         DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                         values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
-
                         Alert::Success('Success', 'Reservation successfully updated!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
                     }

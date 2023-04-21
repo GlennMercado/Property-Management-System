@@ -48,7 +48,7 @@
                     </a>
                 </div>
 
-                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                <a href="{{ url('AdminNotifications') }}" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
         </li>
         <ul class="navbar-nav align-items-center d-none d-md-flex">

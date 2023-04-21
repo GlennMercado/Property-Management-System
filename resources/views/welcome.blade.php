@@ -1,19 +1,127 @@
 @extends('layouts.welcome_layout', ['class' => 'bg-light'])
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css') }}/guest_welcome.css">
+    <script src="{{ asset('Javascript') }}/guest_welcome.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <div class="position-relative">
+    <div class="position-relative d-xl-none">
         <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" style="max-height: 700px; width: 100%">
         <div class="position-absolute d-flex align-items-center text-center"
-            style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: white;">
+            style="top:0; left:0; right:0; bottom:0; background-color: rgba(0, 0, 0, 0.5); color: rgb(255, 255, 255);">
             <div class="container mx-auto">
-                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#B4B4B4">
+                <h1 class="image-text font-weight-light uppercase text-uppercase display-4 pt-6 " style="color:#ffffff">
                     Welcome to</h1>
                 <h1 class="image-text font-weight-light uppercase text-white text-uppercase display-1 pb-4">Novadeci
                     CONVENTION CENTER</h1>
             </div>
         </div>
+    </div>
+    <div id="carousel" class="carousel slide mt-6 d-none d-xl-block" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active">
+                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid">
+                <div class="caption">
+                    <h1 class="image-text font-weight-light uppercase text-uppercase" style="color:#B4B4B4">
+                        Welcome to</h1>
+                    <h1 class="image-text font-weight-bold uppercase text-white text-uppercase"
+                        style="letter-spacing: 0.1em; font-size: 3.5em">NVDC
+                        CONVENTION CENTER</h1>
+                    <a class="big-button" href="" title="">INQUIRE NOW</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/hotel4.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>Come and enjoy your day!</h1>
+                    <br>
+                    <h1>NOVADECI <span class="text-green">SUITES</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        AFFORDABLE
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CLEAN
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONFORTABLE
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        SAFE
+                    </h2>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/BCourt2.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>BASKETBALL <span class="text-green">COURT</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        SPORTS EVENTS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONCERTS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CONFERENCES
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        BAZAAR AND TRADE FAIR/EXHIBIT
+                    </h2>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" class="img-fluid" alt="">
+                <div class="caption">
+                    <h1>A place that brings you memories.</h1>
+                    <br>
+                    <h1>FUNCTION <span class="text-green">ROOMS</span></h1>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CELEBRATIONS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        CORPORATE MEETINGS
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        PLANNING SESSION
+                    </h2>
+                    <h2>
+                        <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
+                        TRAINING
+                    </h2>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
     </div>
     {{-- <img class="img" src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" style="width:100%;">
         <h2 class="image-text font-weight-light uppercase">Welcome to</h2>
@@ -91,8 +199,8 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('convention_center') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.png" alt="Card image cap"
-                            style="max-height: 12.3rem">
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/ConventionCenter.png"
+                            alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
@@ -109,8 +217,8 @@
             <div class="col-md-3">
                 <div class="image-container">
                     <a href="{{ url('commercial_spaces') }}">
-                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png" alt="Card image cap"
-                            style="max-height: 12.3rem">
+                        <img class="card-img-top" src="{{ asset('nvdcpics') }}/CommercialSpaces.png"
+                            alt="Card image cap" style="max-height: 12.3rem">
                         <div class="image-overlay card-img-top" style="max-height: 12.3rem">
                             <p>View</p>
                         </div>
@@ -138,8 +246,8 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg" alt="Card image cap"
-                        style="max-height:17rem;">
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
+                        alt="Card image cap" style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
                     <div style="margin-left: 7%;">
@@ -167,80 +275,7 @@
             </div>
         </div>
     </div>
-    <!-- section 4 -->
-    <!-- <div class="container-fluid bg-white pt-6">
-                        <div class="card-body d-flex justify-content-center">
-                            <div class="container">
-                                <div class="row g-2">
-                                    <div class="col-3 ">
-                                        <i class="bi bi-people-fill d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                        <p class="uppercase d-flex justify-content-center txt txt4">Accomodate Guests</p>
-                                        <p class="uppercase d-flex justify-content-center txt txt5">2,500</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <i class="fas fa-bed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                        <p class="uppercase d-flex justify-content-center txt txt4">Suite Rooms</p>
-                                        <p class="uppercase d-flex justify-content-center txt txt5">17</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <i class="fas fa-door-closed d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                        <p class="uppercase d-flex justify-content-center txt txt4">Function Rooms</p>
-                                        <p class="uppercase d-flex justify-content-center txt txt5">5</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <i class="fas fa-building d-flex justify-content-center fa-4x" style="color:#159D9D;"></i>
-                                        <p class="uppercase d-flex justify-content-center txt txt4">Convention center</p>
-                                        <p class="uppercase d-flex justify-content-center txt txt5">1</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  -->
-    <!-- section 5 -->
-    <div class="container-fluid bg-white pt-6 ">
-        <div class="card-body ">
-            <div class="d-flex justify-content-center">
-                <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
-                    Nvdc</p>
-            </div>
-            <p class="pt-5 d-flex justify-content-center text-uppercase txt txt2">novadeci properties</p>
-        </div>
-    </div>
-    <div class="container-fluid bg-white pt-4 ">
-        <div class="card-body ">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/BCourt1.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/hotel12.JPG">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/FunctionRoom7.jpg">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block imgslider w-100" src="{{ asset('nvdcpics') }}/cspaces2.jpg">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- section 6 -->
-    <div class="container-fluid bg-white pt-6" id="section6">
+    <div class="container-fluid bg-white pt-6">
         <div class="card-body">
             <div class="d-flex justify-content-center">
                 <p class="pt-3 text-uppercase position-absolute align-items-center txt1 text-light txt d-none d-lg-block">
@@ -273,322 +308,29 @@
             </div>
         </div>
     </div>
+    <div class="notification--wrapper hide" id="openToast">
+        <div class="notification--reminder ptb--20 text-center col-12">
+            <h3>Welcome to NVDC Properties! our services are open to the public - both members and non-members of NOVADECI"
+                <a class="exit--toast" href="javascript:void(0);">Got it.</a>
+            </h3>
+        </div>
+    </div>
     <!-- scroll-top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
-    <style>
-        .img {
-            height: 700px;
-            object-fit: cover;
-            filter: brightness(50%)
-        }
-
-        .image-text {
-            /* position: absolute;
-                                                                                                        top: 44%;
-                                                                                                        left: 50%;
-                                                                                                        transform: translate(-50%, -50%);
-                                                                                                        color: white;
-                                                                                                        font-size: 36px;
-                                                                                                        font-weight: bold;
-                                                                                                        text-align: center;
-                                                                                                        filter: brightness(50%); */
-            font-family: montserrat;
-            margin-bottom: -1rem;
-        }
-
-        .image-text2 {
-            /* position: absolute;
-                                                                                                        top: 50%;
-                                                                                                        left: 50%;
-                                                                                                        transform: translate(-50%, -50%);
-                                                                                                        color: white;
-                                                                                                        font-weight: bold;
-                                                                                                        text-align: center;
-                                                                                                        font-size: 65px;
-                                                                                                        letter-spacing: 1px; */
-            font-family: montserrat;
-        }
-
-        .group {
-            display: flex;
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            letter-spacing: 1px;
-            font-family: montserrat;
-        }
-
-        .group p {
-            text-transform: uppercase;
-            font-size: 15px;
-        }
-
-        .tab {
-            top: 60%;
-        }
-
-        .card {
-            background: rgba(240, 240, 240, 0.7)
-        }
-
-        a .p1 {
-            text-decoration: none;
-            color: white;
-        }
-
-        a .p1:hover {
-            color: #B4B4B4;
-            transition: 0.3s ease-in-out;
-        }
-
-        .txt {
-            font-family: montserrat;
-        }
-
-        .txt1 {
-            font-size: 60px;
-        }
-
-        .txt2 {
-            color: #000000;
-            filter: brightness(100%);
-            font-size: 30px;
-
-        }
-
-        .txt3 {
-            font-size: 13px;
-        }
-
-        .txt4 {}
-
-        .txt5 {
-            width: 200px;
-        }
-
-        .imgslider {
-            max-height: 30rem;
-            object-fit: cover;
-        }
-
-        /* overlay */
-        .image-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* black with 50% opacity */
-            color: white;
-            text-align: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
-
-        img {
-            transition: 0.4s ease-in-out;
-        }
-
-        .image-container:hover .image-overlay {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .image-container:hover img {
-            transform: scale(1.2);
-        }
-
-        .image-overlay p {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            font-weight: bold;
-            font-family: sans-serif;
-            letter-spacing: 1px;
-        }
-
-        /* scroll-top-button */
-        #myBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: #484848;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 4px;
-            opacity: 0.5;
-        }
-
-        #myBtn:hover {
-            background-color: #000000;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        @media (max-width: 600px) {
-            .image-text {
-                font-size: 20px;
-                margin-top: 15px;
-                filter: brightness(80%);
-            }
-
-            .image-text2 {
-                font-size: 25px;
-                white-space: nowrap;
-            }
-
-            .group {
-                padding-bottom: 50px;
-                padding-left: 10px;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            .group p {
-                font-size: 6px;
-            }
-
-            .txt5 {
-                padding-right: 185px;
-            }
-
-            #myBtn {
-                display: none;
-                position: fixed;
-                bottom: 20px;
-                right: 30px;
-                z-index: 99;
-                font-size: 18px;
-                border: none;
-                outline: none;
-                background-color: #484848;
-                color: white;
-                cursor: pointer;
-                padding: 15px;
-                border-radius: 4px;
-                opacity: 0.5;
-            }
-
-            #myBtn:hover {
-                background-color: #000000;
-            }
-
-            .btn1 {
-                top: 10px;
-            }
-        }
-    </style>
+    <div class="container mt--5 pb-5"></div>
     <script>
-        // code for scroll-top button
-        let mybutton = document.getElementById("myBtn");
-        window.onscroll = function() {
-            scrollFunction()
-        };
+        $(document).ready(function() {
+            $("#openToast").toggleClass("hide view");
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
+            $('a.exit--toast').click(function() {
+                $("#openToast").fadeOut(1000, 0);
+            });
 
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-
-        // dropdown count
-        // get the dropdown button and the input fields
-        const dropdownButton = document.getElementById('dropdownMenuButton');
-        const adultInput = document.getElementById('input1');
-        const childInput = document.getElementById('input2');
-        const infantInput = document.getElementById('input3');
-
-        // add event listeners to the plus and minus buttons
-        const buttons = document.querySelectorAll('.btn-count, .btn-count2');
-        buttons.forEach(button => {
-            button.addEventListener('click', event => {
-                // prevent default form submission
-                event.preventDefault();
-
-                // get the parent element of the clicked button
-                const parent = event.target.parentElement.parentElement;
-
-                // get the label and current value of the input field
-                const label = parent.querySelector('label').textContent;
-                let value = parseInt(label.split(': ')[1]);
-
-                // increment or decrement the value depending on which button was clicked
-                // if (event.target.classList.contains('btn-success')) {
-                //     value++;
-                // } else if (event.target.classList.contains('btn-danger')) {
-                //     value--;
-                // }
-                if (event.target.classList.contains('btn-count')) {
-                    value++;
-                    if (value > 4) {
-                        document.getElementById("btn-count").disabled = true;
-                    }
-                } else if (event.target.classList.contains('btn-count2')) {
-                    value--;
-                    if (value < 0) {
-                        document.getElementById("btn-count2").disabled = true;
-                    }
-                } else {
-                    document.getElementById("btn-count").disabled = false;
-                    document.getElementById("btn-count2").disabled = false;
+            $(document).on('click', function(e) {
+                if ($(e.target).closest(".notification--reminder").length === 0) {
+                    $("#openToast").fadeOut(1000, 0);
                 }
-                // update the label and dropdown button text
-                parent.querySelector('label').textContent = `${label.split(': ')[0]}: ${value}`;
-                dropdownButton.querySelectorAll('span').forEach(span => {
-                    if (span.textContent.includes(label.split(': ')[0])) {
-                        span.textContent = `${label.split(': ')[0]}: ${value}`;
-                    }
-                });
             });
         });
-        let count = 0;
-        const countElement = document.getElementById('count');
-
-        // validation of 4 counts
-        function countfield() {
-            var adultCount = parseInt(document.getElementById('adultLabel').innerText.split(':')[1]);
-            var childCount = parseInt(document.getElementById('childLabel').innerText.split(':')[1]);
-            var infantCount = parseInt(document.getElementById('infantLabel').innerText.split(':')[1]);
-            return adultCount + childCount + infantCount;
-        }
-
-        function increment(field) {
-
-            if (countfield() > 3) {
-                alert('Total number of passengers cannot exceed 4');
-            }
-        }
-
-        function decrement(field) {
-
-        }
     </script>
 @endsection

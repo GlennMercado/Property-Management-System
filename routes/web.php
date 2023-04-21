@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function(){
 //Admin
 Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
-		
+	Route::get('AdminNotifications', [App\Http\Controllers\AdminController::class, 'AdminNotif'])->name('AdminNotifications');
 	//Room Management
 	Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -66,6 +66,11 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
+
+	Route::get('/notifications/count', function () {
+		$count = auth()->user()->notifications->count();
+		return response()->json(['count' => $count]);
+	});
 	// //Room Management
 	// Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
@@ -254,15 +259,16 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 
-	Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
-	Route::get('/approved', [App\Http\Controllers\GuestController::class, 'approved']);
-
+	// notifications
+	// Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
+	// Route::get('/booked', [App\Http\Controllers\GuestController::class, 'booked']);
+	Route::get('/MyNotifications', [App\Http\Controllers\GuestController::class, 'MyNotif'])->name('MyNotifications');
 
 	Route::get('/notifications/count', function () {
 		$count = auth()->user()->notifications->count();
 		return response()->json(['count' => $count]);
 	});
-
+	// notifications
 
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
 	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
