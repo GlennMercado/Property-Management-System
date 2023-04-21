@@ -67,9 +67,6 @@
                                     <th scope="col" style="font-size:16px;">Mode of Payment</th>
                                     <th scope="col" style="font-size:16px;">Refund</th>
                                     <th scope="col" style="font-size:16px;">Action</th>
-
-
-
                                      </tr>
                                     </thead>
                                         <tbody>
@@ -85,25 +82,23 @@
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
-                                            <th scope="col" style="font-size:16px;">Room No.</th>
-                                            <th scope="col" style="font-size:16px;">Item Name</th>
-                                            <th scope="col" style="font-size:16px;">Received Quantity</th>
-                                            <th scope="col" style="font-size:16px;">Attendant</th>
-                                            <th scope="col" style="font-size:16px;">Status</th>
-                                            <th scope="col" style="font-size:16px;">DateReceived</th>
+                                                <th scope="col" style="font-size:16px;">Event Name</th>
+                                                <th scope="col" style="font-size:16px;">Event Type</th>
+                                                <th scope="col" style="font-size:16px;">Facility</th>
+                                                <th scope="col" style="font-size:16px;">Contact Person</th>
+                                                <th scope="col" style="font-size:16px;">Contact Number</th>
+                                                <th scope="col" style="font-size:16px;">Event Date</th>
+                                                <th scope="col" style="font-size:16px;">Event Time</th>
+                                                <th scope="col" style="font-size:16px;">Booking Status</th>
+                                                <th scope="col" style="font-size:16px;">Payment Amount</th>
+                                                <th scope="col" style="font-size:16px;">Payment Status</th>
+                                                <th scope="col" style="font-size:16px;">Mode of Payment</th>
+                                                <th scope="col" style="font-size:16px;">Refund</th>
+                                                <th scope="col" style="font-size:16px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($list2 as $lists2)
-                                            <tr>
-                                                <td style="font-size:14px;">{{ $lists2->Room_No }}</td>
-                                                <td style="font-size:14px;">{{ $lists2->name }}</td>
-                                                <td style="font-size:14px;">{{ $lists2->Quantity }}</td>
-                                                <td style="font-size:14px;">{{ $lists2->Attendant }}</td>
-                                                <td style="font-size:14px;">{{ $lists2->Status }}</td>
-                                                <td style="font-size:14px;">{{ $lists2->Date_Received }}</td>
-                                            </tr>
-                                            @endforeach
+                                        
                                             </tbody>
                                             </table>
                                         </div>                              
