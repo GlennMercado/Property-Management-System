@@ -103,7 +103,7 @@
                                 placeholder="Enter Business Address" maxlength="64" required>
                             <p class="pt-4">Email Address/Website/FB Page <span class="text-danger">*</span> </p>
                             <input type="text" name="email_website_fb" class="form-control"
-                                placeholder="Enter Email Address/Website/FB Page..." maxlength="32" required>
+                                placeholder="Enter Email Address/Website/FB Page..." maxlength="64" required>
                             <div class="row">
                                 <div class="col-md">
 
@@ -164,7 +164,7 @@
                                 <div class="col">
                                     <br>
                                     <p>Mobile no. <span class="text-danger">*</span> </p>
-                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
                                         name="mobile_no" class="form-control"
                                         placeholder="Please use a 10 digit mobile number with no dashes or dots" required>
                                 </div>
