@@ -12,33 +12,45 @@ use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Notifications\NVDCnotif;
-use App\Notifications\Approved;
+use App\Notifications\Booked;
+use App\Notifications\Success;
 use Mail;
 use App\Models\User;
 use App\Models\Notification;
+use Brian2694\Toastr\Facades\Toastr;
 
 class GuestController extends Controller
 {
     public function welcome()
     {   
+        Toastr::success('The record has been saved successfully!', 'Success', ['positionClass' => 'toast-top-right']);
         return view('Guest.guest_welcome');
     }
-    public function notify()
+    // public function notify()
+    // {
+    //     if (auth()->user()) {
+    //         $user = Auth::user();
+    //         auth()->user()->notify(new NVDCnotif($user));
+    //     } else{
+    //         Alert::Error('Failed', 'sommething went wrong');
+    //         return redirect('/welcome')->with('Error', 'Failed');
+    //     }      
+    // }
+    public function booked()
     {
         if (auth()->user()) {
             $user = Auth::user();
-            auth()->user()->notify(new NVDCnotif($user));
+            auth()->user()->notify(new Booked($user));
         } else{
             Alert::Error('Failed', 'sommething went wrong');
             return redirect('/welcome')->with('Error', 'Failed');
         }      
     }
-    public function approved()
+    public function success()
     {
         if (auth()->user()) {
             $user = Auth::user();
-            auth()->user()->notify(new Approved($user));
+            auth()->user()->notify(new Success($user));
         } else{
             Alert::Error('Failed', 'sommething went wrong');
             return redirect('/welcome')->with('Error', 'Failed');
@@ -234,8 +246,8 @@ class GuestController extends Controller
 
             if($reserve->save())
             {
-                $this->Approved();
-                Alert::Success('Success', 'Reservation submitted successfully!');
+                Toastr::success('The record has been saved successfully!', 'Success', ['positionClass' => 'toast-top-right']);
+                $this->booked();
                 return redirect('/welcome')->with('Success', 'Data Saved');
                 $mail = Auth::user()->email;
                 $name = Auth::user()->name;

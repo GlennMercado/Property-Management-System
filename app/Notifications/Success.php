@@ -11,7 +11,7 @@ use App\Models\hotel_reservations;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class Approved extends Notification
+class Success extends Notification
 {
     use Queueable;
     public $user;
@@ -39,7 +39,7 @@ class Approved extends Notification
     {
         $link = "http://localhost:8000/my_bookings";
         $email = Auth::user()->email;
-        $notif = "You have booked successfully, your payment was approved.";
+        $notif = "Your booking was successful. Please come on your booking date.";
         return [
             'user_id'=>$this->user['id'],
             'name'=>$this->user['name'],
