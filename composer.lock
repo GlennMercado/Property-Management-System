@@ -8271,7 +8271,14 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-04-12T09:07:50+00:00"
+=======
+            "time": "2023-02-28T16:49:47+00:00"
+
+
+
+>>>>>>> 8040b4fdd36acf2a238888fbaef23148ccc4ffb3
         },
         {
             "name": "spatie/laravel-ignition",

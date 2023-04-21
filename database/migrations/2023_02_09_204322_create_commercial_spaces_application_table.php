@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('business_landline_no');
             $table->string('business_mobile_no');
             $table->string('name_of_owner');
-            $table->string('spouse');
+            $table->string('spouse')->nullable();
             $table->string('home_address');
             $table->string('landline');
             $table->string('mobile_no');
