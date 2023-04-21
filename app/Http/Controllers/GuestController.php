@@ -44,6 +44,9 @@ class GuestController extends Controller
             return redirect('/welcome')->with('Error', 'Failed');
         }      
     }
+    public function MyNotif(){
+        return view('Guest.MyNotifications');
+    }
     public function BookingEmail(){
         return view('Guest.BookingEmail');
     }
