@@ -311,15 +311,25 @@ class GuestController extends Controller
                 'business_landline_no' => 'required',
                 'business_mobile_no' => 'required',
                 'name_of_owner' => 'required',
-                'spouse' => 'required',
+                'spouse' => '',
                 'home_address' => 'required',
                 'landline' => 'required',
                 'mobile_no' => 'required',
                 'tax_identification_no' => 'required',
                 'tax_cert_valid_gov_id' => 'required'
             ]);
-            
+            $spouse;
+            if($request->input('spouse') != null)
+            {
+                $spouse = $request->input('spouse');
+            }
+            else
+            {
+                $spouse = null;
+            }
+
             $submit = new commercial_spaces_application;
+
             $submit->email = Auth::user()->email;
             $submit->business_name = $request->input('business_name');
             $submit->business_style = $request->input('business_style');
@@ -328,7 +338,8 @@ class GuestController extends Controller
             $submit->business_landline_no = $request->input('business_landline_no');
             $submit->business_mobile_no = $request->input('business_landline_no');
             $submit->name_of_owner = $request->input('name_of_owner');
-            $submit->spouse = $request->input('spouse');
+            $submit->spouse = $spouse;
+            $submit->authorized_representative = $request->input('authorized_representative');
             $submit->home_address = $request->input('home_address');
             $submit->landline = $request->input('landline');
             $submit->mobile_no = $request->input('mobile_no');
@@ -339,12 +350,12 @@ class GuestController extends Controller
             if($submit->save())
             {
                 Alert::Success('Success', 'Inquiry submitted successfully!');
-                return redirect('/commercial_spaces')->with('Success', 'Data Saved');
+                return redirect('commercial_spaces')->with('Success', 'Data Saved');
             }
             else
             {
                 Alert::Error('Failed', 'Inquiry not sent');
-                return redirect('/commercial_spaces')->with('Error', 'Failed!');
+                return redirect('commercial_spaces')->with('Error', 'Failed!');
             }
     }
 
@@ -352,6 +363,15 @@ class GuestController extends Controller
     {
         try{
             $id = $request->input('id');
+            $spouse;
+            if($request->input('spouse') != null)
+            {
+                $spouse = $request->input('spouse');
+            }
+            else
+            {
+                $spouse = null;
+            }
 
             $sql = DB::table("commercial_spaces_applications")->where('id', $id)->update(
                 [
@@ -361,8 +381,9 @@ class GuestController extends Controller
                     'email_website_fb' => $request->input('email_website_fb'),
                     'business_landline_no' => $request->input('business_landline_no'),
                     'business_mobile_no' => $request->input('business_mobile_no'),
+                    'authorized_representative' => $request->input('authorized_representative'),
                     'name_of_owner' => $request->input('name_of_owner'),
-                    'spouse' => $request->input('spouse'),
+                    'spouse' => $spouse,
                     'home_address' => $request->input('home_address'),
                     'landline' => $request->input('landline'),
                     'mobile_no' => $request->input('mobile_no'),

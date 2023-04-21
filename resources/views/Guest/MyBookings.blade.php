@@ -442,7 +442,7 @@
                                                 </div>
 
                                                 <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                                    <h4>For Single Proprietorship </h4> -->
                                                 <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                 </p>
                                                 <input type="text" name="name_of_owner" class="form-control"
@@ -598,7 +598,14 @@
                                                     </div>
 
                                                     <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
+                                                        <h4>For Single Proprietorship </h4> -->
+                                                    <p class="pt-4">Authorized Representative <span
+                                                            class="text-danger">*</span> </p>
+                                                    <input type="text" name="authorized_representative"
+                                                        class="form-control"
+                                                        placeholder="Enter Name of Authorized Representative"
+                                                        maxlength="64" value="{{$comm->authorized_representative}}" required>
+
                                                     <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                     </p>
                                                     <input type="text" name="name_of_owner" class="form-control"
@@ -606,10 +613,10 @@
                                                         value="{{ $comm->name_of_owner }}" required>
 
                                                     <br>
-                                                    <p>Spouse <span class="text-danger">*</span> </p>
+                                                    <p>Spouse </p>
                                                     <input type="text" name="spouse" class="form-control"
                                                         placeholder="Enter Spouse" maxlength="64"
-                                                        value="{{ $comm->spouse }}" required>
+                                                        value="{{ $comm->spouse }}">
                                                     <br>
 
                                                     <p>Home Address <span class="text-danger">*</span> </p>
