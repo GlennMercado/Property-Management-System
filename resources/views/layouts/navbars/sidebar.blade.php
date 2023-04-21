@@ -325,6 +325,14 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'StockRoomSupply' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockRoomSupply') }}">
+                                    <i class="bi bi-clipboard-data-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Stock Room Supply') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">
                                     <i class="bi bi-clipboard-data-fill" style="color:rgb(224, 223, 223)"></i>
@@ -439,7 +447,7 @@
                             <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('FinanceArchives') }}
+                                    {{ __('Finance Archives') }}
                                 </a>
                             </li>
                         </ul>

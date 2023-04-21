@@ -64,6 +64,20 @@ class InventoryController extends Controller
     
     }
 
+    public function StockDistribute()
+    {
+       //Hotel Reports
+        $sql = DB::select("SELECT * FROM hotel_room_linens WHERE Status = 'Received'");
+        $sql = DB::select("SELECT * FROM hotel_room_supplies WHERE Status = 'Received'");
+        $list = DB::select('SELECT * FROM hotel_room_linens');
+        $list2 = DB::select('SELECT * FROM hotel_room_supplies');
+
+
+	if($sql){
+        return view('Admin.pages.Inventory.StockRoomSupply', ['list'=>$list, 'list2'=>$list2]);
+    }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
