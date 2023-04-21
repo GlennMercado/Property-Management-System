@@ -439,7 +439,7 @@
                             <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('FinanceArchives') }}
+                                    {{ __('Finance Archives') }}
                                 </a>
                             </li>
                         </ul>
