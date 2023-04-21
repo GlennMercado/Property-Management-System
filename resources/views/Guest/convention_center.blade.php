@@ -1,5 +1,4 @@
 @extends('layouts.guest', ['class' => 'bg-light'])
-
 @section('content')
     <link rel="stylesheet" href="{{ asset('css') }}/convention_center.css">
     <script src="{{ asset('Javascript') }}/convention_center.js"></script>

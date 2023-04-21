@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/commercial_spaces.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <div class="card mt-6 d-flex justify-content-center" style="width: 100%;">
-        <div class="card-body">
-            <div id="carousel" class="carousel slide mt-6" data-ride="carousel">
+    <div id="carousel" class="carousel slide mt-6" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
@@ -14,31 +12,41 @@
         </ol>
 
         <div class="carousel-inner" role="listbox">
+
             <div class="carousel-item active">
                 <img src="{{ asset('nvdcpics') }}/bcourt3.jpg" class="img-fluid">
-                <div class="caption d-none d-lg-block">
-                    <h1>Create and share your whatever</h1>
-                    <h2>Make it easy for you to do whatever this thing does.</h2>
+                <div class="container mx-auto" >
+
+                    <div class="btn-container" >
+                        <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1" style = "padding-bottom:200px;">
+                            Commercial Space</h1>
+                        <a href="#section2" class="btn btn-outline-light txt mt-6" style = "margin-bottom:200px;">About</a>
+                    </div>
                 </div>
             </div>
-            <div class="carousel-item">
+
+            {{-- <div class="carousel-item">
                 <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
                 <div class="caption d-none d-lg-block">
                     <h1>Something and share your whatever</h1>
                     <h2>Else it easy for you to do whatever this thing does.</h2>
+
                     <a class="big-button" href="" title="">Create Project</a>
                     <div class="clear"></div>
                     <a class="view-demo" href="" title="">View Demo</a>
                 </div>
             </div>
+
             <div class="carousel-item">
                 <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
                 <div class="caption d-none d-lg-block">
                     <h1>Create and share your whatever</h1>
                     <h2>Make it easy for you to do whatever this thing does.</h2>
                 </div>
-            </div>
+            </div> --}}
+
         </div>
+
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -48,7 +56,27 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-            <h1 class=" d-flex justify-content-center pt-6" id="section1">Commercial Space</h1>
+    {{-- second --}}
+        <div class="row" id = "section2">
+            <div class="col-md-5 p-6" style="background-color: rgb(51, 60, 82)">
+                <h1 class="text-white mt-6">Commercial Spaces</h1>
+                <p class="text-white mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure neque culpa perspiciatis
+                    vero adipisci
+                    cupiditate tempora illum dolorem eligendi tenetur, ducimus perferendis officia. Quos doloribus quis ipsa
+                    accusantium fugiat nisi.</p>
+                <div class="btn-container" >
+                    <a href="#section1" class="btn btn-outline-light txt mt-6" style = "top:1px;">Inquire Now</a>
+                </div>
+                {{-- <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure neque culpa perspiciatis
+                    vero adipisci
+                    cupiditate tempora illum dolorem eligendi tenetur, ducimus perferendis officia. Quos doloribus quis ipsa
+                    accusantium fugiat nisi.</p> --}}
+            </div>
+            <div class="col-md-7" style="margin: 0; padding: 0">
+                <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="img-fluid">
+            </div>
+        </div>
+            <h1 class=" d-flex justify-content-center pt-8" id="section1">Commercial Space</h1>
             <form action="{{ url('/commercial_spaces_submit') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="container-fluid bg-white" id="section2">
@@ -145,7 +173,8 @@
                             <p>Tax Identification No. <span class="text-danger">*</span> </p>
                             <input type="number" name="tax_identification_no" class="form-control"
                                 placeholder="Enter Tax Identification No."
-                                onKeyPress="if(this.value.length==12) return false;" required>
+                                onKeyPress="if(this.value.length==9) return false;" 
+                                required>
                             <br>
                             <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                                     class="text-danger">*</span> </p>
@@ -165,7 +194,8 @@
 
                 </div>
             </form>
-            <div class="position-relative">
+            {{-- Old --}}
+            {{-- <div class="position-relative">
                 <div class="image-grid pt-6">
                     <div class="image-container">
                         <img class="hw-20 img" src="{{ asset('nvdcpics') }}/cspaces2.jpg" style="width:100%;">
@@ -179,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
