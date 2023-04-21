@@ -110,14 +110,20 @@ class CommercialSpacesController extends Controller
             $id = $request->input('id');
             $renters_fee = $request->input('renters_fee');
             //$due_date = Carbon::createFromFormat('m/d/Y', $request->input('due_date'))->format('Y-m-d');
-            $due_date = $request->input('due_date');
+            //$due_date = $request->input('due_date');
             $remarks = $request->input('remarks');
+
+            $due_date = new Carbon($request->input('start_date'));
+            $due_date = $due_date->addMonth();
 
             $tenant = new commercial_spaces_tenants;
 
             $tenant->Tenant_ID = $id;
             $tenant->Rental_Fee = $renters_fee;
             $tenant->Due_Date = $due_date;
+            $tenant->Space_Unit = $request->input('space_unit');
+            $tenant->Start_Date = $request->input('start_date');
+            $tenant->End_Date = $request->input('end_date');
             
             if($tenant->save())
             {
@@ -144,5 +150,24 @@ class CommercialSpacesController extends Controller
             Alert::Error('Failed', 'Updating Failed!');
             return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
         }
+    }
+
+    public function commercial_spaces_tenants()
+    {
+        $now = Carbon::now()->format('Y-m-d');
+        $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.End_Date = '$now'");
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2]);
+    }
+
+    public function commercial_rent_collections()
+    {
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent');
+    }
+    
+    public function update_tenant_status(Request $request)
+    {
+        dd($request->all());
+
     }
 }

@@ -123,26 +123,26 @@
                                 </a>
                             </li>
                             <div class="collapse" id="navbar-examples9">
-                                {{-- Lease --}}
+                                {{-- Applications --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
                                         class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
-                                            {{ __('Lease') }}
+                                            {{ __('Application') }}
                                             <span
                                                 class="badge rounded-pill badge-notification bg-danger text-white ml-2"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
-                                {{-- Lease Contracts --}}
+                                {{-- Tenants --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
+                                        class="nav-item {{ 'CommercialSpaceTenants' == request()->path() ? 'act1' : '' }}">
+                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceTenants') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
-                                            {{ __('Lease Contracts') }}
+                                            {{ __('Tenants') }}
                                             <span
                                                 class="badge rounded-pill badge-notification bg-danger text-white ml-2"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
@@ -152,8 +152,8 @@
                                 {{-- Rent Collections --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
+                                        class="nav-item {{ 'CommercialSpaceRentCollections' == request()->path() ? 'act1' : '' }}">
+                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceRentCollections') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Rent Collections') }}
                                             <span
