@@ -19,7 +19,7 @@
                     <div class="p-2">
                         <h2>Notifications</h2>
                     </div>
-                    <div class="p-3 ml-auto"><a href="">View all</a></div>
+                    <div class="p-3 ml-auto"><a href="{{ url('MyNotifications') }}">View all</a></div>
                 </div>
                 @forelse (auth()->user()->notifications as $notif)
                     @if ($notif->data['link'])

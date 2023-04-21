@@ -254,15 +254,16 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 
+	// notifications
 	Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
 	Route::get('/approved', [App\Http\Controllers\GuestController::class, 'approved']);
-
+	Route::get('/MyNotifications', [App\Http\Controllers\GuestController::class, 'MyNotif'])->name('MyNotifications');
 
 	Route::get('/notifications/count', function () {
 		$count = auth()->user()->notifications->count();
 		return response()->json(['count' => $count]);
 	});
-
+	// notifications
 
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
 	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
