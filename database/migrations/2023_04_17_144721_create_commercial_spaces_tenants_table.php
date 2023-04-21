@@ -20,8 +20,15 @@ return new class extends Migration
             $table->index('Tenant_ID');
             $table->foreign('Tenant_ID')->references('id')->on('commercial_spaces_applications')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->string('Authorized_Personnel');
+            $table->string('Space_Unit');
             $table->integer('Rental_Fee');
             $table->date('Due_Date');
+
+            $table->date('Start_Date');
+            $table->date('End_Date');
+
+            $table->string('Tenant_Status')->default('Active (Operating)');
 
             $table->timestamps();
         });
