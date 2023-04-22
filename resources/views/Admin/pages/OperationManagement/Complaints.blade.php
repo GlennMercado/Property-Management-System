@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('layouts.headers.cards')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    <div class="row align-items-center py-4 ml-2">
+    <div class="row align-items-center ml-2 mt--7">
         <div class="col-lg-12 col-12">
             <h6 class="h2 text-dark d-inline-block mb-0">Complaints</h6>
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
@@ -37,11 +38,11 @@
                                         <br>
                                         <span class="ml-1">{{ $list->concern_text }}</span>
                                         <br>
-                                        {{-- <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                        <a href="{{ $list->complaints_img }}" data-lightbox="photos"
                                             data-gallery="complaints">
                                             <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
                                                 data-lightbox="photos" data-gallery="complaints"
-                                                style="max-height: 350px; max-width:500px;" /> --}}
+                                                style="max-height: 350px; max-width:500px;" />
                                         </a>
                                     </div>
                                 </div>

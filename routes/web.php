@@ -190,7 +190,9 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 //Admin and Operation Manager
 Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	//Reservation
-	Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+	// Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+
+	Route::get('/Guest_Reservation', [App\Http\Controllers\HotelController::class, 'guest_viewing'])->name('Guest_Reservation');
 
 	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 	
