@@ -38,7 +38,7 @@
                 <li class="nav-item {{ 'home' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('home') }}">
                         <i class="bi bi-display" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                 <li class="nav-item {{ 'Calendar' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -58,7 +58,7 @@
                     <a class="nav-link text-light" href="{{ route('Dashboard') }}">
                         <i class="bi bi-door-open-fill" style="color:rgb(243, 243, 243)"></i>
                         {{ __('Room Management') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -77,7 +77,7 @@
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Hotel Booking') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -87,7 +87,7 @@
                                 <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
                                     <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Guest Folio') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -97,7 +97,7 @@
                                 <a class="nav-link text-light" href="{{ route('EventInquiryForm') }}">
                                     <i class="bi bi-calendar-event-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Event Inquiry') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -131,7 +131,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Application') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -144,7 +144,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Tenants') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -157,7 +157,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Rent Collections') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -170,7 +170,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Utility Bills Collection') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -183,7 +183,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Commercial Space Units') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -196,7 +196,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Notices') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -383,7 +383,7 @@
                                             <i class="bi bi-patch-question-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Complaints') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -394,7 +394,7 @@
                                             <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Guest Request') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -448,7 +448,7 @@
                             <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('FinanceArchives') }}
+                                    {{ __('Finance Archives') }}
                                 </a>
                             </li>
                         </ul>
