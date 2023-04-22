@@ -252,6 +252,9 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 	//Inventory Reports
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
 	
+	//Inventory Room Supply
+	Route::get('StockRoomSupply', [App\Http\Controllers\InventoryController::class, 'StockDistribute'])->name('StockRoomSupply');
+	
 
 	//Guest Request
 	Route::get('GuestRequest', [App\Http\Controllers\InventoryController::class, 'GuestRequest'])->name('GuestRequest');
