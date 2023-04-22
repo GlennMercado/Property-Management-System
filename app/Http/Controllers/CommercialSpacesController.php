@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\commercial_spaces_tenants;
 use Carbon\Carbon;
+use App\Models\commercial_space_rent_reports;
 
 class CommercialSpacesController extends Controller
 {
@@ -120,6 +121,7 @@ class CommercialSpacesController extends Controller
 
             $tenant->Tenant_ID = $id;
             $tenant->Rental_Fee = $renters_fee;
+            $tenant->Total_Amount = $renters_fee;
             $tenant->Due_Date = $due_date;
             $tenant->Space_Unit = $request->input('space_unit');
             $tenant->Start_Date = $request->input('start_date');
@@ -162,9 +164,79 @@ class CommercialSpacesController extends Controller
 
     public function commercial_rent_collections()
     {
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent');
+        $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+        
+        $count = DB::select("SELECT * From commercial_spaces_tenants");
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+
+        $list3 = DB::select("SELECT * FROM commercial_space_rent_reports");
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'array' => $array, 'list3' => $list3]);
     }
     
+    public function update_rental_collection(Request $request)
+    {
+        $id = $request->input('tenant_id');
+        $now = Carbon::now()->format('Y-m-d');
+        $status = $request->input('status');
+        $due_date = new Carbon($request->input('due'));
+        $due_date = $due_date->addMonth();
+        $rent_fee = $request->input('rental_fee') + $request->input('total');
+        $sql;
+
+        if($status == "Paid")
+        {
+            $sql = DB::table("commercial_spaces_tenants")->where("Tenant_ID", $id)->update(
+                [
+                    'Paid_Date' => $now, 
+                    'Payment_Status' => $status,
+                    'Due_Date' => $due_date,
+                    'Total_Amount' => $request->input('rental_fee'),
+                    'updated_at' => DB::raw('NOW()')
+                ]
+            );
+        }
+        else
+        {
+            $sql = DB::table("commercial_spaces_tenants")->where("Tenant_ID", $id)->update(
+                [
+                    'Paid_Date' => null, 
+                    'Payment_Status' => $status,
+                    'Due_Date' => $due_date,
+                    'Total_Amount' => $rent_fee,
+                    'updated_at' => DB::raw('NOW()')
+                ]
+            );
+        }
+
+        if($sql)
+        {   
+            $report = new commercial_space_rent_reports;
+
+            $report->Tenant_ID = $id;
+            $report->Rental_Fee = $request->input('rental_fee');
+            $report->Due_Date = $request->input('due');
+            $report->Payment_Status = $request->input('status');
+            if($status == "Paid")
+            {
+                $report->Paid_Date = $now;
+            }
+
+            $report->save();
+
+            Alert::Success('Success', 'Payment Status Successfully Updated!');
+            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Updating of Status Failed!');
+            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');                
+        }
+    }
     public function update_tenant_status(Request $request)
     {
         dd($request->all());

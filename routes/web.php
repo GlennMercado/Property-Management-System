@@ -183,6 +183,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 
 		Route::post('add_commercial_tenant', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant');
 		Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesController@update_tenant_status');
+		Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesController@update_rental_collection');
 		
 });
 
