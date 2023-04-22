@@ -375,7 +375,7 @@
                                             <i class="bi bi-patch-question-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Complaints') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -386,7 +386,7 @@
                                             <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Guest Request') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
