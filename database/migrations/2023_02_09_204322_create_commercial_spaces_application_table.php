@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('email_website_fb');
             $table->string('business_landline_no');
             $table->string('business_mobile_no');
+            $table->string('authorized_representative');
             $table->string('name_of_owner');
             $table->string('spouse')->nullable();
             $table->string('home_address');

@@ -3,7 +3,6 @@
 @section('content')
     @include('layouts.headers.cards')
 
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <script>
@@ -180,7 +179,8 @@
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" style="align-items:center" id="myTables">
+                                    <table class="table align-items-center table-flush" style="align-items:center"
+                                        id="myTables">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th></th>
