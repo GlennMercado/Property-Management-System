@@ -427,7 +427,8 @@
                         </ul>
                     </div>
                 </li>
-                <!-- </div> -->
+
+                <!-- Finance Module -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
@@ -447,7 +448,7 @@
                             <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Finance Archives') }}
+                                    {{ __('FinanceArchives') }}
                                 </a>
                             </li>
                         </ul>

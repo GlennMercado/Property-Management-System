@@ -25,6 +25,7 @@ class FinanceController extends Controller
         $list3 = DB::table('finance_2_reports')
         ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
         ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
+        ->orderBy('created_at', 'desc')
         ->get();
         
         $month = DB::table('finance_2_reports')->where('eventdate', '=', Carbon::now()->month)->get();
@@ -123,12 +124,10 @@ class FinanceController extends Controller
          $hotel_sum = finance_2_reports::sum('hotel');
          $commercialspace_sum = finance_2_reports::sum('commercialspace');
          $output_sum = finance_2_reports::sum('outputvat');
-
-        if ($sql) {
+        
             return view('Admin.pages.Finances.FinanceArchives', ['list'=>$list, 'list2'=>$list2, 'sql'=>$sql], compact('amount_sum', 'cash_sum', 'unearned_sum', 'bank_sum', 'cheque_sum', 'basketball_sum', 
                         'otherincome_sum', 'parking_sum', 'managementfee_sum', 'event_sum', 'hotel_sum', 'commercialspace_sum', 'output_sum'));
-
-        } 
+    
     }
 
     /**
