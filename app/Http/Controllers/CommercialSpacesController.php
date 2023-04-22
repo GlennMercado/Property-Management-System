@@ -239,7 +239,33 @@ class CommercialSpacesController extends Controller
     }
     public function update_tenant_status(Request $request)
     {
-        dd($request->all());
+        $id = $request->input('tenant_id');
+        $status = $request->input('status');
 
+        $remarks;
+        if($request->input('remarks') != null)
+        {
+            $remarks = $request->input('remarks'); 
+        }
+        else
+        {
+            $remarks = null;
+        }
+        
+        $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Remarks' => $remarks, 'updated_at' => DB::raw('NOW()')]);
+
+        if($sql)
+        {
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+
+            Alert::Success('Success', 'Tenant Status Successfully Updated!');
+            return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
+        }
+        else 
+        {
+            Alert::Error('Failed', 'Tenant Status Updating Failed!');
+            return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
+        }
+       
     }
 }

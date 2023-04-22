@@ -173,8 +173,8 @@
                                                                     enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
                                                                     <div class="modal-body">
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $lists->id }}">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
                                                                         <h3 class="text-left">Status: </h3>
                                                                         <select name="status" class="form-control"
                                                                             required>

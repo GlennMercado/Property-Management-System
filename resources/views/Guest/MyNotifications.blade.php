@@ -15,6 +15,34 @@
                     @endif
                 </div>
             </a>
+            <a class="" href="{{ $notif->data['link'] }}">
+                <div class="shadow rounded card-hover p-4 m-2">
+                    @if ($notif->data['link'])
+                        <h3 class="text-truncate"><i class="bi bi-info-circle-fill text-success pr-2"></i>{{ $notif->data['txt'] }}</h3>
+                    @endif
+                </div>
+            </a>
+            <a class="" href="{{ $notif->data['link'] }}">
+                <div class="shadow rounded card-hover p-4 m-2">
+                    @if ($notif->data['link'])
+                        <h3 class="text-truncate"><i class="bi bi-info-circle-fill text-success pr-2"></i>{{ $notif->data['txt'] }}</h3>
+                    @endif
+                </div>
+            </a>
+            <a class="" href="{{ $notif->data['link'] }}">
+                <div class="shadow rounded card-hover p-4 m-2">
+                    @if ($notif->data['link'])
+                        <h3 class="text-truncate"><i class="bi bi-info-circle-fill text-success pr-2"></i>{{ $notif->data['txt'] }}</h3>
+                    @endif
+                </div>
+            </a>
+            <a class="" href="{{ $notif->data['link'] }}">
+                <div class="shadow rounded card-hover p-4 m-2">
+                    @if ($notif->data['link'])
+                        <h3 class="text-truncate"><i class="bi bi-info-circle-fill text-success pr-2"></i>{{ $notif->data['txt'] }}</h3>
+                    @endif
+                </div>
+            </a>
         @empty
             <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid" style="width: 100%; height: 150px">
             <p class="text-center display-4">There are no notifications.</p>
