@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
 
             $table->integer('Tenant_ID');
+            $table->index('Tenant_ID');
+            $table->foreign('Tenant_ID')->references('id')->on('commercial_spaces_applications')->onDelete('cascade')->onUpdate('cascade');
+
             $table->integer('Rental_Fee');
             $table->date('Due_Date');
 

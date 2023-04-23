@@ -180,12 +180,20 @@
                                                                             required>
                                                                             <option value="" selected="true"
                                                                                 disabled="disabled">Select</option>
+                                                                            @if($lists->Tenant_Status != 'Active (Operating)')
                                                                             <option value="Active (Operating)">Active (Operating)</option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Pre-Termination')
                                                                             <option value="Pre-Termination">Pre-Termination
                                                                             </option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Non-Compliance')
                                                                             <option value="Non-Compliance">Non-Compliance
                                                                             </option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Abandon')
                                                                             <option value="Abandon">Abandon</option>
+                                                                            @endif
                                                                             <option value="Terminated">Terminated</option>
                                                                         </select>
                                                                         <h3 class="text-left">Remarks: </h3>
@@ -231,7 +239,7 @@
                                                         <tr>
                                                             <td>
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update_status{{ $lists->id }}"
+                                                                    data-target="#update_status2{{ $lists->id }}"
                                                                     title="Update Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
@@ -304,7 +312,53 @@
                                                                 {{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
                                                             <td class="font-weight-bold tbltxt">
                                                                 {{ $lists->Tenant_Status }}</td>
-                                                        </tr>   
+                                                        </tr>  
+                                                        
+                                                        <!-- Update Modal -->
+                                                        <div class="modal fade" id="update_status2{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <h3 class="text-left">Status: </h3>
+                                                                        <select name="status" class="form-control"
+                                                                            required>
+                                                                            <option value="" selected="true"
+                                                                                disabled="disabled">Select</option>
+                                                                            <option value="For Renewal">For Renewal
+                                                                            </option>
+                                                                            <option value="Terminated">Terminated</option>
+                                                                        </select>
+                                                                        <h3 class="text-left">Remarks: </h3>
+                                                                        <input type="text" name="remarks"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
                                                 </tbody>
                                             </table>

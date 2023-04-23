@@ -30,11 +30,13 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         \App\Console\Commands\UpdateStatusCommand::class,
+        \App\Console\Commands\SendCommercialEmailCommand::class,
     ];
     
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('update:status')->dailyAt('00:00');
+        $schedule->command('commercial:notify')->dailyAt('00:00');
     }
 }

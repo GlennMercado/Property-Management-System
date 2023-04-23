@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\commercial_spaces_tenants;
 use Carbon\Carbon;
 use App\Models\commercial_space_rent_reports;
+use Mail;
+use App\Mail\Tenant_Status;
+use App\Mail\Application_Status;
+use App\Models\commercial_spaces_tenant_deposits;
 
 class CommercialSpacesController extends Controller
 {
@@ -46,9 +50,17 @@ class CommercialSpacesController extends Controller
                 $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Status' => $status]);
             }
             
-
             if($sql)
             {
+
+                $tenants = DB::table('commercial_spaces_applications')
+                ->where('id', '=', $id)
+                ->get();
+
+                foreach ($tenants as $tenant) {
+                    Mail::to($tenant->email)->send(new Application_Status($tenant));
+                }
+
                 Alert::Success('Success', 'Status Set to '.$status.'!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }
@@ -71,6 +83,14 @@ class CommercialSpacesController extends Controller
 
             if($sql)
             {
+                $tenants = DB::table('commercial_spaces_applications')
+                ->where('id', '=', $id)
+                ->get();
+
+                foreach ($tenants as $tenant) {
+                    Mail::to($tenant->email)->send(new Application_Status($tenant));
+                }
+
                 Alert::Success('Success', 'Status Set to '.$status.'!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }
@@ -93,6 +113,14 @@ class CommercialSpacesController extends Controller
 
             if($sql)
             {
+                $tenants = DB::table('commercial_spaces_applications')
+                ->where('id', '=', $id)
+                ->get();
+
+                foreach ($tenants as $tenant) {
+                    Mail::to($tenant->email)->send(new Application_Status($tenant));
+                }
+                
                 Alert::Success('Success', 'Interview Passed!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }
@@ -137,6 +165,19 @@ class CommercialSpacesController extends Controller
                 {
                     DB::table('commercial_spaces_applications')->where('id', $id)->update([ 'Status' => 'Tenant']);
                 }
+
+                $security_deposit - $renters_fee * 2;
+                
+                $now = Carbon::now()->format('Y-m-d');
+
+                $security = new commercial_spaces_tenant_deposits;
+
+                $security->Tenant_ID = $id;
+                $security->Security_Deposit = $security_deposit;
+                $security->Paid_Date = $now;
+
+                $security->save();
+                
                 Alert::Success('Success', 'Successfully Adding Tenant!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }
@@ -158,7 +199,7 @@ class CommercialSpacesController extends Controller
     {
         $now = Carbon::now()->format('Y-m-d');
         $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract'");
-        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.End_Date = '$now' AND b.Tenant_Status = 'Ending Contract'");
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status = 'Ending Contract' OR b.Tenant_Status = 'For Renewal'");
         $list3 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
         
         return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3]);
@@ -272,6 +313,15 @@ class CommercialSpacesController extends Controller
         if($sql)
         {
             DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+
+            $tenants = DB::table('commercial_spaces_tenants')
+            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+            ->where('Tenant_ID', '=', $id)
+            ->get();
+
+            foreach ($tenants as $tenant) {
+                Mail::to($tenant->email)->send(new Tenant_Status($tenant));
+            }
 
             Alert::Success('Success', 'Tenant Status Successfully Updated!');
             return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');

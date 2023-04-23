@@ -711,7 +711,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     @empty
                         <p class="text-center display-5">No application yet</p>
                         <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"

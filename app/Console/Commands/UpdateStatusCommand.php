@@ -31,6 +31,7 @@ class UpdateStatusCommand extends Command
     {
         //return Command::SUCCESS;
         $now = Carbon::now()->format('Y-m-d');
+        
         DB::table('commercial_spaces_tenants')
             ->whereDate('End_Date', '=', $now)
             ->update(['Tenant_Status' => 'Ending Contract']);
