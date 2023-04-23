@@ -204,6 +204,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="container d-flex justify-content-center">
+                <div class="row mt-6" style="justify-content:center">
+                    <div class="col-xl-8">
+                        <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
+                        <canvas class="p-3" id="doughnutChart"></canvas>
+                    </div>
+                    <div class="col-xl-8">
+                        <h2>Finance</h2>
+                        <canvas class="p-3" id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- <div class="container-fluid">
             <div class="header-body">
                 <div class="row">
