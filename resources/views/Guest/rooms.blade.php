@@ -10,7 +10,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 mt-5 banner1">
                 <a href="{{ url('convention_center') }}">
-                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.jpg" title="Convention Center">
+                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.png" title="Convention Center">
                 </a>
             </div>
             @forelse ($room as $list)

@@ -22,7 +22,7 @@
                         <div class="row">
                             @if ($lists->Booking_Status != 'Checked-Out' && $lists->IsArchived != 1)
                                 <div class="col-md-4">
-                                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel1.jpg">
+                                    <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel1.png">
                                 </div>
                                 <div class="col-md-4">
                                     <h1>Room {{ $lists->Room_No }}</h1>

@@ -16,7 +16,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img src="{{ asset('nvdcpics') }}/bcourt3.jpg" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
                 <div class="caption d-none d-lg-block">
                     <h1>Create and share your whatever</h1>
                     <h2>Make it easy for you to do whatever this thing does.</h2>
@@ -57,7 +57,7 @@
     </div>
     <div class="row">
         <div class="col-md-7" style="margin: 0; padding: 0">
-            <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/FunctionRoom1.png" class="img-fluid">
         </div>
         <div class="col-md-5 p-6" style="background-color: rgb(51, 60, 82)">
             <h1 class="text-white">FUNCTION ROOMS</h1>

@@ -519,7 +519,7 @@
         .nvdcbg {
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("nvdcpics/convention.jpg");
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("nvdcpics/convention.png");
             background-size: cover;
         }
 

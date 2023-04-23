@@ -14,7 +14,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img src="{{ asset('nvdcpics') }}/bcourt3.jpg" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
                 <div class="container mx-auto" >
 
                     <div class="btn-container" >
@@ -73,7 +73,7 @@
                     accusantium fugiat nisi.</p> --}}
             </div>
             <div class="col-md-7" style="margin: 0; padding: 0">
-                <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/FunctionRoom1.png" class="img-fluid">
             </div>
         </div>
             <h1 class=" d-flex justify-content-center pt-8" id="section1">Commercial Space</h1>

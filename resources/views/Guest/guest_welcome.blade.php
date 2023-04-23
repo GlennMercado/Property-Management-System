@@ -39,7 +39,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/hotel4.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/hotel4.png" class="img-fluid" alt="">
                 <div class="caption">
                     <h1>Come and enjoy your day!</h1>
                     <br>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/BCourt2.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/BCourt2.png" class="img-fluid" alt="">
                 <div class="caption">
                     <h1>BASKETBALL <span class="text-green">COURT</span></h1>
                     <h2>
@@ -87,7 +87,7 @@
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/FunctionRoom3.png" class="img-fluid" alt="">
                 <div class="caption">
                     <h1>A place that brings you memories.</h1>
                     <br>
@@ -194,7 +194,7 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.png"
                         alt="Card image cap" style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
@@ -225,16 +225,16 @@
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-6 ad1">
-            <img src="{{ asset('nvdcpics') }}/function1.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/function1.png" class="img-fluid">
         </div>
         <div class="col-md-3 col-sm-6 ad1">
-            <img src="{{ asset('nvdcpics') }}/cspaces.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/cspaces.png" class="img-fluid">
         </div>
         <div class="col-md-3 col-sm-6 ad1">
-            <img src="{{ asset('nvdcpics') }}/function1.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/function1.png" class="img-fluid">
         </div>
         <div class="col-md-3 col-sm-6 ad1">
-            <img src="{{ asset('nvdcpics') }}/cspaces.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/cspaces.png" class="img-fluid">
         </div>
     </div>
     <div class="container-fluid bg-white pt-6">
