@@ -9,7 +9,11 @@
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
             $('#myTable2').DataTable();
-            $('#myTable3').DataTable();
+            $('#myTable3').DataTable({
+        "columnDefs": [
+            { "type": "date", "targets": 0 }
+        ]
+    });
             $('#myTable4').DataTable();
         });
         // Code that uses other library's $ can follow here.
@@ -77,9 +81,14 @@
                                                     @foreach ($list as $lists)
                                                         <tr>
                                                             <td>
+                                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                    data-target="#view_payment_history{{ $lists->Tenant_ID }}"
+                                                                    title="Payment History">
+                                                                    <i class="bi bi-eye"></i>
+                                                                </button>
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update_payment_status{{ $lists->id }}"
-                                                                    title="Update Status">
+                                                                    title="Update Payment Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
                                                             </td>
@@ -220,125 +229,8 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </div>
-
-                                    {{-- Security Deposit --}}
-                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-2-tab">
-                                        <div class="table-responsive">
-                                            <table class="table align-items-center table-flush" id="myTable2">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
-                                                        <th scope="col" style="font-size:17px;">Business Info</th>
-                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
-                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
-                                                        <th scope="col" style="font-size:17px;">Start Date <br> of
-                                                            Contract</th>
-                                                        <th scope="col" style="font-size:17px;">End Date <br> of
-                                                            Contract
-                                                        </th>
-                                                        <th scope="col" style="font-size:17px;">Status</th>
-                                                    </tr>
-                                                </thead>
-
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    {{-- Reports --}}
-                                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-3-tab">
-                                        <div class="table-responsive">
-                                            <table class="table align-items-center table-flush" id="myTable3">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
-                                                        <th scope="col" style="font-size:17px;">Business Info</th>
-                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
-                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($list as $lists)
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                                    data-target="#view_payment_history{{ $lists->Tenant_ID }}"
-                                                                    title="Update Status">
-                                                                    <i class="bi bi-eye"></i>
-                                                                </button>
-                                                            </td>
-                                                            <td>
-                                                                <span class="tbltxt">Business Name: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Business Style: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Business Address: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Email/Website/FB: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Business Landline: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Business Mobile No: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
-                                                                <br>
-                                                            </td>
-                                                            <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Owner Name: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Spouse: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Home Address: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Landline: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Mobile: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Tax Identification No: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
-                                                                <br>
-                                                                <span class="tbltxt">Tax Cert or Valid ID: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
-                                                                <br>
-                                                            </td>
-                                                            <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-
                                             @foreach ($array as $arrays)
-                                                <!-- Update Modal -->
+                                                <!-- Payment_History -->
                                                 <div class="modal fade"
                                                     id="view_payment_history{{ $arrays['Tenant_ID'] }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalLabel"
@@ -371,16 +263,25 @@
                                                                         @foreach ($list3 as $lists3)
                                                                             @if ($lists3->Tenant_ID == $arrays['Tenant_ID'])
                                                                                 <tr>
-
                                                                                     <td class="font-weight-bold tbltxt">
                                                                                         {{ date('F j, Y', strtotime($lists3->Due_Date)) }}
                                                                                     </td>
                                                                                     <td class="font-weight-bold tbltxt">
                                                                                         {{ $lists3->Rental_Fee }}</td>
+                                                                                    @if($lists3->Paid_Date != null)
                                                                                     <td class="font-weight-bold tbltxt">
-                                                                                        {{ date('F j, Y', strtotime($lists3->Paid_Date)) }}</td>
-                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists3->Paid_Date)) }}
+                                                                                    </td>
+                                                                                    @else
+                                                                                    <td></td>
+                                                                                    @endif
+                                                                                    @if($lists3->Payment_Status == "Paid")
+                                                                                    <td class="font-weight-bold tbltxt text-success">
                                                                                         {{ $lists3->Payment_Status }}</td>
+                                                                                    @else
+                                                                                    <td class="font-weight-bold tbltxt text-danger">
+                                                                                        {{ $lists3->Payment_Status }}</td>
+                                                                                    @endif
                                                                                 </tr>
                                                                             @endif
                                                                         @endforeach
@@ -395,6 +296,37 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                        </div>
+                                    </div>
+
+                                    {{-- Security Deposit --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-2-tab">
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTable2">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="font-size:17px;">Action</th>
+                                                        <th scope="col" style="font-size:17px;">Business Info</th>
+                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
+                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
+                                                        <th scope="col" style="font-size:17px;">Start Date <br> of
+                                                            Contract</th>
+                                                        <th scope="col" style="font-size:17px;">End Date <br> of
+                                                            Contract
+                                                        </th>
+                                                        <th scope="col" style="font-size:17px;">Status</th>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    {{-- Reports --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-3-tab">
+                                        <div class="table-responsive"> 
                                         </div>
                                     </div>
                                 </div>

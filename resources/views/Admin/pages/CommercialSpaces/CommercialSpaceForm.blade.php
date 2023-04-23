@@ -62,7 +62,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($list as $lists)
-                                                        @if ($lists->Status == 'For Approval' && $lists->Status == 'Approved' && $lists->Status == 'For Interview' && $lists->Status == 'For Revision' && $lists->Status == 'Passed')
+                                                        @if ($lists->Status == 'For Approval' || $lists->Status == 'Approved' || $lists->Status == 'For Interview' || $lists->Status == 'For Revision' || $lists->Status == 'Passed')
                                                             <tr>
                                                                 <td>
                                                                     <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"

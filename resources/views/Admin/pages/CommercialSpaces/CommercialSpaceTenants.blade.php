@@ -180,11 +180,13 @@
                                                                             required>
                                                                             <option value="" selected="true"
                                                                                 disabled="disabled">Select</option>
+                                                                            <option value="Active (Operating)">Active (Operating)</option>
                                                                             <option value="Pre-Termination">Pre-Termination
                                                                             </option>
                                                                             <option value="Non-Compliance">Non-Compliance
                                                                             </option>
                                                                             <option value="Abandon">Abandon</option>
+                                                                            <option value="Terminated">Terminated</option>
                                                                         </select>
                                                                         <h3 class="text-left">Remarks: </h3>
                                                                         <input type="text" name="remarks"
@@ -316,15 +318,99 @@
                                             <table class="table align-items-center table-flush" id="myTable3">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
+                                                        <!-- <th scope="col" style="font-size:17px;">Action</th> -->
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
+                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
+                                                        <th scope="col" style="font-size:17px;">Start Date <br> of
+                                                            Contract</th>
+                                                        <th scope="col" style="font-size:17px;">End Date <br> of Contract
+                                                        </th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
-                                                        <th scope="col" style="font-size:17px;">Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($list3 as $lists)
+                                                        <tr>
+                                                            <!-- <td>
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update_status{{ $lists->id }}"
+                                                                    title="Update Status">
+                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                </button>
+                                                            </td> -->
+                                                            <td>
+                                                                <span class="tbltxt">Business Name: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Style: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Address: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Email/Website/FB: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Landline: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Mobile No: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
+                                                                <br>
+                                                            </td>
+                                                            <td>
+                                                                <span class="tbltxt">Authorized Representative: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Owner Name: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Spouse: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Home Address: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Landline: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Mobile: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Tax Identification No: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Tax Cert or Valid ID: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
+                                                                <br>
+                                                            </td>
+                                                            <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
+                                                            </td>
+                                                            <td class="font-weight-bold tbltxt">
+                                                                {{ date('F j, Y', strtotime($lists->Start_Date)) }}</td>
+                                                            <td class="font-weight-bold tbltxt">
+                                                                {{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
+                                                            <td class="font-weight-bold tbltxt text-danger">
+                                                                {{ $lists->Tenant_Status }}</td>
+                                                        </tr>
 
+                                                        
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

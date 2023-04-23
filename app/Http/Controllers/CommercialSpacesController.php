@@ -157,9 +157,11 @@ class CommercialSpacesController extends Controller
     public function commercial_spaces_tenants()
     {
         $now = Carbon::now()->format('Y-m-d');
-        $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
-        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.End_Date = '$now'");
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2]);
+        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract'");
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.End_Date = '$now' AND b.Tenant_Status = 'Ending Contract'");
+        $list3 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
+        
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3]);
     }
 
     public function commercial_rent_collections()
@@ -241,7 +243,7 @@ class CommercialSpacesController extends Controller
     {
         $id = $request->input('tenant_id');
         $status = $request->input('status');
-
+        $sql;
         $remarks;
         if($request->input('remarks') != null)
         {
@@ -252,8 +254,21 @@ class CommercialSpacesController extends Controller
             $remarks = null;
         }
         
-        $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Remarks' => $remarks, 'updated_at' => DB::raw('NOW()')]);
-
+        if($status == "Terminated")
+        {
+            $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(
+                [
+                    'Remarks' => $remarks, 
+                    'IsArchived' => 1, 
+                    'Status' => "Tenant (Terminated)",
+                    'updated_at' => DB::raw('NOW()')
+                ]);
+        }
+        else
+        {
+            $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Remarks' => $remarks, 'updated_at' => DB::raw('NOW()')]);
+        }
+      
         if($sql)
         {
             DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);

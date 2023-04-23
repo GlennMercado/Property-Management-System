@@ -349,12 +349,12 @@ class GuestController extends Controller
 
             if($submit->save())
             {
-                Alert::Success('Success', 'Inquiry submitted successfully!');
+                Alert::Success('Success', 'Application Successfully Submitted!');
                 return redirect('commercial_spaces')->with('Success', 'Data Saved');
             }
             else
             {
-                Alert::Error('Failed', 'Inquiry not sent');
+                Alert::Error('Failed', 'Application Failed');
                 return redirect('commercial_spaces')->with('Error', 'Failed!');
             }
     }

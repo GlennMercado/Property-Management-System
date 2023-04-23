@@ -334,7 +334,7 @@
                                                 <span
                                                     class="badge badge-pill badge-primary badge-lg">{{ $comm->Status }}</span>
                                             </td>
-                                        @elseif($comm->Status == 'Approved' || $comm->Status == 'Revised')
+                                        @elseif($comm->Status == 'Approved' || $comm->Status == 'Revised' || $comm->Status == 'Tenant')
                                             <td>
                                                 <span
                                                     class="badge badge-pill badge-success badge-lg">{{ $comm->Status }}</span>
@@ -354,7 +354,8 @@
                                             {{ date('F j, y', strtotime($comm->created_at)) }} <br>
                                             {{ date('h:i A', strtotime($comm->created_at)) }}
                                         </td>
-                                        <td class="text-danger">
+
+                                        <td class="text-primary">
                                             {{ $comm->Remarks }}
                                         </td>
                                         <td>
@@ -493,22 +494,6 @@
                                                 <input type="text" name="tax_cert_valid_gov_id" class="form-control"
                                                     placeholder="Enter Home Address" maxlength="128" required=""
                                                     value="{{ $comm->tax_cert_valid_gov_id }}" readonly>
-                                                <p class="mt-6">I certify that all of the information I have provided
-                                                    above is
-                                                    true
-                                                    and
-                                                    correct
-                                                    to the best of my knowledge. I fully understand that all data
-                                                    gathered
-                                                    here are
-                                                    required for
-                                                    the evaluation of my application for commercial space lease/rent. I
-                                                    am
-                                                    aware
-                                                    that
-                                                    <span class="text-red">THIS IS
-                                                        NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</span>
-                                                </p>
                                             </div>
 
                                         </div>
@@ -726,6 +711,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     @empty
                         <p class="text-center display-5">No application yet</p>
                         <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
