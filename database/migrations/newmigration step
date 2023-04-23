@@ -41,3 +41,24 @@ php artisan migrate
 composer require simplesoftwareio/simple-qrcode:*
 composer require yajra/laravel-datatables-oracle
 composer require laravel/socialite
+
+<!-- Only used for text messages and limited for 11 messages per trial account -->
+<!-- So kailangan ng bayad tlga awits -->
+composer require twilio/sdk
+
+<!-- ETO CODE -->
+// // Send SMS notification
+// $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";
+// $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+// $twilio->messages->create(
+//     '+63' . substr($tenant->mobile_no, 1),
+//     [
+//         'from' => env('TWILIO_FROM_NUMBER'),
+//         'body' => $message,
+//     ]
+// );
+
+<!-- Pantanggal kapag ayaw -->
+composer remove twilio/sdk
+
+

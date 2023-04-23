@@ -13,6 +13,7 @@ use Mail;
 use App\Mail\Tenant_Status;
 use App\Mail\Application_Status;
 use App\Models\commercial_spaces_tenant_deposits;
+use Twilio\Rest\Client;
 
 class CommercialSpacesController extends Controller
 {
@@ -120,7 +121,7 @@ class CommercialSpacesController extends Controller
                 foreach ($tenants as $tenant) {
                     Mail::to($tenant->email)->send(new Application_Status($tenant));
                 }
-                
+
                 Alert::Success('Success', 'Interview Passed!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }
@@ -166,7 +167,7 @@ class CommercialSpacesController extends Controller
                     DB::table('commercial_spaces_applications')->where('id', $id)->update([ 'Status' => 'Tenant']);
                 }
 
-                $security_deposit - $renters_fee * 2;
+                $security_deposit = $renters_fee * 2;
                 
                 $now = Carbon::now()->format('Y-m-d');
 
@@ -177,7 +178,27 @@ class CommercialSpacesController extends Controller
                 $security->Paid_Date = $now;
 
                 $security->save();
+
+                $tenants = DB::table('commercial_spaces_applications')
+                ->where('id', '=', $id)
+                ->get();
+
+                foreach ($tenants as $tenant) {
+                    Mail::to($tenant->email)->send(new Application_Status($tenant));
+
+                    // // Send SMS notification
+                    // $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";
+                    // $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+                    // $twilio->messages->create(
+                    //     '+63' . substr($tenant->mobile_no, 1),
+                    //     [
+                    //         'from' => env('TWILIO_FROM_NUMBER'),
+                    //         'body' => $message,
+                    //     ]
+                    // );
+                }
                 
+
                 Alert::Success('Success', 'Successfully Adding Tenant!');
                 return redirect('CommercialSpaceForm')->with('Success', 'Data Updated');
             }

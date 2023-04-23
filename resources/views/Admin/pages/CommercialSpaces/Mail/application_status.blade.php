@@ -12,6 +12,10 @@
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>You have failed the interview.</p>
         <p>Thank you.</p>
+    @elseif($tenant->Status = "Tenant")
+        <p>Hello {{ $tenant->name_of_owner }},</p>
+        <p>Congratulations! You are now one of our tenants.</p>
+        <p>Thank you.</p>
     @else
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>Your application status is {{ $tenant->Status }}. Please review the remarks and take necessary actions.</p>
