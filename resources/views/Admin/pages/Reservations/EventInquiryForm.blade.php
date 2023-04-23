@@ -2,15 +2,14 @@
 
 @section('content')
     @include('layouts.headers.cards')
+    {{-- calendar --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <script>
-        $.noConflict();
-        jQuery(document).ready(function($) {
-            $('#myTable').DataTable();
-        });
-        // Code that uses other library's $ can follow here.
-    </script>
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -24,7 +23,58 @@
                 </nav>
             </div>
         </div>
-        <div class="container-fluid">
+        {{-- tabs --}}
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row align-items-center">
+                    <div class="col text-right">
+                        <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
+                                    href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
+                                    aria-selected="true">Event Inquiry</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                                    href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
+                                    aria-selected="false"> Application </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="col-md-3">
+            <div class="card">
+                <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+    {{-- tabs-float --}}
+
+
+    {{-- calendar --}}
+    {{-- <div class="row">
+            <div class="col-md-3">
+               
+            </div>
+            <div class="col-md-7">
+                <div class="container-fluid w-75">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+               
+            </div>
+        </div> --}}
+
+    {{-- <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class=" col">
                     <div class="card">
@@ -153,8 +203,41 @@
 
 
             </div>
-        </div>
+        </div> --}}
     </div>
+    <script>
+        // $.noConflict();
+        // jQuery(document).ready(function($) {
+        //     $('#myTable').DataTable();
+        // });
+        // Code that uses other library's $ can follow here.
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                // Set options and callbacks
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '2023-04-23',
+                navLinks: true,
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [{
+                        title: 'Event 1',
+                        start: '2023-04-23T10:00:00',
+                        end: '2023-04-23T12:00:00'
+                    },
+                    {
+                        title: 'Event 2',
+                        start: '2023-04-25T14:00:00',
+                        end: '2023-04-25T16:00:00'
+                    },
+                    // more events here
+                ]
+            });
+        });
+    </script>
     <style>
         .t1 td {
             text-emphasis: wrap;
