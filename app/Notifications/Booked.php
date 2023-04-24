@@ -37,7 +37,7 @@ class Booked extends Notification
     }
     public function toArray($notifiable)
     {
-        $link = "http://localhost:8000/my_bookings";
+        $link = "my_bookings";
         $email = Auth::user()->email;
         $notif = "You have booked a hotel reservation. Please wait until we process your payment.";
         return [
