@@ -13,7 +13,9 @@ use Mail;
 use App\Mail\Tenant_Status;
 use App\Mail\Application_Status;
 use App\Models\commercial_spaces_tenant_deposits;
-use Twilio\Rest\Client;
+use App\Models\commercial_spaces_tenant_reports;
+use App\Models\commercial_space_units;
+// use Twilio\Rest\Client;
 
 class CommercialSpacesController extends Controller
 {
@@ -22,8 +24,18 @@ class CommercialSpacesController extends Controller
         $list = DB::select('SELECT * FROM commercial_spaces_applications WHERE IsArchived = 0');   
         $list2 = DB::select('SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1');    
         $tenant = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID");
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceForm', ['list'=>$list, 'list2' => $list2, 'tenant' => $tenant]);
+
+        $unit = DB::select("SELECT * FROM commercial_space_units WHERE Occupancy_Status = 'Vacant'");
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceForm', ['list'=>$list, 'list2' => $list2, 'tenant' => $tenant, 'unit' => $unit]);
     }
+
+    public function comm_space_getrent($id)
+    {
+        $data = commercial_space_units::where('Space_Unit', $id)->first();
+
+        return response()->json($data);
+    }
+
     public function commercial_space_view($id)
     {
         $comid = $id;
@@ -147,14 +159,17 @@ class CommercialSpacesController extends Controller
             $due_date = $due_date->addMonth();
 
             $tenant = new commercial_spaces_tenants;
+            
+            $start = $request->input('start_date');
+            $end = Carbon::parse($start)->addYear();
 
             $tenant->Tenant_ID = $id;
             $tenant->Rental_Fee = $renters_fee;
             $tenant->Total_Amount = $renters_fee;
             $tenant->Due_Date = $due_date;
             $tenant->Space_Unit = $request->input('space_unit');
-            $tenant->Start_Date = $request->input('start_date');
-            $tenant->End_Date = $request->input('end_date');
+            $tenant->Start_Date = $start;
+            $tenant->End_Date = $end;
             
             if($tenant->save())
             {
@@ -219,11 +234,20 @@ class CommercialSpacesController extends Controller
     public function commercial_spaces_tenants()
     {
         $now = Carbon::now()->format('Y-m-d');
-        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract'");
+        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract' AND b.Tenant_Status != 'For Renewal'");
         $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status = 'Ending Contract' OR b.Tenant_Status = 'For Renewal'");
         $list3 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
         
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3]);
+        $count = DB::select("SELECT * From commercial_spaces_tenants");
+        $array = array();
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+        $list4 = DB::select("SELECT * FROM commercial_spaces_tenant_reports");
+
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'array' => $array]);
     }
 
     public function commercial_rent_collections()
@@ -233,13 +257,22 @@ class CommercialSpacesController extends Controller
         $count = DB::select("SELECT * From commercial_spaces_tenants");
         $array = array();
 
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID");
+
         foreach($count as $counts)
         {
             $array[] = ['Tenant_ID' => $counts->Tenant_ID];
         }
 
         $list3 = DB::select("SELECT * FROM commercial_space_rent_reports");
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'array' => $array, 'list3' => $list3]);
+
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3]);
+    }
+    public function commercial_space_units()
+    {
+        $list = DB::select("SELECT * FROM commercial_space_units");
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list]);
+    
     }
     
     public function update_rental_collection(Request $request)
@@ -301,6 +334,7 @@ class CommercialSpacesController extends Controller
             return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');                
         }
     }
+
     public function update_tenant_status(Request $request)
     {
         $id = $request->input('tenant_id');
@@ -353,5 +387,82 @@ class CommercialSpacesController extends Controller
             return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
         }
        
+    }
+
+    public function renew_tenant(Request $request)
+    {
+        $id = $request->input('tenant_id');
+        $start = $request->input('start_date');
+        $end = Carbon::parse($start)->addYear()->format('Y-m-d');
+        $remarks = $request->input('remarks');
+        $rent_fee = $request->input('rent_fee');
+        $due_date = new Carbon($start);
+        $due_date = $due_date->addMonth();
+
+        $sql = DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(
+            [
+                'Total_Amount' => $rent_fee,
+                'Start_Date' => $start,
+                'End_Date' => $end,
+                'Due_Date' => $due_date,
+                'Tenant_Status' => "Active_Operating",
+                'Payment_Status' => "Paid",
+                'updated_at' => DB::raw('NOW()')
+            ]
+        );
+
+        if($sql)
+        {
+            $add_report = new commercial_spaces_tenant_reports;
+
+            $select = DB::select("SELECT * FROM commercial_spaces_tenants WHERE Tenant_ID = '$id'");
+            foreach($select as $lists)
+            {
+                $add_report->Tenant_ID = $lists->Tenant_ID;
+                $add_report->Space_Unit = $lists->Space_Unit;
+                $add_report->Rental_Fee = $lists->Rental_Fee;
+                $add_report->Total_Amount = $lists->Total_Amount;
+                $add_report->Due_Date = $lists->Due_Date;
+                $add_report->Start_Date = $lists->Start_Date;
+                $add_report->End_Date = $lists->End_Date;
+                $add_report->Tenant_Status = $lists->Tenant_Status;
+                $add_report->Paid_Date = $lists->Paid_Date;
+                $add_report->Payment_Status = $lists->Payment_Status;
+
+                $add_report->save();
+            }
+
+            Alert::Success('Success', 'Tenant Successfully Renewed!');
+            return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Tenant Renewal Failed!');
+            return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
+        }
+    }
+
+    public function add_comm_space_unit(Request $request)
+    {
+        $spaceunits = $request->input('space_units');
+        $size = $request->input('size');
+        $rental_fee = $request->input('rental_fee');
+
+        $space = new commercial_space_units;
+
+        $space->Space_Unit = $spaceunits;
+        $space->Measurement_Size = $size;
+        $space->Rental_Fee = $rental_fee;
+
+        if($space->save())
+        {
+            Alert::Success('Success', 'Commercial Space Successfully Added!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Failed on Adding Commercial Space!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
     }
 }

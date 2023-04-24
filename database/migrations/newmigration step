@@ -29,11 +29,15 @@ Migration steps
 
 11.  php artisan migrate --path=/database/migrations/2023_04_09_143246_create_notifications_table.php
 
-12.  php artisan migrate --path=/database/migrations/2023_04_17_144721_create_commercial_spaces_tenants_table.php
+12.  php artisan migrate --path=/database/migrations/2023_04_24_173156_create_commercial_space_units_table.php
 
-13.  php artisan migrate --path=/database/migrations/2023_04_22_050938_create_commercial_space_rent_reports_table.php
+13.  php artisan migrate --path=/database/migrations/2023_04_17_144721_create_commercial_spaces_tenants_table.php
 
-14   php artisan migrate --path=/database/migrations/2023_04_23_204518_create_commercial_spaces_tenant_deposits_table.php
+14.  php artisan migrate --path=/database/migrations/2023_04_22_050938_create_commercial_space_rent_reports_table.php
+
+15   php artisan migrate --path=/database/migrations/2023_04_23_204518_create_commercial_spaces_tenant_deposits_table.php
+
+16.  php artisan migrate --path=/database/migrations/2023_04_24_155243_create_commercial_spaces_tenant_reports_table.php
 
 php artisan migrate
 

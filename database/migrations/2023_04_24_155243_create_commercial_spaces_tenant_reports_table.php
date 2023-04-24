@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('commercial_spaces_tenants', function (Blueprint $table) {
+        Schema::create('commercial_spaces_tenant_reports', function (Blueprint $table) {
             $table->id();
-            
+
             $table->integer('Tenant_ID');
             $table->index('Tenant_ID');
             $table->foreign('Tenant_ID')->references('id')->on('commercial_spaces_applications')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('Space_Unit');
-            $table->index('Space_Unit');
-            $table->foreign('Space_Unit')->references('Space_Unit')->on('commercial_space_units')->onDelete('cascade')->onUpdate('cascade');
-
             $table->integer('Rental_Fee');
             $table->integer('Total_Amount');
             $table->date('Due_Date');
@@ -35,7 +32,7 @@ return new class extends Migration
 
             $table->date('Paid_Date')->nullable();
             $table->string('Payment_Status')->default('Paid');
-
+            
             $table->timestamps();
         });
     }
@@ -47,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commercial_spaces_tenants');
+        Schema::dropIfExists('commercial_spaces_tenant_reports');
     }
 };

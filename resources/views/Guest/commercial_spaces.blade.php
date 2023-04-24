@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col-md">
                                     <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
-                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
                                         name="business_mobile_no" class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>

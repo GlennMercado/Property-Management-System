@@ -178,6 +178,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
 	Route::get('CommercialSpaceTenants', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces_tenants'])->name('CommercialSpaceTenants');
 	Route::get('CommercialSpaceRentCollections', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_rent_collections'])->name('CommercialSpaceRentCollections');
+	Route::get('CommercialSpaceUnits', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_space_units'])->name('CommercialSpaceUnits');
 	
 	Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
 	Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
@@ -185,7 +186,10 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('add_commercial_tenant', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant');
 	Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesController@update_tenant_status');
 	Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesController@update_rental_collection');
-		
+	Route::post('renew_tenant', 'App\Http\Controllers\CommercialSpacesController@renew_tenant');
+	Route::post('add_comm_space_unit', 'App\Http\Controllers\CommercialSpacesController@add_comm_space_unit');
+	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
+
 });
 
 //Admin and Operation Manager

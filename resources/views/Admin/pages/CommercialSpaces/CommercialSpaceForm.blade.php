@@ -62,7 +62,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($list as $lists)
-                                                        @if ($lists->Status == 'For Approval' || $lists->Status == 'Approved' || $lists->Status == 'For Interview' || $lists->Status == 'For Revision' || $lists->Status == 'Passed')
+                                                        @if ($lists->Status == 'For Approval' || $lists->Status == 'Approved' || $lists->Status == 'For Interview' || $lists->Status == 'For Revision' || $lists->Status == 'Passed' || $lists->Status == 'Revised')
                                                             <tr>
                                                                 <td>
                                                                     <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
@@ -247,6 +247,8 @@
                                                                             <div class="modal-body">
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->id }}">
+                                                                                <h3 class="text-left">Interview Date : <span class="text-success">{{date('F j, Y', strtotime($lists->Interview_Date))}}</span></h3>
+                                                                                <br>
                                                                                 <h3 class="text-left">Interview Result:
                                                                                 </h3>
                                                                                 <select name="status"
@@ -272,7 +274,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <!-- Update Modal3 -->
+                                                            <!--Add Tenant Modal3 -->
                                                             <div class="modal fade"
                                                                 id="update_status3{{ $lists->id }}" tabindex="-1"
                                                                 role="dialog" aria-labelledby="exampleModalLabel"
@@ -296,26 +298,27 @@
                                                                             <div class="modal-body">
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $lists->id }}">
+                                                                                
+                                                                                <h3 class="text-left">Space/Unit:
+                                                                                </h3>
+                                                                                <select name="space_unit" class="form-control" id="list_unit" required>
+                                                                                    <option value="" selected="true" disabled="disabled">Select</option>
+                                                                                    @foreach($unit as $units)
+                                                                                        <option value="{{$units->Space_Unit}}">{{$units->Space_Unit}}</option>
+                                                                                    @endforeach
+                                                                                </select>
                                                                                 <h3 class="text-left">Renters Fee:
                                                                                 </h3>
-                                                                                <input type="number" class="form-control"
-                                                                                    name="renters_fee" required>
+                                                                                <input type="hidden" class="form-control"
+                                                                                    name="renters_fee" id="rent_fee">
 
-                                                                                    <h3 class="text-left">Space/Unit:
-                                                                                    </h3>
-                                                                                    <input type="text" class="form-control"
-                                                                                        name="space_unit" required>
-                                                                                    
+                                                                                <input type="text" class="form-control"
+                                                                                    id="rent_fee2" readonly>
 
-                                                                                    <h3 class="text-left">Start Date of Contract:
-                                                                                    </h3>
-                                                                                    <input type="date" class="form-control"
-                                                                                        name="start_date" required>
-
-                                                                                        <h3 class="text-left">End Date of Contract:
-                                                                                        </h3>
-                                                                                        <input type="date" class="form-control"
-                                                                                            name="end_date" required>
+                                                                                <h3 class="text-left">Start Date of Contract:
+                                                                                </h3>
+                                                                                <input type="date" class="form-control"
+                                                                                    name="start_date" id="start" required>
 
                                                                                 <h3 class="text-left">Remarks:
                                                                                 </h3>
@@ -478,6 +481,48 @@
             }
         }
     </style>
+
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+
+        $(document).ready(function() {
+            $('#list_unit').on('change', function() {
+                var id = $(this).val();
+
+                $.ajax({
+                    url: '{{ route('get.rent', ':id') }}'.replace(':id', id),
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#rent_fee').val(data.Rental_Fee);
+                        $('#rent_fee2').val(data.Rental_Fee);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() { 
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#start').attr('min', maxDate);
+        });
+    </script>
 @endsection
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
