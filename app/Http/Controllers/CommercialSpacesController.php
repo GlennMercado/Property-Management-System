@@ -182,6 +182,8 @@ class CommercialSpacesController extends Controller
                     DB::table('commercial_spaces_applications')->where('id', $id)->update([ 'Status' => 'Tenant']);
                 }
 
+                DB::table('commercial_space_units')->where('Space_Unit', $request->input('space_unit'))->update(['Occupancy_Status' => "Occupied"]);
+
                 $security_deposit = $renters_fee * 2;
                 
                 $now = Carbon::now()->format('Y-m-d');
@@ -201,7 +203,7 @@ class CommercialSpacesController extends Controller
                 foreach ($tenants as $tenant) {
                     Mail::to($tenant->email)->send(new Application_Status($tenant));
 
-                    // // Send SMS notification
+                    // Send SMS notification
                     // $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";
                     // $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
                     // $twilio->messages->create(
@@ -257,7 +259,7 @@ class CommercialSpacesController extends Controller
         $count = DB::select("SELECT * From commercial_spaces_tenants");
         $array = array();
 
-        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID");
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0");
 
         foreach($count as $counts)
         {
@@ -265,8 +267,10 @@ class CommercialSpacesController extends Controller
         }
 
         $list3 = DB::select("SELECT * FROM commercial_space_rent_reports");
+        $list4 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
+        $list5 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1");
 
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3]);
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
     }
     public function commercial_space_units()
     {
@@ -296,6 +300,13 @@ class CommercialSpacesController extends Controller
                     'updated_at' => DB::raw('NOW()')
                 ]
             );
+            DB::table('commercial_space_rent_reports')->where(['Tenant_ID' => $id, 'Payment_Status' => 'Non-Payment'])
+                ->update(
+                    [
+                        'Payment_Status' => "Paid",
+                        'Paid_Date' => $now
+                    ]
+                );
         }
         else
         {
@@ -341,6 +352,7 @@ class CommercialSpacesController extends Controller
         $status = $request->input('status');
         $sql;
         $remarks;
+        $now = Carbon::now()->format('Y-m-d');
         if($request->input('remarks') != null)
         {
             $remarks = $request->input('remarks'); 
@@ -359,16 +371,34 @@ class CommercialSpacesController extends Controller
                     'Status' => "Tenant (Terminated)",
                     'updated_at' => DB::raw('NOW()')
                 ]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+        }
+        elseif($status == "Active (Operating)")
+        {
+            $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(
+                [
+                    'Remarks' => $remarks,
+                    'Status' => "Tenant",
+                    'updated_at' => DB::raw('NOW()')
+                ]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+
+            DB::table('commercial_space_rent_reports')->where(['Tenant_ID' => $id, 'Payment_Status' => 'Non-Payment'])
+                ->update(
+                    [
+                        'Payment_Status' => "Paid",
+                        'Paid_Date' => $now
+                    ]
+                );
         }
         else
         {
             $sql = DB::table('commercial_spaces_applications')->where('id', $id)->update(['Remarks' => $remarks, 'updated_at' => DB::raw('NOW()')]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
         }
       
         if($sql)
         {
-            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
-
             $tenants = DB::table('commercial_spaces_tenants')
             ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
             ->where('Tenant_ID', '=', $id)
@@ -398,6 +428,7 @@ class CommercialSpacesController extends Controller
         $rent_fee = $request->input('rent_fee');
         $due_date = new Carbon($start);
         $due_date = $due_date->addMonth();
+        $now = Carbon::now()->format('Y-m-d');
 
         $sql = DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(
             [
@@ -405,7 +436,7 @@ class CommercialSpacesController extends Controller
                 'Start_Date' => $start,
                 'End_Date' => $end,
                 'Due_Date' => $due_date,
-                'Tenant_Status' => "Active_Operating",
+                'Tenant_Status' => "Active (Operating)",
                 'Payment_Status' => "Paid",
                 'updated_at' => DB::raw('NOW()')
             ]
@@ -414,6 +445,7 @@ class CommercialSpacesController extends Controller
         if($sql)
         {
             $add_report = new commercial_spaces_tenant_reports;
+            $add_deposit = new commercial_spaces_tenant_deposits;
 
             $select = DB::select("SELECT * FROM commercial_spaces_tenants WHERE Tenant_ID = '$id'");
             foreach($select as $lists)
@@ -430,8 +462,23 @@ class CommercialSpacesController extends Controller
                 $add_report->Payment_Status = $lists->Payment_Status;
 
                 $add_report->save();
+
+                $add_deposit->Tenant_ID = $lists->Tenant_ID;
+                $add_deposit->Security_Deposit = $lists->Rental_Fee * 2;
+                $add_deposit->Paid_Date = $now;
+                
+                $add_deposit->save();
             }
 
+            $tenants = DB::table('commercial_spaces_tenants')
+                ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                ->where('commercial_spaces_applications.id', '=', $id)
+                ->get();
+
+            foreach ($tenants as $tenant) {
+                Mail::to($tenant->email)->send(new Tenant_Status($tenant));
+            }
+            
             Alert::Success('Success', 'Tenant Successfully Renewed!');
             return redirect('CommercialSpaceTenants')->with('Success', 'Data Updated');
         }
@@ -453,6 +500,7 @@ class CommercialSpacesController extends Controller
         $space->Space_Unit = $spaceunits;
         $space->Measurement_Size = $size;
         $space->Rental_Fee = $rental_fee;
+        $space->Security_Deposit = $rental_fee * 2;
 
         if($space->save())
         {

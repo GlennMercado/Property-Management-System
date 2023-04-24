@@ -81,11 +81,27 @@
                                                                     title="Payment History">
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
+                                                                @if($lists->Tenant_Status != "Pre-Termination")
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update_status{{ $lists->id }}"
                                                                     title="Update Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
+                                                                @elseif($lists->Tenant_Status == "Pre-Termination")
+                                                                    <!-- Terminate -->
+                                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                                        data-target="#update_status24{{ $lists->id }}"
+                                                                        title="Update Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                    <!-- Resolve -->
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_status100{{ $lists->id }}"
+                                                                        title="Update Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @endif
+                                                                
                                                             </td>
                                                             <td>
                                                                 <span class="tbltxt">Business Name: </span>
@@ -208,7 +224,81 @@
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-outline-danger"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <input type="submit" class="btn btn-success">
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Update Modal 24-->
+                                                        <div class="modal fade" id="update_status24{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="status" value="Terminated">
+                                                                        <input type="hidden" name="remarks" value="Your commercial space contract has been terminated" />
+                                                                        <h3 class="text-center">Are you sure you want to terminate this tenant's commercial space rental? </h3>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit" value="Yes">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Update Modal 24-->
+                                                        <div class="modal fade" id="update_status100{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="status" value="Active (Operating)">
+                                                                        <input type="hidden" name="payment" value="Paid">
+                                                                        <h3 class="text-center">Are you sure you want to set this tenant to Active (Operating)?</h3>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit" value="Yes">
                                                                     </div>
                                                                     </form>
                                                                 </div>
@@ -218,7 +308,7 @@
                                                 </tbody>
                                             </table>
                                             @foreach ($array as $arrays)
-                                                <!-- Payment_History -->
+                                                <!-- Tenant History -->
                                                 <div class="modal fade"
                                                     id="view_rent_history{{ $arrays['Tenant_ID'] }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalLabel"
@@ -453,7 +543,7 @@
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-outline-danger"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <input type="submit" class="btn btn-success">
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
                                                                     </div>
                                                                     </form>
                                                                 </div>
@@ -488,7 +578,7 @@
                                                                         <h3 class="text-left">New Start Date of Contract:
                                                                         </h3>
                                                                         <input type="date" class="form-control"
-                                                                            name="start_date" required>
+                                                                            name="start_date" id="date" required>
 
                                                                         <h3 class="text-left">Remarks:
                                                                         </h3>
@@ -498,7 +588,7 @@
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-outline-danger"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <input type="submit" class="btn btn-success">
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
                                                                     </div>
                                                                     </form>
                                                                 </div>
@@ -623,6 +713,11 @@
         </div>
     </div>
     </div>
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+    </script>
     <style>
         .modal-body
         {
@@ -662,6 +757,24 @@
             }
         }
     </style>
+    <script>
+
+        $(document).ready(function() { 
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#date').attr('min', maxDate);
+        });
+    </script>
 @endsection
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>

@@ -215,7 +215,7 @@
                                                                                 <button class="btn btn-outline-danger"
                                                                                     data-dismiss="modal">Close</button>
                                                                                 <input type="submit"
-                                                                                    class="btn btn-success">
+                                                                                    class="btn btn-success prevent_submit">
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -267,7 +267,7 @@
                                                                                 <button class="btn btn-outline-danger"
                                                                                     data-dismiss="modal">Close</button>
                                                                                 <input type="submit"
-                                                                                    class="btn btn-success">
+                                                                                    class="btn btn-success prevent_submit">
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -307,7 +307,7 @@
                                                                                         <option value="{{$units->Space_Unit}}">{{$units->Space_Unit}}</option>
                                                                                     @endforeach
                                                                                 </select>
-                                                                                <h3 class="text-left">Renters Fee:
+                                                                                <h3 class="text-left">Rental Fee:
                                                                                 </h3>
                                                                                 <input type="hidden" class="form-control"
                                                                                     name="renters_fee" id="rent_fee">
@@ -330,7 +330,7 @@
                                                                                 <button class="btn btn-outline-danger"
                                                                                     data-dismiss="modal">Close</button>
                                                                                 <input type="submit"
-                                                                                    class="btn btn-success">
+                                                                                    class="btn btn-success prevent_submit">
                                                                             </div>
                                                                         </form>
                                                                     </div>

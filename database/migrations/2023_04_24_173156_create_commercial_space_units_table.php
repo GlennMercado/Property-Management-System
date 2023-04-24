@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('Maintenance_Status')->default('No');
             $table->string('Occupancy_Status')->default('Vacant');
             $table->integer('Rental_Fee');
+            $table->integer('Security_Deposit');
 
             $table->timestamps();
         });
