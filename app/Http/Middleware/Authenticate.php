@@ -2,10 +2,20 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
 {
+    public function handle($request, Closure $next, ...$guards)
+    {
+        if (auth()->check()) {
+            return $next($request);
+        }
+
+        return redirect()->guest('login');
+    }
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
