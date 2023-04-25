@@ -92,6 +92,7 @@
                                                 <th scope="col" style="font-size:17px;">Business Info</th>
                                                 <th scope="col" style="font-size:17px;">Owner Info</th>
                                                 <th scope="col" style="font-size:17px;">Space/Unit</th>
+                                                <th scope="col" style="font-size:17px;">Due Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,6 +104,17 @@
                                                             title="Utility Bills">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
+                                                        @php $buttonDisplayed = false @endphp
+                                                        @foreach($list2 as $lists2)
+                                                            @if($lists->Tenant_ID == $lists2->Tenant_ID && $lists->Due_Date == $lists2->Due_Date && $lists2->Payment_Status == null && !$buttonDisplayed)
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#update_payment_status{{ $lists->id }}"
+                                                                title="Update Payment Status">
+                                                                <i class="bi bi-arrow-repeat"></i>
+                                                            </button>
+                                                            @endif
+                                                            @php $buttonDisplayed = true @endphp
+                                                        @endforeach
                                                     </td>
                                                     <td>
                                                         <span class="tbltxt">Business Name: </span>
@@ -166,7 +178,79 @@
                                                     </td>
                                                     <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
                                                     </td>
+                                                    <td class="font-weight-bold tbltxt">{{ date('F j, Y', strtotime($lists->Due_Date)) }}
+                                                    </td>
                                                 </tr>
+
+                                                <!-- Update Modal -->
+                                                <div class="modal fade"
+                                                    id="update_payment_status{{ $lists->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">Updating Payment Status
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{ url('/update_utility_payment') }}"
+                                                                class="prevent_submit" method="POST"
+                                                                enctype="multipart/form-data">
+
+                                                                {{ csrf_field() }}
+
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="tenant_id"
+                                                                        value="{{ $lists->Tenant_ID }}">
+
+                                                                    <input type="hidden" name="due"
+                                                                        value="{{ $lists->Due_Date }}" />
+
+                                                                    @foreach($list2 as $lists2)
+                                                                        @if($lists->Tenant_ID == $lists2->Tenant_ID && $lists->Due_Date == $lists2->Due_Date && $lists2->Type_of_Bill == "Water" && $lists2->Payment_Status == null)                                          
+                                                                            <h3 class="text-left">Water Bill Status: </h3>
+                                                                            <select name="water_status" class="form-control">
+                                                                                <option value="" selected="true"
+                                                                                    disabled="disabled">Select</option>
+                                                                                <option value="Paid">Paid
+                                                                                </option>
+                                                                                <option value="Non-Payment">Non-Payment
+                                                                                </option>
+                                                                            </select>
+                                                                        @endif
+                                                                    @endforeach
+
+                                                                    <br>
+
+                                                                    @foreach($list2 as $lists2)
+                                                                        @if($lists->Tenant_ID == $lists2->Tenant_ID && $lists->Due_Date == $lists2->Due_Date && $lists2->Type_of_Bill == "Electricity" && $lists2->Payment_Status == null)
+                                                                        <h3 class="text-left">Electricity Bill Status: </h3>
+                                                                            <select name="electricity_status" class="form-control">
+                                                                                <option value="" selected="true"
+                                                                                    disabled="disabled">Select</option>
+                                                                                <option value="Paid">Paid
+                                                                                </option>
+                                                                                <option value="Non-Payment">Non-Payment
+                                                                                </option>
+                                                                            </select>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <input type="submit" class="btn btn-success prevent_submit">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
                                         </tbody>
                                     </table>  
@@ -207,7 +291,11 @@
                                                                         <tr>
                                                                             <td class="cur1">{{$lists->Total_Amount}}</td>
                                                                             <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
+                                                                            @if($lists->Paid_Date != null)
                                                                             <td>{{date('F j, Y', strtotime($lists->Paid_Date))}}</td>
+                                                                            @else
+                                                                            <td></td>
+                                                                            @endif
                                                                             <td>{{$lists->Payment_Status}}</td>
                                                                         </tr>
                                                                     @endif
@@ -234,7 +322,11 @@
                                                                         <tr>
                                                                             <td class="cur1">{{$lists->Total_Amount}}</td>
                                                                             <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
+                                                                            @if($lists->Paid_Date != null)
                                                                             <td>{{date('F j, Y', strtotime($lists->Paid_Date))}}</td>
+                                                                            @else
+                                                                            <td></td>
+                                                                            @endif
                                                                             <td>{{$lists->Payment_Status}}</td>
                                                                         </tr>
                                                                     @endif

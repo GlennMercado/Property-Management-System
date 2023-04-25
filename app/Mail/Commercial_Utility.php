@@ -20,7 +20,7 @@ class Commercial_Utility extends Mailable
 
     public function build()
     {
-        return $this->subject('Commercial Space Utility Bill')
+        return $this->subject('Commercial Space Statement of Account (SOA)')
             ->view('Admin.pages.CommercialSpaces.Mail.comm_utility')
             ->with('tenant', $this->tenant);
     }
