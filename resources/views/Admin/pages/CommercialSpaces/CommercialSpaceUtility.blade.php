@@ -26,132 +26,230 @@
                 </nav>
             </div>
         </div>
-        
-        <div class="row align-items-center">
-            <div class="card-header bg-transparent row">
-                <div class="col text-right">
-                    <button class="btn bg-success text-white" data-toggle="modal" data-target="#add_rooms">
-                        Add Bills
-                    </button>
-                </div>
-            </div>
-            <!-- Add Modal -->
-            <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Tenant Bill</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="{{ url('/add_commercial_tenant_utility_bill') }}" class="prevent_submit" method="POST"
-                            enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <h3 class="text-left">Tenant Name : </h3>
-                                <select name="tenant_id" class="form-control" required>
-                                    <option value="" selected="true" disabled="disabled">Select</option>
-                                    @foreach($list as $lists)
-                                    <option value="{{$lists->Tenant_ID}}">{{$lists->name_of_owner}}</option>
-                                    @endforeach
-                                </select>
-
-                                <h3 class="text-left">Type of Bill : </h3>
-                                <select name="type_of_bill" class="form-control" required>
-                                    <option value="" selected="true" disabled="disabled">Select</option>
-                                    <option value="Electricity">Electricity</option>
-                                    <option value="Water">Water</option>
-                                </select>
-
-                                <h3 class="text-left">Amount : </h3>
-                                <input type="number" name="amount" class="form-control" required>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-success prevent_submit" value="Add">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="nav-wrapper">
-                            <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
-                                        href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
-                                        aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>Water Bills</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                        href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                        aria-selected="false">
-                                        <i class="ni ni-fat-remove mr-2"></i>Electricity Bills</a>
-                                </li>
-                                
-                            </ul>
+                        <div class="card-header bg-transparent row">
+                            <div class="col text-right">
+                                <button class="btn bg-success text-white" data-toggle="modal" data-target="#add_rooms">
+                                    Add Bills
+                                </button>
+                            </div>
                         </div>
+
+                         <!-- Add Utility Modal -->
+                        <div class="modal fade" id="add_rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Tenant Bill</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ url('/add_commercial_tenant_utility_bill') }}" class="prevent_submit" method="POST"
+                                        enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <h3 class="text-left">Tenant Name : </h3>
+                                            <select name="tenant_id" class="form-control" required>
+                                                <option value="" selected="true" disabled="disabled">Select</option>
+                                                @foreach($list as $lists)
+                                                <option value="{{$lists->Tenant_ID}}">{{$lists->name_of_owner}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <h3 class="text-left">Type of Bill : </h3>
+                                            <select name="type_of_bill" class="form-control" required>
+                                                <option value="" selected="true" disabled="disabled">Select</option>
+                                                <option value="Electricity">Electricity</option>
+                                                <option value="Water">Water</option>
+                                            </select>
+
+                                            <h3 class="text-left">Amount : </h3>
+                                            <input type="number" name="amount" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-success prevent_submit" value="Add">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="card shadow">
                             <div class="card-body">
-                                <div class="tab-content" id="myTabContent">
-                                    {{-- Water Bill --}}
-                                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-1-tab">
-                                        <div class="table-responsive">
-                                            <table class="table align-items-center table-flush" id="myTable">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
-                                                        <th scope="col" style="font-size:17px;">Business Info</th>
-                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
-                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
-                                                        <th scope="col" style="font-size:17px;">Amount</th>
-                                                        <th scope="col" style="font-size:17px;">Due Date</th>
-                                                        <th scope="col" style="font-size:17px;">Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                           
-                                        </div>
-                                    </div>
-
-                                    {{-- Electricity --}}
-                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-2-tab">
-                                        <div class="table-responsive">
-                                            <table class="table align-items-center table-flush" id="myTable2">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
-                                                        <th scope="col" style="font-size:17px;">Business Info</th>
-                                                        <th scope="col" style="font-size:17px;">Owner Info</th>
-                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
-                                                        <th scope="col" style="font-size:17px;">Start Date <br> of
-                                                            Contract</th>
-                                                        <th scope="col" style="font-size:17px;">End Date <br> of
-                                                            Contract
-                                                        </th>
-                                                        <th scope="col" style="font-size:17px;">Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                   asd
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush" id="myTable">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:17px;">Action</th>
+                                                <th scope="col" style="font-size:17px;">Business Info</th>
+                                                <th scope="col" style="font-size:17px;">Owner Info</th>
+                                                <th scope="col" style="font-size:17px;">Space/Unit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($list as $lists)
+                                                <tr>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#view_utility_{{ $lists->Tenant_ID }}"
+                                                            title="Utility Bills">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <span class="tbltxt">Business Name: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Business Style: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Business Address: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Email/Website/FB: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Business Landline: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Business Mobile No: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
+                                                        <br>
+                                                    </td>
+                                                    <td>
+                                                        <span class="tbltxt">Authorized Representative: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Owner Name: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Spouse: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Home Address: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Landline: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Mobile: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Tax Identification No: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
+                                                        <br>
+                                                        <span class="tbltxt">Tax Cert or Valid ID: </span>
+                                                        <span
+                                                            class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
+                                                        <br>
+                                                    </td>
+                                                    <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>  
                                     
+                                    @foreach ($array as $arrays)
+                                        <!-- Tenant History -->
+                                        <div class="modal fade"
+                                            id="view_utility_{{ $arrays['Tenant_ID'] }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">View Utility Bills
+                                                        </h5>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3 class="text-left">Electricity Bills</h3>
+                                                        <table class="table align-items-center table-flush"
+                                                            id="myTable2">
+                                                            <thead class="thead-light">
+                                                                <tr>
+                                                                    <th scope="col">Total Amount</th>
+                                                                    <th scope="col">Due Date</th>
+                                                                    <th scope="col">Paid Date</th>
+                                                                    <th scope="col">Payment Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($list2 as $lists)
+                                                                    @if($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == "Electricity")
+                                                                        <tr>
+                                                                            <td class="cur1">{{$lists->Total_Amount}}</td>
+                                                                            <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
+                                                                            <td>{{date('F j, Y', strtotime($lists->Paid_Date))}}</td>
+                                                                            <td>{{$lists->Payment_Status}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+
+                                                        <br>    
+
+                                                        <h3 class="text-left">Water Bills</h3>
+                                                        <table class="table align-items-center table-flush"
+                                                            id="myTable3">
+                                                            <thead class="thead-light">
+                                                                <tr>
+                                                                    <th scope="col">Total Amount</th>
+                                                                    <th scope="col">Due Date</th>
+                                                                    <th scope="col">Paid Date</th>
+                                                                    <th scope="col">Payment Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($list2 as $lists)
+                                                                    @if($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == "Water")
+                                                                        <tr>
+                                                                            <td class="cur1">{{$lists->Total_Amount}}</td>
+                                                                            <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
+                                                                            <td>{{date('F j, Y', strtotime($lists->Paid_Date))}}</td>
+                                                                            <td>{{$lists->Payment_Status}}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-outline-danger"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

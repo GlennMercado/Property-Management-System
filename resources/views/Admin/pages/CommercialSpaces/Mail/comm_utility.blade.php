@@ -5,8 +5,8 @@
 </head>
 <body>
     <p>Good day, {{ $tenant->name_of_owner }}!</p>
-    <p>We've already sent a copy of your Statement of Account (SOA) for this month.</p>
-    <p>Kindly check on your dashboard for more details.</p>
+    <p>We are informing you that your Statement of Account for this month is ready for signing and claiming.</p>
+    <p>Kindly proceed to our office.</p>
     <p>Regards,</p>
     <p>Novadeci Properties</p>
 </body>

@@ -260,11 +260,11 @@ class CommercialSpacesController extends Controller
     public function commercial_rent_collections()
     {
         $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
-        
-        $count = DB::select("SELECT * From commercial_spaces_tenants");
-        $array = array();
 
         $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0");
+
+        $count = DB::select("SELECT * From commercial_spaces_tenants");
+        $array = array();
 
         foreach($count as $counts)
         {
@@ -647,7 +647,15 @@ class CommercialSpacesController extends Controller
     {
         $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
            
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceUtility', ['list' => $list]);
+        $count = DB::select("SELECT * From commercial_spaces_tenants");
+        $array = array();
+        
+        foreach($count as $counts)
+        {
+            $array[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+        $list2 = DB::select("SELECT * FROM commercial_space_utility_bills");
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceUtility', ['list' => $list, 'array' => $array, 'list2' => $list2]);
     }
 
     public function add_commercial_tenant_utility_bill(Request $request)
