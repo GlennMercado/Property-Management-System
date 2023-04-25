@@ -51,6 +51,7 @@ composer require simplesoftwareio/simple-qrcode:*
 composer require yajra/laravel-datatables-oracle
 composer require laravel/socialite
 
+
 <!-- Only used for text messages and limited for 11 messages per trial account -->
 <!-- So kailangan ng bayad tlga awits -->
 composer require twilio/sdk

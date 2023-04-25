@@ -196,6 +196,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
 	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesController@update_utility_payment');
 	
+	
 });
 
 //Admin and Operation Manager
