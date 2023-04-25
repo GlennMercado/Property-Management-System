@@ -12,9 +12,14 @@ use App\Models\commercial_space_rent_reports;
 use Mail;
 use App\Mail\Tenant_Status;
 use App\Mail\Application_Status;
+use App\Mail\Commercial_Unit_Maintenance;
+use App\Mail\Commercial_Unit_Maintenance2;
+use App\Mail\Commercial_Utility;
 use App\Models\commercial_spaces_tenant_deposits;
 use App\Models\commercial_spaces_tenant_reports;
 use App\Models\commercial_space_units;
+use App\Models\commercial_space_unit_reports;
+use App\Models\commercial_space_utility_bills;
 // use Twilio\Rest\Client;
 
 class CommercialSpacesController extends Controller
@@ -272,10 +277,20 @@ class CommercialSpacesController extends Controller
 
         return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
     }
+
     public function commercial_space_units()
     {
         $list = DB::select("SELECT * FROM commercial_space_units");
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list]);
+
+        $check = DB::select('SELECT COUNT(*) as cnt FROM commercial_space_units');
+		$count = array();
+
+		foreach($check as $checks)
+		{
+			$count[] = ['counts' => $checks->cnt];
+		}
+
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list, 'count' => $count]);
     
     }
     
@@ -512,5 +527,196 @@ class CommercialSpacesController extends Controller
             Alert::Error('Failed', 'Failed on Adding Commercial Space!');
             return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
         }
+    }
+
+    public function edit_comm_unit(Request $request)
+    {
+        $space_unit = $request->input('space_units');
+        $size = $request->input('size');
+        $rental_fee = $request->input('rental_fee');
+
+        $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)
+                ->update([
+                    'Measurement_Size' => $size,
+                    'Rental_Fee' => $rental_fee,
+                    'Security_Deposit' => $rental_fee * 2,
+                    'updated_at' => DB::raw('NOW()')
+                ]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed Updating!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+
+    }
+    public function comm_space_maintainance_cost(Request $request)
+    {
+        $space_unit = $request->input('space_units');
+        $status = $request->input('stats');
+        $cost = $request->input('cost');
+        $due_date = $request->input('due');
+        $now = Carbon::now()->format('Y-m-d');
+
+        $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+            [
+                'Maintenance_Status' => "No",
+                'Maintenance_Due_Date' => null, 
+                'updated_at' => DB::raw('NOW()')
+            ]
+        );
+
+        if($sql)
+        {
+            DB::table('commercial_spaces_tenants')
+            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+            ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
+            ->update(['Tenant_Status' => "Non-Compliance"]);
+
+            $tenants = DB::table('commercial_spaces_tenants')
+            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+            ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)->get();
+            
+            $add = new commercial_space_unit_reports;
+            // Send email to each tenant
+            foreach ($tenants as $tenant) {
+                $add->Tenant_ID = $tenant->Tenant_ID;
+                $add->Space_Unit = $space_unit;
+                $add->Maintenance_Cost = $cost;
+                $add->Due_Date = $due_date;
+                $add->Paid_Date = $now;
+                $add->Paid_By = "Novadeci";
+
+                $add->save();
+
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance($tenant, $cost));
+            }
+
+            Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in updating!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+    }
+
+    public function update_comm_maintenance_status($id, $stats)
+    {
+        $space_unit = $id;
+        $status = $stats;
+        $due_date = Carbon::now()->addMonth()->format('Y-m-d');
+
+        if($status == "Yes")
+        {
+            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => $due_date]);
+        }
+        else
+        {
+            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => null]);
+        }
+       
+        if($sql)
+        {
+            $tenants = DB::table('commercial_spaces_tenants')
+            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+            ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)->get();
+            
+            // Send email to each tenant
+            foreach ($tenants as $tenant) {
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+            }
+
+            Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed Updating!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+    }
+
+    public function commercial_space_utility_bills()
+    {
+        $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+           
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceUtility', ['list' => $list]);
+    }
+
+    public function add_commercial_tenant_utility_bill(Request $request)
+    {
+        $tenant_id = $request->input('tenant_id');
+        $type_of_bill = $request->input('type_of_bill');
+        $amount = $request->input('amount');
+        $due_date;
+        $select = DB::select("SELECT * FROM commercial_spaces_tenants WHERE Tenant_ID = '$tenant_id'");
+
+        foreach($select as $lists)
+        {
+            if($type_of_bill == "Electricity")
+            {
+                $check = DB::select("SELECT * FROM commercial_space_utility_bills WHERE Tenant_ID = '$tenant_id' AND Type_of_Bill = '$type_of_bill' AND Due_Date = '$lists->Due_Date'");
+                if($check)
+                {
+                    Alert::Error('Failed', 'Tenant Already have Electricity Bill for due!');
+                    return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');
+                }
+            }
+            elseif($type_of_bill == "Water")
+            {
+                $check = DB::select("SELECT * FROM commercial_space_utility_bills WHERE Tenant_ID = '$tenant_id' AND Type_of_Bill = '$type_of_bill' AND Due_Date = '$lists->Due_Date'");
+                if($check)
+                {
+                    Alert::Error('Failed', 'Tenant Already have Water Bill for due!');
+                    return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');
+                }
+            }
+
+            $due_date = $lists->Due_Date;
+        }
+
+
+        $add = new commercial_space_utility_bills;
+
+        $add->Tenant_ID = $tenant_id;
+        $add->Type_of_Bill = $type_of_bill;
+        $add->Total_Amount = $amount;
+        $add->Due_Date = $due_date;
+
+        if($add->save())
+        {
+            $check1 = DB::select("SELECT * FROM commercial_space_utility_bills WHERE Tenant_ID = '$tenant_id' AND Type_of_Bill = 'Electricity' AND Due_Date = '$due_date'");
+            $check2 = DB::select("SELECT * FROM commercial_space_utility_bills WHERE Tenant_ID = '$tenant_id' AND Type_of_Bill = 'Water' AND Due_Date = '$due_date'");   
+            
+            if($check1 && $check2)
+            {
+                $tenants = DB::table('commercial_spaces_tenants')
+                ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)->get();
+                
+                // Send email to each tenant
+                foreach ($tenants as $tenant) {
+                    Mail::to($tenant->email)->send(new Commercial_Utility($tenant));
+                }
+            }
+            
+
+            Alert::Success('Success', $type_of_bill.' Bill Successfully Added!');
+            return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+        }
+        else
+        {
+            Alert::Error('Failed', $type_of_bill.' Bill Failed Adding!');
+            return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');   
+        }
+       
+
     }
 }

@@ -39,6 +39,10 @@ Migration steps
 
 16.  php artisan migrate --path=/database/migrations/2023_04_24_155243_create_commercial_spaces_tenant_reports_table.php
 
+17.  php artisan migrate --path=/database/migrations/2023_04_25_174511_create_commercial_space_unit_reports_table.php
+
+18.  php artisan migrate --path=/database/migrations/2023_04_25_185938_create_commercial_space_utility_bills_table.php 
+
 php artisan migrate
 
 

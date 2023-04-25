@@ -165,8 +165,8 @@
                                 {{-- Utility Bills Collections --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
+                                        class="nav-item {{ 'CommercialSpaceUtilityBills' == request()->path() ? 'act1' : '' }}">
+                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceUtilityBills') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Utility Bills Collection') }}
                                             <span

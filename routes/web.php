@@ -179,6 +179,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('CommercialSpaceTenants', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces_tenants'])->name('CommercialSpaceTenants');
 	Route::get('CommercialSpaceRentCollections', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_rent_collections'])->name('CommercialSpaceRentCollections');
 	Route::get('CommercialSpaceUnits', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_space_units'])->name('CommercialSpaceUnits');
+	Route::get('CommercialSpaceUtilityBills', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_space_utility_bills'])->name('CommercialSpaceUtilityBills');
 	
 	Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
 	Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
@@ -188,7 +189,11 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesController@update_rental_collection');
 	Route::post('renew_tenant', 'App\Http\Controllers\CommercialSpacesController@renew_tenant');
 	Route::post('add_comm_space_unit', 'App\Http\Controllers\CommercialSpacesController@add_comm_space_unit');
+	Route::post('edit_comm_unit', 'App\Http\Controllers\CommercialSpacesController@edit_comm_unit');
 	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
+	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesController@comm_space_maintainance_cost');
+	Route::get('/update_comm_maintenance_status/{id}/{stats}', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
+	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
 
 });
 

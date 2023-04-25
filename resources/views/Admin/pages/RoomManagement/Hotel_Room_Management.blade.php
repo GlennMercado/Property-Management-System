@@ -134,11 +134,12 @@
                                         <tr>
                                             <td>
                                                 <!--View Button-->
-                                                <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
-                                                    data-target="#view{{ $lists->Room_No }}" title = "View Room"> <i class="bi bi-eye"></i>
+                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                    data-target="#view{{ $lists->Room_No }}" title = "View Room"> 
+                                                    <i class="bi bi-eye"></i>
                                                 </button>
                                                 <!--Edit Button-->
-                                                <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
+                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}" title = "Edit Room"> <i
                                                         class="bi bi-pencil-square"></i> </button>
                                                 @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Vacant for Cleaning")
