@@ -188,19 +188,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                                {{-- Notices --}}
-                                <ul class="nav nav-sm flex-column">
-                                    <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
-                                            {{ __('Notices') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div> 
                         </ul>
 

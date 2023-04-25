@@ -82,6 +82,7 @@
                                         <th scope="col" style="font-size:18px;">Maintenance Status <br> (Under Maintenance?)</th>
                                         <th scope="col" style="font-size:18px;">Occupancy Status</th>
                                         <th scope="col" style="font-size:18px;">Rental Fee</th>
+                                        <th scope="col" style="font-size:18px;">Security Deposit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,7 +93,8 @@
                                             <td style="font-size:16px;">{{ $lists->Measurement_Size }}</td>
                                             <td style="font-size:16px;">{{ $lists->Maintenance_Status }}</td>
                                             <td style="font-size:16px;">{{ $lists->Occupancy_Status }}</td>
-                                            <td style="font-size:16px;">{{ $lists->Rental_Fee}}</td>
+                                            <td style="font-size:16px;" class="cur1">{{ $lists->Rental_Fee}}</td>
+                                            <td style="font-size:16px;" class="cur1">{{ $lists->Security_Deposit}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -105,10 +107,18 @@
         </div>
     </div>
     </div>
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+    </script>
     <style>
         table
         {
             text-align:center;
+        }
+        .cur1::before{
+                content: '₱';
         }
         .modal-body
         {
