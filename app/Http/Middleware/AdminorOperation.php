@@ -16,9 +16,14 @@ class AdminorOperation
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Operations Manager')
+        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Operations Manager' && auth()->user()->IsDisabled == 0)
         {
             return $next($request);
+        }
+        elseif(auth()->user()->IsDisabled == 1)
+        {
+            auth()->logout();
+            return redirect('/login')->withStats(__('Access Denied.'));
         }
         else
         {

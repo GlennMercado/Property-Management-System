@@ -77,11 +77,9 @@
                                                 @endif
                                             @endforeach
                                             <!-- <option value="Housekeeper">Housekeeper</option> -->
-                                            <option value="Guest">Guest</option>
                                             <option value="Sales and Marketing">Sales and Marketing
                                             </option>
                                             <option value="Finance">Finance</option>
-                                            <option value="Front Desk">Front Desk</option>
                                             <option value="Operations Manager">Operations
                                                 Manager</option>
                                             <option value="Inventory Manager">Inventory Manager</option>
@@ -315,12 +313,10 @@
                                                                                 @endif
                                                                             @endforeach
                                                                             <!-- <option value="Housekeeper">Housekeeper</option> -->
-                                                                            <option value="Guest">Guest</option>
                                                                             <option value="Sales and Marketing">Sales and
                                                                                 Marketing
                                                                             </option>
                                                                             <option value="Finance">Finance</option>
-                                                                            <option value="Front Desk">Front Desk</option>
                                                                             <option value="Operations Manager">Operations
                                                                                 Manager</option>
                                                                             <option value="Inventory Manager">Inventory
