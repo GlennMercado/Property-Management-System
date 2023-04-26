@@ -318,6 +318,7 @@ class GuestController extends Controller
 
     public function commercial_spaces_application(Request $request)
     {         
+        
             $this->validate($request,[
                 'business_name' => 'required',
                 'business_style' => 'required',
