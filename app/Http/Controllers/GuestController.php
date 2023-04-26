@@ -144,12 +144,13 @@ class GuestController extends Controller
         $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_spaces_tenant_deposits c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         $list3 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_utility_bills c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email' AND b.Due_Date = c.Due_Date");
         $list4 = DB::select("SELECT * FROM commercial_space_rent_reports");
-
+        $list5 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND a.email = '$email'");
+        
         foreach($sql as $s)
         {
             $data[] = ['date' => $s->Interview_Date];
         }
-        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4]);
+        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
     }
     public function commercial_space_rent_payment(Request $request)
     {
@@ -240,6 +241,53 @@ class GuestController extends Controller
         }
     }
 
+    public function commercial_space_maintenance_payment(Request $request)
+    {
+        $tenant_id = $request->input('tenant_id');
+        $due = $request->input('due');
+        $space_unit = $request->input('space_unit');
+        $gcash = $request->input('gcash_account');
+        $cost = $request->input('cost');
+        $path;
+        $now = Carbon::now()->format('Y-m-d');
+        
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Space-Utility_Bills'.$request->input('tenant_id').'-.'.$extention;
+            $path = $file->move('commercial_space_proof_payment/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+        }
+
+        $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+            [
+                'Maintenance_Cost' => $cost,
+                'Payment_Status' => "Paid (Checking)",
+                'Gcash_Name' => $gcash,
+                'Proof_Image' => $path,
+                'Paid_Date' => $now,
+                'updated_at' => DB::RAW('NOW()')
+            ]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Maintenance Payment Successfully Submitted!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Maintenance Payment Failed Submitting!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+
+    }
     public function complaints_submit(Request $request){
         $this->validate($request,[
             'concern' => 'required',

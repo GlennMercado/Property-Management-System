@@ -23,6 +23,14 @@ return new class extends Migration
             $table->integer('Rental_Fee');
             $table->integer('Security_Deposit');
 
+            $table->string('Payment_Status')->nullable();
+            $table->date('Paid_Date')->nullable();
+
+            $table->string('Gcash_Name')->nullable();
+            $table->string('Proof_Image')->nullable();
+
+            
+
             $table->timestamps();
         });
     }

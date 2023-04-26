@@ -815,6 +815,141 @@
                         <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
                             style="width: 100%; height: 200px">
                     @endforelse
+
+                    <br>
+
+                    <h3>Space/s (Unit)</h3>
+                    @php $Displayed3 = false @endphp
+                    @forelse ($list5 as $lists5)
+                        <div class="table-responsive">
+                            <table class="table align-items-center">
+                                @if (!$Displayed3)
+                                    <thead>
+                                        <tr>
+                                            <th>SPACE/UNIT</th>
+                                            <th>Measurement Size</th>
+                                            <th>Maintenance Status <br> (Under Maintenance?)</th>
+                                            <th>DUE DATE</th>
+                                            <th>Rental Fee</th>
+                                            <th>Security Deposit</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    @php $Displayed3 = true @endphp
+                                @endif
+                                <tbody>
+                                    <tr>
+                                        <td>{{$lists5->Space_Unit}}</td>
+                                        <td>{{$lists5->Measurement_Size}}</td>
+                                        @if($lists5->Maintenance_Status == "Yes")
+                                            <td class="text-danger">{{$lists5->Maintenance_Status}}</td>
+                                        @else
+                                            <td class="text-success">{{$lists5->Maintenance_Status}}</td>
+                                        @endif
+                                        <td>{{date('F j, Y', strtotime($lists5->Due_Date))}}</td>
+                                        <td class="cur1">{{$lists5->Rental_Fee}}</td>
+                                        <td class="cur1">{{$lists5->Security_Deposit}}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#view_payment_history{{ $lists5->Space_Unit }}"
+                                                title="Payment History">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                            @if($lists5->Maintenance_Status == "Yes" && $lists5->Payment_Status != "Paid (Checking)")
+                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    data-target="#update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit) }}"
+                                                    title="Update Payment Status">
+                                                    <i class="bi bi-arrow-repeat"></i>
+                                                </button>
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                             <!-- Update Modal -->
+                            <div class="modal fade" id="update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit) }}" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">Updating Maintenance Payment Status
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ url('commercial_space_maintenance_payment') }}" class="prevent_submit"
+                                            method="POST" enctype="multipart/form-data">
+
+                                            {{ csrf_field() }}
+
+                                            <div class="modal-body">
+                                                <input type="hidden" name="tenant_id" value="{{ $lists5->Tenant_ID }}">
+
+                                                <input type="hidden" name="due" value="{{ $lists5->Maintenance_Due_Date }}">
+
+                                                <input type="hidden" name="space_unit" value="{{ $lists5->Space_Unit }}">
+
+                                                <div class="row shadow p-3 mt-2">
+                                                    <div class="col-md-12">
+                                                        <p class="font-weight-bold text-center">NVDC Properties:
+                                                            0923423424
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        {!! QrCode::size(170)->generate('0923423424') !!}
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="col-md-12">
+                                                        <p class="text-center">Maintenance Cost <span
+                                                        class="text-danger">*</span></p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="number" name="cost" class="form-control" required>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="col-md-12">
+                                                        <p class="text-center">Gcash account name <span
+                                                                class="text-danger">*</span></p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
+                                                            name="gcash_account" class="form-control" maxlength="32"
+                                                            required>
+                                                    </div>
+                                                    <div class="col-md-12 mt-1">
+                                                        <p class="text-center">Upload your proof of payment here <span
+                                                                class="text-danger">*</span></p>
+                                                    </div>
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        <img id="output3" class="img-fluid" />
+                                                    </div>
+                                                    <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
+                                                        <input type="file" onchange="enable_submit3(event)" id="gcash_img3"
+                                                            placeholder="Ex: John Doe" name="images" class="form-control"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-success prevent_submit"
+                                                    id="submit_button4">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-center display-5">No Utility Bills</p>
+                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
+                            style="width: 100%; height: 200px">
+                    @endforelse
                 </div>
             </div>
 
@@ -897,6 +1032,24 @@
                 console.log("URL of file being loaded: ", output.src);
             }
 
+            function enable_submit3() {
+                var acc = document.getElementById("gcash_acc3");
+                var g_img = document.getElementById("gcash_img3");
+                var submit_button2 = document.getElementById("submit_button4");
+                if (acc.value == "" || g_img.value == "") {
+                    submit_button2.disabled = true;
+                    submit_button2.style.cursor = "not-allowed";
+                } else {
+                    submit_button2.disabled = false;
+                    submit_button2.style.cursor = "pointer";
+                }
+                loadfile3(event);
+            }
+
+            function loadfile3(event) {
+                var output = document.getElementById('output3');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            }
         </script>
 
         <style>
