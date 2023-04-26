@@ -39,7 +39,10 @@
                                 <option value="Others">Others</option>
                             </select>
                             <br>
-                            <input name="concern_text" class="form-control" type="text" style="height: 200px">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Enter concern</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="concern_text" max-length="220"></textarea>
+                            </div>
                             <br>
                             <p>Upload an image</p>
                             <input type="file" name="images" class="form-control"

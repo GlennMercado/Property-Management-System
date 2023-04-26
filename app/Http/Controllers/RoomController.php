@@ -139,7 +139,7 @@ class RoomController extends Controller
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Room Edit Failed!');
-            return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updateds');
+            return redirect('Hotel_Room_Management')->with('Failed', 'Data not Updated');
         }
 
 

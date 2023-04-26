@@ -18,22 +18,71 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                            data-target=".bd-example-modal-lg"> <i class="bi bi-eye-fill"></i>
-                        </button>
-                        @forelse ($list as $list)
-                            <div class="row container-fluid">
+        @forelse ($list as $list)
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="card shadow">
+                        @if ($list->status == 'On-going')
+                            <div class="card-body">
+                                <div class="row container-fluid">
+                                    <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
+                                    <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
+                                    <button class="btn btn-sm bg-green text-white ml-auto" data-toggle="modal"
+                                        data-target="#view{{ $list->id }}">Action <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
+                                    <div class="card shadow mb-2 msgcolor gal mt-3" data-toggle="tooltip"
+                                        data-placement="bottom" title="{{ $list->concern }} {{ $list->created_at }}"
+                                        style="width: 100%">
+                                        <div class="card-body font-weight-bold mt--4">
+                                            <br>
+                                            <span
+                                                class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
+                                            <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
+                                            <br>
+                                            <br>
+                                            <span class="ml-1">{{ $list->concern_text }}</span>
+                                            <br>
+                                            <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                                data-gallery="complaints">
+                                                <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
+                                                    data-lightbox="photos" data-gallery="complaints"
+                                                    style="max-height: 350px; max-width:500px;" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bd-example-modal-lg" id="view{{ $list->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                Hotel Reservation
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
                                 <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
                                 <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
-                                {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
-                                <div class="card shadow mb-2 msgcolor gal" data-toggle="tooltip" data-placement="bottom"
-                                    title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
-                                    <div class="card-body font-weight-bold mt--4">
+                            </div>
+                            {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
+                            <div class="card shadow mb-2 msgcolor mt-3" data-toggle="tooltip" data-placement="bottom"
+                                title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
+                                <div class="card-body font-weight-bold mt--4">
+                                    <form method="POST" class="prevent_submit" action="{{ url('/complaints_status') }}"
+                                        enctype="multipart/form-data">
+                                        {{ csrf_field() }}
                                         <br>
+                                        <input type="text" value="{{ $list->id }}" hidden="true" name="id">
                                         <span
                                             class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
                                         <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
@@ -47,60 +96,23 @@
                                                 data-lightbox="photos" data-gallery="complaints"
                                                 style="max-height: 350px; max-width:500px;" />
                                         </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                        <p class="text-center display-5">No complaints yet</p>
-                        <img src="{{ asset('nvdcpics') }}/empty2.svg" class="img-fluid" style="width: 100%; height: 200px">
-                        @endforelse
-                        {{-- DELETE MODAL --}}
-                        <div class="col-md-4">
-                            <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
-                                aria-labelledby="modal-notification" aria-hidden="true">
-                                <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                    <div class="modal-content bg-red">
-
-                                        <div class="modal-header">
-                                            <h6 class="modal-title" id="modal-title-notification">Your attention is required
-                                            </h6>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
+                                        <div class="form-group mt-2">
+                                            <label for="exampleFormControlTextarea1">Remarks</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks" max-length="220"></textarea>
                                         </div>
-
-                                        <div class="modal-body">
-
-                                            <div class="py-3 text-center">
-                                                <i class="ni ni-archive-2 ni-3x"></i>
-                                                <h4 class="heading mt-4">Attention!</h4>
-                                                <p>Are you sure you want to delete this message?</p>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-white">Yes</button>
-                                            <button type="button" class="btn btn-link text-white ml-auto"
-                                                data-dismiss="modal">Close</button>
-                                        </div>
-
-                                    </div>
+                                        <input type="submit" value="Resolved"
+                                            class="form-control bg-green text-white mt-4">
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    ...
-                </div>
-            </div>
-        </div>
+        @empty
+            <p class="text-center display-5">No complaints yet</p>
+            <img src="{{ asset('nvdcpics') }}/complaints.svg" class="img-fluid" style="width: 100%; height: 200px">
+        @endforelse
     </div>
     <style>
         .gal:hover {

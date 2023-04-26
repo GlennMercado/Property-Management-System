@@ -295,6 +295,7 @@ class GuestController extends Controller
         ]);
         
         $submit = new complaints;
+        $submit->status = 'On-going';
         $submit->name = Auth::user()->name;
         $submit->profile_pic = Auth::user()->profile_pic;
         $submit->concern = $request->input('concern');
@@ -315,13 +316,11 @@ class GuestController extends Controller
 
         if($submit->save())
         {
-            Alert::Success('Success', 'Feedback Submitted!');
-            return redirect('/complaints')->with('Success', 'Data Saved');
+            return redirect('/complaints')->withStats(__('Complaint was successfully submitted.'));
         }
         else
         {
-            Alert::Error('Failed', 'Feedback not sent');
-            return redirect('/complaints')->with('Error', 'Failed!');
+            return redirect('/complaints')->withStats(__('Sending failed.'));
         }
     }
     public function guest_reservation(Request $request)
