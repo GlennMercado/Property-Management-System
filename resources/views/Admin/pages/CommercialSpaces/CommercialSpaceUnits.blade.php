@@ -118,10 +118,6 @@
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_maintenance3_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Update Maintenance Status">
                                                         <i class="bi bi-arrow-up-square"></i>
                                                     </button>
-                                                    
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_maintenance4_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Update Maintenance Status">
-                                                        <i class="bi bi-arrow-repeat"></i>
-                                                    </button>
                                                 @endif
                                             </td>
                                             <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
@@ -195,7 +191,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/update_comm_maintenance_status', ['id' => $lists->Space_Unit, 'stats' => 'Yes'])}}" class="btn btn-success prevent_submit">Yes</a>
+                                                        <a href="{{url('/update_comm_maintenance_status2', ['id' => $lists->Space_Unit, 'stats' => 'Yes'])}}" class="btn btn-success prevent_submit">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,6 +215,8 @@
                                                             <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}">
                                                             <input type="hidden" name="stats" value="{{$lists->Maintenance_Status}}">
                                                             <input type="hidden" name="due" value="{{$lists->Maintenance_Due_Date}}">
+                                                            <input type="hidden" name="tenant_id" value="{{$lists->Tenant_ID}}">
+
                                                             <h3>Space/Units : <span class="text-primary">{{$lists->Space_Unit}}</span></h3>
                                                             <br>
                                                             <h3>Maintenance Cost : </h3>
@@ -245,15 +243,35 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
+                                                    <form action="{{url('/update_comm_maintenance_status')}}" class="prevent_submit" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}">
-                                                        <input type="hidden" name="stats" value="{{$lists->Maintenance_Status}}">
-                                                        <h3 class="text-center">Is the problem resolved?</h3>
+                                                        <input type="hidden" name="cost" value="{{$lists->Maintenance_Cost}}" />
+                                                        <input type="hidden" name="due" value="{{$lists->Maintenance_Due_Date}}">
+                                                        <input type="hidden" name="gcash" value="{{$lists->Gcash_Name}}">
+                                                        <input type="hidden" name="payment" value="{{$lists->Proof_Image}}">
+                                                        <input type="hidden" name="tenant_id" value="{{$lists->Tenant_ID}}">
+
+                                                        <h3 class="text-left">Maintenance Cost : <span class="cur1 text-primary">{{$lists->Maintenance_Cost}}</span></h3>
+                                                        <h3 class="text-left">Account Name : <span class="text-primary">{{$lists->Gcash_Name}}</span></h3>
+                                                        <br>
+                                                        <h3 class="text-left">Payment Image : </h3>
+                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
+
+                                                        <h3 class="text-left">Set Status : </h3>
+                                                        <select name="status" class="form-control" required>
+                                                            <option value="" selected="true" disabled="disabled">Select</option>
+                                                            <option value="Paid">Paid</option>
+                                                            <option value="Incorrect">Incorrect Payment</option>
+                                                        </select>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/update_comm_maintenance_status', ['id' => $lists->Space_Unit, 'stats' => 'No'])}}" class="btn btn-success prevent_submit">Yes</a>
+                                                        <button type="submit" class="btn btn-success">Submit</button>
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

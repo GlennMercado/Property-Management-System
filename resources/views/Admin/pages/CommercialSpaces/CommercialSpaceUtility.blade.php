@@ -215,7 +215,11 @@
                                                                             @else
                                                                                 <td></td>
                                                                             @endif
-                                                                            <td>{{ $lists->Payment_Status }}</td>
+                                                                            @if($lists->Payment_Status == "Paid")
+                                                                                <td class="text-success">{{ $lists->Payment_Status }}</td>
+                                                                            @else
+                                                                                <td class="text-danger">{{ $lists->Payment_Status }}</td>
+                                                                            @endif
                                                                             <td>
                                                                                 @if ($lists->Proof_Image != null)
                                                                                     <div class="img-container">
@@ -233,7 +237,7 @@
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-success"
                                                                                         data-toggle="modal"
-                                                                                        data-target="#update_payment_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                                                        data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
                                                                                         <i class="bi bi-arrow-repeat"></i>
                                                                                     </button>
@@ -243,7 +247,7 @@
                                                                     @endif
                                                                     <!-- Update Modal -->
                                                                     <div class="modal fade update_payment_status"
-                                                                        id="update_payment_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                                        id="update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                         tabindex="-1" role="dialog"
                                                                         aria-labelledby="exampleModalLabel"
                                                                         aria-hidden="true">
@@ -327,7 +331,11 @@
                                                                             @else
                                                                                 <td></td>
                                                                             @endif
-                                                                            <td>{{ $lists->Payment_Status }}</td>
+                                                                            @if($lists->Payment_Status == "Paid")
+                                                                                <td class="text-success">{{ $lists->Payment_Status }}</td>
+                                                                            @else
+                                                                                <td class="text-danger">{{ $lists->Payment_Status }}</td>
+                                                                            @endif
                                                                             <td>
                                                                                 @if ($lists->Proof_Image != null)
                                                                                     <div class="img-container">
@@ -346,7 +354,7 @@
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-success"
                                                                                         data-toggle="modal"
-                                                                                        data-target="#update_payment_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                                                        data-target="#update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
                                                                                         <i class="bi bi-arrow-repeat"></i>
                                                                                     </button>
@@ -357,7 +365,7 @@
 
                                                                     <!-- Update Modal -->
                                                                     <div class="modal fade update_payment_status"
-                                                                        id="update_payment_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                                        id="update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                         tabindex="-1" role="dialog"
                                                                         aria-labelledby="exampleModalLabel"
                                                                         aria-hidden="true">
