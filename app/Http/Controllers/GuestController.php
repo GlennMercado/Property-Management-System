@@ -139,13 +139,60 @@ class GuestController extends Controller
         $sql = DB::select("SELECT * FROM commercial_spaces_applications");
         $data = array();
 
-        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0");
-        
+        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_spaces_tenant_deposits c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
+        $list3 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_utility_bills c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email' AND b.Due_Date = c.Due_Date");
+        $list4 = DB::select("SELECT * FROM commercial_space_rent_reports");
+
         foreach($sql as $s)
         {
             $data[] = ['date' => $s->Interview_Date];
         }
-        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data]);
+        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4]);
+    }
+    public function commercial_space_rent_payment(Request $request)
+    {
+        $path;
+        $base64;
+        $now = Carbon::now()->format('Y-m-d');
+        $tenant_id = $request->input('tenant_id');
+        $due = $request->input('due');
+        $gcash = $request->input('gcash_account');
+
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Space-Rent'.$request->input('room_no').'-.'.$extention;
+            $path = $file->move('commercial_space_proof_payment/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+        }
+
+        $sql = DB::table('commercial_spaces_tenants')->where(['Tenant_ID' => $tenant_id, 'Due_Date' => $due])->update(
+            [
+                'Paid_Date' => $now,
+                'Gcash_Name' => $gcash,
+                'Proof_Image' => $path,
+                'Payment_Status' => 'Paid (Checking)'
+            ]);
+        
+        if($sql)
+        {
+            Alert::Success('Success', 'Commercial Space Rent Successfully Submitted!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space Rent Failed Submitting!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+
     }
     public function complaints_submit(Request $request){
         $this->validate($request,[
@@ -365,7 +412,7 @@ class GuestController extends Controller
             if($submit->save())
             {
                 Alert::Success('Success', 'Application Successfully Submitted!');
-                return redirect('commercial_spaces')->with('Success', 'Data Saved');
+                return redirect('Commercial_Space')->with('Success', 'Data Saved');
             }
             else
             {
@@ -409,18 +456,18 @@ class GuestController extends Controller
             if($sql)
             {
                 Alert::Success('Success', 'Application Successfully Revised!');
-                return redirect('my_bookings')->with('Error', 'Failed!');
+                return redirect('Commercial_Space')->with('Error', 'Failed!');
             }
             else
             {
                 Alert::Error('Failed', 'Application not Updated');
-                return redirect('my_bookings')->with('Error', 'Failed!');
+                return redirect('Commercial_Space')->with('Error', 'Failed!');
             }
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Application not Edited');
-            return redirect('my_bookings')->with('Error', 'Failed!');
+            return redirect('Commercial_Space')->with('Error', 'Failed!');
         }
     }
     public function set_commercial_space_schedule(Request $request)
@@ -440,18 +487,18 @@ class GuestController extends Controller
             if($sql)
             {
                 Alert::Success('Success', 'Interview Schedule Successfully Set');
-                return redirect('my_bookings')->with('Error', 'Failed!');
+                return redirect('Commercial_Space')->with('Error', 'Failed!');
             }
             else
             {
                 Alert::Error('Failed', 'Setting Schedule Failed!');
-                return redirect('my_bookings')->with('Error', 'Failed!');
+                return redirect('Commercial_Space')->with('Error', 'Failed!');
             }
         }
         catch(\Illuminate\Database\QueryException $e)
         {
             Alert::Error('Failed', 'Application not Edited');
-            return redirect('my_bookings')->with('Error', 'Failed!');
+            return redirect('Commercial_Space')->with('Error', 'Failed!');
         }
     }
 

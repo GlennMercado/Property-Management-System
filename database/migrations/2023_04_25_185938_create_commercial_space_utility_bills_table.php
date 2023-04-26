@@ -28,6 +28,11 @@ return new class extends Migration
 
             $table->string('Payment_Status')->nullable();
 
+            $table->string('Gcash_Name')->nullable();
+            $table->string('Proof_Image')->nullable();
+
+            // $table->binary('DB_Proof_Image')->nullable();
+
             $table->timestamps();
         });
     }

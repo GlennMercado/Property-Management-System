@@ -271,11 +271,12 @@ class CommercialSpacesController extends Controller
             $array[] = ['Tenant_ID' => $counts->Tenant_ID];
         }
 
+        $count2 = DB::select("SELECT COUNT(*) as cnt FROM commercial_space_rent_reports WHERE Payment_Status = 'Non-Payment'");
         $list3 = DB::select("SELECT * FROM commercial_space_rent_reports");
         $list4 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
         $list5 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1");
 
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceRent', ['list' => $list, 'list2' => $list2, 'array' => $array, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5, 'count2' => $count2]);
     }
 
     public function commercial_space_units()
@@ -303,15 +304,20 @@ class CommercialSpacesController extends Controller
         $due_date = $due_date->addMonth();
         $rent_fee = $request->input('rental_fee') + $request->input('total');
         $sql;
+        $stats;
+        $gcash_name = $request->input('gcash_name');
+        $proof_image = $request->input('proof_img');
 
-        if($status == "Paid")
+        if($status == "Fully Paid")
         {
             $sql = DB::table("commercial_spaces_tenants")->where("Tenant_ID", $id)->update(
                 [
-                    'Paid_Date' => $now, 
-                    'Payment_Status' => $status,
+                    'Payment_Status' => null,
+                    'Paid_Date' => null,
                     'Due_Date' => $due_date,
                     'Total_Amount' => $request->input('rental_fee'),
+                    'Gcash_Name' => null,
+                    'Proof_Image' => null,
                     'updated_at' => DB::raw('NOW()')
                 ]
             );
@@ -322,9 +328,28 @@ class CommercialSpacesController extends Controller
                         'Paid_Date' => $now
                     ]
                 );
+            $stats="Paid";
+        }
+        elseif($status == "Partial Paid")
+        {
+            $stats="Paid";
+
+            $sql = DB::table("commercial_spaces_tenants")->where("Tenant_ID", $id)->update(
+                [
+                    'Payment_Status' => null,
+                    'Paid_Date' => null,
+                    'Due_Date' => $due_date,
+                    'Total_Amount' => $request->input('total'),
+                    'Gcash_Name' => null,
+                    'Proof_Image' => null,
+                    'updated_at' => DB::raw('NOW()')
+                ]
+            );
+
         }
         else
         {
+            $stats="Non-Payment";
             $sql = DB::table("commercial_spaces_tenants")->where("Tenant_ID", $id)->update(
                 [
                     'Paid_Date' => null, 
@@ -343,10 +368,15 @@ class CommercialSpacesController extends Controller
             $report->Tenant_ID = $id;
             $report->Rental_Fee = $request->input('rental_fee');
             $report->Due_Date = $request->input('due');
-            $report->Payment_Status = $request->input('status');
-            if($status == "Paid")
+            $report->Payment_Status = $stats;
+            if($stats == "Paid")
             {
                 $report->Paid_Date = $now;
+            }
+            if($gcash_name != null)
+            {
+                $report->Gcash_Name = $gcash_name;
+                $report->Proof_Image = $proof_image;
             }
 
             $report->save();
