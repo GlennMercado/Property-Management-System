@@ -459,7 +459,7 @@ class GuestController extends Controller
     }
 
     public function commercial_spaces_application(Request $request)
-    {                
+    {              
             $this->validate($request,[
                 'business_name' => 'required',
                 'business_style' => 'required',
@@ -475,6 +475,7 @@ class GuestController extends Controller
                 'tax_identification_no' => 'required',
                 'tax_cert_valid_gov_id' => 'required'
             ]);
+            
             $spouse;
             $business;
             $landline;
@@ -513,8 +514,8 @@ class GuestController extends Controller
             $submit->business_style = $request->input('business_style');
             $submit->business_address = $request->input('business_address');
             $submit->email_website_fb = $request->input('email_website_fb');
-            $submit->business_landline_no = $request->input('business_landline_no');
-            $submit->business_mobile_no = $business;
+            $submit->business_landline_no = $business;
+            $submit->business_mobile_no = $request->input('business_mobile_no');
             $submit->name_of_owner = $request->input('name_of_owner');
             $submit->spouse = $spouse;
             $submit->home_address = $request->input('home_address');
