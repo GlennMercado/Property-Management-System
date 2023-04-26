@@ -772,7 +772,7 @@ class CommercialSpacesController extends Controller
         if($water_status == "Paid")
         {
             $sql1 = DB::table('commercial_space_utility_bills')->where(['Tenant_ID' => $tenant_id, 'Type_of_Bill' => "Water", 'Due_Date' => $due])
-                    ->update(['Paid_Date' => $now, 'Payment_Status' => $water_status, 'updated_at' => DB::RAW('NOW()')]);
+                    ->update(['Payment_Status' => $water_status, 'updated_at' => DB::RAW('NOW()')]);
         }
         elseif($water_status == "Non-Payment")
         {
@@ -783,7 +783,7 @@ class CommercialSpacesController extends Controller
         if($electric_status == "Paid")
         {
             $sql2 = DB::table('commercial_space_utility_bills')->where(['Tenant_ID' => $tenant_id, 'Type_of_Bill' => "Electricity", 'Due_Date' => $due])
-                ->update(['Paid_Date' => $now, 'Payment_Status' => $electric_status, 'updated_at' => DB::RAW('NOW()')]);
+                ->update(['Payment_Status' => $electric_status, 'updated_at' => DB::RAW('NOW()')]);
         }
         elseif($electric_status == "Non-Payment")
         {
