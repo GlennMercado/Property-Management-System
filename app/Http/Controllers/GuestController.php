@@ -39,6 +39,14 @@ class GuestController extends Controller
         if (auth()->user()) {
             $user = Auth::user();
             auth()->user()->notify(new Booked($user));
+            $mail = Auth::user()->email;
+            $name = Auth::user()->name;
+            $data=['name'=>$name, 'data'=>"Hello world"];
+            $user['to']=$mail;
+            Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
+                $messages->to($user['to']);
+                $messages->subject('Hello');
+            });
         } else{
             Alert::Error('Failed', 'sommething went wrong');
             return redirect('/welcome')->with('Error', 'Failed');
@@ -393,15 +401,7 @@ class GuestController extends Controller
             if($reserve->save())
             {
                 $this->booked();
-                return redirect('/welcome')->with('Success', 'Data Saved');
-                $mail = Auth::user()->email;
-                $name = Auth::user()->name;
-                $data=['name'=>$name, 'data'=>"Hello world"];
-                $user['to']=$mail;
-                Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
-                    $messages->to($user['to']);
-                    $messages->subject('Hello');
-                });
+                return redirect('/suites')->with('Success', 'Data Saved');
             }
             else
             {
