@@ -459,8 +459,7 @@ class GuestController extends Controller
     }
 
     public function commercial_spaces_application(Request $request)
-    {         
-        
+    {                
             $this->validate($request,[
                 'business_name' => 'required',
                 'business_style' => 'required',
@@ -477,6 +476,9 @@ class GuestController extends Controller
                 'tax_cert_valid_gov_id' => 'required'
             ]);
             $spouse;
+            $business;
+            $landline;
+
             if($request->input('spouse') != null)
             {
                 $spouse = $request->input('spouse');
@@ -486,6 +488,24 @@ class GuestController extends Controller
                 $spouse = null;
             }
 
+            if($request->input('business_landline_no') != null)
+            {
+                $business = $request->input('business_landline_no');
+            }
+            else
+            {
+                $business = null;
+            }
+
+            if($request->input('landline') != null)
+            {
+                $landline = $request->input('landline');
+            }
+            else
+            {
+                $landline = null;
+            }
+            
             $submit = new commercial_spaces_application;
 
             $submit->email = Auth::user()->email;
@@ -494,11 +514,11 @@ class GuestController extends Controller
             $submit->business_address = $request->input('business_address');
             $submit->email_website_fb = $request->input('email_website_fb');
             $submit->business_landline_no = $request->input('business_landline_no');
-            $submit->business_mobile_no = $request->input('business_landline_no');
+            $submit->business_mobile_no = $business;
             $submit->name_of_owner = $request->input('name_of_owner');
             $submit->spouse = $spouse;
             $submit->home_address = $request->input('home_address');
-            $submit->landline = $request->input('landline');
+            $submit->landline = $landline;
             $submit->mobile_no = $request->input('mobile_no');
             $submit->tax_identification_no = $request->input('tax_identification_no');
             $submit->tax_cert_valid_gov_id = $request->input('tax_cert_valid_gov_id');
