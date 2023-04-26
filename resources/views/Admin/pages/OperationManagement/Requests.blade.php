@@ -14,7 +14,7 @@
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
-                        <li class="breadcrumb-item">Operation Management</li>
+                        <li class="breadcrumb-item">Operations Management</li>
                         <li class="breadcrumb-item">Guest Call Register</li>
                         <li class="breadcrumb-item active text-dark" aria-current="page">Guest Request</li>
                     </ol>
