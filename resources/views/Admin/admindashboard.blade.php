@@ -356,13 +356,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="container d-flex justify-content-center">
+                <div class=" d-flex justify-content-center">
                     <div class="row mt-6" style="justify-content:center">
                         <div class="col-xl-8">
                             <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
                             <canvas class="p-3" id="doughnutChart"></canvas>
                         </div>
-                        <div class="col-xl-8">
+                        <div class="col-md-8">
                             <h2>Finance</h2>
                             <canvas class="p-3" id="myChart"></canvas>
                         </div>
@@ -476,7 +476,7 @@
                         'Hotel', 'Commercial Space'
                     ],
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Total Payments',
                         data: data,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
