@@ -21,13 +21,20 @@ return new class extends Migration
             $table->foreign('Tenant_ID')->references('id')->on('commercial_spaces_applications')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('Space_Unit');
+            $table->index('Space_Unit');
+            $table->foreign('Space_Unit')->references('Space_Unit')->on('commercial_space_units')->onDelete('cascade')->onUpdate('cascade');
+
             $table->integer('Rental_Fee');
+            $table->integer('Total_Amount');
             $table->date('Due_Date');
 
             $table->date('Start_Date');
             $table->date('End_Date');
 
             $table->string('Tenant_Status')->default('Active (Operating)');
+
+            $table->date('Paid_Date')->nullable();
+            $table->string('Payment_Status')->default('Paid');
 
             $table->timestamps();
         });

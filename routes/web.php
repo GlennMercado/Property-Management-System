@@ -169,27 +169,42 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 	//Event inquiry
-		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-		Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-		Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
-		Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
-	//Commercial Spaces
-		Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
-		Route::get('CommercialSpaceTenants', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces_tenants'])->name('CommercialSpaceTenants');
-		Route::get('CommercialSpaceRentCollections', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_rent_collections'])->name('CommercialSpaceRentCollections');
-		
-		Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
-		Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
+	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
+	Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
+	Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
 
-		Route::post('add_commercial_tenant', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant');
-		Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesController@update_tenant_status');
-		
+	//Commercial Spaces
+	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
+	Route::get('CommercialSpaceTenants', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces_tenants'])->name('CommercialSpaceTenants');
+	Route::get('CommercialSpaceRentCollections', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_rent_collections'])->name('CommercialSpaceRentCollections');
+	Route::get('CommercialSpaceUnits', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_space_units'])->name('CommercialSpaceUnits');
+	Route::get('CommercialSpaceUtilityBills', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_space_utility_bills'])->name('CommercialSpaceUtilityBills');
+	
+	Route::get('/commercial_space_view/{id}', 'App\Http\Controllers\CommercialSpacesController@commercial_space_view');
+	Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
+
+	Route::post('add_commercial_tenant', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant');
+	Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesController@update_tenant_status');
+	Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesController@update_rental_collection');
+	Route::post('renew_tenant', 'App\Http\Controllers\CommercialSpacesController@renew_tenant');
+	Route::post('add_comm_space_unit', 'App\Http\Controllers\CommercialSpacesController@add_comm_space_unit');
+	Route::post('edit_comm_unit', 'App\Http\Controllers\CommercialSpacesController@edit_comm_unit');
+	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
+	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesController@comm_space_maintainance_cost');
+	Route::get('/update_comm_maintenance_status/{id}/{stats}', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
+	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
+	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesController@update_utility_payment');
+	
+	
 });
 
 //Admin and Operation Manager
 Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	//Reservation
-	Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+	// Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+
+	Route::get('/Guest_Reservation', [App\Http\Controllers\HotelController::class, 'guest_viewing'])->name('Guest_Reservation');
 
 	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
 	
@@ -265,7 +280,6 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
-
 	// notifications
 	// Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
 	// Route::get('/booked', [App\Http\Controllers\GuestController::class, 'booked']);
@@ -279,6 +293,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
 	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
+	Route::get('Commercial_Space', [App\Http\Controllers\GuestController::class, 'Commercial_Space'])->name('Commercial_Space');
 	Route::get('/about_us', [App\Http\Controllers\GuestController::class, 'about_us'])->name('about_us');
 	Route::get('/contact_us', [App\Http\Controllers\GuestController::class, 'contact_us'])->name('contact_us');
 	Route::get('/map', [App\Http\Controllers\GuestController::class, 'map'])->name('map');

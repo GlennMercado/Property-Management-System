@@ -16,14 +16,20 @@ class AdminorSales
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Sales and Marketing')
+        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Sales and Marketing' && auth()->user()->IsDisabled == 0)
         {
             return $next($request);
+        }
+        elseif(auth()->user()->IsDisabled == 1)
+        {
+            auth()->logout();
+            return redirect('/login')->withStats(__('Access Denied.'));
         }
         else
         {
             //return redirect()->route('login')->with('Error', 'Access Denied.');
             abort(404);
+            
         }
         
         

@@ -6,4 +6,4 @@ cp .env.example .env
 
 composer require yajra/laravel-datatables-oracle
 
-composer require brian2694/laravel-toastr
+composer require laravel/socialite

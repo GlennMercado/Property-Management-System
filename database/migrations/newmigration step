@@ -29,12 +29,46 @@ Migration steps
 
 11.  php artisan migrate --path=/database/migrations/2023_04_09_143246_create_notifications_table.php
 
-12.  php artisan migrate --path=/database/migrations/2023_04_17_144721_create_commercial_spaces_tenants_table.php
+12.  php artisan migrate --path=/database/migrations/2023_04_24_173156_create_commercial_space_units_table.php
 
+13.  php artisan migrate --path=/database/migrations/2023_04_17_144721_create_commercial_spaces_tenants_table.php
+
+14.  php artisan migrate --path=/database/migrations/2023_04_22_050938_create_commercial_space_rent_reports_table.php
+
+15   php artisan migrate --path=/database/migrations/2023_04_23_204518_create_commercial_spaces_tenant_deposits_table.php
+
+16.  php artisan migrate --path=/database/migrations/2023_04_24_155243_create_commercial_spaces_tenant_reports_table.php
+
+17.  php artisan migrate --path=/database/migrations/2023_04_25_174511_create_commercial_space_unit_reports_table.php
+
+18.  php artisan migrate --path=/database/migrations/2023_04_25_185938_create_commercial_space_utility_bills_table.php 
 
 php artisan migrate
 
 
+composer update
 composer require simplesoftwareio/simple-qrcode:*
 composer require yajra/laravel-datatables-oracle
 composer require laravel/socialite
+
+
+<!-- Only used for text messages and limited for 11 messages per trial account -->
+<!-- So kailangan ng bayad tlga awits -->
+composer require twilio/sdk
+
+<!-- ETO CODE -->
+// // Send SMS notification
+// $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";
+// $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+// $twilio->messages->create(
+//     '+63' . substr($tenant->mobile_no, 1),
+//     [
+//         'from' => env('TWILIO_FROM_NUMBER'),
+//         'body' => $message,
+//     ]
+// );
+
+<!-- Pantanggal kapag ayaw -->
+composer remove twilio/sdk
+
+

@@ -38,7 +38,7 @@
                 <li class="nav-item {{ 'home' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('home') }}">
                         <i class="bi bi-display" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                 <li class="nav-item {{ 'Calendar' == request()->path() ? 'act1' : '' }}">
                     <a class="nav-link text-light" href="{{ route('Calendar') }}">
                         <i class="bi bi-calendar3" style="color:rgb(224, 223, 223)"></i></i> {{ __('Calendar') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -58,7 +58,7 @@
                     <a class="nav-link text-light" href="{{ route('Dashboard') }}">
                         <i class="bi bi-door-open-fill" style="color:rgb(243, 243, 243)"></i>
                         {{ __('Room Management') }}
-                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                        <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                             id="ncount">{{ auth()->user()->notifications->count() }}</span>
                     </a>
                 </li>
@@ -77,7 +77,7 @@
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Hotel Booking') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -87,7 +87,7 @@
                                 <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
                                     <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Guest Folio') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -97,7 +97,7 @@
                                 <a class="nav-link text-light" href="{{ route('EventInquiryForm') }}">
                                     <i class="bi bi-calendar-event-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Event Inquiry') }}
-                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                    <span class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
@@ -131,7 +131,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Application') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -144,7 +144,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Tenants') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -157,7 +157,7 @@
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Rent Collections') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -165,12 +165,12 @@
                                 {{-- Utility Bills Collections --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
+                                        class="nav-item {{ 'CommercialSpaceUtilityBills' == request()->path() ? 'act1' : '' }}">
+                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceUtilityBills') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Utility Bills Collection') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -178,25 +178,12 @@
                                 {{-- Commercial Space Units --}}
                                 <ul class="nav nav-sm flex-column">
                                     <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
+                                        class="nav-item {{ 'CommercialSpaceUnits' == request()->path() ? 'act1' : '' }}">
+                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceUnits') }}">
                                             <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Commercial Space Units') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                {{-- Notices --}}
-                                <ul class="nav nav-sm flex-column">
-                                    <li
-                                        class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
-                                        <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
-                                            {{ __('Notices') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -383,7 +370,7 @@
                                             <i class="bi bi-patch-question-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Complaints') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -394,7 +381,7 @@
                                             <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Guest Request') }}
                                             <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2"
+                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
                                                 id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
@@ -427,7 +414,8 @@
                         </ul>
                     </div>
                 </li>
-                <!-- </div> -->
+
+                <!-- Finance Module -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
@@ -499,7 +487,7 @@
         <script>
             setInterval(function() {
                 $.ajax({
-                    url: 'http://localhost:8000/notifications/count', // Replace with your endpoint URL
+                    url: '/notifications/count', // Replace with your endpoint URL
                     success: function(response) {
                         $('#ncount').text(response.count);
                     }

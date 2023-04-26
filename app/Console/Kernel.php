@@ -13,20 +13,30 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
-        // $schedule->command('inspire')->hourly();
-    }
 
     /**
      * Register the commands for the application.
      *
      * @return void
      */
+    
+
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    protected $commands = [
+        \App\Console\Commands\UpdateStatusCommand::class,
+        \App\Console\Commands\SendCommercialEmailCommand::class,
+    ];
+    
+    protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')->hourly();
+        $schedule->command('update:status')->dailyAt('00:00');
+        $schedule->command('commercial:notify')->dailyAt('00:00');
     }
 }

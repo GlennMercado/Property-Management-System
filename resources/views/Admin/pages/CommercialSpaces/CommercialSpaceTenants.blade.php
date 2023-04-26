@@ -76,11 +76,31 @@
                                                     @foreach ($list as $lists)
                                                         <tr>
                                                             <td>
+                                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                    data-target="#view_rent_history{{ $lists->Tenant_ID }}"
+                                                                    title="Payment History">
+                                                                    <i class="bi bi-eye"></i>
+                                                                </button>
+                                                                @if($lists->Tenant_Status != "Pre-Termination")
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update_status{{ $lists->id }}"
                                                                     title="Update Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
+                                                                @elseif($lists->Tenant_Status == "Pre-Termination")
+                                                                    <!-- Terminate -->
+                                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                                        data-target="#update_status24{{ $lists->id }}"
+                                                                        title="Update Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                    <!-- Resolve -->
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_status100{{ $lists->id }}"
+                                                                        title="Update Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @endif
                                                             </td>
                                                             <td>
                                                                 <span class="tbltxt">Business Name: </span>
@@ -109,10 +129,6 @@
                                                                 <br>
                                                             </td>
                                                             <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
                                                                     class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
@@ -173,18 +189,28 @@
                                                                     enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
                                                                     <div class="modal-body">
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $lists->id }}">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
                                                                         <h3 class="text-left">Status: </h3>
                                                                         <select name="status" class="form-control"
                                                                             required>
                                                                             <option value="" selected="true"
                                                                                 disabled="disabled">Select</option>
+                                                                            @if($lists->Tenant_Status != 'Active (Operating)')
+                                                                            <option value="Active (Operating)">Active (Operating)</option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Pre-Termination')
                                                                             <option value="Pre-Termination">Pre-Termination
                                                                             </option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Non-Compliance')
                                                                             <option value="Non-Compliance">Non-Compliance
                                                                             </option>
+                                                                            @endif
+                                                                            @if($lists->Tenant_Status != 'Abandon')
                                                                             <option value="Abandon">Abandon</option>
+                                                                            @endif
+                                                                            <option value="Terminated">Terminated</option>
                                                                         </select>
                                                                         <h3 class="text-left">Remarks: </h3>
                                                                         <input type="text" name="remarks"
@@ -193,7 +219,81 @@
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-outline-danger"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <input type="submit" class="btn btn-success">
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Update Modal 24-->
+                                                        <div class="modal fade" id="update_status24{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="status" value="Terminated">
+                                                                        <input type="hidden" name="remarks" value="Your commercial space contract has been terminated" />
+                                                                        <h3 class="text-center">Are you sure you want to terminate this tenant's commercial space rental? </h3>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit" value="Yes">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Update Modal 24-->
+                                                        <div class="modal fade" id="update_status100{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="status" value="Active (Operating)">
+                                                                        <input type="hidden" name="payment" value="Paid">
+                                                                        <h3 class="text-center">Are you sure you want to set this tenant to Active (Operating)?</h3>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit" value="Yes">
                                                                     </div>
                                                                     </form>
                                                                 </div>
@@ -202,6 +302,93 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            @foreach ($array as $arrays)
+                                                <!-- Tenant History -->
+                                                <div class="modal fade"
+                                                    id="view_rent_history{{ $arrays['Tenant_ID'] }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">View Tenant Renewal History
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table class="table align-items-center table-flush"
+                                                                    id="myTable3">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+
+                                                                            <th scope="col">Space/Unit</th>
+                                                                            <th scope="col">Rental Fee</th>
+                                                                            <th scope="col">Total Amount</th>
+                                                                            <th scope="col">Due Date</th>
+                                                                            <th scope="col">Start Date</th>
+                                                                            <th scope="col">End Date</th>
+                                                                            <th scope="col">Tenant Status</th>
+                                                                            <th scope="col">Paid Date</th>
+                                                                            <th scope="col">Payment Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($list4 as $lists4)
+                                                                            @if ($lists4->Tenant_ID == $arrays['Tenant_ID'])
+                                                                                <tr>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists4->Space_Unit }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists4->Rental_Fee }}</td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists4->Total_Amount }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists4->Due_Date)) }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists4->Start_Date)) }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists4->End_Date)) }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists4->Tenant_Status}}
+                                                                                    </td>
+                                                                                    @if($lists4->Paid_Date != null)
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists4->Paid_Date)) }}
+                                                                                    </td>
+                                                                                    @else
+                                                                                    <td></td>
+                                                                                    @endif
+                                                                                    @if($lists4->Payment_Status == "Paid")
+                                                                                    <td class="font-weight-bold tbltxt text-success">
+                                                                                        {{ $lists4->Payment_Status }}</td>
+                                                                                    @else
+                                                                                    <td class="font-weight-bold tbltxt text-danger">
+                                                                                        {{ $lists4->Payment_Status }}</td>
+                                                                                    @endif
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
 
@@ -228,11 +415,19 @@
                                                     @foreach ($list2 as $lists)
                                                         <tr>
                                                             <td>
-                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update_status{{ $lists->id }}"
-                                                                    title="Update Status">
-                                                                    <i class="bi bi-arrow-repeat"></i>
-                                                                </button>
+                                                                @if($lists->Tenant_Status == "Ending Contract")
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_status2{{ $lists->id }}"
+                                                                        title="Update Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @else
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_status3{{ $lists->id }}"
+                                                                        title="Update Status (For Renewal)">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @endif
                                                             </td>
                                                             <td>
                                                                 <span class="tbltxt">Business Name: </span>
@@ -261,10 +456,6 @@
                                                                 <br>
                                                             </td>
                                                             <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
                                                                     class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
@@ -302,7 +493,98 @@
                                                                 {{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
                                                             <td class="font-weight-bold tbltxt">
                                                                 {{ $lists->Tenant_Status }}</td>
-                                                        </tr>   
+                                                        </tr>  
+                                                        
+                                                        <!-- Update Modal -->
+                                                        <div class="modal fade" id="update_status2{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Updating Tenant Status
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/update_tenant_status') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+                                                                        <h3 class="text-left">Status: </h3>
+                                                                        <select name="status" class="form-control"
+                                                                            required>
+                                                                            <option value="" selected="true"
+                                                                                disabled="disabled">Select</option>
+                                                                            <option value="For Renewal">For Renewal
+                                                                            </option>
+                                                                            <option value="Terminated">Terminated</option>
+                                                                        </select>
+                                                                        <h3 class="text-left">Remarks: </h3>
+                                                                        <input type="text" name="remarks"
+                                                                            class="form-control" />
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Update Modal 2-->
+                                                        <div class="modal fade" id="update_status3{{ $lists->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Renewing Tenant 
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/renew_tenant') }}"
+                                                                    class="prevent_submit" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="tenant_id"
+                                                                            value="{{ $lists->Tenant_ID }}">
+
+                                                                        <input type="hidden" name="rent_fee" value="{{$lists->Rental_Fee}}">
+                                                                        <h3 class="text-left">New Start Date of Contract:
+                                                                        </h3>
+                                                                        <input type="date" class="form-control"
+                                                                            name="start_date" id="date" required>
+
+                                                                        <h3 class="text-left">Remarks:
+                                                                        </h3>
+                                                                        <input type="text" class="form-control"
+                                                                            name="remarks">
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-outline-danger"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <input type="submit" class="btn btn-success prevent_submit">
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -313,18 +595,98 @@
                                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                         aria-labelledby="tabs-icons-text-3-tab">
                                         <div class="table-responsive">
-                                            <table class="table align-items-center table-flush" id="myTable3">
+                                            <table class="table align-items-center table-flush" id="myTable4">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th scope="col" style="font-size:17px;">Action</th>
+                                                        <!-- <th scope="col" style="font-size:17px;">Action</th> -->
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
+                                                        <th scope="col" style="font-size:17px;">Space/Unit</th>
+                                                        <th scope="col" style="font-size:17px;">Start Date <br> of
+                                                            Contract</th>
+                                                        <th scope="col" style="font-size:17px;">End Date <br> of Contract
+                                                        </th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
-                                                        <th scope="col" style="font-size:17px;">Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($list3 as $lists)
+                                                        <tr>
+                                                            <!-- <td>
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update_status{{ $lists->id }}"
+                                                                    title="Update Status">
+                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                </button>
+                                                            </td> -->
+                                                            <td>
+                                                                <span class="tbltxt">Business Name: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_name }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Style: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_style }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Address: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_address }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Email/Website/FB: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->email_website_fb }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Landline: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_landline_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Business Mobile No: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->business_mobile_no }}</span>
+                                                                <br>
+                                                            </td>
+                                                            <td>
+                                                                <span class="tbltxt">Owner Name: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Spouse: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->spouse }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Home Address: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->home_address }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Landline: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->landline }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Mobile: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->mobile_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Tax Identification No: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_identification_no }}</span>
+                                                                <br>
+                                                                <span class="tbltxt">Tax Cert or Valid ID: </span>
+                                                                <span
+                                                                    class="font-weight-bold tbltxt">{{ $lists->tax_cert_valid_gov_id }}</span>
+                                                                <br>
+                                                            </td>
+                                                            <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
+                                                            </td>
+                                                            <td class="font-weight-bold tbltxt">
+                                                                {{ date('F j, Y', strtotime($lists->Start_Date)) }}</td>
+                                                            <td class="font-weight-bold tbltxt">
+                                                                {{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
+                                                            <td class="font-weight-bold tbltxt text-danger">
+                                                                {{ $lists->Tenant_Status }}</td>
+                                                        </tr>
 
+                                                        
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -338,7 +700,16 @@
         </div>
     </div>
     </div>
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+    </script>
     <style>
+        .modal-body
+        {
+            overflow-x: auto;
+        }
         .tbltxt {
             font-size: 18px;
         }
@@ -373,6 +744,24 @@
             }
         }
     </style>
+    <script>
+
+        $(document).ready(function() { 
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#date').attr('min', maxDate);
+        });
+    </script>
 @endsection
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>

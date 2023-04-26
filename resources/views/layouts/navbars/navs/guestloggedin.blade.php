@@ -6,7 +6,53 @@
         <a class="navbar-brand d-none d-lg-block" href="{{ route('welcome') }}">
             <img src="{{ asset('nvdcpics') }}/nvdc-logo5.png" style="width: 100%; height: 50px; margin-right:1%;">
         </a>
-        <div class="dropdown" style="cursor: pointer">
+        <li class="nav-item dropdown align-items-center">
+            <a class="nav-link d-none d-md-block" href="#" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" title="Notifications">
+                <i class="ni ni-bell-55 text-white"></i><span
+                    class="badge rounded-pill badge-notification bg-danger text-white"
+                    id="ncount">{{ auth()->user()->notifications->count() }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-xl py-0 overflow-hidden d-none d-md-block">
+
+                <div class="px-3 py-3">
+                    <h6 class="text-sm text-muted m-0">Notifications <strong class="text-primary">{{ auth()->user()->notifications->count() }}</strong>
+                    </h6>
+                </div>
+
+                <div class="list-group list-group-flush scroll">
+                    @forelse (auth()->user()->notifications as $notif)
+                        @if ($notif->data['link'])
+                            <a href="{{ $notif->data['link'] }}" class="list-group-item list-group-item-action">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <i class="bi bi-info-circle-fill text-success"></i>
+                                    </div>
+                                    <div class="col ml--2">
+                                        <p class="text-md mb-0 font-weight-bold">
+                                            {{ $notif->data['txt'] }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
+                    @empty
+                        <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid"
+                            style="width: 100%; height: 150px">
+                        <p class="text-center display-4">There are no notifications.</p>
+                    @endforelse
+                </div>
+
+                <a href="{{ url('MyNotifications') }}"
+                    class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+            </div>
+        </li>
+        <a href="{{ url('MyNotifications') }}" class="nav-link d-md-none ml-auto">
+            <i class="ni ni-bell-55 text-white"></i><span
+                class="badge rounded-pill badge-notification bg-danger text-white"
+                id="ncount">{{ auth()->user()->notifications->count() }}</span>
+        </a>
+        {{-- <div class="dropdown" style="cursor: pointer">
             <a href="" class="text-dark" role="button" data-target="#notif" id="navbarDropdownMenuLink"
                 role="button" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-bell text-white"></i>
@@ -23,8 +69,8 @@
                 </div>
                 @forelse (auth()->user()->notifications as $notif)
                     @if ($notif->data['link'])
-                        <a class="dropdown-item d-inline-block text-truncate text-left"
-                            href="{{ $notif->data['link'] }}" style="max-width: 400px">
+                        <a class="dropdown-item d-inline-block text-left notif-text"
+                            href="{{ $notif->data['link'] }}">
                             <i class="bi bi-info-circle-fill text-success"></i>{{ $notif->data['txt'] }}
                         </a>
                     @endif
@@ -34,7 +80,7 @@
                     <p class="text-center display-4">There are no notifications.</p>
                 @endforelse
             </div>
-        </div>
+        </div> --}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="avatar avatar-sm rounded-circle">
@@ -139,6 +185,10 @@
                     <i class="bi bi-book-half"></i>
                     <span>{{ __('My Transactions') }}</span>
                 </a>
+                <a href="{{ url('Commercial_Space') }}" class="dropdown-item">
+                    <i class="bi bi-book-half"></i>
+                    <span>{{ __('Commercial Space') }}</span>
+                </a>
                 <a href="{{ url('complaints') }}" class="dropdown-item">
                     <i class="ni ni-single-copy-04"></i>
                     <span>{{ __('Send a Complaint') }}</span>
@@ -179,7 +229,7 @@
 <script>
     setInterval(function() {
         $.ajax({
-            url: 'http://localhost:8000/notifications/count', // Replace with your endpoint URL
+            url: '/notifications/count', // Replace with your endpoint URL
             success: function(response) {
                 $('#ncount').text(response.count);
             }

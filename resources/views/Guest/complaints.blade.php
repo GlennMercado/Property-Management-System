@@ -14,7 +14,11 @@
                                 <option value="Hotel">Hotel</option>
                                 <option value="Convention Center">Convention Center</option>
                                 <option value="Function Rooms">Function Rooms</option>
-                                <option value="Commercial Spaces">Commercial Spaces</option>
+                                <option value="Commercial Spaces">Commercial Space 1</option>
+                                <option value="Commercial Spaces">Commercial Space 2</option>
+                                <option value="Commercial Spaces">Commercial Space 3</option>
+                                <option value="Commercial Spaces">Commercial Space 4</option>
+                                <option value="Commercial Spaces">Commercial Space 5</option>
                                 <option value="Others">Others</option>
                             </select>
                             <br>

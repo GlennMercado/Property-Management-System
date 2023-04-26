@@ -9,30 +9,30 @@
         <div class="card-body">
             <div class="row shadow p-3 mb-5" style="margin: 15px">
                 <div class="col-md-6">
-                    <a href="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" data-lightbox="photos" data-gallery="gallery">
-                        <img src="{{ asset('nvdcpics') }}/FunctionRoom1.jpg" class="w-100 shadow-1-strong rounded mb-4" />
+                    <a href="{{ asset('nvdcpics') }}/FunctionRoom1.png" data-lightbox="photos" data-gallery="gallery">
+                        <img src="{{ asset('nvdcpics') }}/FunctionRoom1.png" class="w-100 shadow-1-strong rounded mb-4" />
                     </a>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <a href="{{ asset('nvdcpics') }}/FunctionRoom2.jpg" class="col-md-6" data-lightbox="photos"
+                        <a href="{{ asset('nvdcpics') }}/FunctionRoom2.png" class="col-md-6" data-lightbox="photos"
                             data-gallery="gallery">
-                            <img src="{{ asset('nvdcpics') }}/FunctionRoom2.jpg"
+                            <img src="{{ asset('nvdcpics') }}/FunctionRoom2.png"
                                 class="w-100 shadow-1-strong rounded mb-4 img-fluid" />
                         </a>
-                        <a href="{{ asset('nvdcpics') }}/FunctionRoom3.jpg" class="col-md-6" data-lightbox="photos"
+                        <a href="{{ asset('nvdcpics') }}/FunctionRoom3.png" class="col-md-6" data-lightbox="photos"
                             data-gallery="gallery">
-                            <img src="{{ asset('nvdcpics') }}/FunctionRoom3.jpg"
+                            <img src="{{ asset('nvdcpics') }}/FunctionRoom3.png"
                                 class="w-100 shadow-1-strong rounded mb-4 img-fluid" />
                         </a>
-                        <a href="{{ asset('nvdcpics') }}/FunctionRoom4.jpg" class="col-md-6" data-lightbox="photos"
+                        <a href="{{ asset('nvdcpics') }}/FunctionRoom4.png" class="col-md-6" data-lightbox="photos"
                             data-gallery="gallery">
-                            <img src="{{ asset('nvdcpics') }}/FunctionRoom4.jpg"
+                            <img src="{{ asset('nvdcpics') }}/FunctionRoom4.png"
                                 class="w-100 shadow-1-strong rounded mb-4 img-fluid" />
                         </a>
-                        <a href="{{ asset('nvdcpics') }}/FunctionRoom5.jpg" class="col-md-6" data-lightbox="photos"
+                        <a href="{{ asset('nvdcpics') }}/FunctionRoom5.png" class="col-md-6" data-lightbox="photos"
                             data-gallery="gallery">
-                            <img src="{{ asset('nvdcpics') }}/FunctionRoom5.jpg"
+                            <img src="{{ asset('nvdcpics') }}/FunctionRoom5.png"
                                 class="w-100 shadow-1-strong rounded mb-4 img-fluid" />
                         </a>
                     </div>

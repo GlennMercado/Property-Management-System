@@ -16,13 +16,19 @@ class Guest
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Guest')
+        if(auth()->user()->User_Type == 'Guest' && auth()->user()->IsDisabled == 0)
         {
             return $next($request);
         }
+        elseif(auth()->user()->IsDisabled == 1)
+        {
+            auth()->logout();
+            return redirect('/login')->withStats(__('Access Denied.'));
+        }
         else
         {
-            return redirect()->route('login')->with('Error', 'Access Denied.');
+            //return redirect()->route('login')->with('Error', 'Access Denied.');
+            abort(404);
         }
     }
 }

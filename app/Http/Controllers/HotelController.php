@@ -36,7 +36,13 @@ class HotelController extends Controller
         $supply = DB::select('SELECT * FROM hotelstocks');  
         return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
-     
+     public function guest_viewing()
+     {
+        $list = DB::select('SELECT * FROM hotel_reservations');
+		$room = DB::select('SELECT * FROM novadeci_suites');
+        $supply = DB::select('SELECT * FROM hotelstocks');  
+        return view('Admin.pages.OperationManagement.Guest_Reservation', ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
+     }
     /**
      * Show the form for creating a new resource.
      *

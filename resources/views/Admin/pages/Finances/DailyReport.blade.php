@@ -61,7 +61,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <div class="col-md-12 position-absolute container-fluid d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-primary mb-4" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary mb-4 fa fa-plus" data-toggle="modal"
                                     data-target="#exampleModal">
                                     Add
                                 </button>
@@ -315,6 +315,7 @@
                                                     <div class="col-md pt-2">
                                                         <label for="Stockdetails">Particular </label>
                                                         <select class="form-control" name="particular" required>
+                                                            <option selected disabled value>Select</option>
                                                             <option value="CourtRental">CourtRental</option>
                                                             <option value="CourtRental/League">CourtRental/League
                                                             </option>
@@ -350,8 +351,8 @@
                                                     </div>
                                                     <div class="col-md pt-2">
                                                         <label for="Stockdetails">Debit Type </label>
-                                                        <select class="form-control" name="debit"
-                                                            placeholder="Enter number..." required>
+                                                        <select class="form-control" name="debit" required>
+                                                            <option selected disabled value>Select</option>
                                                             <option value="Cash">Cash/GCash</option>
                                                             <option value="Unearned">Unearned Income (DP from
                                                                 Previous
@@ -377,6 +378,7 @@
                                                     <div class="col-md pt-2">
                                                         <label for="Stockdetails">Remarks </label>
                                                         <select class="form-control" name="remark" required>
+                                                            <option selected disabled value>Select</option>
                                                             <option>DP</option>
                                                             <option>BAL</option>
                                                             <option>FULL</option>
