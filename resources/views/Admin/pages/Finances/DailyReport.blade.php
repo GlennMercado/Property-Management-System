@@ -242,7 +242,7 @@
                                             @foreach ($list3 as $lists3)
                                                 <tr>
                                                     {{-- Invoice --}}
-                                                    <td style = "font-size:16px;"><a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                    <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
                                                         target="blank" class="btn btn-sm btn-success"
                                                         style="cursor:pointer;" title="Invoice">
                                                         <i class="bi bi-file-earmark-text"></i>

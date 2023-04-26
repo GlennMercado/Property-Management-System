@@ -235,6 +235,9 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	//Finance Dashboards
 	Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
+	//Finance Invoice
+	Route::get('FinanceInvoice', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
+
 	//Finance Daily Report
 	Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 	Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
