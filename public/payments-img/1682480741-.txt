@@ -1,0 +1,11 @@
+Dashboard - count Guest request , guest reservation, giest reviews/guest complaints 
+
+kulang s Operation
+
+
+
+5. specific object
+
+Project backhround - may frontdesk 
+
+why theres no OM functionality?/ same as fd ba yung function
