@@ -24,17 +24,17 @@
                     @forelse ($comm as $comm)
                         <div class="table-responsive">
                             <table class="table align-items-center">
-                                @if(!$Displayed)
-                                <thead>
-                                    <tr>
-                                        <th>CONTROL NO.</th>
-                                        <th>APPLICATION STATUS</th>
-                                        <th>APPLICATION DATE</th>
-                                        <th>REMARKS</th>
-                                        <th>ACTION</th>
-                                    </tr>
-                                </thead>
-                                @php $Displayed = true @endphp
+                                @if (!$Displayed)
+                                    <thead>
+                                        <tr>
+                                            <th>CONTROL NO.</th>
+                                            <th>APPLICATION STATUS</th>
+                                            <th>APPLICATION DATE</th>
+                                            <th>REMARKS</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    @php $Displayed = true @endphp
                                 @endif
                                 <tbody>
                                     <tr>
@@ -150,7 +150,7 @@
                                                 </div>
 
                                                 <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                                    <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                                        <h4>For Single Proprietorship </h4> -->
                                                 <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                 </p>
                                                 <input type="text" name="name_of_owner" class="form-control"
@@ -290,10 +290,10 @@
                                                     </div>
 
                                                     <!-- <h4>Owner Details </h4>
-                                                        <h4>For Single Proprietorship </h4> -->
+                                                            <h4>For Single Proprietorship </h4> -->
                                                     <p class="pt-4">Authorized Representative <span
                                                             class="text-danger">*</span> </p>
-                                                   
+
                                                     <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                     </p>
                                                     <input type="text" name="name_of_owner" class="form-control"
@@ -438,31 +438,31 @@
                     @forelse ($list as $lists)
                         <div class="table-responsive">
                             <table class="table align-items-center">
-                                @if(!$Displayed)
-                                <thead>
-                                    <tr>
-                                        <th>SPACE/UNIT</th>
-                                        <th>Rental Fee</th>
-                                        <th>START DATE</th>
-                                        <th>END DATE</th>
-                                        <th>MONTHLY DUE DATE</th>
-                                        <th>STATUS</th>
-                                        <th>ACTION</th>
-                                    </tr>
-                                </thead>
-                                @php $Displayed = true @endphp
+                                @if (!$Displayed)
+                                    <thead>
+                                        <tr>
+                                            <th>SPACE/UNIT</th>
+                                            <th>Rental Fee</th>
+                                            <th>START DATE</th>
+                                            <th>END DATE</th>
+                                            <th>MONTHLY DUE DATE</th>
+                                            <th>STATUS</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    @php $Displayed = true @endphp
                                 @endif
                                 <tbody>
                                     <tr>
-                                        <td>{{$lists->Space_Unit}}</td>
-                                        <td class="cur1">{{$lists->Rental_Fee}}</td>
-                                        <td>{{date('F j, Y', strtotime($lists->Start_Date))}}</td>
-                                        <td>{{date('F j, Y', strtotime($lists->End_Date))}}</td>
-                                        <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
-                                        @if($lists->Tenant_Status == "Active (Operating)")
-                                            <td class="text-success">{{$lists->Tenant_Status}}</td>
+                                        <td>{{ $lists->Space_Unit }}</td>
+                                        <td class="cur1">{{ $lists->Rental_Fee }}</td>
+                                        <td>{{ date('F j, Y', strtotime($lists->Start_Date)) }}</td>
+                                        <td>{{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
+                                        <td>{{ date('F j, Y', strtotime($lists->Due_Date)) }}</td>
+                                        @if ($lists->Tenant_Status == 'Active (Operating)')
+                                            <td class="text-success">{{ $lists->Tenant_Status }}</td>
                                         @else
-                                            <td class="text-danger">{{$lists->Tenant_Status}}</td>
+                                            <td class="text-danger">{{ $lists->Tenant_Status }}</td>
                                         @endif
                                         <td>
                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
@@ -470,12 +470,12 @@
                                                 title="Payment History">
                                                 <i class="bi bi-eye"></i>
                                             </button>
-                                            @if($lists->Payment_Status != "Paid (Checking)" || $lists->Payment_Status == null)
-                                            <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                data-target="#update_payment_status{{ $lists->Tenant_ID }}"
-                                                title="Update Payment Status">
-                                                <i class="bi bi-arrow-repeat"></i>
-                                            </button>        
+                                            @if ($lists->Payment_Status != 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    data-target="#update_payment_status{{ $lists->Tenant_ID }}"
+                                                    title="Update Payment Status">
+                                                    <i class="bi bi-arrow-repeat"></i>
+                                                </button>
                                             @endif
                                         </td>
                                     </tr>
@@ -484,26 +484,21 @@
                         </div>
 
                         {{-- View Payment History --}}
-                        <div class="modal fade"
-                            id="view_payment_history{{ $lists->Tenant_ID }}" tabindex="-1"
-                            role="dialog" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg"
-                                role="document">
+                        <div class="modal fade" id="view_payment_history{{ $lists->Tenant_ID }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-left display-4"
-                                            id="exampleModalLabel">View Information History
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">View
+                                            Information History
                                         </h5>
-                                        <button type="button" class="close"
-                                            data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <h3 class="text-left">Payment History</h3>
-                                        <table class="table align-items-center table-flush"
-                                            id="myTable3">
+                                        <table class="table align-items-center table-flush" id="myTable3">
                                             <thead class="thead-light">
                                                 <tr>
 
@@ -523,28 +518,30 @@
                                                             </td>
                                                             <td class="cur1 font-weight-bold tbltxt">
                                                                 {{ $lists4->Rental_Fee }}</td>
-                                                            @if($lists4->Paid_Date != null)
-                                                            <td class="font-weight-bold tbltxt">
-                                                                {{ date('F j, Y', strtotime($lists4->Paid_Date)) }}
-                                                            </td>
+                                                            @if ($lists4->Paid_Date != null)
+                                                                <td class="font-weight-bold tbltxt">
+                                                                    {{ date('F j, Y', strtotime($lists4->Paid_Date)) }}
+                                                                </td>
                                                             @else
-                                                            <td></td>
+                                                                <td></td>
                                                             @endif
-                                                            @if($lists4->Payment_Status == "Paid")
-                                                            <td class="font-weight-bold tbltxt text-success">
-                                                                {{ $lists4->Payment_Status }}</td>
+                                                            @if ($lists4->Payment_Status == 'Paid')
+                                                                <td class="font-weight-bold tbltxt text-success">
+                                                                    {{ $lists4->Payment_Status }}</td>
                                                             @else
-                                                            <td class="font-weight-bold tbltxt text-danger">
-                                                                {{ $lists4->Payment_Status }}</td>
+                                                                <td class="font-weight-bold tbltxt text-danger">
+                                                                    {{ $lists4->Payment_Status }}</td>
                                                             @endif
                                                             <td>
                                                                 <div class="img-container">
-                                                                  <button class="btn btn-sm btn-primary" title="View Image">
-                                                                    View Image
-                                                                    <span class="popup">
-                                                                      <img src="{{ $lists4->Proof_Image }}" alt="Image Preview">
-                                                                    </span>
-                                                                  </button>
+                                                                    <button class="btn btn-sm btn-primary"
+                                                                        title="View Image">
+                                                                        View Image
+                                                                        <span class="popup">
+                                                                            <img src="{{ $lists4->Proof_Image }}"
+                                                                                alt="Image Preview">
+                                                                        </span>
+                                                                    </button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -554,48 +551,38 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-outline-danger"
-                                            data-dismiss="modal">Close</button>
+                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Update Modal -->
-                        <div class="modal fade"
-                        id="update_payment_status{{ $lists->id }}" tabindex="-1"
-                        role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered"
-                            role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-left display-4"
-                                        id="exampleModalLabel">Updating Payment Status
-                                    </h5>
-                                    <button type="button" class="close"
-                                        data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form action="{{url('commercial_space_rent_payment')}}"
-                                    class="prevent_submit" method="POST"
-                                    enctype="multipart/form-data">
+                        <div class="modal fade" id="update_payment_status{{ $lists->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Updating
+                                            Payment Status
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ url('commercial_space_rent_payment') }}" class="prevent_submit"
+                                        method="POST" enctype="multipart/form-data">
 
-                                    {{ csrf_field() }}
+                                        {{ csrf_field() }}
 
-                                    <div class="modal-body">
-                                        <input type="hidden" name="tenant_id"
-                                            value="{{ $lists->Tenant_ID }}">
+                                        <div class="modal-body">
+                                            <input type="hidden" name="tenant_id" value="{{ $lists->Tenant_ID }}">
 
-                                        <input type="hidden" name="rental_fee"
-                                            value="{{ $lists->Rental_Fee }}">
+                                            <input type="hidden" name="rental_fee" value="{{ $lists->Rental_Fee }}">
 
-                                        <input type="hidden" name="total"
-                                            value="{{ $lists->Total_Amount }}">
+                                            <input type="hidden" name="total" value="{{ $lists->Total_Amount }}">
 
-                                        <input type="hidden" name="due"
-                                            value="{{ $lists->Due_Date }}" />
+                                            <input type="hidden" name="due" value="{{ $lists->Due_Date }}" />
 
                                             <div class="row shadow p-3 mt-2">
                                                 <div class="col-md-12">
@@ -612,9 +599,9 @@
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" id="gcash_acc"
-                                                        onkeyup="enable_submit()" name="gcash_account"
-                                                        class="form-control" maxlength="32" required>
+                                                    <input type="text" id="gcash_acc" onkeyup="enable_submit()"
+                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
                                                     <p class="text-center">Upload your proof of payment here <span
@@ -624,21 +611,21 @@
                                                     <img id="output" class="img-fluid" />
                                                 </div>
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                    <input type="file" onchange="enable_submit(event)"
-                                                        id="gcash_img" placeholder="Ex: John Doe" name="images"
-                                                        class="form-control" required>
+                                                    <input type="file" onchange="enable_submit(event)" id="gcash_img"
+                                                        placeholder="Ex: John Doe" name="images" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-outline-danger"
-                                            data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-success prevent_submit" id="submit_button2">
-                                    </div>
-                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-success prevent_submit"
+                                                id="submit_button2">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @empty
                         <p class="text-center display-5">No Tenant Information</p>
                         <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
@@ -648,27 +635,27 @@
                     <br>
 
                     <h3>Security Deposits</h3>
-                    @php $Displayed = false @endphp
+                    @php $Displayed2 = false @endphp
                     @forelse ($list2 as $lists2)
                         <div class="table-responsive">
                             <table class="table align-items-center">
-                                @if(!$Displayed)
-                                <thead>
-                                    <tr>
-                                        <th>SPACE/UNIT</th>
-                                        <th>SECURITY DEPOSIT</th>
-                                        <th>PAID DATE</th>
-                                        <th>REMARKS</th>
-                                    </tr>
-                                </thead>
-                                @php $Displayed = true @endphp
+                                @if (!$Displayed2)
+                                    <thead>
+                                        <tr>
+                                            <th>SPACE/UNIT</th>
+                                            <th>SECURITY DEPOSIT</th>
+                                            <th>PAID DATE</th>
+                                            <th>REMARKS</th>
+                                        </tr>
+                                    </thead>
+                                    @php $Displayed2 = true @endphp
                                 @endif
                                 <tbody>
                                     <tr>
-                                        <td>{{$lists2->Space_Unit}}</td>
-                                        <td class="cur1">{{$lists2->Security_Deposit}}</td>
-                                        <td>{{date('F j, Y', strtotime($lists2->Paid_Date))}}</td>
-                                        <td>{{$lists2->Remarks}}</td>
+                                        <td>{{ $lists2->Space_Unit }}</td>
+                                        <td class="cur1">{{ $lists2->Security_Deposit }}</td>
+                                        <td>{{ date('F j, Y', strtotime($lists2->Paid_Date)) }}</td>
+                                        <td>{{ $lists2->Remarks }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -682,36 +669,146 @@
                     <br>
 
                     <h3>Utility Bills</h3>
-                    @php $Displayed = false @endphp
+                    @php $Displayed3 = false @endphp
                     @forelse ($list3 as $lists3)
                         <div class="table-responsive">
                             <table class="table align-items-center">
-                                @if(!$Displayed)
-                                <thead>
-                                    <tr>
-                                        <th>SPACE/UNIT</th>
-                                        <th>TYPE OF BILL</th>
-                                        <th>AMOUNT</th>
-                                        <th>MONTHLY DUE DATE</th>
-                                        <th>PAYMENT STATUS</th>
-                                        <th>ACTION</th>
-                                    </tr>
-                                </thead>
-                                @php $Displayed = true @endphp
+                                @if (!$Displayed3)
+                                    <thead>
+                                        <tr>
+                                            <th>SPACE/UNIT</th>
+                                            <th>TYPE OF BILL</th>
+                                            <th>AMOUNT</th>
+                                            <th>MONTHLY DUE DATE</th>
+                                            <th>PAYMENT STATUS</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    @php $Displayed3 = true @endphp
                                 @endif
                                 <tbody>
                                     <tr>
-                                        <td>{{$lists3->Space_Unit}}</td>
-                                        <td>{{$lists3->Type_of_Bill}}</td>
-                                        <td class="cur1">{{$lists3->Total_Amount}}</td>
-                                        <td>{{date('F j, Y', strtotime($lists->Due_Date))}}</td>
-                                        <td>{{$lists->Payment_Status}}</td>
+                                        <td>{{ $lists3->Space_Unit }}</td>
+                                        <td>{{ $lists3->Type_of_Bill }}</td>
+                                        <td class="cur1">{{ $lists3->Total_Amount }}</td>
+                                        <td>{{ date('F j, Y', strtotime($lists->Due_Date)) }}</td>
+                                        <td>{{ $lists3->Payment_Status }}</td>
                                         <td>
-                                            button
+                                            @if($lists3->Gcash_Name != null)
+                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                    data-target="#view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}"
+                                                    title="Payment History">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            @endif
+                                            @php $now = date('Y-m-d'); @endphp
+                                            @if($lists3->Payment_Status == null || $lists3->Due_Date == $now)
+                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    data-target="#update_utility_payment{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill}}"
+                                                    title="Update Payment Status">
+                                                    <i class="bi bi-arrow-repeat"></i>
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+
+                        {{-- View Payment History --}}
+                        <div class="modal fade" id="view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">View Proof of Payment
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3 class="text-left">Type of Bill: <span class="text-primary">{{$lists3->Type_of_Bill}}</span></h3>
+                                        <h3 class="text-left">Due Date: <span class="text-primary">{{date('F j, Y', strtotime($lists3->Due_Date))}}</span></h3>
+                                        <br>
+
+                                        <h3 class="text-left">Gcash Account/Name : <span class="text-primary">{{$lists3->Gcash_Name}}</span></h3>
+                                        <h3 class="text-left">Gcash Proof Image : </h3>
+                                        <img src="{{ $lists3->Proof_Image }}"
+                                        class="card-img-top" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Update Modal -->
+                        <div class="modal fade" id="update_utility_payment{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Updating {{$lists3->Type_of_Bill}} Payment Status
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ url('commercial_space_utility_payment') }}" class="prevent_submit"
+                                        method="POST" enctype="multipart/form-data">
+
+                                        {{ csrf_field() }}
+
+                                        <div class="modal-body">
+                                            <input type="hidden" name="tenant_id" value="{{ $lists3->Tenant_ID }}">
+
+                                            <input type="hidden" name="due" value="{{ $lists3->Due_Date }}">
+
+                                            <input type="hidden" name="type" value="{{ $lists3->Type_of_Bill }}">
+
+                                            <div class="row shadow p-3 mt-2">
+                                                <div class="col-md-12">
+                                                    <p class="font-weight-bold text-center">NVDC Properties:
+                                                        0923423424
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12 d-flex justify-content-center">
+                                                    {!! QrCode::size(170)->generate('0923423424') !!}
+                                                </div>
+                                                <br>
+                                                <div class="col-md-12">
+                                                    <p class="text-center">Gcash account name <span
+                                                            class="text-danger">*</span></p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="gcash_acc2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" onkeyup="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})"
+                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        required>
+                                                </div>
+                                                <div class="col-md-12 mt-1">
+                                                    <p class="text-center">Upload your proof of payment here <span
+                                                            class="text-danger">*</span></p>
+                                                </div>
+                                                <div class="col-md-12 d-flex justify-content-center">
+                                                    <img id="output2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" class="img-fluid" />
+                                                </div>
+                                                <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
+                                                    <input type="file" onchange="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})" id="gcash_img2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}"
+                                                        placeholder="Ex: John Doe" name="images" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-success prevent_submit"
+                                                id="submit_button3">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <p class="text-center display-5">No Utility Bills</p>
@@ -770,61 +867,88 @@
                 }
                 loadfile(event);
             }
-            function loadfile(event){
+
+            function loadfile(event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
+            }
+
+            function enable_submit2(event, id) {
+                var acc = document.getElementById("gcash_acc2_" +id);
+                var g_img = document.getElementById("gcash_img2_" +id);
+                var submit_button2 = document.getElementById("submit_button3");
+                if (acc.value == "" || g_img.value == "") {
+                    submit_button2.disabled = true;
+                    submit_button2.style.cursor = "not-allowed";
+                    console.log("Submit button disabled");
+                } else {
+                    submit_button2.disabled = false;
+                    submit_button2.style.cursor = "pointer";
+                    console.log("Submit button enabled");
+                }
+                loadfile2(event, id);
+            }
+
+
+            function loadfile2(event, id) {
+                console.log("Loadfile2 called");
+                var output = document.getElementById('output2_' + id);
+                output.src = URL.createObjectURL(event.target.files[0]);
+                console.log("URL of file being loaded: ", output.src);
             }
 
         </script>
 
         <style>
- .img-container {
-  position: relative;
-  display: inline-block;
-}
+            .img-container {
+                position: relative;
+                display: inline-block;
+            }
 
-.img-container img {
-  display: block;
-  max-width: 100%;
-}
+            .img-container img {
+                display: block;
+                max-width: 100%;
+                z-index: 9999;
+            }
 
-.img-container .btn {
-  position: relative;
-}
+            .img-container .btn {
+                position: relative;
+            }
 
-.img-container .popup {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
+            .img-container .popup {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.3s ease-in-out;
+            }
 
-.img-container .btn:hover .popup {
-  visibility: visible;
-  opacity: 1;
-}
+            .img-container .btn:hover .popup {
+                visibility: visible;
+                opacity: 1;
+            }
 
-.img-container .popup img {
-  display: block;
-  max-width: 80vw;
-  max-height: 80vh;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+            .img-container .popup img {
+                display: block;
+                max-width: 80vw;
+                max-height: 80vh;
+                margin: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
 
 
-            .cur1::before{
+            .cur1::before {
                 content: '₱';
             }
+
             .datepicker {
                 pointer-events: none;
                 /* form-control */

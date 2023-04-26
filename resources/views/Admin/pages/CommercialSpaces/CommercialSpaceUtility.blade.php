@@ -279,6 +279,7 @@
                                                                     <th scope="col">Due Date</th>
                                                                     <th scope="col">Paid Date</th>
                                                                     <th scope="col">Payment Status</th>
+                                                                    <th scope="col">Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -293,6 +294,20 @@
                                                                             <td></td>
                                                                             @endif
                                                                             <td>{{$lists->Payment_Status}}</td>
+                                                                            <td>
+                                                                                @if($lists->Proof_Image != null)
+                                                                                    <div class="img-container">
+                                                                                        <button class="btn btn-sm btn-primary"
+                                                                                            title="View Image">
+                                                                                            View Image
+                                                                                            <span class="popup">
+                                                                                                <img src="{{ $lists->Proof_Image }}"
+                                                                                                    alt="Image Preview">
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                @endif
+                                                                            </td>
                                                                         </tr>
                                                                     @endif
                                                                 @endforeach
@@ -310,6 +325,7 @@
                                                                     <th scope="col">Due Date</th>
                                                                     <th scope="col">Paid Date</th>
                                                                     <th scope="col">Payment Status</th>
+                                                                    <th scope="col">Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -324,6 +340,20 @@
                                                                             <td></td>
                                                                             @endif
                                                                             <td>{{$lists->Payment_Status}}</td>
+                                                                            <td>
+                                                                                @if($lists->Proof_Image != null)
+                                                                                    <div class="img-container">
+                                                                                        <button class="btn btn-sm btn-primary"
+                                                                                            title="View Image">
+                                                                                            View Image
+                                                                                            <span class="popup">
+                                                                                                <img src="{{ $lists->Proof_Image }}"
+                                                                                                    alt="Image Preview">
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                @endif
+                                                                            </td>
                                                                         </tr>
                                                                     @endif
                                                                 @endforeach
@@ -353,10 +383,53 @@
         });
     </script>
     <style>
-        .modal-body
-        {
-            overflow-x: auto;
-        }
+            .img-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .img-container img {
+                display: block;
+                position: absolute;
+                max-width: 100%;
+                z-index: 9999;
+            }
+
+            .img-container .btn {
+                position: relative;
+            }
+
+            .img-container .popup {
+                position: absolute;
+                top: 70%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .img-container .btn:hover .popup {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .img-container .popup img {
+                display: block;
+                max-width: 80vw;
+                max-height: 80vh;
+                margin: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+
+       
         .tbltxt {
             font-size: 18px;
         }
