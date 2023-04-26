@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('profile_pic');
             $table->string('concern');
             $table->string('concern_text');
+            $table->string('status');
+            $table->string('remarks');
             $table->timestamps();
             $table->string('complaints_img');
             $table->binary('DB_Image');

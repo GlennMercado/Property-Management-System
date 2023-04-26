@@ -86,12 +86,19 @@
                                                                     title="Payment History">
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
-                                                                @if($lists->Tenant_Status != "Pre-Termination")
-                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                    data-target="#update_payment_status{{ $lists->id }}"
-                                                                    title="Update Payment Status">
-                                                                    <i class="bi bi-arrow-repeat"></i>
-                                                                </button>
+                                                                @php $now = date('Y-m-d') @endphp
+                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)")
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_payment_status{{ $lists->id }}"
+                                                                        title="Update Payment Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @elseif($lists->Due_Date == $now)
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                        data-target="#update_payment_status{{ $lists->id }}"
+                                                                        title="Update Payment Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -209,11 +216,32 @@
                                                                                 required>
                                                                                 <option value="" selected="true"
                                                                                     disabled="disabled">Select</option>
-                                                                                <option value="Paid">Paid
-                                                                                </option>
+                                                                                
+                                                                                @foreach($count2 as $counts)
+                                                                                    @if($counts->cnt > 0)
+                                                                                    <option value="Fully Paid">Fully Paid
+                                                                                    </option>
+                                                                                    <option value="Partial Paid">Partial Paid
+                                                                                    </option>
+                                                                                    @else
+                                                                                    <option value="Fully Paid">Paid</option>
+                                                                                    @endif
+                                                                                @endforeach
                                                                                 <option value="Non-Payment">Non-Payment
                                                                                 </option>
                                                                             </select>
+
+                                                                            @if($lists->Gcash_Name != null)
+                                                                                <br><br>
+                                                                                <h3 class="text-left">Gcash Account Name : <span class="text-success">{{$lists->Gcash_Name}}</span></h3>
+                                                                                
+                                                                                <input type="hidden" name="gcash_name" value="{{$lists->Gcash_Name}}" />
+                                                                                <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
+                                                                                
+                                                                                <h3 class="text-left">Gcash Proof Image : </h3>
+                                                                                <img src="{{ $lists->Proof_Image }}"
+                                                                                class="card-img-top" />
+                                                                            @endif
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button class="btn btn-outline-danger"

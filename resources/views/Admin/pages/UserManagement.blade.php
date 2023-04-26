@@ -86,6 +86,7 @@
                                             <option value="Operations Manager">Operations
                                                 Manager</option>
                                             <option value="Inventory Manager">Inventory Manager</option>
+                                            <option value="Guest">Guest</option>
                                         </select>
                                     </div>
                                 </div>
@@ -324,6 +325,7 @@
                                                                                 Manager</option>
                                                                             <option value="Inventory Manager">Inventory
                                                                                 Manager</option>
+                                                                                <option value="Guest">Guest</option>
                                                                         </select>
                                                                 </div>
                                                                 <div class="modal-footer">

@@ -37,6 +37,7 @@ class UserManagementController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'profile_pic' => 'nvdcpics\User2.png',
             'User_Type' => $request->input('User_Type'),
         ]);
 
