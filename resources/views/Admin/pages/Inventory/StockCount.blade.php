@@ -40,7 +40,7 @@
                                     <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Distribute Linen and Guest Supply Before the Availability of the room.</h4>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-outline-primary fa fa-plus" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                     data-target="#exampleModal" style="float:right">
                                     Add Stock
                                 </button>

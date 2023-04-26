@@ -38,12 +38,12 @@
                                     </h4>
                                     <h4>
                                         <i class="bi bi-calendar-range-fill"></i>
-                                        Arrival/Departure {{ $lists->Check_In_Date }} -
+                                        Check-in/Check-out Date {{ $lists->Check_In_Date }} -
                                         {{ $lists->Check_Out_Date }}
                                     </h4>
                                 </div>
                                 <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <div class="display-5 text-green">PHP {{ $lists->Payment }}
+                                    <div class="display-5 text-green">PHP {{ number_format($lists->Payment, 2, '.', ',') }}
                                         <br>
                                         <div class="badge badge-primary">
                                             STATUS {{ $lists->Payment_Status }}
