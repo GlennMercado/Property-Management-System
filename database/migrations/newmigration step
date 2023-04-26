@@ -45,6 +45,9 @@ Migration steps
 
 php artisan migrate
 
+to run all migrations just type in this in terminal ".\migrations.bat"
+and if you want to change/add migrations just go to migration.bat or search it with 
+ctrl + P then migrations.bat
 
 composer update
 composer require simplesoftwareio/simple-qrcode:*
