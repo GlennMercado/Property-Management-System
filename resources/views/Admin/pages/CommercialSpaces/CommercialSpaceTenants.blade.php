@@ -129,10 +129,6 @@
                                                                 <br>
                                                             </td>
                                                             <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
                                                                     class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
@@ -460,10 +456,6 @@
                                                                 <br>
                                                             </td>
                                                             <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
                                                                     class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
@@ -654,10 +646,6 @@
                                                                 <br>
                                                             </td>
                                                             <td>
-                                                                <span class="tbltxt">Authorized Representative: </span>
-                                                                <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->authorized_representative }}</span>
-                                                                <br>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
                                                                     class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>

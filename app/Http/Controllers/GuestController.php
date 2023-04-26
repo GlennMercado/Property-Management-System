@@ -132,6 +132,21 @@ class GuestController extends Controller
     public function FAQ(){
         return view('Guest.FAQ');
     }
+    public function Commercial_Space()
+    {
+        $email = Auth::user()->email;
+        $comm = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email'");
+        $sql = DB::select("SELECT * FROM commercial_spaces_applications");
+        $data = array();
+
+        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0");
+        
+        foreach($sql as $s)
+        {
+            $data[] = ['date' => $s->Interview_Date];
+        }
+        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data]);
+    }
     public function complaints_submit(Request $request){
         $this->validate($request,[
             'concern' => 'required',
@@ -339,7 +354,6 @@ class GuestController extends Controller
             $submit->business_mobile_no = $request->input('business_landline_no');
             $submit->name_of_owner = $request->input('name_of_owner');
             $submit->spouse = $spouse;
-            $submit->authorized_representative = $request->input('authorized_representative');
             $submit->home_address = $request->input('home_address');
             $submit->landline = $request->input('landline');
             $submit->mobile_no = $request->input('mobile_no');
@@ -358,7 +372,6 @@ class GuestController extends Controller
                 return redirect('commercial_spaces')->with('Error', 'Failed!');
             }
     }
-
     public function edit_commercial_spaces_application(Request $request)
     {
         try{
@@ -381,7 +394,6 @@ class GuestController extends Controller
                     'email_website_fb' => $request->input('email_website_fb'),
                     'business_landline_no' => $request->input('business_landline_no'),
                     'business_mobile_no' => $request->input('business_mobile_no'),
-                    'authorized_representative' => $request->input('authorized_representative'),
                     'name_of_owner' => $request->input('name_of_owner'),
                     'spouse' => $spouse,
                     'home_address' => $request->input('home_address'),
@@ -410,7 +422,6 @@ class GuestController extends Controller
             return redirect('my_bookings')->with('Error', 'Failed!');
         }
     }
-
     public function set_commercial_space_schedule(Request $request)
     {
         try

@@ -185,6 +185,10 @@
                     <i class="bi bi-book-half"></i>
                     <span>{{ __('My Transactions') }}</span>
                 </a>
+                <a href="{{ url('Commercial_Space') }}" class="dropdown-item">
+                    <i class="bi bi-book-half"></i>
+                    <span>{{ __('Commercial Space') }}</span>
+                </a>
                 <a href="{{ url('complaints') }}" class="dropdown-item">
                     <i class="ni ni-single-copy-04"></i>
                     <span>{{ __('Send a Complaint') }}</span>
