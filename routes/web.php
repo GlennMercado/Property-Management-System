@@ -273,7 +273,6 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 //Guest
 Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/welcome', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
-	// Route::get('/', [App\Http\Controllers\GuestController::class, 'welcome'])->name('welcome');
 	// notifications
 	// Route::get('/notify', [App\Http\Controllers\GuestController::class, 'notify']);
 	// Route::get('/booked', [App\Http\Controllers\GuestController::class, 'booked']);

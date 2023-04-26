@@ -225,7 +225,7 @@
 <script>
     setInterval(function() {
         $.ajax({
-            url: 'http://localhost:8000/notifications/count', // Replace with your endpoint URL
+            url: '/notifications/count', // Replace with your endpoint URL
             success: function(response) {
                 $('#ncount').text(response.count);
             }
