@@ -293,7 +293,7 @@ class HousekeepingController extends Controller
 
             
 
-            Alert::Success('Success', 'Linen Successfully Checked!');
+            Alert::Success('Success', 'Charges Successfully Added!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');   
         }
         catch(\Illuminate\Database\QueryException $e)
