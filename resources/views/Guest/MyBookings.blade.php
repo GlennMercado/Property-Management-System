@@ -43,7 +43,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <div class="display-5 text-green">PHP {{ $lists->Payment }}
+                                    <div class="display-5 text-green">PHP {{ number_format($lists->Payment, 2, '.', ',') }}
                                         <br>
                                         <div class="badge badge-primary">
                                             STATUS {{ $lists->Payment_Status }}
