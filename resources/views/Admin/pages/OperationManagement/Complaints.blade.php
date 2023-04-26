@@ -22,10 +22,13 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-body">
-                        @foreach ($list as $list)
+                        <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                            data-target=".bd-example-modal-lg"> <i class="bi bi-eye-fill"></i>
+                        </button>
+                        @forelse ($list as $list)
                             <div class="row container-fluid">
-                                <i class="ni ni-circle-08 display-4"></i>
-                                <p class="pl-2 pt-1 font-weight-bold">Anonymous</p>
+                                <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
+                                <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
                                 {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
                                 <div class="card shadow mb-2 msgcolor gal" data-toggle="tooltip" data-placement="bottom"
                                     title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
@@ -47,7 +50,10 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                        <p class="text-center display-5">No complaints yet</p>
+                        <img src="{{ asset('nvdcpics') }}/empty2.svg" class="img-fluid" style="width: 100%; height: 200px">
+                        @endforelse
                         {{-- DELETE MODAL --}}
                         <div class="col-md-4">
                             <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
@@ -86,16 +92,26 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .gal:hover {
-                    border: 1px solid rgb(115, 115, 115);
-                }
+        </div>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .gal:hover {
+            border: 1px solid rgb(115, 115, 115);
+        }
 
-                .category:hover {
-                    transform: scale(1.05);
-                }
-            </style>
-        @endsection
+        .category:hover {
+            transform: scale(1.05);
+        }
+    </style>
+@endsection
 
-        @push('js')
-        @endpush
+@push('js')
+@endpush

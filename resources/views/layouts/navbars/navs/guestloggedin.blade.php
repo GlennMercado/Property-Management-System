@@ -136,6 +136,7 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
+                
                 <div class="dropdown show">
                     <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
                         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"

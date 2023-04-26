@@ -64,7 +64,8 @@ class GuestController extends Controller
     }
     public function guest_profile()
     {
-        return view('Guest.guestedit');
+        $list = DB::select('SELECT * FROM complaints ORDER BY created_at DESC');  
+        return view('Guest.guestedit', ['list'=>$list]);
     }
     public function guest_event()
     {
@@ -201,6 +202,8 @@ class GuestController extends Controller
         ]);
         
         $submit = new complaints;
+        $submit->name = Auth::user()->name;
+        $submit->profile_pic = Auth::user()->profile_pic;
         $submit->concern = $request->input('concern');
         $submit->concern_text = $request->input('concern_text');
         if($request->hasfile('images'))
