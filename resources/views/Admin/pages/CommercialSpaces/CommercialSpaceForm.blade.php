@@ -65,11 +65,17 @@
                                                         @if ($lists->Status == 'For Approval' || $lists->Status == 'Approved' || $lists->Status == 'For Interview' || $lists->Status == 'For Revision' || $lists->Status == 'Passed' || $lists->Status == 'Revised')
                                                             <tr>
                                                                 <td>
-                                                                    <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
+                                                                    <!-- <a href="{{ url('/commercial_space_view', ['id' => $lists->id]) }}"
                                                                         target="blank" class="btn btn-sm btn-primary"
                                                                         style="cursor:pointer;">
                                                                         <i class="bi bi-eye"></i>
-                                                                    </a>
+                                                                    </a> -->
+                                                                    <button class="btn btn-sm btn-primary"
+                                                                        data-toggle="modal"
+                                                                        data-target="#view_image{{ $lists->id }}"
+                                                                        title="Interview Result">
+                                                                            <i class="bi bi-eye"></i>
+                                                                    </button>
                                                                     @if ($lists->Status == 'For Approval' || $lists->Status == 'Revised')
                                                                         <button class="btn btn-sm btn-success"
                                                                             data-toggle="modal"
@@ -329,6 +335,47 @@
                                                                                     class="btn btn-success prevent_submit">
                                                                             </div>
                                                                         </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--View Image -->
+                                                            <div class="modal fade"
+                                                                id="view_image{{ $lists->id }}" tabindex="-1"
+                                                                role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title text-left display-4"
+                                                                                id="exampleModalLabel">View Submitted Document Image</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $lists->id }}">
+                                                                            
+                                                                            <h3 class="text-left">Tax Identification No. :
+                                                                            </h3>
+                                                                            <img src="{{ $lists->TIN_Image }}"
+                                                                                class="card-img-top" />
+                                                                            <br><br>
+                                                                            <h3 class="text-left">Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. :
+                                                                            </h3>
+                                                                            <img src="{{ $lists->Other_Cert_Image }}"
+                                                                                class="card-img-top" />
+                                                                            
+                                                                            
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>  
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

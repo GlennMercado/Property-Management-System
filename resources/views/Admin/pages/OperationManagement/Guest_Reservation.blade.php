@@ -20,6 +20,68 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Reserved</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-book-fill f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Checked in</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-bookmark-check-fill f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Pending</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-clock-history f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Cancelled</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-x-octagon-fill f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-primary order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Arriving</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-box-arrow-in-up-left f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-orange order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 text-white">Departing</h4>
+                        <h2 class="text-right text-white">
+                            <i class="bi bi-box-arrow-down-right f-left"></i><span></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="card shadow mt--3 col-md-12">
                 <div class="card-header row d-flex">
                     <div class="col-md-4">
@@ -79,7 +141,8 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">
                                                             Hotel Reservation
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"

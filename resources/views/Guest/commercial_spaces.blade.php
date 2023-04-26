@@ -13,6 +13,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
+                
                 <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
                 <div class="container mx-auto" >
 
@@ -100,31 +101,22 @@
                                 placeholder="Enter Email Address/Website/FB Page..." maxlength="64" required>
                             <div class="row">
                                 <div class="col-md">
-                                    <p class="pt-4">Landline No. <span class="text-danger">*</span> </p>
+                                    <p class="pt-4">Business Landline No. </p>
                                     <input type="number" onKeyPress="if(this.value.length==8) return false;"
-                                        name="business_landline_no" class="form-control" placeholder="09XXXXXXXX" required>
+                                        name="business_landline_no" class="form-control" placeholder="09XXXXXXXX">
                                 </div>
                                 <div class="col-md">
-                                    <p class="pt-4">Mobile No. <span class="text-danger">*</span> </p>
+                                    <p class="pt-4">Business Mobile No. <span class="text-danger">*</span> </p>
                                     <input type="number" onKeyPress="if(this.value.length==11) return false;"
                                         name="business_mobile_no" class="form-control" placeholder="09XXXXXXXX" required>
                                 </div>
                             </div>
                             <!-- <h4>Owner Details </h4>
                             <h4>For Single Proprietorship </h4> -->
-                            <p class="pt-4">Authorized Representative <span class="text-danger">*</span> </p>
+                            <!-- <p class="pt-4">Authorized Representative <span class="text-danger">*</span> </p>
                             <input type="text" name="authorized_representative" class="form-control"
-                                placeholder="Enter Name of Authorized Representative" maxlength="64" required>
+                                placeholder="Enter Name of Authorized Representative" maxlength="64" required> -->
 
-    
-          
-            
-    
-
-          
-    
-    
-  
                             <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                             <input type="text" name="name_of_owner" class="form-control"
                                 placeholder="Enter Name of Owner" maxlength="64" required>
@@ -161,10 +153,10 @@
                             <div class="row">
                                 <div class="col">
                                     <br>
-                                    <p>Landline No <span class="text-danger">*</span> </p>
+                                    <p>Landline No </p>
                                     <input type="number" onKeyPress="if(this.value.length==8) return false;"
                                         name="landline" class="form-control"
-                                        placeholder="Please use a 8 digit telephone number with no dashes or dots" required>
+                                        placeholder="Please use a 8 digit telephone number with no dashes or dots">
                                 </div>
                                 <div class="col">
                                     <br>
@@ -181,10 +173,19 @@
                                 onKeyPress="if(this.value.length==9) return false;" 
                                 required>
                             <br>
+                            <p>Upload TIN Image <span class="text-danger">*</span> </p>
+                            <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="tin_images" class="form-control"
+                                required>
+                            <br>
                             <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                                     class="text-danger">*</span> </p>
                             <input type="text" name="tax_cert_valid_gov_id" class="form-control"
                                 placeholder="Enter Home Address" maxlength="128" required>
+                            <br>
+                            <p>Upload Image <span class="text-danger">*</span> </p>
+                            <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="other_images" class="form-control"
+                                required>
+                            <br>
                             <p class="mt-6">I certify that all of the information I have provided above is true and
                                 correct
                                 to the best of my knowledge. I fully understand that all data gathered here are required for
@@ -193,6 +194,7 @@
                                     NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</span></p>
                             <input type="submit" class="btn btn-outline-success mx-auto d-flex justify-content-center"
                                 style="width:40%;">
+                                <br>
                         </div>
                     </div>
                 </div>

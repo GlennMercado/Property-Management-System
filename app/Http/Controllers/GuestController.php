@@ -142,15 +142,16 @@ class GuestController extends Controller
 
         $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_spaces_tenant_deposits c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
-        $list3 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_utility_bills c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email' AND b.Due_Date = c.Due_Date");
+        $list3 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_utility_bills c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         $list4 = DB::select("SELECT * FROM commercial_space_rent_reports");
         $list5 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND a.email = '$email'");
+        $list6 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_unit_reports c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         
         foreach($sql as $s)
         {
             $data[] = ['date' => $s->Interview_Date];
         }
-        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
+        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5, 'list6' => $list6]);
     }
     public function commercial_space_rent_payment(Request $request)
     {
@@ -459,67 +460,136 @@ class GuestController extends Controller
     }
 
     public function commercial_spaces_application(Request $request)
-    {         
+    {              
+        $email = Auth::user()->email;
+        $this->validate($request,[
+            'business_name' => 'required',
+            'business_style' => 'required',
+            'business_address' => 'required',
+            'email_website_fb' => 'required',
+            'business_landline_no' => '',
+            'business_mobile_no' => 'required',
+            'name_of_owner' => 'required',
+            'spouse' => '',
+            'home_address' => 'required',
+            'landline' => '',
+            'mobile_no' => 'required',
+            'tax_identification_no' => 'required',
+            'tax_cert_valid_gov_id' => 'required'
+        ]);
         
-            $this->validate($request,[
-                'business_name' => 'required',
-                'business_style' => 'required',
-                'business_address' => 'required',
-                'email_website_fb' => 'required',
-                'business_landline_no' => 'required',
-                'business_mobile_no' => 'required',
-                'name_of_owner' => 'required',
-                'spouse' => '',
-                'home_address' => 'required',
-                'landline' => 'required',
-                'mobile_no' => 'required',
-                'tax_identification_no' => 'required',
-                'tax_cert_valid_gov_id' => 'required'
-            ]);
-            $spouse;
-            if($request->input('spouse') != null)
-            {
-                $spouse = $request->input('spouse');
-            }
-            else
-            {
-                $spouse = null;
-            }
+        $check = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email' AND Status != 'Tenant'");
 
-            $submit = new commercial_spaces_application;
+        if($check)
+        {
+            Alert::Error('Failed', 'You still have Application being Processed!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+        $spouse;
+        $business;
+        $landline;
+        $path;
+        $path2;
 
-            $submit->email = Auth::user()->email;
-            $submit->business_name = $request->input('business_name');
-            $submit->business_style = $request->input('business_style');
-            $submit->business_address = $request->input('business_address');
-            $submit->email_website_fb = $request->input('email_website_fb');
-            $submit->business_landline_no = $request->input('business_landline_no');
-            $submit->business_mobile_no = $request->input('business_landline_no');
-            $submit->name_of_owner = $request->input('name_of_owner');
-            $submit->spouse = $spouse;
-            $submit->home_address = $request->input('home_address');
-            $submit->landline = $request->input('landline');
-            $submit->mobile_no = $request->input('mobile_no');
-            $submit->tax_identification_no = $request->input('tax_identification_no');
-            $submit->tax_cert_valid_gov_id = $request->input('tax_cert_valid_gov_id');
+        // Spouse
+        if($request->input('spouse') != null)
+        {
+            $spouse = $request->input('spouse');
+        }
+        else
+        {
+            $spouse = null;
+        }
+
+        // Business landline
+        if($request->input('business_landline_no') != null)
+        {
+            $business = $request->input('business_landline_no');
+        }
+        else
+        {
+            $business = null;
+        }
+
+        // Home Landline
+        if($request->input('landline') != null)
+        {
+            $landline = $request->input('landline');
+        }
+        else
+        {
+            $landline = null;
+        }
+        
+        if($request->hasfile('tin_images'))
+        {
+            //add image to a folder
+            $file = $request->file('tin_images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--TIN-'.$request->input('name_of_owner').'-.'.$extention;
+            $path = $file->move('commercial_space_application/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+        }
+
+        if($request->hasfile('other_images'))
+        {
+            //add image to a folder
+            $files = $request->file('other_images');
+            $extentions = $files->getClientOriginalExtension();
+            $filenames = time().'--Other-Docu-'.$request->input('name_of_owner').'-.'.$extentions;
+            $path2 = $files->move('commercial_space_application/', $filenames);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base642 = base64_encode($extentions);
+        }
+
+        
+        $submit = new commercial_spaces_application;
+
+        $submit->email = $email;
+        $submit->business_name = $request->input('business_name');
+        $submit->business_style = $request->input('business_style');
+        $submit->business_address = $request->input('business_address');
+        $submit->email_website_fb = $request->input('email_website_fb');
+        $submit->business_landline_no = $business;
+        $submit->business_mobile_no = $request->input('business_mobile_no');
+        $submit->name_of_owner = $request->input('name_of_owner');
+        $submit->spouse = $spouse;
+        $submit->home_address = $request->input('home_address');
+        $submit->landline = $landline;
+        $submit->mobile_no = $request->input('mobile_no');
+        $submit->tax_identification_no = $request->input('tax_identification_no');
+        $submit->TIN_Image = $path;
+        $submit->tax_cert_valid_gov_id = $request->input('tax_cert_valid_gov_id');
+        $submit->Other_Cert_Image = $path2;
 
 
-            if($submit->save())
-            {
-                Alert::Success('Success', 'Application Successfully Submitted!');
-                return redirect('Commercial_Space')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Failed', 'Application Failed');
-                return redirect('commercial_spaces')->with('Error', 'Failed!');
-            }
+        if($submit->save())
+        {
+            Alert::Success('Success', 'Application Successfully Submitted!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Application Failed');
+            return redirect('commercial_spaces')->with('Error', 'Failed!');
+        }
     }
     public function edit_commercial_spaces_application(Request $request)
     {
         try{
             $id = $request->input('id');
             $spouse;
+            $business;
+            $landline;
             if($request->input('spouse') != null)
             {
                 $spouse = $request->input('spouse');
@@ -527,6 +597,26 @@ class GuestController extends Controller
             else
             {
                 $spouse = null;
+            }
+
+            // Business landline
+            if($request->input('business_landline_no') != null)
+            {
+                $business = $request->input('business_landline_no');
+            }
+            else
+            {
+                $business = null;
+            }
+
+            // Home Landline
+            if($request->input('landline') != null)
+            {
+                $landline = $request->input('landline');
+            }
+            else
+            {
+                $landline = null;
             }
 
             $sql = DB::table("commercial_spaces_applications")->where('id', $id)->update(
@@ -535,12 +625,12 @@ class GuestController extends Controller
                     'business_style' => $request->input('business_style'),
                     'business_address' => $request->input('business_address'),
                     'email_website_fb' => $request->input('email_website_fb'),
-                    'business_landline_no' => $request->input('business_landline_no'),
+                    'business_landline_no' => $business,
                     'business_mobile_no' => $request->input('business_mobile_no'),
                     'name_of_owner' => $request->input('name_of_owner'),
                     'spouse' => $spouse,
                     'home_address' => $request->input('home_address'),
-                    'landline' => $request->input('landline'),
+                    'landline' => $landline,
                     'mobile_no' => $request->input('mobile_no'),
                     'tax_identification_no' => $request->input('tax_identification_no'),
                     'tax_cert_valid_gov_id' => $request->input('tax_cert_valid_gov_id'),

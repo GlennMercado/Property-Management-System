@@ -20,7 +20,7 @@
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                         <li class="breadcrumb-item">Operations Management</li>
-                        <li class="breadcrumb-item active text-dark" aria-current="page">Operation Management Dashboard</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Operations Management Dashboard</li>
                     </ol>
                 </nav>
             </div>
@@ -49,8 +49,8 @@
                                 <div class="card">
                                     <div class="card-body-md rounded" style="background-color:#2FCF92;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">200</h1>
-                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Guest
-                                            Reservation
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">
+                                            Checked-in
                                         </h5>
                                     </div>
                                 </div>
@@ -59,8 +59,8 @@
                                 <div class="card">
                                     <div class="card-body-sm rounded" style="background-color:#34C99D;">
                                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">20</h1>
-                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">Guest
-                                            Reviews
+                                        <h5 class="text-secondary mx-auto d-flex justify-content-center text">
+                                            Guest Complaints
                                         </h5>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                                 {{ $count->cnt }}
                                             @endforeach
                                         </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">For
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Room For
                                             Cleaning
                                         </h2>
                                     </div>
@@ -122,7 +122,7 @@
                                                     <tr>
                                                         <th scope="col" style="font-size:18px;">ID</th>
                                                         <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                        <th scope="col" style="font-size:18px;">Arrival/Departure</th>
+                                                        <th scope="col" style="font-size:18px;">Checked-in/Checked-out</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

@@ -47,12 +47,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                             href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                            aria-selected="false"> ####</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4"
-                                            aria-selected="false"> ####</a>
+                                            aria-selected="false"> Checked-in</a>
                                     </li>
                                 </ul>
                             </div>

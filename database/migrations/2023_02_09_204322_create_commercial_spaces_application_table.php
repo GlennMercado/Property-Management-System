@@ -26,16 +26,18 @@ return new class extends Migration
             $table->string('business_style');
             $table->string('business_address');
             $table->string('email_website_fb');
-            $table->string('business_landline_no');
+            $table->string('business_landline_no')->nullable();
             $table->string('business_mobile_no');
             //$table->string('authorized_representative');
             $table->string('name_of_owner');
             $table->string('spouse')->nullable();
             $table->string('home_address');
-            $table->string('landline');
+            $table->string('landline')->nullable();
             $table->string('mobile_no');
             $table->string('tax_identification_no');
+            $table->string('TIN_Image');
             $table->string('tax_cert_valid_gov_id');
+            $table->string('Other_Cert_Image');
 
             $table->date("Interview_Date")->nullable();
 
