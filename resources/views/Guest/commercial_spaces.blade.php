@@ -13,6 +13,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
+                
                 <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
                 <div class="container mx-auto" >
 
