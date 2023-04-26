@@ -180,12 +180,12 @@
                                                                 class="bi bi-arrow-repeat"></i></button>
                                                     @endif
                                                 </td>
-                                                <td>{{ $lists->Booking_No }}</td>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Guest_Name }}</td>
-                                                <td>{{ $lists->Check_In_Date }}</td>
-                                                <td>{{ $lists->Check_Out_Date }}</td>
-                                                <td>{{ $lists->Payment }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Check_In_Date }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Check_Out_Date }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
                                                         {{ $lists->Payment_Status }}
@@ -398,10 +398,10 @@
                                                         data-target="#update_booking_status{{ $lists->Booking_No }}">
                                                         <i class="bi bi-arrow-repeat"></i></button>
                                                 </td>
-                                                <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
                                             </tr>
                                         @endif
 
@@ -580,10 +580,10 @@
                                                         <i class="bi bi-file-earmark-text"></i>
                                                     </a>
                                                 </td>
-                                                <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
                                             </tr>
 
 
@@ -850,10 +850,10 @@
                                                         data-target="#view4{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                 </td>
-                                                <td>{{ $lists->Booking_No }}</td>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Guest_Name }}</td>
-                                                <td>{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
                                             </tr>
                                         @endif
 
