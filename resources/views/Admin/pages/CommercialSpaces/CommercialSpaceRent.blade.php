@@ -87,7 +87,7 @@
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
                                                                 @php $now = date('Y-m-d') @endphp
-                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Tenant_Status == "Paid (Checking)")
+                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)")
                                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
@@ -216,12 +216,15 @@
                                                                                 required>
                                                                                 <option value="" selected="true"
                                                                                     disabled="disabled">Select</option>
-                                                                                <option value="Fully Paid">Fully Paid
-                                                                                </option>
+                                                                                
                                                                                 @foreach($count2 as $counts)
                                                                                     @if($counts->cnt > 0)
+                                                                                    <option value="Fully Paid">Fully Paid
+                                                                                    </option>
                                                                                     <option value="Partial Paid">Partial Paid
                                                                                     </option>
+                                                                                    @else
+                                                                                    <option value="Fully Paid">Paid</option>
                                                                                     @endif
                                                                                 @endforeach
                                                                                 <option value="Non-Payment">Non-Payment

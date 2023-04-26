@@ -470,7 +470,7 @@
                                                 title="Payment History">
                                                 <i class="bi bi-eye"></i>
                                             </button>
-                                            @if($lists->Payment_Status != "Paid" || $lists->Payment_Status == null)
+                                            @if($lists->Payment_Status != "Paid (Checking)" || $lists->Payment_Status == null)
                                             <button class="btn btn-sm btn-success" data-toggle="modal"
                                                 data-target="#update_payment_status{{ $lists->Tenant_ID }}"
                                                 title="Update Payment Status">
@@ -511,6 +511,7 @@
                                                     <th scope="col">Rental Fee</th>
                                                     <th scope="col">Paid Date</th>
                                                     <th scope="col">Payment Status</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -536,6 +537,16 @@
                                                             <td class="font-weight-bold tbltxt text-danger">
                                                                 {{ $lists4->Payment_Status }}</td>
                                                             @endif
+                                                            <td>
+                                                                <div class="img-container">
+                                                                  <button class="btn btn-sm btn-primary" title="View Image">
+                                                                    View Image
+                                                                    <span class="popup">
+                                                                      <img src="{{ $lists4->Proof_Image }}" alt="Image Preview">
+                                                                    </span>
+                                                                  </button>
+                                                                </div>
+                                                            </td>
                                                         </tr>
                                                     @endif
                                                 @endforeach
@@ -648,7 +659,6 @@
                                         <th>SECURITY DEPOSIT</th>
                                         <th>PAID DATE</th>
                                         <th>REMARKS</th>
-                                        <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 @php $Displayed = true @endphp
@@ -659,9 +669,6 @@
                                         <td class="cur1">{{$lists2->Security_Deposit}}</td>
                                         <td>{{date('F j, Y', strtotime($lists2->Paid_Date))}}</td>
                                         <td>{{$lists2->Remarks}}</td>
-                                        <td>
-                                            button
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -763,13 +770,58 @@
                 }
                 loadfile(event);
             }
-function loadfile(event){
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-}
+            function loadfile(event){
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            }
+
         </script>
 
         <style>
+ .img-container {
+  position: relative;
+  display: inline-block;
+}
+
+.img-container img {
+  display: block;
+  max-width: 100%;
+}
+
+.img-container .btn {
+  position: relative;
+}
+
+.img-container .popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.img-container .btn:hover .popup {
+  visibility: visible;
+  opacity: 1;
+}
+
+.img-container .popup img {
+  display: block;
+  max-width: 80vw;
+  max-height: 80vh;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
             .cur1::before{
                 content: '₱';
             }
