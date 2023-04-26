@@ -191,7 +191,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/update_comm_maintenance_status', ['id' => $lists->Space_Unit, 'stats' => 'Yes'])}}" class="btn btn-success prevent_submit">Yes</a>
+                                                        <a href="{{url('/update_comm_maintenance_status2', ['id' => $lists->Space_Unit, 'stats' => 'Yes'])}}" class="btn btn-success prevent_submit">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>

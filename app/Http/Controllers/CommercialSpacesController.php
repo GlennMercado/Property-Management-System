@@ -685,6 +685,8 @@ class CommercialSpacesController extends Controller
                     $add->Due_Date = $due_Date;
                     $add->Paid_Date = $now;
                     $add->Paid_By = $tenant->name_of_owner;
+                    $add->Gcash_Name = $gcash;
+                    $add->Proof_Image = $proof_image;
     
                     $add->save();
 
@@ -736,6 +738,41 @@ class CommercialSpacesController extends Controller
         }
     }
 
+    public function update_commercial_maintenance_status2($id, $stats)
+    {
+        $space_unit = $id;
+        $status = $stats;
+        $due_date = Carbon::now()->addMonth()->format('Y-m-d');
+
+        if($status == "Yes")
+        {
+            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => $due_date]);
+        }
+        else
+        {
+            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => null]);
+        }
+       
+        if($sql)
+        {
+            $tenants = DB::table('commercial_spaces_tenants')
+            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+            ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)->get();
+            
+            // Send email to each tenant
+            foreach ($tenants as $tenant) {
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+            }
+
+            Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed Updating!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+    }
     public function commercial_space_utility_bills()
     {
         $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');

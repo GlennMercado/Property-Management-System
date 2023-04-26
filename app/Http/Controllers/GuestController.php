@@ -145,12 +145,13 @@ class GuestController extends Controller
         $list3 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_utility_bills c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         $list4 = DB::select("SELECT * FROM commercial_space_rent_reports");
         $list5 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND a.email = '$email'");
+        $list6 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID INNER JOIN commercial_space_unit_reports c ON b.Tenant_ID = c.Tenant_ID WHERE a.IsArchived = 0 AND a.email = '$email'");
         
         foreach($sql as $s)
         {
             $data[] = ['date' => $s->Interview_Date];
         }
-        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5]);
+        return view('Guest.Commercial_Space', ['comm' => $comm, 'data' => $data, 'list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5, 'list6' => $list6]);
     }
     public function commercial_space_rent_payment(Request $request)
     {

@@ -865,13 +865,13 @@
                                         <td class="cur1">{{$lists5->Security_Deposit}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#view_maintenance_payment_history{{ $lists5->Space_Unit }}"
+                                                data-target="#view_maintenance_payment_history_{{ str_replace(' ', '_', $lists5->Space_Unit).$lists5->Tenant_ID }}"
                                                 title="Payment History">
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                             @if($lists5->Maintenance_Status == "Yes" && $lists5->Payment_Status != "Paid (Checking)")
                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                    data-target="#update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit) }}"
+                                                    data-target="#update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit).$lists5->Tenant_ID }}"
                                                     title="Update Payment Status">
                                                     <i class="bi bi-arrow-repeat"></i>
                                                 </button>
@@ -882,8 +882,77 @@
                                 </tbody>
                             </table>
 
+                            {{-- View Payment History --}}
+                            <div class="modal fade" id="view_maintenance_payment_history_{{ str_replace(' ', '_', $lists5->Space_Unit).$lists5->Tenant_ID }}" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-left display-4" id="exampleModalLabel">View
+                                                {{$lists5->Space_Unit}} Information History
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3 class="text-left">Payment History</h3>
+                                            <table class="table align-items-center table-flush" id="payment_history">
+                                                <thead class="thead-light">
+                                                    <tr>
+
+                                                        <th scope="col">Maintenance Cost</th>
+                                                        <th scope="col">Maintenance Due Date</th>
+                                                        <th scope="col">Paid Date</th>
+                                                        <th scope="col">Paid By</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($list6 as $lists6)
+                                                        @if ($lists6->Tenant_ID == $lists->Tenant_ID)
+                                                            <tr>
+                                                                <td class="font-weight-bold tbltxt cur1">{{$lists6->Maintenance_Cost}}</td>
+                                                                <td class="font-weight-bold tbltxt">
+                                                                    {{ date('F j, Y', strtotime($lists6->Due_Date)) }}
+                                                                </td>
+                                                                @if ($lists6->Paid_Date != null)
+                                                                    <td class="font-weight-bold tbltxt">
+                                                                        {{ date('F j, Y', strtotime($lists6->Paid_Date)) }}
+                                                                    </td>
+                                                                @else
+                                                                    <td></td>
+                                                                @endif
+                                                                <td class="font-weight-bold tbltxt">{{$lists6->Paid_By}}</td>
+                                                                <td>
+                                                                    @if($lists6->Proof_Image != null)
+                                                                    <div class="img-container">
+                                                                        <button class="btn btn-sm btn-primary"
+                                                                            title="View Image">
+                                                                            View Image
+                                                                            <span class="popup">
+                                                                                <img src="{{ $lists6->Proof_Image }}"
+                                                                                    alt="Image Preview">
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                              <!-- Update Modal -->
-                            <div class="modal fade" id="update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit) }}" tabindex="-1"
+                            <div class="modal fade" id="update_units_payment_{{ str_replace(' ', '_', $lists5->Space_Unit).$lists5->Tenant_ID }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
