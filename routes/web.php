@@ -212,6 +212,7 @@ Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	
 	Route::get('Complaints', [App\Http\Controllers\ComplaintsController::class, 'Complaints'])->name('Complaints'); 
 	
+	Route::post('/complaints_status', 'App\Http\Controllers\ComplaintsController@complaints_status');
 	
 	Route::get('Requests', [App\Http\Controllers\OperationManagementController::class, 'Operation_Requests'])->name('Requests');
 	

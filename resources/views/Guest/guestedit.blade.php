@@ -146,18 +146,18 @@
                                 <h1>My Complaints</h1>
                                 <div class="row">
                                     @foreach ($list as $list)
-                                        {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
-                                        <div class="card shadow mb-2 msgcolor gal" data-toggle="tooltip"
-                                            data-placement="bottom" title="{{ $list->concern }} {{ $list->created_at }}"
-                                            style="width: 100%">
+                                        <div class="card shadow mb-2" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
                                             <div class="card-body font-weight-bold mt--4">
                                                 <br>
                                                 <span class="badge badge-pill badge-primary category">
                                                     {{ $list->concern }}
                                                 </span>
-                                                    <h1 class="ml-auto text-success">
+                                                @if ($list->status == "Resolved")
+                                                    <h2 class="ml-auto text-success">
                                                         Resolved <i class="bi bi-check"></i>
-                                                    </h1>
+                                                    </h2>
+                                                @endif
                                                 <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
                                                 <br>
                                                 <br>
@@ -169,6 +169,13 @@
                                                         data-lightbox="photos" data-gallery="complaints"
                                                         style="max-height: 350px; max-width:500px;" />
                                                 </a>
+                                                @if ($list->status == "Resolved")
+                                                    <div class="card shadow mb-2 p-3 mt-2"
+                                                        style="width: 100%; border: 1px solid rgb(50, 199, 50); background-color: aliceblue">
+                                                        <label class="text-green font-weight-bold">Remarks</label>
+                                                        <p class="font-weight-bold">{{ $list->remarks }}</p>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach
