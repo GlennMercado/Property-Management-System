@@ -23,7 +23,6 @@
             <li data-target="#carousel" data-slide-to="2"></li>
             <li data-target="#carousel" data-slide-to="3"></li>
         </ol>
-p
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
