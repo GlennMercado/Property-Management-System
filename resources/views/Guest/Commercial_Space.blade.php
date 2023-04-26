@@ -8,6 +8,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#payment_history').DataTable({
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }
+                ]
+            });
+        });
+    </script>
 
     <div class="content-area">
         <div class="container mt-7">
@@ -267,14 +280,13 @@
 
                                                     <div class="row">
                                                         <div class="col-md">
-                                                            <p class="pt-4">Landline No. <span
-                                                                    class="text-danger">*</span>
+                                                            <p class="pt-4">Business Landline No.
                                                             </p>
                                                             <input type="number"
                                                                 onkeypress="if(this.value.length==8) return false;"
                                                                 name="business_landline_no" class="form-control"
                                                                 placeholder="09XXXXXXXX"
-                                                                value="{{ $comm->business_landline_no }}" required>
+                                                                value="{{ $comm->business_landline_no }}">
                                                         </div>
 
                                                         <div class="col-md">
@@ -315,12 +327,12 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <br>
-                                                            <p>Landline No <span class="text-danger">*</span> </p>
+                                                            <p>Landline No > </p>
                                                             <input type="number"
                                                                 onkeypress="if(this.value.length==8) return false;"
                                                                 name="landline" class="form-control"
                                                                 placeholder="Please use a 8 digit telephone number with no dashes or dots"
-                                                                value="{{ $comm->landline }}" required>
+                                                                value="{{ $comm->landline }}" >
                                                         </div>
                                                         <div class="col">
                                                             <br>
@@ -498,7 +510,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <h3 class="text-left">Payment History</h3>
-                                        <table class="table align-items-center table-flush" id="myTable3">
+                                        <table class="table align-items-center table-flush" id="payment_history">
                                             <thead class="thead-light">
                                                 <tr>
 
@@ -533,6 +545,7 @@
                                                                     {{ $lists4->Payment_Status }}</td>
                                                             @endif
                                                             <td>
+                                                                @if($lists4->Payment_Status == "Paid" && $lists4->Proof_Image != null)
                                                                 <div class="img-container">
                                                                     <button class="btn btn-sm btn-primary"
                                                                         title="View Image">
@@ -543,6 +556,7 @@
                                                                         </span>
                                                                     </button>
                                                                 </div>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -558,7 +572,7 @@
                         </div>
 
                         <!-- Update Modal -->
-                        <div class="modal fade" id="update_payment_status{{ $lists->id }}" tabindex="-1"
+                        <div class="modal fade" id="update_payment_status{{ $lists->Tenant_ID}}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -611,7 +625,7 @@
                                                     <img id="output" class="img-fluid" />
                                                 </div>
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                    <input type="file" onchange="enable_submit(event)" id="gcash_img"
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)" id="gcash_img"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
                                                         required>
                                                 </div>
@@ -795,7 +809,7 @@
                                                     <img id="output2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" class="img-fluid" />
                                                 </div>
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                    <input type="file" onchange="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})" id="gcash_img2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}"
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})" id="gcash_img2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
                                                         required>
                                                 </div>
@@ -851,7 +865,7 @@
                                         <td class="cur1">{{$lists5->Security_Deposit}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#view_payment_history{{ $lists5->Space_Unit }}"
+                                                data-target="#view_maintenance_payment_history{{ $lists5->Space_Unit }}"
                                                 title="Payment History">
                                                 <i class="bi bi-eye"></i>
                                             </button>
@@ -893,18 +907,9 @@
                                                 <input type="hidden" name="space_unit" value="{{ $lists5->Space_Unit }}">
 
                                                 <div class="row shadow p-3 mt-2">
-                                                    <div class="col-md-12">
-                                                        <p class="font-weight-bold text-center">NVDC Properties:
-                                                            0923423424
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-12 d-flex justify-content-center">
-                                                        {!! QrCode::size(170)->generate('0923423424') !!}
-                                                    </div>
-                                                    <br>
                                                     <br>
                                                     <div class="col-md-12">
-                                                        <p class="text-center">Maintenance Cost <span
+                                                        <p class="text-left">Maintenance Cost <span
                                                         class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
@@ -913,7 +918,7 @@
                                                     <br>
                                                     <br>
                                                     <div class="col-md-12">
-                                                        <p class="text-center">Gcash account name <span
+                                                        <p class="text-left">Account name <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
@@ -922,14 +927,14 @@
                                                             required>
                                                     </div>
                                                     <div class="col-md-12 mt-1">
-                                                        <p class="text-center">Upload your proof of payment here <span
+                                                        <p class="text-left">Upload your proof of payment here <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
                                                         <img id="output3" class="img-fluid" />
                                                     </div>
                                                     <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                        <input type="file" onchange="enable_submit3(event)" id="gcash_img3"
+                                                        <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
                                                             placeholder="Ex: John Doe" name="images" class="form-control"
                                                             required>
                                                     </div>
@@ -957,6 +962,7 @@
         </div>
 
         <script>
+
             $(function() {
                 $('.interview_modal').on('shown.bs.modal', function() {
                     $("#interview").datepicker({

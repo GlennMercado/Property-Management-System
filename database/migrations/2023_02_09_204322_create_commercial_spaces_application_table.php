@@ -35,7 +35,9 @@ return new class extends Migration
             $table->string('landline')->nullable();
             $table->string('mobile_no');
             $table->string('tax_identification_no');
+            $table->string('TIN_Image');
             $table->string('tax_cert_valid_gov_id');
+            $table->string('Other_Cert_Image');
 
             $table->date("Interview_Date")->nullable();
 

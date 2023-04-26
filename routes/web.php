@@ -192,7 +192,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('edit_comm_unit', 'App\Http\Controllers\CommercialSpacesController@edit_comm_unit');
 	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
 	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesController@comm_space_maintainance_cost');
-	Route::get('/update_comm_maintenance_status/{id}/{stats}', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
+	Route::post('update_comm_maintenance_status', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
 	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
 	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesController@update_utility_payment');
 	
