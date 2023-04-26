@@ -232,7 +232,7 @@
                                                 </tbody>
                                             </table>
                                             @foreach ($array as $arrays)
-                                                <!-- Payment_History -->
+                                                <!-- View Information -->
                                                 <div class="modal fade"
                                                     id="view_payment_history{{ $arrays['Tenant_ID'] }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalLabel"
@@ -242,7 +242,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">View Payment History
+                                                                    id="exampleModalLabel">View Information History
                                                                 </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
@@ -290,6 +290,8 @@
                                                                         @endforeach
                                                                     </tbody>
                                                                 </table>
+
+                                                                <br>
 
                                                                 <h3 class="text-left">Security Deposit</h3>
                                                                 <table class="table align-items-center table-flush"

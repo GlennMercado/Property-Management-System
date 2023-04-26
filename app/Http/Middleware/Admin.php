@@ -16,14 +16,21 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Admin')
+        if(auth()->user()->User_Type == 'Admin' && auth()->user()->IsDisabled == 0)
         {
             return $next($request);
+        }
+        elseif(auth()->user()->IsDisabled == 1)
+        {
+            auth()->logout();
+            return redirect('/login')->withStats(__('Access Denied.'));
         }
         else
         {
             //return redirect()->route('login')->with('Error', 'Access Denied.');
-            abort(404);
+            //abort(404);
+            auth()->logout();
+            return redirect('/login')->withStats(__('Access Denied.'));
         }
         
         

@@ -101,7 +101,6 @@
                                                                         <i class="bi bi-arrow-repeat"></i>
                                                                     </button>
                                                                 @endif
-                                                                
                                                             </td>
                                                             <td>
                                                                 <span class="tbltxt">Business Name: </span>

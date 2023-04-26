@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('Space_Unit')->primary();
             $table->integer('Measurement_Size');
             $table->string('Maintenance_Status')->default('No');
+            $table->date('Maintenance_Due_Date')->nullable();
+            $table->integer('Maintenance_Cost')->nullable();
             $table->string('Occupancy_Status')->default('Vacant');
             $table->integer('Rental_Fee');
             $table->integer('Security_Deposit');
