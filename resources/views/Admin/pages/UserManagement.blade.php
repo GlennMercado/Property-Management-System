@@ -51,7 +51,8 @@
                                         <label class="text_color">Password</label>
                                         <div class="input-group">
                                             <input class="form-control" type="password" name="password" id="password"
-                                                required>
+                                            onkeypress="if(this.value.length==8) return false;"  
+                                            required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text toggle-password"><i
                                                         class="fas fa-eye-slash"></i></span>
@@ -61,7 +62,9 @@
                                         <label class="text_color">Confirm Password</label>
                                         <div class="input-group">
                                             <input class="form-control" type="password" name="password_confirmation"
-                                                id="confirm_password" required>
+                                                id="confirm_password" 
+                                                onkeypress="if(this.value.length==8) return false;"
+                                                required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text toggle-password"><i
                                                         class="fas fa-eye-slash"></i></span>
