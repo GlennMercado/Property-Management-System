@@ -323,7 +323,8 @@ class GuestController extends Controller
 
         if($submit->save())
         {
-            return redirect('/complaints')->withStats(__('Complaint was successfully submitted.'));
+            Alert::Success('Success', 'Complaint has been submitted');
+            return redirect('/complaints');
         }
         else
         {
