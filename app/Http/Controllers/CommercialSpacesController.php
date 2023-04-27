@@ -427,12 +427,12 @@ class CommercialSpacesController extends Controller
                     'Status' => "Tenant",
                     'updated_at' => DB::raw('NOW()')
                 ]);
-            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status, 'Gcash_Name' => null, 'Proof_Image' => null, 'Payment_Status' => null]);
 
             DB::table('commercial_space_rent_reports')->where(['Tenant_ID' => $id, 'Payment_Status' => 'Non-Payment'])
                 ->update(
                     [
-                        'Payment_Status' => "Paid",
+                        'Payment_Status' => "Paid (Late)",
                         'Paid_Date' => $now
                     ]
                 );
@@ -654,7 +654,7 @@ class CommercialSpacesController extends Controller
 
         $tenant_id = $request->input('tenant_id');
 
-        $IsAchived = DB::select("SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1")
+        $IsAchived = DB::select("SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1");
 
         $sql;
         

@@ -11,16 +11,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     
-    <script>
-        $.noConflict();
-        jQuery(document).ready(function($) {
-            $('#payment_history').DataTable({
-                "columnDefs": [
-                    { "type": "date", "targets": 0 }
-                ]
-            });
-        });
-    </script>
 
     <div class="content-area">
         <div class="container mt-7">
@@ -1126,7 +1116,16 @@
                 output.src = URL.createObjectURL(event.target.files[0]);
             }
         </script>
-
+<script>
+    
+    $(document).ready(function($) {
+        $('#payment_history').DataTable({
+            "columnDefs": [
+                { "type": "date", "targets": 0 }
+            ]
+        });
+    });
+</script>
         <style>
             .img-container {
                 position: relative;
