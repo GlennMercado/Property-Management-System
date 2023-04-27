@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'AdminorOperation' => \App\Http\Middleware\AdminorOperation::class,
         'AdminorFinance' => \App\Http\Middleware\AdminorFinance::class,
         'AdminorInventory' => \App\Http\Middleware\AdminorInventory::class,
+        'AdminorSalesorOperation' => \App\Http\Middleware\AdminorSalesorOperation::class,
     ];
 }
