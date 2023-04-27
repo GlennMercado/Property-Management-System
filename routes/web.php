@@ -150,21 +150,6 @@ Route::middleware(['auth', 'AdminorHousekeeper'])->group(function(){
 
 //Admin and Sales and Marketing
 Route::middleware(['auth', 'AdminorSales'])->group(function(){
-	//Reservation
-	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
-	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
-	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
-	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
-	
-	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
-	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
-	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
-	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
-	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
-
-	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
-
 	//Event inquiry
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
 	Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
@@ -206,20 +191,6 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	//Reservation
 	// Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
-	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
-	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
-	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
-	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
-
-	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
-	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
-	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
-	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
-	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
-	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
-
-	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
-
 	Route::get('/Guest_Reservation', [App\Http\Controllers\HotelController::class, 'guest_viewing'])->name('Guest_Reservation');
 
 	Route::get('Complaints', function () {return view('Admin.pages.OperationManagement.Complaints');})->name('Complaints');
@@ -238,6 +209,25 @@ Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	
 	Route::get('OperationRooms', [App\Http\Controllers\OperationManagementController::class, 'OperationRooms'])->name('OperationRooms');
 	Route::get('OperationDashboard', [App\Http\Controllers\OperationManagementController::class, 'OperationDashboard'])->name('OperationDashboard');
+});	
+
+//Admin, Sales and Marketing and Operations Manager
+Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
+	//Reservation
+	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
+	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
+	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
+
+	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
+	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
+	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
+	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
+
+	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
+
 });	
 
 //Admin and Finance
