@@ -48,7 +48,9 @@
                             <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body-md rounded" style="background-color:#2FCF92;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">200</h1>
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                        {{ $checked_guests }}
+                                        </h1>
                                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
                                             Checked-in
                                         </h5>
@@ -58,7 +60,9 @@
                             <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body-sm rounded" style="background-color:#34C99D;">
-                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">20</h1>
+                                        <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
+                                        {{ $checked_complaints }}
+                                        </h1>
                                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
                                             Guest Complaints
                                         </h5>
