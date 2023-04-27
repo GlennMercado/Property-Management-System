@@ -6,41 +6,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+
     <div id="carousel" class="carousel slide mt-6" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
             <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
         </ol>
 
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/nv4.jpg" class="img-fluid">
                 <div class="caption d-none d-lg-block">
-                    <h1>Create and share your whatever</h1>
-                    <h2>Make it easy for you to do whatever this thing does.</h2>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
-                <div class="caption d-none d-lg-block">
-                    <h1>Something and share your whatever</h1>
-                    <h2>Else it easy for you to do whatever this thing does.</h2>
-
-                    <a class="big-button" href="" title="">Create Project</a>
+                    <h1>The NOVADECI CONVENTION CENTER</h1>
+                    <h2>is the first coop-owned convention center in the Philippines. It is being managed by NVDC
+                        Properties.</h2>
+                    <a class="big-button" href="#appli" title="">Inquire Now</a>
                     <div class="clear"></div>
-                    <a class="view-demo" href="" title="">View Demo</a>
                 </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/nv3.jpg" class="img-fluid" alt="">
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
-                <div class="caption d-none d-lg-block">
-                    <h1>Create and share your whatever</h1>
-                    <h2>Make it easy for you to do whatever this thing does.</h2>
-                </div>
+                <img src="{{ asset('nvdcpics') }}/nv2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('nvdcpics') }}/nv1.jpg" class="img-fluid" alt="">
             </div>
 
         </div>
@@ -56,15 +52,67 @@
 
     </div>
     <div class="row">
-        <div class="col-md-7" style="margin: 0; padding: 0">
-            <img src="{{ asset('nvdcpics') }}/FunctionRoom1.png" class="img-fluid">
+        <div class="col-md-7 row" style="margin: 0; padding: 0">
+            <div class="col-md-12 imgpad">
+                <a href="{{ asset('nvdcpics') }}/FunctionRoom7.png" data-lightbox="photos">
+                    <img src="{{ asset('nvdcpics') }}/FunctionRoom7.png" class="img-fluid"
+                    style="margin: 0; padding: 0; height:100%">
+                </a>
+            </div>
+            <div class="col-md-4 imgpad">
+                <a href="{{ asset('nvdcpics') }}/FunctionRoom6.png" data-lightbox="photos">
+                    <img src="{{ asset('nvdcpics') }}/FunctionRoom6.png" class="img-fluid img2">
+                </a>
+            </div>
+            <div class="col-md-4 imgpad">
+                <a href="{{ asset('nvdcpics') }}/FunctionRoom5.png" data-lightbox="photos">
+                    <img src="{{ asset('nvdcpics') }}/FunctionRoom5.png" class="img-fluid img2">
+                </a>
+            </div>
+            <div class="col-md-4 imgpad">
+                <a href="{{ asset('nvdcpics') }}/FunctionRoom4.png" data-lightbox="photos">
+                    <img src="{{ asset('nvdcpics') }}/FunctionRoom4.png" class="img-fluid img2">
+                </a>
+            </div>
         </div>
-        <div class="col-md-5 p-6" style="background-color: rgb(51, 60, 82)">
+        <div class="col-md-5 p-6" style="background-color: rgb(51, 60, 82); margin: 0; padding: 0">
             <h1 class="text-white">FUNCTION ROOMS</h1>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure neque culpa perspiciatis
-                vero adipisci
-                cupiditate tempora illum dolorem eligendi tenetur, ducimus perferendis officia. Quos doloribus quis ipsa
-                accusantium fugiat nisi.</p>
+            <hr class="bg-white">
+            <h2 class="text-white">• Function Room A</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 170 sq. m.
+                <br>
+                <i class="bi bi-people-fill"></i> 100 pax capacity;
+                <br>-projector with wide screen, basic sound system composed of speakers,
+                microphones and audio mixer (1200 watts).
+            </p>
+            <h2 class="text-white">• Function Room B</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 176 sq. m.
+                <br>
+                <i class="bi bi-people-fill"></i> 120 pax capacity
+            </p>
+            <h2 class="text-white">• Function Room C</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 176 sq. m.
+                <br>
+                <i class="bi bi-people-fill"></i> 120 pax capacity
+            </p>
+            <h2 class="text-white">• Function Room D</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 160 sq. m.
+                <br>
+                <i class="bi bi-people-fill"></i> 100 pax capacity
+            </p>
+            <h2 class="text-white">• Function Room E</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 120 sq. m. <br>
+                <i class="bi bi-people-fill"></i> 60 pax capacity
+            </p>
+            <h2 class="text-white">• Function Room F</h2>
+            <p class="text-white">
+                <i class="bi bi-rulers"></i> 364 sq. m.
+            </p>
         </div>
     </div>
 
@@ -97,7 +145,7 @@
         </div>
     </div> --}}
 
-    <div class="card d-flex justify-content-center" style="width: 100%;">
+    <div class="card d-flex justify-content-center" style="width: 100%;" id="appli">
         <div class="card-body">
             <div class="container-fluid bg-white mt-1" id="conventionCenter">
                 <div class="row d-flex justify-content-center">
@@ -105,12 +153,14 @@
 
                         <div class="row align-items-center pt-4">
                             <div class="col">
-                                <h3><span><button class="btn btn-success" disabled>1</button></span> &nbsp Event Application
+                                <h3><span><button class="btn btn-success" disabled>1</button></span> &nbsp Event
+                                    Application
                                     Form</h3>
                             </div>
                         </div>
                         <h4 style="color: #8898aa;">Tell us about you </h4>
-                        <form action="{{ url('/convention_center_submit') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/convention_center_submit') }}" method="POST"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="row ">
                                 <div class="col-md pt-4">
@@ -122,8 +172,8 @@
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==10) return false;"
-                                        title="Please use a 10 digit mobile number with no dashes or dots" name="contact_no"
-                                        class="form-control" placeholder="09XXXXXXXX" id="contact"
+                                        title="Please use a 10 digit mobile number with no dashes or dots"
+                                        name="contact_no" class="form-control" placeholder="09XXXXXXXX" id="contact"
                                         onchange="validateContact()">
                                     <p id="contact-error" style="color: red; font-size: 14px;"></p>
                                 </div>
@@ -173,7 +223,8 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
-                                    <select name="event_type" class="form-control" id="EventType" onchange="validateEventType()">
+                                    <select name="event_type" class="form-control" id="EventType"
+                                        onchange="validateEventType()">
                                         <option value="Birthday">Birthday</option>
                                         <option value="Wedding">Wedding</option>
                                         <option value="Baptism">Baptism</option>
@@ -183,8 +234,8 @@
                                         <option value="">Others</option>
                                     </select>
                                     <!-- <input type="text" name="event_type" class="form-control"
-                                        placeholder="Enter event type" maxlength="32" id="EventType"
-                                        onchange="validateEventType()"> -->
+                                                                    placeholder="Enter event type" maxlength="32" id="EventType"
+                                                                    onchange="validateEventType()"> -->
                                     <p id="eventType-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
@@ -540,4 +591,5 @@
             $('.prevent_submit').attr('disabled', 'true');
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 @endsection

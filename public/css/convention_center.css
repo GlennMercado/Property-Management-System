@@ -214,4 +214,24 @@ li.active {
     margin: 0;
     padding: 0;
 }
+
 /* CAROUSEL */
+
+.img2 {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.imgpad {
+    padding: 0;
+    overflow: hidden;
+}
+
+.imgpad img:hover {
+    transition: 0.4s ease-in-out;
+    transform: scale(1.07);
+    filter: brightness(51%);
+    -webkit-filter: brightness(51%);
+    -moz-filter: brightness(51%);
+}
