@@ -181,10 +181,7 @@ class HotelController extends Controller
             $particular = "Hotel";
             $debit = "Cash";
             $remark = "FULL";
-            // $finance_payee = DB::table('hotel_reservations')->where('Booking_No', $bookno)->value('gcash_account_name');
             $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
-            // $finance_eventdate = DB::select('SELECT "Check_In_Date" FROM hotel_reservations');
-            // $finance_eventdate = DB::table('hotel_reservations')->select('Check_In_Date')->first()->Check_In_Date;
 
             $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
 

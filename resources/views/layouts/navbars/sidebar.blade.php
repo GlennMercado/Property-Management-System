@@ -319,14 +319,14 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="nav nav-sm flex-column">
+                        <!-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockRoomSupply' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockRoomSupply') }}">
                                     <i class="bi bi-clipboard-data-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Stock Room Supply') }}
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">
