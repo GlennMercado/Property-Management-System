@@ -53,7 +53,7 @@
                     </h2>
                     <h2>
                         <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>
-                        CONFORTABLE
+                        COMFORTABLE
                     </h2>
                     <h2>
                         <i class="bi bi-check-lg" style="color: rgb(65, 214, 65)"></i>

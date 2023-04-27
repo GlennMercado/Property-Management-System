@@ -13,7 +13,7 @@ use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use App\Models\lost_and_found;
 use Illuminate\Support\Facades\Auth;
-use App\Models\List_of_Housekeepers;
+use App\Models\list_of_housekeepers;
 use App\Models\used_supplies;
 use Carbon\Carbon;
 use DataTables;
@@ -831,8 +831,7 @@ class HousekeepingController extends Controller
         }
         else
         {
-    
-            $add = new List_of_Housekeepers;
+            $add = new list_of_housekeepers;
 
             $add->Housekeepers_Name = $name;
             

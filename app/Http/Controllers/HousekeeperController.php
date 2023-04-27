@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_supplies_reports;
 use App\Models\hotel_room_linens_reports;
+use App\Models\list_of_housekeepers;
 use App\Models\housekeepings;
 use App\Models\out_of_order_rooms;
 use App\Models\lost_and_found;
