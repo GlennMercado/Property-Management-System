@@ -245,7 +245,7 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="cards1" style="">
-                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/convention.jpg"
+                    <img class="card-img-top mt-5 shadow1" src="{{ asset('nvdcpics') }}/nvdcpic1.png"
                         alt="Card image cap" style="max-height:17rem;">
                 </div>
                 <div class="col-md-6 text-left mt-5 ">
