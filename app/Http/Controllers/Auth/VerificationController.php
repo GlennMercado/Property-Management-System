@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Models\User;
 
 class VerificationController extends Controller
 {
@@ -33,10 +34,24 @@ class VerificationController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('signed')->only('verify');
+    //     $this->middleware('throttle:6,1')->only('verify', 'resend');
+    // }
+    public function verify($token)
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $user = User::where('email_verification_token', $token)->first();
+
+        if (!$user) {
+            return redirect('/login')->withStats(__('Invalid Verification Token.'));
+        }
+
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect('/login')->withStatus(__('Account Successfully Verified!'));
     }
+
 }

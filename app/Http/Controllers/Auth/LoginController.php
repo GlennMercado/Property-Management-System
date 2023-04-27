@@ -52,17 +52,17 @@ class LoginController extends Controller
         $user = User::where('email', $input['email'])->first();
         
         // Check if the user's email has been verified
-        // if ($user) 
-        // {
-        //     if (!$user->email_verified_at) 
-        //     {
-        //         return back()->withStats(__('Your email has not been verified yet.'));
-        //     }
-        // } 
-        // else 
-        // {
-        //     return back()->withStats(__('Login Failed.'));
-        // }
+        if ($user) 
+        {
+            if (!$user->email_verified_at) 
+            {
+                return back()->withStats(__('Your email has not been verified yet.'));
+            }
+        } 
+        else 
+        {
+            return back()->withStats(__('Login Failed.'));
+        }
         
         if(auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password'])))
         {

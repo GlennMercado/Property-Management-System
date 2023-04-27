@@ -21,6 +21,8 @@ Route::get('/try', function(){
 	return view('Admin.pages.RoomManagement.try');
 });
 
+Route::get('/verify-email/{token}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
+
 //Homepage	r
 Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
 
