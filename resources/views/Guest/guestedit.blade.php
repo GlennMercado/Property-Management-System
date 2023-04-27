@@ -149,15 +149,14 @@
                                         <div class="card shadow mb-2" data-toggle="tooltip" data-placement="bottom"
                                             title="{{ $list->concern }} {{ $list->created_at }}" style="width: 100%">
                                             <div class="card-body font-weight-bold mt--4">
-                                                <br>
-                                                <span class="badge badge-pill badge-primary category">
-                                                    {{ $list->concern }}
-                                                </span>
-                                                @if ($list->status == "Resolved")
-                                                    <h2 class="ml-auto text-success">
+                                                @if ($list->status == 'Resolved')
+                                                    <h2 class="text-success mt-2 mb--1">
                                                         Resolved <i class="bi bi-check"></i>
                                                     </h2>
                                                 @endif
+                                                <span class="badge badge-pill badge-primary category mt-2">
+                                                    {{ $list->concern }}
+                                                </span>
                                                 <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
                                                 <br>
                                                 <br>
@@ -169,7 +168,7 @@
                                                         data-lightbox="photos" data-gallery="complaints"
                                                         style="max-height: 350px; max-width:500px;" />
                                                 </a>
-                                                @if ($list->status == "Resolved")
+                                                @if ($list->status == 'Resolved')
                                                     <div class="card shadow mb-2 p-3 mt-2"
                                                         style="width: 100%; border: 1px solid rgb(50, 199, 50); background-color: aliceblue">
                                                         <label class="text-green font-weight-bold">Remarks</label>

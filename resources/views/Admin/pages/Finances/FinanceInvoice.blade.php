@@ -177,6 +177,9 @@
                 border-top: 2px solid rgb(167, 167, 167);
             }
         </style>
+        <style media="print" landscape>
+            /* CSS rules for print styles go here */
+        </style>
         <script>
             document.addEventListener("DOMContentLoaded", function(e) {
                 let money = document.getElementById("money1").value;

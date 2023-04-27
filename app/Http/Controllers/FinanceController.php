@@ -130,6 +130,13 @@ class FinanceController extends Controller
     
     }
 
+    public function finance_invoice()
+    {
+        $list = DB::select('SELECT * FROM finance_2_reports');    
+
+        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list,]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

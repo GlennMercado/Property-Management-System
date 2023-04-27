@@ -29,26 +29,42 @@
                                     <div class="mt-4">
                                         <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
                                         <input type="hidden" id="rpn" value="{{ $lists->Rate_per_Night }}">
-                                        <h3 class="font-weight-bold">Room {{ $lists->Room_No }}</h3>
+                                        <h3 class="font-weight-bold">Hotel room {{ $lists->Room_No }}</h3>
                                         <input type="hidden" name="rn" value="{{ $lists->Room_No }}" id="rn">
-                                        <h3 class="font-weight-bold">Room Size {{ $lists->Room_Size }} sq m</h3>
-                                        <h3 class="font-weight-bold">{{ $lists->No_of_Beds }} Bed</h3>
+                                        <h3 class="font-weight-bold"><i class="bi bi-rulers"></i> Room Size
+                                            {{ $lists->Room_Size }} square meters</h3>
+                                        <h3 class="font-weight-bold"><i><img src="{{ asset('nvdcpics') }}/p1.svg"
+                                                    style="height: 20px; width: 20px"></i> {{ $lists->No_of_Beds }} Bed
+                                        </h3>
+                                        <h3 class="text-dark">
+                                            <span class="badge badge-pill pills border badge1"><i class="bi bi-wifi"></i>
+                                                Free
+                                                Wifi</span>
+                                            <span class="badge badge-pill pills border badge1"><i
+                                                    class="bi bi-egg-fried"></i>
+                                                Breakfast
+                                                Included</span>
+                                            <span class="badge badge-pill pills border badge1"><i
+                                                    class="bi bi-car-front-fill"></i>
+                                                Parking</span>
+                                        </h3>
                                         <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard
                                             check-in / out time is after 1400 hours (02:00 pm) and the check-out time is
                                             12:00 noon.</h3>
-                                        <h3 class="pt-4 text-muted pb-2">
-                                            Additional ₱ 1,500/pax
+                                        <h2 class="text-white bg-red text-center">Strictly no cancellations.</h2>
+                                        <h3 class="pt-2 text-muted pb-2">
+                                            Additional ₱ 1,500/pax <i class="bi bi-person-plus-fill"></i>
                                         </h3>
                                     </div>
                                 @endforeach
                             </div>
                             <?php
-                                $startDates = [];
-                                $endDates = [];
-                                foreach($reserve as $reserves) {
-                                    $startDates[] = $reserves->Check_In_Date;
-                                    $endDates[] = $reserves->Check_Out_Date;
-                                }
+                            $startDates = [];
+                            $endDates = [];
+                            foreach ($reserve as $reserves) {
+                                $startDates[] = $reserves->Check_In_Date;
+                                $endDates[] = $reserves->Check_Out_Date;
+                            }
                             ?>
                             <input type="hidden" name="start_dates" value="<?php echo implode(',', $startDates); ?>" id="start-dates">
                             <input type="hidden" name="end_dates" value="<?php echo implode(',', $endDates); ?>" id="end-dates">
@@ -94,7 +110,7 @@
                                     <input type="hidden" id="guest_name" name="gName" value="{{ $guests->name }}" />
                                 @endforeach
                                 <div class="col-md pt-4">
-                                    <p class="form-label">Mobile No. <span class="text-danger">*</span></p>
+                                    <p class="form-label label1">Mobile No. <span class="text-danger">*</span></p>
                                     <input class="form-control" id="mobile" type="number" name="mobile" min="0"
                                         value="" placeholder="09XXXXXXXXX"
                                         onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
@@ -114,25 +130,25 @@
                             </div>
                             <div class="row">
                                 <div class="col-md pt-4">
-                                    <p>Check in Date/Time <span class="text-danger">*</span></p>
+                                    <p class="label1">Check in Date/Time <span class="text-danger">*</span></p>
                                     {{-- <input class="form-control chck" id="date1" onkeyup="enable_button()" name="checkIn"
                                         type="date" onkeydown="return false" required /> --}}
-                                        <input type="text" id="date1" class="datepicker" name="checkIn"
-                                                onkeydown="return false" autocomplete="off" required>
+                                    <input type="text" id="date1" class="datepicker" name="checkIn"
+                                        onkeydown="return false" autocomplete="off" required>
                                 </div>
                                 <div class="col-md pt-4">
                                     <div id="dates2">
-                                        <p>Check out Date/Time <span class="text-danger">*</span></p>
+                                        <p class="label1">Check out Date/Time <span class="text-danger">*</span></p>
                                         {{-- <input class="form-control chck" id="date2" onkeyup="enable_button()"
                                             name="checkOut" type="date" onkeydown="return false" required> --}}
-                                            <input type="text" class="datepicker" id="date2"
-                                                        name="checkOut" autocomplete="off" onkeydown="return false">
-                                        </div>
+                                        <input type="text" class="datepicker" id="date2" name="checkOut"
+                                            autocomplete="off" onkeydown="return false">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md pt-4">
-                                    <p class="form-label">Number of pax <span class="text-danger">*</span></p>
+                                    <p class="form-label label1">Number of pax <span class="text-danger">*</span></p>
                                     {{-- <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -201,7 +217,7 @@
                             <div class="pt-4">
                                 <input type="checkbox" onclick="enable_txt()" id="mainCheckbox">
                                 <label for="mainCheckbox">Make this booking for someone else?</label>
-                                <p>Full Name</p>
+                                <p class="label1">Full Name</p>
                                 <input type="text" id="textbox1" class="form-control" disabled>
                             </div>
                             {{-- Deleted special request --}}
@@ -331,7 +347,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 d-flex justify-content-center pt-4">
+                            <div class="col-md-12 d-flex justify-content-center pt-2">
                                 <button type="button" id="submit_button" class="btn btn-success btn_submit"
                                     onclick="price_count()" data-toggle="modal" data-target="#btnpreview" disabled>
                                     Submit
@@ -528,10 +544,10 @@
                             $("#date2").val('');
                             break;
                         }
-                        
+
                         var selectedDate = $(this).datepicker('getDate');
                         var startDate = $('#date1').datepicker('getDate');
-                        var diff = (selectedDate - startDate)/(1000*60*60*24);
+                        var diff = (selectedDate - startDate) / (1000 * 60 * 60 * 24);
                         if (diff > 6) {
                             alert('Date selection not valid.');
                             $("#date2").val('');
@@ -543,7 +559,7 @@
         });
 
 
-        
+
 
         // $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
         //     var dateToday = new Date();
@@ -564,103 +580,103 @@
     </script>
     <style>
         .datepicker {
-                pointer-events: none;
-                /* form-control */
-                display: block;
-                width: 100%;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            }
+            pointer-events: none;
+            /* form-control */
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-            .datepicker:focus {
-                border-color: #80bdff;
-                outline: 0;
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            }
+        .datepicker:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
 
-            .ui-datepicker {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 14px;
-                background-color: #fff;
-            }
+        .ui-datepicker {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-color: #fff;
+        }
 
-            .ui-datepicker-trigger {
-                position: absolute;
-                top:72px;
-                right: 0;
-                margin-right: 23px;
-                cursor: pointer;
-                background-image: url("{{ asset('images') }}/calendar2.png }}");
-                background-size: 30px 30px;
-                width: 30px;
-                height: 30px;
-            }
+        .ui-datepicker-trigger {
+            position: absolute;
+            top: 72px;
+            right: 0;
+            margin-right: 23px;
+            cursor: pointer;
+            background-image: url("{{ asset('images') }}/calendar2.png }}");
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+        }
 
-            /* Set the color of the datepicker header */
-            .ui-datepicker-header {
-                background-color: #39D972;
-                border: 1px solid #ddd;
-                color: #fff;
-            }
+        /* Set the color of the datepicker header */
+        .ui-datepicker-header {
+            background-color: #39D972;
+            border: 1px solid #ddd;
+            color: #fff;
+        }
 
-            /* Set the color of the datepicker days */
-            .ui-state-default,
-            .ui-widget-content .ui-state-default,
-            .ui-widget-header .ui-state-default {
-                background-color: #fff;
-                border: none;
-                color: #333;
-            }
+        /* Set the color of the datepicker days */
+        .ui-state-default,
+        .ui-widget-content .ui-state-default,
+        .ui-widget-header .ui-state-default {
+            background-color: #fff;
+            border: none;
+            color: #333;
+        }
 
-            /* Set the color of the selected date */
-            .ui-state-active,
-            .ui-widget-content .ui-state-active,
-            .ui-widget-header .ui-state-active {
-                background-color: #6C6C6C;
-                border: none;
-                color: #fff;
-            }
+        /* Set the color of the selected date */
+        .ui-state-active,
+        .ui-widget-content .ui-state-active,
+        .ui-widget-header .ui-state-active {
+            background-color: #6C6C6C;
+            border: none;
+            color: #fff;
+        }
 
-            /* Set the color of the datepicker hover state */
-            .ui-state-hover,
-            .ui-widget-content .ui-state-hover,
-            .ui-widget-header .ui-state-hover {
-                background-color: #39D972;
-                border: none;
-                color: #fff;
-            }
+        /* Set the color of the datepicker hover state */
+        .ui-state-hover,
+        .ui-widget-content .ui-state-hover,
+        .ui-widget-header .ui-state-hover {
+            background-color: #39D972;
+            border: none;
+            color: #fff;
+        }
 
-            /* Set the color of the datepicker today button */
-            .ui-datepicker-current-day {
-                background-color: #16BBAE;
-                border: none;
-                color: #fff;
-            }
+        /* Set the color of the datepicker today button */
+        .ui-datepicker-current-day {
+            background-color: #16BBAE;
+            border: none;
+            color: #fff;
+        }
 
-            /* Set the color of the datepicker navigation icons */
-            .ui-icon {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-            }
+        /* Set the color of the datepicker navigation icons */
+        .ui-icon {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+        }
 
-            /* Set the color of the datepicker navigation buttons */
-            .ui-datepicker-prev,
-            .ui-datepicker-next {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-                font-weight: bold;
-            }
+        /* Set the color of the datepicker navigation buttons */
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 @endsection

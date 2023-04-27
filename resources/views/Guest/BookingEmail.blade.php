@@ -6,5 +6,6 @@
 </h2>
 <h2>
     Regards,
+    <br>
     {{ config('app.name') }}
 </h2>

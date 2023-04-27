@@ -115,7 +115,11 @@
 
         }
 
-        p {
+        .badge1{
+            background-color:aliceblue;
+        }
+
+        .label1 {
             font-family: montserrat;
             text-align: justify;
             font-size: 18px;

@@ -8,8 +8,11 @@
         </button>
         <!-- Brand -->
         <div class="sidenav-header d-flex justify-content-center">
-            <a href="{{ route('home') }}">
+            <a href="{{ route('home') }}" class="d-none d-lg-block">
                 <img src="{{ asset('nvdcpics') }}/nvdc-logo6.png" style="height: 60px; width: 210px">
+            </a>
+            <a href="{{ route('home') }}" class="d-lg-none">
+                <img src="{{ asset('nvdcpics') }}/nvdc-logo.png" style="width: 100%; height: 50px; margin-right:1%;">
             </a>
         </div>
         <!-- Collapse -->

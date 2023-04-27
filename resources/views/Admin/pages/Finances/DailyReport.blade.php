@@ -221,6 +221,7 @@
                                     <table class="table align-items-center table-flush" id="myTabless">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Payee</th>
                                                 <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
@@ -240,6 +241,12 @@
                                         <tbody>
                                             @foreach ($list3 as $lists3)
                                                 <tr>
+                                                    {{-- Invoice --}}
+                                                    <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                    </a></td>
                                                     <td style = "font-size:16px;">{{ $lists3->payee }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->cash }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
@@ -258,6 +265,7 @@
                                             @endforeach
                                         </tbody>
                                         <tfoot>
+                                            <td></td>
                                             <td style = "font-size:16px;">Total: </td>
                                             <td style = "font-size:16px;">{{ $cash_sum3 }}</td>
                                             <td style = "font-size:16px;">{{ $unearned_sum3 }}</td>
@@ -379,9 +387,9 @@
                                                         <label for="Stockdetails">Remarks </label>
                                                         <select class="form-control" name="remark" required>
                                                             <option selected disabled value>Select</option>
-                                                            <option>DP</option>
-                                                            <option>BAL</option>
-                                                            <option>FULL</option>
+                                                            <option>DP(Downpayment)</option>
+                                                            <option>BAL(Balance)</option>
+                                                            <option>FULL(Full Payment)</option>
                                                         </select>
                                                     </div>
                                                 </div>

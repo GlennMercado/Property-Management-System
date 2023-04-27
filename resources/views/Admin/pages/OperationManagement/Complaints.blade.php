@@ -18,12 +18,48 @@
         </div>
     </div>
     <div class="container-fluid">
+        <select id="op1" class="form-control">
+            <option value="On-going">On-going</option>
+            <option value="Resolved">Resolved</option>
+        </select>
         @forelse ($list as $list)
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="card shadow">
                         @if ($list->status == 'On-going')
-                            <div class="card-body">
+                            <div class="card-body" id="card1">
+                                <div class="row container-fluid">
+                                    <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
+                                    <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
+                                    <button class="btn btn-sm bg-green text-white ml-auto" data-toggle="modal"
+                                        data-target="#view{{ $list->id }}">Action <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    {{-- <p class="pl-2 font-weight-bold">{{ $list->name }}</p> --}}
+                                    <div class="card shadow mb-2 msgcolor gal mt-3" data-toggle="tooltip"
+                                        data-placement="bottom" title="{{ $list->concern }} {{ $list->created_at }}"
+                                        style="width: 100%">
+                                        <div class="card-body font-weight-bold mt--4">
+                                            <br>
+                                            <span
+                                                class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
+                                            <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
+                                            <br>
+                                            <br>
+                                            <span class="ml-1">{{ $list->concern_text }}</span>
+                                            <br>
+                                            <a href="{{ $list->complaints_img }}" data-lightbox="photos"
+                                                data-gallery="complaints">
+                                                <img src="{{ $list->complaints_img }}" class="card-img-top mt-2"
+                                                    data-lightbox="photos" data-gallery="complaints"
+                                                    style="max-height: 350px; max-width:500px;" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if ($list->status == 'Resolved')
+                            <div class="card-body" id="card2" hidden>
                                 <div class="row container-fluid">
                                     <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
                                     <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
@@ -82,7 +118,8 @@
                                         enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <br>
-                                        <input type="text" value="{{ $list->id }}" hidden="true" name="id">
+                                        <input type="text" value="{{ $list->id }}" hidden="true"
+                                            name="id">
                                         <span
                                             class="badge badge-pill badge-primary category pt-2">{{ $list->concern }}</span>
                                         <span class="text-muted text-sm ml-2">{{ $list->created_at }}</span>
