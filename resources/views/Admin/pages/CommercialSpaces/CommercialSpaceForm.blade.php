@@ -4,6 +4,7 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
     <script>
         $.noConflict();
         jQuery(document).ready(function($) {
@@ -11,6 +12,7 @@
         });
         // Code that uses other library's $ can follow here.
     </script>
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -61,7 +63,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($list as $lists)
+                                                    @foreach ($list as $listIndex => $lists)
                                                         @if ($lists->Status == 'For Approval' || $lists->Status == 'Approved' || $lists->Status == 'For Interview' || $lists->Status == 'For Revision' || $lists->Status == 'Passed' || $lists->Status == 'Revised')
                                                             <tr>
                                                                 <td>
@@ -276,6 +278,7 @@
                                                                 </div>
                                                             </div>
 
+                                                
                                                             <!--Add Tenant Modal3 -->
                                                             <div class="modal fade"
                                                                 id="update_status3{{ $lists->id }}" tabindex="-1"
@@ -293,51 +296,35 @@
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <form action="{{ url('/add_commercial_tenant') }}"
-                                                                            class="prevent_submit" method="POST"
-                                                                            enctype="multipart/form-data">
-                                                                            {{ csrf_field() }}
-                                                                            <div class="modal-body">
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists->id }}">
-                                                                                
-                                                                                <h3 class="text-left">Space/Unit:
-                                                                                </h3>
-                                                                                <select name="space_unit" class="form-control" id="list_unit" required>
-                                                                                    <option value="" selected="true" disabled="disabled">Select</option>
-                                                                                    @foreach($unit as $units)
-                                                                                        <option value="{{$units->Space_Unit}}">{{$units->Space_Unit}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                <h3 class="text-left">Rental Fee:
-                                                                                </h3>
-                                                                                <input type="hidden" class="form-control"
-                                                                                    name="renters_fee" id="rent_fee">
+                                                                        <form action="{{ url('/add_commercial_tenant') }}" class="prevent_submit" method="POST" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="id" value="{{ $lists->id }}">
+                                                                            <h3 class="text-left">Space/Unit:</h3>
+                                                                            <select name="space_unit" class="form-control list_unit" data-list-index="{{ $listIndex }}" required>
+                                                                                <option value="" selected="true" disabled="disabled">Select</option>
+                                                                                @foreach($unit as $index => $units)
+                                                                                    <option value="{{$units->Space_Unit}}" data-rent-id="{{$index}}">{{$units->Space_Unit}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            <h3 class="text-left">Rental Fee:</h3>
+                                                                            <input type="hidden" class="form-control rent_fee" name="renters_fee" id="rent_fee{{ $listIndex }}">
+                                                                            <input type="text" class="form-control rent_fee2" id="rent_fee2{{ $listIndex }}" readonly>
+                                                                            <h3 class="text-left">Start Date of Contract:</h3>
+                                                                            <input type="date" class="form-control" name="start_date" id="start" required>
+                                                                            <h3 class="text-left">Remarks:</h3>
+                                                                            <input type="text" class="form-control" name="remarks">
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                                                            <input type="submit" class="btn btn-success prevent_submit">
+                                                                        </div>
+                                                                    </form>
 
-                                                                                <input type="text" class="form-control"
-                                                                                    id="rent_fee2" readonly>
-
-                                                                                <h3 class="text-left">Start Date of Contract:
-                                                                                </h3>
-                                                                                <input type="date" class="form-control"
-                                                                                    name="start_date" id="start" required>
-
-                                                                                <h3 class="text-left">Remarks:
-                                                                                </h3>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="remarks">
-
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button class="btn btn-outline-danger"
-                                                                                    data-dismiss="modal">Close</button>
-                                                                                <input type="submit"
-                                                                                    class="btn btn-success prevent_submit">
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                          
 
                                                             <!--View Image -->
                                                             <div class="modal fade"
@@ -531,17 +518,17 @@
         });
 
         $(document).ready(function() {
-            $('#list_unit').on('change', function() {
+            $('.list_unit').on('change', function() {
+                var listIndex = $(this).data('list-index');
+                var index = $(this).find(':selected').data('rent-id');
                 var id = $(this).val();
-
                 $.ajax({
                     url: '{{ route('get.rent', ':id') }}'.replace(':id', id),
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        console.log(data);
-                        $('#rent_fee').val(data.Rental_Fee);
-                        $('#rent_fee2').val(data.Rental_Fee);
+                        $('#rent_fee'+listIndex).val(data.Rental_Fee);
+                        $('#rent_fee2'+listIndex).val(data.Rental_Fee);
                     },
                     error: function(xhr, status, error) {
                         // Handle any errors
