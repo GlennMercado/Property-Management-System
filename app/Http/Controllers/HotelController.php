@@ -474,4 +474,14 @@ class HotelController extends Controller
         return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
     }
 
+    public function qrview($id)
+    {
+        $qr = $id;
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$qr'");    
+        return view('Admin.pages.Reservations.CheckInQr', ['list'=>$list]);
+    }
+
+    // public function qrscan(){
+    //     return view('Admin.pages.Reservations.CheckInQr');
+    // }
 }

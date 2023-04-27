@@ -77,6 +77,17 @@
                     <div class="collapse" id="navbar-examples2">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('QR-Scanner') }}">
+                                    <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('QR Scan') }}
+                                    <span
+                                        class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
+                                        id="ncount">{{ auth()->user()->notifications->count() }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Hotel Booking') }}
@@ -362,7 +373,8 @@
                             </li>
                             <div class="collapse" id="navbar-examples10">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item {{ 'Guest_Reservation' == request()->path() ? 'act1' : '' }}">
+                                    <li
+                                        class="nav-item {{ 'Guest_Reservation' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('Guest_Reservation') }}">
                                             <i class="bi bi-person-badge" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Guest Reservation') }}
@@ -413,7 +425,7 @@
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
-                        </ul>   
+                        </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'OperationRooms' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('OperationRooms') }}">
