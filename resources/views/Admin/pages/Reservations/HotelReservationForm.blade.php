@@ -19,7 +19,7 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             {{-- <div class="col-md-8">
                 <div class="card card-shadow">
                     <div class="card-header">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xl-4">
+            {{-- <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-pink order-card">
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Cancelled</h4>
@@ -110,7 +110,7 @@
                         </h2>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-primary order-card">
                     <div class="card-block">

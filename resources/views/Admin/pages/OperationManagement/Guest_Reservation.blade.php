@@ -19,7 +19,7 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-blue order-card">
                     <div class="card-block">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xl-4">
+            {{-- <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-pink order-card">
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Cancelled</h4>
@@ -59,7 +59,7 @@
                         </h2>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-primary order-card">
                     <div class="card-block">
@@ -180,7 +180,7 @@
                                                                 <p class="text-left">Payment Status: </p>
                                                                 <input class="form-control" type="text"
                                                                     value="{{ $lists->Payment_Status }}" readonly>
-                                                            </div>
+                                                            </div>                                                                                                                      
                                                         </div>
 
                                                         <br>

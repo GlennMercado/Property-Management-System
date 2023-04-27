@@ -33,7 +33,7 @@
                     <h1 class="image-text font-weight-bold uppercase text-white text-uppercase"
                         style="letter-spacing: 0.1em; font-size: 3.5em">NVDC
                         CONVENTION CENTER</h1>
-                    <a class="big-button" href="" title="" >INQUIRE NOW</a>
+                    <a href="{{ url('login') }}" class="btn btn-success" href="" title="" >INQUIRE NOW</a>
                 </div>
             </div>
 
