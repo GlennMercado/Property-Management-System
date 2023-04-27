@@ -56,7 +56,7 @@
             <div class="col-md-12 imgpad">
                 <a href="{{ asset('nvdcpics') }}/FunctionRoom7.png" data-lightbox="photos">
                     <img src="{{ asset('nvdcpics') }}/FunctionRoom7.png" class="img-fluid"
-                    style="margin: 0; padding: 0; height:100%">
+                        style="margin: 0; padding: 0; height:100%">
                 </a>
             </div>
             <div class="col-md-4 imgpad">
@@ -234,8 +234,8 @@
                                         <option value="">Others</option>
                                     </select>
                                     <!-- <input type="text" name="event_type" class="form-control"
-                                                                    placeholder="Enter event type" maxlength="32" id="EventType"
-                                                                    onchange="validateEventType()"> -->
+                                                                        placeholder="Enter event type" maxlength="32" id="EventType"
+                                                                        onchange="validateEventType()"> -->
                                     <p id="eventType-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
@@ -591,5 +591,25 @@
             $('.prevent_submit').attr('disabled', 'true');
         });
     </script>
+    <style>
+        .img2 {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .imgpad {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .imgpad img:hover {
+            transition: 0.4s ease-in-out;
+            transform: scale(1.07);
+            filter: brightness(51%);
+            -webkit-filter: brightness(51%);
+            -moz-filter: brightness(51%);
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 @endsection
