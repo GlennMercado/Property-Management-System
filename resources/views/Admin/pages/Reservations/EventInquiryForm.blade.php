@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
-                    <div class="card-header border-0">
+                    <div class="card-header border-0"> 
                         <div class="row align-items-center">
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
@@ -42,6 +42,10 @@
                                 </ul>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-outline-primary mt-4" data-toggle="modal"
+                            data-target="#AddEvent" style="float:right">
+                            Add Event
+                        </button>      
                         <br>
                     </div>
                     <div class="card-body">
@@ -64,103 +68,10 @@
                                                 <th scope="col" style="font-size:16px;">Event Date</th>
                                                 <th scope="col" style="font-size:16px;">Event Time</th>
                                                 <th scope="col" style="font-size:16px;">Booking Status</th>
-                                                <th scope="col" style="font-size:16px;">Payment Amount</th>
+                                                <!-- <th scope="col" style="font-size:16px;">Payment Amount</th>
                                                 <th scope="col" style="font-size:16px;">Payment Status</th>
                                                 <th scope="col" style="font-size:16px;">Mode of Payment</th>
-                                                <th scope="col" style="font-size:16px;">Refund</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($list as $lists)
-                                                <tr>
-                                                    <td>
-                                                        <a href="{{ url('/event_view', ['id' => $lists->id]) }}"
-                                                            target="blank" class="btn btn-sm btn-success"
-                                                            style="cursor:pointer;" data-toggle="tooltip"
-                                                            data-placement="top" title="View">
-                                                            <i class="bi bi-eye"></i>
-                                                        </a>
-                                                        <button type="submit" data-toggle="modal"
-                                                            data-target="#exampleModal" title="Update Status"
-                                                            class="btn btn-sm btn-primary">
-                                                            <i class="bi bi-pencil-square"></i></button>
-                                                    </td>
-                                                    <td><span class="font-weight-bold">Event Name: </span>
-                                                        {{ $lists->event_name }}</td>
-                                                    <td><span class="font-weight-bold">Event Type:</span>
-                                                        {{ $lists->event_type }}</td>
-                                                    <td><span class="font-weight-bold">Venue: </span>{{ $lists->venue }}
-                                                    </td>
-                                                    <td><span class="font-weight-bold">Name:
-                                                        </span>{{ $lists->client_name }}</td>
-                                                    <td><span class="font-weight-bold">Contact Number: </span>
-                                                        {{ $lists->contact_person_no }}</td>
-                                                    <td><span class="font-weight-bold">Event Date: </span>
-                                                        {{ $lists->event_date }}
-                                                        <br>
-                                                        <span class="font-weight-bold">No. of Guest:
-                                                        </span>{{ $lists->no_of_guest }}
-                                                        <br>
-                                                        <span class="font-weight-bold">Caterer: </span>
-                                                        {{ $lists->caterer }}
-                                                        <br>
-                                                        <span class="font-weight-bold">Audio/Visual: </span>
-                                                        {{ $lists->audio_visual }}
-                                                        <br>
-                                                        <span class="font-weight-bold">Events and Concep Styling: </span>
-                                                        {{ $lists->concept }}
-                                                    </td>
-
-                                                    <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
-                                                    <td><span
-                                                            class="badge badge-pill badge-lg badge-success">{{ $lists->inquiry_status }}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="font-weight-bold">Name:
-                                                        </span>{{ $lists->contact_person }}
-                                                        <br><span class="font-weight-bold">Contact Number: </span>
-                                                        {{ $lists->contact_no }}
-                                                        <br>
-                                                        <span class="font-weight-bold">Billing Address: </span>
-                                                        {{ $lists->billing_address }}
-                                                    </td>
-                                                    <td><span class="font-weight-bold">Name:
-                                                        </span>{{ $lists->contact_person }}
-                                                        <br>
-                                                        <span class="font-weight-bold">Contact Number: </span>
-                                                        {{ $lists->contact_person_no }}
-                                                    </td>
-                                                    <td><span class="font-weight-bold">Event Name: </span>
-                                                        {{ $lists->event_name }}
-                                                    </td>
-                                                    <td><span class="font-weight-bold">Name:
-                                                        </span>{{ $lists->contact_person }} </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                {{-- Archive --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable2">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" style="font-size:16px;">Event Name</th>
-                                                <th scope="col" style="font-size:16px;">Event Type</th>
-                                                <th scope="col" style="font-size:16px;">Facility</th>
-                                                <th scope="col" style="font-size:16px;">Contact Person</th>
-                                                <th scope="col" style="font-size:16px;">Contact Number</th>
-                                                <th scope="col" style="font-size:16px;">Event Date</th>
-                                                <th scope="col" style="font-size:16px;">Event Time</th>
-                                                <th scope="col" style="font-size:16px;">Booking Status</th>
-                                                <th scope="col" style="font-size:16px;">Payment Amount</th>
-                                                <th scope="col" style="font-size:16px;">Payment Status</th>
-                                                <th scope="col" style="font-size:16px;">Mode of Payment</th>
-                                                <th scope="col" style="font-size:16px;">Refund</th>
-                                                <th scope="col" style="font-size:16px;">Action</th>
+                                                <th scope="col" style="font-size:16px;">Refund</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -194,28 +105,68 @@
                                                 </td>
 
                                                 <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
-                                                <td><span
-                                                        class="badge badge-pill badge-lg badge-success">{{ $lists->inquiry_status }}</span>
-                                                </td>
+                                                
+                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }} </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- Archive --}}
+                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                    aria-labelledby="tabs-icons-text-2-tab">
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="myTable2">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:16px;">Action</th>
+                                                <th scope="col" style="font-size:16px;">Event Name</th>
+                                                <th scope="col" style="font-size:16px;">Event Type</th>
+                                                <th scope="col" style="font-size:16px;">Facility</th>
+                                                <th scope="col" style="font-size:16px;">Contact Person</th>
+                                                <th scope="col" style="font-size:16px;">Contact Number</th>
+                                                <th scope="col" style="font-size:16px;">Event Date</th>
+                                                <th scope="col" style="font-size:16px;">Event Time</th>
+                                                <th scope="col" style="font-size:16px;">Booking Status</th>
+                                                <!-- <th scope="col" style="font-size:16px;">Payment Amount</th>
+                                                <th scope="col" style="font-size:16px;">Payment Status</th>
+                                                <th scope="col" style="font-size:16px;">Mode of Payment</th>
+                                                <th scope="col" style="font-size:16px;">Refund</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list as $lists)
+                                            <tr>
                                                 <td>
-                                                    <span class="font-weight-bold">Name: </span>{{ $lists->client_name }}
-                                                    <br><span class="font-weight-bold">Contact Number: </span>
-                                                    {{ $lists->contact_no }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Billing Address: </span>
-                                                    {{ $lists->billing_address }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Email: </span>
-                                                    {{ $lists->email_address }}
+                                                    <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
+                                                        class="btn btn-sm btn-success" style="cursor:pointer;"
+                                                        data-toggle="tooltip" data-placement="top" title="View">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
                                                 </td>
-                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }}
+                                                <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>
+                                                <td><span class="font-weight-bold">Event Type:</span> {{ $lists->event_type }}</td>
+                                                <td><span class="font-weight-bold">Venue: </span>{{ $lists->venue }}</td>
+                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->client_name }}</td>
+                                                <td><span class="font-weight-bold">Contact Number: </span> {{ $lists->contact_person_no }}</td>
+                                                <td><span class="font-weight-bold">Event Date: </span>
+                                                    {{ $lists->event_date }}
                                                     <br>
-                                                    <span class="font-weight-bold">Contact Number: </span>
-                                                    {{ $lists->contact_person_no }}
+                                                    <span class="font-weight-bold">No. of Guest:
+                                                    </span>{{ $lists->no_of_guest }}
+                                                    <br>
+                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists->caterer }}
+                                                    <br>
+                                                    <span class="font-weight-bold">Audio/Visual: </span>
+                                                    {{ $lists->audio_visual }}
+                                                    <br>
+                                                    <span class="font-weight-bold">Events and Concep Styling: </span>
+                                                    {{ $lists->concept }}
                                                 </td>
-                                                <td><span class="font-weight-bold">Event Name: </span>
-                                                    {{ $lists->event_name }}
-                                                </td>
+
+                                                <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
+                                                
                                                 <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }} </td>
                                             </tr>
                                     @endforeach
@@ -229,6 +180,67 @@
             </div>
         </div>
         <br>
+        <div class="modal fade" id="AddEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Hotel Stock</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Event Name</p>
+                            <input type="text" class = "form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Event Type</p>
+                                <select name="no_of_beds" class="form-control" required>
+                                    <option selected disabled value="">Select</option>
+                                    <option value="">Event 1</option>
+                                    <option value="">Event 2</option>
+                                    <option value="">Event 3</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Facility</p>
+                            <input type="text" class = "form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Contact Person</p>
+                            <input type="number" class = "form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Contact Person</p>
+                            <input type="number" class = "form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Contact Date</p>
+                            <input type="number" class = "form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Event Time</p>
+                            <input type="number" class = "form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
+                        <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
+                    </div>
+            </div>
+        </div>
+    </div>
         <script>
             $('.prevent_submit').on('submit', function() {
                 $('.prevent_submit').attr('disabled', 'true');
