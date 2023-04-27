@@ -120,25 +120,25 @@
                     </a>
                 </li>
                 <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url('my_bookings') }}" class="dropdown-item">
+                    <a href="{{ url('my_bookings') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="bi bi-book-half"></i>
                         <span>{{ __('My Transactions') }}</span>
                     </a>
                 </li>
                 <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url('Commercial_Space') }}" class="dropdown-item">
+                    <a href="{{ url('Commercial_Space') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="bi bi-book-half"></i>
                         <span>{{ __('Commercial Space') }}</span>
                     </a>
                 </li>
                 <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url('complaints') }}" class="dropdown-item">
+                    <a href="{{ url('complaints') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="ni ni-single-copy-04"></i>
                         <span>{{ __('Send a Complaint') }}</span>
                     </a>
                 </li>
                 <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url('FAQ') }}" class="dropdown-item">
+                    <a href="{{ url('FAQ') }}" class="nav-link nav-link-icon text-white font-weight-bold">
                         <i class="ni ni-single-copy-04"></i>
                         <span>{{ __('FAQ') }}</span>
                     </a>
