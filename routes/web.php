@@ -170,9 +170,9 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 
 	//Event inquiry
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
 	Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
 	Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
+	Route::post('/event_approval', 'App\Http\Controllers\EventController@event_approval');
 
 	//Commercial Spaces
 	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
