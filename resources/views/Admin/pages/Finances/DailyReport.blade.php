@@ -239,14 +239,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list3 as $lists3)
+                                            @foreach ($list3as $lists3)
                                                 <tr>
-                                                    {{-- Invoice --}}
-                                                    <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
-                                                        target="blank" class="btn btn-sm btn-success"
-                                                        style="cursor:pointer;" title="Invoice">
-                                                        <i class="bi bi-file-earmark-text"></i>
-                                                    </a></td>
                                                     <td style = "font-size:16px;">{{ $lists3->payee }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->cash }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
