@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->date('Paid_Date');
 
-            $table->string("Remarks")->default("For last Two (2) Months of the lease term");
+            $table->string("Remarks")->default("For Advanced Two (2) Months of the lease term");
 
             $table->timestamps();
         });

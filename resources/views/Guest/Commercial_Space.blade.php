@@ -472,12 +472,14 @@
                                                 title="Payment History">
                                                 <i class="bi bi-eye"></i>
                                             </button>
-                                            @if ($lists->Payment_Status != 'Paid (Checking)' || $lists->Payment_Status == null)
-                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                    data-target="#update_payment_status{{ $lists->Tenant_ID }}"
-                                                    title="Update Payment Status">
-                                                    <i class="bi bi-arrow-repeat"></i>
-                                                </button>
+                                            @if($lists->Tenant_Status != "Non-Compliance")
+                                                @if ($lists->Payment_Status != 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#update_payment_status{{ $lists->Tenant_ID }}"
+                                                        title="Update Payment Status">
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                    </button>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
@@ -913,7 +915,11 @@
                                                                 @else
                                                                     <td></td>
                                                                 @endif
-                                                                <td class="font-weight-bold tbltxt">{{$lists6->Paid_By}}</td>
+                                                                @if($lists6->Paid_By == "Novadeci")
+                                                                    <td class="font-weight-bold tbltxt text-danger">{{$lists6->Paid_By}}</td>
+                                                                @else
+                                                                    <td class="font-weight-bold tbltxt text-success">{{$lists6->Paid_By}}</td>
+                                                                @endif
                                                                 <td>
                                                                     @if($lists6->Proof_Image != null)
                                                                     <div class="img-container">
@@ -927,8 +933,87 @@
                                                                         </button>
                                                                     </div>
                                                                     @endif
+                                                                    @if($lists6->Payment_Status == "Non-Payment")
+                                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                            data-target="#update_client_maintenance_payment{{ $lists6->id }}"
+                                                                            title="Update Payment Status">
+                                                                            <i class="bi bi-arrow-repeat"></i>
+                                                                        </button>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
+
+                                                            <!-- Update Modal -->
+                                                            <div class="modal fade update_payment_status"
+                                                            id="update_client_maintenance_payment{{ $lists6->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <form
+                                                                        action="{{ url('/update_client_maintenance_payment') }}"
+                                                                        class="prevent_submit" method="POST"
+                                                                        enctype="multipart/form-data">
+
+                                                                        {{ csrf_field() }}
+
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="id" value="{{$lists6->id}}">
+                                                                            <input type="hidden" name="tenant_id" value="{{$lists6->Tenant_ID}}">
+                                                                            <input type="hidden" name="space_unit" value="{{$lists6->Space_Unit}}">
+                                                                            <input type="hidden" name="due" value="{{$lists6->Due_Date}}">
+
+                                                                            <div class="row shadow p-3 mt-2">
+                                                                                <div class="col-md-12">
+                                                                                    <p class="font-weight-bold text-center">NVDC Properties:
+                                                                                        0923423424
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-md-12 d-flex justify-content-center">
+                                                                                    {!! QrCode::size(170)->generate('0923423424') !!}
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="col-md-12">
+                                                                                    <p class="text-center">Gcash account name <span
+                                                                                            class="text-danger">*</span></p>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="col-md-12">
+                                                                                    <p class="text-left">Account name <span
+                                                                                            class="text-danger">*</span></p>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
+                                                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                                                        required>
+                                                                                </div>
+                                                                                <div class="col-md-12 mt-1">
+                                                                                    <p class="text-left">Upload your proof of payment here <span
+                                                                                            class="text-danger">*</span></p>
+                                                                                </div>
+                                                                                <div class="col-md-12 d-flex justify-content-center">
+                                                                                    <img id="output3" class="img-fluid" />
+                                                                                </div>
+                                                                                <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
+                                                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
+                                                                                        placeholder="Ex: John Doe" name="images" class="form-control"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button
+                                                                                class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <input type="submit"
+                                                                                class="btn btn-success prevent_submit">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         @endif
                                                     @endforeach
                                                 </tbody>
@@ -966,15 +1051,19 @@
                                                 <input type="hidden" name="space_unit" value="{{ $lists5->Space_Unit }}">
 
                                                 <div class="row shadow p-3 mt-2">
+                                                    <div class="col-md-12">
+                                                        <p class="font-weight-bold text-center">NVDC Properties:
+                                                            0923423424
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        {!! QrCode::size(170)->generate('0923423424') !!}
+                                                    </div>
                                                     <br>
                                                     <div class="col-md-12">
-                                                        <p class="text-left">Maintenance Cost <span
-                                                        class="text-danger">*</span></p>
+                                                        <p class="text-center">Gcash account name <span
+                                                                class="text-danger">*</span></p>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <input type="number" name="cost" class="form-control" required>
-                                                    </div>
-                                                    <br>
                                                     <br>
                                                     <div class="col-md-12">
                                                         <p class="text-left">Account name <span
