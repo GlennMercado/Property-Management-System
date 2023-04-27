@@ -137,7 +137,7 @@
                                             <label for="exampleFormControlTextarea1">Remarks</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks" max-length="220"></textarea>
                                         </div>
-                                        <input type="submit" value="Resolved"
+                                        <input type="submit" value="Resolve"
                                             class="form-control bg-green text-white mt-4">
                                     </form>
                                 </div>

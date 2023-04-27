@@ -20,7 +20,7 @@
                     <div class="btn-container" >
                         <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1" style = "padding-bottom:200px;">
                             Commercial Space</h1>
-                        <a href="#section2" class="btn btn-outline-light txt mt-6" style = "margin-bottom:200px;">About</a>
+                        <a href="#section2" class="btn btn-outline-light txt" style = "margin-bottom:200px;">About</a>
                     </div>
                 </div>
             </div>
