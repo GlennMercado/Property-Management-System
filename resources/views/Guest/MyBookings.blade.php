@@ -2,7 +2,6 @@
 
 @section('content')
     @include('layouts.navbars.navs.guestloggedin')
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,7 +24,7 @@
                                     <img class="img-fluid" src="{{ asset('nvdcpics') }}/hotel1.png">
                                 </div>
                                 <div class="col-md-4">
-                                    <h1>Room {{ $lists->Room_No }}</h1>
+                                    <h1 class="mt-2">Room {{ $lists->Room_No }}</h1>
                                     <h4>
                                         <i class="bi bi-book-fill"></i>
                                         Booking No. {{ $lists->Booking_No }}
@@ -41,13 +40,23 @@
                                         Check-in/Check-out Date {{ $lists->Check_In_Date }} -
                                         {{ $lists->Check_Out_Date }}
                                     </h4>
-                                </div>
-                                <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <div class="display-5 text-green">PHP {{ number_format($lists->Payment, 2, '.', ',') }}
+                                    <div class="display-4 text-green">PHP
+                                        {{ number_format($lists->Payment, 2, '.', ',') }}
                                         <br>
-                                        <div class="badge badge-primary">
+                                        <div class="badge badge-primary font-weight-bold display-3">
                                             STATUS {{ $lists->Payment_Status }}
                                         </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 d-flex flex-column align-items-center">
+                                    <div class="p-2">
+                                        {!! QrCode::size(200)->generate(url('/CheckInQr', ['id' => $lists->Booking_No])) !!}
+                                        {{-- {!! QrCode::size(250)->generate('{{ url('guest_profile') }}') !!} --}}
+                                    </div>
+                                    <div class="mt--2">
+                                        <p class="font-weight-bold display-5 text-center">Show this QR code to the
+                                            receptionist</p>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-12">
@@ -256,7 +265,7 @@
                 </div>
             </div>
             {{-- Convention center applications --}}
-            <div class="card bg-white shadow mt-2">
+            <div class="card bg-white shadow mt-2 mb-2">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <h3 class="mb-0">{{ __('Convention Center Inquiry') }}</h3>
@@ -304,7 +313,7 @@
                     @endforelse
                 </div>
             </div>
-          
+
 
             <div class="modal fade" id="eventinq" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                 aria-hidden="true">

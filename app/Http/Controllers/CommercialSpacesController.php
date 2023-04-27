@@ -7,6 +7,7 @@ use App\Models\commercial_spaces_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\commercial_spaces_tenants;
+use App\Models\finance_2_reports;
 use Carbon\Carbon;
 use App\Models\commercial_space_rent_reports;
 use Mail;
@@ -14,6 +15,7 @@ use App\Mail\Tenant_Status;
 use App\Mail\Application_Status;
 use App\Mail\Commercial_Unit_Maintenance;
 use App\Mail\Commercial_Unit_Maintenance2;
+use App\Mail\Commercial_Unit_Maintenance3;
 use App\Mail\Commercial_Utility;
 use App\Models\commercial_spaces_tenant_deposits;
 use App\Models\commercial_spaces_tenant_reports;
@@ -281,20 +283,66 @@ class CommercialSpacesController extends Controller
 
     public function commercial_space_units()
     {
-        $list = DB::select("SELECT a.*, b.Tenant_ID FROM commercial_space_units a INNER JOIN commercial_spaces_tenants b ON a.Space_Unit = b.Space_Unit INNER JOIN commercial_spaces_applications c ON b.Tenant_ID = c.id WHERE c.IsArchived = 0");
+        //$list = DB::select("SELECT a.*, b.Tenant_ID FROM commercial_space_units a INNER JOIN commercial_spaces_tenants b ON a.Space_Unit = b.Space_Unit INNER JOIN commercial_spaces_applications c ON b.Tenant_ID = c.id WHERE c.IsArchived = 0");
+        
+        $list = DB::select("SELECT * FROM commercial_space_units WHERE Occupancy_Status != 'Occupied'");
+        $list2 = DB::select("SELECT a.IsArchived, b.Tenant_ID, c.* FROM commercial_spaces_applications a RIGHT JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID RIGHT JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND c.Occupancy_Status = 'Occupied'");
 
         $check = DB::select('SELECT COUNT(*) as cnt FROM commercial_space_units');
 		$count = array();
+
+        $count1 = DB::select("SELECT * From commercial_space_units");
+        $array = array();
+
+        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports");
+        
+        foreach($count1 as $counts)
+        {
+            $array[] = ['Units' => $counts->Space_Unit];
+        }
 
 		foreach($check as $checks)
 		{
 			$count[] = ['counts' => $checks->cnt];
 		}
 
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list, 'count' => $count]);
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list, 'list2' => $list2, 'count' => $count, 'array' => $array, 'list3' => $list3]);
     
     }
-    
+    public function update_maintenance3_status($id, $tid)
+    {
+        $id = $id;
+        $tenant_id = $tid;
+
+        $tenants = DB::table('commercial_spaces_tenants')
+        ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+        ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)->get();
+
+        $name;
+        $status = "Paid";
+        foreach($tenants as $tenant)
+        {
+            $name = $tenant->name_of_owner;
+            Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+        }
+        
+        $sql = DB::table('commercial_space_unit_reports')->where('id', $id)->update([
+            'Paid_By' => $name,
+            'Payment_Status' => "Paid (Late)",
+            'updated_at' => DB::RAW('NOW()')
+        ]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Maintenance Payment Successfully Updated!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Maintenance Payment Failed Updating!');
+            return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+        }
+    }
     public function update_rental_collection(Request $request)
     {
         $id = $request->input('tenant_id');
@@ -426,12 +474,12 @@ class CommercialSpacesController extends Controller
                     'Status' => "Tenant",
                     'updated_at' => DB::raw('NOW()')
                 ]);
-            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status, 'Gcash_Name' => null, 'Proof_Image' => null, 'Payment_Status' => null]);
 
             DB::table('commercial_space_rent_reports')->where(['Tenant_ID' => $id, 'Payment_Status' => 'Non-Payment'])
                 ->update(
                     [
-                        'Payment_Status' => "Paid",
+                        'Payment_Status' => "Paid (Late)",
                         'Paid_Date' => $now
                     ]
                 );
@@ -603,10 +651,7 @@ class CommercialSpacesController extends Controller
 
         if($sql)
         {
-            DB::table('commercial_spaces_tenants')
-            ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
-            ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
-            ->update(['Tenant_Status' => "Non-Compliance"]);
+            
 
             $tenants = DB::table('commercial_spaces_tenants')
             ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
@@ -653,106 +698,127 @@ class CommercialSpacesController extends Controller
 
         $tenant_id = $request->input('tenant_id');
 
+        $IsAchived = DB::select("SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1");
+
         $sql;
         
-        if($status == "Paid")
+        if(!$IsAchived)
         {
-            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
-                [
-                    'Maintenance_Status' => "No",
-                    'Maintenance_Due_Date' => null,
-                    'Maintenance_Cost' => null,
-                    'Payment_Status' => null,
-                    'Gcash_Name' => null,
-                    'Proof_Image' => null
-                ]);
-            
-            if($sql)
+            if($status == "Paid")
             {
-                $tenants = DB::table('commercial_spaces_tenants')
-                ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
-                ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
-                ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)
-                ->get();
+                $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+                    [
+                        'Maintenance_Status' => "No",
+                        'Maintenance_Due_Date' => null,
+                        'Maintenance_Cost' => null,
+                        'Payment_Status' => null,
+                        'Gcash_Name' => null,
+                        'Proof_Image' => null
+                    ]);
                 
-                $add = new commercial_space_unit_reports;
-                // Send email to each tenant
-                foreach ($tenants as $tenant) {
-
-                    $add->Tenant_ID = $tenant_id;
-                    $add->Space_Unit = $space_unit;
-                    $add->Maintenance_Cost = $cost;
-                    $add->Due_Date = $due_Date;
-                    $add->Paid_Date = $now;
-                    $add->Paid_By = $tenant->name_of_owner;
-                    $add->Gcash_Name = $gcash;
-                    $add->Proof_Image = $proof_image;
+                if($sql)
+                {
+                    $tenants = DB::table('commercial_spaces_tenants')
+                    ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                    ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
+                    ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)
+                    ->get();
+                    
+                    $add = new commercial_space_unit_reports;
+                    // Send email to each tenant
+                    foreach ($tenants as $tenant) {
     
-                    $add->save();
-
-                    Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+                        $add->Tenant_ID = $tenant_id;
+                        $add->Space_Unit = $space_unit;
+                        $add->Maintenance_Cost = $cost;
+                        $add->Due_Date = $due_Date;
+                        $add->Paid_Date = $now;
+                        $add->Paid_By = $tenant->name_of_owner;
+                        $add->Payment_Status = "Paid";
+                        $add->Gcash_Name = $gcash;
+                        $add->Proof_Image = $proof_image;
+        
+                        $add->save();
+    
+                        Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+                    }
+        
+                    Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
                 }
-    
-                Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
-                return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                else
+                {
+                    Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                }
             }
             else
             {
-                Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
-                return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
-            }
-        }
-        else
-        {
-            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
-                [
-                    'Maintenance_Cost' => null, 
-                    'Payment_Status' => null,
-                    'Paid_Date' => null,
-                    'Gcash_Name' => null,
-                    'Proof_Image' => null
-                ]
-            );
+                $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+                    [
+                        'Maintenance_Status' => "No",
+                        'Maintenance_Due_Date' => null, 
+                        'updated_at' => DB::raw('NOW()')
+                    ]
+                );
 
-            if($sql)
-            {
-                $tenants = DB::table('commercial_spaces_tenants')
-                ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
-                ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
-                ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)
-                ->get();
-                
-                // Send email to each tenant
-                foreach ($tenants as $tenant) {
-                    Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
-                }
     
-                Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
-                return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
-            }
-            else
-            {
-                Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
-                return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                if($sql)
+                {
+                    DB::table('commercial_spaces_tenants')
+                    ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                    ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
+                    ->update(['Tenant_Status' => "Non-Compliance"]);
+
+                    $tenants = DB::table('commercial_spaces_tenants')
+                    ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                    ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
+                    ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)
+                    ->get();
+                    
+                    $add = new commercial_space_unit_reports;
+                    // Send email to each tenant
+                    foreach ($tenants as $tenant) {
+                        $add->Tenant_ID = $tenant->Tenant_ID;
+                        $add->Space_Unit = $space_unit;
+                        $add->Maintenance_Cost = $cost;
+                        $add->Payment_Status = "Non-Payment";
+                        $add->Paid_Date = $now;
+                        $add->Paid_By = "Novadeci";
+        
+                        $add->save();
+        
+                        Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance($tenant, $cost));
+                    }
+
+                    Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                }
             }
         }
     }
 
-    public function update_commercial_maintenance_status2($id, $stats)
+    public function update_commercial_maintenance_status2(Request $request)
     {
-        $space_unit = $id;
-        $status = $stats;
+        $space_unit = $request->input('space_units');
+        $tenant_id = $request->input('tenant_id');
+        $cost = $request->input('cost');
+        $others = $request->input('others');
+
         $due_date = Carbon::now()->addMonth()->format('Y-m-d');
 
-        if($status == "Yes")
-        {
-            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => $due_date]);
-        }
-        else
-        {
-            $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(['Maintenance_Status' => $status, 'Maintenance_Due_Date' => null]);
-        }
-       
+        $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+            [
+                'Maintenance_Due_Date' => $due_date,
+                'Maintenance_Cost' => $cost,
+                'Maintenance_Status' => "Yes",
+                'updated_at' => DB::RAW('NOW()')
+            ]);
         if($sql)
         {
             $tenants = DB::table('commercial_spaces_tenants')
@@ -761,7 +827,7 @@ class CommercialSpacesController extends Controller
             
             // Send email to each tenant
             foreach ($tenants as $tenant) {
-                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance3($tenant, $others, $cost));
             }
 
             Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
@@ -769,9 +835,11 @@ class CommercialSpacesController extends Controller
         }
         else
         {
-            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed Updating!');
+            
+            Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
             return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
         }
+            
     }
     public function commercial_space_utility_bills()
     {

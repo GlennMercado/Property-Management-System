@@ -163,54 +163,59 @@ class HotelController extends Controller
 
         if($isarchived == false)
         {
-            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno' AND Status = 'Vacant for Accommodation'");
+            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno'");
+
+            $stats3;
+
+            foreach($check as $checks)
+            {
+                $stats3 = $checks->Status;
+            }
         
-            if($check)
+          
+            $facility = "Hotel Room";
+
+            //For FinanceModule Variables
+            // $ornum = DB::table('hotel_reservations')->where('id')->get();
+            $particular = "Hotel";
+            $debit = "Cash";
+            $remark = "FULL";
+            // $finance_payee = DB::table('hotel_reservations')->where('Booking_No', $bookno)->value('gcash_account_name');
+            $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
+            // $finance_eventdate = DB::select('SELECT "Check_In_Date" FROM hotel_reservations');
+            // $finance_eventdate = DB::table('hotel_reservations')->select('Check_In_Date')->first()->Check_In_Date;
+
+            $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
+
+            foreach ($reservations as $reservation) {
+                $ornum = $reservation->id;
+                $finance_payee = $reservation->gcash_account_name;
+                $finance_amount = $reservation->Payment;
+                $finance_eventdate = $reservation->Check_In_Date;
+                // other variables and insert query here
+            }
+
+            $outvat = .12;
+            $gross = 1.12;
+            $cash = $finance_amount / $gross;
+            $vat = $outvat * $cash;
+
+            $this->success();
+            DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+            
+            if($stats3 != "Checked-In")
             {
-                $facility = "Hotel Room";
-
-                //For FinanceModule Variables
-                // $ornum = DB::table('hotel_reservations')->where('id')->get();
-                $particular = "Hotel";
-                $debit = "Cash";
-                $remark = "FULL";
-                // $finance_payee = DB::table('hotel_reservations')->where('Booking_No', $bookno)->value('gcash_account_name');
-                $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
-                // $finance_eventdate = DB::select('SELECT "Check_In_Date" FROM hotel_reservations');
-                // $finance_eventdate = DB::table('hotel_reservations')->select('Check_In_Date')->first()->Check_In_Date;
-
-                $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
-
-                foreach ($reservations as $reservation) {
-                    $ornum = $reservation->id;
-                    $finance_payee = $reservation->gcash_account_name;
-                    $finance_amount = $reservation->Payment;
-                    $finance_eventdate = $reservation->Check_In_Date;
-                    // other variables and insert query here
-                }
-
-                $outvat = .12;
-                $gross = 1.12;
-                $cash = $finance_amount / $gross;
-                $vat = $outvat * $cash;
-
-                $this->success();
-                DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
-
-                DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
-
-                DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
-                values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
-                Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
-            else
-            {
-                Alert::Error('Failed', 'Room is already reserved!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
-            }
+
+            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
+
+            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
+            values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
+            Alert::Success('Success', 'Payment successfully updated!');
+            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+        
         }
         else
         {
@@ -474,4 +479,27 @@ class HotelController extends Controller
         return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
     }
 
+    public function check_in(Request $request){
+        $booking_no = $request->input('booking');
+        $booking_status = "Checked_In";
+
+        DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array
+        (
+            'Booking_Status' => $booking_status,
+        ));
+
+        Alert::Success('Success', 'Guest checked in!');
+        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+    }
+
+    public function qrview($id)
+    {
+        $qr = $id;
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$qr'");    
+        return view('Admin.pages.Reservations.CheckInQr', ['list'=>$list]);
+    }
+
+    // public function qrscan(){
+    //     return view('Admin.pages.Reservations.CheckInQr');
+    // }
 }

@@ -97,7 +97,7 @@
         </div>
     </div> --}}
 
-    {{-- <div class="card d-flex justify-content-center" style="width: 100%;">
+    <div class="card d-flex justify-content-center" style="width: 100%;">
         <div class="card-body">
             <div class="container-fluid bg-white mt-1" id="conventionCenter">
                 <div class="row d-flex justify-content-center">
@@ -173,9 +173,18 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
-                                    <input type="text" name="event_type" class="form-control"
+                                    <select name="event_type" class="form-control" id="EventType" onchange="validateEventType()">
+                                        <option value="Birthday">Birthday</option>
+                                        <option value="Wedding">Wedding</option>
+                                        <option value="Baptism">Baptism</option>
+                                        <option value="Corporate meetings">Corporate meetings</option>
+                                        <option value="Basketball practice game">Basketball practice game</option>
+                                        <option value="Graduation">Graduation</option>
+                                        <option value="">Others</option>
+                                    </select>
+                                    <!-- <input type="text" name="event_type" class="form-control"
                                         placeholder="Enter event type" maxlength="32" id="EventType"
-                                        onchange="validateEventType()">
+                                        onchange="validateEventType()"> -->
                                     <p id="eventType-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>
@@ -305,71 +314,11 @@
                             <br>
                             <br>
                         </form>
-                        <div class="col-md-4" style="margin-top: 12%">
-                            <div class="row shadow p-3 mb-5 gal" style="margin: 15px">
-                                <div class="col-md-12">
-                                    <p class="display-5">Photos</p>
-                                </div>
-                                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                    <a href="{{ asset('nvdcpics') }}/BCourt1.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/BCourt1.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4" />
-                                    </a>
-                                    <a href="{{ asset('nvdcpics') }}/functionport.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/functionport.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 mb-4 mb-lg-0">
-                                    <a href="{{ asset('nvdcpics') }}/hotel3.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/hotel3.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-                                    <a href="{{ asset('nvdcpics') }}/hotel14.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/hotel14.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-                                    <a href="{{ asset('nvdcpics') }}/convention3.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/convention3.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 mb-4 mb-lg-0">
-                                    <a href="{{ asset('nvdcpics') }}/BCourt3.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/BCourt3.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-                                    <a href="{{ asset('nvdcpics') }}/functionport1.jpg" data-lightbox="photos"
-                                        data-gallery="gallery">
-                                        <img src="{{ asset('nvdcpics') }}/functionport1.jpg"
-                                            class="w-100 shadow-1-strong rounded mb-4 d-none d-md-block " />
-                                    </a>
-
-
-                                </div>
-                                <div class="col-md-12">
-                                    <p id="section2">A convention center is a large facility that is designed to host
-                                        conventions, trade
-                                        shows,
-                                        conferences, and other events. They typically feature large exhibit halls, meeting
-                                        rooms,
-                                        and banquet spaces, as well as amenities such as on-site hotels and restaurants.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <script>
         function validateName() {
             const nameInput = document.getElementById("name");

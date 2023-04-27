@@ -50,8 +50,13 @@
                             </div>
                         </div>
                         <div class="col-md-12 pt-4">
-                            <h4>Note: The standard check-in / out time is after 1400 hours (02:00 pm) and the check-out time
-                                is 12:00 noon.</h4>
+                            <h4>Note: The standard check-in is 2:00 pm and the standard check-out time
+                                is 12:00 pm.</h4>
+                        </div>
+                        <div class = "d-flex justify-content-center">
+                        <button type="button" class="btn btn-success" data-toggle="modal">
+                                Book Now
+                            </button>
                         </div>
                     </a>
                 </div>

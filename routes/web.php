@@ -154,11 +154,8 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
 	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
 	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
-
-	Route::get('EventInquiryForm', function () {return view('Admin.pages.Reservations.EventInquiryForm');})->name('EventInquiryForm'); 
-	Route::get('CommercialSpaceForm', function () {return view('Admin.pages.CommercialSpaces.CommercialSpaceForm');})->name('CommercialSpaceForm'); 
-
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
+	
 	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
 	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
@@ -170,9 +167,9 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 
 	//Event inquiry
 	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
-	Route::get('EventInquiryForm', [App\Http\Controllers\EventController::class, 'event_inquiry'])->name('EventInquiryForm');
 	Route::get('/event_view/{id}', 'App\Http\Controllers\EventController@event_view');
 	Route::post('/update_status', 'App\Http\Controllers\EventController@update_status');
+	Route::post('/event_approval', 'App\Http\Controllers\EventController@event_approval');
 
 	//Commercial Spaces
 	Route::get('CommercialSpaceForm', [App\Http\Controllers\CommercialSpacesController::class, 'commercial_spaces'])->name('CommercialSpaceForm');
@@ -193,19 +190,35 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
 	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesController@comm_space_maintainance_cost');
 	Route::post('update_comm_maintenance_status', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
+	Route::get('/update_maintenance3_status/{id}/{tid}', 'App\Http\Controllers\CommercialSpacesController@update_maintenance3_status');
 	
-	Route::get('update_comm_maintenance_status2/{id}/{stats}', 'App\Http\Controllers\CommercialSpacesController@update_commercial_maintenance_status2');
+	Route::post('update_comm_maintenance_status2', 'App\Http\Controllers\CommercialSpacesController@update_commercial_maintenance_status2');
 
 	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
 	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesController@update_utility_payment');
-	
-	
+
+	// Route::get('CheckInQr', [App\Http\Controllers\HotelController::class, 'qrscan'])->name('QR-Scanner');
+	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
+	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
 });
 
 //Admin and Operation Manager
 Route::middleware(['auth', 'AdminorOperation'])->group(function(){
 	//Reservation
 	// Route::get('Guest_Reservation', function () {return view('Admin.pages.OperationManagement.Guest_Reservation');})->name('Guest_Reservation');
+	Route::get('FrontDesk', [App\Http\Controllers\HotelController::class, 'front_desk'])->name('FrontDesk');
+	Route::get('/front_desk_form/{id}', 'App\Http\Controllers\HotelController@front_desk_getdata')->name('get.data');
+	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
+	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
+
+	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
+	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
+	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
+	Route::get('GuestFolio', [App\Http\Controllers\GuestFolioController::class, 'guest_folio'])->name('GuestFolio');
+	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
+
+	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
 
 	Route::get('/Guest_Reservation', [App\Http\Controllers\HotelController::class, 'guest_viewing'])->name('Guest_Reservation');
 
@@ -321,6 +334,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::post('/commercial_space_rent_payment', 'App\Http\Controllers\GuestController@commercial_space_rent_payment');
 	Route::post('/commercial_space_utility_payment', 'App\Http\Controllers\GuestController@commercial_space_utility_payment');
 	Route::post('/commercial_space_maintenance_payment', 'App\Http\Controllers\GuestController@commercial_space_maintenance_payment');
+	Route::post('/update_client_maintenance_payment', 'App\Http\Controllers\GuestController@update_client_maintenance_payment');
 	
 	Route::get('/complaints', [App\Http\Controllers\GuestController::class, 'complaints'])->name('complaints');
 	Route::post('/complaints_submit', 'App\Http\Controllers\GuestController@complaints_submit');

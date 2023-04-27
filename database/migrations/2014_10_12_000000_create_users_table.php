@@ -31,9 +31,9 @@ return new class extends Migration
 
         DB::table('users')->insert(
             array(
-                'name' => 'SUPER ADMIN',
-                'email' => 'admin@gmail.com',
-                'password' => Hash::make('admin123'),
+                'name' => 'Daniel Diapen',
+                'email' => 'inter.sol@gmail.com',
+                'password' => Hash::make('A4rglujuforvih19'),
                 'User_Type' => 'Admin',
             )
         );

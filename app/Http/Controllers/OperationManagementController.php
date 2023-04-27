@@ -7,21 +7,72 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\guest_request;
 use Carbon\Carbon;
-use DataTables;
 use App\Models\complaints;
+use App\Models\hotel_room_supplies;
+use App\Models\hotel_room_supplies_reports;
+use App\Models\hotel_room_linens_reports;
+use App\Models\housekeepings;
+use App\Models\out_of_order_rooms;
+use App\Models\lost_and_found;
+use Illuminate\Support\Facades\Auth;
+use App\Models\List_of_Housekeepers;
+use App\Models\used_supplies;
+use DataTables;
 
 class OperationManagementCOntroller extends Controller
 {
     public function OperationDashboard()
     {
-        $now = Carbon::now()->format('Y-m-d');
-        $request_count = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Updated = '$now'");
+        $role = Auth::user()->User_Type;
 
-        $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
-        $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
-        $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
+        $user = DB::select("SELECT * FROM users WHERE User_Type = '$role'");
 
-        return view('Admin.pages.OperationManagement.OperationDashboard', ['request_count'=>$request_count, 'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3]);
+        $list = DB::select('SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0');
+
+        $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN guest_requests b ON b.Request_ID = a.Request_ID');
+        
+        $archived = DB::select("SELECT * FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 1 AND b.IsArchived = 1 ");
+
+        $list3 = DB::select("SELECT a.id, a.Room_No, a.Date_Requested, a.Attendant, a.Status as hrsstats, b.status as rstats FROM hotel_room_supplies a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No GROUP BY a.Room_No");
+        
+        $list4 = DB::select("SELECT * FROM hotel_room_supplies WHERE Category = 'Guest Supply'");
+        $list5 = DB::select("SELECT * FROM hotel_room_linens");
+
+        $count = DB::select('Select * from novadeci_suites');
+        $array = array();
+
+        $datenow = Carbon::now()->format('Y-m-d');
+
+        $arrival = DB::select("SELECT count(*) as cnt FROM housekeepings a INNER JOIN hotel_reservations b ON a.Booking_No = b.Booking_No WHERE a.IsArchived = 0 AND b.Check_In_Date = '$datenow'");
+        $supply_request = DB::select("SELECT count(*) as cnt FROM hotel_room_supplies_reports WHERE STR_TO_DATE(Date_Received,'%Y-%m-%d') = '$datenow'");
+        $linen_request = DB::select("SELECT count(*) as cnt FROM hotel_room_linens_reports WHERE STR_TO_DATE(Date_Received,'%Y-%m-%d') = '$datenow'");
+        $maintenance = DB::select("SELECT count(*) as cnt FROM out_of_order_rooms WHERE Date_Resolved = '$datenow'");
+
+        foreach($count as $counts)
+        {
+            $array[] = ['Room_No' => $counts->Room_No];
+        }
+
+        $housekeeper = DB::select("SELECT * FROM list_of_housekeepers WHERE Status = 'Available'");
+
+        return view('Admin.pages.OperationManagement.OperationDashboard', 
+                    [
+                    'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
+                    'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
+                    'linen' => $linen_request, 'maintenance' => $maintenance,
+                    'housekeeper' => $housekeeper, 'role' => $user
+                    ]
+                    );
+        // $now = Carbon::now()->format('Y-m-d');
+        // $request_count = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Updated = '$now'");
+        // $checked_guests = DB::table('hotel_reservations')->where('Payment_Status', 'Checked-In')->count(); 
+        // $checked_complaints = DB::table('complaints')->where('id')->count();
+
+        // $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
+        // $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
+        // $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
+
+        // return view('Admin.pages.OperationManagement.OperationDashboard', ['request_count'=>$request_count, 'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3], compact('checked_guests', 'checked_complaints'));
     }
     public function Reservation()
     {
