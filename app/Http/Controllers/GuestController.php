@@ -256,7 +256,6 @@ class GuestController extends Controller
         $due = $request->input('due');
         $space_unit = $request->input('space_unit');
         $gcash = $request->input('gcash_account');
-        $cost = $request->input('cost');
         $path;
         $now = Carbon::now()->format('Y-m-d');
         
@@ -277,7 +276,6 @@ class GuestController extends Controller
 
         $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
             [
-                'Maintenance_Cost' => $cost,
                 'Payment_Status' => "Paid (Checking)",
                 'Gcash_Name' => $gcash,
                 'Proof_Image' => $path,
@@ -686,5 +684,48 @@ class GuestController extends Controller
             return redirect('Commercial_Space')->with('Error', 'Failed!');
         }
     }
+    public function update_client_maintenance_payment(Request $request)
+    {
+        $id = $request->input('id');
+        $tenant_id = $request->input('tenant_id');
+        $space_unit = $request->input('space_unit');
+        $due = $request->input('due');
+        $gcash = $request->input('gcash_account');
+        $now = Carbon::now()->format('Y-m-d');
+        $path;
 
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Space-Utility_Bills'.$request->input('tenant_id').'-.'.$extention;
+            $path = $file->move('commercial_space_proof_payment/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+        }
+
+        $sql = DB::table('commercial_space_unit_reports')->where(['id' => $id, 'Tenant_ID' => $tenant_id])->update([
+            'Paid_Date' => $now,
+            'Gcash_Name' => $gcash,
+            'Proof_Image' => $path,
+            'Payment_Status' => 'Paid (Checking)',
+            'updated_at' => DB::RAW('NOW()')
+        ]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Maintenance Payment Successfully Submitted!');
+            return redirect('Commercial_Space')->with('Error', 'Failed!');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Maintenance Failed Submitting!');
+            return redirect('Commercial_Space')->with('Error', 'Failed!');
+        }
+    }
 }
