@@ -113,13 +113,13 @@
                                                 <td>{{$lists->Status}}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                        data-target="#edit{{ $lists->Housekeepers_Name }}" title="Update Status">
+                                                        data-target="#edit{{ $lists->id }}" title="Update Status">
                                                         <i class="bi bi-arrow-repeat"></i>
                                                     </button>
                                                 </td>
                                             </tr>
 
-                                            <div class="modal fade" id="edit{{ $lists->Housekeepers_Name }}"
+                                            <div class="modal fade" id="edit{{ $lists->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -139,10 +139,18 @@
                                                                 <p class="text-left">Housekeepers Status: </p>
                                                                 <select name="status" class="form-control" required>
                                                                     <option value="" selected="true" disabled="disabled">Select</option>
+                                                                    @if($lists->Status != "Available")
                                                                     <option value="Available">Available</option>
+                                                                    @endif
+                                                                    @if($lists->Status != "Occupied")
                                                                     <option value="Occupied">Occupied</option>
+                                                                    @endif
+                                                                    @if($lists->Status != "On-Break")
                                                                     <option value="On-Break">On-Break</option>
+                                                                    @endif
+                                                                    @if($lists->Status != "On-Leave")
                                                                     <option value="On-Leave">On-Leave</option>
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                             <div class="modal-footer">

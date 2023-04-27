@@ -209,8 +209,8 @@
                                                                             @elseif($lists->Front_Desk_Status == "Checked-Out")
                                                                                 <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Front_Desk_Status}}</span> </h3>
                                                                             @endif
-                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Attendant}}</span> </h3>
-
+                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
+                                                                            <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{$lists->Attendant}}</span> </h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>

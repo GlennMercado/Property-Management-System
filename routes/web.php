@@ -169,20 +169,20 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('update_commercial_status', 'App\Http\Controllers\CommercialSpacesController@update_commercial_status');
 
 	Route::post('add_commercial_tenant', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant');
-	Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesController@update_tenant_status');
-	Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesController@update_rental_collection');
-	Route::post('renew_tenant', 'App\Http\Controllers\CommercialSpacesController@renew_tenant');
-	Route::post('add_comm_space_unit', 'App\Http\Controllers\CommercialSpacesController@add_comm_space_unit');
-	Route::post('edit_comm_unit', 'App\Http\Controllers\CommercialSpacesController@edit_comm_unit');
+	Route::post('update_tenant_status', 'App\Http\Controllers\CommercialSpacesSecondController@update_tenant_status');
+	Route::post('update_rental_collection', 'App\Http\Controllers\CommercialSpacesSecondController@update_rental_collection');
+	Route::post('renew_tenant', 'App\Http\Controllers\CommercialSpacesSecondController@renew_tenant');
+	Route::post('add_comm_space_unit', 'App\Http\Controllers\CommercialSpacesSecondController@add_comm_space_unit');
+	Route::post('edit_comm_unit', 'App\Http\Controllers\CommercialSpacesSecondController@edit_comm_unit');
 	Route::get('/commercial_space_form/{id}', 'App\Http\Controllers\CommercialSpacesController@comm_space_getrent')->name('get.rent');
-	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesController@comm_space_maintainance_cost');
-	Route::post('update_comm_maintenance_status', 'App\Http\Controllers\CommercialSpacesController@update_comm_maintenance_status');
+	Route::post('comm_space_maintainance_cost', 'App\Http\Controllers\CommercialSpacesSecondController@comm_space_maintainance_cost');
+	Route::post('update_comm_maintenance_status', 'App\Http\Controllers\CommercialSpacesSecondController@update_comm_maintenance_status');
 	Route::get('/update_maintenance3_status/{id}/{tid}', 'App\Http\Controllers\CommercialSpacesController@update_maintenance3_status');
 	
-	Route::post('update_comm_maintenance_status2', 'App\Http\Controllers\CommercialSpacesController@update_commercial_maintenance_status2');
+	Route::post('update_comm_maintenance_status2', 'App\Http\Controllers\CommercialSpacesSecondController@update_commercial_maintenance_status2');
 
-	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesController@add_commercial_tenant_utility_bill');
-	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesController@update_utility_payment');
+	Route::post('add_commercial_tenant_utility_bill', 'App\Http\Controllers\CommercialSpacesSecondController@add_commercial_tenant_utility_bill');
+	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesSecondController@update_utility_payment');
 
 	// Route::get('CheckInQr', [App\Http\Controllers\HotelController::class, 'qrscan'])->name('QR-Scanner');
 	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
