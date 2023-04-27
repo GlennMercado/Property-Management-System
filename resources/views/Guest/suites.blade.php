@@ -27,7 +27,8 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
+                                        <h2 class="text-success currency">
+                                            {{ number_format($lists->Rate_per_Night, 2, '.', ',') }}</h2>
                                         <input type="hidden" id="rpn" value="{{ $lists->Rate_per_Night }}">
                                         <h3 class="font-weight-bold">Hotel room {{ $lists->Room_No }}</h3>
                                         <input type="hidden" name="rn" value="{{ $lists->Room_No }}" id="rn">
@@ -48,7 +49,8 @@
                                                     class="bi bi-car-front-fill"></i>
                                                 Parking</span>
                                         </h3>
-                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">Note: The standard check-in is 2:00 pm and the standard check-out time
+                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">Note: The
+                                            standard check-in is 2:00 pm and the standard check-out time
                                             is 12:00 pm.</h3>
                                         <h2 class="text-white bg-red text-center">Strictly no cancellations.</h2>
                                         <h3 class="pt-2 text-muted pb-2">
@@ -85,7 +87,8 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <h3 class="text-success font-weight-bold mt--3 currency">
-                                                        {{ $lists->Rate_per_Night }}</h3>
+                                                        {{ number_format($lists->Rate_per_Night, 2, '.', ',') }}
+                                                    </h3>
                                                     <h4 class="font-weight-bold">Room {{ $lists->Room_No }}</h4>
                                                     <p class="text-sm text-dark">{{ $lists->No_of_Beds }}Bed</p>
                                                 </div>
