@@ -113,15 +113,16 @@
                             </div>
                         </div>
                         <div class="container-fluid">
-                            <p class="text-lg pt-6">List of Due-out Guests</p>
+                            <p class="text-lg pt-6">List of Guest Arrival</p>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div class="tab-content" id="myTabContent">
                                         {{-- Arrival / Departure --}}
-                                        <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                            aria-labelledby="tabs-icons-text-1-tab">
+                                        
+                                        <!-- <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                            aria-labelledby="tabs-icons-text-1-tab"> -->
                                             <!-- Projects table -->
-                                            <table class="table align-items-center table-flush" id="myTable">
+                                            <!-- <table class="table align-items-center table-flush" id="myTable">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col" style="font-size:18px;">ID</th>
@@ -133,7 +134,7 @@
 
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

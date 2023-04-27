@@ -141,11 +141,11 @@
                             <option value="Finished">Finished</option>
                         </select>
                     </div>
-                    {{-- <div class="col text-right">
+                     <!-- <div class="col text-right">
                         <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
                             Book Now
                         </a>    
-                    </div> --}}
+                    </div>  -->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -158,8 +158,8 @@
                                         <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
-                                        <th scope="col" style="font-size:17px;">Check in Date</th>
-                                        <th scope="col" style="font-size:17px;">Check out Date</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
                                         <th scope="col" style="font-size:17px;">Payment</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>

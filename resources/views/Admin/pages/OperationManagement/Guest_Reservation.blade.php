@@ -92,7 +92,13 @@
                             <option value="Finished">Finished</option>
                         </select>
                     </div>
+                    <div class="col text-right">
+                        <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
+                            Book Now
+                        </a>    
+                    </div> 
                 </div>
+                
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- Pending -->
