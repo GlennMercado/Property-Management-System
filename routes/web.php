@@ -202,6 +202,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 
 	// Route::get('CheckInQr', [App\Http\Controllers\HotelController::class, 'qrscan'])->name('QR-Scanner');
 	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
+	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
 });
 
 //Admin and Operation Manager

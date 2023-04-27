@@ -479,6 +479,19 @@ class HotelController extends Controller
         return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
     }
 
+    public function check_in(Request $request){
+        $booking_no = $request->input('booking');
+        $booking_status = "Checked_In";
+
+        DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array
+        (
+            'Booking_Status' => $booking_status,
+        ));
+
+        Alert::Success('Success', 'Guest checked in!');
+        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+    }
+
     public function qrview($id)
     {
         $qr = $id;
