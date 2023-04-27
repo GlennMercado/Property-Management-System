@@ -401,7 +401,7 @@ class GuestController extends Controller
             if($reserve->save())
             {
                 $this->booked();
-                return redirect('/suites')->with('Success', 'Data Saved');
+                return redirect('/rooms')->with('Success', 'Data Saved');
             }
             else
             {

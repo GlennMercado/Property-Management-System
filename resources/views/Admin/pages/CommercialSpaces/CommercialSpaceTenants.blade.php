@@ -191,6 +191,7 @@
                                                                     <div class="modal-body">
                                                                         <input type="hidden" name="tenant_id"
                                                                             value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="space_unit" value="{{$lists->Space_Unit}}">
                                                                         <h3 class="text-left">Status: </h3>
                                                                         <select name="status" class="form-control"
                                                                             required>
@@ -249,6 +250,7 @@
                                                                     <div class="modal-body">
                                                                         <input type="hidden" name="tenant_id"
                                                                             value="{{ $lists->Tenant_ID }}">
+                                                                        <input type="hidden" name="space_unit" value="{{$lists->Space_Unit}}">
                                                                         <input type="hidden" name="status" value="Terminated">
                                                                         <input type="hidden" name="remarks" value="Your commercial space contract has been terminated" />
                                                                         <h3 class="text-center">Are you sure you want to terminate this tenant's commercial space rental? </h3>
@@ -287,8 +289,16 @@
                                                                         <input type="hidden" name="tenant_id"
                                                                             value="{{ $lists->Tenant_ID }}">
                                                                         <input type="hidden" name="status" value="Active (Operating)">
+                                                                        <input type="hidden" name="space_unit" value="{{$lists->Space_Unit}}">
                                                                         <input type="hidden" name="payment" value="Paid">
                                                                         <h3 class="text-center">Are you sure you want to set this tenant to Active (Operating)?</h3>
+
+                                                                        @if($lists->Proof_Image != null)
+                                                                        <h3 class="text-left">Account Name : <span class="text-primary">{{$lists->Gcash_Name}}</span></h3>
+                                                                        <br>
+                                                                        <h3 class="text-left">Proof Image : </h3>
+                                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
+                                                                        @endif
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-outline-danger"
@@ -518,6 +528,7 @@
                                                                     <div class="modal-body">
                                                                         <input type="hidden" name="tenant_id"
                                                                             value="{{ $lists->Tenant_ID }}">
+                                                                            <input type="hidden" name="space_unit" value="{{$lists->Space_Unit}}">
                                                                         <h3 class="text-left">Status: </h3>
                                                                         <select name="status" class="form-control"
                                                                             required>
