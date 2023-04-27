@@ -50,10 +50,10 @@
                                 </div>
                                 <div class="col-md-4 d-flex flex-column align-items-center">
                                     <div class="p-2">
-                                        {!! QrCode::size(250)->generate(url('guest_profile')) !!}
+                                        {!! QrCode::size(200)->generate(url('guest_profile')) !!}
                                         {{-- {!! QrCode::size(250)->generate('{{ url('guest_profile') }}') !!} --}}
                                     </div>
-                                    <div class="mt--4">
+                                    <div class="mt--2">
                                         <p class="font-weight-bold display-5 text-center">Show this QR code to the
                                             receptionist</p>
                                     </div>
