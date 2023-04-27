@@ -165,7 +165,7 @@ class GuestController extends Controller
             //add image to a folder
             $file = $request->file('images');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'--Space-Rent'.$request->input('room_no').'-.'.$extention;
+            $filename = time().'--Space-Rent'.$request->input('tenant_id').'-.'.$extention;
             $path = $file->move('commercial_space_proof_payment/', $filename);
 
             
@@ -195,6 +195,51 @@ class GuestController extends Controller
         }
 
     }
+    public function commercial_space_utility_payment(Request $request)
+    {
+        $tenant_id = $request->input('tenant_id');
+        $due = $request->input('due');
+        $type = $request->input('type');
+        $gcash = $request->input('gcash_account');
+        $path;
+        $now = Carbon::now()->format('Y-m-d');
+
+        if($request->hasfile('images'))
+        {
+            //add image to a folder
+            $file = $request->file('images');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'--Space-Utility_Bills'.$request->input('tenant_id').'-.'.$extention;
+            $path = $file->move('commercial_space_proof_payment/', $filename);
+
+            
+            //add image to database (which is not advisable)
+            //$path2 = $request->file('images')->getRealPath();
+            //$logo = file_get_contents($path2);
+            $base64 = base64_encode($extention);
+        }
+
+        $sql = DB::table('commercial_space_utility_bills')->where(['Tenant_ID' => $tenant_id, 'Type_of_Bill' => $type, 'Due_Date' => $due])
+                ->update([
+                    'Paid_Date' => $now,
+                    'Payment_Status' => "Paid (Checking)",
+                    'Gcash_Name' => $gcash,
+                    'Proof_Image' => $path,
+                    'updated_at' => DB::RAW('NOW()') 
+                ]);
+
+        if($sql)
+        {
+            Alert::Success('Success', 'Utility Bills Payment Successfully Submitted!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+        else
+        {
+            Alert::Error('Failed', 'Commercial Space Payment Failed Submitting!');
+            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+        }
+    }
+
     public function complaints_submit(Request $request){
         $this->validate($request,[
             'concern' => 'required',
