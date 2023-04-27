@@ -8,41 +8,26 @@
         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
         </ol>
+
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-
-                <img src="{{ asset('nvdcpics') }}/bcourt3.png" class="img-fluid">
-                <div class="container mx-auto">
-
-                    <div class="btn-container">
-                        <h1 class="image-text font-weight-light uppercase text-light text-uppercase display-1"
-                            style="padding-bottom:200px;">
-                            Commercial Space</h1>
-                        <a href="#section2" class="btn btn-outline-light txt" style="margin-bottom:200px;">About</a>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/nv4.jpg" class="img-fluid">
                 <div class="caption d-none d-lg-block">
-                    <h1>Something and share your whatever</h1>
-                    <h2>Else it easy for you to do whatever this thing does.</h2>
-                    <a class="big-button" href="" title="">Create Project</a>
+                    <h1>COMMERCIAL SPACES</h1>
+                    <h2>is the first coop-owned convention center in the Philippines. It is being managed by NVDC
+                        Properties.</h2>
+                    <a class="big-button" href="#appli" title="">Inquire Now</a>
                     <div class="clear"></div>
-                    <a class="view-demo" href="" title="">View Demo</a>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/NovadeciHomepage.png" class="img-fluid" alt="">
-                <div class="caption d-none d-lg-block">
-                    <h1>Create and share your whatever</h1>
-                    <h2>Make it easy for you to do whatever this thing does.</h2>
-                </div>
-            </div> --}}
+                <img src="{{ asset('nvdcpics') }}/nv3.jpg" class="img-fluid" alt="">
+            </div>
+
         </div>
+
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -51,6 +36,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+
     </div>
     {{-- second --}}
     <div class="row" id="section2">
@@ -94,8 +80,8 @@
                     <input type="text" name="business_style" class="form-control"
                         placeholder="Enter Business Style/Trade Name" maxlength="32" required>
                     <p class="pt-4">Business Address <span class="text-danger">*</span> </p>
-                    <input type="text" name="business_address" class="form-control" placeholder="Enter Business Address"
-                        maxlength="64" required>
+                    <input type="text" name="business_address" class="form-control"
+                        placeholder="Enter Business Address" maxlength="64" required>
                     <p class="pt-4">Email Address/Website/FB Page <span class="text-danger">*</span> </p>
                     <input type="text" name="email_website_fb" class="form-control"
                         placeholder="Enter Email Address/Website/FB Page..." maxlength="64" required>
@@ -112,10 +98,10 @@
                         </div>
                     </div>
                     <!-- <h4>Owner Details </h4>
-                                <h4>For Single Proprietorship </h4> -->
+                                    <h4>For Single Proprietorship </h4> -->
                     <!-- <p class="pt-4">Authorized Representative <span class="text-danger">*</span> </p>
-                                <input type="text" name="authorized_representative" class="form-control"
-                                    placeholder="Enter Name of Authorized Representative" maxlength="64" required> -->
+                                    <input type="text" name="authorized_representative" class="form-control"
+                                        placeholder="Enter Name of Authorized Representative" maxlength="64" required> -->
 
                     <p class="pt-4">Name of owner <span class="text-danger">*</span> </p>
                     <input type="text" name="name_of_owner" class="form-control" placeholder="Enter Name of Owner"

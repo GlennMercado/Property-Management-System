@@ -266,29 +266,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list3 as $lists3)
+                                            @foreach ($list3as $lists3)
                                                 <tr>
                                                     {{-- Invoice --}}
-                                                    <td style="font-size:16px;"><a
-                                                            href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
-                                                            target="blank" class="btn btn-sm btn-success"
-                                                            style="cursor:pointer;" title="Invoice">
-                                                            <i class="bi bi-file-earmark-text"></i>
-                                                        </a></td>
-                                                    <td style="font-size:16px;">{{ $lists3->payee }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->cash }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->unearned }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->bank }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->cheque }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->basketball }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->unearned }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->otherincome }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->parking }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->managementfee }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->event }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->hotel }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->commercialspace }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->outputvat }}</td>
+                                                    <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                    </a></td>
+                                                    <td style = "font-size:16px;">{{ $lists3->payee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->cash }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->bank }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->cheque }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->basketball }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->otherincome }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->parking }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->managementfee }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->event }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->hotel }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->commercialspace }}</td>
+                                                    <td style = "font-size:16px;">{{ $lists3->outputvat }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
