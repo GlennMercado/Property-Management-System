@@ -453,7 +453,7 @@
                                                             <img id="output" class="img-fluid" />
                                                         </div>
                                                         <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                            <input type="file" onchange="enable_submit(event)"
+                                                            <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)"
                                                                 id="gcash_img" placeholder="Ex: John Doe" name="images"
                                                                 class="form-control">
                                                         </div>
