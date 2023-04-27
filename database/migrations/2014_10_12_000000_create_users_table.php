@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('IsDisabled')->default(false);
             $table->boolean('IsArchived')->default(false);
             $table->string('profile_pic');
+            $table->string('email_verification_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
