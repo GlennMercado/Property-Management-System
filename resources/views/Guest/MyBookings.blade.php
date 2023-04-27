@@ -51,7 +51,7 @@
                                 
                                 <div class="col-md-4 d-flex flex-column align-items-center">
                                     <div class="p-2">
-                                        {!! QrCode::size(200)->generate(url('/qrview', ['id' => $lists->Booking_No])) !!}
+                                        {!! QrCode::size(200)->generate(url('/CheckInQr', ['id' => $lists->Booking_No])) !!}
                                         {{-- {!! QrCode::size(250)->generate('{{ url('guest_profile') }}') !!} --}}
                                     </div>
                                     <div class="mt--2">
