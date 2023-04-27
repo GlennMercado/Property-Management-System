@@ -16,7 +16,8 @@
             <div class="dropdown-menu dropdown-menu-xl py-0 overflow-hidden d-none d-md-block">
 
                 <div class="px-3 py-3">
-                    <h6 class="text-sm text-muted m-0">Notifications <strong class="text-primary">{{ auth()->user()->notifications->count() }}</strong>
+                    <h6 class="text-sm text-muted m-0">Notifications <strong
+                            class="text-primary">{{ auth()->user()->notifications->count() }}</strong>
                     </h6>
                 </div>
 
@@ -118,6 +119,30 @@
                         <span class="nav-link-inner--text">{{ __('My profile') }}</span>
                     </a>
                 </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('my_bookings') }}" class="dropdown-item">
+                        <i class="bi bi-book-half"></i>
+                        <span>{{ __('My Transactions') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('Commercial_Space') }}" class="dropdown-item">
+                        <i class="bi bi-book-half"></i>
+                        <span>{{ __('Commercial Space') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('complaints') }}" class="dropdown-item">
+                        <i class="ni ni-single-copy-04"></i>
+                        <span>{{ __('Send a Complaint') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url('FAQ') }}" class="dropdown-item">
+                        <i class="ni ni-single-copy-04"></i>
+                        <span>{{ __('FAQ') }}</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('about_us') }}">
                         <i class="ni ni-single-02"></i>
@@ -136,7 +161,6 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
-                
                 <div class="dropdown show">
                     <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
                         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
