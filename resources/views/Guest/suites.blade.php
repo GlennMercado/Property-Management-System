@@ -545,14 +545,14 @@
                             break;
                         }
 
-                        var selectedDate = $(this).datepicker('getDate');
-                        var startDate = $('#date1').datepicker('getDate');
-                        var diff = (selectedDate - startDate) / (1000 * 60 * 60 * 24);
-                        if (diff > 6) {
-                            alert('Date selection not valid.');
-                            $("#date2").val('');
-                            return;
-                        }
+                        // var selectedDate = $(this).datepicker('getDate');
+                        // var startDate = $('#date1').datepicker('getDate');
+                        // var diff = (selectedDate - startDate) / (1000 * 60 * 60 * 24);
+                        // if (diff > 6) {
+                        //     alert('Date selection not valid.');
+                        //     $("#date2").val('');
+                        //     return;
+                        // }
                     }
                 }
             });
