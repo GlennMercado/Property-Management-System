@@ -36,6 +36,7 @@ return new class extends Migration
                 'email' => 'inter.sol@gmail.com',
                 'password' => Hash::make('A4rglujuforvih19'),
                 'User_Type' => 'Admin',
+                'email_verified_at' => now()
             )
         );
     }
