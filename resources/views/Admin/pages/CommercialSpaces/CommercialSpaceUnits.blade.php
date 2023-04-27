@@ -8,7 +8,14 @@
         $.noConflict();
         jQuery(document).ready(function($) {
             $('#myTable').DataTable({
-                "order": [[0, "asc"]]
+                "order": [
+                    [0, "asc"]
+                ]
+            });
+            $('#myTable2').DataTable({
+                "order": [
+                    [0, "asc"]
+                ]
             });
         });
         // Code that uses other library's $ can follow here.
@@ -26,265 +33,594 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="col text-right">
-                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_space">
-                                Add Space
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Add Modal -->
-                    <div class="modal fade" id="add_space" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Add Commercial Space</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form action="{{url('/add_comm_space_unit')}}" class="prevent_submit" method="POST"
-                                    enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <div class="modal-body">
-                                        <h3>Space/Units</h3>
-                                        @foreach ($count as $counts)
-                                            @for ($i = 1 + $counts['counts']; $i <= $counts['counts'] + 1; $i++)
-                                                <input type="hidden" name="space_units" value="Unit {{$i}}">
-                                                <input type="text" value="Unit {{$i}}" class="form-control" readonly>
-                                            @endfor
-                                        @endforeach
-                                       
-                                        <h3>Measurement Size (sq. m)</h3>
-                                        <input type="number" name="size" class="form-control" required>
-
-                                        <h3>Rental Fee</h3>
-                                        <input type="number" name="rental_fee" class="form-control" required>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                        <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
-                                        <input type="submit" class="btn btn-success prevent_submit" value="Add"
-                                            name="submit">
-                                    </div>
-                                </form>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header border-0">
+                            <div class="col text-right">
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_space">
+                                    Add Space
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <!--Table-->
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush" id="myTable">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col" style="font-size:18px;">Action</th>
-                                        <th scope="col" style="font-size:18px;">Space/Unit</th>
-                                        <th scope="col" style="font-size:18px;">Measurement/Size (sq. m)</th>
-                                        <th scope="col" style="font-size:18px;">Maintenance Status <br> (Under Maintenance?)</th>
-                                        <th scope="col" style="font-size:18px;">Due Date</th>
-                                        <th scope="col" style="font-size:18px;">Maintenance Cost</th>
-                                        <th scope="col" style="font-size:18px;">Occupancy Status</th>
-                                        <th scope="col" style="font-size:18px;">Rental Fee</th>
-                                        <th scope="col" style="font-size:18px;">Security Deposit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($list as $lists)
-                                        <tr>
-                                            <td> 
-                                                @if($lists->Occupancy_Status != "Occupied")
-                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_space_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Edit Commercial Space">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </button>
-                                                @endif
-                                                
-                                                @if($lists->Occupancy_Status == "Occupied" && $lists->Maintenance_Status == "No")
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_maintenance1_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Update Maintenance Status">
-                                                        <i class="bi bi-arrow-repeat"></i>
-                                                    </button>
-                                                @endif
+                        <!-- Add Modal -->
+                        <div class="modal fade" id="add_space" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Add Commercial
+                                            Space
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ url('/add_comm_space_unit') }}" class="prevent_submit" method="POST"
+                                        enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <h3>Space/Units</h3>
+                                            @foreach ($count as $counts)
+                                                @for ($i = 1 + $counts['counts']; $i <= $counts['counts'] + 1; $i++)
+                                                    <input type="hidden" name="space_units"
+                                                        value="Unit {{ $i }}">
+                                                    <input type="text" value="Unit {{ $i }}"
+                                                        class="form-control" readonly>
+                                                @endfor
+                                            @endforeach
 
-                                                @if($lists->Occupancy_Status == "Occupied" && $lists->Maintenance_Status == "Yes" && $lists->Maintenance_Cost == null)
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Update Maintenance Status">
-                                                        <i class="bi bi-arrow-repeat"></i>
-                                                    </button>
-                                                @endif
+                                            <h3>Measurement Size (sq. m)</h3>
+                                            <input type="number" name="size" class="form-control" required>
 
-                                                @if($lists->Maintenance_Status == "Yes" && $lists->Maintenance_Cost != null)
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update_maintenance3_{{ str_replace(' ', '_', $lists->Space_Unit) }}" title="Update Maintenance Status">
-                                                        <i class="bi bi-arrow-up-square"></i>
-                                                    </button>
-                                                @endif
-                                            </td>
-                                            <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
-                                            <td style="font-size:16px;">{{ $lists->Measurement_Size }}</td>
-                                            <td style="font-size:16px;">{{ $lists->Maintenance_Status }}</td>
-                                            @if($lists->Maintenance_Due_Date != null)
-                                                <td style="font-size:16px;">{{ date('F j, Y', strtotime($lists->Maintenance_Due_Date)) }}</td>
-                                            @else
-                                                <td></td>
-                                            @endif
-                                            @if($lists->Maintenance_Cost != null)
-                                                <td style="font-size:16px;" class="cur1">{{ $lists->Maintenance_Cost}}</td>
-                                            @else
-                                                <td></td>
-                                            @endif
-                                            <td style="font-size:16px;">{{ $lists->Occupancy_Status }}</td>
-                                            <td style="font-size:16px;" class="cur1">{{ $lists->Rental_Fee}}</td>
-                                            <td style="font-size:16px;" class="cur1">{{ $lists->Security_Deposit}}</td>
-                                        </tr>
+                                            <h3>Rental Fee</h3>
+                                            <input type="number" name="rental_fee" class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
+                                            <input type="submit" class="btn btn-success prevent_submit" value="Add"
+                                                name="submit">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-wrapper">
+                            <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
+                                        href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
+                                        aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>Space/Unit</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                                        href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
+                                        aria-selected="false">
+                                        <i class="ni ni-fat-remove mr-2"></i>Occupied Units</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="tab-content" id="myTabContent">
+                                    {{-- Vacant --}}
+                                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-1-tab">
+                                        <!--Table-->
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTable">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="font-size:18px;">Action</th>
+                                                        <th scope="col" style="font-size:18px;">Space/Unit</th>
+                                                        <th scope="col" style="font-size:18px;">Measurement/Size (sq.
+                                                            m)
+                                                        </th>
+                                                        <th scope="col" style="font-size:18px;">Maintenance Status <br>
+                                                            (Under
+                                                            Maintenance?)</th>
+                                                        <th scope="col" style="font-size:18px;">Due Date</th>
+                                                        <th scope="col" style="font-size:18px;">Maintenance Cost</th>
+                                                        <th scope="col" style="font-size:18px;">Occupancy Status</th>
+                                                        <th scope="col" style="font-size:18px;">Rental Fee</th>
+                                                        <th scope="col" style="font-size:18px;">Security Deposit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($list as $lists)
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                                                    data-target="#edit_space_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                                    title="Edit Commercial Space">
+                                                                    <i class="bi bi-pencil-square"></i>
+                                                                </button>
+                                                            </td>
+                                                            <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
+                                                            <td style="font-size:16px;">{{ $lists->Measurement_Size }}</td>
+                                                            <td style="font-size:16px;">{{ $lists->Maintenance_Status }}
+                                                            </td>
+                                                            @if ($lists->Maintenance_Due_Date != null)
+                                                                <td style="font-size:16px;">
+                                                                    {{ date('F j, Y', strtotime($lists->Maintenance_Due_Date)) }}
+                                                                </td>
+                                                            @else
+                                                                <td></td>
+                                                            @endif
+                                                            @if ($lists->Maintenance_Cost != null)
+                                                                <td style="font-size:16px;" class="cur1">
+                                                                    {{ $lists->Maintenance_Cost }}</td>
+                                                            @else
+                                                                <td></td>
+                                                            @endif
+                                                            <td style="font-size:16px;">{{ $lists->Occupancy_Status }}
+                                                            </td>
+                                                            <td style="font-size:16px;" class="cur1">
+                                                                {{ $lists->Rental_Fee }}</td>
+                                                            <td style="font-size:16px;" class="cur1">
+                                                                {{ $lists->Security_Deposit }}
+                                                            </td>
+                                                        </tr>
 
-                                        <!-- Edit Modal -->
-                                        <div class="modal fade" id="edit_space_{{ str_replace(' ', '_', $lists->Space_Unit) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Edit Commercial Space</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{url('/edit_comm_unit')}}" class="prevent_submit" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                                        <div class="modal-body">
-                                                            <h3>Space/Units : <span class="text-primary">{{$lists->Space_Unit}}</span></h3>
-                                                            <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}" >
-                                                            <br>
-                                                            <h3>Measurement Size (sq. m) : </h3>
-                                                            <input type="number" name="size" class="form-control" value="{{$lists->Measurement_Size}}" required>
+                                                        <!-- Edit Modal -->
+                                                        <div class="modal fade"
+                                                            id="edit_space_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Edit Commercial Space
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ url('/edit_comm_unit') }}"
+                                                                        class="prevent_submit" method="POST"
+                                                                        enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="modal-body">
+                                                                            <h3>Space/Units : <span
+                                                                                    class="text-primary">{{ $lists->Space_Unit }}</span>
+                                                                            </h3>
+                                                                            <input type="hidden" name="space_units"
+                                                                                value="{{ $lists->Space_Unit }}">
+                                                                            <br>
+                                                                            <h3>Measurement Size (sq. m) : </h3>
+                                                                            <input type="number" name="size"
+                                                                                class="form-control"
+                                                                                value="{{ $lists->Measurement_Size }}"
+                                                                                required>
 
-                                                            <h3>Rental Fee : </h3>
-                                                            <input type="number" name="rental_fee" class="form-control" value="{{$lists->Rental_Fee}}" required>
+                                                                            <h3>Rental Fee : </h3>
+                                                                            <input type="number" name="rental_fee"
+                                                                                class="form-control"
+                                                                                value="{{ $lists->Rental_Fee }}" required>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
+                                                                            <input type="submit"
+                                                                                class="btn btn-success prevent_submit"
+                                                                                value="Edit" name="submit">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                            <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
-                                                            <input type="submit" class="btn btn-success prevent_submit" value="Edit"
-                                                                name="submit">
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    {{-- Occupied --}}
+                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                        aria-labelledby="tabs-icons-text-2-tab">
+                                        <!--Table-->
+                                        <div class="table-responsive">
+                                            <table class="table align-items-center table-flush" id="myTable2">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="font-size:18px;">Action</th>
+                                                        <th scope="col" style="font-size:18px;">Space/Unit</th>
+                                                        <th scope="col" style="font-size:18px;">Measurement/Size (sq.
+                                                            m)</th>
+                                                        <th scope="col" style="font-size:18px;">Maintenance Status <br>
+                                                            (Under
+                                                            Maintenance?)</th>
+                                                        <th scope="col" style="font-size:18px;">Due Date</th>
+                                                        <th scope="col" style="font-size:18px;">Maintenance Cost</th>
+                                                        <th scope="col" style="font-size:18px;">Occupancy Status</th>
+                                                        <th scope="col" style="font-size:18px;">Rental Fee</th>
+                                                        <th scope="col" style="font-size:18px;">Security Deposit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($list2 as $lists)
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                                    data-target="#view_history_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                                    title="Update Maintenance Status">
+                                                                    <i class="bi bi-eye"></i>
+                                                                </button>
+                                                                @if ($lists->Occupancy_Status == 'Occupied' && $lists->Maintenance_Status == 'No')
+                                                                    <button class="btn btn-sm btn-success"
+                                                                        data-toggle="modal"
+                                                                        data-target="#update_maintenance1_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                                        title="Update Maintenance Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @endif
+
+                                                                {{-- @if ($lists->Occupancy_Status == 'Occupied' && $lists->Maintenance_Status == 'Yes' && $lists->Maintenance_Cost == null)
+                                                                    <button class="btn btn-sm btn-success"
+                                                                        data-toggle="modal"
+                                                                        data-target="#update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                                        title="Update Maintenance Status">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </button>
+                                                                @endif --}}
+
+                                                                @if ($lists->Maintenance_Status == 'Yes')
+                                                                    <button class="btn btn-sm btn-success"
+                                                                        data-toggle="modal"
+                                                                        data-target="#update_maintenance3_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                                        title="Update Maintenance Status">
+                                                                        <i class="bi bi-arrow-up-square"></i>
+                                                                    </button>
+                                                                @endif
+                                                            </td>
+                                                            <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
+                                                            <td style="font-size:16px;">{{ $lists->Measurement_Size }}
+                                                            </td>
+                                                            <td style="font-size:16px;">{{ $lists->Maintenance_Status }}
+                                                            </td>
+                                                            @if ($lists->Maintenance_Due_Date != null)
+                                                                <td style="font-size:16px;">
+                                                                    {{ date('F j, Y', strtotime($lists->Maintenance_Due_Date)) }}
+                                                                </td>
+                                                            @else
+                                                                <td></td>
+                                                            @endif
+                                                            @if ($lists->Maintenance_Cost != null)
+                                                                <td style="font-size:16px;" class="cur1">
+                                                                    {{ $lists->Maintenance_Cost }}</td>
+                                                            @else
+                                                                <td></td>
+                                                            @endif
+                                                            <td style="font-size:16px;">{{ $lists->Occupancy_Status }}
+                                                            </td>
+                                                            <td style="font-size:16px;" class="cur1">
+                                                                {{ $lists->Rental_Fee }}</td>
+                                                            <td style="font-size:16px;" class="cur1">
+                                                                {{ $lists->Security_Deposit }}
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Update Maintenace1 Modal -->
+                                                        <div class="modal fade"
+                                                            id="update_maintenance1_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Update Maintenance
+                                                                            Status </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ url('/update_comm_maintenance_status2') }}"
+                                                                        class="prevent_submit" method="POST"
+                                                                        enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="space_units"
+                                                                                value="{{ $lists->Space_Unit }}">
+                                                                            <input type="hidden" name="stats"
+                                                                                value="{{ $lists->Maintenance_Status }}">
+                                                                            <input type="hidden" name="tenant_id"
+                                                                                value="{{ $lists->Tenant_ID }}" />
+                                                                            <h3 class="text-left">Setting space <span
+                                                                                    class="text-success">{{ $lists->Space_Unit }}</span>
+                                                                                under maintenance.</h3>
+                                                                            <h3 class="text-left">Maintenance Cost : </h3>
+                                                                            <input type="number" name="cost"
+                                                                                class="form-control" required />
+                                                                            <h3 class="text-left">Equipments/Materials
+                                                                                Used: </h3>
+                                                                            <textarea name="others" class="form-control" required></textarea>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success">Submit</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+
+                                                        <!-- Update Maintenace2 Modal -->
+                                                        {{-- <div class="modal fade"
+                                                            id="update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Update Maintenance
+                                                                            Status </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ url('/comm_space_maintainance_cost') }}"
+                                                                        class="prevent_submit" method="POST"
+                                                                        enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="space_units"
+                                                                                value="{{ $lists->Space_Unit }}">
+                                                                            <input type="hidden" name="stats"
+                                                                                value="{{ $lists->Maintenance_Status }}">
+                                                                            <input type="hidden" name="due"
+                                                                                value="{{ $lists->Maintenance_Due_Date }}">
+                                                                            <input type="hidden" name="tenant_id"
+                                                                                value="{{ $lists->Tenant_ID }}">
+
+                                                                            <h3>Space/Units : <span
+                                                                                    class="text-primary">{{ $lists->Space_Unit }}</span>
+                                                                            </h3>
+                                                                            <br>
+                                                                            <h3>Maintenance Cost : </h3>
+                                                                            <input type="number" name="cost"
+                                                                                class="form-control" required>
+                                                                            <br>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success prevent_submit">Yes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div> --}}
+
+                                                        <!-- Update Maintenace3 Modal -->
+                                                        <div class="modal fade"
+                                                            id="update_maintenance3_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-left display-4"
+                                                                            id="exampleModalLabel">Update Maintenance
+                                                                            Status </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ url('/update_comm_maintenance_status') }}"
+                                                                        class="prevent_submit" method="POST"
+                                                                        enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="space_units"
+                                                                                value="{{ $lists->Space_Unit }}">
+                                                                            <input type="hidden" name="cost"
+                                                                                value="{{ $lists->Maintenance_Cost }}" />
+                                                                            <input type="hidden" name="due"
+                                                                                value="{{ $lists->Maintenance_Due_Date }}">
+                                                                            <input type="hidden" name="gcash"
+                                                                                value="{{ $lists->Gcash_Name }}">
+                                                                            <input type="hidden" name="payment"
+                                                                                value="{{ $lists->Proof_Image }}">
+                                                                            <input type="hidden" name="tenant_id"
+                                                                                value="{{ $lists->Tenant_ID }}">
+
+                                                                            <h3 class="text-left">Maintenance Cost : <span
+                                                                                    class="cur1 text-primary">{{ $lists->Maintenance_Cost }}</span>
+                                                                            </h3>
+                                                                            <i>Proof of Payment Here:</i>
+                                                                            @if ($lists->Proof_Image != null)
+                                                                                <h3 class="text-left">Account Name : <span
+                                                                                        class="text-primary">{{ $lists->Gcash_Name }}</span>
+                                                                                </h3>
+                                                                                <br>
+                                                                                <h3 class="text-left">Payment Image : </h3>
+                                                                                <img src="{{ $lists->Proof_Image }}"
+                                                                                    class="card-img-top">
+                                                                            @endif
+
+                                                                            <h3 class="text-left">Set Status : </h3>
+                                                                            <select name="status" class="form-control"
+                                                                                required>
+                                                                                <option value="" selected="true"
+                                                                                    disabled="disabled">Select</option>
+                                                                                <option value="Paid">Paid</option>
+                                                                                <option value="Non-Payment">Non-Payment
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success">Submit</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
                                         </div>
 
-                                        <!-- Update Maintenace1 Modal -->
-                                        <div class="modal fade" id="update_maintenance1_{{ str_replace(' ', '_', $lists->Space_Unit) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Update Maintenance Status </h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}">
-                                                        <input type="hidden" name="stats" value="{{$lists->Maintenance_Status}}">
-                                                        <h3 class="text-center">Set this space Under Maintenance?</h3>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/update_comm_maintenance_status2', ['id' => $lists->Space_Unit, 'stats' => 'Yes'])}}" class="btn btn-success prevent_submit">Yes</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Update Maintenace2 Modal -->
-                                        <div class="modal fade" id="update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Update Maintenance Status </h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{url('/comm_space_maintainance_cost')}}" class="prevent_submit" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                                        <div class="modal-body">
-                                                            <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}">
-                                                            <input type="hidden" name="stats" value="{{$lists->Maintenance_Status}}">
-                                                            <input type="hidden" name="due" value="{{$lists->Maintenance_Due_Date}}">
-                                                            <input type="hidden" name="tenant_id" value="{{$lists->Tenant_ID}}">
-
-                                                            <h3>Space/Units : <span class="text-primary">{{$lists->Space_Unit}}</span></h3>
-                                                            <br>
-                                                            <h3>Maintenance Cost : </h3>
-                                                            <input type="number" name="cost" class="form-control" required>
-                                                            <br>
+                                        @foreach ($array as $arrays)
+                                            <!-- Update Maintenace3 Modal -->
+                                            <div class="modal fade"
+                                                id="view_history_{{ str_replace(' ', '_', $arrays['Units']) }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">View Maintenance History </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-success prevent_submit">Yes</button>
+                                                        <div class="modal-body" style="overflow-x: scroll;">
+                                                            <table class="table align-items-center table-flush">
+                                                                <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Tenant_ID</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Space/Unit</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Maitenance Cost</th>
+                                                                        <th scope="col" style="font-size:18px;">Due
+                                                                            Date</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Paid Date</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Payment Status</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Paid By</th>
+                                                                        <th scope="col" style="font-size:18px;">
+                                                                            Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($list3 as $lists3)
+                                                                        @if ($lists3->Space_Unit == $arrays['Units'])
+                                                                            <tr>
+                                                                                <td>{{ $lists3->Tenant_ID }}</td>
+                                                                                <td>{{ $lists3->Space_Unit }}</td>
+                                                                                <td class="cur1">
+                                                                                    {{ $lists3->Maintenance_Cost }}
+                                                                                </td>
+                                                                                <td>{{ date('F j, Y', strtotime($lists3->Due_Date)) }}
+                                                                                </td>
+                                                                                @if ($lists3->Paid_Date != null)
+                                                                                    <td>{{ date('F j, Y', strtotime($lists3->Paid_Date)) }}
+                                                                                    </td>
+                                                                                @else
+                                                                                    <td></td>
+                                                                                @endif
+                                                                                @if($lists3->Payment_Status == "Paid")
+                                                                                    <td class="text-success">{{$lists3->Payment_Status}}</td>
+                                                                                @else
+                                                                                    <td class="text-danger">{{$lists3->Payment_Status}}</td>
+                                                                                @endif
+                                                                                <td>{{ $lists3->Paid_By }}</td>
+                                                                                <td>
+                                                                                    @if ($lists3->Proof_Image != null)
+                                                                                        <div class="img-container">
+                                                                                            <button
+                                                                                                class="btn btn-sm btn-primary"
+                                                                                                title="View Image">
+                                                                                                View Image
+                                                                                                <span class="popup">
+                                                                                                    <img src="{{ $lists3->Proof_Image }}"
+                                                                                                        alt="Image Preview">
+                                                                                                </span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    @if ($lists3->Payment_Status == 'Paid (Checking)')
+                                                                                        <button
+                                                                                            class="btn btn-sm btn-success"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#update_maintenance3_status{{ $lists3->id }}"
+                                                                                            title="Update Status">
+                                                                                            Update Status
+                                                                                        </button>
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                            <!-- Update Maintenace1 Modal -->
+                                                                            <div class="modal fade"
+                                                                                id="update_maintenance3_status{{ $lists3->id }}"
+                                                                                tabindex="-1" role="dialog"
+                                                                                aria-labelledby="exampleModalLabel"
+                                                                                aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                                    role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title text-left display-4"
+                                                                                                id="exampleModalLabel">
+                                                                                                Update Maintenance
+                                                                                                Status </h5>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-dismiss="modal"
+                                                                                                aria-label="Close">
+                                                                                                <span
+                                                                                                    aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <h3 class="text-center">Are you sure you want to set this maintenance to paid?</h3>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button
+                                                                                                class="btn btn-outline-danger"
+                                                                                                data-dismiss="modal">Close</button>
+                                                                                            <a href="{{url('update_maintenance3_status', ['id' => $lists3->id, 'tid' => $lists3->Tenant_ID])}}" class="btn btn-success">Yes</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <!-- Update Maintenace3 Modal -->
-                                        <div class="modal fade" id="update_maintenance3_{{ str_replace(' ', '_', $lists->Space_Unit) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Update Maintenance Status </h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="{{url('/update_comm_maintenance_status')}}" class="prevent_submit" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                                    <div class="modal-body">
-                                                        <input type="hidden" name="space_units" value="{{$lists->Space_Unit}}">
-                                                        <input type="hidden" name="cost" value="{{$lists->Maintenance_Cost}}" />
-                                                        <input type="hidden" name="due" value="{{$lists->Maintenance_Due_Date}}">
-                                                        <input type="hidden" name="gcash" value="{{$lists->Gcash_Name}}">
-                                                        <input type="hidden" name="payment" value="{{$lists->Proof_Image}}">
-                                                        <input type="hidden" name="tenant_id" value="{{$lists->Tenant_ID}}">
-
-                                                        <h3 class="text-left">Maintenance Cost : <span class="cur1 text-primary">{{$lists->Maintenance_Cost}}</span></h3>
-                                                        <h3 class="text-left">Account Name : <span class="text-primary">{{$lists->Gcash_Name}}</span></h3>
-                                                        <br>
-                                                        <h3 class="text-left">Payment Image : </h3>
-                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
-
-                                                        <h3 class="text-left">Set Status : </h3>
-                                                        <select name="status" class="form-control" required>
-                                                            <option value="" selected="true" disabled="disabled">Select</option>
-                                                            <option value="Paid">Paid</option>
-                                                            <option value="Incorrect">Incorrect Payment</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-success">Submit</button>
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script>
         $('.prevent_submit').on('submit', function() {
@@ -292,13 +628,60 @@
         });
     </script>
     <style>
-        table
-        {
-            text-align:center;
+        .img-container {
+            position: relative;
+            display: inline-block;
         }
-        .cur1::before{
-                content: '₱';
+
+        .img-container img {
+            display: block;
+            position: absolute;
+            max-width: 100%;
         }
+
+        .img-container .btn {
+            position: relative;
+        }
+
+        .img-container .popup {
+            position: absolute;
+            top: 70%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .img-container .btn:hover .popup {
+            visibility: visible;
+            opacity: 1;
+            z-index: 9999;
+        }
+
+        .img-container .popup img {
+            display: block;
+            max-width: 80vw;
+            max-height: 80vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        table {
+            text-align: center;
+        }
+
+        .cur1::before {
+            content: '₱';
+        }
+
         .tbltxt {
             font-size: 18px;
         }
