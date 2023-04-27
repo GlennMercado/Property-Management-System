@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
             $table->string('name');
             $table->string('profile_pic');
             $table->string('concern');

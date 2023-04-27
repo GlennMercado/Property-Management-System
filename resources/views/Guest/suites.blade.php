@@ -114,7 +114,7 @@
                                 <div class="col-md pt-4">
                                     <p class="form-label label1">Mobile No. <span class="text-danger">*</span></p>
                                     <input class="form-control" id="mobile" type="number" name="mobile" min="0"
-                                        value="" placeholder="09XXXXXXXXX"
+                                        value="" placeholder="Enter mobile no."
                                         onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
                                         required>
                                     <div id="balls"></div>
@@ -430,11 +430,11 @@
                                                     <div class="row shadow p-3 mt-2">
                                                         <div class="col-md-12">
                                                             <p class="font-weight-bold text-center">NVDC Properties:
-                                                                0923423424
+                                                                09458923381
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12 d-flex justify-content-center">
-                                                            {!! QrCode::size(170)->generate('0923423424') !!}
+                                                            {!! QrCode::size(170)->generate('09458923381') !!}
                                                         </div>
                                                         <div class="col-md-12">
                                                             <p class="text-center">Gcash account name <span

@@ -23,7 +23,7 @@ class AdminController extends Controller
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count();
         $pending_guests = hotel_reservations::where('Payment_Status','Pending')->count();
         $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count();
-        $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count();
+        $checked_out_guests = DB::table('hotel_reservations')->select(DB::raw('*'))->whereRaw('Date(Check_Out_Date) = CURDATE()')->count();
         // Arriving/Departing
         $arriving = DB::table('hotel_reservations')->select(DB::raw('*'))->whereRaw('Date(Check_In_Date) = CURDATE()')->count();
         // Event Inquiry
@@ -42,12 +42,31 @@ class AdminController extends Controller
         $hotel_sum = finance_2_reports::sum('hotel');
         $commercialspace_sum = finance_2_reports::sum('commercialspace');
 
+        $room = DB::select('SELECT * FROM novadeci_suites');
+        $events = array();
 
-        return view('Admin.admindashboard', 
+        $bookings = DB::select("SELECT * FROM hotel_reservations WHERE Booking_Status != 'Pending'");
+       
+        $list = DB::select("SELECT * FROM hotel_reservations");
+        $calendar = DB::select("SELECT * FROM hotel_reservations");
+
+        foreach($bookings as $booking)
+        {
+            $events[] = [
+                'title' => $booking->Room_No.' - '.$booking->Guest_Name,
+                'start' => $booking->Check_In_Date,
+                'end' => $booking->Check_Out_Date,
+                'id' => $booking->Booking_No,
+                'status' => $booking->Booking_Status
+            ];
+        }
+
+        return view('Admin.admindashboard', ['room'=>$room, 'events'=>$events, 'calendar' => $calendar],
         compact(
             'vacant', 
             'reserved', 
             'occupied', 
+            'arriving',
             'vacant_cleaning', 
             'reserved_guests',
             'pending_guests',
@@ -75,7 +94,8 @@ class AdminController extends Controller
         $bookings = DB::select("SELECT * FROM hotel_reservations WHERE Booking_Status != 'Pending'");
        
         $list = DB::select("SELECT * FROM hotel_reservations");
-        
+        $calendar = DB::select("SELECT * FROM hotel_reservations");
+
         foreach($bookings as $booking)
         {
             $events[] = [

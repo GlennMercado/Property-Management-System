@@ -333,6 +333,6 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/rooms', [App\Http\Controllers\GuestController::class, 'rooms'])->name('rooms');
 	Route::get('/FAQ', [App\Http\Controllers\GuestController::class, 'FAQ'])->name('FAQ');
 	Route::get('/BookingEmail', [App\http\Controllers\GuestController::class, 'BookingEmail'])->name('BookingEmail');
-
+	// Route::get('/Reserve', [App\http\Controllers\GuestController::class, 'reserve'])->name('Reserve');
 
 });

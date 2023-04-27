@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <div class="row align-items-center ml-2 mt--7">

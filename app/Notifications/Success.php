@@ -37,7 +37,7 @@ class Success extends Notification
     }
     public function toArray($notifiable)
     {
-        $link = "http://localhost:8000/my_bookings";
+        $link = "my_bookings";
         $email = Auth::user()->email;
         $notif = "Your booking was successful. Please come on your booking date.";
         return [

@@ -69,7 +69,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="card shadow">
+                <div class="card shadow mb-2">
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
@@ -179,6 +179,11 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                @if (!$list)
+                                    <img src="{{ asset('nvdcpics') }}/complaints1.svg" class="img-fluid"
+                                        style="width: 100%; height: 300px">
+                                    <p class="text-center display-4">There are no complaints yet</p>
+                                @endif
                             </div>
                         </div>
                     </div>
