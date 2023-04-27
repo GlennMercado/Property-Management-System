@@ -101,7 +101,7 @@
                                                 {{ $count->cnt }}
                                             @endforeach
                                         </h1>
-                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Room for
+                                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">For
                                             Cleaning
                                         </h2>
                                     </div>
