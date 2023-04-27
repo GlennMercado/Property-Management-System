@@ -23,38 +23,112 @@
         </div>
         {{-- data toggle --}}
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 card shadow">
+                <h2 class="mt-2">Hotel Reservation Calendar</h2>
                 <div class="row align-items-center">
                     <div class="col text-right">
-                        <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
-                                    href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
-                                    aria-selected="true">Event Inquiries</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                    href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                    aria-selected="false"> Application </a>
-                            </li>
-                        </ul>
-                        <div style="padding:8px;">
-                            <div class="table-responsive">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-1-tab">
-                                        <div class="container-fluid mt-4">
-                                            <div id="calendar"></div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                        aria-labelledby="tabs-icons-text-2-tab">
-                                        <div class="container-fluid mt-4">
-                                            <div id="calendar2"></div>
+                        <div class="nav-wrapper">
+                            <div id="calendar"></div>
+                            @foreach ($calendar as $lists)
+                                <!-- Modal -->
+                                <div class="modal fade" id="booking{{ $lists->Booking_No }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title" id="exampleModalLabel">Booking Information</h2>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            {{-- Booking Information Modal --}}
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Booking Number: </h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Room Number:</h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span style="font-weight:normal;">{{ $lists->Room_No }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Guest Name:</h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Mobile Number:</h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span style="font-weight:normal;">{{ $lists->Mobile_Num }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Mobile Number:</h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span style="font-weight:normal;">{{ $lists->Mobile_Num }}</span>
+                                                    </div>
+                                                </div>
+                                                @if ($lists->Booking_Status == 'Reserved')
+                                                    <h3 class="text-left">Booking Status: <span
+                                                            style="font-weight:normal; color: #5bc0de; margin-left:110px;"
+                                                            class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                                @elseif($lists->Booking_Status == 'Checked-In')
+                                                    <h3 class="text-left">Booking Status: <span
+                                                            style="font-weight:normal; color: #5cb85c; margin-left:110px;"
+                                                            class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                                @elseif($lists->Booking_Status == 'Checked-Out')
+                                                    <h3 class="text-left">Booking Status: <span
+                                                            style="font-weight:normal; color: #f0ad4e; margin-left:110px;"
+                                                            class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                                @elseif($lists->Booking_Status == 'Cancelled')
+                                                    <h3 class="text-left">Booking Status: <span
+                                                            style="font-weight:normal; color: #d9534f; margin-left:110px;"
+                                                            class="str">{{ $lists->Booking_Status }}</span> </h3>
+                                                @endif
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Checked-In Date: </h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span
+                                                            style="font-weight:normal;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3 class="text-left">Checked-Out Date: </h3>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span
+                                                            style="font-weight:normal;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -69,7 +143,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Arriving Guests Today</h5>
-                                            <span class="h2 font-weight-bold mb-0">{{ $checked_guests }}</span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $arriving }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-green text-white rounded-circle shadow">
@@ -92,7 +166,7 @@
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Departing Guests Today
                                             </h5>
-                                            <span class="h2 font-weight-bold mb-0">{{ $checked_guests }}</span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $checked_out_guests }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-red text-white rounded-circle shadow">
@@ -178,43 +252,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <div class="card shadow card-stats">
-                            <a href="{{ route('HotelReservationForm') }}">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Cancelled</h5>
-                                            <span class="h2 font-weight-bold mb-0">5</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-red text-white rounded-circle shadow">
-                                                <i class="ni ni-chart-bar-32"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-nowrap">Click to view</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row">
             <div class="container d-flex justify-content-center">
-                <div class="row mt-6" style="justify-content:center">
-                    <div class="col-xl-8">
-                        <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
-                        <canvas class="p-3" id="doughnutChart"></canvas>
-                    </div>
-                    <div class="col-xl-8">
-                        <h2>Finance</h2>
-                        <canvas class="p-3" id="myChart"></canvas>
-                    </div>
+                <div class="col-md-6 card shadow">
+                    <h2><i class="bi bi-book-fill"></i> Hotel Booking</h2>
+                    <canvas class="p-3" id="doughnutChart"></canvas>
+                </div>
+                <div class="col-md-6 card shadow">
+                    <h2>Finance</h2>
+                    <canvas class="p-3" id="myChart"></canvas>
                 </div>
             </div>
         </div>
@@ -373,68 +421,9 @@
         <input type="hidden" id="pending" value="{{ $pending_guests }}">
         <input type="hidden" id="reserve" value="{{ $reserved_guests }}">
         <input type="hidden" id="checked" value="{{ $checked_guests }}">
-        <input type="hidden" id="cancelled" value="{{ $reserved_guests }}">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
         <script>
-            // Event Inquiry calendar
-            $(document).ready(function() {
-                // Define options and events for FullCalendar
-                var calendarOptions = {
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    defaultDate: '2023-04-23',
-                    navLinks: true,
-                    editable: true,
-                    eventLimit: true, // allow "more" link when too many events
-                    events: [{
-                            title: 'Event 1',
-                            start: '2023-04-23T10:00:00',
-                            end: '2023-04-23T12:00:00'
-                        },
-                        {
-                            title: 'Event 2',
-                            start: '2023-04-25T14:00:00',
-                            end: '2023-04-25T16:00:00'
-                        },
-                        // more events here
-                    ]
-                };
-
-                // Initialize FullCalendar on both elements
-                $('#calendar').fullCalendar(calendarOptions);
-                $('#calendar2').fullCalendar(calendarOptions);
-            });
-            // Application Calendar
-            $(document).ready(function() {
-                $('#calendar2').fullCalendar({
-                    // Set options and callbacks
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    defaultDate: '2023-04-23',
-                    navLinks: true,
-                    editable: true,
-                    eventLimit: true, // allow "more" link when too many events
-                    events: [{
-                            title: 'Event 1',
-                            start: '2023-04-23T10:00:00',
-                            end: '2023-04-23T12:00:00'
-                        },
-                        {
-                            title: 'Event 2',
-                            start: '2023-04-25T14:00:00',
-                            end: '2023-04-25T16:00:00'
-                        },
-                        // more events here
-                    ]
-                });
-            });
             //doughnut
             var pending = document.getElementById("pending").value;
             var reserve = document.getElementById("reserve").value;
@@ -444,11 +433,11 @@
             var myLineChart = new Chart(ctxD, {
                 type: 'doughnut',
                 data: {
-                    labels: ["Pending Reservations", "Reservations", "Checked In", "Cancelled", ],
+                    labels: ["Pending Reservations", "Reservations", "Checked In"],
                     datasets: [{
-                        data: [reserve, reserve, checked, 1],
-                        backgroundColor: ["#e6d437", "#50ba67", "#428df5", "#ba5062"],
-                        hoverBackgroundColor: ["#a89b28", "#378247", "#2c61ab", "#7a333f"]
+                        data: [pending, reserve, checked, ],
+                        backgroundColor: ["#e6d437", "#50ba67", "#428df5"],
+                        hoverBackgroundColor: ["#a89b28", "#378247", "#2c61ab"]
                     }]
                 },
                 options: {
@@ -512,6 +501,93 @@
                 }
             });
         </script>
+        <script>
+            var selecteddate = null;
+            $(document).ready(function() {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                var booking = @json($events);
+
+                $('#calendar').fullCalendar({
+                    // editable: true,
+                    header: {
+                        left: 'prev,next, today',
+                        center: 'title',
+                        //right: 'month, agendaWeek, agendaDay'
+                        right: 'month'
+                    },
+                    events: booking,
+                    eventTextColor: 'white',
+                    eventDisplay: 'block',
+                    contentHeight: 450,
+                    eventRender: function(events, element) {
+                        if (events.status == "Reserved") {
+                            element.css('background-color', '#5bc0de');
+                        } else if (events.status == "Checked-In") {
+                            element.css('background-color', '#5cb85c');
+                        } else if (events.status == "Checked-Out") {
+                            element.css('background-color', '#f0ad4e');
+                        } else if (events.status == "Cancelled") {
+                            element.css('background-color', '#d9534f');
+                        }
+                    },
+                    //When Booking Clicked
+                    eventClick: function(events) {
+                        showEventModal(events.id);
+                    }
+
+                });
+
+            });
+
+            //Call Info Modal
+            function showEventModal(bookingno) {
+                $('#booking' + bookingno).modal('show');
+            }
+
+            $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+                var dateToday = new Date();
+                var month = dateToday.getMonth() + 1;
+                var day = dateToday.getDate();
+                var year = dateToday.getFullYear();
+
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+
+                var maxDate = year + '-' + month + '-' + day;
+
+                $('.chck').attr('min', maxDate);
+            });
+        </script>
+        <style>
+            .title {
+                text-transform: uppercase;
+                font-size: 25px;
+                letter-spacing: 2px;
+            }
+
+            .fc-event {
+                cursor: pointer;
+            }
+
+            .myCalendar {
+                cursor: pointer;
+            }
+
+            @media (max-width: 600px) {
+                .str {
+                    position: relative;
+                    right: 110px;
+                }
+            }
+        </style>
     @endsection
 
     @push('js')
