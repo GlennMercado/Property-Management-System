@@ -20,7 +20,7 @@
         <div class="card card-profile shadow p-4 mt-5" style="width: 100%">
             <div class="card-body pb-4">
                 <div class="text-center">
-                    <form method="POST" class="prevent_submit" action="{{ url('/complaints_status') }}"
+                    <form method="POST" class="prevent_submit" action="{{ url('/check_in') }}"
                         enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @foreach ($list as $list)
