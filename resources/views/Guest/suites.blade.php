@@ -27,7 +27,8 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <h2 class="text-success currency">{{ $lists->Rate_per_Night }}</h2>
+                                        <h2 class="text-success currency">
+                                            {{ number_format($lists->Rate_per_Night, 2, '.', ',') }}</h2>
                                         <input type="hidden" id="rpn" value="{{ $lists->Rate_per_Night }}">
                                         <h3 class="font-weight-bold">Hotel room {{ $lists->Room_No }}</h3>
                                         <input type="hidden" name="rn" value="{{ $lists->Room_No }}" id="rn">
@@ -48,9 +49,9 @@
                                                     class="bi bi-car-front-fill"></i>
                                                 Parking</span>
                                         </h3>
-                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">The standard
-                                            check-in / out time is after 1400 hours (02:00 pm) and the check-out time is
-                                            12:00 noon.</h3>
+                                        <h3 class="text-center" style="border: 2px dashed rgb(80, 167, 80)">Note: The
+                                            standard check-in is 2:00 pm and the standard check-out time
+                                            is 12:00 pm.</h3>
                                         <h2 class="text-white bg-red text-center">Strictly no cancellations.</h2>
                                         <h3 class="pt-2 text-muted pb-2">
                                             Additional ₱ 1,500/pax <i class="bi bi-person-plus-fill"></i>
@@ -86,7 +87,8 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <h3 class="text-success font-weight-bold mt--3 currency">
-                                                        {{ $lists->Rate_per_Night }}</h3>
+                                                        {{ number_format($lists->Rate_per_Night, 2, '.', ',') }}
+                                                    </h3>
                                                     <h4 class="font-weight-bold">Room {{ $lists->Room_No }}</h4>
                                                     <p class="text-sm text-dark">{{ $lists->No_of_Beds }}Bed</p>
                                                 </div>
@@ -328,8 +330,7 @@
                                                 proof of payment is validated.
                                             </p>
                                             <p class="justify-center">
-                                                9. Cancellation Confirmation Letter stating the reference number shall be
-                                                issued to guests, for canceled reservations.
+                                                9. NO CANCELLATION AND NON REFUNDABLE.
                                             </p>
                                             <p class="justify-center">
                                                 10. In the event the guest did not show up on the scheduled arrival date,
@@ -452,7 +453,7 @@
                                                             <img id="output" class="img-fluid" />
                                                         </div>
                                                         <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                            <input type="file" onchange="enable_submit(event)"
+                                                            <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)"
                                                                 id="gcash_img" placeholder="Ex: John Doe" name="images"
                                                                 class="form-control">
                                                         </div>

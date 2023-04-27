@@ -45,13 +45,13 @@
                                     pax
                                 </h4>
                                 <h1 class="text-green card-footer" id="money">
-                                    PHP {{ $list->Rate_per_Night }}
+                                    PHP {{ number_format($list->Rate_per_Night, 2, '.', ',') }}
                                 </h1>
                             </div>
                         </div>
                         <div class="col-md-12 pt-4">
                             <h4>Note: The standard check-in is 2:00 pm and the standard check-out time
-                                is 12:00 pm.</h4>
+                                is 12:00 pm. full payment is required for a successful reservation.</h4>
                         </div>
                         <div class = "d-flex justify-content-center">
                         <button type="button" class="btn btn-success" data-toggle="modal">

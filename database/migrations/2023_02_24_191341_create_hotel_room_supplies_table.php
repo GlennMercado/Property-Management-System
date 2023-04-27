@@ -38,7 +38,7 @@ return new class extends Migration
             $table->integer('Quantity_Requested')->default(0);
 
             $table->string('Attendant')->default('Unassigned');
-            $table->string('Status')->default('Received');
+            $table->string('Status')->nullable();
             $table->text('Remarks')->nullable();
 
             $table->datetime('Date_Requested')->nullable();
