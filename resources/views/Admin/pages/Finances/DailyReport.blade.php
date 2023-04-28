@@ -266,7 +266,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list3as $lists3)
+                                            @foreach ($list3 as $lists3)
                                                 <tr>
                                                     {{-- Invoice --}}
                                                     <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
