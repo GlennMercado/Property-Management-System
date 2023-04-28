@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl">
                 <div class="card shadow">
-                    <div class="card-header border-0"> 
+                    <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
@@ -45,7 +45,7 @@
                         <button type="button" class="btn btn-outline-primary mt-4" data-toggle="modal"
                             data-target="#AddEvent" style="float:right">
                             Add Event
-                        </button>      
+                        </button>
                         <br>
                     </div>
                     <div class="card-body">
@@ -69,85 +69,95 @@
                                                 <th scope="col" style="font-size:16px;">Booking Status</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($list as $lists)
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
-                                                        class="btn btn-sm btn-success" style="cursor:pointer;"
-                                                        data-toggle="tooltip" data-placement="top" title="View">
-                                                        <i class="bi bi-eye"></i>
-                                                    </a>
-                                                    <button data-toggle="modal"
-                                                    data-target="#Modalstatus{{ $lists->id }}"
-                                                        class="btn btn-sm btn-primary" style="cursor:pointer;"
-                                                        data-toggle="tooltip" data-placement="top" title="Status">
-                                                        <i class="bi bi-pencil"></i>
-</button>
-                                                </td>
-                                                <td><span class="font-weight-bold">Created At: </span> {{ $lists->created_at }}</td>
-                                                <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>
-                                                <td><span class="font-weight-bold">Event Type:</span> {{ $lists->event_type }}</td>
-                                                <td><span class="font-weight-bold">Contact Person: </span>{{ $lists->contact_person }}</td>
-                                                <td><span class="font-weight-bold">Contact Number: </span> {{ $lists->contact_person_no }}</td>
-                                                <td><span class="font-weight-bold">Event Date: </span>
-                                                    {{ $lists->event_date }}
-                                                    <br>
-                                                    <span class="font-weight-bold">No. of Guest:
-                                                    </span>{{ $lists->no_of_guest }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists->caterer }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Audio/Visual: </span>
-                                                    {{ $lists->audio_visual }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Events and Concep Styling: </span>
-                                                    {{ $lists->concept }}
-                                                </td>
-                                                <td>Status: {{ $lists->inquiry_status }}</td>
-        
-                                            </tr>
-                                        </tbody>
-                                        <div class="modal fade text-left" id="Modalstatus{{ $lists->id }}"
-                                            tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h2 class="modal-title">{{ __('Add Details') }}</h2>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
+                                            <tbody>
+                                                @foreach ($list as $lists)
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ url('/event_view', ['id' => $lists->id]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
+                                                            style="cursor:pointer;" data-toggle="tooltip"
+                                                            data-placement="top" title="View">
+                                                            <i class="bi bi-eye"></i>
+                                                        </a>
+                                                        <button data-toggle="modal"
+                                                            data-target="#Modalstatus{{ $lists->id }}"
+                                                            class="btn btn-sm btn-primary" style="cursor:pointer;"
+                                                            data-toggle="tooltip" data-placement="top" title="Status">
+                                                            <i class="bi bi-pencil"></i>
                                                         </button>
-                                                    </div>
-                                                    <form method="POST" action="{{ url('/event_approval') }}"
-                                                        enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                                        <div class="container">
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                <div class="col-md-12">
-                                                                <input class="form-control" type="text" name="id"
-                                                    value="{{ $lists->id }}" hidden>
-                                                                        <p>Inquiry Status</p>
-                                                                            <select name="event_status" class="form-control" required>
-                                                                                <option selected disabled value="">Select</option>
-                                                                                <option value="Approved">Approved</option>
-                                                                                <option value="Declined">Declined</option>
-                                                                            </select>
-                                                                </div>
+                                                    </td>
+                                                    <td><span class="font-weight-bold">Created At: </span>
+                                                        {{ $lists->created_at }}</td>
+                                                    <td><span class="font-weight-bold">Event Name: </span>
+                                                        {{ $lists->event_name }}</td>
+                                                    <td><span class="font-weight-bold">Event Type:</span>
+                                                        {{ $lists->event_type }}</td>
+                                                    <td><span class="font-weight-bold">Contact Person:
+                                                        </span>{{ $lists->contact_person }}</td>
+                                                    <td><span class="font-weight-bold">Contact Number: </span>
+                                                        {{ $lists->contact_person_no }}</td>
+                                                    <td><span class="font-weight-bold">Event Date: </span>
+                                                        {{ $lists->event_date }}
+                                                        <br>
+                                                        <span class="font-weight-bold">No. of Guest:
+                                                        </span>{{ $lists->no_of_guest }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Caterer: </span>
+                                                        {{ $lists->caterer }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Audio/Visual: </span>
+                                                        {{ $lists->audio_visual }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Events and Concep Styling: </span>
+                                                        {{ $lists->concept }}
+                                                    </td>
+                                                    <td>Status: {{ $lists->inquiry_status }}</td>
+                                                </tr>
+                                                <div class="modal fade text-left" id="Modalstatus{{ $lists->id }}"
+                                                    tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-md" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title">{{ __('Add Details') }}</h2>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <div class="modal-footer pt-4">
-                                                                <button class="btn btn-outline-danger"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <input type="submit" name="update" value="Add"
-                                                                    class="btn btn-success" />
-                                                            </div>
+                                                            <form method="POST" action="{{ url('/event_approval') }}"
+                                                                enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                <div class="container">
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input class="form-control" type="text"
+                                                                                    name="id"
+                                                                                    value="{{ $lists->id }}" hidden>
+                                                                                <p>Inquiry Status</p>
+                                                                                <select name="event_status"
+                                                                                    class="form-control" required>
+                                                                                    <option selected disabled value="">
+                                                                                        Select</option>
+                                                                                    <option value="Approved">Approved</option>
+                                                                                    <option value="Declined">Declined</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer pt-4">
+                                                                            <button class="btn btn-outline-danger"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <input type="submit" name="update"
+                                                                                value="Add" class="btn btn-success" />
+                                                                        </div>
+                                                                    </div>
+                                                            </form>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
+                                            @endforeach
+                                            </tbody>
+                                           
                                     </table>
                                 </div>
 
@@ -157,7 +167,7 @@
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
-                                        <tr>
+                                            <tr>
                                                 <th scope="col" style="font-size:16px;">Action</th>
                                                 <th scope="col" style="font-size:16px;">Event Name</th>
                                                 <th scope="col" style="font-size:16px;">Event Type</th>
@@ -168,39 +178,45 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             @foreach ($list2 as $lists2)
-                                            <tr>
-                                            <td>
-                                                    <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
-                                                        class="btn btn-sm btn-success" style="cursor:pointer;"
-                                                        data-toggle="tooltip" data-placement="top" title="View">
-                                                        <i class="bi bi-eye"></i>
-                                                    </a>
-                                                    
-                                                </td>
-                                                <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>
-                                                <td><span class="font-weight-bold">Event Type:</span> {{ $lists->event_type }}</td>
-                                                <td><span class="font-weight-bold">Contact Person: </span>{{ $lists->contact_person }}</td>
-                                                <td><span class="font-weight-bold">Contact Number: </span> {{ $lists->contact_person_no }}</td>
-                                                <td><span class="font-weight-bold">Event Date: </span>
-                                                    {{ $lists2->event_date }}
-                                                    <br>
-                                                    <span class="font-weight-bold">No. of Guest:
-                                                    </span>{{ $lists2->no_of_guest }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists2->caterer }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Audio/Visual: </span>
-                                                    {{ $lists2->audio_visual }}
-                                                    <br>
-                                                    <span class="font-weight-bold">Events and Concep Styling: </span>
-                                                    {{ $lists2->concept }}
-                                                </td>
-                                                <td>Status: {{ $lists2->inquiry_status }}</td>
-        
-                                            </tr>
-                                    @endforeach
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ url('/event_view', ['id' => $lists2->id]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
+                                                            style="cursor:pointer;" data-toggle="tooltip"
+                                                            data-placement="top" title="View">
+                                                            <i class="bi bi-eye"></i>
+                                                        </a>
+
+                                                    </td>
+                                                    <td><span class="font-weight-bold">Event Name: </span>
+                                                        {{ $lists2->event_name }}</td>
+                                                    <td><span class="font-weight-bold">Event Type:</span>
+                                                        {{ $lists2->event_type }}</td>
+                                                    <td><span class="font-weight-bold">Contact Person:
+                                                        </span>{{ $lists2->contact_person }}</td>
+                                                    <td><span class="font-weight-bold">Contact Number: </span>
+                                                        {{ $lists2->contact_person_no }}</td>
+                                                    <td><span class="font-weight-bold">Event Date: </span>
+                                                        {{ $lists2->event_date }}
+                                                        <br>
+                                                        <span class="font-weight-bold">No. of Guest:
+                                                        </span>{{ $lists2->no_of_guest }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Caterer: </span>
+                                                        {{ $lists2->caterer }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Audio/Visual: </span>
+                                                        {{ $lists2->audio_visual }}
+                                                        <br>
+                                                        <span class="font-weight-bold">Events and Concep Styling: </span>
+                                                        {{ $lists2->concept }}
+                                                    </td>
+                                                    <td>Status: {{ $lists2->inquiry_status }}</td>
+
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -212,66 +228,66 @@
         </div>
         <br>
         <div class="modal fade" id="AddEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Hotel Stock</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Event Name</p>
-                            <input type="text" class = "form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Event Type</p>
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Create Hotel Stock</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Event Name</p>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Event Type</p>
                                 <select name="no_of_beds" class="form-control" required>
                                     <option selected disabled value="">Select</option>
                                     <option value="">Event 1</option>
                                     <option value="">Event 2</option>
                                     <option value="">Event 3</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Facility</p>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Contact Person</p>
+                                <input type="number" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Contact Person</p>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Contact Date</p>
+                                <input type="number" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <p>Event Time</p>
+                                <input type="number" class="form-control" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Facility</p>
-                            <input type="text" class = "form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Contact Person</p>
-                            <input type="number" class = "form-control" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Contact Person</p>
-                            <input type="number" class = "form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Contact Date</p>
-                            <input type="number" class = "form-control" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <p>Event Time</p>
-                            <input type="number" class = "form-control" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
+                    <div class="modal-footer">
                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                         <!-- <a class="btn btn-secondary" data-dismiss="modal">Close</a> -->
                         <input type="submit" class="btn btn-success prevent_submit" value="Submit" />
                     </div>
+                </div>
             </div>
         </div>
-    </div>
         <script>
             $('.prevent_submit').on('submit', function() {
                 $('.prevent_submit').attr('disabled', 'true');
