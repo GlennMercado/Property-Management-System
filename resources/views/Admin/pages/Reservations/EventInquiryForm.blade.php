@@ -79,12 +79,14 @@
                                                             data-placement="top" title="View">
                                                             <i class="bi bi-eye"></i>
                                                         </a>
+                                                        @if($lists->inquiry_status != "Approved")
                                                         <button data-toggle="modal"
                                                             data-target="#Modalstatus{{ $lists->id }}"
                                                             class="btn btn-sm btn-primary" style="cursor:pointer;"
                                                             data-toggle="tooltip" data-placement="top" title="Status">
                                                             <i class="bi bi-pencil"></i>
                                                         </button>
+                                                        @endif
                                                     </td>
                                                     <td><span class="font-weight-bold">Created At: </span>
                                                         {{ $lists->created_at }}</td>

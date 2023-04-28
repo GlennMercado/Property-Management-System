@@ -86,19 +86,19 @@
                                                 </div>
                                                 @if ($lists->Booking_Status == 'Reserved')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #5bc0de; margin-left:110px;"
+                                                            style="font-weight:normal; color: #5bc0de; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Checked-In')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #5cb85c; margin-left:110px;"
+                                                            style="font-weight:normal; color: #5cb85c; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Checked-Out')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #f0ad4e; margin-left:110px;"
+                                                            style="font-weight:normal; color: #f0ad4e; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Cancelled')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #d9534f; margin-left:110px;"
+                                                            style="font-weight:normal; color: #d9534f; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @endif
                                                 <div class="row">
@@ -448,7 +448,7 @@
 
             <?php
             // Sample data for sales by daily
-            $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
+            $salesData = [$basketball_sum, $unearned_sum, $otherincome_sum, $parking_sum, $managementfee_sum, $event_sum, $hotel_sum, $commercialspace_sum];
             // Convert the data to a JSON-encoded string
             $dataString = json_encode($salesData);
             ?>
@@ -461,13 +461,14 @@
                 type: 'bar',
                 data: {
                     labels: ['Basketball', 'Unearned Income', 'Other Income(Stall, Venue, Other Charges)',
-                         'Management Fee', 'Function Room/Convention Center/Event',
+                        'Parking Rent/Parking Ticket', 'Management Fee', 'Function Room/Convention Center/Event',
                         'Hotel', 'Commercial Space'
                     ],
                     datasets: [{
                         label: 'Total Payments',
                         data: data,
                         backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
@@ -483,7 +484,8 @@
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
                             'rgba(255, 159, 64, 1)',
-                            'rgba(255, 99, 132, 1)'
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
                         ],
                         borderWidth: 1
                     }]

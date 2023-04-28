@@ -13,17 +13,17 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img src="{{ asset('nvdcpics') }}/nv6.jpg" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/nv6.png" class="img-fluid">
                 <div class="caption d-none d-lg-block">
                     <h1>COMMERCIAL SPACES</h1>
                     <h2>is the first coop-owned convention center in the Philippines. It is being managed by NVDC
                         Properties.</h2>
-                    <a class="big-button" href="#appli" title="">Inquire Now</a>
+                    <a class="btn btn-success   " href="#appli" title="">Inquire Now</a>
                     <div class="clear"></div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/nv8.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/nv8.png" class="img-fluid" alt="">
             </div>
 
         </div>
@@ -47,7 +47,7 @@
             </p>
         </div>
         <div class="col-md-7" style="margin: 0; padding: 0">
-            <img src="{{ asset('nvdcpics') }}/nv9.jpg" class="img-fluid">
+            <img src="{{ asset('nvdcpics') }}/nv9.png" class="img-fluid">
         </div>
     </div>
     <h1 class=" d-flex justify-content-center pt-8" id="section1">Commercial Space</h1>
@@ -148,7 +148,7 @@
                     <br>
                     <p>Tax Identification No. <span class="text-danger">*</span> </p>
                     <input type="number" name="tax_identification_no" class="form-control"
-                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==9) return false;"
+                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==14) return false;"
                         required>
                     <br>
                     <p>Upload TIN Image <span class="text-danger">*</span> </p>
