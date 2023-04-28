@@ -19,7 +19,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="carousel-item active">
-                <img src="{{ asset('nvdcpics') }}/nv4.jpg" class="img-fluid">
+                <img src="{{ asset('nvdcpics') }}/nv4.png" class="img-fluid">
                 <div class="caption d-none d-lg-block">
                     <h1>The NOVADECI CONVENTION CENTER</h1>
                     <h2>is the first coop-owned convention center in the Philippines. It is being managed by NVDC
@@ -29,14 +29,14 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/nv3.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/nv3.png" class="img-fluid" alt="">
             </div>
 
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/nv2.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/nv2.png" class="img-fluid" alt="">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('nvdcpics') }}/nv1.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('nvdcpics') }}/nv1.png" class="img-fluid" alt="">
             </div>
 
         </div>
