@@ -60,6 +60,7 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:16px;">Action</th>
+                                                <th scope="col" style="font-size:16px;">Created At</th>
                                                 <th scope="col" style="font-size:16px;">Event Name</th>
                                                 <th scope="col" style="font-size:16px;">Event Type</th>
                                                 <th scope="col" style="font-size:16px;">Contact Person</th>
@@ -77,13 +78,14 @@
                                                         data-toggle="tooltip" data-placement="top" title="View">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <a data-toggle="modal"
+                                                    <button data-toggle="modal"
                                                     data-target="#Modalstatus{{ $lists->id }}"
-                                                        class="btn btn-sm btn-success" style="cursor:pointer;"
+                                                        class="btn btn-sm btn-primary" style="cursor:pointer;"
                                                         data-toggle="tooltip" data-placement="top" title="Status">
                                                         <i class="bi bi-pencil"></i>
-                                                    </a>
+</button>
                                                 </td>
+                                                <td><span class="font-weight-bold">Created At: </span> {{ $lists->created_at }}</td>
                                                 <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>
                                                 <td><span class="font-weight-bold">Event Type:</span> {{ $lists->event_type }}</td>
                                                 <td><span class="font-weight-bold">Contact Person: </span>{{ $lists->contact_person }}</td>
