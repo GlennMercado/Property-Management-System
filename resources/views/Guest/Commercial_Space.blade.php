@@ -194,7 +194,7 @@
                                                 <p>Tax Identification No. <span class="text-danger">*</span> </p>
                                                 <input type="number" name="tax_identification_no" class="form-control"
                                                     placeholder="Enter Tax Identification No."
-                                                    onkeypress="if(this.value.length==12) return false;" required=""
+                                                    onkeypress="if(this.value.length==14) return false;" required=""
                                                     value="{{ $comm->tax_identification_no }}" readonly>
                                                 <br>
                                                 <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
