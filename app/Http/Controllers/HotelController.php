@@ -435,8 +435,7 @@ class HotelController extends Controller
                     return redirect('HotelReservationForm')->with('Success', 'Data Updated');
                 }
             }
-    }
-    
+    }  
     public function front_desk_getdata($id)
     {
         $data = novadeci_suites::where('Room_No', $id)->first();

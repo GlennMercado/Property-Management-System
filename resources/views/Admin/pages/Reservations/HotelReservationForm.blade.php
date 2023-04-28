@@ -544,7 +544,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list as $index => $lists)
                                         @if ($lists->Booking_Status == 'Checked-In' || $lists->Booking_Status == 'Checking(Before Check-Out)' || $lists->Booking_Status == 'Room Checked' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                             <tr>
                                                 <td>
@@ -780,7 +780,7 @@
                                                                 <p class="text-left">Type of Request </p>
 
                                                                 <select name="type_of_request" class="form-control"
-                                                                    id="category">
+                                                                    id="category" data-list-index="{{$index}}">
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">Select</option>
                                                                     <option value="Service Request">Service Request
@@ -789,9 +789,9 @@
                                                                     </option>
                                                                 </select>
 
-                                                                <div id="r_items" style="display:none;">
+                                                                <div id="r_items_{{$index}}" style="display:none;">
                                                                     <p class="text-left">Item Request </p>  
-                                                                    <select name="item_request" class="form-control">
+                                                                    <select name="item_request" id="item" class="form-control">
                                                                         <option value="" selected="true"
                                                                             disabled="disabled">Select</option>
                                                                         @foreach ($supply as $supplies)
@@ -800,11 +800,11 @@
                                                                         @endforeach
                                                                     </select>
                                                                     <p class="text-left">Quantity </p>  
-                                                                    <input type="number" name="qty"
+                                                                    <input type="number" name="qty" id="qt"
                                                                         class="form-control">
                                                                 </div>
 
-                                                                <div id="r_services" style="display:none;">
+                                                                <div id="r_services_{{$index}}" style="display:none;">
                                                                     <p class="text-left">Service Request </p>
                                                                     <input type="text" name="service_request"
                                                                         id="req2" class="form-control">
@@ -1060,26 +1060,30 @@
 
                 $('.chck').attr('min', maxDate);
             });
+
             $(document).ready(function() {
-                $("#category").change(function() {
+                $('select[name="type_of_request"]').change(function() {
                     var selecteds = $("option:selected", this).val();
+                    var listIndex = $(this).data('list-index');
 
                     if (selecteds == "Service Request") {
-                        $('#r_services').css({
+                        $('#r_services_'+listIndex).css({
                             'display': 'block'
                         });
-                        $('#r_items').css({
+                        $('#r_items_'+listIndex).css({
                             'display': 'none'
                         });
+                        $('#item').val('').prop('selected', true);
+                        $('#qt').val('');
                     } else if (selecteds == "Item Request") {
-                        $('#r_services').css({
+                        $('#r_services_'+listIndex).css({
                             'display': 'none'
                         });
-                        $('#r_items').css({
+                        $('#r_items_'+listIndex).css({
                             'display': 'block'
                         });
+                        $('#req2').val('');
                     }
-
                 });
             });
 
