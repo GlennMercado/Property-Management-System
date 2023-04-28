@@ -86,19 +86,19 @@
                                                 </div>
                                                 @if ($lists->Booking_Status == 'Reserved')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #5bc0de; margin-left:110px;"
+                                                            style="font-weight:normal; color: #5bc0de; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Checked-In')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #5cb85c; margin-left:110px;"
+                                                            style="font-weight:normal; color: #5cb85c; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Checked-Out')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #f0ad4e; margin-left:110px;"
+                                                            style="font-weight:normal; color: #f0ad4e; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @elseif($lists->Booking_Status == 'Cancelled')
                                                     <h3 class="text-left">Booking Status: <span
-                                                            style="font-weight:normal; color: #d9534f; margin-left:110px;"
+                                                            style="font-weight:normal; color: #d9534f; margin-left:230px;"
                                                             class="str">{{ $lists->Booking_Status }}</span> </h3>
                                                 @endif
                                                 <div class="row">
