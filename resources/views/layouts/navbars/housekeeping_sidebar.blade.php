@@ -45,7 +45,8 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Housekeeping_Dashboard' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Housekeeping_Dashboard') }}">
-                                    <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i> {{ __('Dashboard') }}
+                                    <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Dashboard') }}
                                 </a>
                             </li>
                         </ul>
@@ -76,7 +77,8 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'Maintenance' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('Maintenance') }}">
-                                    <i class="bi bi-wrench-adjustable-circle-fill" style="color:rgb(224, 223, 223)"></i>
+                                    <i class="bi bi-wrench-adjustable-circle-fill"
+                                        style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Maintenance') }}
                                 </a>
                             </li>

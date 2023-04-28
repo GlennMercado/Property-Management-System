@@ -34,7 +34,7 @@
             </div>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <!-- Finance -->
+                <!-- Finance Module -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
@@ -42,14 +42,6 @@
                         <span class="nav-link-text text-light">{{ __('Finances') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples13">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'FinanceDashboard' == request()->path() ? 'act1' : '' }}">
-                                <a class="nav-link text-light" href="{{ route('FinanceDashboard') }}">
-                                    <i class="bi bi-bar-chart-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('Finance Dashboard') }}
-                                </a>
-                            </li>
-                        </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('DailyReport') }}">
@@ -59,7 +51,7 @@
                             </li>
                         </ul>
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item {{ 'Finance' == request()->path() ? 'act1' : '' }}">
+                            <li class="nav-item {{ 'FinanceArchives' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceArchives') }}">
                                     <i class="bi bi-archive-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Finance Archives') }}

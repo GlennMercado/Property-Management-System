@@ -42,6 +42,17 @@
                         <span class="nav-link-text text-light">{{ __('Sales & Marketing') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples2">
+                        {{-- <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('QR-Scanner') }}">
+                                    <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('QR Scan') }}
+                                    <span
+                                        class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
+                                        id="ncount">{{ auth()->user()->notifications->count() }}</span>
+                                </a>
+                            </li>
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'HotelReservationForm' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">

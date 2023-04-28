@@ -55,24 +55,25 @@ class OperationManagementCOntroller extends Controller
 
         $housekeeper = DB::select("SELECT * FROM list_of_housekeepers WHERE Status = 'Available'");
 
-        return view('Admin.pages.OperationManagement.OperationDashboard', 
-                    [
-                    'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
-                    'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
-                    'linen' => $linen_request, 'maintenance' => $maintenance,
-                    'housekeeper' => $housekeeper, 'role' => $user
-                    ]
-                    );
-        // $now = Carbon::now()->format('Y-m-d');
-        // $request_count = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Updated = '$now'");
-        // $checked_guests = DB::table('hotel_reservations')->where('Payment_Status', 'Checked-In')->count(); 
-        // $checked_complaints = DB::table('complaints')->where('id')->count();
+        $now = Carbon::now()->format('Y-m-d');
+        $request_count = DB::select("SELECT count(*) as cnt FROM guest_requests WHERE Date_Updated = '$now'");
+        $checked_guests = DB::table('hotel_reservations')->where('Payment_Status', 'Checked-In')->count(); 
+        $checked_complaints = DB::table('complaints')->where('id')->count();
 
-        // $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
-        // $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
-        // $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
+        $room1 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Accommodation'");
+        $room2 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Occupied'");
+        $room3 = DB::select("SELECT count(*) as cnt FROM novadeci_suites WHERE Status = 'Vacant for Cleaning'");
 
         // return view('Admin.pages.OperationManagement.OperationDashboard', ['request_count'=>$request_count, 'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3], compact('checked_guests', 'checked_complaints'));
+        return view('Admin.pages.OperationManagement.OperationDashboard', 
+        [
+        'list' => $list,'list2' => $list2, 'archived' => $archived,'array' => $array, 'list3' => $list3, 
+        'list4' => $list4, 'list5' => $list5, 'arrival' => $arrival, 'supply' => $supply_request,
+        'linen' => $linen_request, 'maintenance' => $maintenance,
+        'housekeeper' => $housekeeper, 'role' => $user, 'request_count'=>$request_count,
+        'room1'=>$room1, 'room2'=>$room2, 'room3'=>$room3
+        ], compact('checked_guests', 'checked_complaints')
+        );
     }
     public function Reservation()
     {
