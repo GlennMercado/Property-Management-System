@@ -175,7 +175,7 @@
                                 </table>
                             </div>
 
-                            {{-- Daily Report --}}
+                            {{-- OR ARCHIVES --}}
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
@@ -204,8 +204,6 @@
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
                                                 <th scope="col" style="font-size:18px;">UnearnedIncome</th>
                                                 <th scope="col" style="font-size:18px;">OtherIncome</th>
-                                                <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent
-                                                </th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
                                                 <th scope="col" style="font-size:18px;">
                                                     FunctionRoom/ConventionCenter/Events
@@ -231,7 +229,6 @@
                                                     <td style="font-size:16px;">{{ $lists2->basketball }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->unearned }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->otherincome }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->parking }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->managementfee }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->event }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->hotel }}</td>
@@ -255,7 +252,6 @@
                                             <td style="font-size:16px;">{{ $basketball_sum }}</td>
                                             <td style="font-size:16px;">{{ $unearned_sum }}</td>
                                             <td style="font-size:16px;">{{ $otherincome_sum }}</td>
-                                            <td style="font-size:16px;">{{ $parking_sum }}</td>
                                             <td style="font-size:16px;">{{ $managementfee_sum }}</td>
                                             <td style="font-size:16px;">{{ $event_sum }}</td>
                                             <td style="font-size:16px;">{{ $hotel_sum }}</td>

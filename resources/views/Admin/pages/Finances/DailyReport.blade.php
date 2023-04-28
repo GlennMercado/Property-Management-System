@@ -187,8 +187,6 @@
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                 <th scope="col" style="font-size:18px;">Other Income</th>
-                                                <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent
-                                                </th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
                                                 <th scope="col" style="font-size:18px;">
                                                     FunctionRoom/ConventionCenter/Events
@@ -209,7 +207,6 @@
                                                     <td style="font-size:16px;">{{ $lists2->basketball }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->unearned }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->otherincome }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->parking }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->managementfee }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->event }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->hotel }}</td>
@@ -228,7 +225,6 @@
                                             <td style="font-size:16px;">{{ $basketball_sum2 }}</td>
                                             <td style="font-size:16px;">{{ $unearned_sum2 }}</td>
                                             <td style="font-size:16px;">{{ $otherincome_sum2 }}</td>
-                                            <td style="font-size:16px;">{{ $parking_sum2 }}</td>
                                             <td style="font-size:16px;">{{ $managementfee_sum2 }}</td>
                                             <td style="font-size:16px;">{{ $event_sum2 }}</td>
                                             <td style="font-size:16px;">{{ $hotel_sum2 }}</td>
@@ -255,7 +251,6 @@
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                 <th scope="col" style="font-size:18px;">Other Income</th>
-                                                <th scope="col" style="font-size:18px;">Parking</th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
                                                 <th scope="col" style="font-size:18px;">
                                                     FunctionRoom/ConventionCenter/Events</th>
@@ -276,7 +271,6 @@
                                                     <td style = "font-size:16px;">{{ $lists3->basketball }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->otherincome }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->parking }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->managementfee }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->event }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->hotel }}</td>
@@ -294,7 +288,6 @@
                                             <td style="font-size:16px;">{{ $basketball_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $unearned_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $otherincome_sum3 }}</td>
-                                            <td style="font-size:16px;">{{ $parking_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $managementfee_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $event_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $hotel_sum3 }}</td>
@@ -368,7 +361,6 @@
                                                             <option value="Zumba">Zumba</option>
                                                             <option value="Event Registration">Event Registration
                                                             </option>
-                                                            <option value="Parking Rental">Parking Rental</option>
                                                             <option value="Commercial Space">Commercial Space
                                                             </option>
                                                             <option value="Electrical Charge">Electrical Charge
