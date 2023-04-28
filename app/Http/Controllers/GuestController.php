@@ -394,7 +394,8 @@ class GuestController extends Controller
             if($reserve->save())
             {
                 $this->booked();
-                return redirect('/rooms')->with('Success', 'Data Saved');
+                Alert::Success('Success', 'You have book a hotel reservation.');
+                return redirect('/rooms');
             }
             else
             {
@@ -443,7 +444,7 @@ class GuestController extends Controller
             if($submit->save())
             {
                 Alert::Success('Success', 'Inquiry submitted successfully!');
-                return redirect('/convention_center')->with('Success', 'Data Saved');
+                return redirect('/convention_center');
             }
             else
             {
@@ -476,7 +477,7 @@ class GuestController extends Controller
         if($check)
         {
             Alert::Error('Failed', 'You still have Application being Processed!');
-            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+            return redirect('Commercial_Space');
         }
         $spouse;
         $business;
@@ -568,12 +569,12 @@ class GuestController extends Controller
         if($submit->save())
         {
             Alert::Success('Success', 'Application Successfully Submitted!');
-            return redirect('Commercial_Space')->with('Success', 'Data Saved');
+            return redirect('Commercial_Space');
         }
         else
         {
             Alert::Error('Failed', 'Application Failed');
-            return redirect('commercial_spaces')->with('Error', 'Failed!');
+            return redirect('commercial_spaces');
         }
     }
     public function edit_commercial_spaces_application(Request $request)

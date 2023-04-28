@@ -39,11 +39,11 @@
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
                                             aria-controls="tabs-icons-text-1" aria-selected="true">Guest Requests</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                             href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
                                             aria-selected="false"> Complaints </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                             href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
@@ -87,7 +87,7 @@
                                 </div>
 
                                 {{-- Complaints --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                {{-- <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <select class="form-control" style="width:20%;" id="date2">
                                         <option value="All">All Records</option>
@@ -108,7 +108,7 @@
 
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> --}}
 
                                 {{-- Maintenance --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
