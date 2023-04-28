@@ -139,20 +139,20 @@
                                                     <i class="bi bi-eye"></i>
                                                 </button>
                                                 <!--Edit Button-->
-                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                <button class="btn btn-sm btn-success" data-toggle="modal"
                                                     data-target="#edit{{ $lists->Room_No }}" title = "Edit Room"> <i
                                                         class="bi bi-pencil-square"></i> </button>
                                                 @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Vacant for Cleaning")
                                                     <!--Update Button-->
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update{{ $lists->Room_No }}" title = "Update Room">
-                                                        <i class="bi bi-arrow-repeat"></i>
+                                                        <i class="bi bi bi-arrow-clockwise"></i>
                                                     </button>
                                                 @elseif($lists->Status == "Disabled")
                                                     <!--Update Button-->
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update2{{ $lists->Room_No }}" title = "Update Room">
-                                                        <i class="bi bi-arrow-repeat"></i>
+                                                        <i class="bi bi bi-arrow-clockwise"></i>
                                                     </button>
                                                 @endif
                                             </td>
