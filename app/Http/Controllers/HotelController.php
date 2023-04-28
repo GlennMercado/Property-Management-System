@@ -151,6 +151,7 @@ class HotelController extends Controller
         }      
     }
     // 
+
     public function update_payment($id, $no, $check)
     {
         $bookno = $id;
@@ -180,10 +181,7 @@ class HotelController extends Controller
             $particular = "Hotel";
             $debit = "Cash";
             $remark = "FULL";
-            // $finance_payee = DB::table('hotel_reservations')->where('Booking_No', $bookno)->value('gcash_account_name');
             $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
-            // $finance_eventdate = DB::select('SELECT "Check_In_Date" FROM hotel_reservations');
-            // $finance_eventdate = DB::table('hotel_reservations')->select('Check_In_Date')->first()->Check_In_Date;
 
             $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
 
@@ -201,6 +199,17 @@ class HotelController extends Controller
             $vat = $outvat * $cash;
 
             $this->success();
+            $user = DB::select("SELECT Guest_Name FROM hotel_reservations WHERE Room_No = '$roomno'");
+            // auth()->user()->notify(new Booked($user));
+            $mail = Auth::user()->email;
+            $name = Auth::user()->name;
+            $data=['name'=>$name, 'data'=>"Hello world"];
+            $user['to']=$mail;
+            Mail::send('Guest.Reserve',$data,function($messages) use ($user){
+                $messages->to($user['to']);
+                $messages->subject('Hello');
+            });    
+
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
             if($stats3 != "Checked-In")

@@ -109,7 +109,7 @@ class RegisterController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
-            'profile_pic' => 'nvdcpics\User2.png',
+            'profile_pic' => 'nvdcpics/User2.png',
             'email_verification_token' => $token
         ]);
 

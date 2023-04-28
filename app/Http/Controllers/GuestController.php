@@ -72,7 +72,8 @@ class GuestController extends Controller
     }
     public function guest_profile()
     {
-        $list = DB::select('SELECT * FROM complaints ORDER BY created_at DESC');  
+        $email = Auth()->user()->email;
+        $list = DB::select("SELECT * FROM complaints WHERE email = '$email' ORDER BY created_at DESC");  
         return view('Guest.guestedit', ['list'=>$list]);
     }
     public function guest_event()
@@ -303,6 +304,7 @@ class GuestController extends Controller
         
         $submit = new complaints;
         $submit->status = 'On-going';
+        $submit->email = Auth::user()->email;
         $submit->name = Auth::user()->name;
         $submit->profile_pic = Auth::user()->profile_pic;
         $submit->concern = $request->input('concern');

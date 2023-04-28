@@ -32,7 +32,29 @@
 
                     <!-- Count Box -->
                     <div class="row mt-3" style="align-items:center;justify-content:center">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-xl-4">
+                            <div class="card bg-c-blue order-card">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 text-white">Reserved</h4>
+                                    <h2 class="text-right text-white">
+                                        <i class="bi bi-book-fill f-left"></i>
+                                        {{-- <span>{{ $reserved_guests }}</span> --}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xl-4">
+                            <div class="card bg-c-green order-card">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 text-white">Checked in</h4>
+                                    <h2 class="text-right text-white">
+                                        <i class="bi bi-bookmark-check-fill f-left"></i>
+                                        {{-- <span>{{ $checked_guests }}</span> --}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body rounded" style="background-color:#2AD587;">
                                     <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -55,7 +77,7 @@
                                     </h1>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <br>
                     <div class="row align-items-center">
@@ -117,14 +139,14 @@
                                     <tbody>
                                         @foreach ($list4 as $lists4)
                                             <tr>
-                                                <td style = "font-size:16px;">{{ $lists4->ornum }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->created_at }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->payee }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->particular }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->eventdate }}</td>
-                                                <td style = "font-size:16px;">₱ {{ $lists4->amount }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->remark }}</td>
-                                                <td style = "font-size:16px;">{{ $lists4->debit }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->ornum }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->created_at }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->payee }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->particular }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->eventdate }}</td>
+                                                <td style="font-size:16px;">₱ {{ $lists4->amount }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->remark }}</td>
+                                                <td style="font-size:16px;">{{ $lists4->debit }}</td>
                                             </tr>
                                         @endforeach
                                     <tfoot>
@@ -132,8 +154,8 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style = "font-size:16px;">Total:</td>
-                                        <td style = "font-size:16px;">{{ $amount_sum }}</td>
+                                        <td style="font-size:16px;">Total:</td>
+                                        <td style="font-size:16px;">{{ $amount_sum }}</td>
                                         <td></td>
                                         <td></td>
                                     </tfoot>
@@ -159,14 +181,17 @@
                                                 <th scope="col" style="font-size:18px;">Payee</th>
                                                 <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
-                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
+                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank
+                                                </th>
                                                 <th scope="col" style="font-size:18px;">Cheque</th>
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                 <th scope="col" style="font-size:18px;">Other Income</th>
-                                                <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent</th>
+                                                <th scope="col" style="font-size:18px;">Parking Ticket/Parking Rent
+                                                </th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
-                                                <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events
+                                                <th scope="col" style="font-size:18px;">
+                                                    FunctionRoom/ConventionCenter/Events
                                                 <th scope="col" style="font-size:18px;">Hotel</th>
                                                 <th scope="col" style="font-size:18px;">Commercial Spaces</th>
                                                 <th scope="col" style="font-size:18px;">Output VAT</th>
@@ -175,40 +200,40 @@
                                         <tbody>
                                             @foreach ($list2 as $lists2)
                                                 <tr>
-                                                    <td style = "font-size:16px;">{{ $lists2->ornum }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->payee }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->cash }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->bank }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->cheque }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->basketball }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->unearned }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->otherincome }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->parking }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->managementfee }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->event }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->hotel }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->commercialspace }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists2->outputvat }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->ornum }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->payee }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->cash }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->unearned }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->bank }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->cheque }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->basketball }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->unearned }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->otherincome }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->parking }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->managementfee }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->event }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->hotel }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->commercialspace }}</td>
+                                                    <td style="font-size:16px;">{{ $lists2->outputvat }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <td></td>
-                                            <td style = "font-size:16px;">Total: </td>
-                                            <td style = "font-size:16px;">{{ $cash_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $unearned_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $bank_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $cheque_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $basketball_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $unearned_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $otherincome_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $parking_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $managementfee_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $event_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $hotel_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $commercialspace_sum2 }}</td>
-                                            <td style = "font-size:16px;">{{ $output_sum2 }}</td>
+                                            <td style="font-size:16px;">Total: </td>
+                                            <td style="font-size:16px;">{{ $cash_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $unearned_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $bank_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $cheque_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $basketball_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $unearned_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $otherincome_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $parking_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $managementfee_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $event_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $hotel_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $commercialspace_sum2 }}</td>
+                                            <td style="font-size:16px;">{{ $output_sum2 }}</td>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -225,21 +250,23 @@
                                                 <th scope="col" style="font-size:18px;">Payee</th>
                                                 <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
-                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank</th>
+                                                <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank
+                                                </th>
                                                 <th scope="col" style="font-size:18px;">Cheque</th>
                                                 <th scope="col" style="font-size:18px;">Basketball</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                 <th scope="col" style="font-size:18px;">Other Income</th>
                                                 <th scope="col" style="font-size:18px;">Parking</th>
                                                 <th scope="col" style="font-size:18px;">ManagementFee</th>
-                                                <th scope="col" style="font-size:18px;">FunctionRoom/ConventionCenter/Events</th>
+                                                <th scope="col" style="font-size:18px;">
+                                                    FunctionRoom/ConventionCenter/Events</th>
                                                 <th scope="col" style="font-size:18px;">Hotel</th>
                                                 <th scope="col" style="font-size:18px;">CommercialSpace</th>
                                                 <th scope="col" style="font-size:18px;">OutputVAT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list3 as $lists3)
+                                            @foreach ($list3as $lists3)
                                                 <tr>
                                                     {{-- Invoice --}}
                                                     <td style = "font-size:16px;"><a href="{{ url('/finance_invoice', ['userid' => $lists3->userid]) }}"
@@ -266,20 +293,20 @@
                                         </tbody>
                                         <tfoot>
                                             <td></td>
-                                            <td style = "font-size:16px;">Total: </td>
-                                            <td style = "font-size:16px;">{{ $cash_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $unearned_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $bank_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $cheque_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $basketball_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $unearned_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $otherincome_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $parking_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $managementfee_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $event_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $hotel_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $commercialspace_sum3 }}</td>
-                                            <td style = "font-size:16px;">{{ $output_sum3 }}</td>
+                                            <td style="font-size:16px;">Total: </td>
+                                            <td style="font-size:16px;">{{ $cash_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $unearned_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $bank_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $cheque_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $basketball_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $unearned_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $otherincome_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $parking_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $managementfee_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $event_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $hotel_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $commercialspace_sum3 }}</td>
+                                            <td style="font-size:16px;">{{ $output_sum3 }}</td>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -447,6 +474,10 @@
             text-transform: uppercase;
             font-size: 20px;
             letter-spacing: 2px;
+        }
+
+        .nav-link:hover {
+            color: white;
         }
     </style>
 

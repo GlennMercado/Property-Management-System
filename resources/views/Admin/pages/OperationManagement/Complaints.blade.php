@@ -18,18 +18,14 @@
         </div>
     </div>
     <div class="container-fluid">
-        <select id="op1" class="form-control">
-            <option value="On-going">On-going</option>
-            <option value="Resolved">Resolved</option>
-        </select>
-        @forelse ($list as $list)
+        @foreach ($list as $list)
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="card shadow">
                         @if ($list->status == 'On-going')
                             <div class="card-body" id="card1">
                                 <div class="row container-fluid">
-                                    <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
+                                    <img src="{{ url($list->profile_pic) }}" class="rounded-circle" style="width: 40px; height: 40px">
                                     <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
                                     <button class="btn btn-sm bg-green text-white ml-auto" data-toggle="modal"
                                         data-target="#view{{ $list->id }}">Action <i class="bi bi-pencil-square"></i>
@@ -57,11 +53,10 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
-                        @if ($list->status == 'Resolved')
+                        @else
                             <div class="card-body" id="card2" hidden>
                                 <div class="row container-fluid">
-                                    <img src="{{ url($list->profile_pic) }}" style="width: 40px; height: 40px">
+                                    <img src="{{ url($list->profile_pic) }}" class="rounded-circle" style="width: 40px; height: 40px">
                                     <p class="pl-2 pt-1 font-weight-bold">{{ $list->name }}</p>
                                     <button class="btn btn-sm bg-green text-white ml-auto" data-toggle="modal"
                                         data-target="#view{{ $list->id }}">Action <i class="bi bi-pencil-square"></i>
@@ -146,10 +141,11 @@
                     </div>
                 </div>
             </div>
-        @empty
-            <p class="text-center display-5">No complaints yet</p>
+        @endforeach
+        @if (!$list)
             <img src="{{ asset('nvdcpics') }}/complaints.svg" class="img-fluid" style="width: 100%; height: 200px">
-        @endforelse
+            <p class="text-center display-5">No complaints yet</p>
+        @endif
     </div>
     <style>
         .gal:hover {

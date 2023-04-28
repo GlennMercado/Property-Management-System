@@ -13,7 +13,7 @@
                     <img class="img-fluid" src="{{ asset('nvdcpics') }}/nvdcpic1.png" title="Convention Center">
                 </a>
             </div>
-            @forelse ($room as $list)
+            @foreach ($room as $list)
                 <div class="card p-4 col-md-7 m-3 card1 rounded">
                     <a href="{{ url('/suites', ['id' => $list->Room_No]) }}">
                         <div class="row">
@@ -53,17 +53,18 @@
                             <h4>Note: The standard check-in is 2:00 pm and the standard check-out time
                                 is 12:00 pm. full payment is required for a successful reservation.</h4>
                         </div>
-                        <div class = "d-flex justify-content-center">
-                        <button type="button" class="btn btn-success" data-toggle="modal">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success" data-toggle="modal">
                                 Book Now
                             </button>
                         </div>
                     </a>
                 </div>
-            @empty
+            @endforeach
+            @if (!$room)
                 <img src="{{ asset('nvdcpics') }}/roomempty.svg" class="img-fluid" style="width: 100%; height: 300px">
                 <p class="text-center display-4">There are no rooms available</p>
-            @endforelse
+            @endif
         </div>
     </div>
     {{-- <div class="container-fluid bg-white mt-5">
