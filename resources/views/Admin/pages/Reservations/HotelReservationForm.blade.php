@@ -544,7 +544,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list as $index => $lists)
                                         @if ($lists->Booking_Status == 'Checked-In' || $lists->Booking_Status == 'Checking(Before Check-Out)' || $lists->Booking_Status == 'Room Checked' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                             <tr>
                                                 <td>
@@ -780,22 +780,22 @@
                                                                 <p class="text-left">Type of Request </p>
 
                                                                 <select name="type_of_request" class="form-control"
-                                                                    id="category">
+                                                                    id="category" data-list-index="{{$index}}">
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">Select</option>
-                                                                    <option value="Service Request">Service Request
+                                                                    <option value="Service Request" data-list-value="{{$index}}">Service Request
                                                                     </option>
-                                                                    <option value="Item Request">Item Request
+                                                                    <option value="Item Request" data-list-value="{{$index}}">Item Request
                                                                     </option>
                                                                 </select>
 
-                                                                <div id="r_items" style="display:none;">
+                                                                <div id="r_items[]" style="display:none;">
                                                                     <p class="text-left">Item Request </p>  
                                                                     <select name="item_request" class="form-control">
                                                                         <option value="" selected="true"
                                                                             disabled="disabled">Select</option>
                                                                         @foreach ($supply as $supplies)
-                                                                            <option value="{{ $supplies->name }}">
+                                                                            <option value="{{ $supplies->name }}" data-item-index="{{$index}}">
                                                                                 {{ $supplies->name }}</option>
                                                                         @endforeach
                                                                     </select>
@@ -804,7 +804,7 @@
                                                                         class="form-control">
                                                                 </div>
 
-                                                                <div id="r_services" style="display:none;">
+                                                                <div id="r_services[]" style="display:none;" data-service-index="{{$index}}">
                                                                     <p class="text-left">Service Request </p>
                                                                     <input type="text" name="service_request"
                                                                         id="req2" class="form-control">
@@ -1060,22 +1060,25 @@
 
                 $('.chck').attr('min', maxDate);
             });
+
             $(document).ready(function() {
                 $("#category").change(function() {
                     var selecteds = $("option:selected", this).val();
+                    var listIndex = $(this).data('list-index');
+                    var listValue = $(this).find(':selected').data('list-value');
 
-                    if (selecteds == "Service Request") {
-                        $('#r_services').css({
+                    if (listValue == "Service Request") {
+                        $('#r_services'+listIndex).css({
                             'display': 'block'
                         });
-                        $('#r_items').css({
+                        $('#r_items'+listIndex).css({
                             'display': 'none'
                         });
-                    } else if (selecteds == "Item Request") {
-                        $('#r_services').css({
+                    } else if (listValue == "Item Request") {
+                        $('#r_services'+listIndex).css({
                             'display': 'none'
                         });
-                        $('#r_items').css({
+                        $('#r_items'+listIndex).css({
                             'display': 'block'
                         });
                     }

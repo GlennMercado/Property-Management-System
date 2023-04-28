@@ -413,7 +413,7 @@
                                                             </div>
                                                             <div class="col-md-6 text-sm font-weight-bold">
                                                                 <img class="gcash"
-                                                                    src="{{ asset('nvdcpics') }}/Gcash.webp">
+                                                                    src="{{ asset('nvdcpics') }}/Gcash.png">
                                                             </div>
                                                             <div class="col-md-12 text-sm font-weight-bold">
                                                                 <h4 class="text-muted mt-2">Room price(2 pax): <span

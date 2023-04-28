@@ -593,11 +593,11 @@
                                             <div class="row shadow p-3 mt-2">
                                                 <div class="col-md-12">
                                                     <p class="font-weight-bold text-center">NVDC Properties:
-                                                        0923423424
+                                                        09458923381
                                                     </p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
-                                                    {!! QrCode::size(170)->generate('0923423424') !!}
+                                                    {!! QrCode::size(170)->generate('09458923381') !!}
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
@@ -777,11 +777,11 @@
                                             <div class="row shadow p-3 mt-2">
                                                 <div class="col-md-12">
                                                     <p class="font-weight-bold text-center">NVDC Properties:
-                                                        0923423424
+                                                        09458923381
                                                     </p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
-                                                    {!! QrCode::size(170)->generate('0923423424') !!}
+                                                    {!! QrCode::size(170)->generate('09458923381') !!}
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
@@ -968,11 +968,11 @@
                                                                             <div class="row shadow p-3 mt-2">
                                                                                 <div class="col-md-12">
                                                                                     <p class="font-weight-bold text-center">NVDC Properties:
-                                                                                        0923423424
+                                                                                        09458923381
                                                                                     </p>
                                                                                 </div>
                                                                                 <div class="col-md-12 d-flex justify-content-center">
-                                                                                    {!! QrCode::size(170)->generate('0923423424') !!}
+                                                                                    {!! QrCode::size(170)->generate('09458923381') !!}
                                                                                 </div>
                                                                                 <br>
                                                                                 <div class="col-md-12">
@@ -1053,11 +1053,11 @@
                                                 <div class="row shadow p-3 mt-2">
                                                     <div class="col-md-12">
                                                         <p class="font-weight-bold text-center">NVDC Properties:
-                                                            0923423424
+                                                            09458923381
                                                         </p>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
-                                                        {!! QrCode::size(170)->generate('0923423424') !!}
+                                                        {!! QrCode::size(170)->generate('09458923381') !!}
                                                     </div>
                                                     <br>
                                                     <div class="col-md-12">

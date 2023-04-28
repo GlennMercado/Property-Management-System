@@ -158,7 +158,7 @@
                     <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                             class="text-danger">*</span> </p>
                     <input type="text" name="tax_cert_valid_gov_id" class="form-control"
-                        placeholder="Enter Home Address" maxlength="128" required>
+                        placeholder="Enter Certificate No." maxlength="128" required>
                     <br>
                     <p>Upload Image <span class="text-danger">*</span> </p>
                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="other_images"

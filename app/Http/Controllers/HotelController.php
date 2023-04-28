@@ -88,7 +88,7 @@ class HotelController extends Controller
         $fstats;
 
   
-        $datenow = now()->format('Y-m-d');
+        $datenow = Carbon::now()->format('Y-m-d');
         $checkindate = Carbon::createFromFormat('m/d/Y', $request->input('checkIn'))->format('Y-m-d');
         $checkoutdate = Carbon::createFromFormat('m/d/Y', $request->input('checkOut'))->format('Y-m-d');
 
@@ -101,6 +101,10 @@ class HotelController extends Controller
         {
             $status = "Reserved";
             $fstats = "Reserved";
+        }
+        else
+        {
+            return redirect('FrontDesk')->withStats('Reservation Failed');  
         }
         
 

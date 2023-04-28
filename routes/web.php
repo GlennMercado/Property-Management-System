@@ -190,8 +190,7 @@ Route::middleware(['auth', 'AdminorSales'])->group(function(){
 	Route::post('update_utility_payment', 'App\Http\Controllers\CommercialSpacesSecondController@update_utility_payment');
 
 	// Route::get('CheckInQr', [App\Http\Controllers\HotelController::class, 'qrscan'])->name('QR-Scanner');
-	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
-	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
+	
 });
 
 //Admin and Operation Manager
@@ -234,6 +233,9 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 	Route::post('hotel_other_charges', 'App\Http\Controllers\GuestFolioController@hotel_other_charges');
 
 	Route::post('add_guest_request', 'App\Http\Controllers\MaintenanceController@add_guest_request');
+
+	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
+	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
 
 });	
 
