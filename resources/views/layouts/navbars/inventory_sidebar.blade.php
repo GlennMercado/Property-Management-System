@@ -42,20 +42,7 @@
                         <span class="nav-link-text text-light">{{ __('Inventory Management') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples3">
-                        {{-- <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('StockAvailability') }}">
-                                    <i class="text-light">•</i> {{ __('Stock Availability') }}
-                                </a>
-                            </li>
-                        </ul> --}}
-                        {{-- <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('StockAvail') }}">
-                                    <i class="text-light">•</i> {{ __('Stock Movement History') }}
-                                </a>
-                            </li>
-                        </ul> --}}
+
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockCount' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockCount') }}">
@@ -83,7 +70,8 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockHotelSupply' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockHotelSupply') }}">
-                                    <i class="bi bi-ui-checks" style="color:rgb(224, 223, 223)"></i> {{ __('Supply Request') }}
+                                    <i class="bi bi-ui-checks" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Supply Request') }}
                                 </a>
                             </li>
                         </ul>
@@ -95,6 +83,14 @@
                                 </a>
                             </li>
                         </ul>
+                        <!-- <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'StockRoomSupply' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('StockRoomSupply') }}">
+                                    <i class="bi bi-clipboard-data-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Stock Room Supply') }}
+                                </a>
+                            </li>
+                        </ul> -->
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'StockReports' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('StockReports') }}">
