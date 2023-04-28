@@ -124,6 +124,8 @@ class HotelController extends Controller
         $reserve->Booking_Status = $fstats;
         $reserve->Payment = $request->input('payment');
 
+        $user_type = Auth::user()->User_Type;
+
         if($reserve->save())
         {
             $facility = "Hotel Room";
@@ -132,13 +134,29 @@ class HotelController extends Controller
             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
             values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
             
-            Alert::Success('Success', 'Reservation was successfully submitted!');
-            return redirect('HotelReservationForm')->with('Success', 'Reservation Success');
+            if($user_type == 'Operations Manager')
+            {
+                Alert::Success('Success', 'Reservation was successfully submitted!');
+                return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
+            }
+            else
+            {
+                Alert::Success('Success', 'Reservation was successfully submitted!');
+                return redirect('HotelReservationForm')->with('Success', 'Reservation Success');
+            }
         }
         else
         {
-            Alert::Error('Error', 'Reservation Failed!');
-            return redirect('HotelReservationForm')->with('Error', 'Failed!');
+            if($user_type == "Operations Manager")
+            {
+                Alert::Error('Error', 'Reservation Failed!');
+                return redirect('Guest_Reservation')->with('Error', 'Failed!');
+            }
+            else
+            {
+                Alert::Error('Error', 'Reservation Failed!');
+                return redirect('HotelReservationForm')->with('Error', 'Failed!');
+            }
         }
 
         
@@ -165,6 +183,7 @@ class HotelController extends Controller
         $stats = "Paid";
         $stats2 = "Reserved";
 
+        $user_type = Auth::user()->User_Type;
 
         if($isarchived == false)
         {
@@ -226,22 +245,40 @@ class HotelController extends Controller
 
             DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
             values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
-            Alert::Success('Success', 'Payment successfully updated!');
-            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
-        
+            if($user_type == "Operations Manager")
+            {
+                Alert::Success('Success', 'Payment successfully updated!');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Success('Success', 'Payment successfully updated!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
         }
         else
         {
-            Alert::Error('Failed', 'Reservation is not available!');
-            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            if($user_type == "Operations Manager")
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
         }    
     }
+
     public function update_booking_status($id, $no, $check, $stats)
     {
             $bookno = $id;
             $roomno = $no;
             $isarchived = $check;
             
+            $user_type = Auth::user()->User_Type;
+
             $status = $stats;
             
             if($status == "Checked-In")
@@ -254,8 +291,16 @@ class HotelController extends Controller
 
                     if($check)
                     {
-                        Alert::Error('Error', 'Booking is not available!');
-                        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                        if($user_type == "Operations Manager")
+                        {
+                            Alert::Error('Error', 'Booking is not available!');
+                            return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                        }
+                        else
+                        {
+                            Alert::Error('Error', 'Booking is not available!');
+                            return redirect('Guest_Reservatione')->with('Success', 'Data Updated');
+                        }
                     }
                     else
                     {
@@ -276,14 +321,31 @@ class HotelController extends Controller
         
                         DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                         values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
-                        Alert::Success('Success', 'Reservation successfully updated!');
-                        return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                        
+                        if($user_type == "Operations Manager")
+                        {
+                            Alert::Success('Success', 'Reservation successfully updated!');
+                            return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                        }
+                        else
+                        {
+                            Alert::Success('Success', 'Reservation successfully updated!');
+                            return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+                        }
                     }
                 }
                 else
                 {
-                    Alert::Error('Error', 'Reservation is not available!');
-                    return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                    if($user_type == "Operations Manager")
+                    {
+                        Alert::Error('Error', 'Reservation is not available!');
+                        return redirect('Guest_Reservation')->with('Success', 'Data Updated');
+                    }
+                    else
+                    {
+                        Alert::Error('Error', 'Reservation is not available!');
+                        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+                    }
                 }
             }
             if($status == "Checked-In2")
@@ -436,6 +498,7 @@ class HotelController extends Controller
                 }
             }
     }  
+
     public function front_desk_getdata($id)
     {
         $data = novadeci_suites::where('Room_No', $id)->first();
@@ -500,8 +563,19 @@ class HotelController extends Controller
             'Booking_Status' => $booking_status,
         ));
 
-        Alert::Success('Success', 'Guest checked in!');
-        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+        $user_type = Auth::user()->User_Type;
+
+        if($user_type == "Operations Manager")
+        {
+            Alert::Success('Success', 'Guest checked in!');
+            return redirect('Guest_Reservation')->with('Success', 'Data Updated');
+        }
+        else
+        {
+            Alert::Success('Success', 'Guest checked in!');
+            return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+        }
+        
     }
 
     public function qrview($id)
