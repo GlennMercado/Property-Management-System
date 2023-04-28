@@ -74,6 +74,10 @@ class VerificationController extends Controller
         if (!$user) {
             return redirect('/login')->withStats(__('Invalid Verification Token.'));
         }
+        elseif($user->email_verified_at != null)
+        {
+            return redirect('/login')->withStats(__('Your account is already verified.'));
+        }
 
         // Update the user's token in the database
         $user->forceFill([
