@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
-                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
                                         name="contact_no" class="form-control" placeholder="09XXXXXXXX" id="contact"
                                         onchange="validateContact()">
@@ -188,7 +188,7 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Contact Person Number <span class="text-danger">*</span></p>
-                                    <input type="number" onKeyPress="if(this.value.length==10) return false;"
+                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
                                         title="Please use a 10 digit mobile number with no dashes or dots"
                                         name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
                                         id="ContactPersonNum" onchange="validateContactPersonNum()">
