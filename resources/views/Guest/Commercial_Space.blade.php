@@ -381,41 +381,43 @@
                             </div>
                         </div>
 
+                        @if ($comm->Status == 'Approved')
                         {{-- Set Interview --}}
-                        <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
-                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                            <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
+                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @foreach ($data as $start_date)
+                                            <input type="hidden" name="start_dates[]" value="{{ $start_date['date'] }}">
+                                        @endforeach
+                                        <form action="{{ url('/set_commercial_space_schedule') }}" class="prevent_submit"
+                                            method="POST" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="{{ $comm->id }}">
+
+                                                <h3 class="text-left">Set Interview Schedule</h3>
+
+                                                <input type="text" id="interview" class="datepicker"
+                                                    name="interview_date" onkeydown="return false" autocomplete="off"
+                                                    required>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    @foreach ($data as $start_date)
-                                        <input type="hidden" name="start_dates[]" value="{{ $start_date['date'] }}">
-                                    @endforeach
-                                    <form action="{{ url('/set_commercial_space_schedule') }}" class="prevent_submit"
-                                        method="POST" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        <div class="modal-body">
-                                            <input type="hidden" name="id" value="{{ $comm->id }}">
-
-                                            <h3 class="text-left">Set Interview Schedule</h3>
-
-                                            <input type="text" id="interview" class="datepicker"
-                                                name="interview_date" onkeydown="return false" autocomplete="off"
-                                                required>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success">Submit</button>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
                     @empty
                         <p class="text-center display-5">No application yet</p>
