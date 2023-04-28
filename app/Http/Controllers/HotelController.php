@@ -479,4 +479,27 @@ class HotelController extends Controller
         return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
     }
 
+    public function check_in(Request $request){
+        $booking_no = $request->input('booking');
+        $booking_status = "Checked_In";
+
+        DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array
+        (
+            'Booking_Status' => $booking_status,
+        ));
+
+        Alert::Success('Success', 'Guest checked in!');
+        return redirect('HotelReservationForm')->with('Success', 'Data Updated');
+    }
+
+    public function qrview($id)
+    {
+        $qr = $id;
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$qr'");    
+        return view('Admin.pages.Reservations.CheckInQr', ['list'=>$list]);
+    }
+
+    // public function qrscan(){
+    //     return view('Admin.pages.Reservations.CheckInQr');
+    // }
 }
