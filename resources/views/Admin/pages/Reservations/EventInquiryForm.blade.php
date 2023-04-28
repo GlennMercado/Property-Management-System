@@ -83,7 +83,7 @@
                                                         class="btn btn-sm btn-primary" style="cursor:pointer;"
                                                         data-toggle="tooltip" data-placement="top" title="Status">
                                                         <i class="bi bi-pencil"></i>
-</button>
+                                                    </button>
                                                 </td>
                                                 <td><span class="font-weight-bold">Created At: </span> {{ $lists->created_at }}</td>
                                                 <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>

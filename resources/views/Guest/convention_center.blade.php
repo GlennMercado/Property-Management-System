@@ -24,7 +24,7 @@
                     <h1>The NOVADECI CONVENTION CENTER</h1>
                     <h2>is the first coop-owned convention center in the Philippines. It is being managed by NVDC
                         Properties.</h2>
-                    <a class="big-button" href="#appli" title="">Inquire Now</a>
+                    <a class="btn btn-success" href="#appli" title="">Inquire Now</a>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -172,7 +172,8 @@
                                 <div class="col-md pt-4">
                                     <p>Contact Number <span class="text-danger">*</span></p>
                                     <input type="number" onKeyPress="if(this.value.length==11) return false;"
-                                        title="Please use a 10 digit mobile number with no dashes or dots"
+                                        minlength = "11"
+                                        title="Please use a 11 digit mobile number with no dashes or dots"
                                         name="contact_no" class="form-control" placeholder="09XXXXXXXX" id="contact"
                                         onchange="validateContact()">
                                     <p id="contact-error" style="color: red; font-size: 14px;"></p>
