@@ -7,6 +7,7 @@ use App\Models\commercial_spaces_application;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\commercial_spaces_tenants;
+use App\Models\finance_2_reports;
 use Carbon\Carbon;
 use App\Models\commercial_space_rent_reports;
 use Mail;

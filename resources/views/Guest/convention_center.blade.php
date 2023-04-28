@@ -173,9 +173,18 @@
                                 </div>
                                 <div class="col-md pt-4">
                                     <p>Event Type <span class="text-danger">*</span></p>
-                                    <input type="text" name="event_type" class="form-control"
+                                    <select name="event_type" class="form-control" id="EventType" onchange="validateEventType()">
+                                        <option value="Birthday">Birthday</option>
+                                        <option value="Wedding">Wedding</option>
+                                        <option value="Baptism">Baptism</option>
+                                        <option value="Corporate meetings">Corporate meetings</option>
+                                        <option value="Basketball practice game">Basketball practice game</option>
+                                        <option value="Graduation">Graduation</option>
+                                        <option value="">Others</option>
+                                    </select>
+                                    <!-- <input type="text" name="event_type" class="form-control"
                                         placeholder="Enter event type" maxlength="32" id="EventType"
-                                        onchange="validateEventType()">
+                                        onchange="validateEventType()"> -->
                                     <p id="eventType-error" style="color: red; font-size: 14px;"></p>
                                 </div>
                             </div>

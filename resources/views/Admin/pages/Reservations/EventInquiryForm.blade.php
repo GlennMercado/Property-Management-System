@@ -103,8 +103,7 @@
                                                     {{ $lists->concept }}
                                                 </td>
                                                 <td>Status: {{ $lists->inquiry_status }}</td>
-                                                
-                                                
+        
                                             </tr>
                                         </tbody>
                                         <div class="modal fade text-left" id="Modalstatus{{ $lists->id }}"
@@ -156,49 +155,48 @@
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
-                                            <tr>
+                                        <tr>
                                                 <th scope="col" style="font-size:16px;">Action</th>
                                                 <th scope="col" style="font-size:16px;">Event Name</th>
                                                 <th scope="col" style="font-size:16px;">Event Type</th>
                                                 <th scope="col" style="font-size:16px;">Contact Person</th>
                                                 <th scope="col" style="font-size:16px;">Contact Number</th>
                                                 <th scope="col" style="font-size:16px;">Event Date</th>
-                                                <th scope="col" style="font-size:16px;">Event Time</th>
                                                 <th scope="col" style="font-size:16px;">Booking Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list as $lists)
+                                            
+                                            @foreach ($list2 as $lists2)
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <a href="{{ url('/event_view', ['id' => $lists->id]) }}" target="blank"
                                                         class="btn btn-sm btn-success" style="cursor:pointer;"
                                                         data-toggle="tooltip" data-placement="top" title="View">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
+                                                    
                                                 </td>
                                                 <td><span class="font-weight-bold">Event Name: </span> {{ $lists->event_name }}</td>
                                                 <td><span class="font-weight-bold">Event Type:</span> {{ $lists->event_type }}</td>
-                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }}</td>
+                                                <td><span class="font-weight-bold">Contact Person: </span>{{ $lists->contact_person }}</td>
                                                 <td><span class="font-weight-bold">Contact Number: </span> {{ $lists->contact_person_no }}</td>
                                                 <td><span class="font-weight-bold">Event Date: </span>
-                                                    {{ $lists->event_date }}
+                                                    {{ $lists2->event_date }}
                                                     <br>
                                                     <span class="font-weight-bold">No. of Guest:
-                                                    </span>{{ $lists->no_of_guest }}
+                                                    </span>{{ $lists2->no_of_guest }}
                                                     <br>
-                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists->caterer }}
+                                                    <span class="font-weight-bold">Caterer: </span> {{ $lists2->caterer }}
                                                     <br>
                                                     <span class="font-weight-bold">Audio/Visual: </span>
-                                                    {{ $lists->audio_visual }}
+                                                    {{ $lists2->audio_visual }}
                                                     <br>
                                                     <span class="font-weight-bold">Events and Concep Styling: </span>
-                                                    {{ $lists->concept }}
+                                                    {{ $lists2->concept }}
                                                 </td>
-
-                                                <td>CN: {{ $lists->id }}<br>Date: {{ $lists->created_at }}</td>
-                                                
-                                                <td><span class="font-weight-bold">Name: </span>{{ $lists->contact_person }} </td>
+                                                <td>Status: {{ $lists2->inquiry_status }}</td>
+        
                                             </tr>
                                     @endforeach
                                         </tbody>
