@@ -101,6 +101,11 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div class="row">
+                                <div class="col-6">
+                                    <a href="{{ route('verification.resend-form') }}">Resend verification link</a>
+</div>
+                                </div>
                             </form>
                         </div>
                     </div>

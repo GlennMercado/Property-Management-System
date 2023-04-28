@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Mail;
+use App\Mail\VerifyEmail;
 
 class VerificationController extends Controller
 {
@@ -53,5 +57,34 @@ class VerificationController extends Controller
 
         return redirect('/login')->withStatus(__('Account Successfully Verified!'));
     }
+    public function resendVerificationLinkForm()
+    {
+        return view('auth.verify-email-resend');
+    }
 
+    public function sendEmailVerificationNotification(Request $request)
+    {
+        $email = $request->input('email');
+
+        $user = User::where('email', $email)->first();
+
+        //Generate Token
+        $token = Str::random(60);
+   
+        if (!$user) {
+            return redirect('/login')->withStats(__('Invalid Verification Token.'));
+        }
+
+        // Update the user's token in the database
+        $user->forceFill([
+            'email_verification_token' => $token,
+        ])->save();
+
+        // Send the verification email with the updated token
+        Mail::to($user->email)->send(new VerifyEmail($user, $token));
+
+        return redirect('/login')->withStatus(__('Verification Link Sent.'));
+    }
+
+    
 }

@@ -139,6 +139,7 @@
                                                 <th scope="col" style="font-size:17px;">User Type</th>
                                                 <th scope="col" style="font-size:17px;">Status</th>
                                                 <th scope="col" style="font-size:17px;">Date Created</th>
+                                                <th scope="col" style="font-size:17px;">Is Verified?</th>
                                                 <th scope="col" style="font-size:17px;">Action</th>
                                             </tr>
                                         </thead>
@@ -160,6 +161,11 @@
                                                     </td>
                                                     <td>{{ date('F j, Y', strtotime($lists->created_at)) }} <br>
                                                         {{ date('h:i:s A', strtotime($lists->created_at)) }} </td>
+                                                    @if($lists->email_verified_at != null)
+                                                    <td class="text-success">Yes</td>
+                                                    @else
+                                                    <td class="text-danger">No</td>
+                                                    @endif
                                                     <td>
                                                         @if ($lists->IsDisabled == false && $lists->IsArchived == false)
                                                             <button class="btn btn-sm btn-warning btn-lg"
@@ -353,6 +359,7 @@
                                                 <th scope="col" style="font-size:17px;">User Type</th>
                                                 <th scope="col" style="font-size:17px;">Status</th>
                                                 <th scope="col" style="font-size:17px;">Date Created</th>
+                                                <th scope="col" style="font-size:17px;">Is Verified?</th>
                                                 <th scope="col" style="font-size:17px;">Action</th>
                                             </tr>
                                         </thead>
@@ -374,6 +381,11 @@
                                                     </td>
                                                     <td>{{ date('F j, Y', strtotime($lists->created_at)) }} <br>
                                                         {{ date('h:i:s A', strtotime($lists->created_at)) }} </td>
+                                                    @if($lists->email_verified_at != null)
+                                                    <td class="text-success">Yes</td>
+                                                    @else
+                                                    <td class="text-danger">No</td>
+                                                    @endif
                                                     <td>
                                                         @if ($lists->IsDisabled == false && $lists->IsArchived == false)
                                                             <button class="btn btn-sm btn-warning btn-lg"
@@ -500,6 +512,7 @@
                                                 <th scope="col" style="font-size:17px;">Email</th>
                                                 <th scope="col" style="font-size:17px;">User Type</th>
                                                 <th scope="col" style="font-size:17px;">Status</th>
+                                                <th scope="col" style="font-size:17px;">Is Verified?</th>
                                                 <th scope="col" style="font-size:17px;">Date Created</th>
                                                 <th scope="col" style="font-size:17px;">Date Archived</th>
                                             </tr>
@@ -514,6 +527,11 @@
                                                     <td>
                                                         <span class="text-danger">Archived</span>
                                                     </td>
+                                                    @if($lists->email_verified_at != null)
+                                                    <td class="text-success">Yes</td>
+                                                    @else
+                                                    <td class="text-danger">No</td>
+                                                    @endif
                                                     <td>{{ date('F j, Y', strtotime($lists->created_at)) }} <br>
                                                         {{ date('h:i:s A', strtotime($lists->created_at)) }} </td>
 

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Mail;
+use App\Mail\VerifyEmail;
 
 class UserManagementController extends Controller
 {
@@ -33,13 +36,19 @@ class UserManagementController extends Controller
             'User_Type' => 'required'
        ]);
 
+       $token = Str::random(60);
+
        $create = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'profile_pic' => 'nvdcpics\User2.png',
             'User_Type' => $request->input('User_Type'),
+            'email_verification_token' => $token
         ]);
+
+        
+        Mail::to($create->email)->send(new VerifyEmail($create, $token));
 
         if(!$create)
         {
