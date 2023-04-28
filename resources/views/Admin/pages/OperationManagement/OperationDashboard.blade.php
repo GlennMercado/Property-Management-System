@@ -30,9 +30,9 @@
                 <div class="card">
                     <div class="card-body-md rounded" style="background-color:#2AD587;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                            {{-- @foreach ($request_count as $count)
+                            @foreach ($request_count as $count)
                                 {{ $count->cnt }}
-                            @endforeach --}}
+                            @endforeach
                         </h1>
                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
                             Guest Request
@@ -44,7 +44,7 @@
                 <div class="card">
                     <div class="card-body-md rounded" style="background-color:#2FCF92;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                        {{-- {{ $checked_guests }} --}}
+                        {{ $checked_guests }}
                         </h1>
                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
                             Checked-in
@@ -56,7 +56,7 @@
                 <div class="card">
                     <div class="card-body-sm rounded" style="background-color:#34C99D;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                        {{-- {{ $checked_complaints }} --}}
+                         {{ $checked_complaints }}
                         </h1>
                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">
                             Guest Complaints
@@ -68,9 +68,9 @@
                 <div class="card">
                     <div class="card-body-sm rounded" style="background-color:#39C3A8;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                            {{-- @foreach ($room1 as $count)
+                            @foreach ($room1 as $count)
                                 {{ $count->cnt }}
-                            @endforeach --}}
+                            @endforeach
                         </h1>
                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">Vacant
                             Rooms
@@ -82,9 +82,9 @@
                 <div class="card">
                     <div class="card-body-sm rounded" style="background-color:#3EBDB3;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                            {{-- @foreach ($room2 as $count)
+                            @foreach ($room2 as $count)
                                 {{ $count->cnt }}
-                            @endforeach --}}
+                            @endforeach
                         </h1>
                         <h5 class="text-secondary mx-auto d-flex justify-content-center text">Occupied
                             Rooms
@@ -96,9 +96,9 @@
                 <div class="card">
                     <div class="card-body-sm rounded" style="background-color:#43B7BE;">
                         <h1 class="text-secondary mx-auto d-flex justify-content-center mt-2">
-                            {{-- @foreach ($room3 as $count)
+                            @foreach ($room3 as $count)
                                 {{ $count->cnt }}
-                            @endforeach --}}
+                            @endforeach
                         </h1>
                         <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">Room For
                             Cleaning
