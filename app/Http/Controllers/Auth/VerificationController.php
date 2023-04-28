@@ -72,7 +72,7 @@ class VerificationController extends Controller
         $token = Str::random(60);
    
         if (!$user) {
-            return redirect('/login')->withStats(__('Invalid Verification Token.'));
+            return redirect('/login')->withStats(__('Account does not exist. Please Sign-up'));
         }
         elseif($user->email_verified_at != null)
         {
