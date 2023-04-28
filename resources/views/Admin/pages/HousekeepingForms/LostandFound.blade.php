@@ -174,10 +174,10 @@
                                                             <i class="bi bi-eye"></i>
                                                         </button>
 
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update{{ $lists->id }}"
                                                             title="Update Item">
-                                                            <i class="bi bi-arrow-repeat"></i>
+                                                            <i class="bi bi-arrow-clockwise"></i>
                                                         </button>
 
                                                         <button class="btn btn-sm btn-danger" data-toggle="modal"

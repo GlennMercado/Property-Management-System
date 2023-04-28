@@ -96,8 +96,8 @@
                                             </button>
                                         @else
                                             <!--Update Status button-->
-                                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#update{{$lists2->Room_No}}"> 
-                                                <i class="bi bi-arrow-repeat"></i>
+                                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#update{{$lists2->Room_No}}"> 
+                                                <i class="bi bi-arrow-clockwise"></i>
                                             </button>
                                             
                                         @endif

@@ -91,9 +91,9 @@
                                                     <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                         data-target="#view{{ $lists->id }}"> <i class="bi bi-eye"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update{{ $lists->id }}"> <i
-                                                            class="bi bi-arrow-repeat"></i> </button>
+                                                            class="bi bi-arrow-clockwise"></i> </button>
                                                 </td>
                                             </tr>
 

@@ -175,9 +175,9 @@
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--update Button-->
                                                     @if ($lists->Payment_Status == 'Pending')
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update{{ $lists->Booking_No }}"> <i
-                                                                class="bi bi-arrow-repeat"></i></button>
+                                                                class="bi bi-arrow-clockwise"></i></button>
                                                     @endif
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
@@ -394,9 +394,9 @@
                                                         data-target="#views{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--Update Reservation/Room Status Button-->
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update_booking_status{{ $lists->Booking_No }}">
-                                                        <i class="bi bi-arrow-repeat"></i></button>
+                                                        <i class="bi bi-arrow-clockwise"></i></button>
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
@@ -555,10 +555,10 @@
                                                     </button>
                                                     <!--Update Reservation/Room Status Button-->
                                                     @if($lists->Booking_Status == "Checked-In")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update_booking_status11{{ $lists->Booking_No }}"
                                                             title="Update">
-                                                            <i class="bi bi-arrow-repeat"></i>
+                                                            <i class="bi bi-arrow-clockwise"></i>
                                                         </button>
                                                         <!--Guest Request Button-->
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
@@ -567,10 +567,10 @@
                                                         </button>
                                                     @endif
                                                     @if($lists->Booking_Status == "Room Checked")
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update_booking_status2{{ $lists->Booking_No }}"
                                                             title="Update">
-                                                            <i class="bi bi-arrow-repeat"></i>
+                                                            <i class="bi bi-arrow-clockwise"></i>
                                                         </button>
                                                     @endif
                                                     {{-- Invoice --}}
