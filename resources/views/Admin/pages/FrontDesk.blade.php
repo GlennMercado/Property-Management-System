@@ -27,6 +27,14 @@
                             <div class="col">
                                 <h2 class="mb-0 title">Hotel Booking</h3>
                             </div>
+                            @if (session('stats'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{ session('stats') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
