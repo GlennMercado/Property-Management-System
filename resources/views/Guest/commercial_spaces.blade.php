@@ -82,7 +82,7 @@
                         <div class="col-md">
                             <p class="pt-4">Business Landline No. </p>
                             <input type="number" onKeyPress="if(this.value.length==8) return false;"
-                                name="business_landline_no" class="form-control" placeholder="09XXXXXXXX">
+                                name="business_landline_no" class="form-control" placeholder="">
                         </div>
                         <div class="col-md">
                             <p class="pt-4">Business Mobile No. <span class="text-danger">*</span> </p>

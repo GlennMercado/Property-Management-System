@@ -381,6 +381,7 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col" style="font-size:17px;">Action</th>
+                                                        <th scope="col" style="font-size:17px;">Created at</th>
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
@@ -398,6 +399,7 @@
                                                                         <i class="bi bi-eye"></i>
                                                                     </a>
                                                                 </td>
+                                                                <td><span class="font-weight-bold">Created At: </span> {{ $lists->created_at }}</td>
                                                                 <td>
                                                                     <span class="tbltxt">Business Name: </span>
                                                                     <span

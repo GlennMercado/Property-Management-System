@@ -109,7 +109,7 @@
                                 </ul>
                             </div>
                         </ul>
-                        <ul class="nav nav-sm flex-column">
+                        <!-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'GuestFolio' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
                                     <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
@@ -119,7 +119,7 @@
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'OperationRooms' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('OperationRooms') }}">
