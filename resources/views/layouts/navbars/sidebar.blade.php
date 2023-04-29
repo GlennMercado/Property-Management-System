@@ -113,6 +113,7 @@
                                 <a class="nav-link active" href="#navbar-examples9" data-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="navbar-examples9">
                                     <i class="bi bi-telephone-forward-fill" style="color:rgb(224, 223, 223)"></i>
+                                    <span class="nav-link-text text-light">{{ __('Commercial Space') }}</span>
                                 </a>
                             </li>
                             <div class="collapse" id="navbar-examples9">
