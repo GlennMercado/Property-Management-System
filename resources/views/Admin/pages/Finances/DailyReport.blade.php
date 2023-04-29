@@ -29,32 +29,9 @@
         <div class="col-xl">
             <div class="card shadow">
                 <div class="card-header border-0">
-
-                    <!-- Count Box -->
-                    <div class="row mt-3" style="align-items:center;justify-content:center">
-                        <div class="col-md-4 col-xl-4">
-                            <div class="card bg-c-blue order-card">
-                                <div class="card-block">
-                                    <h4 class="m-b-20 text-white">Reserved</h4>
-                                    <h2 class="text-right text-white">
-                                        <i class="bi bi-book-fill f-left"></i>
-                                        {{-- <span>{{ $reserved_guests }}</span> --}}
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xl-4">
-                            <div class="card bg-c-green order-card">
-                                <div class="card-block">
-                                    <h4 class="m-b-20 text-white">Checked in</h4>
-                                    <h2 class="text-right text-white">
-                                        <i class="bi bi-bookmark-check-fill f-left"></i>
-                                        {{-- <span>{{ $checked_guests }}</span> --}}
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- <div class="col-md-4">
+<div class="row">
+                   
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body rounded" style="background-color:#2AD587;">
                                     <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -66,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body rounded" style="background-color:#34C99D;">
                                     <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -77,8 +54,9 @@
                                     </h1>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div> 
                     </div>
+
                     <br>
                     <div class="row align-items-center">
                         <div class="col">
