@@ -111,10 +111,23 @@
                                     <input type="hidden" id="guest_name1" value="{{ $guests->name }}">
                                     <input type="hidden" id="guest_name" name="gName" value="{{ $guests->name }}" />
                                 @endforeach
+                                
+                                {{-- sample wag tatanggalin --}}
+                                {{-- <div class="col-md pt-4">
+                                    <p class="form-label label1">Mobile No. <span class="text-danger">*</span></p>
+                                    <input type="number"
+                                        onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
+                                        min="0" minlength="11"
+                                        title="Please use a 11 digit mobile number with no dashes or dots" name="mobile"
+                                        class="form-control" placeholder="Enter mobile no." id="contact"
+                                        onchange="validateContact()">
+                                    <p id="contact-error" style="color: red; font-size: 14px;"></p>
+                                </div> --}}
+                                
                                 <div class="col-md pt-4">
                                     <p class="form-label label1">Mobile No. <span class="text-danger">*</span></p>
-                                    <input class="form-control" id="mobile" type="number" name="mobile" min="0"
-                                        value="" placeholder="Enter mobile no."
+                                    <input class="form-control" id="mobile" type="number" name="mobile"
+                                        min="0" minlength="11" value="" placeholder="Enter mobile no."
                                         onKeyPress="if(this.value.length==11) return false;" onkeyup="enable_button()"
                                         required>
                                     <div id="balls"></div>
@@ -440,7 +453,15 @@
                                                             <p class="text-center">Gcash account name <span
                                                                     class="text-danger">*</span></p>
                                                         </div>
-                                                        <div class="col-md-12">
+                                                        {{-- Sample Ref No --}}
+                                                        <div class="col-md-12 d-flex justify-content-center">
+                                                            <h3>Ref. No. 1001 543 610110</h3>
+                                                        </div>
+                                                        <div class="col-md-12 d-flex justify-content-center">
+                                                            <p>Jan 31, 2023, 10:00 am </p>
+                                                        </div>
+                                                        {{-- Enter name --}}
+                                                        {{-- <div class="col-md-12">
                                                             <input type="text" id="gcash_acc"
                                                                 onkeyup="enable_submit()" name="gcash_account"
                                                                 class="form-control" maxlength="32">
@@ -448,12 +469,13 @@
                                                         <div class="col-md-12 mt-1">
                                                             <p class="text-center">Upload your proof of payment here <span
                                                                     class="text-danger">*</span></p>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="col-md-12 d-flex justify-content-center">
                                                             <img id="output" class="img-fluid" />
                                                         </div>
                                                         <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                            <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)"
+                                                            <input type="file" accept=".png, .jpeg, .jpg, .gif"
+                                                                maxlength="500000" onchange="enable_submit(event)"
                                                                 id="gcash_img" placeholder="Ex: John Doe" name="images"
                                                                 class="form-control">
                                                         </div>
@@ -578,6 +600,23 @@
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
+
+        // mobile no validation
+        function validateContact() {
+            const contactInput = document.getElementById("contact");
+            const contact = contactInput.value.trim();
+            const contactError = document.getElementById("contact-error");
+
+
+            if (!/^\+?\d{8,15}$/.test(contact)) {
+                contactInput.classList.add("invalid");
+                contactError.textContent =
+                    "Please enter a valid contact number (11 digits only)";
+            } else {
+                contactInput.classList.remove("invalid");
+                contactError.textContent = "";
+            }
+        }
     </script>
     <style>
         .datepicker {
