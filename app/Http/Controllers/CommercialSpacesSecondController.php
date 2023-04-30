@@ -75,10 +75,16 @@ class CommercialSpacesSecondController extends Controller
                 $tenants = DB::table('commercial_spaces_tenants')
                 ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
                 ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)->get();
-                
+
+                $utility = DB::table('commercial_space_utility_bills')
+                        ->where('Tenant_ID', $tenant_id)
+                        ->where('Due_Date', $due_date)
+                        ->get();
+
+          
                 // Send email to each tenant
                 foreach ($tenants as $tenant) {
-                    Mail::to($tenant->email)->send(new Commercial_Utility($tenant));
+                    Mail::to($tenant->email)->send(new Commercial_Utility($tenant, $utility));
                 }
             }
             

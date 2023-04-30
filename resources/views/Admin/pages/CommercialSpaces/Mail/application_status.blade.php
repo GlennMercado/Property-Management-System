@@ -17,7 +17,6 @@
     @elseif($tenant->Status == "Tenant")
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>Congratulations! You are now one of our tenants.</p>
-        <p>Your space is {{$space_unit}}. </p>
         <p>Regards,</p>
         <p>NOVADECI PROPERTIES</p>
     @elseif($tenant->Status == "Passed")

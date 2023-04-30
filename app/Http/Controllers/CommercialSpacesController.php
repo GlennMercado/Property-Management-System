@@ -209,7 +209,7 @@ class CommercialSpacesController extends Controller
                 ->get();
 
                 foreach ($tenants as $tenant) {
-                    Mail::to($tenant->email)->send(new Application_Status($tenant, $space_unit));
+                    Mail::to($tenant->email)->send(new Application_Status($tenant));
 
                     // Send SMS notification
                     // $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";
@@ -287,7 +287,7 @@ class CommercialSpacesController extends Controller
         //$list = DB::select("SELECT a.*, b.Tenant_ID FROM commercial_space_units a INNER JOIN commercial_spaces_tenants b ON a.Space_Unit = b.Space_Unit INNER JOIN commercial_spaces_applications c ON b.Tenant_ID = c.id WHERE c.IsArchived = 0");
         
         $list = DB::select("SELECT * FROM commercial_space_units WHERE Occupancy_Status != 'Occupied'");
-        $list2 = DB::select("SELECT a.IsArchived, b.Tenant_ID, c.* FROM commercial_spaces_applications a RIGHT JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID RIGHT JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND c.Occupancy_Status = 'Occupied'");
+        $list2 = DB::select("SELECT a.IsArchived, a.name_of_owner, b.Tenant_ID, c.* FROM commercial_spaces_applications a RIGHT JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID RIGHT JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND c.Occupancy_Status = 'Occupied'");
 
         $check = DB::select('SELECT COUNT(*) as cnt FROM commercial_space_units');
 		$count = array();

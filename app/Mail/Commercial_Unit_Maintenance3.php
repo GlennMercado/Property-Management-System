@@ -22,7 +22,7 @@ class Commercial_Unit_Maintenance3 extends Mailable
 
     public function build()
     {
-        return $this->subject('Commercial Space Under Maintenance')
+        return $this->subject('Commercial Space Unit Under Maintenance')
             ->view('Admin.pages.CommercialSpaces.Mail.comm_maintenance3')
             ->with(['tenant' => $this->tenant, 'others' => $this->others, 'cost' => $this->cost]);
     }

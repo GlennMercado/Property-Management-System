@@ -230,11 +230,13 @@
                                                                                 <h3 class="text-left">Reference Number : <span class="text-success">{{$lists->Reference_No}}</span></h3>
                                                                                 
                                                                                 <input type="hidden" name="Reference_No" value="{{$lists->Reference_No}}" />
-                                                                                <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
-                                                                                
-                                                                                <h3 class="text-left">Gcash Proof Image : </h3>
-                                                                                <img src="{{ $lists->Proof_Image }}"
-                                                                                class="card-img-top" />
+                                                                                @if($lists->Proof_Image != null)
+                                                                                    <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
+                                                                                    
+                                                                                    <h3 class="text-left">Proof Image : </h3>
+                                                                                    <img src="{{ $lists->Proof_Image }}"
+                                                                                    class="card-img-top" />
+                                                                                @endif
                                                                             @endif
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -278,6 +280,7 @@
                                                                             <th scope="col">Rental Fee</th>
                                                                             <th scope="col">Paid Date</th>
                                                                             <th scope="col">Payment Status</th>
+                                                                            <th scope="col">Reference_No</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -301,8 +304,12 @@
                                                                                         {{ $lists3->Payment_Status }}</td>
                                                                                     @else
                                                                                     <td class="font-weight-bold tbltxt text-danger">
-                                                                                        {{ $lists3->Payment_Status }}</td>
+                                                                                        {{ $lists3->Payment_Status }}
+                                                                                    </td>
                                                                                     @endif
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{$lists3->Reference_No}}
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endif
                                                                         @endforeach

@@ -164,7 +164,7 @@ class GuestController extends Controller
     }
     public function commercial_space_rent_payment(Request $request)
     {
-        $path;
+        $path = null;
         $base64;
         $now = Carbon::now()->format('Y-m-d');
         $tenant_id = $request->input('tenant_id');
@@ -190,7 +190,7 @@ class GuestController extends Controller
             [
                 'Paid_Date' => $now,
                 'Reference_No' => $Reference_No,
-                'Proof_Image' => $path,
+                'Proof_Image' => $path ? $path : DB::RAW('Proof_Image'),
                 'Payment_Status' => 'Paid (Checking)'
             ]);
         
@@ -212,7 +212,7 @@ class GuestController extends Controller
         $due = $request->input('due');
         $type = $request->input('type');
         $Reference_No = $request->input('Reference_No');
-        $path;
+        $path = null;
         $now = Carbon::now()->format('Y-m-d');
 
         if($request->hasfile('images'))
@@ -257,7 +257,7 @@ class GuestController extends Controller
         $due = $request->input('due');
         $space_unit = $request->input('space_unit');
         $Reference_No = $request->input('Reference_No');
-        $path;
+        $path = null;
         $now = Carbon::now()->format('Y-m-d');
         
         if($request->hasfile('images'))
@@ -279,7 +279,7 @@ class GuestController extends Controller
             [
                 'Payment_Status' => "Paid (Checking)",
                 'Reference_No' => $Reference_No,
-                'Proof_Image' => $path,
+                'Proof_Image' => $path ? $path : DB::RAW('Proof_Image'),
                 'Paid_Date' => $now,
                 'updated_at' => DB::RAW('NOW()')
             ]);
@@ -482,8 +482,8 @@ class GuestController extends Controller
         $spouse;
         $business;
         $landline;
-        $path;
-        $path2;
+        $path = null;
+        $path2 = null;
 
         // Spouse
         if($request->input('spouse') != null)
@@ -584,6 +584,8 @@ class GuestController extends Controller
             $spouse;
             $business;
             $landline;
+            $path = null;
+            $path2 = null;
             if($request->input('spouse') != null)
             {
                 $spouse = $request->input('spouse');
@@ -603,6 +605,35 @@ class GuestController extends Controller
                 $business = null;
             }
 
+            if($request->hasfile('tin_images'))
+            {
+                //add image to a folder
+                $file = $request->file('tin_images');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time().'--TIN-'.$request->input('name_of_owner').'-.'.$extention;
+                $path = $file->move('commercial_space_application/', $filename);
+
+                
+                //add image to database (which is not advisable)
+                //$path2 = $request->file('images')->getRealPath();
+                //$logo = file_get_contents($path2);
+                $base64 = base64_encode($extention);
+            }
+
+            if($request->hasfile('other_images'))
+            {
+                //add image to a folder
+                $files = $request->file('other_images');
+                $extentions = $files->getClientOriginalExtension();
+                $filenames = time().'--Other-Docu-'.$request->input('name_of_owner').'-.'.$extentions;
+                $path2 = $files->move('commercial_space_application/', $filenames);
+
+                
+                //add image to database (which is not advisable)
+                //$path2 = $request->file('images')->getRealPath();
+                //$logo = file_get_contents($path2);
+                $base642 = base64_encode($extentions);
+            }
             // Home Landline
             if($request->input('landline') != null)
             {
@@ -628,7 +659,9 @@ class GuestController extends Controller
                     'mobile_no' => $request->input('mobile_no'),
                     'tax_identification_no' => $request->input('tax_identification_no'),
                     'tax_cert_valid_gov_id' => $request->input('tax_cert_valid_gov_id'),
-                    'Status' => "Revised"
+                    'Status' => "Revised",
+                    'TIN_Image' => $path ? $path : DB::RAW('TIN_Image'),
+                    'Other_Cert_Image' => $path2 ? $path2 : DB::RAW('Other_Cert_Image')
                 ]
             );
 
@@ -688,7 +721,7 @@ class GuestController extends Controller
         $due = $request->input('due');
         $Reference_No = $request->input('Reference_No');
         $now = Carbon::now()->format('Y-m-d');
-        $path;
+        $path = null;
 
         if($request->hasfile('images'))
         {
@@ -708,7 +741,7 @@ class GuestController extends Controller
         $sql = DB::table('commercial_space_unit_reports')->where(['id' => $id, 'Tenant_ID' => $tenant_id])->update([
             'Paid_Date' => $now,
             'Reference_No' => $Reference_No,
-            'Proof_Image' => $path,
+            'Proof_Image' => $path ? $path : DB::RAW('Proof_Image'),
             'Payment_Status' => 'Paid (Checking)',
             'updated_at' => DB::RAW('NOW()')
         ]);

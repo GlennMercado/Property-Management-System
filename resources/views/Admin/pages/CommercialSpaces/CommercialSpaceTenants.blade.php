@@ -299,8 +299,10 @@
                                                                         @if($lists->Reference_No != null)
                                                                         <h3 class="text-left">Reference Number : <span class="text-primary">{{$lists->Reference_No}}</span></h3>
                                                                         <br>
-                                                                        <h3 class="text-left">Proof Image : </h3>
-                                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
+                                                                            @if($lists->Proof_Image != null)
+                                                                            <h3 class="text-left">Proof Image : </h3>
+                                                                            <img src="{{$lists->Proof_Image}}" class="card-img-top">
+                                                                            @endif
                                                                         @endif
                                                                     </div>
                                                                     <div class="modal-footer">

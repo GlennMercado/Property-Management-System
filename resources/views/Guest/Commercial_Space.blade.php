@@ -337,20 +337,24 @@
                                                     <br>
 
                                                     <p>Tax Identification No. <span class="text-danger">*</span> </p>
-                                                    <input type="number" name="tax_identification_no"
-                                                        class="form-control" placeholder="Enter Tax Identification No."
-                                                        onkeypress="if(this.value.length==12) return false;"
-                                                        value="{{ $comm->tax_identification_no }}" required>
-                                                    <br>
-
-                                                    <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
-                                                        No.
-                                                        <span class="text-danger">*</span>
-                                                    </p>
-                                                    <input type="text" name="tax_cert_valid_gov_id"
-                                                        class="form-control" placeholder="Enter Home Address"
-                                                        maxlength="128" value="{{ $comm->tax_cert_valid_gov_id }}"
+                                                    <input type="number" name="tax_identification_no" class="form-control"
+                                                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==14) return false;"
+                                                        value="{{$comm->tax_identification_no}}"
                                                         required>
+                                                    <br>
+                                                    <p>Upload TIN Image</p>
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="tin_images"
+                                                        class="form-control">
+                                                    <br>
+                                                    <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
+                                                            class="text-danger">*</span> </p>
+                                                    <input type="text" name="tax_cert_valid_gov_id" class="form-control"
+                                                        placeholder="Enter Certificate No." maxlength="128" value="{{$comm->tax_cert_valid_gov_id}}" required>
+                                                    <br>
+                                                    <p>Upload Image </p>
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="other_images"
+                                                        class="form-control">
+                                                    <br>
                                                     <p class="mt-6">I certify that all of the information I have provided
                                                         above is
                                                         true
@@ -725,7 +729,7 @@
                         {{-- View Payment History --}}
                         <div class="modal fade" id="view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title text-left display-4" id="exampleModalLabel">View Proof of Payment
@@ -740,9 +744,11 @@
                                         <br>
 
                                         <h3 class="text-left">Reference No : <span class="text-primary">{{$lists3->Reference_No}}</span></h3>
-                                        <h3 class="text-left">Proof Image : </h3>
-                                        <img src="{{ $lists3->Proof_Image }}"
-                                        class="card-img-top" />
+                                        @if($lists3->Proof_Image != null)
+                                            <h3 class="text-left">Proof Image : </h3>
+                                            <img src="{{ $lists3->Proof_Image }}"
+                                            class="card-img-top" />
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -1145,13 +1151,7 @@
                 var acc = document.getElementById("gcash_acc");
                 var g_img = document.getElementById("gcash_img");
                 var submit_button2 = document.getElementById("submit_button2");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                }
+                
                 loadfile(event);
             }
 

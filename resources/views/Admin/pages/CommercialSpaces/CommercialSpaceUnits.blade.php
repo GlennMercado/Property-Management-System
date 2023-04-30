@@ -231,6 +231,7 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col" style="font-size:18px;">Action</th>
+                                                        <th scope="col" style="font-size:18px;">Current Tenant</th>
                                                         <th scope="col" style="font-size:18px;">Space/Unit</th>
                                                         <th scope="col" style="font-size:18px;">Measurement/Size (sq.
                                                             m)</th>
@@ -280,6 +281,7 @@
                                                                     </button>
                                                                 @endif
                                                             </td>
+                                                            <td style="font-size:16px;">{{ $lists->name_of_owner }}</td>
                                                             <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
                                                             <td style="font-size:16px;">{{ $lists->Measurement_Size }}
                                                             </td>
@@ -453,9 +455,11 @@
                                                                                         class="text-primary">{{ $lists->Reference_No }}</span>
                                                                                 </h3>
                                                                                 <br>
+                                                                                @if($lists->Proof_Image != null)
                                                                                 <h3 class="text-left">Payment Image : </h3>
                                                                                 <img src="{{ $lists->Proof_Image }}"
                                                                                     class="card-img-top">
+                                                                                @endif
                                                                             @endif
 
                                                                             <h3 class="text-left">Set Status : </h3>
