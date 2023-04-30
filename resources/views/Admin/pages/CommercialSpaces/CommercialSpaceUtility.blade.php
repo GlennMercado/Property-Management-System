@@ -513,33 +513,33 @@
     </script>
     <style>
         .preview-container {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        z-index: 999;
-        width: 300px;
-        height: auto;
-        text-align: center;
-        justify-content: center;
-    }
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            width: 300px;
+            height: auto;
+            text-align: center;
+            justify-content: center;
+        }
 
-    .preview-container p {
-        margin-bottom: 10px;
-        font-size: 14px;
-        font-weight: bold;
-    }
+        .preview-container p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    .preview-container img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-    }
+        .preview-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
 
 
         .update_payment_status {

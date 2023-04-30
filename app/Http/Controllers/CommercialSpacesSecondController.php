@@ -522,7 +522,7 @@ class CommercialSpacesSecondController extends Controller
         $carbonDate = Carbon::parse($due);
         $carbonDate->addMonth(); 
         $due_Date = $carbonDate->toDateString();
-        $Reference_No = $request->input('Reference_No');
+        $Reference_No = $request->input('gcash');
         $proof_image = $request->input('payment');
         
         $now = Carbon::now()->format('Y-m-d');
@@ -640,6 +640,7 @@ class CommercialSpacesSecondController extends Controller
         $tenant_id = $request->input('tenant_id');
         $cost = $request->input('cost');
         $others = $request->input('others');
+        $reason = $request->input('reason');
 
         $due_date = Carbon::now()->addMonth()->format('Y-m-d');
 
@@ -650,6 +651,7 @@ class CommercialSpacesSecondController extends Controller
                 'Maintenance_Status' => "Yes",
                 'updated_at' => DB::RAW('NOW()')
             ]);
+
         if($sql)
         {
             $tenants = DB::table('commercial_spaces_tenants')
@@ -658,7 +660,7 @@ class CommercialSpacesSecondController extends Controller
             
             // Send email to each tenant
             foreach ($tenants as $tenant) {
-                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance3($tenant, $others, $cost));
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance3($tenant, $others, $cost, $reason));
             }
 
             Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');

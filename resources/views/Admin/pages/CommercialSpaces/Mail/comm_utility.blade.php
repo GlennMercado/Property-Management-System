@@ -8,10 +8,9 @@
     <p>Please be informed that your utility bills for the following billing period:</p>
     <ul>
         @foreach($utility as $bill)
-            <li>{{ date('F j, Y', strtotime($bill->Due_Date)) }} - {{ $bill->Type_of_Bill }} Bill: {{ $bill->Total_Amount }} PHP</li>
+            <li>{{ date('F j, Y', strtotime($bill->Due_Date)) }} - {{ $bill->Type_of_Bill }} Bill: ₱ {{ number_format($bill->Total_Amount, 0, '.', ',') }}.00</li>
         @endforeach
     </ul>
-    <p>Regards,</p>
-    <p>NOVADECI PROPERTIES</p>
+    <p>Regards,<br>NOVADECI PROPERTIES</p>
 </body>
 </html>

@@ -295,7 +295,7 @@ class CommercialSpacesController extends Controller
         $count1 = DB::select("SELECT * From commercial_space_units");
         $array = array();
 
-        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports");
+        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports a INNER JOIN commercial_spaces_applications b ON a.Tenant_ID = b.id");
         
         foreach($count1 as $counts)
         {

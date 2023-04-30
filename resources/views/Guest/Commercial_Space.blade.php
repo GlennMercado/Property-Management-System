@@ -874,7 +874,6 @@
                                                     <i class="bi bi-arrow-repeat"></i>
                                                 </button>
                                             @endif
-
                                         </td>
                                     </tr>
                                 </tbody>
@@ -980,13 +979,13 @@
                                                                                 <div class="col-md-12 d-flex justify-content-center">
                                                                                     {!! QrCode::size(170)->generate('09458923381') !!}
                                                                                 </div>
-                                                                                <br>
+                                                                                <br><br>
                                                                                 <div class="col-md-12">
                                                                                     <p class="text-center">Reference Number <span
                                                                                             class="text-danger">*</span></p>
                                                                                 </div>
-                                                                                <!-- <br>
-                                                                                <div class="col-md-12">
+                                                                                <br>
+                                                                                <!-- <div class="col-md-12">
                                                                                     <p class="text-left">Account name <span
                                                                                             class="text-danger">*</span></p>
                                                                                 </div> -->
@@ -1113,260 +1112,254 @@
             <br>
         </div>
 
-        <script>
+    <script>
 
-            $(function() {
-                $('.interview_modal').on('shown.bs.modal', function() {
-                    $("#interview").datepicker({
-                        minDate: 0,
-                        buttonImageOnly: true,
-                        showOn: "both",
-                        format: 'yyyy-mm-dd',
-                        buttonImage: "{{ asset('images') }}/calendar2.png",
-                        beforeShowDay: function(date) {
-                            // Convert date to yyyy-mm-dd format
-                            var year = date.getFullYear();
-                            var month = ('0' + (date.getMonth() + 1)).slice(-2);
-                            var day = ('0' + date.getDate()).slice(-2);
-                            var formattedDate = year + '-' + month + '-' + day;
+        $(function() {
+            $('.interview_modal').on('shown.bs.modal', function() {
+                $("#interview").datepicker({
+                    minDate: 0,
+                    buttonImageOnly: true,
+                    showOn: "both",
+                    format: 'yyyy-mm-dd',
+                    buttonImage: "{{ asset('images') }}/calendar2.png",
+                    beforeShowDay: function(date) {
+                        // Convert date to yyyy-mm-dd format
+                        var year = date.getFullYear();
+                        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                        var day = ('0' + date.getDate()).slice(-2);
+                        var formattedDate = year + '-' + month + '-' + day;
 
-                            // Check if formattedDate is in startDates array
-                            var startDates = [];
+                        // Check if formattedDate is in startDates array
+                        var startDates = [];
 
-                            $("input[name='start_dates[]']").each(function() {
-                                startDates.push($(this).val());
-                            });
+                        $("input[name='start_dates[]']").each(function() {
+                            startDates.push($(this).val());
+                        });
 
-                            if (startDates.includes(formattedDate)) {
-                                return [false, 'unavailable-date'];
-                            } else {
-                                return [true, ''];
-                            }
+                        if (startDates.includes(formattedDate)) {
+                            return [false, 'unavailable-date'];
+                        } else {
+                            return [true, ''];
                         }
-                    });
+                    }
                 });
             });
-
-            function enable_submit() {
-                var acc = document.getElementById("gcash_acc");
-                var g_img = document.getElementById("gcash_img");
-                var submit_button2 = document.getElementById("submit_button2");
-                
-                loadfile(event);
-            }
-
-            function loadfile(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            }
-
-            function enable_submit2(event, id) {
-                var acc = document.getElementById("gcash_acc2_" +id);
-                var g_img = document.getElementById("gcash_img2_" +id);
-                var submit_button2 = document.getElementById("submit_button3");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                    console.log("Submit button disabled");
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                    console.log("Submit button enabled");
-                }
-                loadfile2(event, id);
-            }
-
-
-            function loadfile2(event, id) {
-                console.log("Loadfile2 called");
-                var output = document.getElementById('output2_' + id);
-                output.src = URL.createObjectURL(event.target.files[0]);
-                console.log("URL of file being loaded: ", output.src);
-            }
-
-            function enable_submit3() {
-                var acc = document.getElementById("gcash_acc3");
-                var g_img = document.getElementById("gcash_img3");
-                var submit_button2 = document.getElementById("submit_button4");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                }
-                loadfile3(event);
-            }
-
-            function loadfile3(event) {
-                var output = document.getElementById('output3');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            }
-        </script>
-<script>
-    
-    $(document).ready(function($) {
-        $('#payment_history').DataTable({
-            "columnDefs": [
-                { "type": "date", "targets": 0 }
-            ]
         });
-    });
-</script>
-        <style>
-            .img-container {
-                position: relative;
-                display: inline-block;
-            }
 
-            .img-container img {
-                display: block;
-                max-width: 100%;
-                z-index: 9999;
-            }
+        function enable_submit() {
+            var acc = document.getElementById("gcash_acc");
+            var g_img = document.getElementById("gcash_img");
+            var submit_button2 = document.getElementById("submit_button2");
+            
+            loadfile(event);
+        }
 
-            .img-container .btn {
-                position: relative;
-            }
+        function loadfile(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
 
-            .img-container .popup {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 9999;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.3s ease-in-out;
+        function enable_submit2(event, id) {
+            var acc = document.getElementById("gcash_acc2_" +id);
+            var g_img = document.getElementById("gcash_img2_" +id);
+            var submit_button2 = document.getElementById("submit_button3");
+            if (acc.value == "" || g_img.value == "") {
+                submit_button2.disabled = true;
+                submit_button2.style.cursor = "not-allowed";
+                console.log("Submit button disabled");
+            } else {
+                submit_button2.disabled = false;
+                submit_button2.style.cursor = "pointer";
+                console.log("Submit button enabled");
             }
-
-            .img-container .btn:hover .popup {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            .img-container .popup img {
-                display: block;
-                max-width: 80vw;
-                max-height: 80vh;
-                margin: auto;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
+            loadfile2(event, id);
+        }
 
 
-            .cur1::before {
-                content: '₱';
-            }
+        function loadfile2(event, id) {
+            console.log("Loadfile2 called");
+            var output = document.getElementById('output2_' + id);
+            output.src = URL.createObjectURL(event.target.files[0]);
+            console.log("URL of file being loaded: ", output.src);
+        }
 
-            .datepicker {
-                pointer-events: none;
-                /* form-control */
-                display: block;
-                width: 100%;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            }
+        function enable_submit3() {
+            var acc = document.getElementById("gcash_acc3");
+            var g_img = document.getElementById("gcash_img3");
+            var submit_button2 = document.getElementById("submit_button4");
+            
+            loadfile3(event);
+        }
 
-            .datepicker:focus {
-                border-color: #80bdff;
-                outline: 0;
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            }
+        function loadfile3(event) {
+            var output = document.getElementById('output3');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+    <script>
+        
+        $(document).ready(function($) {
+            $('#payment_history').DataTable({
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }
+                ]
+            });
+        });
+    </script>
+    <style>
+        .img-container {
+            position: relative;
+            display: inline-block;
+        }
 
-            .ui-datepicker {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 14px;
-                background-color: #fff;
-                z-index: 1600 !important;
-                /* adjust the z-index to be higher than the modal's z-index */
-                position: absolute;
-                top: 42% !important;
-                left: 33% !important;
-                transform: translate(-50%, -50%);
-            }
+        .img-container img {
+            display: block;
+            max-width: 100%;
+            z-index: 9999;
+        }
 
-            .ui-datepicker-trigger {
-                position: absolute;
-                top: 60px;
-                right: 0;
-                margin-right: 30px;
-                cursor: pointer;
-                background-image: url("{{ asset('images') }}/calendar2.png}}");
-                background-size: 30px 30px;
-                width: 30px;
-                height: 30px;
-            }
+        .img-container .btn {
+            position: relative;
+        }
 
-            /* Set the color of the datepicker header */
-            .ui-datepicker-header {
-                background-color: #39D972;
-                border: 1px solid #ddd;
-                color: #fff;
-            }
+        .img-container .popup {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
 
-            /* Set the color of the datepicker days */
-            .ui-state-default,
-            .ui-widget-content .ui-state-default,
-            .ui-widget-header .ui-state-default {
-                background-color: #fff;
-                border: none;
-                color: #333;
-            }
+        .img-container .btn:hover .popup {
+            visibility: visible;
+            opacity: 1;
+        }
 
-            /* Set the color of the selected date */
-            .ui-state-active,
-            .ui-widget-content .ui-state-active,
-            .ui-widget-header .ui-state-active {
-                background-color: #6C6C6C;
-                border: none;
-                color: #fff;
-            }
+        .img-container .popup img {
+            display: block;
+            max-width: 80vw;
+            max-height: 80vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-            /* Set the color of the datepicker hover state */
-            .ui-state-hover,
-            .ui-widget-content .ui-state-hover,
-            .ui-widget-header .ui-state-hover {
-                background-color: #39D972;
-                border: none;
-                color: #fff;
-            }
 
-            /* Set the color of the datepicker today button */
-            .ui-datepicker-current-day {
-                background-color: #16BBAE;
-                border: none;
-                color: #fff;
-            }
+        .cur1::before {
+            content: '₱';
+        }
 
-            /* Set the color of the datepicker navigation icons */
-            .ui-icon {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-            }
+        .datepicker {
+            pointer-events: none;
+            /* form-control */
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-            /* Set the color of the datepicker navigation buttons */
-            .ui-datepicker-prev,
-            .ui-datepicker-next {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-                font-weight: bold;
-            }
-        </style>
-    @endsection
+        .datepicker:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .ui-datepicker {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-color: #fff;
+            z-index: 1600 !important;
+            /* adjust the z-index to be higher than the modal's z-index */
+            position: absolute;
+            top: 42% !important;
+            left: 33% !important;
+            transform: translate(-50%, -50%);
+        }
+
+        .ui-datepicker-trigger {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            margin-right: 30px;
+            cursor: pointer;
+            background-image: url("{{ asset('images') }}/calendar2.png}}");
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Set the color of the datepicker header */
+        .ui-datepicker-header {
+            background-color: #39D972;
+            border: 1px solid #ddd;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker days */
+        .ui-state-default,
+        .ui-widget-content .ui-state-default,
+        .ui-widget-header .ui-state-default {
+            background-color: #fff;
+            border: none;
+            color: #333;
+        }
+
+        /* Set the color of the selected date */
+        .ui-state-active,
+        .ui-widget-content .ui-state-active,
+        .ui-widget-header .ui-state-active {
+            background-color: #6C6C6C;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker hover state */
+        .ui-state-hover,
+        .ui-widget-content .ui-state-hover,
+        .ui-widget-header .ui-state-hover {
+            background-color: #39D972;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker today button */
+        .ui-datepicker-current-day {
+            background-color: #16BBAE;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker navigation icons */
+        .ui-icon {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker navigation buttons */
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+@endsection
