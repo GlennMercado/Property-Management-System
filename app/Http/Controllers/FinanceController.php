@@ -130,11 +130,13 @@ class FinanceController extends Controller
     
     }
 
-    public function finance_invoice()
+    public function finance_invoice($id)
     {
-        $list = DB::select('SELECT * FROM finance_2_reports');    
+        // $list = DB::select("SELECT * FROM finance_2_reports");  
+        $list = DB::select("SELECT * FROM hotel_reservations  WHERE userid = '$userid'");   
 
         return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list,]);
+        
     }
 
     /**

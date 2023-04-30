@@ -246,7 +246,7 @@
                                                                             <div class="input-group-prepend">
                                                                               <button class="btn btn-success" type="button" onclick="decrementValue()">-</button>
                                                                             </div>
-                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput" style="width: 50px;">
+                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput" name="in" style="width: 50px;">
                                                                             <div class="input-group-append">
                                                                               <button class="btn btn-success" type="button" onclick="incrementValue()">+</button>
                                                                             </div>
@@ -259,7 +259,7 @@
                                                                             <div class="input-group-prepend">
                                                                               <button class="btn btn-success" type="button" onclick="decrementValue2()">-</button>
                                                                             </div>
-                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput2" style="width: 50px;">
+                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput2" name="out" style="width: 50px;">
                                                                             <div class="input-group-append">
                                                                               <button class="btn btn-success" type="button" onclick="incrementValue2()">+</button>
                                                                             </div>
