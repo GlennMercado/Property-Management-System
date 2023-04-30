@@ -34,7 +34,7 @@ return new class extends Migration
             array(
                 'name' => 'Daniel Diapen',
                 'email' => 'inter.sol@gmail.com',
-                'password' => Hash::make('A4rglujuforvih19'),
+                'password' => Hash::make('qweqweqwe'),
                 'User_Type' => 'Admin',
                 'email_verified_at' => now()
             )
