@@ -189,21 +189,34 @@
                                             <input type="number" class="form-control" value="{{ $lists->Stock_Level }}"
                                                 readonly>
 
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="text-left">Stock In </p>
-                                                    <input class="form-control" type="number" name="in"
-                                                        value="0">
-                                                </div>
-                                                <div class="col">
-                                                    <p class="text-left">Stock Out </p>
-                                                    <input type="number" class="form-control" name="out"
-                                                        value="0">
-                                                    <div class="invalid-feedback">
-                                                        Stock Name empty
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <div class="row mt-4">
+                                                                    <div class="col-md-6">
+                                                                        <label>Stock In</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            
+                                                                            <div class="input-group-prepend">
+                                                                              <button class="btn btn-success" type="button" onclick="decrementValue()">-</button>
+                                                                            </div>
+                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput" name="in" style="width: 50px;">
+                                                                            <div class="input-group-append">
+                                                                              <button class="btn btn-success" type="button" onclick="incrementValue()">+</button>
+                                                                            </div>
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label>Stock Out</label>
+                                                                        <div class="input-group input-group-sm">
+                                                                            
+                                                                            <div class="input-group-prepend">
+                                                                              <button class="btn btn-success" type="button" onclick="decrementValue2()">-</button>
+                                                                            </div>
+                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput2" name="out" style="width: 50px;">
+                                                                            <div class="input-group-append">
+                                                                              <button class="btn btn-success" type="button" onclick="incrementValue2()">+</button>
+                                                                            </div>
+                                                                          </div>
+                                                                    </div>
+                                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a class="btn btn-failed" data-dismiss="modal">Close</a>
@@ -287,7 +300,43 @@
             </div>
         </div>
     </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+// increment, decrement
+// Stock in
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('numberInput').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('numberInput').value = value > 99999 ? 99999 : value;
+}
+
+function decrementValue()
+{
+    var value = parseInt(document.getElementById('numberInput').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('numberInput').value = value < 0 ? 0 : value;
+}
+// Stock out
+function incrementValue2()
+{
+    var value = parseInt(document.getElementById('numberInput2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('numberInput2').value = value > 99999 ? 99999 : value;
+}
+
+function decrementValue2()
+{
+    var value = parseInt(document.getElementById('numberInput2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('numberInput2').value = value < 0 ? 0 : value;
+}
+
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
