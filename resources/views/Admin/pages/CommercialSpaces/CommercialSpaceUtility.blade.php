@@ -510,11 +510,6 @@
                 previewContainer.style.display = 'none';
             });
         });
-
-
-
-
-        
     </script>
     <style>
         .preview-container {
