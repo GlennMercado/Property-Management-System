@@ -8,7 +8,7 @@
     <p>Your unit is under maintenance. Below here is your Maintenance cost together with Equipments Used:</p>
     <p>Equipments : {{$others}}</p>
     <p>Cost : {{$cost}} PHP</p>
-    <p>Thank you,</p>
-    <p>NOVADECI Properties</p>
+    <p>Regards,</p>
+    <p>NOVADECI PROPERTIES</p>
 </body>
 </html>

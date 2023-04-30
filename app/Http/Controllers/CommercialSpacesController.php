@@ -161,6 +161,7 @@ class CommercialSpacesController extends Controller
             //$due_date = Carbon::createFromFormat('m/d/Y', $request->input('due_date'))->format('Y-m-d');
             //$due_date = $request->input('due_date');
             $remarks = $request->input('remarks');
+            $space_unit = $request->input('space_unit');
 
             $due_date = new Carbon($request->input('start_date'));
             $due_date = $due_date->addMonth();
@@ -174,7 +175,7 @@ class CommercialSpacesController extends Controller
             $tenant->Rental_Fee = $renters_fee;
             $tenant->Total_Amount = $renters_fee;
             $tenant->Due_Date = $due_date;
-            $tenant->Space_Unit = $request->input('space_unit');
+            $tenant->Space_Unit = $space_unit;
             $tenant->Start_Date = $start;
             $tenant->End_Date = $end;
             
@@ -208,7 +209,7 @@ class CommercialSpacesController extends Controller
                 ->get();
 
                 foreach ($tenants as $tenant) {
-                    Mail::to($tenant->email)->send(new Application_Status($tenant));
+                    Mail::to($tenant->email)->send(new Application_Status($tenant, $space_unit));
 
                     // Send SMS notification
                     // $message = "Congratulations! {$tenant->name_of_owner}. You are now one of our tenants.";

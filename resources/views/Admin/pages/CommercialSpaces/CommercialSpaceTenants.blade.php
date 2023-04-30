@@ -161,11 +161,14 @@
                                                             <td class="font-weight-bold tbltxt">{{ $lists->Space_Unit }}
                                                             </td>
                                                             <td class="font-weight-bold tbltxt">
-                                                                {{ date('F j, Y', strtotime($lists->Start_Date)) }}</td>
+                                                                {{ date('F j, Y', strtotime($lists->Start_Date)) }}
+                                                            </td>
                                                             <td class="font-weight-bold tbltxt">
-                                                                {{ date('F j, Y', strtotime($lists->End_Date)) }}</td>
+                                                                {{ date('F j, Y', strtotime($lists->End_Date)) }}
+                                                            </td>
                                                             <td class="font-weight-bold tbltxt">
-                                                                {{ $lists->Tenant_Status }}</td>
+                                                                {{ $lists->Tenant_Status }}
+                                                            </td>
                                                         </tr>
 
                                                         <!-- Update Modal -->
@@ -293,8 +296,8 @@
                                                                         <input type="hidden" name="payment" value="Paid">
                                                                         <h3 class="text-center">Are you sure you want to set this tenant to Active (Operating)?</h3>
 
-                                                                        @if($lists->Proof_Image != null)
-                                                                        <h3 class="text-left">Account Name : <span class="text-primary">{{$lists->Gcash_Name}}</span></h3>
+                                                                        @if($lists->Reference_No != null)
+                                                                        <h3 class="text-left">Reference Number : <span class="text-primary">{{$lists->Reference_No}}</span></h3>
                                                                         <br>
                                                                         <h3 class="text-left">Proof Image : </h3>
                                                                         <img src="{{$lists->Proof_Image}}" class="card-img-top">

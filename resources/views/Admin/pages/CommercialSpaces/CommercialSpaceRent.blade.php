@@ -87,13 +87,7 @@
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
                                                                 @php $now = date('Y-m-d') @endphp
-                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)")
-                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                        data-target="#update_payment_status{{ $lists->id }}"
-                                                                        title="Update Payment Status">
-                                                                        <i class="bi bi-arrow-clockwise"></i>
-                                                                    </button>
-                                                                @elseif($lists->Due_Date == $now)
+                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)" || $lists->Due_Date == $now)
                                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
@@ -231,11 +225,11 @@
                                                                                 </option>
                                                                             </select>
 
-                                                                            @if($lists->Gcash_Name != null)
+                                                                            @if($lists->Reference_No != null)
                                                                                 <br><br>
-                                                                                <h3 class="text-left">Gcash Account Name : <span class="text-success">{{$lists->Gcash_Name}}</span></h3>
+                                                                                <h3 class="text-left">Reference Number : <span class="text-success">{{$lists->Reference_No}}</span></h3>
                                                                                 
-                                                                                <input type="hidden" name="gcash_name" value="{{$lists->Gcash_Name}}" />
+                                                                                <input type="hidden" name="Reference_No" value="{{$lists->Reference_No}}" />
                                                                                 <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
                                                                                 
                                                                                 <h3 class="text-left">Gcash Proof Image : </h3>

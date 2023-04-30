@@ -8,6 +8,6 @@
     <p>We are informing you that your Statement of Account for this month is ready for signing and claiming.</p>
     <p>Kindly proceed to our office.</p>
     <p>Regards,</p>
-    <p>Novadeci Properties</p>
+    <p>NOVADECI PROPERTIES</p>
 </body>
 </html>

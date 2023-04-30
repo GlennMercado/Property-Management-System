@@ -603,17 +603,16 @@
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
-                                                    <p class="text-center">Gcash account name <span
+                                                    <p class="text-center">Reference Number <span
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="text" id="gcash_acc" onkeyup="enable_submit()"
-                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        name="Reference_No" class="form-control" maxlength="32"
                                                         required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
-                                                    <p class="text-center">Upload your proof of payment here <span
-                                                            class="text-danger">*</span></p>
+                                                    <p class="text-center">Upload your proof of payment here </p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
                                                     <img id="output" class="img-fluid" />
@@ -621,7 +620,7 @@
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)" id="gcash_img"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                        required>
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
@@ -702,7 +701,7 @@
                                         <td>{{ date('F j, Y', strtotime($lists->Due_Date)) }}</td>
                                         <td>{{ $lists3->Payment_Status }}</td>
                                         <td>
-                                            @if($lists3->Gcash_Name != null)
+                                            @if($lists3->Reference_No != null)
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target="#view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}"
                                                     title="Payment History">
@@ -740,8 +739,8 @@
                                         <h3 class="text-left">Due Date: <span class="text-primary">{{date('F j, Y', strtotime($lists3->Due_Date))}}</span></h3>
                                         <br>
 
-                                        <h3 class="text-left">Gcash Account/Name : <span class="text-primary">{{$lists3->Gcash_Name}}</span></h3>
-                                        <h3 class="text-left">Gcash Proof Image : </h3>
+                                        <h3 class="text-left">Reference No : <span class="text-primary">{{$lists3->Reference_No}}</span></h3>
+                                        <h3 class="text-left">Proof Image : </h3>
                                         <img src="{{ $lists3->Proof_Image }}"
                                         class="card-img-top" />
                                     </div>
@@ -787,17 +786,16 @@
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
-                                                    <p class="text-center">Gcash account name <span
+                                                    <p class="text-center">Reference Number <span
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="text" id="gcash_acc2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" onkeyup="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})"
-                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        name="Reference_No" class="form-control" maxlength="32"
                                                         required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
-                                                    <p class="text-center">Upload your proof of payment here <span
-                                                            class="text-danger">*</span></p>
+                                                    <p class="text-center">Upload your proof of payment here</p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
                                                     <img id="output2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" class="img-fluid" />
@@ -805,7 +803,7 @@
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})" id="gcash_img2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                        required>
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
@@ -978,22 +976,21 @@
                                                                                 </div>
                                                                                 <br>
                                                                                 <div class="col-md-12">
-                                                                                    <p class="text-center">Gcash account name <span
+                                                                                    <p class="text-center">Reference Number <span
                                                                                             class="text-danger">*</span></p>
                                                                                 </div>
-                                                                                <br>
+                                                                                <!-- <br>
                                                                                 <div class="col-md-12">
                                                                                     <p class="text-left">Account name <span
                                                                                             class="text-danger">*</span></p>
-                                                                                </div>
+                                                                                </div> -->
                                                                                 <div class="col-md-12">
                                                                                     <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
-                                                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                                                        name="Reference_No" class="form-control" maxlength="32"
                                                                                         required>
                                                                                 </div>
                                                                                 <div class="col-md-12 mt-1">
-                                                                                    <p class="text-left">Upload your proof of payment here <span
-                                                                                            class="text-danger">*</span></p>
+                                                                                    <p class="text-left">Upload your proof of payment here </p>
                                                                                 </div>
                                                                                 <div class="col-md-12 d-flex justify-content-center">
                                                                                     <img id="output3" class="img-fluid" />
@@ -1001,7 +998,7 @@
                                                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
                                                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                                                        required>
+                                                                                    >
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1062,23 +1059,22 @@
                                                         {!! QrCode::size(170)->generate('09458923381') !!}
                                                     </div>
                                                     <br>
-                                                    <div class="col-md-12">
-                                                        <p class="text-center">Gcash account name <span
+                                                    <!-- <div class="col-md-12">
+                                                        <p class="text-center">Gcash Account <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
-                                                    <br>
+                                                    <br> -->
                                                     <div class="col-md-12">
-                                                        <p class="text-left">Account name <span
+                                                        <p class="text-left">Reference Number <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
-                                                            name="gcash_account" class="form-control" maxlength="32"
+                                                            name="Reference_No" class="form-control" maxlength="32"
                                                             required>
                                                     </div>
                                                     <div class="col-md-12 mt-1">
-                                                        <p class="text-left">Upload your proof of payment here <span
-                                                                class="text-danger">*</span></p>
+                                                        <p class="text-left">Upload your proof of payment here </p>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
                                                         <img id="output3" class="img-fluid" />
@@ -1086,7 +1082,7 @@
                                                     <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                         <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
                                                             placeholder="Ex: John Doe" name="images" class="form-control"
-                                                            required>
+                                                          >
                                                     </div>
                                                 </div>
                                             </div>

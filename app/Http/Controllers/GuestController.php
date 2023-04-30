@@ -169,7 +169,7 @@ class GuestController extends Controller
         $now = Carbon::now()->format('Y-m-d');
         $tenant_id = $request->input('tenant_id');
         $due = $request->input('due');
-        $gcash = $request->input('gcash_account');
+        $Reference_No = $request->input('Reference_No');
 
         if($request->hasfile('images'))
         {
@@ -189,7 +189,7 @@ class GuestController extends Controller
         $sql = DB::table('commercial_spaces_tenants')->where(['Tenant_ID' => $tenant_id, 'Due_Date' => $due])->update(
             [
                 'Paid_Date' => $now,
-                'Gcash_Name' => $gcash,
+                'Reference_No' => $Reference_No,
                 'Proof_Image' => $path,
                 'Payment_Status' => 'Paid (Checking)'
             ]);
@@ -211,7 +211,7 @@ class GuestController extends Controller
         $tenant_id = $request->input('tenant_id');
         $due = $request->input('due');
         $type = $request->input('type');
-        $gcash = $request->input('gcash_account');
+        $Reference_No = $request->input('Reference_No');
         $path;
         $now = Carbon::now()->format('Y-m-d');
 
@@ -234,7 +234,7 @@ class GuestController extends Controller
                 ->update([
                     'Paid_Date' => $now,
                     'Payment_Status' => "Paid (Checking)",
-                    'Gcash_Name' => $gcash,
+                    'Reference_No' => $Reference_No,
                     'Proof_Image' => $path,
                     'updated_at' => DB::RAW('NOW()') 
                 ]);
@@ -256,7 +256,7 @@ class GuestController extends Controller
         $tenant_id = $request->input('tenant_id');
         $due = $request->input('due');
         $space_unit = $request->input('space_unit');
-        $gcash = $request->input('gcash_account');
+        $Reference_No = $request->input('Reference_No');
         $path;
         $now = Carbon::now()->format('Y-m-d');
         
@@ -278,7 +278,7 @@ class GuestController extends Controller
         $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
             [
                 'Payment_Status' => "Paid (Checking)",
-                'Gcash_Name' => $gcash,
+                'Reference_No' => $Reference_No,
                 'Proof_Image' => $path,
                 'Paid_Date' => $now,
                 'updated_at' => DB::RAW('NOW()')
@@ -356,7 +356,7 @@ class GuestController extends Controller
                 'mobile' => 'required',
                 'room_no' => 'required',
                 'pax' => 'required',
-                'gcash_account' => 'required',
+                'Reference_No' => 'required',
             ]);
             
 
@@ -374,7 +374,7 @@ class GuestController extends Controller
             $reserve->No_of_Pax = $request->input('pax');
             $reserve->Payment = $request->input('payment');
             $reserve->Room_No = $request->input('room_no');
-            $reserve->gcash_account_name = $request->input('gcash_account');
+            $reserve->Reference_No_name = $request->input('Reference_No');
 
 
 
@@ -686,7 +686,7 @@ class GuestController extends Controller
         $tenant_id = $request->input('tenant_id');
         $space_unit = $request->input('space_unit');
         $due = $request->input('due');
-        $gcash = $request->input('gcash_account');
+        $Reference_No = $request->input('Reference_No');
         $now = Carbon::now()->format('Y-m-d');
         $path;
 
@@ -707,7 +707,7 @@ class GuestController extends Controller
 
         $sql = DB::table('commercial_space_unit_reports')->where(['id' => $id, 'Tenant_ID' => $tenant_id])->update([
             'Paid_Date' => $now,
-            'Gcash_Name' => $gcash,
+            'Reference_No' => $Reference_No,
             'Proof_Image' => $path,
             'Payment_Status' => 'Paid (Checking)',
             'updated_at' => DB::RAW('NOW()')

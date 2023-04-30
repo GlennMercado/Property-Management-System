@@ -438,7 +438,7 @@
                                                                             <input type="hidden" name="due"
                                                                                 value="{{ $lists->Maintenance_Due_Date }}">
                                                                             <input type="hidden" name="gcash"
-                                                                                value="{{ $lists->Gcash_Name }}">
+                                                                                value="{{ $lists->Reference_No }}">
                                                                             <input type="hidden" name="payment"
                                                                                 value="{{ $lists->Proof_Image }}">
                                                                             <input type="hidden" name="tenant_id"
@@ -448,9 +448,9 @@
                                                                                     class="cur1 text-primary">{{ $lists->Maintenance_Cost }}</span>
                                                                             </h3>
                                                                             <i>Proof of Payment Here:</i>
-                                                                            @if ($lists->Proof_Image != null)
+                                                                            @if ($lists->Reference_No != null)
                                                                                 <h3 class="text-left">Account Name : <span
-                                                                                        class="text-primary">{{ $lists->Gcash_Name }}</span>
+                                                                                        class="text-primary">{{ $lists->Reference_No }}</span>
                                                                                 </h3>
                                                                                 <br>
                                                                                 <h3 class="text-left">Payment Image : </h3>
