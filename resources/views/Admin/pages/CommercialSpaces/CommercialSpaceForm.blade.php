@@ -79,20 +79,20 @@
                                                                             <i class="bi bi-eye"></i>
                                                                     </button>
                                                                     @if ($lists->Status == 'For Approval' || $lists->Status == 'Revised')
-                                                                        <button class="btn btn-sm btn-success"
+                                                                        <button class="btn btn-sm btn-warning"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status{{ $lists->id }}"
                                                                             title="Update Status">
-                                                                            <i class="bi bi-arrow-repeat"></i>
+                                                                            <i class="bi bi-arrow-clockwise"></i>
                                                                         </button>
                                                                     @endif
 
                                                                     @if ($lists->Status == 'For Interview')
-                                                                        <button class="btn btn-sm btn-success"
+                                                                        <button class="btn btn-sm btn-warning"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status2{{ $lists->id }}"
                                                                             title="Interview Result">
-                                                                            <i class="bi bi-arrow-repeat"></i>
+                                                                            <i class="bi bi-arrow-clockwise"></i>
                                                                         </button>
                                                                     @endif
 

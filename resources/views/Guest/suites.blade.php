@@ -276,7 +276,7 @@
                                                 NOVADECI the following information.
                                             </p>
                                             <li class="justify-center ml-4">
-                                                Name of booker and guest, in case booked by a representative.
+                                                Name of guest, in case booked by a representative.
                                             </li>
                                             <li class="justify-center ml-4">
                                                 Company name.
