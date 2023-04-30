@@ -88,16 +88,16 @@
                                                                 </button>
                                                                 @php $now = date('Y-m-d') @endphp
                                                                 @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)")
-                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @elseif($lists->Due_Date == $now)
-                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @endif
                                                             </td>

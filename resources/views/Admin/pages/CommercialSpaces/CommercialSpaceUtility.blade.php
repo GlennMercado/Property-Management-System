@@ -55,24 +55,34 @@
                                         method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
-                                            <h3 class="text-left">Tenant Name : </h3>
-                                            <select name="tenant_id" class="form-control" required>
-                                                <option value="" selected="true" disabled="disabled">Select</option>
-                                                @foreach ($list as $lists)
-                                                    <option value="{{ $lists->Tenant_ID }}">{{ $lists->name_of_owner }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-
-                                            <h3 class="text-left">Type of Bill : </h3>
-                                            <select name="type_of_bill" class="form-control" required>
-                                                <option value="" selected="true" disabled="disabled">Select</option>
-                                                <option value="Electricity">Electricity</option>
-                                                <option value="Water">Water</option>
-                                            </select>
-
-                                            <h3 class="text-left">Amount : </h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h3 class="text-left">Tenant Name : </h3>
+                                                    <select name="tenant_id" class="form-control" required>
+                                                        <option value="" selected="true" disabled="disabled">Select
+                                                        </option>
+                                                        @foreach ($list as $lists)
+                                                            <option value="{{ $lists->Tenant_ID }}">
+                                                                {{ $lists->name_of_owner }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h3 class="text-left">Type of Bill : </h3>
+                                                    <select name="type_of_bill" class="form-control" required>
+                                                        <option value="" selected="true" disabled="disabled">Select</option>
+                                                        <option value="Electricity">Electricity</option>
+                                                        <option value="Water">Water</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md mt-4">
+                                                    <h3 class="text-left">Amount : </h3>
                                             <input type="number" name="amount" class="form-control" required>
+                                                </div>
+                                            </div>       
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -215,10 +225,12 @@
                                                                             @else
                                                                                 <td></td>
                                                                             @endif
-                                                                            @if($lists->Payment_Status == "Paid")
-                                                                                <td class="text-success">{{ $lists->Payment_Status }}</td>
+                                                                            @if ($lists->Payment_Status == 'Paid')
+                                                                                <td class="text-success">
+                                                                                    {{ $lists->Payment_Status }}</td>
                                                                             @else
-                                                                                <td class="text-danger">{{ $lists->Payment_Status }}</td>
+                                                                                <td class="text-danger">
+                                                                                    {{ $lists->Payment_Status }}</td>
                                                                             @endif
                                                                             <td>
                                                                                 @if ($lists->Proof_Image != null)
@@ -235,11 +247,12 @@
                                                                                     </div>
                                                                                 @endif
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
-                                                                                    <button class="btn btn-sm btn-success"
+                                                                                    <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
-                                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                                        <i
+                                                                                            class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
                                                                                 @endif
                                                                             </td>
@@ -281,8 +294,7 @@
                                                                                             <option value="Paid">
                                                                                                 Paid
                                                                                             </option>
-                                                                                            <option
-                                                                                                value="Non-Payment">
+                                                                                            <option value="Non-Payment">
                                                                                                 Non-Payment
                                                                                             </option>
                                                                                         </select>
@@ -331,10 +343,12 @@
                                                                             @else
                                                                                 <td></td>
                                                                             @endif
-                                                                            @if($lists->Payment_Status == "Paid")
-                                                                                <td class="text-success">{{ $lists->Payment_Status }}</td>
+                                                                            @if ($lists->Payment_Status == 'Paid')
+                                                                                <td class="text-success">
+                                                                                    {{ $lists->Payment_Status }}</td>
                                                                             @else
-                                                                                <td class="text-danger">{{ $lists->Payment_Status }}</td>
+                                                                                <td class="text-danger">
+                                                                                    {{ $lists->Payment_Status }}</td>
                                                                             @endif
                                                                             <td>
                                                                                 @if ($lists->Proof_Image != null)
@@ -352,11 +366,12 @@
                                                                                 @endif
 
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
-                                                                                    <button class="btn btn-sm btn-success"
+                                                                                    <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
-                                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                                        <i
+                                                                                            class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
                                                                                 @endif
                                                                             </td>
@@ -399,8 +414,7 @@
                                                                                             <option value="Paid">
                                                                                                 Paid
                                                                                             </option>
-                                                                                            <option
-                                                                                                value="Non-Payment">
+                                                                                            <option value="Non-Payment">
                                                                                                 Non-Payment
                                                                                             </option>
                                                                                         </select>
@@ -444,9 +458,10 @@
         });
     </script>
     <style>
-        .update_payment_status{
-            overflow-y:hidden;
+        .update_payment_status {
+            overflow-y: hidden;
         }
+
         .img-container {
             position: relative;
             display: inline-block;

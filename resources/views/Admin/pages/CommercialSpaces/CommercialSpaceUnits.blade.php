@@ -254,11 +254,11 @@
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
                                                                 @if ($lists->Occupancy_Status == 'Occupied' && $lists->Maintenance_Status == 'No')
-                                                                    <button class="btn btn-sm btn-success"
+                                                                    <button class="btn btn-sm btn-warning"
                                                                         data-toggle="modal"
                                                                         data-target="#update_maintenance1_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
                                                                         title="Update Maintenance Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @endif
 

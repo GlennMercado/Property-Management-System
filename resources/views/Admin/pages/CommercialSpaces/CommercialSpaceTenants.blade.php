@@ -85,20 +85,20 @@
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update_status{{ $lists->id }}"
                                                                     title="Update Status">
-                                                                    <i class="bi bi-arrow-repeat"></i>
+                                                                    <i class="bi bi-arrow-clockwise"></i>
                                                                 </button>
                                                                 @elseif($lists->Tenant_Status == "Pre-Termination")
                                                                     <!-- Terminate -->
                                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                                         data-target="#update_status24{{ $lists->id }}"
                                                                         title="Update Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                     <!-- Resolve -->
                                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                         data-target="#update_status100{{ $lists->id }}"
                                                                         title="Update Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @endif
                                                             </td>
@@ -426,16 +426,16 @@
                                                         <tr>
                                                             <td>
                                                                 @if($lists->Tenant_Status == "Ending Contract")
-                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_status2{{ $lists->id }}"
                                                                         title="Update Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @else
-                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_status3{{ $lists->id }}"
                                                                         title="Update Status (For Renewal)">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
                                                                 @endif
                                                             </td>
