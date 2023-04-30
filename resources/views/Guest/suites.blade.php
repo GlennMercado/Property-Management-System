@@ -461,7 +461,7 @@
                                                             <p>Jan 31, 2023, 10:00 am </p>
                                                         </div>
                                                         {{-- Enter name --}}
-                                                        {{-- <div class="col-md-12">
+                                                        <div class="col-md-12">
                                                             <input type="text" id="gcash_acc"
                                                                 onkeyup="enable_submit()" name="gcash_account"
                                                                 class="form-control" maxlength="32">
@@ -469,7 +469,7 @@
                                                         <div class="col-md-12 mt-1">
                                                             <p class="text-center">Upload your proof of payment here <span
                                                                     class="text-danger">*</span></p>
-                                                        </div> --}}
+                                                        </div>
                                                         <div class="col-md-12 d-flex justify-content-center">
                                                             <img id="output" class="img-fluid" />
                                                         </div>

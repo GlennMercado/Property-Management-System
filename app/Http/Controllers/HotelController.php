@@ -29,8 +29,8 @@ class HotelController extends Controller
         $count_daily = hotel_reservations::whereDate('Check_In_Date', DB::raw('CURDATE()'))->count();
         $count_daily1 = hotel_reservations::whereDate('Check_Out_Date', DB::raw('CURDATE()'))->count();
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
-        $checked_guests = hotel_reservations::where('Payment_Status','Checked-In')->count(); 
-        $checked_out_guests = hotel_reservations::where('Payment_Status','Checked-Out')->count(); 
+        $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count(); 
+        $checked_out_guests = hotel_reservations::where('Booking_Status','Checked-Out')->count(); 
         $list = DB::select('SELECT * FROM hotel_reservations');
 		$room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  

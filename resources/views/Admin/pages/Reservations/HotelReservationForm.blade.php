@@ -132,20 +132,35 @@
                 </div>
             </div>
             <div class="card shadow mt--3 col-md-12">
-                <div class="card-header row d-flex">
-                    <div class="col-md-4">
-                        <select class="form-control" style="border:2px solid" id="optionselect">
-                            <option value="Pending" selected="true">Pending</option>
-                            <option value="Reserved">Reserved</option>
-                            <option value="Checked-In">Checked-In</option>
-                            <option value="Finished">Finished</option>
-                        </select>
-                    </div>
-                     <!-- <div class="col text-right">
-                        <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
-                            Book Now
-                        </a>    
-                    </div>  -->
+                <div class="card-header">
+                    <form action="{{ url('/report') }}" target="blank" method="get">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <label for="optionselect">Sort:</label>
+                                <select class="form-control" style="border:2px solid" id="optionselect" name="sort">
+                                    <option value="Pending" selected="true">Pending</option>
+                                    <option value="Reserved">Reserved</option>
+                                    <option value="Checked-In">Checked-In</option>
+                                    <option value="Finished">Finished</option>
+                                    <option value="All">All</option>
+                                </select>
+                            </div>
+                            <div class="p-2">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date">
+                            </div>
+                            <div class="p-2">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="end_date">
+                            </div>
+                            <div class="p-2">
+                                <label>Generate report:</label>
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-printer-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -545,7 +560,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($list as $index => $lists)
-                                        @if ($lists->Booking_Status == 'Checked-In' || $lists->Booking_Status == 'Checking(Before Check-Out)' || $lists->Booking_Status == 'Room Checked' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
+                                        @if (
+                                            $lists->Booking_Status == 'Checked-In' ||
+                                                $lists->Booking_Status == 'Checking(Before Check-Out)' ||
+                                                ($lists->Booking_Status == 'Room Checked' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid'))
                                             <tr>
                                                 <td>
                                                     <!--View Button-->
@@ -554,7 +572,7 @@
                                                         <i class="bi bi-eye-fill"></i>
                                                     </button>
                                                     <!--Update Reservation/Room Status Button-->
-                                                    @if($lists->Booking_Status == "Checked-In")
+                                                    @if ($lists->Booking_Status == 'Checked-In')
                                                         <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update_booking_status11{{ $lists->Booking_No }}"
                                                             title="Update">
@@ -562,11 +580,12 @@
                                                         </button>
                                                         <!--Guest Request Button-->
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                            data-target="#request{{ $lists->Booking_No }}" title="Request">
+                                                            data-target="#request{{ $lists->Booking_No }}"
+                                                            title="Request">
                                                             <i class="bi bi-plus-square"></i>
                                                         </button>
                                                     @endif
-                                                    @if($lists->Booking_Status == "Room Checked")
+                                                    @if ($lists->Booking_Status == 'Room Checked')
                                                         <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update_booking_status2{{ $lists->Booking_No }}"
                                                             title="Update">
@@ -676,7 +695,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <!--Update Status-->
                                             <div class="modal fade" id="update_booking_status2{{ $lists->Booking_No }}"
                                                 tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
@@ -780,7 +799,7 @@
                                                                 <p class="text-left">Type of Request </p>
 
                                                                 <select name="type_of_request" class="form-control"
-                                                                    id="category" data-list-index="{{$index}}">
+                                                                    id="category" data-list-index="{{ $index }}">
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">Select</option>
                                                                     <option value="Service Request">Service Request
@@ -789,9 +808,11 @@
                                                                     </option>
                                                                 </select>
 
-                                                                <div id="r_items_{{$index}}" style="display:none;">
-                                                                    <p class="text-left">Item Request </p>  
-                                                                    <select name="item_request" id="item" class="form-control">
+                                                                <div id="r_items_{{ $index }}"
+                                                                    style="display:none;">
+                                                                    <p class="text-left">Item Request </p>
+                                                                    <select name="item_request" id="item"
+                                                                        class="form-control">
                                                                         <option value="" selected="true"
                                                                             disabled="disabled">Select</option>
                                                                         @foreach ($supply as $supplies)
@@ -799,12 +820,13 @@
                                                                                 {{ $supplies->name }}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    <p class="text-left">Quantity </p>  
+                                                                    <p class="text-left">Quantity </p>
                                                                     <input type="number" name="qty" id="qt"
                                                                         class="form-control">
                                                                 </div>
 
-                                                                <div id="r_services_{{$index}}" style="display:none;">
+                                                                <div id="r_services_{{ $index }}"
+                                                                    style="display:none;">
                                                                     <p class="text-left">Service Request </p>
                                                                     <input type="text" name="service_request"
                                                                         id="req2" class="form-control">
@@ -1067,19 +1089,19 @@
                     var listIndex = $(this).data('list-index');
 
                     if (selecteds == "Service Request") {
-                        $('#r_services_'+listIndex).css({
+                        $('#r_services_' + listIndex).css({
                             'display': 'block'
                         });
-                        $('#r_items_'+listIndex).css({
+                        $('#r_items_' + listIndex).css({
                             'display': 'none'
                         });
                         $('#item').val('').prop('selected', true);
                         $('#qt').val('');
                     } else if (selecteds == "Item Request") {
-                        $('#r_services_'+listIndex).css({
+                        $('#r_services_' + listIndex).css({
                             'display': 'none'
                         });
-                        $('#r_items_'+listIndex).css({
+                        $('#r_items_' + listIndex).css({
                             'display': 'block'
                         });
                         $('#req2').val('');
