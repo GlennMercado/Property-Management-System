@@ -250,11 +250,13 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
 	//Finance Invoice
-	Route::get('FinanceInvoice', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
+	//  Route::get('/FinanceInvoice/{id}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
+	 Route::get('finance_invoice/{bn}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
 
 	//Finance Daily Report
 	Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 	Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
+	Route::post('/archives', 'App\Http\Controllers\FinanceReportController@archives');
 	Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');
 });
 

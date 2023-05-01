@@ -82,7 +82,11 @@
                                                         data-target="#ModalView{{ $sqls->id }}"
                                                         class="btn btn-sm btn-primary" title="View Finance">
                                                         <i class="bi bi-eye"></i></button>
-
+                                                        <a href="{{ url('/finance_invoice', ['bn' => $sqls->Booking_No]) }}"
+                                                                target="blank" class="btn btn-sm btn-success"
+                                                                style="cursor:pointer;" title="Invoice">
+                                                                <i class="bi bi-file-earmark-text"></i>
+                                                            </a>
                                                 </td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment }}</td>
