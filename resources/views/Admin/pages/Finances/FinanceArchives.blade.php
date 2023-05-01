@@ -62,7 +62,7 @@
                                 aria-labelledby="tabs-icons-text-1-tab">
                                 
                                 <div class="card-header" style="justify-content:center;align-items:center;align-self:center">
-                                    <form action="{{ url('/archives') }}" target="blank" method="get">
+                                    <form action="{{ url('/archives_reports') }}" target="blank" method="get">
                                         <div class="d-flex flex-row">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>
