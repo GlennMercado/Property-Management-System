@@ -529,7 +529,7 @@ class HousekeepingController extends Controller
         }
     }
 
-    public function update_housekeeping_status($hk, $id, $status, $req)
+    public function update_housekeeping_status($hk, $id, $status, $req, $rn)
     {   
         try
         {           
@@ -538,6 +538,7 @@ class HousekeepingController extends Controller
             $stats = $status;
             $archive = true;
             $housekeeper = $hk;
+            $roomno = $rn;
             
             
             if($stats == "Cleaned")
@@ -546,7 +547,7 @@ class HousekeepingController extends Controller
                 {               
                     DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
                     DB::table('guest_requests')->where('Request_ID', $reqid)->update(array('IsArchived' => $archive));
-                    //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => "Vacant for Accommodation"));
                    
                     DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Available"]);
                     

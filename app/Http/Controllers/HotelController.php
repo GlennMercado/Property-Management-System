@@ -421,7 +421,7 @@ class HotelController extends Controller
                         'Booking_Status' => $status,
                         'isarchived' => true
                     ));
-                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
+                    //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
 
                     DB::table('housekeepings')->where('Booking_No', $bookno)->update(['Front_Desk_Status' => "Checked-Out"]);
 
