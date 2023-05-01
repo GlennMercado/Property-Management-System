@@ -20,7 +20,7 @@ class Application_Status extends Mailable
 
     public function build()
     {
-        return $this->subject('Application Status')
+        return $this->subject('Commercial Space Application Status')
             ->view('Admin.pages.CommercialSpaces.Mail.application_status')
             ->with('tenant', $this->tenant);
     }

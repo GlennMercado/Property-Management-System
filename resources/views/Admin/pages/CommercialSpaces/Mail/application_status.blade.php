@@ -7,15 +7,15 @@
     @if($tenant->Status == "Disapproved")
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>Your application is not approved.</p>
-        <p>Thank you.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @elseif($tenant->Status == "Failed")
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>You have failed the interview.</p>
-        <p>Thank you.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @elseif($tenant->Status == "Tenant")
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>Congratulations! You are now one of our tenants.</p>
-        <p>Thank you.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @elseif($tenant->Status == "Passed")
         <p>Hello {{ $tenant->name_of_owner }},</p>
         <p>You have passed the interview.</p>
@@ -27,11 +27,11 @@
             <li>Fire Insurance Receipt and copy of Policy</li>
             <li>Secondary Licenses per industry, if applicable</li>
         </ol>
-        <p>Thank you and have a good day!</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @else
         <p>Hello {{ $tenant->name_of_owner }},</p>
-        <p>Your application status is {{ $tenant->Status }}. Please review the remarks and take necessary actions.</p>
-        <p>Thank you.</p>
+        <p>Your commercial space application has been {{ $tenant->Status }}. Please log-in in our site and set your interview date.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @endif
 </body>
 </html>

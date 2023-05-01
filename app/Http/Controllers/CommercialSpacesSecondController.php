@@ -75,10 +75,16 @@ class CommercialSpacesSecondController extends Controller
                 $tenants = DB::table('commercial_spaces_tenants')
                 ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
                 ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)->get();
-                
+
+                $utility = DB::table('commercial_space_utility_bills')
+                        ->where('Tenant_ID', $tenant_id)
+                        ->where('Due_Date', $due_date)
+                        ->get();
+
+          
                 // Send email to each tenant
                 foreach ($tenants as $tenant) {
-                    Mail::to($tenant->email)->send(new Commercial_Utility($tenant));
+                    Mail::to($tenant->email)->send(new Commercial_Utility($tenant, $utility));
                 }
             }
             
@@ -178,7 +184,7 @@ class CommercialSpacesSecondController extends Controller
         $rent_fee = $request->input('rental_fee') + $request->input('total');
         $sql;
         $stats;
-        $gcash_name = $request->input('gcash_name');
+        $Reference_No = $request->input('Reference_No');
         $proof_image = $request->input('proof_img');
 
         if($status == "Fully Paid")
@@ -189,7 +195,7 @@ class CommercialSpacesSecondController extends Controller
                     'Paid_Date' => null,
                     'Due_Date' => $due_date,
                     'Total_Amount' => $request->input('rental_fee'),
-                    'Gcash_Name' => null,
+                    'Reference_No' => null,
                     'Proof_Image' => null,
                     'updated_at' => DB::raw('NOW()')
                 ]
@@ -213,7 +219,7 @@ class CommercialSpacesSecondController extends Controller
                     'Paid_Date' => null,
                     'Due_Date' => $due_date,
                     'Total_Amount' => $request->input('total'),
-                    'Gcash_Name' => null,
+                    'Reference_No' => null,
                     'Proof_Image' => null,
                     'updated_at' => DB::raw('NOW()')
                 ]
@@ -246,9 +252,9 @@ class CommercialSpacesSecondController extends Controller
             {
                 $report->Paid_Date = $now;
             }
-            if($gcash_name != null)
+            if($Reference_No != null)
             {
-                $report->Gcash_Name = $gcash_name;
+                $report->Reference_No = $Reference_No;
                 $report->Proof_Image = $proof_image;
             }
 
@@ -299,7 +305,7 @@ class CommercialSpacesSecondController extends Controller
                     'Status' => "Tenant",
                     'updated_at' => DB::raw('NOW()')
                 ]);
-            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status, 'Gcash_Name' => null, 'Proof_Image' => null, 'Payment_Status' => null]);
+            DB::table('commercial_spaces_tenants')->where('Tenant_ID', $id)->update(['Tenant_Status' => $status, 'Reference_No' => null, 'Proof_Image' => null, 'Payment_Status' => null]);
 
             DB::table('commercial_space_rent_reports')->where(['Tenant_ID' => $id, 'Payment_Status' => 'Non-Payment'])
                 ->update(
@@ -516,7 +522,7 @@ class CommercialSpacesSecondController extends Controller
         $carbonDate = Carbon::parse($due);
         $carbonDate->addMonth(); 
         $due_Date = $carbonDate->toDateString();
-        $gcash = $request->input('gcash');
+        $Reference_No = $request->input('gcash');
         $proof_image = $request->input('payment');
         
         $now = Carbon::now()->format('Y-m-d');
@@ -537,7 +543,7 @@ class CommercialSpacesSecondController extends Controller
                         'Maintenance_Due_Date' => null,
                         'Maintenance_Cost' => null,
                         'Payment_Status' => null,
-                        'Gcash_Name' => null,
+                        'Reference_No' => null,
                         'Proof_Image' => null
                     ]);
                 
@@ -560,7 +566,7 @@ class CommercialSpacesSecondController extends Controller
                         $add->Paid_Date = $now;
                         $add->Paid_By = $tenant->name_of_owner;
                         $add->Payment_Status = "Paid";
-                        $add->Gcash_Name = $gcash;
+                        $add->Reference_No = $Reference_No;
                         $add->Proof_Image = $proof_image;
         
                         $add->save();
@@ -634,6 +640,7 @@ class CommercialSpacesSecondController extends Controller
         $tenant_id = $request->input('tenant_id');
         $cost = $request->input('cost');
         $others = $request->input('others');
+        $reason = $request->input('reason');
 
         $due_date = Carbon::now()->addMonth()->format('Y-m-d');
 
@@ -644,6 +651,7 @@ class CommercialSpacesSecondController extends Controller
                 'Maintenance_Status' => "Yes",
                 'updated_at' => DB::RAW('NOW()')
             ]);
+
         if($sql)
         {
             $tenants = DB::table('commercial_spaces_tenants')
@@ -652,7 +660,7 @@ class CommercialSpacesSecondController extends Controller
             
             // Send email to each tenant
             foreach ($tenants as $tenant) {
-                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance3($tenant, $others, $cost));
+                Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance3($tenant, $others, $cost, $reason));
             }
 
             Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');

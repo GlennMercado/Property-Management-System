@@ -231,6 +231,7 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col" style="font-size:18px;">Action</th>
+                                                        <th scope="col" style="font-size:18px;">Current Tenant</th>
                                                         <th scope="col" style="font-size:18px;">Space/Unit</th>
                                                         <th scope="col" style="font-size:18px;">Measurement/Size (sq.
                                                             m)</th>
@@ -280,6 +281,7 @@
                                                                     </button>
                                                                 @endif
                                                             </td>
+                                                            <td style="font-size:16px;">{{ $lists->name_of_owner }}</td>
                                                             <td style="font-size:16px;">{{ $lists->Space_Unit }}</td>
                                                             <td style="font-size:16px;">{{ $lists->Measurement_Size }}
                                                             </td>
@@ -344,6 +346,8 @@
                                                                             <h3 class="text-left">Equipments/Materials
                                                                                 Used: </h3>
                                                                             <textarea name="others" class="form-control" required></textarea>
+                                                                            <h3 class="text-left">Reason for Maintenance : </h3>
+                                                                            <textarea name="reason" class="form-control" required></textarea>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button class="btn btn-outline-danger"
@@ -425,8 +429,7 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form
-                                                                        action="{{ url('/update_comm_maintenance_status') }}"
+                                                                    <form action="{{ url('/update_comm_maintenance_status') }}"
                                                                         class="prevent_submit" method="POST"
                                                                         enctype="multipart/form-data">
                                                                         {{ csrf_field() }}
@@ -438,7 +441,7 @@
                                                                             <input type="hidden" name="due"
                                                                                 value="{{ $lists->Maintenance_Due_Date }}">
                                                                             <input type="hidden" name="gcash"
-                                                                                value="{{ $lists->Gcash_Name }}">
+                                                                                value="{{ $lists->Reference_No }}">
                                                                             <input type="hidden" name="payment"
                                                                                 value="{{ $lists->Proof_Image }}">
                                                                             <input type="hidden" name="tenant_id"
@@ -448,14 +451,15 @@
                                                                                     class="cur1 text-primary">{{ $lists->Maintenance_Cost }}</span>
                                                                             </h3>
                                                                             <i>Proof of Payment Here:</i>
-                                                                            @if ($lists->Proof_Image != null)
-                                                                                <h3 class="text-left">Account Name : <span
-                                                                                        class="text-primary">{{ $lists->Gcash_Name }}</span>
+                                                                            @if ($lists->Reference_No != null)
+                                                                                <h3 class="text-left">Reference Number : <span
+                                                                                        class="text-primary">{{ $lists->Reference_No }}</span>
                                                                                 </h3>
-                                                                                <br>
+                                                                                @if($lists->Proof_Image != null)
                                                                                 <h3 class="text-left">Payment Image : </h3>
                                                                                 <img src="{{ $lists->Proof_Image }}"
                                                                                     class="card-img-top">
+                                                                                @endif
                                                                             @endif
 
                                                                             <h3 class="text-left">Set Status : </h3>
@@ -491,7 +495,7 @@
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                                    <div class="modal-content">
+                                                    <div class="modal-content" style="position: relative;">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title text-left display-4"
                                                                 id="exampleModalLabel">View Maintenance History </h5>
@@ -504,29 +508,29 @@
                                                             <table class="table align-items-center table-flush">
                                                                 <thead class="thead-light">
                                                                     <tr>
-                                                                        <th scope="col" style="font-size:18px;">
-                                                                            Tenant_ID</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
+                                                                            Tenant Name</th>
+                                                                        <th scope="col" >
                                                                             Space/Unit</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
                                                                             Maitenance Cost</th>
-                                                                        <th scope="col" style="font-size:18px;">Due
+                                                                        <th scope="col">Due
                                                                             Date</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
                                                                             Paid Date</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
                                                                             Payment Status</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
                                                                             Paid By</th>
-                                                                        <th scope="col" style="font-size:18px;">
+                                                                        <th scope="col">
                                                                             Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach ($list3 as $lists3)
+                                                                    @foreach ($list3 as $index => $lists3)
                                                                         @if ($lists3->Space_Unit == $arrays['Units'])
                                                                             <tr>
-                                                                                <td>{{ $lists3->Tenant_ID }}</td>
+                                                                                <td>{{ $lists3->name_of_owner }}</td>
                                                                                 <td>{{ $lists3->Space_Unit }}</td>
                                                                                 <td class="cur1">
                                                                                     {{ $lists3->Maintenance_Cost }}
@@ -546,19 +550,10 @@
                                                                                 @endif
                                                                                 <td>{{ $lists3->Paid_By }}</td>
                                                                                 <td>
-                                                                                    @if ($lists3->Proof_Image != null)
-                                                                                        <div class="img-container">
-                                                                                            <button
-                                                                                                class="btn btn-sm btn-primary"
-                                                                                                title="View Image">
-                                                                                                View Image
-                                                                                                <span class="popup">
-                                                                                                    <img src="{{ $lists3->Proof_Image }}"
-                                                                                                        alt="Image Preview">
-                                                                                                </span>
-                                                                                            </button>
-                                                                                        </div>
+                                                                                    @if($lists3->Payment_Status == "Paid")
+                                                                                        <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists3->Reference_No}}" data-proof-image="{{$lists3->Proof_Image}}" data-index="{{$index}}">View Payment</button>
                                                                                     @endif
+
                                                                                     @if ($lists3->Payment_Status == 'Paid (Checking)')
                                                                                         <button
                                                                                             class="btn btn-sm btn-success"
@@ -569,41 +564,7 @@
                                                                                         </button>
                                                                                     @endif
                                                                                 </td>
-                                                                            </tr>
-                                                                            <!-- Update Maintenace1 Modal -->
-                                                                            <div class="modal fade"
-                                                                                id="update_maintenance3_status{{ $lists3->id }}"
-                                                                                tabindex="-1" role="dialog"
-                                                                                aria-labelledby="exampleModalLabel"
-                                                                                aria-hidden="true">
-                                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                                    role="document">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                            <h5 class="modal-title text-left display-4"
-                                                                                                id="exampleModalLabel">
-                                                                                                Update Maintenance
-                                                                                                Status </h5>
-                                                                                            <button type="button"
-                                                                                                class="close"
-                                                                                                data-dismiss="modal"
-                                                                                                aria-label="Close">
-                                                                                                <span
-                                                                                                    aria-hidden="true">&times;</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                            <h3 class="text-center">Are you sure you want to set this maintenance to paid?</h3>
-                                                                                        </div>
-                                                                                        <div class="modal-footer">
-                                                                                            <button
-                                                                                                class="btn btn-outline-danger"
-                                                                                                data-dismiss="modal">Close</button>
-                                                                                            <a href="{{url('update_maintenance3_status', ['id' => $lists3->id, 'tid' => $lists3->Tenant_ID])}}" class="btn btn-success">Yes</a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            </tr>   
                                                                         @endif
                                                                     @endforeach
                                                                 </tbody>
@@ -612,6 +573,54 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @foreach($list3 as $index => $lists3)
+                                                @if($lists3->Payment_Status == "Paid")
+                                                    <div class="preview-container preview-container-{{$index}}">
+                                                        <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
+                                                        @if($lists3->Proof_Image != null)
+                                                            <p>Proof Image:</p>
+                                                            <img src="{{$lists3->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                        @else
+                                                            <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                        @endif
+                                                    </div>
+                                                @endif
+
+                                                <!-- Update Maintenace1 Modal -->
+                                                <div class="modal fade"
+                                                    id="update_maintenance3_status{{ $lists3->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    Update Maintenance
+                                                                    Status </h5>
+                                                                <button type="button"
+                                                                    class="close"
+                                                                    data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span
+                                                                        aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h3 class="text-center">Are you sure you want to set this maintenance to paid?</h3>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button
+                                                                    class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <a href="{{url('update_maintenance3_status', ['id' => $lists3->id, 'tid' => $lists3->Tenant_ID])}}" class="btn btn-success">Yes</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         @endforeach
                                     </div>
                                 </div>
@@ -626,8 +635,64 @@
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
+
+        //Preview Image
+        const previewBtns = document.querySelectorAll('.preview-btn');
+        previewBtns.forEach(previewBtn => {
+            const index = previewBtn.dataset.index;
+            const previewContainer = document.querySelector(`.preview-container-${index}`);
+            const referenceNo = document.querySelector(`.reference-no-${index}`);
+            const proofImage = document.querySelector(`.proof-image-${index}`);
+
+            previewBtn.addEventListener('mouseenter', function() {
+                referenceNo.textContent = previewBtn.dataset.referenceNo;
+                proofImage.src = previewBtn.dataset.proofImage;
+                previewContainer.style.display = 'block';
+            });
+
+            previewBtn.addEventListener('mouseleave', function() {
+                previewContainer.style.display = 'none';
+            });
+        });
     </script>
     <style>
+        @media (min-width: 992px) {
+        .modal-lg {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        }
+
+        /* Preview */
+        .preview-container {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 23999;
+            width: 350px;
+            max-height: auto;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .preview-container p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .preview-container img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-bottom: 10px;
+        }
+
         .img-container {
             position: relative;
             display: inline-block;

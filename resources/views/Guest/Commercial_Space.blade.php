@@ -337,20 +337,24 @@
                                                     <br>
 
                                                     <p>Tax Identification No. <span class="text-danger">*</span> </p>
-                                                    <input type="number" name="tax_identification_no"
-                                                        class="form-control" placeholder="Enter Tax Identification No."
-                                                        onkeypress="if(this.value.length==12) return false;"
-                                                        value="{{ $comm->tax_identification_no }}" required>
-                                                    <br>
-
-                                                    <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
-                                                        No.
-                                                        <span class="text-danger">*</span>
-                                                    </p>
-                                                    <input type="text" name="tax_cert_valid_gov_id"
-                                                        class="form-control" placeholder="Enter Home Address"
-                                                        maxlength="128" value="{{ $comm->tax_cert_valid_gov_id }}"
+                                                    <input type="number" name="tax_identification_no" class="form-control"
+                                                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==14) return false;"
+                                                        value="{{$comm->tax_identification_no}}"
                                                         required>
+                                                    <br>
+                                                    <p>Upload TIN Image</p>
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="tin_images"
+                                                        class="form-control">
+                                                    <br>
+                                                    <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
+                                                            class="text-danger">*</span> </p>
+                                                    <input type="text" name="tax_cert_valid_gov_id" class="form-control"
+                                                        placeholder="Enter Certificate No." maxlength="128" value="{{$comm->tax_cert_valid_gov_id}}" required>
+                                                    <br>
+                                                    <p>Upload Image </p>
+                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="other_images"
+                                                        class="form-control">
+                                                    <br>
                                                     <p class="mt-6">I certify that all of the information I have provided
                                                         above is
                                                         true
@@ -603,17 +607,16 @@
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
-                                                    <p class="text-center">Gcash account name <span
+                                                    <p class="text-center">Reference Number <span
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="text" id="gcash_acc" onkeyup="enable_submit()"
-                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        name="Reference_No" class="form-control" maxlength="32"
                                                         required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
-                                                    <p class="text-center">Upload your proof of payment here <span
-                                                            class="text-danger">*</span></p>
+                                                    <p class="text-center">Upload your proof of payment here </p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
                                                     <img id="output" class="img-fluid" />
@@ -621,7 +624,7 @@
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit(event)" id="gcash_img"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                        required>
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
@@ -702,7 +705,7 @@
                                         <td>{{ date('F j, Y', strtotime($lists->Due_Date)) }}</td>
                                         <td>{{ $lists3->Payment_Status }}</td>
                                         <td>
-                                            @if($lists3->Gcash_Name != null)
+                                            @if($lists3->Reference_No != null)
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target="#view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}"
                                                     title="Payment History">
@@ -726,7 +729,7 @@
                         {{-- View Payment History --}}
                         <div class="modal fade" id="view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title text-left display-4" id="exampleModalLabel">View Proof of Payment
@@ -740,10 +743,12 @@
                                         <h3 class="text-left">Due Date: <span class="text-primary">{{date('F j, Y', strtotime($lists3->Due_Date))}}</span></h3>
                                         <br>
 
-                                        <h3 class="text-left">Gcash Account/Name : <span class="text-primary">{{$lists3->Gcash_Name}}</span></h3>
-                                        <h3 class="text-left">Gcash Proof Image : </h3>
-                                        <img src="{{ $lists3->Proof_Image }}"
-                                        class="card-img-top" />
+                                        <h3 class="text-left">Reference No : <span class="text-primary">{{$lists3->Reference_No}}</span></h3>
+                                        @if($lists3->Proof_Image != null)
+                                            <h3 class="text-left">Proof Image : </h3>
+                                            <img src="{{ $lists3->Proof_Image }}"
+                                            class="card-img-top" />
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -787,17 +792,16 @@
                                                 </div>
                                                 <br>
                                                 <div class="col-md-12">
-                                                    <p class="text-center">Gcash account name <span
+                                                    <p class="text-center">Reference Number <span
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="text" id="gcash_acc2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" onkeyup="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})"
-                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                        name="Reference_No" class="form-control" maxlength="32"
                                                         required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
-                                                    <p class="text-center">Upload your proof of payment here <span
-                                                            class="text-danger">*</span></p>
+                                                    <p class="text-center">Upload your proof of payment here</p>
                                                 </div>
                                                 <div class="col-md-12 d-flex justify-content-center">
                                                     <img id="output2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}" class="img-fluid" />
@@ -805,7 +809,7 @@
                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit2(event, {{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}})" id="gcash_img2_{{$lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date}}"
                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                        required>
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
@@ -870,7 +874,6 @@
                                                     <i class="bi bi-arrow-repeat"></i>
                                                 </button>
                                             @endif
-
                                         </td>
                                     </tr>
                                 </tbody>
@@ -976,24 +979,23 @@
                                                                                 <div class="col-md-12 d-flex justify-content-center">
                                                                                     {!! QrCode::size(170)->generate('09458923381') !!}
                                                                                 </div>
-                                                                                <br>
+                                                                                <br><br>
                                                                                 <div class="col-md-12">
-                                                                                    <p class="text-center">Gcash account name <span
+                                                                                    <p class="text-center">Reference Number <span
                                                                                             class="text-danger">*</span></p>
                                                                                 </div>
                                                                                 <br>
-                                                                                <div class="col-md-12">
+                                                                                <!-- <div class="col-md-12">
                                                                                     <p class="text-left">Account name <span
                                                                                             class="text-danger">*</span></p>
-                                                                                </div>
+                                                                                </div> -->
                                                                                 <div class="col-md-12">
                                                                                     <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
-                                                                                        name="gcash_account" class="form-control" maxlength="32"
+                                                                                        name="Reference_No" class="form-control" maxlength="32"
                                                                                         required>
                                                                                 </div>
                                                                                 <div class="col-md-12 mt-1">
-                                                                                    <p class="text-left">Upload your proof of payment here <span
-                                                                                            class="text-danger">*</span></p>
+                                                                                    <p class="text-left">Upload your proof of payment here </p>
                                                                                 </div>
                                                                                 <div class="col-md-12 d-flex justify-content-center">
                                                                                     <img id="output3" class="img-fluid" />
@@ -1001,7 +1003,7 @@
                                                                                 <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                                                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
                                                                                         placeholder="Ex: John Doe" name="images" class="form-control"
-                                                                                        required>
+                                                                                    >
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1062,23 +1064,22 @@
                                                         {!! QrCode::size(170)->generate('09458923381') !!}
                                                     </div>
                                                     <br>
-                                                    <div class="col-md-12">
-                                                        <p class="text-center">Gcash account name <span
+                                                    <!-- <div class="col-md-12">
+                                                        <p class="text-center">Gcash Account <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
-                                                    <br>
+                                                    <br> -->
                                                     <div class="col-md-12">
-                                                        <p class="text-left">Account name <span
+                                                        <p class="text-left">Reference Number <span
                                                                 class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
-                                                            name="gcash_account" class="form-control" maxlength="32"
+                                                            name="Reference_No" class="form-control" maxlength="32"
                                                             required>
                                                     </div>
                                                     <div class="col-md-12 mt-1">
-                                                        <p class="text-left">Upload your proof of payment here <span
-                                                                class="text-danger">*</span></p>
+                                                        <p class="text-left">Upload your proof of payment here </p>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-center">
                                                         <img id="output3" class="img-fluid" />
@@ -1086,7 +1087,7 @@
                                                     <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                         <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" onchange="enable_submit3(event)" id="gcash_img3"
                                                             placeholder="Ex: John Doe" name="images" class="form-control"
-                                                            required>
+                                                          >
                                                     </div>
                                                 </div>
                                             </div>
@@ -1111,266 +1112,254 @@
             <br>
         </div>
 
-        <script>
+    <script>
 
-            $(function() {
-                $('.interview_modal').on('shown.bs.modal', function() {
-                    $("#interview").datepicker({
-                        minDate: 0,
-                        buttonImageOnly: true,
-                        showOn: "both",
-                        format: 'yyyy-mm-dd',
-                        buttonImage: "{{ asset('images') }}/calendar2.png",
-                        beforeShowDay: function(date) {
-                            // Convert date to yyyy-mm-dd format
-                            var year = date.getFullYear();
-                            var month = ('0' + (date.getMonth() + 1)).slice(-2);
-                            var day = ('0' + date.getDate()).slice(-2);
-                            var formattedDate = year + '-' + month + '-' + day;
+        $(function() {
+            $('.interview_modal').on('shown.bs.modal', function() {
+                $("#interview").datepicker({
+                    minDate: 0,
+                    buttonImageOnly: true,
+                    showOn: "both",
+                    format: 'yyyy-mm-dd',
+                    buttonImage: "{{ asset('images') }}/calendar2.png",
+                    beforeShowDay: function(date) {
+                        // Convert date to yyyy-mm-dd format
+                        var year = date.getFullYear();
+                        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                        var day = ('0' + date.getDate()).slice(-2);
+                        var formattedDate = year + '-' + month + '-' + day;
 
-                            // Check if formattedDate is in startDates array
-                            var startDates = [];
+                        // Check if formattedDate is in startDates array
+                        var startDates = [];
 
-                            $("input[name='start_dates[]']").each(function() {
-                                startDates.push($(this).val());
-                            });
+                        $("input[name='start_dates[]']").each(function() {
+                            startDates.push($(this).val());
+                        });
 
-                            if (startDates.includes(formattedDate)) {
-                                return [false, 'unavailable-date'];
-                            } else {
-                                return [true, ''];
-                            }
+                        if (startDates.includes(formattedDate)) {
+                            return [false, 'unavailable-date'];
+                        } else {
+                            return [true, ''];
                         }
-                    });
+                    }
                 });
             });
-
-            function enable_submit() {
-                var acc = document.getElementById("gcash_acc");
-                var g_img = document.getElementById("gcash_img");
-                var submit_button2 = document.getElementById("submit_button2");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                }
-                loadfile(event);
-            }
-
-            function loadfile(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            }
-
-            function enable_submit2(event, id) {
-                var acc = document.getElementById("gcash_acc2_" +id);
-                var g_img = document.getElementById("gcash_img2_" +id);
-                var submit_button2 = document.getElementById("submit_button3");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                    console.log("Submit button disabled");
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                    console.log("Submit button enabled");
-                }
-                loadfile2(event, id);
-            }
-
-
-            function loadfile2(event, id) {
-                console.log("Loadfile2 called");
-                var output = document.getElementById('output2_' + id);
-                output.src = URL.createObjectURL(event.target.files[0]);
-                console.log("URL of file being loaded: ", output.src);
-            }
-
-            function enable_submit3() {
-                var acc = document.getElementById("gcash_acc3");
-                var g_img = document.getElementById("gcash_img3");
-                var submit_button2 = document.getElementById("submit_button4");
-                if (acc.value == "" || g_img.value == "") {
-                    submit_button2.disabled = true;
-                    submit_button2.style.cursor = "not-allowed";
-                } else {
-                    submit_button2.disabled = false;
-                    submit_button2.style.cursor = "pointer";
-                }
-                loadfile3(event);
-            }
-
-            function loadfile3(event) {
-                var output = document.getElementById('output3');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            }
-        </script>
-<script>
-    
-    $(document).ready(function($) {
-        $('#payment_history').DataTable({
-            "columnDefs": [
-                { "type": "date", "targets": 0 }
-            ]
         });
-    });
-</script>
-        <style>
-            .img-container {
-                position: relative;
-                display: inline-block;
-            }
 
-            .img-container img {
-                display: block;
-                max-width: 100%;
-                z-index: 9999;
-            }
+        function enable_submit() {
+            var acc = document.getElementById("gcash_acc");
+            var g_img = document.getElementById("gcash_img");
+            var submit_button2 = document.getElementById("submit_button2");
+            
+            loadfile(event);
+        }
 
-            .img-container .btn {
-                position: relative;
-            }
+        function loadfile(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
 
-            .img-container .popup {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 9999;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.3s ease-in-out;
+        function enable_submit2(event, id) {
+            var acc = document.getElementById("gcash_acc2_" +id);
+            var g_img = document.getElementById("gcash_img2_" +id);
+            var submit_button2 = document.getElementById("submit_button3");
+            if (acc.value == "" || g_img.value == "") {
+                submit_button2.disabled = true;
+                submit_button2.style.cursor = "not-allowed";
+                console.log("Submit button disabled");
+            } else {
+                submit_button2.disabled = false;
+                submit_button2.style.cursor = "pointer";
+                console.log("Submit button enabled");
             }
-
-            .img-container .btn:hover .popup {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            .img-container .popup img {
-                display: block;
-                max-width: 80vw;
-                max-height: 80vh;
-                margin: auto;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
+            loadfile2(event, id);
+        }
 
 
-            .cur1::before {
-                content: '₱';
-            }
+        function loadfile2(event, id) {
+            console.log("Loadfile2 called");
+            var output = document.getElementById('output2_' + id);
+            output.src = URL.createObjectURL(event.target.files[0]);
+            console.log("URL of file being loaded: ", output.src);
+        }
 
-            .datepicker {
-                pointer-events: none;
-                /* form-control */
-                display: block;
-                width: 100%;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            }
+        function enable_submit3() {
+            var acc = document.getElementById("gcash_acc3");
+            var g_img = document.getElementById("gcash_img3");
+            var submit_button2 = document.getElementById("submit_button4");
+            
+            loadfile3(event);
+        }
 
-            .datepicker:focus {
-                border-color: #80bdff;
-                outline: 0;
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            }
+        function loadfile3(event) {
+            var output = document.getElementById('output3');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+    <script>
+        
+        $(document).ready(function($) {
+            $('#payment_history').DataTable({
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }
+                ]
+            });
+        });
+    </script>
+    <style>
+        .img-container {
+            position: relative;
+            display: inline-block;
+        }
 
-            .ui-datepicker {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 14px;
-                background-color: #fff;
-                z-index: 1600 !important;
-                /* adjust the z-index to be higher than the modal's z-index */
-                position: absolute;
-                top: 42% !important;
-                left: 33% !important;
-                transform: translate(-50%, -50%);
-            }
+        .img-container img {
+            display: block;
+            max-width: 100%;
+            z-index: 9999;
+        }
 
-            .ui-datepicker-trigger {
-                position: absolute;
-                top: 60px;
-                right: 0;
-                margin-right: 30px;
-                cursor: pointer;
-                background-image: url("{{ asset('images') }}/calendar2.png}}");
-                background-size: 30px 30px;
-                width: 30px;
-                height: 30px;
-            }
+        .img-container .btn {
+            position: relative;
+        }
 
-            /* Set the color of the datepicker header */
-            .ui-datepicker-header {
-                background-color: #39D972;
-                border: 1px solid #ddd;
-                color: #fff;
-            }
+        .img-container .popup {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
 
-            /* Set the color of the datepicker days */
-            .ui-state-default,
-            .ui-widget-content .ui-state-default,
-            .ui-widget-header .ui-state-default {
-                background-color: #fff;
-                border: none;
-                color: #333;
-            }
+        .img-container .btn:hover .popup {
+            visibility: visible;
+            opacity: 1;
+        }
 
-            /* Set the color of the selected date */
-            .ui-state-active,
-            .ui-widget-content .ui-state-active,
-            .ui-widget-header .ui-state-active {
-                background-color: #6C6C6C;
-                border: none;
-                color: #fff;
-            }
+        .img-container .popup img {
+            display: block;
+            max-width: 80vw;
+            max-height: 80vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-            /* Set the color of the datepicker hover state */
-            .ui-state-hover,
-            .ui-widget-content .ui-state-hover,
-            .ui-widget-header .ui-state-hover {
-                background-color: #39D972;
-                border: none;
-                color: #fff;
-            }
 
-            /* Set the color of the datepicker today button */
-            .ui-datepicker-current-day {
-                background-color: #16BBAE;
-                border: none;
-                color: #fff;
-            }
+        .cur1::before {
+            content: '₱';
+        }
 
-            /* Set the color of the datepicker navigation icons */
-            .ui-icon {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-            }
+        .datepicker {
+            pointer-events: none;
+            /* form-control */
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-            /* Set the color of the datepicker navigation buttons */
-            .ui-datepicker-prev,
-            .ui-datepicker-next {
-                background-image: none;
-                background-color: transparent;
-                border: none;
-                color: #fff;
-                font-weight: bold;
-            }
-        </style>
-    @endsection
+        .datepicker:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .ui-datepicker {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-color: #fff;
+            z-index: 1600 !important;
+            /* adjust the z-index to be higher than the modal's z-index */
+            position: absolute;
+            top: 42% !important;
+            left: 33% !important;
+            transform: translate(-50%, -50%);
+        }
+
+        .ui-datepicker-trigger {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            margin-right: 30px;
+            cursor: pointer;
+            background-image: url("{{ asset('images') }}/calendar2.png}}");
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Set the color of the datepicker header */
+        .ui-datepicker-header {
+            background-color: #39D972;
+            border: 1px solid #ddd;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker days */
+        .ui-state-default,
+        .ui-widget-content .ui-state-default,
+        .ui-widget-header .ui-state-default {
+            background-color: #fff;
+            border: none;
+            color: #333;
+        }
+
+        /* Set the color of the selected date */
+        .ui-state-active,
+        .ui-widget-content .ui-state-active,
+        .ui-widget-header .ui-state-active {
+            background-color: #6C6C6C;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker hover state */
+        .ui-state-hover,
+        .ui-widget-content .ui-state-hover,
+        .ui-widget-header .ui-state-hover {
+            background-color: #39D972;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker today button */
+        .ui-datepicker-current-day {
+            background-color: #16BBAE;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker navigation icons */
+        .ui-icon {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+        }
+
+        /* Set the color of the datepicker navigation buttons */
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+@endsection

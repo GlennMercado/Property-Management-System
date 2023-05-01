@@ -161,6 +161,7 @@ class CommercialSpacesController extends Controller
             //$due_date = Carbon::createFromFormat('m/d/Y', $request->input('due_date'))->format('Y-m-d');
             //$due_date = $request->input('due_date');
             $remarks = $request->input('remarks');
+            $space_unit = $request->input('space_unit');
 
             $due_date = new Carbon($request->input('start_date'));
             $due_date = $due_date->addMonth();
@@ -174,7 +175,7 @@ class CommercialSpacesController extends Controller
             $tenant->Rental_Fee = $renters_fee;
             $tenant->Total_Amount = $renters_fee;
             $tenant->Due_Date = $due_date;
-            $tenant->Space_Unit = $request->input('space_unit');
+            $tenant->Space_Unit = $space_unit;
             $tenant->Start_Date = $start;
             $tenant->End_Date = $end;
             
@@ -286,7 +287,7 @@ class CommercialSpacesController extends Controller
         //$list = DB::select("SELECT a.*, b.Tenant_ID FROM commercial_space_units a INNER JOIN commercial_spaces_tenants b ON a.Space_Unit = b.Space_Unit INNER JOIN commercial_spaces_applications c ON b.Tenant_ID = c.id WHERE c.IsArchived = 0");
         
         $list = DB::select("SELECT * FROM commercial_space_units WHERE Occupancy_Status != 'Occupied'");
-        $list2 = DB::select("SELECT a.IsArchived, b.Tenant_ID, c.* FROM commercial_spaces_applications a RIGHT JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID RIGHT JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND c.Occupancy_Status = 'Occupied'");
+        $list2 = DB::select("SELECT a.IsArchived, a.name_of_owner, b.Tenant_ID, c.* FROM commercial_spaces_applications a RIGHT JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID RIGHT JOIN commercial_space_units c ON b.Space_Unit = c.Space_Unit WHERE a.IsArchived = 0 AND c.Occupancy_Status = 'Occupied'");
 
         $check = DB::select('SELECT COUNT(*) as cnt FROM commercial_space_units');
 		$count = array();
@@ -294,7 +295,7 @@ class CommercialSpacesController extends Controller
         $count1 = DB::select("SELECT * From commercial_space_units");
         $array = array();
 
-        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports");
+        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports a INNER JOIN commercial_spaces_applications b ON a.Tenant_ID = b.id");
         
         foreach($count1 as $counts)
         {

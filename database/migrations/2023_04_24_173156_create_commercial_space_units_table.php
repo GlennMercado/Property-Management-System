@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('Payment_Status')->nullable();
             $table->date('Paid_Date')->nullable();
 
-            $table->string('Gcash_Name')->nullable();
+            $table->string('Reference_No')->nullable();
             $table->string('Proof_Image')->nullable();
 
             

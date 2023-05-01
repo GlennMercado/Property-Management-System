@@ -87,13 +87,7 @@
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
                                                                 @php $now = date('Y-m-d') @endphp
-                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)")
-                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                        data-target="#update_payment_status{{ $lists->id }}"
-                                                                        title="Update Payment Status">
-                                                                        <i class="bi bi-arrow-clockwise"></i>
-                                                                    </button>
-                                                                @elseif($lists->Due_Date == $now)
+                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)" || $lists->Due_Date == $now)
                                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
@@ -231,16 +225,18 @@
                                                                                 </option>
                                                                             </select>
 
-                                                                            @if($lists->Gcash_Name != null)
+                                                                            @if($lists->Reference_No != null)
                                                                                 <br><br>
-                                                                                <h3 class="text-left">Gcash Account Name : <span class="text-success">{{$lists->Gcash_Name}}</span></h3>
+                                                                                <h3 class="text-left">Reference Number : <span class="text-success">{{$lists->Reference_No}}</span></h3>
                                                                                 
-                                                                                <input type="hidden" name="gcash_name" value="{{$lists->Gcash_Name}}" />
-                                                                                <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
-                                                                                
-                                                                                <h3 class="text-left">Gcash Proof Image : </h3>
-                                                                                <img src="{{ $lists->Proof_Image }}"
-                                                                                class="card-img-top" />
+                                                                                <input type="hidden" name="Reference_No" value="{{$lists->Reference_No}}" />
+                                                                                @if($lists->Proof_Image != null)
+                                                                                    <input type="hidden" name="proof_img" value="{{$lists->Proof_Image}}">
+                                                                                    
+                                                                                    <h3 class="text-left">Proof Image : </h3>
+                                                                                    <img src="{{ $lists->Proof_Image }}"
+                                                                                    class="card-img-top" />
+                                                                                @endif
                                                                             @endif
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -284,10 +280,11 @@
                                                                             <th scope="col">Rental Fee</th>
                                                                             <th scope="col">Paid Date</th>
                                                                             <th scope="col">Payment Status</th>
+                                                                            <th scope="col">Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach ($list3 as $lists3)
+                                                                        @foreach ($list3 as $index => $lists3)
                                                                             @if ($lists3->Tenant_ID == $arrays['Tenant_ID'])
                                                                                 <tr>
                                                                                     <td class="font-weight-bold tbltxt">
@@ -296,19 +293,35 @@
                                                                                     <td class="cur1 font-weight-bold tbltxt">
                                                                                         {{ $lists3->Rental_Fee }}</td>
                                                                                     @if($lists3->Paid_Date != null)
-                                                                                    <td class="font-weight-bold tbltxt">
-                                                                                        {{ date('F j, Y', strtotime($lists3->Paid_Date)) }}
-                                                                                    </td>
+                                                                                        <td class="font-weight-bold tbltxt">
+                                                                                            {{ date('F j, Y', strtotime($lists3->Paid_Date)) }}
+                                                                                        </td>
                                                                                     @else
-                                                                                    <td></td>
+                                                                                        <td></td>
                                                                                     @endif
                                                                                     @if($lists3->Payment_Status == "Paid")
                                                                                     <td class="font-weight-bold tbltxt text-success">
                                                                                         {{ $lists3->Payment_Status }}</td>
                                                                                     @else
                                                                                     <td class="font-weight-bold tbltxt text-danger">
-                                                                                        {{ $lists3->Payment_Status }}</td>
+                                                                                        {{ $lists3->Payment_Status }}
+                                                                                    </td>
                                                                                     @endif
+                                                                                    <td>
+                                                                                    @if($lists3->Payment_Status == "Paid")
+                                                                                        <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists3->Reference_No}}" data-proof-image="{{$lists3->Proof_Image}}" data-index="{{$index}}">View Payment</button>
+
+                                                                                        <div class="preview-container preview-container-{{$index}}">
+                                                                                            <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
+                                                                                            @if($lists->Proof_Image != null)
+                                                                                                <p>Proof Image:</p>
+                                                                                                <img src="{{$lists3->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                                                            @else
+                                                                                                <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endif
                                                                         @endforeach
@@ -580,8 +593,55 @@
         $('.prevent_submit').on('submit', function() {
             $('.prevent_submit').attr('disabled', 'true');
         });
+
+        //Preview Image
+        const previewBtns = document.querySelectorAll('.preview-btn');
+        previewBtns.forEach(previewBtn => {
+            const index = previewBtn.dataset.index;
+            const previewContainer = document.querySelector(`.preview-container-${index}`);
+            const referenceNo = document.querySelector(`.reference-no-${index}`);
+            const proofImage = document.querySelector(`.proof-image-${index}`);
+
+            previewBtn.addEventListener('mouseenter', function() {
+                referenceNo.textContent = previewBtn.dataset.referenceNo;
+                proofImage.src = previewBtn.dataset.proofImage;
+                previewContainer.style.display = 'block';
+            });
+
+            previewBtn.addEventListener('mouseleave', function() {
+                previewContainer.style.display = 'none';
+            });
+        });
     </script>
     <style>
+        .preview-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            width: 300px;
+            height: auto;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .preview-container p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .preview-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
         .tbltxt {
             font-size: 18px;
         }

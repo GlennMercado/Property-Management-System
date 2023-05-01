@@ -59,6 +59,7 @@
                                                         <th scope="col" style="font-size:17px;">Business Info</th>
                                                         <th scope="col" style="font-size:17px;">Owner Info</th>
                                                         <th scope="col" style="font-size:17px;">Status</th>
+                                                        <th scope="col" style="font-size:17px;">Interview Date</th>
                                                         <th scope="col" style="font-size:17px;">Remarks</th>
                                                     </tr>
                                                 </thead>
@@ -87,7 +88,8 @@
                                                                         </button>
                                                                     @endif
 
-                                                                    @if ($lists->Status == 'For Interview')
+                                                                    @php $now = date('Y-m-d'); @endphp
+                                                                    @if ($lists->Status == 'For Interview' && $lists->Interview_Date == $now)
                                                                         <button class="btn btn-sm btn-warning"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status2{{ $lists->id }}"
@@ -171,6 +173,11 @@
                                                                 @elseif($lists->Status == 'For Revision' || $lists->Status == 'Revised')
                                                                     <td class="text-primary font-weight-bold tbltxt">
                                                                         {{ $lists->Status }}</td>
+                                                                @endif
+                                                                @if($lists->Interview_Date != null)
+                                                                <td>{{date('F j, Y', strtotime($lists->Interview_Date))}}</td>
+                                                                @else
+                                                                <td></td>
                                                                 @endif
                                                                 <td>{{ $lists->Remarks }}</td>
                                                             </tr>
