@@ -12,5 +12,7 @@
         @endforeach
     </ul>
     <p>Regards,<br>NOVADECI PROPERTIES</p>
+    <br><br><br>
+    <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
 </body>
 </html>

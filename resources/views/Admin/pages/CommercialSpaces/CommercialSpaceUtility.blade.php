@@ -523,7 +523,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             z-index: 999;
-            width: 300px;
+            width: auto;
             height: auto;
             text-align: center;
             justify-content: center;

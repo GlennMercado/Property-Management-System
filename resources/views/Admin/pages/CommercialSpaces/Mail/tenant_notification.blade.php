@@ -13,5 +13,7 @@
     <p>Your contract for {{ $tenant->business_name }} will end in two months. Please take necessary actions.</p>
     <p>Regards,<br>NOVADECI PROPERTIES</p>
     @endif
+    <br><br><br>
+    <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
 </body>
 </html>

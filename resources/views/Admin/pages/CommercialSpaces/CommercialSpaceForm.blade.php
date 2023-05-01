@@ -89,7 +89,7 @@
                                                                     @endif
 
                                                                     @php $now = date('Y-m-d'); @endphp
-                                                                    @if ($lists->Status == 'For Interview' && $lists->Interview_Date == $now)
+                                                                    @if ($lists->Status == 'For Interview' && $lists->Interview_Date <= $now)
                                                                         <button class="btn btn-sm btn-warning"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status2{{ $lists->id }}"

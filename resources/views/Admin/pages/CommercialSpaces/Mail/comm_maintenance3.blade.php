@@ -10,5 +10,7 @@
     <p>Equipments : {{$others}}</p>
     <p>Cost : ₱ {{number_format($cost, 0, '.', ',')}}.00</p>
     <p>Regards,<br>NOVADECI PROPERTIES</p>
+    <br><br><br>
+    <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
 </body>
 </html>
