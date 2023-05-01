@@ -240,68 +240,6 @@ class HousekeepingController extends Controller
             return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
         }
     }
-    
-    public function check_linen(Request $request)
-    {
-        try
-        {
-            $room_no = $request->input('room_no');
-            $bookingid = $request->input('booking_no');
-            
-           
-            $totaldiscrepancy = array();
-            $quantity = array();
-            $status;
-            
-
-            for($i = 0; $i < count($request->input('name')); $i++)
-            {
-                if($request->input('discrepancy')[$i] > $request->input('quantity')[$i] || $request->input('discrepancy')[$i] < 0)
-                {
-                    Alert::Error('Linen Checking Failed!', 'Invalid Inputs!');
-                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
-                }
-                else
-                {
-                    if($request->input('discrepancy')[$i] > 0)
-                    {
-                        $status = "Returned to Inventory";
-                    }
-                    else
-                    {
-                        $status = "Received";
-                    }
-                
-                    $totaldiscrepancy[$i] = $request->input('current_discrepancy')[$i] + $request->input('discrepancy')[$i];
-                    
-                    $quantity[$i] = $request->input('quantity')[$i] - $request->input('discrepancy')[$i];
-                    
-                    DB::table('hotel_room_linens')
-                        ->where(['Room_No' => $room_no, 'name' => $request->input('name')[$i]])
-                        ->update([
-                                'Discrepancy' => $totaldiscrepancy[$i],
-                                'Status' => $status,
-                                'Quantity' => $quantity[$i]    
-                                ]);
-                                
-                }
-            }
-
-            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookingid, 'IsArchived' => false])->update(['Housekeeping_Status' => "Checking for Maintenance"]);
-
-            //DB::table('hotel_reservations')->where('Booking_No', $bookingid)->update(['Booking_Status' => "Room Checked"]);
-
-            
-
-            Alert::Success('Success', 'Charges Successfully Added!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');   
-        }
-        catch(\Illuminate\Database\QueryException $e)
-        {
-            Alert::Error('Failed', 'Linen Checking Failed!');
-            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
-        }
-    }
 
     public function linen_request(Request $request)
     {
@@ -404,59 +342,100 @@ class HousekeepingController extends Controller
         }
     }
 
-    public function deduct_supply(Request $request)
+    public function room_checked(Request $request)
     {
+        //dd($request->all());
         try{
-            $arraysofname[] = $request->name;
-            $arraysofquantity[] = $request->quantity;
             $room_no = $request->input('room_no');
             $booking_no = $request->input('book_num');
-            $quantity = array();
-            for($i=0; $i < count($request->name); $i++)
+
+            $supply_quantity = array();
+
+            //supply
+            for($i=0; $i < count($request->supply_name); $i++)
             {
-                if($request->input('quantity')[$i] < $request->input('deduction')[$i] || $request->input('deduction')[$i] < 0)
+                if($request->input('supply_quantity')[$i] < $request->input('supply_deduction')[$i] || $request->input('supply_deduction')[$i] < 0)
                 {
                     Alert::Error('Supply Checking Failed!', 'Invalid Inputs!');
                     return redirect('Housekeeping_Dashboard')->with('Failed', 'Data Updated');
                 }
                 else
                 {  
-                    $quantity[$i] = $request->input('quantity')[$i] - $request->input('deduction')[$i];
+                    $supply_quantity[$i] = $request->input('supply_quantity')[$i] - $request->input('supply_deduction')[$i];
                     
                     DB::table('hotel_room_supplies')
-                        ->where(['Room_No' => $room_no, 'name' => $request->name[$i]])
+                        ->where(['Room_No' => $room_no, 'name' => $request->supply_name[$i]])
                         ->update([
-                            'Quantity' => $quantity[$i],
-                            'Discrepancy' => $request->input('deduction')[$i]
+                            'Quantity' => $supply_quantity[$i],
+                            'Discrepancy' => $request->input('supply_deduction')[$i]
                     ]);
 
                     $used = new used_supplies;
 
                     $used->Room_No = $room_no;
                     $used->Booking_No = $booking_no;
-                    $used->productid = $request->prodid[$i];
-                    $used->name = $request->name[$i];
-                    $used->Discrepancy = $request->input('deduction')[$i];
-                    $used->Price = $request->price[$i];
+                    $used->productid = $request->supply_prodid[$i];
+                    $used->name = $request->supply_name[$i];
+                    $used->Discrepancy = $request->input('supply_deduction')[$i];
+                    $used->Price = $request->supply_price[$i];
 
                     $used->save();          
                 }
             }
+
+            $linen_totaldiscrepancy = array();
+            $linen_quantity = array();
+            $linen_status;
+            
+
+            for($i = 0; $i < count($request->input('linen_name')); $i++)
+            {
+                if($request->input('linen_discrepancy')[$i] > $request->input('linen_quantity')[$i] || $request->input('linen_discrepancy')[$i] < 0)
+                {
+                    Alert::Error('Linen Checking Failed!', 'Invalid Inputs!');
+                    return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+                }
+                else
+                {
+                    if($request->input('linen_discrepancy')[$i] > 0)
+                    {
+                        $linen_status = "Returned to Inventory";
+                    }
+                    else
+                    {
+                        $linen_status = "Received";
+                    }
+                
+                    $linen_totaldiscrepancy[$i] = $request->input('linen_current_discrepancy')[$i] + $request->input('linen_discrepancy')[$i];
+                    
+                    $linen_quantity[$i] = $request->input('linen_quantity')[$i] - $request->input('linen_discrepancy')[$i];
+                    
+                    DB::table('hotel_room_linens')
+                        ->where(['Room_No' => $room_no, 'name' => $request->input('linen_name')[$i]])
+                        ->update([
+                                'Discrepancy' => $linen_totaldiscrepancy[$i],
+                                'Status' => $linen_status,
+                                'Quantity' => $linen_quantity[$i]    
+                                ]);
+                                
+                }
+            }
                  
-            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $booking_no, 'IsArchived' => false])->update(array(
-                'Housekeeping_Status' => "Inspect(After Checking)"
-            ));
-            Alert::Success('Success', 'Supplies Successfully Checked!');
+
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $booking_no, 'IsArchived' => false])->update(['Housekeeping_Status' => "Checking for Maintenance"]);
+
+            //DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(['Booking_Status' => "Room Checked"]);
+
+            Alert::Success('Success', 'Room Successfully Checked!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Error', 'Supply Checking Failed!');
+            Alert::Error('Error', 'Room Checking Failed!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
         }
     }
-
     public function assign_housekeeper(Request $request)
     {
         try{

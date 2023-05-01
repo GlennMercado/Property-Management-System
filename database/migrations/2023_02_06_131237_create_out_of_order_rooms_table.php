@@ -34,6 +34,7 @@ return new class extends Migration
             $table->boolean('IsArchived')->default(false);
 
             $table->timestamp('Date_Created')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->integer('Cost');
             $table->date('Due_Date');
             $table->date('Date_Resolved')->nullable();
             

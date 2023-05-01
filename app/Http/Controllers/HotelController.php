@@ -77,14 +77,14 @@ class HotelController extends Controller
         $randID = str_shuffle($pin);
 
         
-        $this->validate($request,[
-            'checkIn' => 'required',
-            'checkOut' => 'required',
-            'gName' => 'required',
-            'mobile' => 'required',
-            'room_no' => 'required',
-            'pax' => 'required'
-        ]);
+        // $this->validate($request,[
+        //     'checkIn' => 'required',
+        //     'checkOut' => 'required',
+        //     'gName' => 'required',
+        //     'mobile' => 'required',
+        //     'room_no' => 'required',
+        //     'pax' => 'required'
+        // ]);
 
         $paystats = "Paid";
         $status;
@@ -571,8 +571,9 @@ class HotelController extends Controller
         $list = DB::select("SELECT * FROM hotel_reservations  WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");    
         $list2 = DB::select("SELECT * FROM used_supplies WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");
         $list3 = DB::select("SELECT * FROM hotel_other_charges WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");
+        $list4 = DB::select("SELECT * FROM out_of_order_rooms WHERE Room_No = '$invoice_id' AND Booking_No = '$booking_no'");
 
-        return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
+        return view('Admin.pages.Reservations.Invoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4]);
     }
 
     public function check_in(Request $request){

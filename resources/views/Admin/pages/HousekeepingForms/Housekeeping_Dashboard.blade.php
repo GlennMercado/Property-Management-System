@@ -9,7 +9,7 @@
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
                 <h6 class="h2 text-dark d-inline-block mb-0">Housekeeping Dashboard</h6>
-                @if(Auth::user()->User_Type == "Admin")
+                @if (Auth::user()->User_Type == 'Admin')
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
@@ -17,10 +17,11 @@
                             <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
                         </ol>
                     </nav>
-                @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
+                @elseif(Auth::user()->User_Type == 'Housekeeping Supervisor')
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('Housekeeping_Dashboard') }}"><i
+                                        class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
                             <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
                         </ol>
@@ -196,21 +197,38 @@
                                                                             style="border-radius: 18px">
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
-                                                                            @if($lists->Facility_Status == "Reserved")
-                                                                                <h3 class="text-left">Room Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Facility_Status}}</span> </h3>
-                                                                            @elseif($lists->Facility_Status == "Occupied")
-                                                                                <h3 class="text-left">Room Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Facility_Status}}</span> </h3>
+                                                                            @if ($lists->Facility_Status == 'Reserved')
+                                                                                <h3 class="text-left">Room Status: <span
+                                                                                        style="font-weight:normal; color: #5bc0de;">{{ $lists->Facility_Status }}</span>
+                                                                                </h3>
+                                                                            @elseif($lists->Facility_Status == 'Occupied')
+                                                                                <h3 class="text-left">Room Status: <span
+                                                                                        style="font-weight:normal; color: #d9534f;">{{ $lists->Facility_Status }}</span>
+                                                                                </h3>
                                                                             @endif
 
-                                                                            @if($lists->Front_Desk_Status == "Reserved")
-                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #5bc0de;">{{$lists->Front_Desk_Status}}</span> </h3>
-                                                                            @elseif($lists->Front_Desk_Status == "Checked-In")
-                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #5cb85c;">{{$lists->Front_Desk_Status}}</span> </h3>
-                                                                            @elseif($lists->Front_Desk_Status == "Checked-Out")
-                                                                                <h3 class="text-left">Front Desk Status: <span style="font-weight:normal; color: #d9534f;">{{$lists->Front_Desk_Status}}</span> </h3>
+                                                                            @if ($lists->Front_Desk_Status == 'Reserved')
+                                                                                <h3 class="text-left">Front Desk Status:
+                                                                                    <span
+                                                                                        style="font-weight:normal; color: #5bc0de;">{{ $lists->Front_Desk_Status }}</span>
+                                                                                </h3>
+                                                                            @elseif($lists->Front_Desk_Status == 'Checked-In')
+                                                                                <h3 class="text-left">Front Desk Status:
+                                                                                    <span
+                                                                                        style="font-weight:normal; color: #5cb85c;">{{ $lists->Front_Desk_Status }}</span>
+                                                                                </h3>
+                                                                            @elseif($lists->Front_Desk_Status == 'Checked-Out')
+                                                                                <h3 class="text-left">Front Desk Status:
+                                                                                    <span
+                                                                                        style="font-weight:normal; color: #d9534f;">{{ $lists->Front_Desk_Status }}</span>
+                                                                                </h3>
                                                                             @endif
-                                                                            <h3 class="text-left">Booking Number: <span style="font-weight:normal;">{{$lists->Booking_No}}</span> </h3>
-                                                                            <h3 class="text-left">Attendant: <span style="font-weight:normal;">{{$lists->Attendant}}</span> </h3>
+                                                                            <h3 class="text-left">Booking Number: <span
+                                                                                    style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                                                            </h3>
+                                                                            <h3 class="text-left">Attendant: <span
+                                                                                    style="font-weight:normal;">{{ $lists->Attendant }}</span>
+                                                                            </h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -256,11 +274,12 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                        @foreach($housekeeper as $housekeepers)
-                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
-                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                    @foreach ($housekeeper as $housekeepers)
+                                                                                        <option
+                                                                                            value="{{ $housekeepers->Housekeepers_Name }}">
+                                                                                            {{ $housekeepers->Housekeepers_Name }}
                                                                                         </option>
-                                                                                    @endforeach  
+                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -394,12 +413,13 @@
                                                 <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Room No.</th>
                                                 <th scope="col" style="font-size:18px;">Facility Type</th>
-                                                <th scope="col" style="font-size:18px;">Status</th>
+                                                <th scope="col" style="font-size:18px;">Room Status</th>
+                                                <th scope="col" style="font-size:18px;">Housekeeping Status</th>
                                                 <th scope="col" style="font-size:18px;">Booking Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list as $lists)
+                                            @foreach ($list as $index => $lists)
                                                 @if ($lists->Front_Desk_Status != 'Reserved')
                                                     <tr>
                                                         <td>
@@ -415,12 +435,17 @@
                                                                     <i class="bi bi-person-fill"></i> </button>
                                                             @endif
 
-                                                            @if ($lists->Housekeeping_Status == 'Out of Service' && $lists->Attendant != 'Unassigned' && $lists->Front_Desk_Status == "Checked-Out")
+                                                            @if (
+                                                                $lists->Housekeeping_Status == 'Out of Service' &&
+                                                                    $lists->Attendant != 'Unassigned' &&
+                                                                    $lists->Front_Desk_Status == 'Checked-Out')
                                                                 <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->ID }}"
                                                                     title="Update Housekeeping Status">
                                                                     <i class="bi bi-arrow-repeat"></i>
                                                                 </button>
+                                                            @endif
+                                                            @if ($lists->Housekeeping_Status == 'Checking for Maintenance')
                                                                 <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                     data-target="#outoforder{{ $lists->ID }}"
                                                                     title="Update Room to Out of Order">
@@ -431,13 +456,13 @@
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
                                                                     data-toggle="modal"
-                                                                    data-target="#check_supply{{ $lists->ID }}"
-                                                                    title="Checking Room Supplies">
+                                                                    data-target="#room_check{{ $lists->ID }}"
+                                                                    title="Checking Room">
                                                                     <i class="bi bi-list-check"></i>
                                                                 </button>
                                                             @endif
 
-                                                            @if ($lists->Housekeeping_Status == 'Inspect(After Checking)' && $lists->Attendant != 'Unassigned')
+                                                            {{-- @if ($lists->Housekeeping_Status == 'Inspect(After Checking)' && $lists->Attendant != 'Unassigned')
                                                                 <button class="btn btn-sm"
                                                                     style="background: #9FA6B2;  color:white;"
                                                                     data-toggle="modal"
@@ -445,11 +470,12 @@
                                                                     title="Checking Room Linen">
                                                                     <i class="bi bi-check2-square"></i>
                                                                 </button>
-                                                            @endif
+                                                            @endif --}}
                                                         </td>
                                                         <td>{{ $lists->Room_No }}</td>
                                                         <td>{{ $lists->Facility_Type }}</td>
                                                         <td>{{ $lists->Facility_Status }}</td>
+                                                        <td>{{ $lists->Housekeeping_Status }}</td>
                                                         <td>{{ $lists->Front_Desk_Status }}</td>
                                                     </tr>
 
@@ -473,65 +499,81 @@
                                                                             style="border-radius: 18px">
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $lists->ID }}" />
-                                                                               <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <h3 class="text-left">Booking Number: </h3>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <span style="font-weight:normal;">{{$lists->Booking_No}}</span> 
-                                                                                    </div>
-                                                                               </div>
-                                                                                <div class="row">
-                                                                                        <div class="col-md-6">
-                                                                                            <h3 class="text-left">Guest Name: </h3>
-                                                                                        </div>
-                                                                                        <div class="col-md-6">
-                                                                                            <span style="font-weight:normal;">{{$lists->Guest_Name}}</span> 
-                                                                                        </div>
-                                                                                    </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-6">
-                                                                                                <h3 class="text-left">Housekeeping Status:</h3>
-                                                                                            </div>
-                                                                                            <div class="col-md-6">
-                                                                                                <span style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span> 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                            <div class="row">
-                                                                                                <div class="col-md-6">
-                                                                                                    <h3 class="text-left">Attendant:</h3>     
-                                                                                                </div>
-                                                                                                <div class="col-md-6">
-                                                                                                    <span style="font-weight:normal;">{{ $lists->Attendant }}</span> 
-                                                                                                </div>
-                                                                                            </div>
-                                                                                                <div class="row">
-                                                                                                    <div class="col-md-6">
-                                                                                                        <h3 class="text-left">Checked-In Date:</h3>     
-                                                                                                    </div>
-                                                                                                    <div class="col-md-6">
-                                                                                                        <span style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span> 
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-md-6">
-                                                                                                            <h3 class="text-left">Check-Out Date:</h3> 
-                                                                                                        </div>
-                                                                                                        <div class="col-md-6">
-                                                                                                            <span style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span> 
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                            
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Booking Number:
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Guest Name: </h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal;">{{ $lists->Guest_Name }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Housekeeping
+                                                                                        Status:</h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal;">{{ $lists->Housekeeping_Status }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Attendant:</h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal;">{{ $lists->Attendant }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Checked-In Date:
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal; color: #5cb85c;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h3 class="text-left">Check-Out Date:
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <span
+                                                                                        style="font-weight:normal; color: #d9534f;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</span>
+                                                                                </div>
+                                                                            </div>
+
 
                                                                             <br>
                                                                             @if ($lists->Request_ID != null)
                                                                                 @foreach ($list2 as $lists2)
                                                                                     <input type="hidden" name="guest_id"
                                                                                         value="{{ $lists2->Request_ID }}" />
-                                                                                        <h3 class="text-left">Guest Request</h3>
+                                                                                    <h3 class="text-left">Guest Request
+                                                                                    </h3>
 
-                                                                                        <h3 class="text-left">Request: <span style="font-weight:normal;">{{ $lists2->Request}}</span> </h3>
-                                                                                        <h3 class="text-left">Date Requested: <span style="font-weight:normal;">{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}</span> </h3>
+                                                                                    <h3 class="text-left">Request: <span
+                                                                                            style="font-weight:normal;">{{ $lists2->Request }}</span>
+                                                                                    </h3>
+                                                                                    <h3 class="text-left">Date Requested:
+                                                                                        <span
+                                                                                            style="font-weight:normal;">{{ date('F j, Y', strtotime($lists2->Date_Requested)) }}</span>
+                                                                                    </h3>
                                                                                 @endforeach
                                                                             @endif
                                                                         </div>
@@ -582,11 +624,12 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                    @foreach($housekeeper as $housekeepers)
-                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
-                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                    @foreach ($housekeeper as $housekeepers)
+                                                                                        <option
+                                                                                            value="{{ $housekeepers->Housekeepers_Name }}">
+                                                                                            {{ $housekeepers->Housekeepers_Name }}
                                                                                         </option>
-                                                                                    @endforeach      
+                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -622,54 +665,79 @@
                                                                         class="prevent_submit" method="POST"
                                                                         enctype="multipart/form-data">
                                                                         {{ csrf_field() }}
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <!-- Room Number and Facility Type -->
-                                                                                <p class="text-left">Room No</p>
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists->ID }}" />
-                                                                                <input type="hidden" name="room_no"
-                                                                                    value="{{ $lists->Room_No }}" />
-                                                                                <input type="hidden" name="book_no"
-                                                                                    value="{{ $lists->Booking_No }}" />
-                                                                                <input class="form-control"
-                                                                                    value="{{ $lists->Room_No }}"
-                                                                                    readonly />
 
-                                                                                <input type="hidden" name="facility_type"
-                                                                                    value="Hotel Room" />
+                                                                        <h3 class="text-left">Maintenance Status <br> (is
+                                                                            it under maintenance?)</h3>
+                                                                        <select name="maintenance_stats" id="main_stats"
+                                                                            class="form-control"
+                                                                            data-list-index="{{ $index }}"
+                                                                            required>
+                                                                            <option value="" selected="selected"
+                                                                                disabled="disabled">Select</option>
+                                                                            <option value="Yes">Yes</option>
+                                                                            <option value="No">No</option>
+                                                                        </select>
+                                                                        <div id="cont_{{ $index }}"
+                                                                            style="display:none;">
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <!-- Room Number and Facility Type -->
+                                                                                    <p class="text-left">Room No</p>
+                                                                                    <input type="hidden" name="id"
+                                                                                        value="{{ $lists->ID }}" />
+                                                                                    <input type="hidden" name="room_no"
+                                                                                        value="{{ $lists->Room_No }}" />
+                                                                                    <input type="hidden" name="book_no"
+                                                                                        value="{{ $lists->Booking_No }}" />
+                                                                                    <input class="form-control"
+                                                                                        value="{{ $lists->Room_No }}"
+                                                                                        readonly />
 
-                                                                                <input type="hidden" name="discoveredby"
-                                                                                    value="{{ $lists->Attendant }}" />
+                                                                                    <input type="hidden"
+                                                                                        name="facility_type"
+                                                                                        value="Hotel Room" />
 
+                                                                                    <input type="hidden"
+                                                                                        name="discoveredby"
+                                                                                        value="{{ $lists->Attendant }}" />
+
+                                                                                </div>
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Priority Level</p>
+                                                                                    <select name="priority"
+                                                                                        class="form-control" id="prio_{{$index}}">
+                                                                                        <option selected="true"
+                                                                                            disabled="disabled">
+                                                                                            Select</option>
+                                                                                        <option value="Low">Low</option>
+                                                                                        <option value="Moderate">Moderate
+                                                                                        </option>
+                                                                                        <option value="High">High
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Priority Level</p>
-                                                                                <select name="priority"
-                                                                                    class="form-control" required>
-                                                                                    <option selected="true"
-                                                                                        disabled="disabled">
-                                                                                        Select</option>
-                                                                                    <option value="Low">Low</option>
-                                                                                    <option value="Moderate">Moderate
-                                                                                    </option>
-                                                                                    <option value="High">High</option>
-                                                                                </select>
+                                                                            <br>
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Description</p>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="description" id="desc_{{$index}}"/>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <br>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Description</p>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="description" required />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Due Date</p>
-                                                                                <input type="date" class="form-control"
-                                                                                    name="due_date" required />
+                                                                            <div class="row">
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Cost</p>
+                                                                                    <input type="number" name="cost"
+                                                                                        class="form-control" id="cost_{{$index}}">
+                                                                                </div>
+                                                                                <div class="col">
+                                                                                    <p class="text-left">Due Date</p>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        name="due_date" id="due_{{$index}}"/>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -724,179 +792,131 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    {{-- Supply Checking --}}
-                                                    <div id="check_supply{{ $lists->ID }}" class="modal hide fade"
-                                                        tabindex="-1">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-left display-4"
-                                                                        id="exampleModalLabel">Room
-                                                                        {{ $lists->Room_No }} Supply
-                                                                        Checking
-                                                                    </h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{ url('/deduct_supplies') }}"
-                                                                    class="prevent_submit" method="POST"
-                                                                    enctype="multipart/form-data">
-                                                                    {{ csrf_field() }}
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Item Name</p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Quantity</p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Deduction</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        @foreach ($list4 as $lists2)
-                                                                            @if ($lists2->Room_No == $lists->Room_No)
-                                                                                <div class="row">
-                                                                                    <div class="col">
-                                                                                        <input type="hidden"
-                                                                                            name="room_no"
-                                                                                            value="{{ $lists2->Room_No }}" />
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            value="{{ $lists2->name }}"
-                                                                                            readonly>
-                                                                                        <input type="hidden"
-                                                                                            name="name[]"
-                                                                                            value="{{ $lists2->name }}">
-                                                                                        <input type="hidden"
-                                                                                            name="price[]"
-                                                                                            value="{{ $lists2->Price }}">
-                                                                                        <input type="hidden"
-                                                                                            name="prodid[]"
-                                                                                            value="{{ $lists2->productid }}">
-                                                                                        <input type="hidden"
-                                                                                            name="book_num"
-                                                                                            value="{{ $lists->Booking_No }}">
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            value="{{ $lists2->Quantity }}"
-                                                                                            readonly>
-                                                                                        <input type="hidden"
-                                                                                            name="quantity[]"
-                                                                                            value="{{ $lists2->Quantity }}" />
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            name="deduction[]"
-                                                                                            value="0" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <br>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <a data-dismiss="modal" class="btn">Close</a>
-                                                                        <input type="submit" value="Submit"
-                                                                            name="submit" class="btn btn-primary">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- Check Linen --}}
-                                                    <div id="check_linen{{ $lists->ID }}" class="modal hide fade"
-                                                        tabindex="-1">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-left display-4"
-                                                                        id="exampleModalLabel">Room
-                                                                        {{ $lists->Room_No }} Linen
-                                                                        Checking
-                                                                    </h5>
-
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{ url('/check_linens') }}"
-                                                                    class="prevent_submit" method="POST"
-                                                                    enctype="multipart/form-data">
-                                                                    {{ csrf_field() }}
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <p class="text-left">Item Name</p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Quantity</p>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <p class="text-left">Discrepancy</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        @foreach ($list5 as $lists2)
-                                                                            @if ($lists2->Room_No == $lists->Room_No)
-                                                                                <div class="row">
-                                                                                    <div class="col">
-                                                                                        <input type="hidden"
-                                                                                            name="room_no"
-                                                                                            value="{{ $lists2->Room_No }}" />
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            value="{{ $lists2->name }}"
-                                                                                            readonly>
-                                                                                        <input type="hidden"
-                                                                                            name="name[]"
-                                                                                            value="{{ $lists2->name }}">
-
-                                                                                            <input type="hidden" name="booking_no" value ={{$lists->Booking_No}}>
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            value="{{ $lists2->Quantity }}"
-                                                                                            readonly>
-                                                                                        <input type="hidden"
-                                                                                            name="quantity[]"
-                                                                                            value="{{ $lists2->Quantity }}" />
-                                                                                    </div>
-                                                                                    <div class="col">
-                                                                                        <input type="hidden"
-                                                                                            name="current_discrepancy[]"
-                                                                                            value="{{ $lists2->Discrepancy }}" />
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            name="discrepancy[]"
-                                                                                            value="0" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <br>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button data-dismiss="modal" class="btn btn-outline-danger">Close</button>
-                                                                        <input type="submit" value="Submit"
-                                                                            name="submit" class="btn btn-primary">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 @endif
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    @foreach ($list as $lists)
+                                        @if ($lists->Front_Desk_Status != 'Reserved')
+                                            {{-- Room Checking --}}
+                                            <div id="room_check{{ $lists->ID }}" class="modal hide fade"
+                                                tabindex="-1">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">Room
+                                                                {{ $lists->Room_No }}
+                                                                Checking
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ url('/room_checked') }}" class="prevent_submit"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                            <div class="modal-body">
+                                                                <h3 class="text-left">Supplies</h3>
+                                                                <table class="table align-items-center table-flush"
+                                                                    id="myTable_roomchecking">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th>Item Name</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Deduction</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($list4 as $lists2)
+                                                                            @if ($lists2->Room_No == $lists->Room_No)
+                                                                                <tr>
+                                                                                    <input type="hidden" name="room_no"
+                                                                                        value="{{ $lists2->Room_No }}" />
+                                                                                    <input type="hidden"
+                                                                                        name="supply_name[]"
+                                                                                        value="{{ $lists2->name }}">
+                                                                                    <input type="hidden"
+                                                                                        name="supply_price[]"
+                                                                                        value="{{ $lists2->Price }}">
+                                                                                    <input type="hidden"
+                                                                                        name="supply_prodid[]"
+                                                                                        value="{{ $lists2->productid }}">
+                                                                                    <input type="hidden" name="book_num"
+                                                                                        value="{{ $lists->Booking_No }}">
+                                                                                    <input type="hidden"
+                                                                                        name="supply_quantity[]"
+                                                                                        value="{{ $lists2->Quantity }}" />
+                                                                                    <td>{{ $lists2->name }}</td>
+                                                                                    <td>{{ $lists2->Quantity }}</td>
+                                                                                    <td><input type="number"
+                                                                                            class="form-control"
+                                                                                            name="supply_deduction[]"
+                                                                                            value="0"
+                                                                                            style="width:50%;" /></td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <br><br>
+                                                                <h3 class="text-left">Linen</h3>
+                                                                <table class="table align-items-center table-flush"
+                                                                    id="myTable_roomchecking">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th>Item Name</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Discrepancy</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($list5 as $lists2)
+                                                                            @if ($lists2->Room_No == $lists->Room_No)
+                                                                                <tr>
+
+                                                                                    <input type="hidden"
+                                                                                        name="linen_prodid[]"
+                                                                                        value="{{ $lists2->productid }}">
+
+                                                                                    <input type="hidden"
+                                                                                        name="linen_name[]"
+                                                                                        value="{{ $lists2->name }}">
+
+                                                                                    <input type="hidden"
+                                                                                        name="linen_quantity[]"
+                                                                                        value="{{ $lists2->Quantity }}" />
+                                                                                    <input type="hidden"
+                                                                                        name="linen_current_discrepancy[]"
+                                                                                        value="{{ $lists2->Discrepancy }}" />
+
+                                                                                    <td>{{ $lists2->name }}</td>
+                                                                                    <td>{{ $lists2->Quantity }}</td>
+                                                                                    <td> <input type="number"
+                                                                                            class="form-control"
+                                                                                            name="linen_discrepancy[]"
+                                                                                            value="0"
+                                                                                            style="width:50%;" /></td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a data-dismiss="modal" class="btn">Close</a>
+                                                                <input type="submit" value="Submit" name="submit"
+                                                                    class="btn btn-primary">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
 
                                 {{-- Supply Request --}}
@@ -907,7 +927,7 @@
                                             <tr>
                                                 <th scope="col" style="font-size:18px;"></th>
                                                 <th scope="col" style="font-size:18px;">Room No</th>
-                                                <th scope="col" style="font-size:18px;">Attendant</th>    
+                                                <th scope="col" style="font-size:18px;">Attendant</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -947,7 +967,7 @@
                                                     </td>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
-                                                   
+
                                                     <!--Assign Attendant-->
                                                     <div class="modal fade" id="assign3{{ $lists->id }}"
                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -982,11 +1002,12 @@
                                                                                     <option selected="true"
                                                                                         disabled="disabled">
                                                                                         Select</option>
-                                                                                        @foreach($housekeeper as $housekeepers)
-                                                                                        <option value="{{$housekeepers->Housekeepers_Name}}">
-                                                                                            {{$housekeepers->Housekeepers_Name}}
+                                                                                    @foreach ($housekeeper as $housekeepers)
+                                                                                        <option
+                                                                                            value="{{ $housekeepers->Housekeepers_Name }}">
+                                                                                            {{ $housekeepers->Housekeepers_Name }}
                                                                                         </option>
-                                                                                    @endforeach  
+                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -1123,7 +1144,8 @@
                                                             @endforeach
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button data-dismiss="modal" class="btn btn-outline-danger">Close</button>
+                                                            <button data-dismiss="modal"
+                                                                class="btn btn-outline-danger">Close</button>
                                                             <input type="submit" value="Submit" name="submit"
                                                                 class="btn btn-primary">
                                                         </div>
@@ -1148,7 +1170,7 @@
                                                 <th scope="col" style="font-size:18px;">Housekeeping <br> Status</th>
                                                 <th scope="col" style="font-size:18px;">Check In Date</th>
                                                 <th scope="col" style="font-size:18px;">Check Out Date</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1164,7 +1186,7 @@
                                                     <td>{{ $lists->Facility_Type }}</td>
                                                     <td>{{ $lists->Housekeeping_Status }}</td>
                                                     <td>{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                    <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>                
+                                                    <td>{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                 </tr>
 
                                                 <!--View-->
@@ -1187,46 +1209,52 @@
                                                                         style="border-radius: 18px">
                                                                         <input type="hidden" name="id"
                                                                             value="{{ $lists->ID }}" />
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <h3 class="text-left">Booking Number:</h3>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <span style="font-weight:normal;">{{ $lists->Booking_No }}</span> 
-                                                                                </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3 class="text-left">Booking Number:</h3>
                                                                             </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <h3 class="text-left">Guest Name:</h3>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <span style="font-weight:normal;">{{ $lists->Guest_Name }}</span> 
-                                                                                    </div>
-                                                                                </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-6">
-                                                                                            <h3 class="text-left">Room Status:</h3>
-                                                                                        </div>
-                                                                                        <div class="col-md-6">
-                                                                                            <span style="font-weight:normal;">{{ $lists->Facility_Status }}</span> 
-                                                                                        </div>
-                                                                                    </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-6">
-                                                                                                <h3 class="text-left">Front Desk Status:</h3>
-                                                                                            </div>
-                                                                                            <div class="col-md-6">
-                                                                                                <span style="font-weight:normal;">{{ $lists->Front_Desk_Status }}</span> 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                            <div class="row">
-                                                                                                <div class="col-md-6">
-                                                                                                    <h3 class="text-left">Attendant:</h3>  
-                                                                                                </div>
-                                                                                                <div class="col-md-6">
-                                                                                                    <span style="font-weight:normal;">{{ $lists->Attendant }}</span> 
-                                                                                                </div>
-                                                                                            </div>                               
+                                                                            <div class="col-md-6">
+                                                                                <span
+                                                                                    style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3 class="text-left">Guest Name:</h3>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span
+                                                                                    style="font-weight:normal;">{{ $lists->Guest_Name }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3 class="text-left">Room Status:</h3>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span
+                                                                                    style="font-weight:normal;">{{ $lists->Facility_Status }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3 class="text-left">Front Desk Status:
+                                                                                </h3>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span
+                                                                                    style="font-weight:normal;">{{ $lists->Front_Desk_Status }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <h3 class="text-left">Attendant:</h3>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <span
+                                                                                    style="font-weight:normal;">{{ $lists->Attendant }}</span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1256,6 +1284,37 @@
         <script>
             $('.prevent_submit').on('submit', function() {
                 $('.prevent_submit').attr('disabled', 'true');
+            });
+            $(document).ready(function() {
+                $('select[name="maintenance_stats"]').change(function() {
+                    var selected = $("option:selected", this).val();
+                    var listIndex = $(this).data('list-index');
+                    
+                    if (selected == "Yes") {
+                        $('#cont_' + listIndex).css({
+                            'display': 'block'
+                        });
+
+                        $('#prio_'+listIndex).prop('required', true);
+                        $('#desc_'+listIndex).prop('required', true);
+                        $('#cost_'+listIndex).prop('required', true);
+                        $('#due_'+listIndex).prop('required', true);
+                    } else {
+                        $('#cont_' + listIndex).css({
+                            'display': 'none'
+                        });
+
+                        $('#prio_'+listIndex).prop('required', false);
+                        $('#desc_'+listIndex).prop('required', false);
+                        $('#cost_'+listIndex).prop('required', false);
+                        $('#due_'+listIndex).prop('required', false);
+
+                        $('#prio_'+listIndex).prop('selected', true);
+                        $('#desc_'+listIndex).val('');
+                        $('#cost_'+listIndex).val('');
+                        $('#due_'+listIndex).val('');
+                    }
+                });
             });
             $.noConflict();
             jQuery(document).ready(function($) {

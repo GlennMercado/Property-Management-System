@@ -23,16 +23,18 @@ class MaintenanceController extends Controller
 
     public function add_out_of_order(Request $request)
     {
-        $this->validate($request,[
-            'id' => '',
-            'room_no' => '',
-            'facility_type'=> '',
-            'priority' => 'required',
-            'description' => 'required',
-            'due_date' => 'required',
-            'book_no' => 'required',
-            'discoveredby' => ''
-            ]);
+        // $this->validate($request,[
+        //     'id' => '',
+        //     'room_no' => '',
+        //     'facility_type'=> '',
+        //     'priority' => 'required',
+        //     'description' => 'required',
+        //     'due_date' => 'required',
+        //     'book_no' => 'required',
+        //     'discoveredby' => ''
+        //     ]);
+        
+        $stats = $request->input('maintenance_stats');
 
         $status = "Out of Order";
 
@@ -44,31 +46,44 @@ class MaintenanceController extends Controller
         $due_date = $request->input('due_date');
         $bookno = $request->input('book_no');
         $discoveredby = $request->input('discoveredby');
-        
+        $cost = $request->input('cost');
 
-        $add = new out_of_order_rooms;
+        if($stats == "Yes")
+        {  
+            $add = new out_of_order_rooms;
 
-        $add->Facility_Type = $facility;
-        $add->Room_No = $room_no;
-        $add->Description = $description;
-        $add->Priority_Level = $priority;
-        $add->Due_Date = $due_date;
-        $add->Booking_No = $bookno;
-        $add->Discovered_By = $discoveredby;
+            $add->Facility_Type = $facility;
+            $add->Room_No = $room_no;
+            $add->Description = $description;
+            $add->Priority_Level = $priority;
+            $add->Due_Date = $due_date;
+            $add->Booking_No = $bookno;
+            $add->Discovered_By = $discoveredby;
+            $add->Cost = $cost;
 
 
-        if($add->save())
-        {
-            DB::table('housekeepings')->where('ID', $id)->update(array('Housekeeping_Status' => $status));
-            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $status));
-            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $discoveredby)->update(['Status' => "Available"]);
+            if($add->save())
+            {
+                DB::table('housekeepings')->where('ID', $id)->update(array('Housekeeping_Status' => $status));
+                DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $status));
+                DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $discoveredby)->update(['Status' => "Available"]);
+                DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(['Booking_Status' => "Room Checked"]);
 
-            Alert::Success('Success', 'Out of Order Room Successfully Recorded!');
-            return redirect('Maintenance')->with('Success', 'Data Saved');
+                Alert::Success('Success', 'Out of Order Room Successfully Recorded!');
+                return redirect('Maintenance')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Out of Order Room Failed Recording!');
+                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Saved');
+            }
         }
         else
         {
-            Alert::Error('Failed', 'Out of Order Room Failed Recording!');
+            DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(['Booking_Status' => "Room Checked"]);
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookno])->update(['Housekeeping_Status' => "Out of Service", 'Front_Desk_Status' => "Room Checked"]);
+
+            Alert::Success('Success', 'Housekeeping Successfully Updated!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Saved');
         }
         

@@ -885,6 +885,12 @@
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#view4{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
+
+                                                            <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                                target="blank" class="btn btn-sm btn-success"
+                                                                style="cursor:pointer;" title="Invoice">
+                                                                <i class="bi bi-file-earmark-text"></i>
+                                                            </a>
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>

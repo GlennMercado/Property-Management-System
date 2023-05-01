@@ -124,11 +124,45 @@
                     </tbody>
                 </table>
             </div>
+
+            <br><br>
+            <div>
+                <h1>Maintenance</h1>
+                <!-- Items -->
+                <table class="mt-5" style="width: 100%;">
+                    <thead style="border-bottom: 2px solid rgb(167, 167, 167)">
+                        <tr>
+                            <th>
+                                <P class="font-weight-bold text-muted">Description</P>
+                            </th>
+                            <th>
+                                <P class="font-weight-bold text-muted">Total Amount</P>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($list4 as $index => $lists4)
+                        <tr>
+                            <td>
+                                <h2 class="display-5">{{ $lists4->Description }}</h2>
+                            </td>
+                            <td>
+                                <h2 class="display-5 text-green cur1" id="cost{{ $index }}">{{ $lists4->Cost }}</h2>
+                                <p id="main_total{{$index}}" style="display:none;"></p>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
             
             <div class="">
                 <div class="d-flex justify-content-around mt-6">
                     <div class="p-2">
                         <p class="display-5 font-weight-bold">Used Supplies</p>
+                    </div>
+                    <div class="p-2">
+                        <p class="display-5 font-weight-bold">Maintenance</p>
                     </div>
                     <div class="p-2">
                         <p class="display-5 font-weight-bold">Hotel Booking</p>
@@ -140,6 +174,7 @@
                 <div class="b2">
                     <div class="d-flex justify-content-around">
                         <p class="text-dark display-3 cur1" id="item_total"></p>
+                        <p class="text-dark display-3 cur1" id="maintain_total"></p>
                         <p class="text-dark display-3 cur1" id="money3"></p>
                         <p class="display-3 text-green cur1" id="all"></p>
                     </div>      
@@ -201,9 +236,13 @@
                 let total_amounts = document.querySelectorAll('[id^="total_amount"]');
                 let dis_values = document.querySelectorAll('[id^="dis"]');
                 let pr_values = document.querySelectorAll('[id^="pr"]');
+
+                let main_totals = document.querySelectorAll('[id^="main_total"]');
+                let costs = document.querySelectorAll('[id^="cost"]');
                 
                 let total = money1;
                 let item_total = 0;
+                let mcost = 0;
 
                 for(let i=0; i<total_amounts.length; i++) 
                 {
@@ -214,8 +253,18 @@
                     item_total += product;
                 }
 
+                for(let i=0; i<main_totals.length; i++)
+                {
+                    let costs1 = parseFloat(costs[i].textContent);
+                    total += costs1;
+                    mcost += costs1;
+                }
+
                 let item_total_element = document.getElementById("item_total");
                 item_total_element.innerHTML = item_total.toFixed(2);
+
+                let maintain_total_element = document.getElementById("maintain_total");
+                maintain_total_element.innerHTML = mcost.toFixed(2);
 
                 let alltotal = document.getElementById("all");
                 alltotal.innerHTML = total.toFixed(2); 
