@@ -139,13 +139,12 @@ class FinanceController extends Controller
 
         // return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list,]);
 
-      
         $booking_no = $bn;
-        $list = DB::select("SELECT * FROM finance_2_reports WHERE debit = 'Cash'");    
+        $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$booking_no'");    
         $list2 = DB::select("SELECT * FROM used_supplies WHERE Booking_No = '$booking_no'");
         $list3 = DB::select("SELECT * FROM hotel_other_charges WHERE Booking_No = '$booking_no'");
 
-        return view('Admin.pages.Finances.FinanceReports', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
+        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
         
     }
 
@@ -162,20 +161,17 @@ class FinanceController extends Controller
         $data;
         $title;
 
-        // $data = DB::table('finance_2_reports')
-        // ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
-        // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
-        // ->whereBetween('created_at', [$start_date, $end_date])
-        // ->get();
-        $data = finance_2_reports::where('debit', 'Cash')->whereBetween('created_at', [$start_date, $end_date])->get();
-        $title = "palce";
+
+            $data = finance_2_reports::where('Client_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Client's Payment Details";
+            
 
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
-        // return $pdf->download('report.pdf');
+        //  return $pdf->download('report.pdf');
         return view('Admin.pages.Finances.FinanceReport', compact('data', 'title'));
     }
 
-    public function archives_reports(Request $request){
+    public function archives_summary(Request $request){
 
         $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
         $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
@@ -187,8 +183,8 @@ class FinanceController extends Controller
         // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
         // ->whereBetween('created_at', [$start_date, $end_date])
         // ->get();
-        $data = finance_2_reports::where('debit', 'Cash')->whereBetween('created_at', [$start_date, $end_date])->get();
-        $title = "palce";
+        $data = finance_2_reports::where('Client_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Revenue Archives";
 
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport2', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         // return $pdf->download('report.pdf');

@@ -21,6 +21,7 @@
                         <th scope="col" style="font-size:17px;">Event Date</th>
                         <th scope="col" style="font-size:17px;">Amount</th>
                         <th scope="col" style="font-size:17px;">Remarks</th>
+                        <th scope="col" style="font-size:17px;">Debit Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                             <td style="font-size:14px;">{{ $lists->eventdate }}</td>
                             <td style="font-size:14px;">{{ $lists->amount }}</td>
                             <td style="font-size:14px;">{{ $lists->remark }}</td>
+                            <td style="font-size:14px;">{{ $lists->debit }}</td>
                         </tr>
                     @endforeach
                 </tbody>
