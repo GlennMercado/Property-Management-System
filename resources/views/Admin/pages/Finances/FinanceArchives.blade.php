@@ -44,7 +44,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                                 href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                                aria-selected="false"> Ofiicial Receipts Archive</a>
+                                                aria-selected="false"> Revenue Archives</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -60,7 +60,27 @@
                             {{-- ORs --}}
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
-
+                                
+                                <div class="card-header" style="justify-content:center;align-items:center;align-self:center">
+                                    <form action="{{ url('/archives') }}" target="blank" method="get">
+                                        <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                <label for="start_date">Start Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                            </div>
+                                            <div class="p-2">
+                                                <label for="end_date">End Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="end_date">
+                                            </div>
+                                            <div class="p-2">
+                                                <label>Generate report:</label>
+                                                <button type="submit" class="btn btn-success w-100">
+                                                    <i class="bi bi-printer-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <table class="table align-items-center table-flush" style="align-items:center"
                                     id="myTable">
                                     <thead class="thead-light">

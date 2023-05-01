@@ -8,6 +8,7 @@ use App\Models\finance_2_reports;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use PDF;
 
 class FinanceController extends Controller
 {
@@ -140,11 +141,11 @@ class FinanceController extends Controller
 
       
         $booking_no = $bn;
-        $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$booking_no'");    
+        $list = DB::select("SELECT * FROM finance_2_reports WHERE debit = 'Cash'");    
         $list2 = DB::select("SELECT * FROM used_supplies WHERE Booking_No = '$booking_no'");
         $list3 = DB::select("SELECT * FROM hotel_other_charges WHERE Booking_No = '$booking_no'");
 
-        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
+        return view('Admin.pages.Finances.FinanceReports', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
         
     }
 
@@ -167,7 +168,7 @@ class FinanceController extends Controller
         // ->whereBetween('created_at', [$start_date, $end_date])
         // ->get();
         $data = finance_2_reports::where('debit', 'Cash')->whereBetween('created_at', [$start_date, $end_date])->get();
-        $title = "Pending Guest Report";
+        $title = "palce";
 
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         // return $pdf->download('report.pdf');
