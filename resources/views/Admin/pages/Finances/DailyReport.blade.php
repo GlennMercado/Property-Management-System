@@ -56,7 +56,26 @@
                             </div>
                         </div> 
                     </div>
-
+                    <div class="card-header">
+                    <form action="{{ url('/archives') }}" target="blank" method="get">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date">
+                            </div>
+                            <div class="p-2">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="end_date">
+                            </div>
+                            <div class="p-2">
+                                <label>Generate report:</label>
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-printer-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                     <br>
                     <div class="row align-items-center">
                         <div class="col">
@@ -220,7 +239,6 @@
                                     <table class="table align-items-center table-flush" id="myTabless">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">Action</th>
                                                 <th scope="col" style="font-size:18px;">Payee</th>
                                                 <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
@@ -241,13 +259,6 @@
                                         <tbody>
                                             @foreach ($list3 as $lists3)
                                                 <tr>
-                                                    <td style = "font-size:16px;">
-                                                            <a href="{{ url('/finance_invoice') }}"
-                                                                target="blank" class="btn btn-sm btn-success"
-                                                                style="cursor:pointer;" title="Invoice">
-                                                                <i class="bi bi-file-earmark-text"></i>
-                                                            </a>
-                                                    </td>
                                                     <td style = "font-size:16px;">{{ $lists3->payee }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->cash }}</td>
                                                     <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
@@ -265,7 +276,6 @@
                                             @endforeach
                                         </tbody>
                                         <tfoot>
-                                            <td></td>
                                             <td style="font-size:16px;">Total: </td>
                                             <td style="font-size:16px;">{{ $cash_sum3 }}</td>
                                             <td style="font-size:16px;">{{ $unearned_sum3 }}</td>
@@ -455,6 +465,19 @@
 
 
     </div>
+    <!-- <script>
+    $.ajax({
+    method: "POST",
+    url: "/archives",
+    data: {/* request data here */},
+    success: function(response) {
+        // handle success
+    },
+    error: function(error) {
+        // handle error
+    }
+});
+</script> -->
 @endsection
 
 @push('js')
