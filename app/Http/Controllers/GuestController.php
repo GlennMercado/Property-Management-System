@@ -459,6 +459,7 @@ class GuestController extends Controller
     public function commercial_spaces_application(Request $request)
     {              
         $email = Auth::user()->email;
+        
         $this->validate($request,[
             'business_name' => 'required',
             'business_style' => 'required',
@@ -475,7 +476,7 @@ class GuestController extends Controller
             'tax_cert_valid_gov_id' => 'required'
         ]);
         
-        $check = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email' AND Status != 'Tenant'");
+        $check = DB::select("SELECT * FROM commercial_spaces_applications WHERE email = '$email' AND Status != 'Tenant' AND Status != 'Failed' AND Status != 'Tenant (Terminated)'");
 
         if($check)
         {

@@ -28,10 +28,17 @@
             <li>Secondary Licenses per industry, if applicable</li>
         </ol>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
-    @else
+    @elseif($tenant->Status == "Approved")
         <p>Hello {{ $tenant->name_of_owner }},</p>
-        <p>Your commercial space application has been {{ $tenant->Status }}. Please log-in in our site and set your interview date.</p>
+        <p>Your commercial space application has been {{ $tenant->Status }}. Kindly log-in in our site ({{url('/')}}) and set your interview date.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
+    @elseif($tenant->Status == "For Revision")
+        <p>Hello {{ $tenant->name_of_owner }},</p>
+        <p>We hae reviewed your submitted documents. Your commercial space application has been tagged as {{ $tenant->Status }}.</p>
+        <p>We advised you to comply with your requirements.</p>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
     @endif
+    <br><br><br>
+    <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
 </body>
 </html>

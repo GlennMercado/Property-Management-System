@@ -313,7 +313,7 @@
 
                                                                                         <div class="preview-container preview-container-{{$index}}">
                                                                                             <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
-                                                                                            @if($lists->Proof_Image != null)
+                                                                                            @if($lists3->Proof_Image != null)
                                                                                                 <p>Proof Image:</p>
                                                                                                 <img src="{{$lists3->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
                                                                                             @else
@@ -508,6 +508,7 @@
                                                                             <th scope="col">Rental Fee</th>
                                                                             <th scope="col">Paid Date</th>
                                                                             <th scope="col">Payment Status</th>
+                                                                            <th scope="col">Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -533,6 +534,21 @@
                                                                                     <td class="font-weight-bold tbltxt text-danger">
                                                                                         {{ $lists3->Payment_Status }}</td>
                                                                                     @endif
+                                                                                    <td>
+                                                                                        @if($lists3->Payment_Status == "Paid")
+                                                                                            <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists3->Reference_No}}" data-proof-image="{{$lists3->Proof_Image}}" data-index="{{$index}}">View Payment</button>
+
+                                                                                            <div class="preview-container preview-container-{{$index}}">
+                                                                                                <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
+                                                                                                @if($lists3->Proof_Image != null)
+                                                                                                    <p>Proof Image:</p>
+                                                                                                    <img src="{{$lists3->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                                                                @else
+                                                                                                    <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        @endif
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endif
                                                                         @endforeach
@@ -625,7 +641,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             z-index: 999;
-            width: 300px;
+            width: auto;
             height: auto;
             text-align: center;
             justify-content: center;
@@ -642,6 +658,7 @@
             height: auto;
             margin-bottom: 10px;
         }
+        
         .tbltxt {
             font-size: 18px;
         }
