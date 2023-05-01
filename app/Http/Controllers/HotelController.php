@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+use App\Mail\BookingConfirmation;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\Booked;
 use App\Notifications\Success;
@@ -173,13 +174,14 @@ class HotelController extends Controller
         }      
     }
     // 
-
+    public function booking_confirmation(){
+        
+    }
     public function update_payment($id, $no, $check)
     {
         $bookno = $id;
         $roomno = $no;
         $isarchived = $check;
-
         $stats = "Paid";
         $stats2 = "Reserved";
 
@@ -219,19 +221,7 @@ class HotelController extends Controller
             $outvat = .12;
             $gross = 1.12;
             $cash = $finance_amount / $gross;
-            $vat = $outvat * $cash;
-
-            $this->success();
-            $user = DB::select("SELECT Guest_Name FROM hotel_reservations WHERE Room_No = '$roomno'");
-            // auth()->user()->notify(new Booked($user));
-            $mail = Auth::user()->email;
-            $name = Auth::user()->name;
-            $data=['name'=>$name, 'data'=>"Hello world"];
-            $user['to']=$mail;
-            Mail::send('Guest.Reserve',$data,function($messages) use ($user){
-                $messages->to($user['to']);
-                $messages->subject('Hello');
-            });    
+            $vat = $outvat * $cash;  
 
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
@@ -247,11 +237,25 @@ class HotelController extends Controller
             values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
             if($user_type == "Operations Manager")
             {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
             }
             else
             {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }

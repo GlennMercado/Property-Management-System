@@ -19,6 +19,7 @@
 #preloader-background {
     background: white;
     height: 100vh;
+    overflow: hidden;
 }
 
 #circle-loader {

@@ -9,7 +9,7 @@
             <div class="font-weight-bold display-5 mt--3">Brgy, 123 General Luis, Novaliches, Quezon City</div>
         </div>
     </div>
-        <p class="display-3 text-center">{{ $title }}</p>
+    <p class="display-3 text-center">{{ $title }}</p>
     <div class="row d-flex justify-content-center p-5">
         <div class="container-fluid">
             <table class="table align-items-center table-flush" id="myTable">
@@ -22,6 +22,7 @@
                         <th scope="col" style="font-size:17px;">Departure Date</th>
                         <th scope="col" style="font-size:17px;">Payment</th>
                         <th scope="col" style="font-size:17px;">Payment Status</th>
+                        <th scope="col" style="font-size:17px;">Booking Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                             <td style="font-size:14px;">{{ $lists->Check_Out_Date }}</td>
                             <td style="font-size:14px;">{{ $lists->Payment }}</td>
                             <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
+                            <td style="font-size:14px;">{{ $lists->Booking_Status }}</td>
                         </tr>
                     @endforeach
                 </tbody>

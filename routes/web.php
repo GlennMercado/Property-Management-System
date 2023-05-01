@@ -21,9 +21,9 @@ Route::get('/try', function(){
 	return view('Admin.pages.RoomManagement.try');
 });
 
-// Route::get('/email/verify/resend-form', [App\Http\Controllers\Auth\VerificationController::class, 'resendVerificationLinkForm'])->name('verification.resend-form');
+Route::get('/email/verify/resend-form', [App\Http\Controllers\Auth\VerificationController::class, 'resendVerificationLinkForm'])->name('verification.resend-form');
 
-// Route::post('/email/verify/resend', [App\Http\Controllers\Auth\VerificationController::class, 'sendEmailVerificationNotification'])->name('verification.send');
+Route::post('/email/verify/resend', [App\Http\Controllers\Auth\VerificationController::class, 'sendEmailVerificationNotification'])->name('verification.send');
 
 
 // Route::get('/verify-email/{token}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
@@ -48,6 +48,8 @@ Auth::routes(['verify' => true]);
 Route::get('/login-google', [App\http\Controllers\API\SocialAuthController::class, 'redirectToProvider'])->name('google.login');
 
 Route::get('/auth/google/callback', [App\http\Controllers\API\SocialAuthController::class, 'handleCallback'])->name('google.login.callback');
+
+Route::get('/Services', [App\Http\Controllers\GuestController::class, 'services_view'])->name('Services');
 
 //For authenticated users or logged in
 Route::middleware(['auth'])->group(function(){

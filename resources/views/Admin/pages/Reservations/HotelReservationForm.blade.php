@@ -361,7 +361,7 @@
                                                             </div>
                                                             <div class="col-md-6 text-sm font-weight-bold">
                                                                 <img class="gcash"
-                                                                    src="{{ asset('nvdcpics') }}/Gcash.webp"
+                                                                    src="{{ asset('nvdcpics') }}/Gcash.png"
                                                                     style="width: 200px; height: 60px">
                                                             </div>
                                                             <div class="col-md-12 text-sm font-weight-bold mt-4">

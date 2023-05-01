@@ -52,6 +52,9 @@ class GuestController extends Controller
             return redirect('/welcome')->with('Error', 'Failed');
         }      
     }
+    public function services_view(){
+        return view('Guest.Services');
+    }
     public function MyNotif(){
         return view('Guest.MyNotifications');
     }

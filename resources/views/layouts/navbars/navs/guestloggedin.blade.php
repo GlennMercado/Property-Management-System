@@ -166,12 +166,12 @@
                         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <i class="bi bi-book-half"></i>
-                        <span class="nav-link-inner--text">{{ __('Book Now') }}</span>
+                        <span class="nav-link-inner--text">{{ __('Services') }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url('rooms') }}">Suite</a>
-                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Room</a>
-                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Space</a>
+                        <a class="dropdown-item" href="{{ url('rooms') }}">Suites</a>
+                        <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Rooms</a>
+                        <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Spaces</a>
                     </div>
                 </div>
                 <li class="nav-item d-block d-sm-none">

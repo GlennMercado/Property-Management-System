@@ -41,6 +41,10 @@ class ReportController extends Controller
         $data = hotel_reservations::where('Booking_Status', 'Finished')->whereBetween('created_at', [$start_date, $end_date])->get();
         $title = "Finished Guest Report";
         break;
+    case "All":
+        $data = hotel_reservations::whereBetween('created_at', [$start_date, $end_date])->get();
+        $title = "All Guest Report";
+        break;
     default:
         $data = hotel_reservations::whereBetween('created_at', [$start_date, $end_date])->get();
         $title = "All Guest Report";

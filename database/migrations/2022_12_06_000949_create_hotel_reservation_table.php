@@ -40,8 +40,8 @@ return new class extends Migration
             $table->date('Check_Out_Date');
             $table->date('Check_Out_Extension')->nullable();
 
-            $table->string('Proof_Image');
-            $table->binary('DB_Proof_Image');
+            $table->string('Proof_Image')->nullable();
+            $table->binary('DB_Proof_Image')->nullable();
 
             $table->timestamps();
         });

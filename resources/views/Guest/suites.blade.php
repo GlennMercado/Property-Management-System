@@ -449,22 +449,14 @@
                                                         <div class="col-md-12 d-flex justify-content-center">
                                                             {!! QrCode::size(170)->generate('09458923381') !!}
                                                         </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-center">Gcash account name <span
+                                                        <div class="col-md-12 mt-3">
+                                                            <p class="text-center">Gcash Reference No.<span
                                                                     class="text-danger">*</span></p>
                                                         </div>
-                                                        {{-- Sample Ref No --}}
-                                                        <div class="col-md-12 d-flex justify-content-center">
-                                                            <h3>Ref. No. 1001 543 610110</h3>
-                                                        </div>
-                                                        <div class="col-md-12 d-flex justify-content-center">
-                                                            <p>Jan 31, 2023, 10:00 am </p>
-                                                        </div>
-                                                        {{-- Enter name --}}
                                                         <div class="col-md-12">
                                                             <input type="text" id="gcash_acc"
                                                                 onkeyup="enable_submit()" name="gcash_account"
-                                                                class="form-control" maxlength="32">
+                                                                class="form-control" maxlength="13">
                                                         </div>
                                                         <div class="col-md-12 mt-1">
                                                             <p class="text-center">Upload your proof of payment here <span
@@ -476,7 +468,7 @@
                                                         <div class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
                                                             <input type="file" accept=".png, .jpeg, .jpg, .gif"
                                                                 maxlength="500000" onchange="enable_submit(event)"
-                                                                id="gcash_img" placeholder="Ex: John Doe" name="images"
+                                                                id="gcash_img" name="images"
                                                                 class="form-control">
                                                         </div>
                                                     </div>
