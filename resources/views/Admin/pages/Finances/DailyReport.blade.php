@@ -56,7 +56,7 @@
                             </div>
                         </div> 
                     </div>
-                    <div class="card-header">
+                <div class="card-header">
                     <form action="{{ url('/archives') }}" target="blank" method="get">
                         <div class="d-flex flex-row">
                             <div class="p-2">
@@ -92,8 +92,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                                 data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                                aria-controls="tabs-icons-text-1" aria-selected="true">Official
-                                                Receipt</a>
+                                                aria-controls="tabs-icons-text-1" aria-selected="true">Customer Payment Details</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
