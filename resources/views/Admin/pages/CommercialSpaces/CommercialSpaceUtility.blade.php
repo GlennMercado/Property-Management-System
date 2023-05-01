@@ -71,7 +71,8 @@
                                                 <div class="col-md-6">
                                                     <h3 class="text-left">Type of Bill : </h3>
                                                     <select name="type_of_bill" class="form-control" required>
-                                                        <option value="" selected="true" disabled="disabled">Select</option>
+                                                        <option value="" selected="true" disabled="disabled">Select
+                                                        </option>
                                                         <option value="Electricity">Electricity</option>
                                                         <option value="Water">Water</option>
                                                     </select>
@@ -80,9 +81,9 @@
                                             <div class="row">
                                                 <div class="col-md mt-4">
                                                     <h3 class="text-left">Amount : </h3>
-                                            <input type="number" name="amount" class="form-control" required>
+                                                    <input type="number" name="amount" class="form-control" required>
                                                 </div>
-                                            </div>       
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -187,7 +188,7 @@
                                         <div class="modal fade" id="view_utility_{{ $arrays['Tenant_ID'] }}"
                                             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="z-index: 5;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title text-left display-4"
@@ -200,8 +201,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <h3 class="text-left">Electricity Bills</h3>
-                                                        <table class="table align-items-center table-flush" id="myTable2"
-                                                            style="z-index: 5;">
+                                                        <table class="table align-items-center table-flush"
+                                                            id="myTable2">
                                                             <thead class="thead-light">
                                                                 <tr>
                                                                     <th scope="col">Total Amount</th>
@@ -242,22 +243,34 @@
                                                                                             class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
                                                                                 @endif
-                                                                                @if($lists->Payment_Status == "Paid")
-                                                                                    <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists->Reference_No}}" data-proof-image="{{$lists->Proof_Image}}" data-index="{{$index}}">View Payment</button>
+                                                                                @if ($lists->Payment_Status == 'Paid')
+                                                                                    <button
+                                                                                        class="preview-btn btn btn-sm btn-primary"
+                                                                                        data-reference-no="{{ $lists->Reference_No }}"
+                                                                                        data-proof-image="{{ $lists->Proof_Image }}"
+                                                                                        data-index="{{ $index }}">View
+                                                                                        Payment</button>
 
-                                                                                    <div class="preview-container preview-container-{{$index}}">
-                                                                                        <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
-                                                                                        @if($lists->Proof_Image != null)
+                                                                                    <div
+                                                                                        class="preview-container preview-container-{{ $index }}">
+                                                                                        <p>Reference Number : <span
+                                                                                                class="reference-no reference-no-{{ $index }}"></span>
+                                                                                        </p>
+                                                                                        @if ($lists->Proof_Image != null)
                                                                                             <p>Proof Image:</p>
-                                                                                            <img src="{{$lists->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                                                            <img src="{{ $lists->Proof_Image }}"
+                                                                                                alt="Proof Image"
+                                                                                                class="proof-image proof-image-{{ $index }}">
                                                                                         @else
-                                                                                            <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                                                            <i
+                                                                                                class="proof-image proof-image-{{ $index }}">No
+                                                                                                proof image available</i>
                                                                                         @endif
                                                                                     </div>
                                                                                 @endif
                                                                             </td>
                                                                         </tr>
-                                                                    @endif                                              
+                                                                    @endif
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
@@ -265,8 +278,8 @@
                                                         <br>
 
                                                         <h3 class="text-left">Water Bills</h3>
-                                                        <table class="table align-items-center table-flush" id="myTable3"
-                                                            style="z-index: 5;">
+                                                        <table class="table align-items-center table-flush"
+                                                            id="myTable3">
                                                             <thead class="thead-light">
                                                                 <tr>
                                                                     <th scope="col">Total Amount</th>
@@ -298,7 +311,7 @@
                                                                                     {{ $lists->Payment_Status }}</td>
                                                                             @endif
                                                                             <td>
-                                                                                @if ($lists->Proof_Image != null)
+                                                                                {{-- @if ($lists->Proof_Image != null)
                                                                                     <div class="img-container">
                                                                                         <button
                                                                                             class="btn btn-sm btn-primary"
@@ -310,7 +323,7 @@
                                                                                             </span>
                                                                                         </button>
                                                                                     </div>
-                                                                                @endif
+                                                                                @endif --}}
 
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-warning"
@@ -322,22 +335,34 @@
                                                                                     </button>
                                                                                 @endif
 
-                                                                                @if($lists->Payment_Status == "Paid")
-                                                                                    <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists->Reference_No}}" data-proof-image="{{$lists->Proof_Image}}" data-index="{{$index}}">View Payment</button>
+                                                                                @if ($lists->Payment_Status == 'Paid')
+                                                                                    <button
+                                                                                        class="preview-btn btn btn-sm btn-primary"
+                                                                                        data-reference-no="{{ $lists->Reference_No }}"
+                                                                                        data-proof-image="{{ $lists->Proof_Image }}"
+                                                                                        data-index="{{ $index }}">View
+                                                                                        Payment</button>
 
-                                                                                    <div class="preview-container preview-container-{{$index}}">
-                                                                                        <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
-                                                                                        @if($lists->Proof_Image != null)
+                                                                                    <div
+                                                                                        class="preview-container preview-container-{{ $index }}">
+                                                                                        <p>Reference Number : <span
+                                                                                                class="reference-no reference-no-{{ $index }}"></span>
+                                                                                        </p>
+                                                                                        @if ($lists->Proof_Image != null)
                                                                                             <p>Proof Image:</p>
-                                                                                            <img src="{{$lists->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                                                            <img src="{{ $lists->Proof_Image }}"
+                                                                                                alt="Proof Image"
+                                                                                                class="proof-image proof-image-{{ $index }}">
                                                                                         @else
-                                                                                            <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                                                            <i
+                                                                                                class="proof-image proof-image-{{ $index }}">No
+                                                                                                proof image available</i>
                                                                                         @endif
                                                                                     </div>
                                                                                 @endif
                                                                             </td>
                                                                         </tr>
-                                                                    @endif 
+                                                                    @endif
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
@@ -349,38 +374,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @foreach($list2 as $lists)
+                                        @foreach ($list2 as $lists)
+                                            @if ($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == 'Electricity')
                                             <!-- Update Modal 1-->
-                                            <div class="modal fade update_payment_status"
+                                            <div class="modal fade"
                                                 id="update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
-                                                tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered"
-                                                    role="document">
+                                                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 6;">
                                                     <div class="modal-content">
-                                                        <form
-                                                            action="{{ url('/update_utility_payment') }}"
+                                                        <form action="{{ url('/update_utility_payment') }}"
                                                             class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
 
                                                             {{ csrf_field() }}
 
                                                             <div class="modal-body">
-                                                                <input type="hidden"
-                                                                    name="tenant_id"
+                                                                <input type="hidden" name="tenant_id"
                                                                     value="{{ $lists->Tenant_ID }}">
 
-                                                                <input type="hidden"
-                                                                    name="due"
+                                                                <input type="hidden" name="due"
                                                                     value="{{ $lists->Due_Date }}" />
 
                                                                 <h3 class="text-left">Electricity
                                                                     Bill Status: </h3>
-                                                                <select name="electricity_status"
-                                                                    class="form-control">
-                                                                    <option value=""
-                                                                        selected="true"
+                                                                <select name="electricity_status" class="form-control">
+                                                                    <option value="" selected="true"
                                                                         disabled="disabled">
                                                                         Select</option>
                                                                     <option value="Paid">
@@ -394,17 +413,19 @@
 
                                                                 <i>Proof of Payment Here:</i>
 
-                                                                @if($lists->Reference_No != null)
-                                                                    <h3 class="text-left">Reference No : <span class="text-primary">{{$lists->Reference_No}}</span></h3>
-                                                                    @if($lists->Proof_Image != null)
+                                                                @if ($lists->Reference_No != null)
+                                                                    <h3 class="text-left">Reference No : <span
+                                                                            class="text-primary">{{ $lists->Reference_No }}</span>
+                                                                    </h3>
+                                                                    @if ($lists->Proof_Image != null)
                                                                         <h3 class="text-left">Proof Image</h3>
-                                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
+                                                                        <img src="{{ $lists->Proof_Image }}"
+                                                                            class="card-img-top">
                                                                     @endif
                                                                 @endif
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button
-                                                                    class="btn btn-outline-danger"
+                                                                <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
                                                                 <input type="submit"
                                                                     class="btn btn-success prevent_submit">
@@ -413,38 +434,33 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
 
+                                            @if ($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == 'Water')
                                             <!-- Update Modal 2 -->
-                                            <div class="modal fade update_payment_status"
+                                            <div class="modal fade "
                                                 id="update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
-                                                tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered"
-                                                    role="document">
+                                                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 6;">
                                                     <div class="modal-content">
-                                                        <form
-                                                            action="{{ url('/update_utility_payment') }}"
+                                                        <form action="{{ url('/update_utility_payment') }}"
                                                             class="prevent_submit" method="POST"
                                                             enctype="multipart/form-data">
 
                                                             {{ csrf_field() }}
 
                                                             <div class="modal-body">
-                                                                <input type="hidden"
-                                                                    name="tenant_id"
+                                                                <input type="hidden" name="tenant_id"
                                                                     value="{{ $lists->Tenant_ID }}">
 
-                                                                <input type="hidden"
-                                                                    name="due"
+                                                                <input type="hidden" name="due"
                                                                     value="{{ $lists->Due_Date }}" />
 
                                                                 <h3 class="text-left">Water
                                                                     Bill Status: </h3>
-                                                                <select name="water_status"
-                                                                    class="form-control">
-                                                                    <option value=""
-                                                                        selected="true"
+                                                                <select name="water_status" class="form-control">
+                                                                    <option value="" selected="true"
                                                                         disabled="disabled">
                                                                         Select</option>
                                                                     <option value="Paid">
@@ -457,17 +473,19 @@
                                                                 <br>
                                                                 <i>Proof of Payment Here:</i>
 
-                                                                @if($lists->Reference_No != null)
-                                                                    <h3 class="text-left">Reference No : <span class="text-primary">{{$lists->Reference_No}}</span></h3>
-                                                                    @if($lists->Proof_Image != null)
+                                                                @if ($lists->Reference_No != null)
+                                                                    <h3 class="text-left">Reference No : <span
+                                                                            class="text-primary">{{ $lists->Reference_No }}</span>
+                                                                    </h3>
+                                                                    @if ($lists->Proof_Image != null)
                                                                         <h3 class="text-left">Proof Image</h3>
-                                                                        <img src="{{$lists->Proof_Image}}" class="card-img-top">
+                                                                        <img src="{{ $lists->Proof_Image }}"
+                                                                            class="card-img-top">
                                                                     @endif
                                                                 @endif
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button
-                                                                    class="btn btn-outline-danger"
+                                                                <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
                                                                 <input type="submit"
                                                                     class="btn btn-success prevent_submit">
@@ -476,6 +494,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         @endforeach
                                     @endforeach
                                 </div>
@@ -541,10 +560,6 @@
             margin-bottom: 10px;
         }
 
-
-        .update_payment_status {
-            overflow-y: hidden;
-        }
 
         .img-container {
             position: relative;
