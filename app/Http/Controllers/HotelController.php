@@ -280,10 +280,24 @@ class HotelController extends Controller
             $bookno = $id;
             $roomno = $no;
             $isarchived = $check;
-            
-            $user_type = Auth::user()->User_Type;
+
+            //NOTIFY
+                $email = null;
+                $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
+                foreach($select as $selects)
+                {
+                    $email = $selects->Email;
+                }
+
+                $client = User::where('email', $email)->first();
+                
+                $client->notify(new Booked($client));
+            //HERE
 
             $status = $stats;
+
+            $user_type = Auth::user()->User_Type;
             
             if($status == "Checked-In")
             {

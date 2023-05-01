@@ -675,7 +675,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             z-index: 23999;
-            width: 350px;
+            width: auto;
             max-height: auto;
             text-align: center;
             justify-content: center;

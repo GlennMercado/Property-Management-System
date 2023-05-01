@@ -29,5 +29,7 @@
         <p>Your status is {{ $tenant->Tenant_Status }}. Please review the remarks and take necessary actions.</p>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
     @endif
+    <br><br><br>
+    <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
 </body>
 </html>
