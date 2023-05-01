@@ -404,6 +404,7 @@
                                         @if ($lists->Booking_Status == 'Reserved' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                             <tr>
                                                 <td>
+
                                                     <!--View Button-->
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#views{{ $lists->Booking_No }}"> <i
@@ -721,7 +722,7 @@
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived,  'stats' => 'Checked-Out']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
@@ -744,13 +745,14 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
+                                                        
                                                         <div class="modal-body">
                                                             <h4 class="text-center">Check Room Before Check-Out?</h4>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checking(Before Check-Out)']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived,  'stats' => 'Checking(Before Check-Out)']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
