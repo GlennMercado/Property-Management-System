@@ -18,6 +18,7 @@ use Mail;
 use App\Models\User;
 use App\Models\Notification;
 
+
 class HotelController extends Controller
 {
    /**
@@ -32,18 +33,19 @@ class HotelController extends Controller
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
         $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count(); 
         $checked_out_guests = hotel_reservations::where('Booking_Status','Checked-Out')->count(); 
-        $list = DB::select('SELECT * FROM hotel_reservations');
+        $list = DB::select('SELECT * FROM hotel_reservations a LEFT JOIN novadeci_suites b ON a.Room_No = b.Room_No');
 		$room = DB::select('SELECT * FROM novadeci_suites');
+        
         $supply = DB::select('SELECT * FROM hotelstocks');  
         return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
-     public function guest_viewing()
-     {
+    public function guest_viewing()
+    {
         $list = DB::select('SELECT * FROM hotel_reservations');
-		$room = DB::select('SELECT * FROM novadeci_suites');
+        $room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  
         return view('Admin.pages.OperationManagement.Guest_Reservation', ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
-     }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -212,7 +214,7 @@ class HotelController extends Controller
 
             foreach ($reservations as $reservation) {
                 $ornum = $reservation->id;
-                $finance_payee = $reservation->gcash_account_name;
+                $finance_payee = $reservation->Reference_No;
                 $finance_amount = $reservation->Payment;
                 $finance_eventdate = $reservation->Check_In_Date;
                 // other variables and insert query here
@@ -292,7 +294,8 @@ class HotelController extends Controller
 
                 $client = User::where('email', $email)->first();
                 
-                $client->notify(new Booked($client));
+                //$client->notify(new Booked($client));
+                
             //HERE
 
             $status = $stats;
@@ -413,7 +416,7 @@ class HotelController extends Controller
                 if($isarchived == false)
                 {
                     $hstatus = "Inspect";
-                    $roomstats = "Vacant for Accommodation";
+                    $roomstats = "Vacant for Cleaning";
                     DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array(
                         'Booking_Status' => $status,
                         'isarchived' => true

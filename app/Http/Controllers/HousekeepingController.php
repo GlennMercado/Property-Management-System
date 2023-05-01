@@ -68,7 +68,6 @@ class HousekeepingController extends Controller
                     ]
                     );
     }
-
     public function hotel_housekeeping()
     {
         $list2 = DB::select('SELECT * FROM housekeepings a INNER JOIN novadeci_suites b ON a.Room_No = b.Room_No');
@@ -241,6 +240,7 @@ class HousekeepingController extends Controller
             return redirect('List_of_Housekeepers')->with('Success', 'Data Updated');
         }
     }
+    
     public function check_linen(Request $request)
     {
         try
@@ -287,9 +287,9 @@ class HousekeepingController extends Controller
                 }
             }
 
-            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookingid, 'IsArchived' => false])->update(['Housekeeping_Status' => "Out of Service"]);
+            DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookingid, 'IsArchived' => false])->update(['Housekeeping_Status' => "Checking for Maintenance"]);
 
-            DB::table('hotel_reservations')->where('Booking_No', $bookingid)->update(['Booking_Status' => "Room Checked"]);
+            //DB::table('hotel_reservations')->where('Booking_No', $bookingid)->update(['Booking_Status' => "Room Checked"]);
 
             
 

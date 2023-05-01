@@ -352,17 +352,17 @@ class GuestController extends Controller
             $randID = str_shuffle($pin);
 
             
-            $this->validate($request,[
-                'checkIn' => 'required',
-                'checkOut' => 'required',
-                'gName' => 'required',
-                'mobile' => 'required',
-                'room_no' => 'required',
-                'pax' => 'required',
-                'Reference_No' => 'required',
-            ]);
+            // $this->validate($request,[
+            //     'checkIn' => 'required',
+            //     'checkOut' => 'required',
+            //     'gName' => 'required',
+            //     'mobile' => 'required',
+            //     'room_no' => 'required',
+            //     'pax' => 'required',
+            //     'Reference_No' => 'required',
+            // ]);
             
-
+            
             $reserve = new hotel_reservations;
 
             $checkindate = Carbon::createFromFormat('m/d/Y', $request->input('checkIn'))->format('Y-m-d');
@@ -377,7 +377,7 @@ class GuestController extends Controller
             $reserve->No_of_Pax = $request->input('pax');
             $reserve->Payment = $request->input('payment');
             $reserve->Room_No = $request->input('room_no');
-            $reserve->Reference_No_name = $request->input('Reference_No');
+            $reserve->Reference_No = $request->input('gcash_account');
 
 
 

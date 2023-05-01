@@ -162,6 +162,7 @@
                         </div>
                     </form>
                 </div>
+                @php $now = date('Y-m-d'); @endphp
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- Pending -->
@@ -351,9 +352,9 @@
                                                         <div class="col-md-6 text-sm mt-2">
                                                             {{ $lists->Check_Out_Date }}
                                                         </div>
-                                                        <a href="{{ url($lists->Proof_Image) }}" data-lightbox="photos">
+                                                        {{-- <a href="{{ url($lists->Proof_Image) }}" data-lightbox="photos">
                                                             <img src="{{ url($lists->Proof_Image) }}"
-                                                                class="card-img-top p-5" />
+                                                                class="card-img-top p-5" /> --}}
                                                         </a>
                                                         <div class="row p-3 mt-2">
                                                             <div class="col-md-6 text-sm font-weight-bold">
@@ -392,10 +393,12 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
+                                        <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
-                                        <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
+                                        <th scope="col" style="font-size:17px;">Check-In Date</th>
+                                        <th scope="col" style="font-size:17px;">Check-Out Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -404,20 +407,26 @@
                                         @if ($lists->Booking_Status == 'Reserved' && $lists->IsArchived == false && $lists->Payment_Status == 'Paid')
                                             <tr>
                                                 <td>
-
                                                     <!--View Button-->
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#views{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--Update Reservation/Room Status Button-->
-                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                        data-target="#update_booking_status{{ $lists->Booking_No }}">
-                                                        <i class="bi bi-arrow-clockwise"></i></button>
+                                                    @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Reserved")
+                                                        @if($lists->Check_In_Date <= $now)
+                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                data-target="#update_booking_status{{ $lists->Booking_No }}">
+                                                                <i class="bi bi-arrow-clockwise"></i>
+                                                            </button>
+                                                        @endif
+                                                    @endif
                                                 </td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                             </tr>
                                         @endif
 
@@ -574,11 +583,13 @@
                                                     </button>
                                                     <!--Update Reservation/Room Status Button-->
                                                     @if ($lists->Booking_Status == 'Checked-In')
-                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                            data-target="#update_booking_status11{{ $lists->Booking_No }}"
-                                                            title="Update">
-                                                            <i class="bi bi-arrow-clockwise"></i>
-                                                        </button>
+                                                        @if($lists->Check_Out_Date <= $now)
+                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                data-target="#update_booking_status11{{ $lists->Booking_No }}"
+                                                                title="Update">
+                                                                <i class="bi bi-arrow-clockwise"></i>
+                                                            </button>
+                                                        @endif
                                                         <!--Guest Request Button-->
                                                         <button class="btn btn-sm btn-primary" data-toggle="modal"
                                                             data-target="#request{{ $lists->Booking_No }}"
@@ -592,13 +603,14 @@
                                                             title="Update">
                                                             <i class="bi bi-arrow-clockwise"></i>
                                                         </button>
+                                                        {{-- Invoice --}}
+                                                        <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
+                                                            style="cursor:pointer;" title="Invoice">
+                                                            <i class="bi bi-file-earmark-text"></i>
+                                                        </a>
                                                     @endif
-                                                    {{-- Invoice --}}
-                                                    <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
-                                                        target="blank" class="btn btn-sm btn-success"
-                                                        style="cursor:pointer;" title="Invoice">
-                                                        <i class="bi bi-file-earmark-text"></i>
-                                                    </a>
+                                                    
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>

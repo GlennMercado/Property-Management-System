@@ -33,7 +33,7 @@ return new class extends Migration
 
             $table->boolean('IsArchived')->default(false);
 
-            $table->string('gcash_account_name');
+            $table->string('Reference_No');
             $table->double('Payment')->nullable();
 
             $table->date('Check_In_Date');

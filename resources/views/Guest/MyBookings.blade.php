@@ -29,18 +29,18 @@
                                         <i class="bi bi-book-fill"></i>
                                         Booking No. {{ $lists->Booking_No }}
                                     </h4>
-                                    <h4><i class="bi bi-person-badge-fill"></i> Gcash account:
-                                        {{ $lists->gcash_account_name }}
+                                    <h4><i class="bi bi-person-badge-fill"></i> Reference Number :
+                                        {{ $lists->Reference_No }}
                                     </h4>
                                     <h4><i class="bi bi-people-fill"></i> Number of pax:
                                         {{ $lists->No_of_Pax }}
                                     </h4>
                                     <h4>
                                         <i class="bi bi-calendar-range-fill"></i>
-                                        Check-in/Check-out Date {{ $lists->Check_In_Date }} -
-                                        {{ $lists->Check_Out_Date }}
+                                        Check-in/Check-out : {{ date('F j, Y', strtotime($lists->Check_In_Date)) }} -
+                                        {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}
                                     </h4>
-                                    <div class="display-4 text-green">PHP
+                                    <div class="display-4 text-green">₱
                                         {{ number_format($lists->Payment, 2, '.', ',') }}
                                         <br>
                                         <div class="badge badge-primary font-weight-bold display-3">
