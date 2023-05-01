@@ -928,6 +928,7 @@
                                                 <th scope="col" style="font-size:18px;"></th>
                                                 <th scope="col" style="font-size:18px;">Room No</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <th scope="col" style="font-size:18px;">Room Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -967,6 +968,7 @@
                                                     </td>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
+                                                    <td>{{$lists->rstats}}</td>
 
                                                     <!--Assign Attendant-->
                                                     <div class="modal fade" id="assign3{{ $lists->id }}"
@@ -1289,7 +1291,7 @@
                 $('select[name="maintenance_stats"]').change(function() {
                     var selected = $("option:selected", this).val();
                     var listIndex = $(this).data('list-index');
-                    
+
                     if (selected == "Yes") {
                         $('#cont_' + listIndex).css({
                             'display': 'block'

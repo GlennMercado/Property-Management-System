@@ -135,23 +135,25 @@
                                             <td>
                                                 <!--View Button-->
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                                    data-target="#view{{ $lists->Room_No }}" title = "View Room"> 
+                                                    data-target="#view{{ $lists->Room_No }}" title="View Room">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
-                                                <!--Edit Button-->
-                                                <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                    data-target="#edit{{ $lists->Room_No }}" title = "Edit Room"> <i
-                                                        class="bi bi-pencil-square"></i> </button>
-                                                @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Vacant for Cleaning")
+                                                @if ($lists->Status == 'Vacant for Accomodation')
+                                                    <!--Edit Button-->
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#edit{{ $lists->Room_No }}" title="Edit Room"> <i
+                                                            class="bi bi-pencil-square"></i> </button>
+                                                @endif
+                                                @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Vacant for Cleaning')
                                                     <!--Update Button-->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                        data-target="#update{{ $lists->Room_No }}" title = "Update Room">
+                                                        data-target="#update{{ $lists->Room_No }}" title="Update Room">
                                                         <i class="bi bi bi-arrow-clockwise"></i>
                                                     </button>
-                                                @elseif($lists->Status == "Disabled")
+                                                @elseif($lists->Status == 'Disabled')
                                                     <!--Update Button-->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                        data-target="#update2{{ $lists->Room_No }}" title = "Update Room">
+                                                        data-target="#update2{{ $lists->Room_No }}" title="Update Room">
                                                         <i class="bi bi bi-arrow-clockwise"></i>
                                                     </button>
                                                 @endif
@@ -334,50 +336,50 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => "Disabled" ])}}" class="btn btn-success">Yes</a>
+                                                            data-dismiss="modal">Close</button>
+                                                        <a href="{{ url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => 'Disabled']) }}"
+                                                            class="btn btn-success">Yes</a>
                                                     </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </div>
+                        </div>
 
-                                        <!-- Update Modal2 -->
-                                        <div class="modal fade" id="update2{{ $lists->Room_No }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4"
-                                                            id="exampleModalLabel">Room {{ $lists->Room_No }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h3 class="text-center">Set Room Status to Enable?</h3>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close</button>
-                                                        <a href="{{url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => "Enabled" ])}}" class="btn btn-success">Yes</a>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                        <!-- Update Modal2 -->
+                        <div class="modal fade" id="update2{{ $lists->Room_No }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-left display-4" id="exampleModalLabel">Room
+                                            {{ $lists->Room_No }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3 class="text-center">Set Room Status to Enable?</h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                        <a href="{{ url('/enable_disable_rooms', ['id' => $lists->Room_No, 'stats' => 'Enabled']) }}"
+                                            class="btn btn-success">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
+                    </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
+    </div>
+    </div>
 
-        <br><br>
+    <br><br>
     </div>
 
     <script>
