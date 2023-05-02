@@ -96,7 +96,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Pending</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-clock-history f-left"></i><span>{{ $checked_out_guests }}</span>
+                            <i class="bi bi-clock-history f-left"></i><span>{{ $pending_guests  }}</span>
                         </h2>
                     </div>
                 </div>
@@ -133,8 +133,16 @@
             </div>
             <div class="card shadow mt--3 col-md-12">
                 <div class="card-header">
+                    <div class="d-flex">
+                        <div class="ml-auto">
+                            <button class="btn btn-success" id="refreshButton">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <form action="{{ url('/report') }}" target="blank" method="get">
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row align-items-center">
                             <div class="p-2">
                                 <label for="optionselect">Sort:</label>
                                 <select class="form-control" style="border:2px solid" id="optionselect" name="sort">
@@ -156,7 +164,8 @@
                             <div class="p-2">
                                 <label>Generate report:</label>
                                 <button type="submit" class="btn btn-success w-75 h-50">
-                                    <label class = "">Print</label><span class = ""> <i class="bi bi-printer-fill"></i></span>
+                                    <label class="">Print</label><span class=""> <i
+                                            class="bi bi-printer-fill"></i></span>
                                 </button>
                             </div>
                         </div>
@@ -412,8 +421,8 @@
                                                         data-target="#views{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--Update Reservation/Room Status Button-->
-                                                    @if($lists->Status == "Vacant for Accommodation" || $lists->Status == "Reserved")
-                                                        @if($lists->Check_In_Date <= $now)
+                                                    @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Reserved')
+                                                        @if ($lists->Check_In_Date <= $now)
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update_booking_status{{ $lists->Booking_No }}">
                                                                 <i class="bi bi-arrow-clockwise"></i>
@@ -425,8 +434,10 @@
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
-                                                <td style="font-size:14px;">{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                <td style="font-size:14px;">{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                             </tr>
                                         @endif
 
@@ -583,7 +594,7 @@
                                                     </button>
                                                     <!--Update Reservation/Room Status Button-->
                                                     @if ($lists->Booking_Status == 'Checked-In')
-                                                        @if($lists->Check_Out_Date <= $now)
+                                                        @if ($lists->Check_Out_Date <= $now)
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update_booking_status11{{ $lists->Booking_No }}"
                                                                 title="Update">
@@ -610,7 +621,7 @@
                                                             <i class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     @endif
-                                                    
+
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
@@ -734,7 +745,7 @@
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived,  'stats' => 'Checked-Out']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
@@ -757,14 +768,14 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        
+
                                                         <div class="modal-body">
                                                             <h4 class="text-center">Check Room Before Check-Out?</h4>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                             <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived,  'stats' => 'Checking(Before Check-Out)']) }}"
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checking(Before Check-Out)']) }}"
                                                                 class="btn btn-success">Yes</a>
                                                         </div>
                                                     </div>
@@ -886,11 +897,11 @@
                                                         data-target="#view4{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
 
-                                                            <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
-                                                                target="blank" class="btn btn-sm btn-success"
-                                                                style="cursor:pointer;" title="Invoice">
-                                                                <i class="bi bi-file-earmark-text"></i>
-                                                            </a>
+                                                    <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                    </a>
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
@@ -1161,6 +1172,12 @@
                 $('#myTable2').DataTable();
                 $('#myTable3').DataTable();
                 $('#myTable4').DataTable();
+            });
+
+            // Attach a click event handler to a button with ID "refreshButton"
+            $("#refreshButton").click(function() {
+                // Refresh the div with ID "myDiv"
+                $("#myTable").load("{{ url('HotelReservationForm') }} #myTable");
             });
         </script>
     @endsection
