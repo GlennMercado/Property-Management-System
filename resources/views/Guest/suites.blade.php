@@ -459,8 +459,7 @@
                                                                 class="form-control" maxlength="13">
                                                         </div>
                                                         <div class="col-md-12 mt-1">
-                                                            <p class="text-center">Upload your proof of payment here <span
-                                                                    class="text-danger">*</span></p>
+                                                            <p class="text-center">Upload your proof of payment here</p>
                                                         </div>
                                                         <div class="col-md-12 d-flex justify-content-center">
                                                             <img id="output" class="img-fluid" />

@@ -8,20 +8,19 @@
         </a>
         <li class="nav-item dropdown align-items-center">
             <a class="nav-link d-none d-md-block" href="#" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" title="Notifications">
+                aria-haspopup="true" aria-expanded="false" id="myButton" title="Notifications">
                 <i class="ni ni-bell-55 text-white"></i><span
-                    class="badge rounded-pill badge-notification bg-danger text-white"
-                    id="ncount">{{ auth()->user()->notifications->count() }}</span>
+                    class="badge rounded-pill badge-notification bg-danger text-white" id="notification-count"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-xl py-0 overflow-hidden d-none d-md-block">
 
                 <div class="px-3 py-3">
-                    <h6 class="text-sm text-muted m-0">Notifications <strong
-                            class="text-primary">{{ auth()->user()->notifications->count() }}</strong>
+                    <h6 class="text-sm text-muted m-0">Notifications <strong class="text-primary"
+                            id="notification-count1"></strong>
                     </h6>
                 </div>
 
-                <div class="list-group list-group-flush scroll">
+                <div class="list-group list-group-flush scroll" id="myDiv">
                     @forelse (auth()->user()->notifications as $notif)
                         @if ($notif->data['link'])
                             <a href="{{ $notif->data['link'] }}" class="list-group-item list-group-item-action">
@@ -259,12 +258,31 @@
     }
 </script>
 <script>
-    setInterval(function() {
-        $.ajax({
-            url: '/notifications/count', // Replace with your endpoint URL
-            success: function(response) {
-                $('#ncount').text(response.count);
-            }
+    $(document).ready(function() {
+        function updateNotificationCount() {
+            $.ajax({
+                url: '/notifications/count',
+                type: 'GET',
+                success: function(response) {
+                    $('#notification-count').text(response.count);
+                    $('#notification-count1').text(response.count);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        // Call the updateNotificationCount function on page load
+        updateNotificationCount();
+
+        // Call the updateNotificationCount function every 5 seconds
+        setInterval(updateNotificationCount, 5000);
+
+        $(document).ready(function() {
+            $("#myButton").click(function() {
+                $("#myDiv").load(location.href + " #myDiv");
+            });
         });
-    }, 1000);
+    });
 </script>
