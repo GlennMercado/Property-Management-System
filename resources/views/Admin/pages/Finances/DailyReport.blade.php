@@ -465,6 +465,19 @@
 
 
     </div>
+    <!-- <script>
+    $.ajax({
+    method: "POST",
+    url: "/archives",
+    data: {/* request data here */},
+    success: function(response) {
+        // handle success
+    },
+    error: function(error) {
+        // handle error
+    }
+});
+</script> -->
 @endsection
 
 @push('js')

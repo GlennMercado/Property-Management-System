@@ -155,22 +155,23 @@ class FinanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function archives(Request $request){
+
         $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
         $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
         $data;
         $title;
 
-        $data = DB::table('finance_2_reports')
-        ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
-        ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
-        ->orderBy('created_at', 'desc')
-        ->whereBetween('created_at', [$start_date, $end_date])
-        ->get();
+        // $data = DB::table('finance_2_reports')
+        // ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
+        // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
+        // ->whereBetween('created_at', [$start_date, $end_date])
+        // ->get();
+        $data = finance_2_reports::where('Payment_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
         $title = "Pending Guest Report";
 
-        $pdf = PDF::loadView('Admin.pages.Reservations.BookingReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
+        $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         // return $pdf->download('report.pdf');
-        return view('Admin.pages.Reservations.BookingReport', compact('data', 'title'));
+        return view('Admin.pages.Finances.FinanceReport', compact('data', 'title'));
     }
 
     /**
