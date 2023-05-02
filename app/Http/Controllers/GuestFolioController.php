@@ -35,12 +35,12 @@ class GuestFolioController extends Controller
                 $charges->save();
             }
 
-            Alert::Success('Success', 'Guest Folio Successfully Added!');
+            Alert::Success('Success', 'Guest folio successfully updated!');
             return redirect('GuestFolio')->with('Success', 'Data Updated');  
         }
         catch(\Illuminate\Database\QueryException $e)
         { 
-            Alert::Success('Success', 'Guest Folio Failed in Adding!');
+            Alert::Error('Failed', 'Guest folio was not updated!');
             return redirect('GuestFolio')->with('Success', 'Data Updated');   
         }
     }

@@ -42,9 +42,8 @@ function enable_button() {
 }
 function enable_submit() {
     var acc = document.getElementById("gcash_acc");
-    var g_img = document.getElementById("gcash_img");
     var submit_button2 = document.getElementById("submit_button2");
-    if (acc.value == "" || g_img.value == "") {
+    if (acc.value == "") {
         submit_button2.disabled = true;
         submit_button2.style.cursor = "not-allowed";
     } else {
