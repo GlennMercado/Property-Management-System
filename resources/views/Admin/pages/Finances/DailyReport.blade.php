@@ -323,6 +323,8 @@
                                                         <input type="text" class="form-control" name="payee"
                                                             maxlength="32" placeholder="Enter Name..." required>
                                                     </div>
+                                                    <input type="hidden" class="form-control" name="status" value="Paid">
+                                                          
                                                 </div>
                                                 <div class="row">
 

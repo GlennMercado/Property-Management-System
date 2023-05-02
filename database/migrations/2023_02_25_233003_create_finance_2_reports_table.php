@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('finance_2_reports', function (Blueprint $table) {
             $table->id('userid');
+            $table->string('Client_Status');
             $table->integer('ornum');
             $table->string('payee');
             $table->string('particular');

@@ -64,7 +64,9 @@ class FinanceReportController extends Controller
             'cash' => 'required',
             'unearned' => 'required',
             'cheque' => 'required',
-            'bank' => 'required'
+            'bank' => 'required',
+            'status' => 'required'
+
             ]);
 
             //Selecting Database
@@ -73,6 +75,7 @@ class FinanceReportController extends Controller
 
             //Setting the Variables
             $finance->ornum = $request->input('ornum');
+            $finance->Client_Status = $request->input('status');
             $finance->payee = $request->input('payee');
             $compute = $request->input('particular');
             $finance->particular = $compute;
