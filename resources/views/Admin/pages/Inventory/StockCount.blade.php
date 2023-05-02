@@ -31,23 +31,24 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-md-6">
-            <div class="card" data-toggle="modal" data-target="#stock-history-modal">
-                <div class="card-body rounded" style="background-color:#34C99D;">
-                <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
-                    Stock Histories
-                </h2>
+            <div class="col-md-6">
+                <div class="card" data-toggle="modal" data-target="#stock-history-modal">
+                    <div class="card-body rounded" style="background-color:#34C99D;">
+                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                            Stock Histories
+                        </h2>
+                    </div>
                 </div>
-            </div>
             </div>
             <div class="col-xl">
                 <div class="card shadow">
-                    <div class="card-header border-0"> 
+                    <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
                                 <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Before starting, see
                                     to It that all inventory are in the Storage Area</h4>
-                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Distribute Linen and Guest Supply Before the Availability of the room.</h4>
+                                <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Distribute Linen and
+                                    Guest Supply Before the Availability of the room.</h4>
                             </div>
                             <div class="col">
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal"
@@ -112,7 +113,8 @@
                                             <div class="modal-dialog modal-md" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title text-left display-4" id="exampleModalCreate">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalCreate">
                                                             View
                                                             Details</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
@@ -220,40 +222,60 @@
                                                                             name="name" value="{{ $lists->name }}"
                                                                             required maxlength="32" readonly>
                                                                     </div>
-                                                                    <input type="hidden"
-                                                                            name="quantity" value="{{ $lists->total }}"
-                                                                            required maxlength="32" hidden>
+                                                                    <input type="hidden" name="quantity"
+                                                                        value="{{ $lists->total }}" required
+                                                                        maxlength="32" hidden>
                                                                 </div>
-                                                               
+
                                                                 <div class="row mt-4">
                                                                     <div class="col-md-6">
                                                                         <label>Stock In</label>
                                                                         <div class="input-group input-group-sm">
-                                                                            
+
                                                                             <div class="input-group-prepend">
-                                                                              <button class="btn btn-success" type="button" onclick="decrementValue()">-</button>
+                                                                                <button class="btn btn-success"
+                                                                                    type="button"
+                                                                                    onclick="decrementValue()">-</button>
                                                                             </div>
-                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput" name="in" style="width: 50px;">
+                                                                            <input type="number"
+                                                                                class="form-control text-center"
+                                                                                value="0" min="0"
+                                                                                max="99999"
+                                                                                oninput="validity.valid||(value='');"
+                                                                                id="numberInput" name="in"
+                                                                                style="width: 50px;">
                                                                             <div class="input-group-append">
-                                                                              <button class="btn btn-success" type="button" onclick="incrementValue()">+</button>
+                                                                                <button class="btn btn-success"
+                                                                                    type="button"
+                                                                                    onclick="incrementValue()">+</button>
                                                                             </div>
-                                                                          </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label>Stock Out</label>
                                                                         <div class="input-group input-group-sm">
-                                                                            
+
                                                                             <div class="input-group-prepend">
-                                                                              <button class="btn btn-success" type="button" onclick="decrementValue2()">-</button>
+                                                                                <button class="btn btn-success"
+                                                                                    type="button"
+                                                                                    onclick="decrementValue2()">-</button>
                                                                             </div>
-                                                                            <input type="number" class="form-control text-center" value="0" min="0" max="99999" oninput="validity.valid||(value='');" id="numberInput2" name="out" style="width: 50px;">
+                                                                            <input type="number"
+                                                                                class="form-control text-center"
+                                                                                value="0" min="0"
+                                                                                max="99999"
+                                                                                oninput="validity.valid||(value='');"
+                                                                                id="numberInput2" name="out"
+                                                                                style="width: 50px;">
                                                                             <div class="input-group-append">
-                                                                              <button class="btn btn-success" type="button" onclick="incrementValue2()">+</button>
+                                                                                <button class="btn btn-success"
+                                                                                    type="button"
+                                                                                    onclick="incrementValue2()">+</button>
                                                                             </div>
-                                                                          </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 {{-- <div class="row">
                                                                     <div class="col-md-6 ">
                                                                         <label class="text-left">Stock In </label>
@@ -271,8 +293,8 @@
                                                             </div>
 
                                                             <!-- <div class="invalid-feedback">
-                                                                                    Stock Name empty
-                                                                                    </div>        -->
+                                                                                            Stock Name empty
+                                                                                            </div>        -->
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
@@ -373,7 +395,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
     <!--Add Stock-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -510,86 +532,83 @@
         </div>
     </div>
     <!--History Modal -->
-<div class="modal fade" id="stock-history-modal" tabindex="-1" role="dialog" aria-labelledby="stock-history-modal-label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="stock-history-modal-label">Stock History</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Add your table here -->
-        <form method="get" action="" >
-        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTale">
-                                <thead class="thead-light">
+    <div class="modal fade" id="stock-history-modal" tabindex="-1" role="dialog"
+        aria-labelledby="stock-history-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="stock-history-modal-label">Stock History</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add your table here -->
+                    <form method="get" action="">
+                        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTale">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Stock In</th>
+                                    <th>Stock Out</th>
+                                    <th>Quantity</th>
+                                    <th>Date of Movement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list3 as $lists3)
                                     <tr>
-                <th>Product ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Stock In</th>
-                <th>Stock Out</th>
-                <th>Quantity</th>
-                <th>Date of Movement</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($list3 as $lists3)
-                                        <tr>
-                                          
-                                            <td style="font-size:14px;">{{ $lists3->productid }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->name }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->category }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->Stock_In }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->Stock_Out }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->Quantity }}</td>
-                                            <td style="font-size:14px;">{{ $lists3->created_at }}</td>
-                                        </tr>
-                                        @endforeach
-            </tbody>
-        </table>
-            </form>
-      </div>
+                                        <td style="font-size:14px;">{{ $lists3->productid }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->name }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->category }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->Stock_In }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->Stock_Out }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->Quantity }}</td>
+                                        <td style="font-size:14px;">{{ $lists3->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-// increment, decrement
-// Stock in
-function incrementValue()
-{
-    var value = parseInt(document.getElementById('numberInput').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('numberInput').value = value > 99999 ? 99999 : value;
-}
+        // increment, decrement
+        // Stock in
+        function incrementValue() {
+            var value = parseInt(document.getElementById('numberInput').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            document.getElementById('numberInput').value = value > 99999 ? 99999 : value;
+        }
 
-function decrementValue()
-{
-    var value = parseInt(document.getElementById('numberInput').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('numberInput').value = value < 0 ? 0 : value;
-}
-// Stock out
-function incrementValue2()
-{
-    var value = parseInt(document.getElementById('numberInput2').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('numberInput2').value = value > 99999 ? 99999 : value;
-}
+        function decrementValue() {
+            var value = parseInt(document.getElementById('numberInput').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value--;
+            document.getElementById('numberInput').value = value < 0 ? 0 : value;
+        }
+        // Stock out
+        function incrementValue2() {
+            var value = parseInt(document.getElementById('numberInput2').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            document.getElementById('numberInput2').value = value > 99999 ? 99999 : value;
+        }
 
-function decrementValue2()
-{
-    var value = parseInt(document.getElementById('numberInput2').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('numberInput2').value = value < 0 ? 0 : value;
-}
+        function decrementValue2() {
+            var value = parseInt(document.getElementById('numberInput2').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value--;
+            document.getElementById('numberInput2').value = value < 0 ? 0 : value;
+        }
 
         $(document).ready(function() {
             $("#category").change(function() {
