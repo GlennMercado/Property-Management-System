@@ -18,6 +18,7 @@
                             <p class="card-text text-dark">A suite is a luxurious accommodation found in hotels, offering a
                                 large
                                 living area, bedroom, and often a kitchenette or dining area.</p>
+                            <button class="btn btn-success">Book Now</button>
                         </div>
                     </div>
                 </a>
@@ -31,6 +32,7 @@
                             <p class="card-text text-dark">A convention center is a large facility specifically designed to
                                 host
                                 conventions, trade shows, and other events.</p>
+                            <button class="btn btn-success">Book Now</button>
                         </div>
                     </div>
                 </a>
@@ -41,8 +43,10 @@
                         <img class="card-img-top container" src="{{ asset('nvdcpics') }}/nv9.png" alt="Card image cap">
                         <div class="card-body ">
                             <h5 class="card-title">Commercial Space</h5>
-                            <p class="card-text text-dark">Commercial space refers to any type of property used for business or
+                            <p class="card-text text-dark">Commercial space refers to any type of property used for business
+                                or
                                 commercial purposes. This can include retail stores.</p>
+                            <button class="btn btn-success">Apply Now</button>
                         </div>
                     </div>
                 </a>
@@ -51,9 +55,9 @@
     </div>
     <style>
         /* .img1 img {
-                                filter: blur(1px) brightness(49%);
-                                -webkit-filter: blur(1px) brightness(49%);
-                                -moz-filter: blur(1px) brightness(49%);
-                            } */
+                                        filter: blur(1px) brightness(49%);
+                                        -webkit-filter: blur(1px) brightness(49%);
+                                        -moz-filter: blur(1px) brightness(49%);
+                                    } */
     </style>
 @endsection
