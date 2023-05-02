@@ -161,7 +161,14 @@
                         <span class="nav-link-inner--text">{{ __('Map') }}</span>
                     </a>
                 </li>
-                <div class="dropdown show">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon text-white font-weight-bold" href="{{ url('Services') }}">
+                        <i class="bi bi-book-half"></i>
+                        <span class="nav-link-inner--text">{{ __('Services') }}</span>
+                    </a>
+                </li>
+                {{-- dropdown services --}}
+                {{-- <div class="dropdown show">
                     <a class="dropdown-toggle text-white nav-link nav-link-icon font-weight-bold" href="#"
                         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -173,7 +180,7 @@
                         <a class="dropdown-item" href="{{ url('convention_center') }}">Convention/Function Rooms</a>
                         <a class="dropdown-item" href="{{ url('commercial_spaces') }}">Commercial Spaces</a>
                     </div>
-                </div>
+                </div> --}}
                 <li class="nav-item d-block d-sm-none">
                     <a href="{{ route('logout') }}" class="nav-link nav-link-icon text-white font-weight-bold"
                         onclick="event.preventDefault();
