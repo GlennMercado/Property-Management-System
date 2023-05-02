@@ -69,8 +69,8 @@
                             </div>
                             <div class="p-2">
                                 <label>Generate report:</label>
-                                <button type="submit" class="btn btn-success w-100">
-                                    <i class="bi bi-printer-fill"></i>
+                                <button type="submit" class="btn btn-success w-75 h-50">
+                                    <label class = "">Print</label><span class = ""> <i class="bi bi-printer-fill"></i></span>
                                 </button>
                             </div>
                         </div>
