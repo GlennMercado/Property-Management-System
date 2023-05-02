@@ -470,6 +470,7 @@
                                                                                 <option value="Paid">Paid</option>
                                                                                 <option value="Non-Payment">Non-Payment
                                                                                 </option>
+                                                                                <option value="Security Deposit">Security Deposit</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="modal-footer">

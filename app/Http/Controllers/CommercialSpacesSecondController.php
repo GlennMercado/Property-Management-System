@@ -22,7 +22,7 @@ use App\Models\commercial_spaces_tenant_reports;
 use App\Models\commercial_space_units;
 use App\Models\commercial_space_unit_reports;
 use App\Models\commercial_space_utility_bills;
-
+use App\Models\commercial_spaces_deposit_reports;
 class CommercialSpacesSecondController extends Controller
 {
     public function add_commercial_tenant_utility_bill(Request $request)
@@ -529,14 +529,18 @@ class CommercialSpacesSecondController extends Controller
 
         $tenant_id = $request->input('tenant_id');
 
-        $IsAchived = DB::select("SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1");
+        $IsAchived = DB::select("SELECT * FROM commercial_spaces_applications WHERE IsArchived = 1 AND id = '$tenant_id' ");
 
+        $deposit = DB::select("SELECT * FROM commercial_spaces_tenant_deposits WHERE Tenant_ID = '$tenant_id'");
+        $deposit_money;
         $sql;
-        
+ 
         if(!$IsAchived)
         {
             if($status == "Paid")
             {
+                
+    
                 $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
                     [
                         'Maintenance_Status' => "No",
@@ -580,6 +584,63 @@ class CommercialSpacesSecondController extends Controller
                 else
                 {
                     Alert::Error('Failed', 'Commercial Space '.$space_unit.' Failed in Updating!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+                }
+            }
+            elseif($status == "Security Deposit")
+            {
+                foreach($deposit as $deposits)
+                {
+                    $deposit_money = $deposits->Security_Deposit;
+                }
+
+                if($deposit_money > $cost)
+                {
+                    $money = $deposit_money - $cost;
+                    DB::table('commercial_spaces_tenant_deposits')->where('Tenant_ID', $tenant_id)->update(['Security_Deposit' => $money]);
+
+                    $add = new commercial_spaces_deposit_reports;
+
+                    $add->Tenant_ID = $tenant_id;
+                    $add->Space_Unit = $space_unit;
+                    $add->Total_Amount = $cost;
+                    $add->Due_Date = $due_Date;
+                    $add->Remarks = "Deposit is used in unpaid due Maintenance";
+
+                    $add->save();
+
+                    $tenants = DB::table('commercial_spaces_tenants')
+                    ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                    ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
+                    ->where('commercial_spaces_tenants.Tenant_ID', '=', $tenant_id)
+                    ->get();
+                    
+                    $add2 = new commercial_space_unit_reports;
+                    // Send email to each tenant
+                    foreach ($tenants as $tenant) {
+    
+                        $add2->Tenant_ID = $tenant_id;
+                        $add2->Space_Unit = $space_unit;
+                        $add2->Maintenance_Cost = $cost;
+                        $add2->Due_Date = $due_Date;
+                        $add2->Paid_Date = $now;
+                        $add2->Paid_By = $tenant->name_of_owner. " (Security Deposit)";
+                        $add2->Payment_Status = "Paid (Security Deposit)";
+                        $add2->Reference_No = $Reference_No;
+                        $add2->Proof_Image = $proof_image;
+        
+                        $add2->save();
+    
+                        Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
+                    }
+        
+                    Alert::Success('Success', 'Commercial Space '.$space_unit.' Successfully Updated!');
+                    return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
+
+                }
+                else
+                {
+                    Alert::Error('Failed', 'Failed in Updating Payment!');
                     return redirect('CommercialSpaceUnits')->with('Success', 'Data Updated');
                 }
             }
