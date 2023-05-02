@@ -329,7 +329,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Arrival', 'req' => $lists->Request_ID, 'rn' => $lists->Room_No]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -786,7 +786,7 @@
                                                                 <div class="modal-footer">
                                                                     <a class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</a>
-                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID]) }}"
+                                                                    <a href="{{ url('/update_housekeeping_stats', ['hk' => $lists->Attendant, 'id' => $lists->ID, 'status' => 'Cleaned', 'req' => $lists->Request_ID, 'rn' => $lists->Room_No]) }}"
                                                                         class="btn btn-success">Yes</a>
                                                                 </div>
                                                             </div>
@@ -928,6 +928,7 @@
                                                 <th scope="col" style="font-size:18px;"></th>
                                                 <th scope="col" style="font-size:18px;">Room No</th>
                                                 <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <th scope="col" style="font-size:18px;">Room Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -967,6 +968,11 @@
                                                     </td>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
+                                                    @if($lists->rstats == "Occupied")
+                                                        <td class="text-danger">{{$lists->rstats}}</td>
+                                                    @else
+                                                        <td class="text-success">{{$lists->rstats}}</td>   
+                                                    @endif
 
                                                     <!--Assign Attendant-->
                                                     <div class="modal fade" id="assign3{{ $lists->id }}"
@@ -1289,7 +1295,7 @@
                 $('select[name="maintenance_stats"]').change(function() {
                     var selected = $("option:selected", this).val();
                     var listIndex = $(this).data('list-index');
-                    
+
                     if (selected == "Yes") {
                         $('#cont_' + listIndex).css({
                             'display': 'block'
