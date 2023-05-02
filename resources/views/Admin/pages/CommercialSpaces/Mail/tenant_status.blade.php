@@ -6,7 +6,7 @@
 <body>
     @if($tenant->Tenant_Status == "Active (Operating)")
         <p>Hello {{ $tenant->name_of_owner }},</p>
-        <p>Your status is {{ $tenant->Tenant_Status }}.</p>
+        <p>We are glad to inform you that your lease contract has been renewed.</p>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
     @elseif($tenant->Tenant_Status == "For Renewal")
         <p>Hello {{ $tenant->name_of_owner }},</p>

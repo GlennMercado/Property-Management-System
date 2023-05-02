@@ -260,15 +260,6 @@
                                                     <div class="modal-dialog modal-dialog-centered modal-lg"
                                                         role="document">
                                                         <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">View Information History
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
                                                             <div class="modal-body">
                                                                 <h3 class="text-left">Payment History</h3>
                                                                 <table class="table align-items-center table-flush"
@@ -335,6 +326,7 @@
                                                                     id="myTable6">
                                                                     <thead class="thead-light">
                                                                         <tr>
+                                                                            <th scope="col">Space/Unit</th>
                                                                             <th scope="col">Security Deposit</th>
                                                                             <th scope="col">Paid Date</th>
                                                                             <th scope="col">Remarks</th>
@@ -344,8 +336,11 @@
                                                                         @foreach ($list2 as $lists2)
                                                                             @if ($lists2->Tenant_ID == $arrays['Tenant_ID'])
                                                                                 <tr>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists2->Space_Unit }}
+                                                                                    </td>
                                                                                     <td class="cur1 font-weight-bold tbltxt">
-                                                                                        {{ $lists2->Security_Deposit }}
+                                                                                        {{ number_format($lists2->Security_Deposit, 2, '.', ', ') }}
                                                                                     </td>
                                                                                     <td class="font-weight-bold tbltxt">
                                                                                         {{ date('F j, Y', strtotime($lists2->Paid_Date)) }}

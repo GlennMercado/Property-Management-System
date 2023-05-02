@@ -20,7 +20,7 @@ class Tenant_Status extends Mailable
 
     public function build()
     {
-        return $this->subject('Commercial Space Status')
+        return $this->subject('Commercial Spaces Status')
             ->view('Admin.pages.CommercialSpaces.Mail.tenant_status')
             ->with('tenant', $this->tenant);
     }

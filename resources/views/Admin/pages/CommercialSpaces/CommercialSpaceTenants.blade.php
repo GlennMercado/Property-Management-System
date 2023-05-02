@@ -326,21 +326,12 @@
                                                     <div class="modal-dialog modal-dialog-centered modal-lg"
                                                         role="document">
                                                         <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-left display-4"
-                                                                    id="exampleModalLabel">View Tenant Renewal History
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
                                                             <div class="modal-body">
+                                                                <h3 class="text-left">Tenant Renewal History</h3>
                                                                 <table class="table align-items-center table-flush"
                                                                     id="myTable3">
                                                                     <thead class="thead-light">
                                                                         <tr>
-
                                                                             <th scope="col">Space/Unit</th>
                                                                             <th scope="col">Rental Fee</th>
                                                                             <th scope="col">Total Amount</th>
@@ -395,6 +386,41 @@
                                                                         @endforeach
                                                                     </tbody>
                                                                 </table>
+
+                                                                <br><br>
+
+                                                                <h3 class="text-left">Security Deposit From Previous Lease</h3>
+                                                                <table class="table align-items-center table-flush"
+                                                                    id="myTable4">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">Space/Unit</th>
+                                                                            <th scope="col">Security Deposit</th>
+                                                                            <th scope="col">Paid Date</th>
+                                                                            <th scope="col">Remarks</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($list5 as $lists5)
+                                                                            @if ($lists5->Tenant_ID == $arrays['Tenant_ID'])
+                                                                                <tr>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists5->Space_Unit }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        ₱ {{ number_format($lists5->Security_Deposit, 2, '.', ',') }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ date('F j, Y', strtotime($lists5->Paid_Date)) }}
+                                                                                    </td>
+                                                                                    <td class="font-weight-bold tbltxt">
+                                                                                        {{ $lists5->Remarks }}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
@@ -427,10 +453,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @php $now = date('Y-m-d'); @endphp
                                                     @foreach ($list2 as $lists)
                                                         <tr>
                                                             <td>
-                                                                @if($lists->Tenant_Status == "Ending Contract")
+                                                                @if($lists->Tenant_Status != "For Renewal" && $lists->End_Date <= $now)
                                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_status2{{ $lists->id }}"
                                                                         title="Update Status">

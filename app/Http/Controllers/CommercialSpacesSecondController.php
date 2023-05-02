@@ -18,6 +18,7 @@ use App\Mail\Commercial_Unit_Maintenance2;
 use App\Mail\Commercial_Unit_Maintenance3;
 use App\Mail\Commercial_Utility;
 use App\Models\commercial_spaces_tenant_deposits;
+use App\Models\commercial_spaces_tenant_deposit_reports;
 use App\Models\commercial_spaces_tenant_reports;
 use App\Models\commercial_space_units;
 use App\Models\commercial_space_unit_reports;
@@ -369,9 +370,19 @@ class CommercialSpacesSecondController extends Controller
         if($sql)
         {
             $add_report = new commercial_spaces_tenant_reports;
-            $add_deposit = new commercial_spaces_tenant_deposits;
+            $add_deposit = new commercial_spaces_tenant_deposit_reports;
 
             $select = DB::select("SELECT * FROM commercial_spaces_tenants WHERE Tenant_ID = '$id'");
+            $select2 = DB::select("SELECT * FROM commercial_spaces_tenant_deposits WHERE Tenant_Id = '$id'");
+
+            foreach($select2 as $lists)
+            {
+                $add_deposit->Tenant_ID = $lists->Tenant_ID;
+                $add_deposit->Security_Deposit = $lists->Security_Deposit;
+                $add_deposit->Paid_Date = $lists->Paid_Date;
+
+                $add_deposit->save();
+            }
             foreach($select as $lists)
             {
                 $add_report->Tenant_ID = $lists->Tenant_ID;
@@ -387,11 +398,11 @@ class CommercialSpacesSecondController extends Controller
 
                 $add_report->save();
 
-                $add_deposit->Tenant_ID = $lists->Tenant_ID;
-                $add_deposit->Security_Deposit = $lists->Rental_Fee * 2;
-                $add_deposit->Paid_Date = $now;
-                
-                $add_deposit->save();
+                DB::table('commercial_spaces_tenant_deposits')->where('Tenant_ID', $lists->Tenant_ID)->update(
+                    [
+                        'Security_Deposit' => $lists->Rental_Fee * 2,
+                        'Paid_Date' => $now
+                ]);
             }
 
             $tenants = DB::table('commercial_spaces_tenants')
@@ -597,7 +608,7 @@ class CommercialSpacesSecondController extends Controller
                 if($deposit_money > $cost)
                 {
                     $money = $deposit_money - $cost;
-                    DB::table('commercial_spaces_tenant_deposits')->where('Tenant_ID', $tenant_id)->update(['Security_Deposit' => $money]);
+                    DB::table('commercial_spaces_tenant_deposits')->where('Tenant_ID', $tenant_id)->update(['Security_Deposit' => $money, 'Remarks' => "Deposit is used in unpaid due Maintenance"]);
 
                     $add = new commercial_spaces_deposit_reports;
 
