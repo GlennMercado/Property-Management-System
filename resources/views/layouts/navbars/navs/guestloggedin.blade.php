@@ -219,8 +219,8 @@
                     <span>{{ __('Send a Complaint') }}</span>
                 </a>
                 <a href="{{ url('FAQ') }}" class="dropdown-item">
-                    <i class="ni ni-single-copy-04"></i>
-                    <span>{{ __('FAQ') }}</span>
+                    <i class="bi bi-question-circle-fill"></i>
+                    <span>{{ __('FAQs') }}</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item"

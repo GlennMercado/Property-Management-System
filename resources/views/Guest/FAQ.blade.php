@@ -5,7 +5,7 @@
     <div class="container-fluid bg-white mt-6">
         <div class="row d-flex">
             <div class="col-md-6 mt-7">
-                <h1>FREQUENTLY ASKED QUESTIONS (FAQ) <i class="bi bi-question-circle-fill"></i></h1>
+                <h1>FREQUENTLY ASKED QUESTIONS (FAQs) <i class="bi bi-question-circle-fill"></i></h1>
                 <br>
                 <div id="accordion">
                     <div class="card">
@@ -227,7 +227,7 @@
                 </div>
             </div>
             <div class="col-md-6 mt-9 d-flex justify-content-center">
-                <img class="img-fluid mt-6" src="{{ asset('hotel_images') }}/FAQ.png"
+                <img class="img-fluid mt-6" src="{{ asset('hotel_images') }}/FAQs.png"
                     style="max-height: 300px; max width:300px;">
             </div>
         </div>
