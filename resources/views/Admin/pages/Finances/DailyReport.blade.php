@@ -4,6 +4,7 @@
     @include('layouts.headers.cards')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
     <script>
         $.noConflict();
         jQuery(document).ready(function($) {
@@ -29,9 +30,9 @@
         <div class="col-xl">
             <div class="card shadow">
                 <div class="card-header border-0">
-<div class="row">
-                   
-                        <div class="col-md-6">
+                    <div class="row">
+
+                        {{-- <div class="col">
                             <div class="card">
                                 <div class="card-body rounded" style="background-color:#2AD587;">
                                     <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -43,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col">
                             <div class="card">
                                 <div class="card-body rounded" style="background-color:#34C99D;">
                                     <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
@@ -54,28 +55,50 @@
                                     </h1>
                                 </div>
                             </div>
-                        </div> 
-                    </div>
-                <div class="card-header">
-                    <form action="{{ url('/archives') }}" target="blank" method="get">
-                        <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <label for="start_date">Start Date:</label>
-                                <input type="date" class="form-control" id="start_date" name="start_date">
-                            </div>
-                            <div class="p-2">
-                                <label for="end_date">End Date:</label>
-                                <input type="date" class="form-control" id="start_date" name="end_date">
-                            </div>
-                            <div class="p-2">
-                                <label>Generate report:</label>
-                                <button type="submit" class="btn btn-success w-75 h-50">
-                                    <label class = "">Print</label><span class = ""> <i class="bi bi-printer-fill"></i></span>
-                                </button>
+                        </div> --}}
+                        {{-- New Dashboard --}}
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card bg-c-green order-card">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 text-white">Daily Official Receipt Count</h4>
+                                    <h2 class="text-right text-white">
+                                        <i class="bi bi-calendar-day f-left"></i><span>{{ $daily_count }}</span>
+                                    </h2>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card bg-c-yellow order-card">
+                                <div class="card-block">
+                                    <h4 class="m-b-20 text-white">Monthly Official Receipt Count</h4>
+                                    <h2 class="text-right text-white">
+                                        <i class="bi bi-calendar-month f-left"></i><span>{{ $daily_count }}</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <form action="{{ url('/archives') }}" target="blank" method="get">
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                </div>
+                                <div class="p-2">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" class="form-control" id="start_date" name="end_date">
+                                </div>
+                                <div class="p-2">
+                                    <label>Generate report:</label>
+                                    <button type="submit" class="btn btn-success w-75 h-50">
+                                        <label class="">Print</label><span class=""> <i
+                                                class="bi bi-printer-fill"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <br>
                     <div class="row align-items-center">
                         <div class="col">
@@ -92,7 +115,8 @@
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                                 data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                                aria-controls="tabs-icons-text-1" aria-selected="true">Customer Payment Details</a>
+                                                aria-controls="tabs-icons-text-1" aria-selected="true">Customer Payment
+                                                Details</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -258,19 +282,19 @@
                                         <tbody>
                                             @foreach ($list3 as $lists3)
                                                 <tr>
-                                                    <td style = "font-size:16px;">{{ $lists3->payee }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->cash }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->bank }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->cheque }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->basketball }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->unearned }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->otherincome }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->managementfee }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->event }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->hotel }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->commercialspace }}</td>
-                                                    <td style = "font-size:16px;">{{ $lists3->outputvat }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->payee }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->cash }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->bank }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->cheque }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->basketball }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->unearned }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->otherincome }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->managementfee }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->event }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->hotel }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->commercialspace }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->outputvat }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -323,8 +347,9 @@
                                                         <input type="text" class="form-control" name="payee"
                                                             maxlength="32" placeholder="Enter Name..." required>
                                                     </div>
-                                                    <input type="hidden" class="form-control" name="status" value="Paid">
-                                                          
+                                                    <input type="hidden" class="form-control" name="status"
+                                                        value="Paid">
+
                                                 </div>
                                                 <div class="row">
 
@@ -461,24 +486,70 @@
         .nav-link:hover {
             color: white;
         }
+
+
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
+
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            border: none;
+            margin-bottom: 30px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card .card-block {
+            padding: 25px;
+        }
+
+        .order-card i {
+            font-size: 26px;
+        }
+
+        /* colors */
+        .bg-c-yellow {
+            background: linear-gradient(45deg, #f7aa3e, #f8b960);
+        }
+
+        .bg-c-green {
+            background: linear-gradient(45deg, #2bcaaa, #4dd7bc);
+        }
+
+        .bg-c-blue {
+            background: linear-gradient(45deg, #3593ff, #61abff);
+        }
+
+        .bg-c-pink {
+            background: linear-gradient(45deg, #ff4564, #fe7189);
+        }
     </style>
 
 
 
     </div>
     <!-- <script>
-    $.ajax({
-    method: "POST",
-    url: "/archives",
-    data: {/* request data here */},
-    success: function(response) {
-        // handle success
-    },
-    error: function(error) {
-        // handle error
-    }
-});
-</script> -->
+        $.ajax({
+            method: "POST",
+            url: "/archives",
+            data: {
+                /* request data here */
+            },
+            success: function(response) {
+                // handle success
+            },
+            error: function(error) {
+                // handle error
+            }
+        });
+    </script> -->
 @endsection
 
 @push('js')
