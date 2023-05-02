@@ -30,6 +30,15 @@
             </div>
         </div>
         <div class="row">
+        <div class="col-md-6">
+            <div class="card" data-toggle="modal" data-target="#stock-history-modal">
+                <div class="card-body rounded" style="background-color:#34C99D;">
+                <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                    Stock Histories
+                </h2>
+                </div>
+            </div>
+            </div>
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0"> 
@@ -211,33 +220,7 @@
                                                                             required maxlength="32" readonly>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-md">
-                                                                        <label for="Stockdetails">Stock Description
-                                                                        </label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="description"
-                                                                            value="{{ $lists->description }}" required
-                                                                            maxlength="32" pattern="[A-Za-z0-9 ]+"
-                                                                            title="Stock Description should only contain Uppercase, lowercase letters and numbers.">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6 pt-4">
-                                                                        <label for="Stockdetails">Quantity</label>
-                                                                        <input type="hidden" name="quantity"
-                                                                            value="{{ $lists->total }}" />
-                                                                        <input type="number" class="form-control"
-                                                                            value="{{ $lists->total }}" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-6 pt-4">
-                                                                        <label for="Stockdetails">Stock Level</label>
-                                                                        <input type="hidden" name="stock"
-                                                                            value="{{ $lists->Stock_Level }}" />
-                                                                        <input type="number" class="form-control"
-                                                                            value="{{ $lists->Stock_Level }}" readonly>
-                                                                    </div>
-                                                                </div>
+                                                               
                                                                 <div class="row mt-4">
                                                                     <div class="col-md-6">
                                                                         <label>Stock In</label>
@@ -522,6 +505,40 @@
             </div>
         </div>
     </div>
+    <!--History Modal -->
+<div class="modal fade" id="stock-history-modal" tabindex="-1" role="dialog" aria-labelledby="stock-history-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="stock-history-modal-label">Stock History</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Add your table here -->
+        <form method="get" action="" >
+        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
+                                <thead class="thead-light">
+                                    <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Stock In</th>
+                <th>Stock Out</th>
+                <th>Quantity</th>
+                <th>Date of Movement</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

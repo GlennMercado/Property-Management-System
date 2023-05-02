@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stockhistories', function (Blueprint $table) {
-            $table->id('itemid');
-            $table->string('category');
+            $table->id('productid');
             $table->string('name');
-            $table->string('movement');
-            $table->integer('movement_quantity');
+            $table->string('category');
+            $table->string('Stock_In');
+            $table->integer('Stock_Out');
+            $table->integer('Quantity');
             $table->timestamps();
         });
     }

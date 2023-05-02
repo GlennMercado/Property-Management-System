@@ -237,6 +237,7 @@ class HotelController extends Controller
 
             DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
             values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
+           
             if($user_type == "Operations Manager")
             {
                 $name = DB::table('hotel_reservations')

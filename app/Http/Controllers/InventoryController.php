@@ -10,6 +10,7 @@ use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_linen;
 use App\Models\hotel_room_supplies_reports;
 use App\Models\hotel_room_linens_reports;
+use App\Models\stockhistories;
 use Carbon\Carbon;
 
 class InventoryController extends Controller
@@ -323,6 +324,10 @@ class InventoryController extends Controller
                 'total' => $total,
                 'category' => $category
             ));
+
+            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, quantity) 
+            values (?, ?, ?, ?,?)', [$name, $category, $total, $total, $total]);
+            
 
     
            Alert::Success('Success', 'Successfully Updated!');
