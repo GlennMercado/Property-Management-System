@@ -166,7 +166,7 @@ class FinanceController extends Controller
         // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
         // ->whereBetween('created_at', [$start_date, $end_date])
         // ->get();
-        $data = finance_2_reports::where('Payment_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+        $data = finance_2_reports::where('debit', 'Cash')->whereBetween('created_at', [$start_date, $end_date])->get();
         $title = "Pending Guest Report";
 
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
