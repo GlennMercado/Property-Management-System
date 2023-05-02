@@ -142,7 +142,7 @@
                             <p>Mobile no. <span class="text-danger">*</span> </p>
                             <input type="number" onKeyPress="if(this.value.length==11) return false;" name="mobile_no"
                                 class="form-control"
-                                placeholder="Please use a 10 digit mobile number with no dashes or dots" required>
+                                placeholder="Please use a 11 digit mobile number with no dashes or dots" required>
                         </div>
                     </div>
                     <br>
