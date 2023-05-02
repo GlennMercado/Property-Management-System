@@ -487,15 +487,7 @@
             color: white;
         }
 
-
-        .f-left {
-            float: left;
-        }
-
-        .f-right {
-            float: right;
-        }
-
+        /* card size */
         .card {
             border-radius: 5px;
             -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
@@ -505,6 +497,17 @@
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
         }
+
+
+        /* card positioning */
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
+
 
         .card .card-block {
             padding: 25px;
