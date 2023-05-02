@@ -31,10 +31,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card" data-toggle="modal" data-target="#stock-history-modal">
                     <div class="card-body rounded" style="background-color:#34C99D;">
-                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm">
+                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm mt-2 pe-auto">
                             Stock Histories
                         </h2>
                     </div>

@@ -37,6 +37,7 @@ class HotelController extends Controller
 		$room = DB::select('SELECT * FROM novadeci_suites');
         
         $supply = DB::select('SELECT * FROM hotelstocks');  
+
         return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
     public function guest_viewing()
@@ -293,9 +294,12 @@ class HotelController extends Controller
                     $email = $selects->Email;
                 }
 
-                $client = User::where('email', $email)->first();
+                if($email != null)
+                {
+                    $client = User::where('email', $email)->first();
                 
-                //$client->notify(new Booked($client));
+                    $client->notify(new Booked($client));
+                }
                 
             //HERE
 
