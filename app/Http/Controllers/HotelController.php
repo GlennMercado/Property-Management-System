@@ -28,6 +28,7 @@ class HotelController extends Controller
      */
     public function hotel_reservation_form()
     {   
+        $pending_guests = hotel_reservations::where('Payment_Status','Pending')->count();
         $count_daily = hotel_reservations::whereDate('Check_In_Date', DB::raw('CURDATE()'))->count();
         $count_daily1 = hotel_reservations::whereDate('Check_Out_Date', DB::raw('CURDATE()'))->count();
         $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
@@ -38,7 +39,7 @@ class HotelController extends Controller
         
         $supply = DB::select('SELECT * FROM hotelstocks');  
 
-        return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
+        return view('Admin.pages.Reservations.HotelReservationForm', compact('count_daily1', 'reserved_guests', 'checked_guests', 'checked_out_guests', 'count_daily', 'pending_guests'),['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
     public function guest_viewing()
     {

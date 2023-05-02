@@ -59,7 +59,7 @@
                                                     <br>
                                                     PAYMENT:
                                                     <span class="font-weight-bold">
-                                                        {{ $lists->Payment }}
+                                                        {{ number_format($lists->Payment, 2, '.', ',') }}
                                                     </span>
                                                     <br>
                                                     ROOM NUMBER:
@@ -183,6 +183,7 @@
                                                                                             </div>
                                                                                         </section>
                                                                                     </div>
+                                                                                    <input type="hidden" value="{{ $lists->Payment }}" id="rprice">
                                                                                     <div class="p-2">
                                                                                         <input type="hidden"
                                                                                             name="grand_total"
@@ -262,11 +263,13 @@
         // calculate and update total
         function updateTotal() {
             var total = 0;
+            var gtotal = 0;
             $('input[name="total[]"]').each(function() {
                 total += parseFloat($(this).val()) || 0;
             });
-            $('#grand_total').val(total);
-            $('#dprice').text(total.toLocaleString("en-US"));
+            gtotal = parseInt($('#rprice').val()) + total;
+            $('#grand_total').val(gtotal);
+            $('#dprice').text(gtotal.toLocaleString("en-US"));
         }
 
         // initialize total
@@ -283,7 +286,7 @@
                 form.append(clone);
             });
         });
-
+        
         // update total on input change
         $('input[name="total[]"]').on('input', function() {
             updateTotal();
