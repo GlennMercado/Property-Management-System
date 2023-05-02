@@ -61,26 +61,7 @@
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
                                 
-                                <div class="card-header" style="justify-content:center;align-items:center;align-self:center">
-                                    <form action="{{ url('/archives') }}" target="blank" method="get">
-                                        <div class="d-flex flex-row">
-                                            <div class="p-2">
-                                                <label for="start_date">Start Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date">
-                                            </div>
-                                            <div class="p-2">
-                                                <label for="end_date">End Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="end_date">
-                                            </div>
-                                            <div class="p-2">
-                                                <label>Generate report:</label>
-                                                <button type="submit" class="btn btn-success w-100">
-                                                    <i class="bi bi-printer-fill"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                
                                 <table class="table align-items-center table-flush" style="align-items:center"
                                     id="myTable">
                                     <thead class="thead-light">
@@ -203,6 +184,27 @@
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
+                                <div class="card-header" style="justify-content:center;align-items:center;align-self:center">
+                                    <form action="{{ url('/archives_summary') }}" target="blank" method="get">
+                                        <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                <label for="start_date">Start Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                            </div>
+                                            <div class="p-2">
+                                                <label for="end_date">End Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="end_date">
+                                            </div>
+                                            <div class="p-2">
+                                                <label>Generate report:</label>
+                                                <button type="submit" class="btn btn-success w-100">
+                                                    <i class="bi bi-printer-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                                     <table class="table align-items-center table-flush" style="align-items:center"
                                         id="myTables">
                                         <thead class="thead-light">
@@ -213,13 +215,7 @@
                                                 <th colspan="8" style="font-size:18px;">Credit</th>
                                             </tr>
                                             <tr>
-                                                <th scope="col" style="font-size:18px;">OR Number</th>
-                                                <th scope="col" style="font-size:18px;">Payee</th>
                                                 <th scope="col" style="font-size:18px;">Particulars</th>
-                                                <th scope="col" style="font-size:18px;">Event Date</th>
-                                                <th scope="col" style="font-size:18px;">Amount</th>
-                                                <th scope="col" style="font-size:18px;">Remarks</th>
-                                                <th scope="col" style="font-size:18px;">Debit Type</th>
                                                 <th scope="col" style="font-size:18px;">Cash/GCash</th>
                                                 <th scope="col" style="font-size:18px;">Unearned Income</th>
                                                 <th scope="col" style="font-size:18px;">Bank Transfer/Direct to Bank
@@ -234,18 +230,13 @@
                                                 <th scope="col" style="font-size:18px;">Hotel</th>
                                                 <th scope="col" style="font-size:18px;">Commercial Spaces</th>
                                                 <th scope="col" style="font-size:18px;">Output VAT</th>
-                                            </tr>
+                                            
+                    </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($list2 as $lists2)
-                                                <tr>
-                                                    <td style="font-size:16px;">{{ $lists2->ornum }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->payee }}</td>
+                                            <tr>
                                                     <td style="font-size:16px;">{{ $lists2->particular }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->eventdate }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->amount }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->remark }}</td>
-                                                    <td style="font-size:16px;">{{ $lists2->debit }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->cash }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->unearned }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->bank }}</td>
@@ -262,12 +253,6 @@
                                             @endforeach
                                         </tbody>
                                         <tfoot>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td style="font-size:16px;">Total: </td>
-                                            <td style="font-size:16px;">{{ $amount_sum }}</td>
-                                            <td></td>
                                             <td></td>
                                             <td style="font-size:16px;">{{ $cash_sum }}</td>
                                             <td style="font-size:16px;">{{ $unearned_sum }}</td>

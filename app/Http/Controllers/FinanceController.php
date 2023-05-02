@@ -175,6 +175,26 @@ class FinanceController extends Controller
         return view('Admin.pages.Finances.FinanceReport', compact('data', 'title'));
     }
 
+    public function archives_summary(Request $request){
+
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+        // $data = DB::table('finance_2_reports')
+        // ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
+        // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
+        // ->whereBetween('created_at', [$start_date, $end_date])
+        // ->get();
+        $data = finance_2_reports::where('debit', 'Cash')->whereBetween('created_at', [$start_date, $end_date])->get();
+        $title = "Revenue Archives";
+
+        $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport2', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
+        // return $pdf->download('report.pdf');
+        return view('Admin.pages.Finances.FinanceReport2', compact('data', 'title'));
+    }
+
     /**
      * Display the specified resource.
      *

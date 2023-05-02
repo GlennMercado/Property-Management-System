@@ -257,6 +257,8 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	Route::post('/insertfinance', 'App\Http\Controllers\FinanceReportController@insertfinance');
 	Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
 	Route::get('/archives', 'App\Http\Controllers\FinanceController@archives');
+	Route::get('/archives_summary', 'App\Http\Controllers\FinanceController@archives_summary');
+
 	Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');
 });
 
