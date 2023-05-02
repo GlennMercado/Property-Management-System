@@ -21,12 +21,12 @@ Route::get('/try', function(){
 	return view('Admin.pages.RoomManagement.try');
 });
 
-// Route::get('/email/verify/resend-form', [App\Http\Controllers\Auth\VerificationController::class, 'resendVerificationLinkForm'])->name('verification.resend-form');
+Route::get('/email/verify/resend-form', [App\Http\Controllers\Auth\VerificationController::class, 'resendVerificationLinkForm'])->name('verification.resend-form');
 
-// Route::post('/email/verify/resend', [App\Http\Controllers\Auth\VerificationController::class, 'sendEmailVerificationNotification'])->name('verification.send');
+Route::post('/email/verify/resend', [App\Http\Controllers\Auth\VerificationController::class, 'sendEmailVerificationNotification'])->name('verification.send');
 
 
-// Route::get('/verify-email/{token}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
+Route::get('/verify-email/{token}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
 
 //Homepage	r
 Route::get('WelcomeAboutUs', [App\Http\Controllers\WelcomeController::class, 'WelcomeAboutUs'])->name('WelcomeAboutUs');
