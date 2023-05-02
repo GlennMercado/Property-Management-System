@@ -13,6 +13,7 @@
         $.noConflict();
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
+            $('#myTale').DataTable();
         });
     </script>
 
@@ -219,6 +220,9 @@
                                                                             name="name" value="{{ $lists->name }}"
                                                                             required maxlength="32" readonly>
                                                                     </div>
+                                                                    <input type="hidden"
+                                                                            name="quantity" value="{{ $lists->total }}"
+                                                                            required maxlength="32" hidden>
                                                                 </div>
                                                                
                                                                 <div class="row mt-4">
@@ -518,7 +522,7 @@
       <div class="modal-body">
         <!-- Add your table here -->
         <form method="get" action="" >
-        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTable">
+        <table class="table align-items-center table-flush datatable datatable-Stock" id="myTale">
                                 <thead class="thead-light">
                                     <tr>
                 <th>Product ID</th>
@@ -531,7 +535,18 @@
             </tr>
             </thead>
             <tbody>
-
+            @foreach ($list3 as $lists3)
+                                        <tr>
+                                          
+                                            <td style="font-size:14px;">{{ $lists3->productid }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->name }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->category }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->Stock_In }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->Stock_Out }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->Quantity }}</td>
+                                            <td style="font-size:14px;">{{ $lists3->created_at }}</td>
+                                        </tr>
+                                        @endforeach
             </tbody>
         </table>
             </form>

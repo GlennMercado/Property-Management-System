@@ -33,6 +33,7 @@ class InventoryController extends Controller
         $list2 = DB::select('SELECT * FROM novadeci_suites');
         $check2 = DB::select('SELECT * FROM novadeci_suites');
 		$count2 = array();
+        $list3 = DB::select('SELECT * FROM stockhistories');
 
 		foreach($check as $checks)
 		{
@@ -45,7 +46,7 @@ class InventoryController extends Controller
 		}
 		
 
-		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count, 'count2'=>$count2]);
+		return view('Admin.pages.Inventory.StockCount', ['list'=>$list, 'count' => $count, 'count2'=>$count2, 'list3'=>$list3]);
 	
     
     }
@@ -62,7 +63,6 @@ class InventoryController extends Controller
 
         return view('Admin.pages.Inventory.StockReports', ['list'=>$list, 'list2'=>$list2]);
 	
-    
     }
 
     public function StockDistribute()
@@ -289,7 +289,6 @@ class InventoryController extends Controller
             $this->validate($request,[
                 'productid' => 'required',
                 'name' => 'required',
-                'description' => 'required',
                 'quantity' => 'required',
                 'in' => 'required',
                 'out' => 'required',
@@ -298,7 +297,6 @@ class InventoryController extends Controller
             
             $productid = $request->input('productid');
             $name = $request->input('name');
-            $description = $request->input('description');
             $total = $request->input('quantity');
             $in = $request->input('in');
             $out = $request->input('out');
@@ -320,15 +318,13 @@ class InventoryController extends Controller
             (
                 'productid' => $productid,
                 'name' => $name,
-                'description' => $description,
                 'total' => $total,
                 'category' => $category
             ));
 
             DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, quantity) 
-            values (?, ?, ?, ?,?)', [$name, $category, $total, $total, $total]);
+            values (?, ?, ?, ?,?)', [$name, $category, $in, $out, $total]);
             
-
     
            Alert::Success('Success', 'Successfully Updated!');
            return redirect('StockCount')->with('Success', 'Data Updated');
