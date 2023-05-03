@@ -297,7 +297,7 @@ class CommercialSpacesController extends Controller
         $count1 = DB::select("SELECT * From commercial_space_units");
         $array = array();
 
-        $list3 = DB::select("SELECT * FROM commercial_space_unit_reports a INNER JOIN commercial_spaces_applications b ON a.Tenant_ID = b.id");
+        $list3 = DB::select("SELECT a.*, b.name_of_owner FROM commercial_space_unit_reports a INNER JOIN commercial_spaces_applications b ON a.Tenant_ID = b.id");
         
         foreach($count1 as $counts)
         {
@@ -329,12 +329,14 @@ class CommercialSpacesController extends Controller
             $name = $tenant->name_of_owner;
             Mail::to($tenant->email)->send(new Commercial_Unit_Maintenance2($tenant, $status));
         }
-        
+
         $sql = DB::table('commercial_space_unit_reports')->where('id', $id)->update([
-            'Paid_By' => $name,
+            'Paid_By' => $name.' (Late)',
             'Payment_Status' => "Paid (Late)",
             'updated_at' => DB::RAW('NOW()')
         ]);
+
+        
 
         if($sql)
         {

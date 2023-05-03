@@ -225,8 +225,10 @@
                                                                                 </option>
                                                                             </select>
 
+                                                                            
                                                                             @if($lists->Reference_No != null)
                                                                                 <br><br>
+                                                                                <i>Proof of Payment Here</i>
                                                                                 <h3 class="text-left">Reference Number : <span class="text-success">{{$lists->Reference_No}}</span></h3>
                                                                                 
                                                                                 <input type="hidden" name="Reference_No" value="{{$lists->Reference_No}}" />
@@ -340,7 +342,7 @@
                                                                                         {{ $lists2->Space_Unit }}
                                                                                     </td>
                                                                                     <td class="cur1 font-weight-bold tbltxt">
-                                                                                        {{ number_format($lists2->Security_Deposit, 2, '.', ', ') }}
+                                                                                        {{ number_format($lists2->Security_Deposit, 2, '.', ',') }}
                                                                                     </td>
                                                                                     <td class="font-weight-bold tbltxt">
                                                                                         {{ date('F j, Y', strtotime($lists2->Paid_Date)) }}

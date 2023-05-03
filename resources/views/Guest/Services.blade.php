@@ -12,7 +12,7 @@
             <div class="col-md-4">
                 <a href="{{ url('rooms') }}">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem;">
-                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/nv9.png" alt="Card image cap">
+                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/suites.png" alt="Card image cap">
                         <div class="card-body ">
                             <h5 class="card-title">Suites</h5>
                             <p class="card-text text-dark">A suite is a luxurious accommodation found in hotels, offering a
@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <a href="{{ url('convention_center') }}">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem;">
-                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/nv9.png" alt="Card image cap">
+                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/convention3.png" alt="Card image cap" style="width: 18rem">
                         <div class="card-body ">
                             <h5 class="card-title">Convention Center</h5>
                             <p class="card-text text-dark">A convention center is a large facility specifically designed to
