@@ -13,6 +13,7 @@ class GuestFolioController extends Controller
     public function guest_folio(){
         $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_Status IN ('Checked-In', 'Checking(Before Check-Out)', 'Checked-In2')");  
         $charges = DB::table('hotel_other_charges')->whereIn('Booking_No', array_column($list, 'Booking_No'))->get();
+        // $sum = DB::table('other_hotel_charges')->whereIn('Booking_No', array_column($list, 'Booking_No'))->sum('my_field');
         return view('Admin.pages.Reservations.GuestFolio',  ['list'=>$list, 'charges'=>$charges]);
     }
 

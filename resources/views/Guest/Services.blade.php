@@ -23,7 +23,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4" style="margin: 0; padding: 0">
+            <div class="col-md-4">
                 <a href="{{ url('convention_center') }}">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem;">
                         <img class="card-img-top container" src="{{ asset('nvdcpics') }}/nv9.png" alt="Card image cap">
@@ -37,7 +37,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4" style="margin: 0; padding: 0">
+            <div class="col-md-4">
                 <a href="{{ url('commercial_spaces') }}">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem;">
                         <img class="card-img-top container" src="{{ asset('nvdcpics') }}/nv9.png" alt="Card image cap">

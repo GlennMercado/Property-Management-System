@@ -151,7 +151,16 @@
                                             <div class="card-body font-weight-bold mt--4">
                                                 @if ($list->status == 'Resolved')
                                                     <h2 class="text-success mt-2 mb--1">
-                                                        Resolved <i class="bi bi-check"></i>
+                                                        {{ $list->status }}<i class="bi bi-check"></i>
+                                                    </h2>
+                                                @elseif ($list->status == 'Scheduled')
+                                                    <h2 class="text-blue mt-2 mb--1">
+                                                        {{ $list->status }} <i class="bi bi-calendar-check-fill"></i>
+                                                        {{ \Carbon\Carbon::parse($list->schedule)->format('l, F jS, Y') }}
+                                                    </h2>
+                                                @else
+                                                    <h2 class="text-red mt-2 mb--1">
+                                                        {{ $list->status }}<i class="bi bi-hourglass-bottom"></i>
                                                     </h2>
                                                 @endif
                                                 <span class="badge badge-pill badge-primary category mt-2">
@@ -168,6 +177,13 @@
                                                         data-lightbox="photos" data-gallery="complaints"
                                                         style="max-height: 350px; max-width:500px;" />
                                                 </a>
+                                                @if ($list->status == 'Scheduled')
+                                                    <div class="card shadow mb-2 p-3 mt-2"
+                                                        style="width: 100%; border: 1px solid rgb(50, 199, 50); background-color: aliceblue">
+                                                        <label class="text-green font-weight-bold">Remarks</label>
+                                                        <p class="font-weight-bold">{{ $list->remarks }}</p>
+                                                    </div>
+                                                @endif
                                                 @if ($list->status == 'Resolved')
                                                     <div class="card shadow mb-2 p-3 mt-2"
                                                         style="width: 100%; border: 1px solid rgb(50, 199, 50); background-color: aliceblue">

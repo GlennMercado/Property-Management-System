@@ -306,7 +306,7 @@ class GuestController extends Controller
         ]);
         
         $submit = new complaints;
-        $submit->status = 'On-going';
+        $submit->status = 'Pending';
         $submit->email = Auth::user()->email;
         $submit->name = Auth::user()->name;
         $submit->profile_pic = Auth::user()->profile_pic;
