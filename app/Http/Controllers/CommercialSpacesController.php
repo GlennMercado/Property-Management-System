@@ -331,7 +331,7 @@ class CommercialSpacesController extends Controller
         }
 
         $sql = DB::table('commercial_space_unit_reports')->where('id', $id)->update([
-            'Paid_By' => $name,
+            'Paid_By' => $name.' (Late)',
             'Payment_Status' => "Paid (Late)",
             'updated_at' => DB::RAW('NOW()')
         ]);
