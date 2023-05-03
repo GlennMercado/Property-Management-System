@@ -11,9 +11,10 @@ class EventController extends Controller
 {
     public function event_inquiry()
     {
-        $list = DB::select('SELECT * FROM convention_center_applications'); 
+    $list = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'For Approval' OR Inquiry_Status = 'Approved' OR Inquiry_Status = 'Declined'"); 
+        $list1 = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'Event Approved'");
         $list2 = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'Approved'");
-        return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list, 'list2'=>$list2]);
+        return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list, 'list1'=>$list1, 'list2'=>$list2]);
         // $forApproval = "For Approval";
     }
     public function event_view($id)
