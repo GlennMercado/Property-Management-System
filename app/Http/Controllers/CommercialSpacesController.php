@@ -244,9 +244,11 @@ class CommercialSpacesController extends Controller
     public function commercial_spaces_tenants()
     {
         $now = Carbon::now()->format('Y-m-d');
-        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract' AND b.Tenant_Status != 'For Renewal'");
-        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status = 'Ending Contract' OR b.Tenant_Status = 'For Renewal'");
+
+        $list = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status != 'Ending Contract' AND b.Tenant_Status != 'For Renewal' AND B.End_Date > '$now'");
+        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0 AND b.Tenant_Status = 'Ending Contract' OR b.Tenant_Status = 'For Renewal' OR B.End_Date <= '$now'");
         $list3 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 1');
+        $list5 = DB::select("SELECT a.*, b.Space_Unit FROM commercial_spaces_tenant_deposit_reports a INNER JOIN commercial_spaces_tenants b ON a.Tenant_ID = b.Tenant_ID");
         
         $count = DB::select("SELECT * From commercial_spaces_tenants");
         $array = array();
@@ -257,14 +259,14 @@ class CommercialSpacesController extends Controller
         }
         $list4 = DB::select("SELECT * FROM commercial_spaces_tenant_reports");
 
-        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'array' => $array]);
+        return view('Admin.pages.CommercialSpaces.CommercialSpaceTenants', ['list' => $list, 'list2' => $list2, 'list3' => $list3, 'list4' => $list4, 'list5' => $list5, 'array' => $array]);
     }
 
     public function commercial_rent_collections()
     {
         $list = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
 
-        $list2 = DB::select("SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenant_deposits b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0");
+        $list2 = DB::select("SELECT a.Space_Unit, b.* FROM commercial_spaces_tenants a INNER JOIN commercial_spaces_tenant_deposits b ON a.Tenant_ID = b.Tenant_ID");
 
         $count = DB::select("SELECT * From commercial_spaces_tenants");
         $array = array();
@@ -306,6 +308,7 @@ class CommercialSpacesController extends Controller
 		{
 			$count[] = ['counts' => $checks->cnt];
 		}
+        
 
         return view('Admin.pages.CommercialSpaces.CommercialSpaceUnits', ['list' => $list, 'list2' => $list2, 'count' => $count, 'array' => $array, 'list3' => $list3]);
     
@@ -357,6 +360,7 @@ class CommercialSpacesController extends Controller
             $array[] = ['Tenant_ID' => $counts->Tenant_ID];
         }
         $list2 = DB::select("SELECT * FROM commercial_space_utility_bills");
+        
         return view('Admin.pages.CommercialSpaces.CommercialSpaceUtility', ['list' => $list, 'array' => $array, 'list2' => $list2]);
     }
 

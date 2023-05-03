@@ -52,10 +52,11 @@ class AdminController extends Controller
 
         foreach($bookings as $booking)
         {
+            $checkOutDate = date('Y-m-d', strtotime($booking->Check_Out_Date . ' +1 day'));
             $events[] = [
                 'title' => $booking->Room_No.' - '.$booking->Guest_Name,
                 'start' => $booking->Check_In_Date,
-                'end' => $booking->Check_Out_Date,
+                'end' => $checkOutDate,
                 'id' => $booking->Booking_No,
                 'status' => $booking->Booking_Status
             ];
@@ -98,10 +99,11 @@ class AdminController extends Controller
 
         foreach($bookings as $booking)
         {
+            $checkOutDate = date('Y-m-d', strtotime($booking->Check_Out_Date . ' +1 day'));
             $events[] = [
                 'title' => $booking->Room_No.' - '.$booking->Guest_Name,
                 'start' => $booking->Check_In_Date,
-                'end' => $booking->Check_Out_Date,
+                'end' => $checkOutDate,
                 'id' => $booking->Booking_No,
                 'status' => $booking->Booking_Status
             ];

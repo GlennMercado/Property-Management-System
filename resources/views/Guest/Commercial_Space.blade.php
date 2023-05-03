@@ -61,7 +61,7 @@
                                             {{ date('h:i A', strtotime($comm->created_at)) }}
                                         </td>
 
-                                        <td class="text-primary">
+                                        <td class="text-primary" style="white-space: pre-wrap;">
                                             {{ $comm->Remarks }}
                                         </td>
                                         <td>
@@ -387,7 +387,7 @@
                             {{-- Set Interview --}}
                             <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
                                 tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Commercial space applications
@@ -1389,7 +1389,7 @@
                 /* adjust the z-index to be higher than the modal's z-index */
                 position: absolute;
                 top: 42% !important;
-                left: 33% !important;
+                left: 4p3% !important;
                 transform: translate(-50%, -50%);
             }
 
