@@ -155,11 +155,11 @@
                             </div>
                             <div class="p-2">
                                 <label for="start_date">Start Date:</label>
-                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
                             </div>
                             <div class="p-2">
                                 <label for="end_date">End Date:</label>
-                                <input type="date" class="form-control" id="start_date" name="end_date">
+                                <input type="date" class="form-control" id="start_date" name="end_date" required>
                             </div>
                             <div class="p-2">
                                 <label>Generate report:</label>
@@ -179,8 +179,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Arrival Date</th>
                                         <th scope="col" style="font-size:17px;">Departure Date</th>
@@ -204,8 +204,8 @@
                                                                 class="bi bi-arrow-clockwise"></i></button>
                                                     @endif
                                                 </td>
-                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td> 
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
@@ -403,8 +403,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Arrival Date</th>
                                         <th scope="col" style="font-size:17px;">Departure Date</th>
@@ -432,8 +432,8 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
@@ -580,8 +580,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Arrival Date</th>
                                         <th scope="col" style="font-size:17px;">Departure Date</th>
@@ -633,8 +633,8 @@
                                                     @endif
 
                                                 </td>
-                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
@@ -900,8 +900,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
@@ -922,8 +922,8 @@
                                                         <i class="bi bi-file-earmark-text"></i>
                                                     </a>
                                                 </td>
-                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
                                             </tr>

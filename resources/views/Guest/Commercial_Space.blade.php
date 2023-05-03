@@ -977,95 +977,7 @@
                                                                 </td>
                                                             </tr>
 
-                                                            <!-- Update Modal -->
-                                                            <div class="modal fade update_payment_status"
-                                                                id="update_client_maintenance_payment{{ $lists6->id }}"
-                                                                tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                    role="document">
-                                                                    <div class="modal-content">
-                                                                        <form
-                                                                            action="{{ url('/update_client_maintenance_payment') }}"
-                                                                            class="prevent_submit" method="POST"
-                                                                            enctype="multipart/form-data">
-
-                                                                            {{ csrf_field() }}
-
-                                                                            <div class="modal-body">
-                                                                                <input type="hidden" name="id"
-                                                                                    value="{{ $lists6->id }}">
-                                                                                <input type="hidden" name="tenant_id"
-                                                                                    value="{{ $lists6->Tenant_ID }}">
-                                                                                <input type="hidden" name="space_unit"
-                                                                                    value="{{ $lists6->Space_Unit }}">
-                                                                                <input type="hidden" name="due"
-                                                                                    value="{{ $lists6->Due_Date }}">
-
-                                                                                <div class="row shadow p-3 mt-2">
-                                                                                    <div class="col-md-12">
-                                                                                        <p
-                                                                                            class="font-weight-bold text-center">
-                                                                                            NVDC Properties:
-                                                                                            09458923381
-                                                                                        </p>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-12 d-flex justify-content-center">
-                                                                                        {!! QrCode::size(170)->generate('09458923381') !!}
-                                                                                    </div>
-                                                                                    <br><br>
-                                                                                    <div class="col-md-12">
-                                                                                        <p class="text-center">Reference
-                                                                                            Number <span
-                                                                                                class="text-danger">*</span>
-                                                                                        </p>
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    <!-- <div class="col-md-12">
-                                                                                        <p class="text-left">Account name <span
-                                                                                                class="text-danger">*</span></p>
-                                                                                    </div> -->
-                                                                                    <div class="col-md-12">
-                                                                                        <input type="text"
-                                                                                            id="gcash_acc3"
-                                                                                            onkeyup="enable_submit3()"
-                                                                                            name="Reference_No"
-                                                                                            class="form-control"
-                                                                                            maxlength="32" required>
-                                                                                    </div>
-                                                                                    <div class="col-md-12 mt-1">
-                                                                                        <p class="text-left">Upload your
-                                                                                            proof of payment here </p>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-12 d-flex justify-content-center">
-                                                                                        <img id="output3"
-                                                                                            class="img-fluid" />
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                                                        <input type="file"
-                                                                                            accept=".png, .jpeg, .jpg, .gif"
-                                                                                            maxlength="500000"
-                                                                                            onchange="enable_submit3(event)"
-                                                                                            id="gcash_img3"
-                                                                                            placeholder="Ex: John Doe"
-                                                                                            name="images"
-                                                                                            class="form-control">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button class="btn btn-outline-danger"
-                                                                                    data-dismiss="modal">Close</button>
-                                                                                <input type="submit"
-                                                                                    class="btn btn-success prevent_submit">
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            
                                                         @endif
                                                     @endforeach
                                                 </tbody>
@@ -1077,6 +989,100 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @foreach ($list6 as $lists6)
+                                @if ($lists6->Tenant_ID == $lists->Tenant_ID)    
+                                    <!-- Update Modal -->
+                                    <div class="modal fade update_payment_status"
+                                        id="update_client_maintenance_payment{{ $lists6->id }}"
+                                        tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <form
+                                                    action="{{ url('/update_client_maintenance_payment') }}"
+                                                    class="prevent_submit" method="POST"
+                                                    enctype="multipart/form-data">
+
+                                                    {{ csrf_field() }}
+
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $lists6->id }}">
+                                                        <input type="hidden" name="tenant_id"
+                                                            value="{{ $lists6->Tenant_ID }}">
+                                                        <input type="hidden" name="space_unit"
+                                                            value="{{ $lists6->Space_Unit }}">
+                                                        <input type="hidden" name="due"
+                                                            value="{{ $lists6->Due_Date }}">
+
+                                                        <div class="row shadow p-3 mt-2">
+                                                            <div class="col-md-12">
+                                                                <p
+                                                                    class="font-weight-bold text-center">
+                                                                    NVDC Properties:
+                                                                    09458923381
+                                                                </p>
+                                                            </div>
+                                                            <div
+                                                                class="col-md-12 d-flex justify-content-center">
+                                                                {!! QrCode::size(170)->generate('09458923381') !!}
+                                                            </div>
+                                                            <br><br>
+                                                            <div class="col-md-12">
+                                                                <p class="text-center">Reference
+                                                                    Number <span
+                                                                        class="text-danger">*</span>
+                                                                </p>
+                                                            </div>
+                                                            <br>
+                                                            <!-- <div class="col-md-12">
+                                                                <p class="text-left">Account name <span
+                                                                        class="text-danger">*</span></p>
+                                                            </div> -->
+                                                            <div class="col-md-12">
+                                                                <input type="text"
+                                                                    id="gcash_acc3"
+                                                                    onkeyup="enable_submit3()"
+                                                                    name="Reference_No"
+                                                                    class="form-control"
+                                                                    maxlength="32" required>
+                                                            </div>
+                                                            <div class="col-md-12 mt-1">
+                                                                <p class="text-left">Upload your
+                                                                    proof of payment here </p>
+                                                            </div>
+                                                            <div
+                                                                class="col-md-12 d-flex justify-content-center">
+                                                                <img id="output3"
+                                                                    class="img-fluid" />
+                                                            </div>
+                                                            <div
+                                                                class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
+                                                                <input type="file"
+                                                                    accept=".png, .jpeg, .jpg, .gif"
+                                                                    maxlength="500000"
+                                                                    onchange="enable_submit3(event)"
+                                                                    id="gcash_img3"
+                                                                    placeholder="Ex: John Doe"
+                                                                    name="images"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-outline-danger"
+                                                            data-dismiss="modal">Close</button>
+                                                        <input type="submit"
+                                                            class="btn btn-success prevent_submit">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif 
+                            @endforeach
 
                             <!-- Update Modal -->
                             <div class="modal fade"
@@ -1155,6 +1161,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     @empty
                         <p class="text-center display-5">No Utility Bills</p>
