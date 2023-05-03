@@ -10,6 +10,8 @@
         </div>
     </div>
     <p class="display-3 text-center">{{ $title }}</p>
+    <p class="display-3 text-center">from {{ $start_date }} to {{ $end_date }}</p>
+    <p class="display-3 text-center">Data count: {{ $total }}</p>
     <div class="row d-flex justify-content-center p-5">
         <div class="container-fluid">
             <table class="table align-items-center table-flush" id="myTable">

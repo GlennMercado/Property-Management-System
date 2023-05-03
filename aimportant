@@ -7,3 +7,5 @@ cp .env.example .env
 composer require yajra/laravel-datatables-oracle
 
 composer require laravel/socialite
+
+composer require 

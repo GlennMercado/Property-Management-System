@@ -96,7 +96,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Pending</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-clock-history f-left"></i><span>{{ $pending_guests  }}</span>
+                            <i class="bi bi-clock-history f-left"></i><span>{{ $pending_guests }}</span>
                         </h2>
                     </div>
                 </div>
@@ -163,9 +163,8 @@
                             </div>
                             <div class="p-2">
                                 <label>Generate report:</label>
-                                <button type="submit" class="btn btn-success w-75 h-50">
-                                    <label class="">Print</label><span class=""> <i
-                                            class="bi bi-printer-fill"></i></span>
+                                <button type="submit" class="btn btn-success w-75 h-50">Print
+                                    <i class="bi bi-printer-fill"></i>
                                 </button>
                             </div>
                         </div>
@@ -208,8 +207,10 @@
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Check_In_Date }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Check_Out_Date }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Payment }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
@@ -402,12 +403,13 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Guest Name</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Guest Name</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
+                                        <th scope="col" style="font-size:17px;">Payment</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
-                                        <th scope="col" style="font-size:17px;">Check-In Date</th>
-                                        <th scope="col" style="font-size:17px;">Check-Out Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -430,14 +432,19 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                <td>
+                                                    <span class="badge badge-info">
+                                                        {{ $lists->Payment_Status }}
+                                                    </span>
+                                                </td>
                                             </tr>
                                         @endif
 
@@ -573,10 +580,13 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
                                         <th scope="col" style="font-size:17px;">Payment</th>
+                                        <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -626,7 +636,16 @@
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                <td>
+                                                    <span class="badge badge-info">
+                                                        {{ $lists->Payment_Status }}
+                                                    </span>
+                                                </td>
                                             </tr>
 
 
