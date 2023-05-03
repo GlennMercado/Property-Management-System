@@ -398,7 +398,7 @@
 
                                                                 <h3 class="text-left">Electricity
                                                                     Bill Status: </h3>
-                                                                <select name="electricity_status" class="form-control">
+                                                                <select name="electricity_status" class="form-control" required>
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">
                                                                         Select</option>
@@ -459,7 +459,7 @@
 
                                                                 <h3 class="text-left">Water
                                                                     Bill Status: </h3>
-                                                                <select name="water_status" class="form-control">
+                                                                <select name="water_status" class="form-control" required>
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">
                                                                         Select</option>
@@ -534,20 +534,19 @@
         .preview-container {
             display: none;
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); 
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            z-index: 999;
+            z-index: 9999;
             width: auto;
             height: auto;
             text-align: center;
             justify-content: center;
         }
-
         .preview-container p {
             margin-bottom: 10px;
             font-size: 14px;
@@ -556,7 +555,8 @@
 
         .preview-container img {
             max-width: 100%;
-            height: auto;
+            height:auto;
+            max-height: 400px;
             margin-bottom: 10px;
         }
 
