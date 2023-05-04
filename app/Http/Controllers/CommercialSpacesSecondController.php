@@ -140,12 +140,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql1 && $sql2)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
         elseif($water_status != null && $electric_status == null)
@@ -153,12 +153,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql1)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
         elseif($water_status == null && $electric_status != null)
@@ -166,12 +166,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql2)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
     }
@@ -262,12 +262,12 @@ class CommercialSpacesSecondController extends Controller
             $report->save();
 
             Alert::Success('Success', 'Payment Status Successfully Updated!');
-            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');
+            return redirect('FinanceApproval')->with('Success', 'Data Updated');
         }
         else
         {
             Alert::Error('Failed', 'Updating of Status Failed!');
-            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');                
+            return redirect('FinanceApproval')->with('Success', 'Data Updated');                
         }
     }
 

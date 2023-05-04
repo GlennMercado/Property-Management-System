@@ -120,8 +120,20 @@ class FinanceController extends Controller
         {
             $array[] = ['Tenant_ID' => $counts->Tenant_ID];
         }
+        //wadasdasdasdasd
 
-        return view('Admin.pages.Finances.FinanceApproval', ['list'=>$list, 'list2'=>$list2, 'count2'=>$count2 ,'array'=>$array, 'list3'=>$list3, 'list4' => $list4 ]);
+        $list5 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+           
+        $count3 = DB::select("SELECT * From commercial_spaces_tenants");
+        $arrays2 = array();
+        
+        foreach($count as $counts)
+        {
+            $arrays2[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+        $list6 = DB::select("SELECT * FROM commercial_space_utility_bills");
+
+        return view('Admin.pages.Finances.FinanceApproval', ['list'=>$list, 'list2'=>$list2, 'count2'=>$count2 ,'array'=>$array, 'list3'=>$list3, 'list4' => $list4, 'list5' => $list5 ,'list6' => $list6, 'count3' => $count3, 'arrays2' => $arrays2,]);
     }
 
     public function finance_archives()

@@ -22,7 +22,7 @@
         <p>Regards,<br>NOVADECI PROPERTIES</p>
     @elseif($tenant->Tenant_Status == "Terminated")
         <p>Hello {{ $tenant->name_of_owner }},</p>
-        <p>We are sorry to inform you that your . Please review the remarks and take necessary actions.</p>
+        <p>We are sorry to inform you that your contract has been terminated.</p>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
     @else
         <p>Hello {{ $tenant->name_of_owner }},</p>
