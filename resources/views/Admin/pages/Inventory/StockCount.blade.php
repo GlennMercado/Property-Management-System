@@ -85,7 +85,7 @@
                                                         title="View Stock"></i></button>
                                                 <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
                                                     data-target="#ModalUpdate{{ $lists->productid }}"><i
-                                                        class="bi bi-arrow-clockwise" title="Update Stock"></i></button>
+                                                        class="bi bi-pencil-square" title="Update Stock"></i></button>
                                                 <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
                                                     data-target="#ModalAdd{{ $lists->productid }}"><i class="bi bi-plus"
                                                         title="Add Stock"></i></button>

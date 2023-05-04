@@ -16,7 +16,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Maintenance</li>
                         </ol>
                     </nav>
                 @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")
@@ -93,7 +93,7 @@
                                                     </button>
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update{{ $lists->id }}"> <i
-                                                            class="bi bi-arrow-clockwise"></i> </button>
+                                                            class="bi bi-pencil-square"></i> </button>
                                                 </td>
                                             </tr>
 

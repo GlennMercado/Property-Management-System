@@ -148,13 +148,13 @@
                                                     <!--Update Button-->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update{{ $lists->Room_No }}" title="Update Room">
-                                                        <i class="bi bi bi-arrow-clockwise"></i>
+                                                        <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 @elseif($lists->Status == 'Disabled')
                                                     <!--Update Button-->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update2{{ $lists->Room_No }}" title="Update Room">
-                                                        <i class="bi bi bi-arrow-clockwise"></i>
+                                                        <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 @endif
                                             </td>

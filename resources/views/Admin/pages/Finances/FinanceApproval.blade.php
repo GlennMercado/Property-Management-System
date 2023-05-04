@@ -94,7 +94,7 @@
                                                         @if ($lists->Payment_Status == 'Pending')
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update{{ $lists->Booking_No }}"> <i
-                                                                    class="bi bi-arrow-clockwise"></i></button>
+                                                                    class="bi bi-pencil-square"></i></button>
                                                         @endif
                                                     </td>
                                                     <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
@@ -325,7 +325,7 @@
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update_payment_status{{ $lists->id }}"
                                                                 title="Update Payment Status">
-                                                                <i class="bi bi-arrow-clockwise"></i>
+                                                                <i class="bi bi-pencil-square"></i>
                                                             </button>
                                                         @endif
                                                     </td>
@@ -761,7 +761,7 @@
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
                                                                                         <i
-                                                                                            class="bi bi-arrow-clockwise"></i>
+                                                                                            class="bi bi-pencil-square"></i>
                                                                                     </button>
                                                                                 @endif
                                                                                 @if ($lists->Payment_Status == 'Paid')
@@ -852,7 +852,7 @@
                                                                                         data-target="#update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">
                                                                                         <i
-                                                                                            class="bi bi-arrow-clockwise"></i>
+                                                                                            class="bi bi-pencil-square"></i>
                                                                                     </button>
                                                                                 @endif
 

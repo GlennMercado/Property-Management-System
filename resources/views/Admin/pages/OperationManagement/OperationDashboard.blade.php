@@ -224,7 +224,7 @@
                                                                     <button class="btn btn-sm btn-warning"
                                                                         data-toggle="modal"
                                                                         data-target="#update{{ $lists->ID }}">
-                                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                                        <i class="bi bi-pencil-square"></i>
                                                                 @endif
                                                             </td>
 

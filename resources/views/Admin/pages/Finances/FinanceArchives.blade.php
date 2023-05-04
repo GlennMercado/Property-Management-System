@@ -82,7 +82,7 @@
                                             <div class="p-2">
                                                 <label>Generate report:</label>
                                                 <button type="submit" class="btn btn-success w-100">
-                                                    <i class="bi bi-printer-fill"></i>
+                                                    <label for="">Print</label><span class = "ml-2"><i class="bi bi-printer-fill"></i></span>
                                                 </button>
                                             </div>
                                         </div>
