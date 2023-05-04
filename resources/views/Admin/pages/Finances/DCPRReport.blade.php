@@ -39,7 +39,31 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                    </table>
+                                    </table><br><br>
+                                    @foreach ($data as $lists3)
+                                    <div class="float-right">
+                                        <div class="col">
+                                            Cash/Gcash
+                                            <input type="text" value="{{ $lists3->cash }}">
+
+                                        </div><br>
+                                        <div class="col">
+                                            Bank
+                                            <input type="text" value="{{ $lists3->bank }}">
+                                        </div><br>
+                                        <div class="col">
+                                            Cheque
+                                            <input type="text" value="{{ $lists3->cheque }}">
+                                        </div><br>
+                                        <div class="col">
+                                            Total:
+                                            <input type="text" value="">
+                                        </div>
+                                    </div>
+                                    @endforeach
+
+
+                                    
         </div>
     </div>
 @endsection
