@@ -269,7 +269,7 @@
                                                                         data-toggle="modal"
                                                                         data-target="#update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
                                                                         title="Update Maintenance Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-repeat"></i> 
                                                                     </button>
                                                                 @endif --}}
 
