@@ -16,12 +16,14 @@ class EventController extends Controller
         $list = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'For Approval' OR Inquiry_Status = 'Approved' OR Inquiry_Status = 'Declined'"); 
         $list1 = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'Event Approved'");
         $list2 = DB::select("SELECT * FROM convention_center_applications WHERE Inquiry_Status = 'Approved'");
-        $list3 = DB::select("SELECT * FROM events");
-
-        
+        $current_date = date('Y-m-d');
+        $list3 = DB::select("SELECT * FROM events WHERE start_date != '{$current_date}'");
+        $list4 = DB::select("SELECT * FROM events WHERE start_date = '{$current_date}'");
+        $list5 = DB::select("SELECT * FROM events");
+        // $list4 = DB::table('events')->select(DB::raw('*'))->whereRaw('Date(start_date) = CURDATE()');
         $events = array();
 
-        foreach($list3 as $lists)
+        foreach($list5 as $lists)
         {
             $startDateTime = new DateTime($lists->start_date . ' ' . $lists->start_time);
             $endDateTime = new DateTime($lists->end_date . ' ' . $lists->end_time);
@@ -32,10 +34,9 @@ class EventController extends Controller
                 'end' => $endDateTime->format('c'), // format as ISO string
                 'id' => $lists->id
             ];
-
         }
         
-        return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list, 'list1'=>$list1, 'list2'=>$list2, 'list3'=>$list3, 'events' => $events]);
+        return view('Admin.pages.Reservations.EventInquiryForm', ['list'=>$list, 'list1'=>$list1, 'list2'=>$list2, 'list3'=>$list3, 'events'=>$events, 'list4'=>$list4, 'list5'=>$list5]);
         // $forApproval = "For Approval";
     }
 
@@ -120,7 +121,7 @@ class EventController extends Controller
         // ]);
 
             $add_event = new events;
-            
+            $add_event->event_name = $request->input('event_name');
             $add_event->facility = $request->input('facility');
             $add_event->start_date = $request->input('start_date');
             $add_event->end_date = $request->input('end_date');

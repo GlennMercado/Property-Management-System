@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -28,67 +28,116 @@
             <div class="col-md-7">
                 <div class="card shadow rounded" style="padding:15px;">
                     <h1 class="p-4">
-                        CALENDAR
+                        EVENT CALENDAR
                     </h1>
                     <div id="calendar"></div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="card shadow rounded">
-                    <div class="d-flex flex-row">
-                        <h2 class="p-4"><i class="bi bi-circle-fill text-green"></i> Ongoing Event</h2>
-                        <h2 class="p-4 ml-auto"><i class="bi bi-clock-fill text-success"></i> 7:00AM</h2>
-                        <h2 class="p-4 ml-auto"><i class="bi bi-calendar-check-fill text-success"></i> 12/12/12</h2>
-                    </div>
-                    <div class="bg-green">
+                    @foreach ($list4 as $lists)
+                        <div class="d-flex flex-row">
+                            <h3 class="p-4"><i class="bi bi-circle-fill text-green"></i> Ongoing Event</h3>
+                        </div>
+                        <div class="col-md-12 card-tal">
+                            <div class="container-fluid card-tal-con">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <hr style="background-color: white;border-top: 2px solid rgb(255 255 255);">
+                                    </div>
+                                    <div class="col-6">
+                                        <h2 class="text-white">Event name: {{ $lists->event_name }}</h2>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="{{ asset('nvdcpics') }}/convention3.png" class="img-fluid"
+                                            style="width:100%">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pt-2 pt-md-1">
+                                            <h3 class="text-white">Event type: {{ $lists->event_type }}</h3>
+                                            <p>
+                                                <i class="bi bi-people-fill"></i>
+                                                Expected guests: {{ $lists->num_of_guest }}
+                                            </p>
+                                            <p>
+                                                <i class="bi bi-clock-fill"></i>
+                                                {{ date('g:i A', strtotime($lists->start_time)) }} -
+                                                {{ date('g:i A', strtotime($lists->end_time)) }}
+                                            </p>
+                                            <p>
+                                                <i class="bi bi-calendar-check-fill text-white"></i>
+                                                {{ \Carbon\Carbon::parse($lists->start_date)->format('l, F jS, Y') }} -
+                                                {{ \Carbon\Carbon::parse($lists->end_date)->format('l, F jS, Y') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-md-6"></div>
+                                    <div class="col-10 col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div style="background: linear-gradient(45deg, #2bcaaa, #3ec5aa);">
+                            <div class="d-flex justify-content-center">
+                                <h3 class="m-2 text-white">
+                                    <i class="bi bi-calendar-check-fill text-white"></i>
+                                    {{ \Carbon\Carbon::parse($lists->start_date)->format('l, F jS, Y') }} -
+                                    {{ \Carbon\Carbon::parse($lists->end_date)->format('l, F jS, Y') }}
+                                </h3>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h3 class="m-2 text-white"><i class="bi bi-clock-fill"></i>
+                                    {{ date('g:i A', strtotime($lists->start_time)) }} -
+                                    {{ date('g:i A', strtotime($lists->end_time)) }}
+                                </h3>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h1 class="text-white mt-2">
+                                    Event name: ML TOURNA
+                                </h1>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center">
+                                <p class="font-weight-bold text-white">
+                                    Event type: bday
+                                    <br>
+                                    Number of guest: 25
+                                </p>
+                            </div>
+                        </div> --}}
                         <div class="d-flex justify-content-center">
-                            <h1 class="text-white mt-2">
-                                Event name: ML TOURNA
-                            </h1>
+                            <h2 class="p-2">~ Upcomming events ~</h2>
                         </div>
-                        <div class="d-flex flex-row justify-content-center">
-                            <p class="font-weight-bold text-white">
-                                Event type: bday
-                                <br>
-                                Number of guest: 25
-                            </p>
+                        <div style="overflow-y: scroll;">
+                            @foreach ($list3 as $lists3)
+                                <div class="shadow mt--3">
+                                    <div class="d-flex flex-row">
+                                        <h3 class="p-4">
+                                            {{ $lists3->event_name }}
+                                        </h3>
+                                        <p class="p-4">
+                                            <i class="bi bi-calendar-check-fill"></i>
+                                            {{ \Carbon\Carbon::parse($lists3->start_date)->format('l, F jS, Y') }} -
+                                            {{ \Carbon\Carbon::parse($lists3->end_date)->format('l, F jS, Y') }}
+                                            <br>
+                                            <i class="bi bi-clock-fill"></i>
+                                            {{ date('g:i A', strtotime($lists3->start_time)) }} -
+                                            {{ date('g:i A', strtotime($lists3->end_time)) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @if (!$list3)
+                                <img src="{{ asset('nvdcpics') }}/complaints1.svg" class="img-fluid"
+                                    style="width: 100%; max-height: 140px">
+                                <p class="font-weight-bold text-center">There are no upcomming events yet</p>
+                            @endif
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <h2 class="p-2">~ Upcomming events ~</h2>
-                    </div>
-                    <div style="overflow-y: scroll; height:180px;">
-                        <div class="shadow mt--3">
-                            <div class="d-flex flex-row">
-                                <h3 class="p-4">
-                                    Basketball practice
-                                </h3>
-                                <h3 class="p-4">
-                                    Sunday - 7:00AM
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="shadow mt--3">
-                            <div class="d-flex flex-row">
-                                <h3 class="p-4">
-                                    Basketball practice
-                                </h3>
-                                <h3 class="p-4">
-                                    Sunday - 7:00AM
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="shadow mt--3">
-                            <div class="d-flex flex-row">
-                                <h3 class="p-4">
-                                    Basketball practice
-                                </h3>
-                                <h3 class="p-4">
-                                    Sunday - 7:00AM
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    @if (!$list4)
+                        <img src="{{ asset('nvdcpics') }}/complaints1.svg" class="img-fluid"
+                            style="width: 100%; height: 300px">
+                        <p class="text-center display-5">There are no events yet</p>
+                    @endif
                 </div>
             </div>
             <div class="col-md-12 mt-3">
@@ -101,7 +150,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Events</a>
+                                            aria-controls="tabs-icons-text-1" aria-selected="true">Event Inquiries</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -122,13 +171,13 @@
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date"
-                                                    required>
+                                                <input type="date" class="form-control" id="start_date"
+                                                    name="start_date" required>
                                             </div>
                                             <div class="p-2">
                                                 <label for="end_date">End Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="end_date"
-                                                    required>
+                                                <input type="date" class="form-control" id="start_date"
+                                                    name="end_date" required>
                                             </div>
                                             <div class="p-2">
                                                 <label>Generate report:</label>
@@ -337,6 +386,7 @@
                                             <tr>
                                                 <th scope="col" style="font-size:16px;">ACTION</th>
                                                 <th scope="col" style="font-size:16px;">ID</th>
+                                                <th scope="col" style="font-size:16px;">EVENT NAME</th>
                                                 <th scope="col" style="font-size:16px;">TIME</th>
                                                 <th scope="col" style="font-size:16px;">START DATE</th>
                                                 <th scope="col" style="font-size:16px;">END DATE</th>
@@ -348,7 +398,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($list3 as $lists)
+                                            @foreach ($list5 as $lists)
                                                 <tr>
                                                     <td>
                                                         <button data-toggle="modal"
@@ -359,6 +409,7 @@
                                                         </button>
                                                     </td>
                                                     <td>{{ $lists->id }}</td>
+                                                    <td>{{ $lists->event_name }}</td>
                                                     <td>{{ date('h:i:s A', strtotime($lists->start_time)) . ' - ' . date('h:i:s A', strtotime($lists->end_time)) }}
                                                     </td>
                                                     <td>{{ date('F j, Y', strtotime($lists->start_date)) }}</td>
@@ -443,6 +494,9 @@
                                                             <div class="card-body bg-white" style="border-radius: 18px">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
+                                                                        <h3 class="mt-2">Event Name</h3>
+                                                                        <input type="text" class="form-control"
+                                                                            name="event_name">
                                                                         <h3 class="mt-2">Facility</h3>
                                                                         <select id="mySelect" name="facility"
                                                                             class="form-control" required>
@@ -564,11 +618,6 @@
                                                                             class="form-control" required>
                                                                     </div>
                                                                 </div>
-
-
-
-
-
                                                                 <input type="hidden" name="payment" id="totalCosts">
                                                                 <h3 class="mt-4">Total Payment</h3>
                                                                 <h1 class="text-green ml-auto" id="totalCost"></h1>
@@ -689,7 +738,7 @@
         });
 
 
-       
+
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
             $('#myTable2').DataTable();
@@ -739,6 +788,14 @@
 
         #totalCost::before {
             content: '₱ ';
+        }
+
+        .card-tal .card-tal-con {
+            background-color: #355599cb;
+            height: 100%;
+            color: white;
+            padding-top: 20px;
+            padding-bottom: 10px;
         }
     </style>
     <script>
