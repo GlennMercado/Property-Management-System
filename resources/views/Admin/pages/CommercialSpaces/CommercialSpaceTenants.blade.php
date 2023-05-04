@@ -2,17 +2,43 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-    <script>
-        $.noConflict();
-        jQuery(document).ready(function($) {
-            $('#myTable').DataTable();
-            $('#myTable2').DataTable();
-            $('#myTable3').DataTable();
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script> --}}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.3/b-2.3.5/b-html5-2.3.5/b-print-2.3.5/datatables.min.js"></script>
+
+<script>
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+        var pageTitle = $('#pageTitle').text();
+        $('#myTable').DataTable();
+        $('#myTable2').DataTable();
+        $('#myTable3').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pageLength',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'portrait',
+                    pageSize: 'LEGAL'
+                },
+                'excelHtml5',
+                {
+                    extend: 'print',
+                    customize: function(win) {
+                        $(win.document.body).prepend('<h1>Name of Owner : ' + pageTitle + '</h1>');
+                    }
+                }
+            
+            ]
         });
-        // Code that uses other library's $ can follow here.
-    </script>
+    });
+</script>
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -132,7 +158,7 @@
                                                             <td>
                                                                 <span class="tbltxt">Owner Name: </span>
                                                                 <span
-                                                                    class="font-weight-bold tbltxt">{{ $lists->name_of_owner }}</span>
+                                                                    class="font-weight-bold tbltxt" id="pageTitle">{{ $lists->name_of_owner }}</span>
                                                                 <br>
                                                                 <span class="tbltxt">Spouse: </span>
                                                                 <span
