@@ -251,6 +251,10 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	//Finance Dashboards
 	Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
+	//Finance Approval
+	Route::get('FinanceApproval', [App\Http\Controllers\FinanceController::class, 'finance_approve'])->name('FinanceApproval');
+	Route::get('/finance_hotel_approval', 'App\Http\Controllers\FinanceController@finance_hotel_approval');
+
 	//Finance Invoice
 	//  Route::get('/FinanceInvoice/{id}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
 	 Route::get('finance_invoice/{bn}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
