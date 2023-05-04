@@ -144,29 +144,16 @@ class HotelController extends Controller
             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
             values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
             
-            if($user_type == 'Operations Manager')
-            {
-                Alert::Success('Success', 'Reservation was successfully submitted!');
-                return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
-            }
-            else
-            {
-                Alert::Success('Success', 'Reservation was successfully submitted!');
-                return redirect('HotelReservationForm')->with('Success', 'Reservation Success');
-            }
+            Alert::Success('Success', 'Reservation was successfully submitted!');
+            return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
+            
         }
         else
         {
-            if($user_type == "Operations Manager")
-            {
-                Alert::Error('Error', 'Reservation Failed!');
-                return redirect('Guest_Reservation')->with('Error', 'Failed!');
-            }
-            else
-            {
-                Alert::Error('Error', 'Reservation Failed!');
-                return redirect('HotelReservationForm')->with('Error', 'Failed!');
-            }
+            
+            Alert::Error('Error', 'Reservation Failed!');
+            return redirect('Guest_Reservation')->with('Error', 'Failed!');
+            
         }
 
         
