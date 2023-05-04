@@ -9,11 +9,12 @@
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
-                <h6 class="h2 text-dark d-inline-block mb-0">Hotel Booking</h6>
+                <h6 class="h2 text-dark d-inline-block mb-0">Guest Reservation</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                         <li class="breadcrumb-item">Operations Management</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Front Desk</li>
                         <li class="breadcrumb-item active text-dark" aria-current="page">Guest Reservation</li>
                     </ol>
                 </nav>

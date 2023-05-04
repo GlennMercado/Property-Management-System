@@ -27,15 +27,15 @@
             <li class="nav-item">
                 <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2"
                     role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
-                        class="bi bi-patch-exclamation-fill"></i> Scheduled</a>
+                        class="bi bi-calendar-check-fill"></i> Scheduled</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3"
                     role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i
-                        class="bi bi-patch-exclamation-fill"></i> Resolved</a>
+                        class="bi bi-check-circle-fill"></i> Resolved</a>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content mt-4" id="myTabContent">
             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                 aria-labelledby="tabs-icons-text-1-tab">
                 @foreach ($list1 as $list)
