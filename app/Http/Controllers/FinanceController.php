@@ -176,8 +176,9 @@ class FinanceController extends Controller
         $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$booking_no'");    
         $list2 = DB::select("SELECT * FROM used_supplies WHERE Booking_No = '$booking_no'");
         $list3 = DB::select("SELECT * FROM hotel_other_charges WHERE Booking_No = '$booking_no'");
+        $list4 = DB::select("SELECT * FROM out_of_order_rooms WHERE Booking_No = '$booking_no'");
 
-        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
+        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3, 'list4'=>$list4]);
         
     }
 
