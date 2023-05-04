@@ -71,10 +71,10 @@
                                                 @endfor
                                             @endforeach
 
-                                            <h3>Measurement Size (sq. m)</h3>
+                                            <h3 class="mt-4">Measurement Size (sq. m)</h3>
                                             <input type="number" name="size" class="form-control" required>
 
-                                            <h3>Rental Fee</h3>
+                                            <h3 class="mt-4">Rental Fee</h3>
                                             <input type="number" name="rental_fee" class="form-control" required>
                                         </div>
                                         <div class="modal-footer">
@@ -346,7 +346,8 @@
                                                                             <h3 class="text-left">Equipments/Materials
                                                                                 Used: </h3>
                                                                             <textarea name="others" class="form-control" required></textarea>
-                                                                            <h3 class="text-left">Reason for Maintenance : </h3>
+                                                                            <h3 class="text-left">Reason for Maintenance :
+                                                                            </h3>
                                                                             <textarea name="reason" class="form-control" required></textarea>
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -429,7 +430,8 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{ url('/update_comm_maintenance_status') }}"
+                                                                    <form
+                                                                        action="{{ url('/update_comm_maintenance_status') }}"
                                                                         class="prevent_submit" method="POST"
                                                                         enctype="multipart/form-data">
                                                                         {{ csrf_field() }}
@@ -452,13 +454,15 @@
                                                                             </h3>
                                                                             <i>Proof of Payment Here:</i>
                                                                             @if ($lists->Reference_No != null)
-                                                                                <h3 class="text-left">Reference Number : <span
+                                                                                <h3 class="text-left">Reference Number :
+                                                                                    <span
                                                                                         class="text-primary">{{ $lists->Reference_No }}</span>
                                                                                 </h3>
-                                                                                @if($lists->Proof_Image != null)
-                                                                                <h3 class="text-left">Payment Image : </h3>
-                                                                                <img src="{{ $lists->Proof_Image }}"
-                                                                                    class="card-img-top">
+                                                                                @if ($lists->Proof_Image != null)
+                                                                                    <h3 class="text-left">Payment Image :
+                                                                                    </h3>
+                                                                                    <img src="{{ $lists->Proof_Image }}"
+                                                                                        class="card-img-top">
                                                                                 @endif
                                                                             @endif
 
@@ -470,7 +474,8 @@
                                                                                 <option value="Paid">Paid</option>
                                                                                 <option value="Non-Payment">Non-Payment
                                                                                 </option>
-                                                                                <option value="Security Deposit">Security Deposit</option>
+                                                                                <option value="Security Deposit">Security
+                                                                                    Deposit</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -511,7 +516,7 @@
                                                                     <tr>
                                                                         <th scope="col">
                                                                             Tenant Name</th>
-                                                                        <th scope="col" >
+                                                                        <th scope="col">
                                                                             Space/Unit</th>
                                                                         <th scope="col">
                                                                             Maitenance Cost</th>
@@ -544,15 +549,22 @@
                                                                                 @else
                                                                                     <td></td>
                                                                                 @endif
-                                                                                @if($lists3->Payment_Status == "Paid")
-                                                                                    <td class="text-success">{{$lists3->Payment_Status}}</td>
+                                                                                @if ($lists3->Payment_Status == 'Paid')
+                                                                                    <td class="text-success">
+                                                                                        {{ $lists3->Payment_Status }}</td>
                                                                                 @else
-                                                                                    <td class="text-danger">{{$lists3->Payment_Status}}</td>
+                                                                                    <td class="text-danger">
+                                                                                        {{ $lists3->Payment_Status }}</td>
                                                                                 @endif
                                                                                 <td>{{ $lists3->Paid_By }}</td>
                                                                                 <td>
-                                                                                    @if($lists3->Payment_Status != "Non-Payment" && $lists3->Reference_No != null)
-                                                                                        <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists3->Reference_No}}" data-proof-image="{{$lists3->Proof_Image}}" data-index="{{$index}}">View Payment</button>
+                                                                                    @if ($lists3->Payment_Status != 'Non-Payment' && $lists3->Reference_No != null)
+                                                                                        <button
+                                                                                            class="preview-btn btn btn-sm btn-primary"
+                                                                                            data-reference-no="{{ $lists3->Reference_No }}"
+                                                                                            data-proof-image="{{ $lists3->Proof_Image }}"
+                                                                                            data-index="{{ $index }}">View
+                                                                                            Payment</button>
                                                                                     @endif
 
                                                                                     @if ($lists3->Payment_Status == 'Paid (Checking)')
@@ -565,7 +577,7 @@
                                                                                         </button>
                                                                                     @endif
                                                                                 </td>
-                                                                            </tr>   
+                                                                            </tr>
                                                                         @endif
                                                                     @endforeach
                                                                 </tbody>
@@ -574,49 +586,49 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @foreach($list3 as $index => $lists3)
-                                                @if($lists3->Payment_Status != "Non-Payment" && $lists3->Reference_No != null)
-                                                    <div class="preview-container preview-container-{{$index}}">
-                                                        <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
-                                                        @if($lists3->Proof_Image != null)
+                                            @foreach ($list3 as $index => $lists3)
+                                                @if ($lists3->Payment_Status != 'Non-Payment' && $lists3->Reference_No != null)
+                                                    <div class="preview-container preview-container-{{ $index }}">
+                                                        <p>Reference Number : <span
+                                                                class="reference-no reference-no-{{ $index }}"></span>
+                                                        </p>
+                                                        @if ($lists3->Proof_Image != null)
                                                             <p>Proof Image:</p>
-                                                            <img src="{{$lists3->Proof_Image}}" alt="Proof Image" class="proof-image proof-image-{{$index}}">
+                                                            <img src="{{ $lists3->Proof_Image }}" alt="Proof Image"
+                                                                class="proof-image proof-image-{{ $index }}">
                                                         @else
-                                                            <i class="proof-image proof-image-{{$index}}">No proof image available</i>
+                                                            <i class="proof-image proof-image-{{ $index }}">No
+                                                                proof image available</i>
                                                         @endif
                                                     </div>
                                                 @endif
 
                                                 <!-- Update Maintenace1 Modal -->
                                                 <div class="modal fade"
-                                                    id="update_maintenance3_status{{ $lists3->id }}"
-                                                    tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel"
+                                                    id="update_maintenance3_status{{ $lists3->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered"
-                                                        role="document">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title text-left display-4"
                                                                     id="exampleModalLabel">
                                                                     Update Maintenance
                                                                     Status </h5>
-                                                                <button type="button"
-                                                                    class="close"
-                                                                    data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span
-                                                                        aria-hidden="true">&times;</span>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h3 class="text-center">Are you sure you want to set this maintenance to paid?</h3>
+                                                                <h3 class="text-center">Are you sure you want to set this
+                                                                    maintenance to paid?</h3>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button
-                                                                    class="btn btn-outline-danger"
+                                                                <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
-                                                                <a href="{{url('update_maintenance3_status', ['id' => $lists3->id, 'tid' => $lists3->Tenant_ID])}}" class="btn btn-success">Yes</a>
+                                                                <a href="{{ url('update_maintenance3_status', ['id' => $lists3->id, 'tid' => $lists3->Tenant_ID]) }}"
+                                                                    class="btn btn-success">Yes</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -657,11 +669,18 @@
         });
     </script>
     <style>
-        @media (min-width: 992px) {
-        .modal-lg {
-            max-width: 90%;
-            max-height: 90%;
+        /* remove up and down button inside form */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
+
+        @media (min-width: 992px) {
+            .modal-lg {
+                max-width: 90%;
+                max-height: 90%;
+            }
         }
 
         /* Preview */
