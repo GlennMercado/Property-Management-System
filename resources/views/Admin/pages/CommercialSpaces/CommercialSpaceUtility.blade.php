@@ -16,12 +16,13 @@
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
-                <h6 class="h2 text-dark d-inline-block mb-0">Commercial Spaces</h6>
+                <h6 class="h2 text-dark d-inline-block mb-0">Utility Bills Collections</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                         <li class="breadcrumb-item">Sales & Marketing</li>
                         <li class="breadcrumb-item active text-dark" aria-current="page">Commercial Spaces</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Utility Bills Collections</li>
                     </ol>
                 </nav>
             </div>
@@ -33,7 +34,7 @@
                     <div class="card-body">
                         <div class="card-header bg-transparent row">
                             <div class="col text-right">
-                                <button class="btn bg-success text-white" data-toggle="modal" data-target="#add_rooms">
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#add_rooms">
                                     Add Bills
                                 </button>
                             </div>
@@ -188,7 +189,8 @@
                                         <div class="modal fade" id="view_utility_{{ $arrays['Tenant_ID'] }}"
                                             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="z-index: 5;">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document"
+                                                style="z-index: 5;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title text-left display-4"
@@ -234,7 +236,7 @@
                                                                                     {{ $lists->Payment_Status }}</td>
                                                                             @endif
                                                                             <td>
-                                                                                @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                                                {{-- @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
@@ -242,7 +244,7 @@
                                                                                         <i
                                                                                             class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
-                                                                                @endif
+                                                                                @endif --}}
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
                                                                                         class="preview-btn btn btn-sm btn-primary"
@@ -325,7 +327,7 @@
                                                                                     </div>
                                                                                 @endif --}}
 
-                                                                                @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                                                {{-- @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
@@ -333,7 +335,7 @@
                                                                                         <i
                                                                                             class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
-                                                                                @endif
+                                                                                @endif --}}
 
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
@@ -376,124 +378,128 @@
                                         </div>
                                         @foreach ($list2 as $lists)
                                             @if ($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == 'Electricity')
-                                            <!-- Update Modal 1-->
-                                            <div class="modal fade"
-                                                id="update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 6;">
-                                                    <div class="modal-content">
-                                                        <form action="{{ url('/update_utility_payment') }}"
-                                                            class="prevent_submit" method="POST"
-                                                            enctype="multipart/form-data">
+                                                <!-- Update Modal 1-->
+                                                <div class="modal fade"
+                                                    id="update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document"
+                                                        style="z-index: 6;">
+                                                        <div class="modal-content">
+                                                            <form action="{{ url('/update_utility_payment') }}"
+                                                                class="prevent_submit" method="POST"
+                                                                enctype="multipart/form-data">
 
-                                                            {{ csrf_field() }}
+                                                                {{ csrf_field() }}
 
-                                                            <div class="modal-body">
-                                                                <input type="hidden" name="tenant_id"
-                                                                    value="{{ $lists->Tenant_ID }}">
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="tenant_id"
+                                                                        value="{{ $lists->Tenant_ID }}">
 
-                                                                <input type="hidden" name="due"
-                                                                    value="{{ $lists->Due_Date }}" />
+                                                                    <input type="hidden" name="due"
+                                                                        value="{{ $lists->Due_Date }}" />
 
-                                                                <h3 class="text-left">Electricity
-                                                                    Bill Status: </h3>
-                                                                <select name="electricity_status" class="form-control" required>
-                                                                    <option value="" selected="true"
-                                                                        disabled="disabled">
-                                                                        Select</option>
-                                                                    <option value="Paid">
-                                                                        Paid
-                                                                    </option>
-                                                                    <option value="Non-Payment">
-                                                                        Non-Payment
-                                                                    </option>
-                                                                </select>
-                                                                <br>
+                                                                    <h3 class="text-left">Electricity
+                                                                        Bill Status: </h3>
+                                                                    <select name="electricity_status" class="form-control"
+                                                                        required>
+                                                                        <option value="" selected="true"
+                                                                            disabled="disabled">
+                                                                            Select</option>
+                                                                        <option value="Paid">
+                                                                            Paid
+                                                                        </option>
+                                                                        <option value="Non-Payment">
+                                                                            Non-Payment
+                                                                        </option>
+                                                                    </select>
+                                                                    <br>
 
-                                                                <i>Proof of Payment Here:</i>
+                                                                    <i>Proof of Payment Here:</i>
 
-                                                                @if ($lists->Reference_No != null)
-                                                                    <h3 class="text-left">Reference No : <span
-                                                                            class="text-primary">{{ $lists->Reference_No }}</span>
-                                                                    </h3>
-                                                                    @if ($lists->Proof_Image != null)
-                                                                        <h3 class="text-left">Proof Image</h3>
-                                                                        <img src="{{ $lists->Proof_Image }}"
-                                                                            class="card-img-top">
+                                                                    @if ($lists->Reference_No != null)
+                                                                        <h3 class="text-left">Reference No : <span
+                                                                                class="text-primary">{{ $lists->Reference_No }}</span>
+                                                                        </h3>
+                                                                        @if ($lists->Proof_Image != null)
+                                                                            <h3 class="text-left">Proof Image</h3>
+                                                                            <img src="{{ $lists->Proof_Image }}"
+                                                                                class="card-img-top">
+                                                                        @endif
                                                                     @endif
-                                                                @endif
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-outline-danger"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <input type="submit"
-                                                                    class="btn btn-success prevent_submit">
-                                                            </div>
-                                                        </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <input type="submit"
+                                                                        class="btn btn-success prevent_submit">
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endif
 
                                             @if ($arrays['Tenant_ID'] == $lists->Tenant_ID && $lists->Type_of_Bill == 'Water')
-                                            <!-- Update Modal 2 -->
-                                            <div class="modal fade "
-                                                id="update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 6;">
-                                                    <div class="modal-content">
-                                                        <form action="{{ url('/update_utility_payment') }}"
-                                                            class="prevent_submit" method="POST"
-                                                            enctype="multipart/form-data">
+                                                <!-- Update Modal 2 -->
+                                                <div class="modal fade "
+                                                    id="update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document"
+                                                        style="z-index: 6;">
+                                                        <div class="modal-content">
+                                                            <form action="{{ url('/update_utility_payment') }}"
+                                                                class="prevent_submit" method="POST"
+                                                                enctype="multipart/form-data">
 
-                                                            {{ csrf_field() }}
+                                                                {{ csrf_field() }}
 
-                                                            <div class="modal-body">
-                                                                <input type="hidden" name="tenant_id"
-                                                                    value="{{ $lists->Tenant_ID }}">
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="tenant_id"
+                                                                        value="{{ $lists->Tenant_ID }}">
 
-                                                                <input type="hidden" name="due"
-                                                                    value="{{ $lists->Due_Date }}" />
+                                                                    <input type="hidden" name="due"
+                                                                        value="{{ $lists->Due_Date }}" />
 
-                                                                <h3 class="text-left">Water
-                                                                    Bill Status: </h3>
-                                                                <select name="water_status" class="form-control" required>
-                                                                    <option value="" selected="true"
-                                                                        disabled="disabled">
-                                                                        Select</option>
-                                                                    <option value="Paid">
-                                                                        Paid
-                                                                    </option>
-                                                                    <option value="Non-Payment">
-                                                                        Non-Payment
-                                                                    </option>
-                                                                </select>
-                                                                <br>
-                                                                <i>Proof of Payment Here:</i>
+                                                                    <h3 class="text-left">Water
+                                                                        Bill Status: </h3>
+                                                                    <select name="water_status" class="form-control"
+                                                                        required>
+                                                                        <option value="" selected="true"
+                                                                            disabled="disabled">
+                                                                            Select</option>
+                                                                        <option value="Paid">
+                                                                            Paid
+                                                                        </option>
+                                                                        <option value="Non-Payment">
+                                                                            Non-Payment
+                                                                        </option>
+                                                                    </select>
+                                                                    <br>
+                                                                    <i>Proof of Payment Here:</i>
 
-                                                                @if ($lists->Reference_No != null)
-                                                                    <h3 class="text-left">Reference No : <span
-                                                                            class="text-primary">{{ $lists->Reference_No }}</span>
-                                                                    </h3>
-                                                                    @if ($lists->Proof_Image != null)
-                                                                        <h3 class="text-left">Proof Image</h3>
-                                                                        <img src="{{ $lists->Proof_Image }}"
-                                                                            class="card-img-top">
+                                                                    @if ($lists->Reference_No != null)
+                                                                        <h3 class="text-left">Reference No : <span
+                                                                                class="text-primary">{{ $lists->Reference_No }}</span>
+                                                                        </h3>
+                                                                        @if ($lists->Proof_Image != null)
+                                                                            <h3 class="text-left">Proof Image</h3>
+                                                                            <img src="{{ $lists->Proof_Image }}"
+                                                                                class="card-img-top">
+                                                                        @endif
                                                                     @endif
-                                                                @endif
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-outline-danger"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <input type="submit"
-                                                                    class="btn btn-success prevent_submit">
-                                                            </div>
-                                                        </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <input type="submit"
+                                                                        class="btn btn-success prevent_submit">
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endif
                                         @endforeach
                                     @endforeach
@@ -531,12 +537,27 @@
         });
     </script>
     <style>
+        /* remove up and down button inside form */
+        
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        @media (min-width: 992px) {
+            .modal-lg {
+                max-width: 90%;
+                max-height: 90%;
+            }
+        }
+
         .preview-container {
             display: none;
             position: absolute;
             top: 60%;
             left: 50%;
-            transform: translate(-50%, -50%); 
+            transform: translate(-50%, -50%);
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
             padding: 20px;
@@ -547,6 +568,7 @@
             text-align: center;
             justify-content: center;
         }
+
         .preview-container p {
             margin-bottom: 10px;
             font-size: 14px;
@@ -555,7 +577,7 @@
 
         .preview-container img {
             max-width: 100%;
-            height:auto;
+            height: auto;
             max-height: 400px;
             margin-bottom: 10px;
         }

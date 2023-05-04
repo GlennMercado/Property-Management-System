@@ -272,7 +272,7 @@ class HotelController extends Controller
                     Mail::to($names->Email)->send(new BookingConfirmation($names));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }
         else
@@ -285,7 +285,7 @@ class HotelController extends Controller
             else
             {
                 Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }    
     }
@@ -356,9 +356,14 @@ class HotelController extends Controller
                         DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
                         DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
         
-                        DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                        values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                        $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
                         
+                        if(!$checkHousekeeping)
+                        {
+                            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                        }
+
                         if($user_type == "Operations Manager")
                         {
                             Alert::Success('Success', 'Reservation successfully updated!');

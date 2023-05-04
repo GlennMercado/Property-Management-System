@@ -23,12 +23,13 @@
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
-                <h6 class="h2 text-dark d-inline-block mb-0">Commercial Spaces</h6>
+                <h6 class="h2 text-dark d-inline-block mb-0">Commercial Space Units</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                         <li class="breadcrumb-item">Sales & Marketing</li>
                         <li class="breadcrumb-item active text-dark" aria-current="page">Commercial Spaces</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Commercial Space Units</li>
                     </ol>
                 </nav>
             </div>
@@ -98,7 +99,7 @@
                                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
                                         href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
                                         aria-selected="false">
-                                        <i class="ni ni-fat-remove mr-2"></i>Occupied Units</a>
+                                        <i class="bi bi-shop-window mr-2"></i>Occupied Units</a>
                                 </li>
                             </ul>
                         </div>
@@ -268,7 +269,7 @@
                                                                         data-toggle="modal"
                                                                         data-target="#update_maintenance2_{{ str_replace(' ', '_', $lists->Space_Unit) }}"
                                                                         title="Update Maintenance Status">
-                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                        <i class="bi bi-arrow-repeat"></i> 
                                                                     </button>
                                                                 @endif --}}
 

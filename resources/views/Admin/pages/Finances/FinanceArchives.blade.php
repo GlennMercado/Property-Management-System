@@ -60,6 +60,26 @@
                             {{-- ORs --}}
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
+                                <div class="card-header" style="justify-content:center;align-items:censr;align-self:center">
+                                    <form action="{{ url('/proof_payment_summary') }}" target="blank" method="get">
+                                        <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                <label for="start_date">Start Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                            </div>
+                                            <div class="p-2">
+                                                <label for="end_date">End Date:</label>
+                                                <input type="date" class="form-control" id="start_date" name="end_date" required>
+                                            </div>
+                                            <div class="p-2">
+                                                <label>Generate report:</label>
+                                                <button type="submit" class="btn btn-success w-100">
+                                                    <i class="bi bi-printer-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 
                                 
                                 <table class="table align-items-center table-flush" style="align-items:center"
@@ -69,7 +89,7 @@
                                             <th scope="col" style="font-size:18px;">Action</th>
                                             <th scope="col" style="font-size:18px;">Payment Status</th>
                                             <th scope="col" style="font-size:18px;">Amount</th>
-                                            <th scope="col" style="font-size:18px;">Gcash Account Name</th>
+                                            <th scope="col" style="font-size:18px;">Gcash Reference number</th>
                                             <th scope="col" style="font-size:18px;">Reservation Number</th>
                                             <th scope="col" style="font-size:18px;">Guest Name</th>
                                             <th scope="col" style="font-size:18px;">Mobile Number</th>
@@ -180,20 +200,21 @@
                                 </table>
                             </div>
 
-                            {{-- OR ARCHIVES --}}
+                            {{-- Revenue ARCHIVES --}}
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                <div class="card-header" style="justify-content:center;align-items:center;align-self:center">
+                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: The Report Page is in a Landscape Mode </h4>
+                                <div class="card-header" style="justify-content:center;align-items:censr;align-self:center">
                                     <form action="{{ url('/archives_summary') }}" target="blank" method="get">
                                         <div class="d-flex flex-row">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                                <input type="date" class="form-control" id="start_date" name="start_date" required>
                                             </div>
                                             <div class="p-2">
                                                 <label for="end_date">End Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="end_date">
+                                                <input type="date" class="form-control" id="start_date" name="end_date" required>
                                             </div>
                                             <div class="p-2">
                                                 <label>Generate report:</label>

@@ -140,12 +140,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql1 && $sql2)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
         elseif($water_status != null && $electric_status == null)
@@ -153,12 +153,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql1)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
         elseif($water_status == null && $electric_status != null)
@@ -166,12 +166,12 @@ class CommercialSpacesSecondController extends Controller
             if($sql2)
             {
                 Alert::Success('Success', 'Utility Bills Payment Successfully Updated!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated');  
+                return redirect('FinanceApproval')->with('Success', 'Data Updated');  
             }
             else
             {
                 Alert::Error('Failed', 'Utility Bills Payment Failed Updating!');
-                return redirect('CommercialSpaceUtilityBills')->with('Success', 'Data Updated'); 
+                return redirect('FinanceApproval')->with('Success', 'Data Updated'); 
             }
         }
     }
@@ -261,13 +261,28 @@ class CommercialSpacesSecondController extends Controller
 
             $report->save();
 
+            if($stats == "Non-Payment")
+            {
+                $checkmaintenance = DB::select("SELECT COUNT(*) as cnt FROM commercial_space_rent_reports WHERE Tenant_ID = '$id' AND Payment_Status = 'Non-Payment' ");
+                foreach($checkmaintenance as $chck)
+                {
+                    if($chck->cnt == 2)
+                    {
+                        DB::table('commercial_spaces_tenants')
+                        ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
+                        ->where('commercial_spaces_tenants.Tenant_ID', '=', $id)
+                        ->update(['Tenant_Status' => "Non-Compliance"]);
+                    }
+                }
+            }
+
             Alert::Success('Success', 'Payment Status Successfully Updated!');
-            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');
+            return redirect('FinanceApproval')->with('Success', 'Data Updated');
         }
         else
         {
             Alert::Error('Failed', 'Updating of Status Failed!');
-            return redirect('CommercialSpaceRentCollections')->with('Success', 'Data Updated');                
+            return redirect('FinanceApproval')->with('Success', 'Data Updated');                
         }
     }
 
@@ -668,10 +683,6 @@ class CommercialSpacesSecondController extends Controller
     
                 if($sql)
                 {
-                    DB::table('commercial_spaces_tenants')
-                    ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')
-                    ->where('commercial_spaces_tenants.Space_Unit', '=', $space_unit)
-                    ->update(['Tenant_Status' => "Non-Compliance"]);
 
                     $tenants = DB::table('commercial_spaces_tenants')
                     ->join('commercial_spaces_applications', 'commercial_spaces_applications.id', '=', 'commercial_spaces_tenants.Tenant_ID')

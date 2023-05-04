@@ -227,7 +227,7 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 	Route::get('/front_desk_datepicker/{id}', 'App\Http\Controllers\HotelController@front_desk_getdate')->name('get.date');
 	Route::post('HotelReservationForm', 'App\Http\Controllers\HotelController@store');
 
-	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	// Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
 	Route::get('/update_booking_status/{id}/{no}/{check}/{stats}', 'App\Http\Controllers\HotelController@update_booking_status');
 	Route::get('/invoice/{id}/{bn}', 'App\Http\Controllers\HotelController@invoice');
 	Route::get('HotelReservationForm', [App\Http\Controllers\HotelController::class, 'hotel_reservation_form'])->name('HotelReservationForm');
@@ -256,7 +256,8 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	//Finance Approval
 	Route::get('FinanceApproval', [App\Http\Controllers\FinanceController::class, 'finance_approve'])->name('FinanceApproval');
 	Route::get('/finance_hotel_approval', 'App\Http\Controllers\FinanceController@finance_hotel_approval');
-
+	Route::get('/update_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@update_payment');
+	
 	//Finance Invoice
 	//  Route::get('/FinanceInvoice/{id}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
 	 Route::get('finance_invoice/{bn}', [App\Http\Controllers\FinanceController::class, 'finance_invoice'])->name('FinanceInvoice');
@@ -266,8 +267,11 @@ Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	Route::post('/edit', 'App\Http\Controllers\FinanceReportController@edit');
 	Route::get('/archives', 'App\Http\Controllers\FinanceController@archives');
 	Route::get('/archives_summary', 'App\Http\Controllers\FinanceController@archives_summary');
+	Route::get('/proof_payment_summary', 'App\Http\Controllers\FinanceController@proof_payment_summary');
 
 	Route::get('DailyReport', [App\Http\Controllers\FinanceController::class, 'finance_report'])->name('DailyReport');
+
+	
 });
 
 //Admin and Inventory
@@ -276,6 +280,7 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
 	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	Route::get('/stock_history_report', 'App\Http\Controllers\InventoryController@stock_history_report');
 
 	//Hotel Inventory
 	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'StockHotel'])->name('StockCount');

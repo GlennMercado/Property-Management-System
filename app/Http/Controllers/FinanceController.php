@@ -108,8 +108,32 @@ class FinanceController extends Controller
         
         //Finance Approval
         $list = DB::select('SELECT * FROM hotel_reservations a LEFT JOIN novadeci_suites b ON a.Room_No = b.Room_No');
-		
-        return view('Admin.pages.Finances.FinanceApproval', ['list'=>$list],);
+        $list2 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+        $list3 = DB::select("SELECT * FROM commercial_space_rent_reports");
+        $count2 = DB::select("SELECT COUNT(*) as cnt FROM commercial_space_rent_reports WHERE Payment_Status = 'Non-Payment'");
+        $array = array();
+
+        $list4 = DB::select("SELECT a.Space_Unit, b.* FROM commercial_spaces_tenants a INNER JOIN commercial_spaces_tenant_deposits b ON a.Tenant_ID = b.Tenant_ID");
+
+        $count = DB::select("SELECT * From commercial_spaces_tenants");
+        foreach($count as $counts)
+        {
+            $array[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+        //wadasdasdasdasd
+
+        $list5 = DB::select('SELECT * FROM commercial_spaces_applications a INNER JOIN commercial_spaces_tenants b ON a.id = b.Tenant_ID WHERE a.IsArchived = 0');
+           
+        $count3 = DB::select("SELECT * From commercial_spaces_tenants");
+        $arrays2 = array();
+        
+        foreach($count as $counts)
+        {
+            $arrays2[] = ['Tenant_ID' => $counts->Tenant_ID];
+        }
+        $list6 = DB::select("SELECT * FROM commercial_space_utility_bills");
+
+        return view('Admin.pages.Finances.FinanceApproval', ['list'=>$list, 'list2'=>$list2, 'count2'=>$count2 ,'array'=>$array, 'list3'=>$list3, 'list4' => $list4, 'list5' => $list5 ,'list6' => $list6, 'count3' => $count3, 'arrays2' => $arrays2,]);
     }
 
     public function finance_archives()
@@ -187,17 +211,26 @@ class FinanceController extends Controller
         $data;
         $title;
 
-        // $data = DB::table('finance_2_reports')
-        // ->where('eventdate', '>=', Carbon::now()->startofmonth()->format('Y-m-d'))
-        // ->where('eventdate', '<=', Carbon::now()->endofmonth()->format('Y-m-d'))
-        // ->whereBetween('created_at', [$start_date, $end_date])
-        // ->get();
         $data = finance_2_reports::where('Client_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
             $title = "Revenue Archives";
 
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport2', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         // return $pdf->download('report.pdf');
         return view('Admin.pages.Finances.FinanceReport2', compact('data', 'title'));
+    }
+    public function proof_payment_summary(Request $request){
+
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+        
+        $data = hotel_reservations::where('Payment_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Proof of Payment Report(s)";
+
+        $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport3', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
+        // return $pdf->download('report.pdf');
+        return view('Admin.pages.Finances.FinanceReport3', compact('data', 'title'));
     }
 
     /**
