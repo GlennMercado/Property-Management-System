@@ -196,6 +196,24 @@ class HotelController extends Controller
 
         $user_type = Auth::user()->User_Type;
 
+        //NOTIFY
+            $email = null;
+            $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
+            foreach($select as $selects)
+            {
+                $email = $selects->Email;
+            }
+
+            if($email != null)
+            {
+                $client = User::where('email', $email)->first();
+            
+                $client->notify(new Booked($client));
+            }
+        
+        //HERE
+
         if($isarchived == false)
         {
             $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno'");
@@ -234,7 +252,7 @@ class HotelController extends Controller
 
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
-            if($stats3 != "Checked-In")
+            if($stats3 != "Occupied")
             {
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
             }

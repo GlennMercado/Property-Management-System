@@ -91,7 +91,7 @@
                                                 </td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment }}</td>
-                                                <td style="font-size:16px;">{{ $sqls->gcash_account_name }}</td>
+                                                <td style="font-size:16px;">{{ $sqls->Reference_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Mobile_Num }}</td>

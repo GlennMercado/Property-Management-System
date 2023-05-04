@@ -8,4 +8,4 @@ composer require yajra/laravel-datatables-oracle
 
 composer require laravel/socialite
 
-composer require 
+composer require barryvdh/laravel-dompdf
