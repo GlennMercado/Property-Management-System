@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-
     <div class="container mt-8">
+        <div class="d-flex justify-content-center">
+            <h1 class = "text-uppercase">Our Services</h1>
+        </div>
         <div class="row">
             <div class="col-md-4">
                 <a href="{{ url('rooms') }}">
@@ -26,7 +28,8 @@
             <div class="col-md-4">
                 <a href="{{ url('convention_center') }}">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem;">
-                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/convention3.png" alt="Card image cap" style="width: 18rem">
+                        <img class="card-img-top container" src="{{ asset('nvdcpics') }}/convention3.png"
+                            alt="Card image cap" style="width: 18rem">
                         <div class="card-body ">
                             <h5 class="card-title">Convention Center</h5>
                             <p class="card-text text-dark">A convention center is a large facility specifically designed to
@@ -54,10 +57,15 @@
         </div>
     </div>
     <style>
+        /* image filter */
+        .card-img-top {
+            filter: brightness(75%);
+        }
+
         /* .img1 img {
-                                        filter: blur(1px) brightness(49%);
-                                        -webkit-filter: blur(1px) brightness(49%);
-                                        -moz-filter: blur(1px) brightness(49%);
-                                    } */
+                                                                                                filter: blur(1px) brightness(49%);
+                                                                                                -webkit-filter: blur(1px) brightness(49%);
+                                                                                                -moz-filter: blur(1px) brightness(49%);
+                                                                                            } */
     </style>
 @endsection
