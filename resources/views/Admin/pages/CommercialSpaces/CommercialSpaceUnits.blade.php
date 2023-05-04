@@ -551,7 +551,7 @@
                                                                                 @endif
                                                                                 <td>{{ $lists3->Paid_By }}</td>
                                                                                 <td>
-                                                                                    @if($lists3->Payment_Status == "Paid")
+                                                                                    @if($lists3->Payment_Status != "Non-Payment" && $lists3->Reference_No != null)
                                                                                         <button class="preview-btn btn btn-sm btn-primary" data-reference-no="{{$lists3->Reference_No}}" data-proof-image="{{$lists3->Proof_Image}}" data-index="{{$index}}">View Payment</button>
                                                                                     @endif
 
@@ -575,7 +575,7 @@
                                                 </div>
                                             </div>
                                             @foreach($list3 as $index => $lists3)
-                                                @if($lists3->Payment_Status == "Paid")
+                                                @if($lists3->Payment_Status != "Non-Payment" && $lists3->Reference_No != null)
                                                     <div class="preview-container preview-container-{{$index}}">
                                                         <p>Reference Number : <span class="reference-no reference-no-{{$index}}"></span></p>
                                                         @if($lists3->Proof_Image != null)

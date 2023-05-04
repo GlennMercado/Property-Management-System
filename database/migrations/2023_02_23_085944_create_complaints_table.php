@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('concern_text');
             $table->string('status');
             $table->string('remarks');
+            $table->date('schedule');
             $table->timestamps();
             $table->string('complaints_img');
             $table->binary('DB_Image');

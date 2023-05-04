@@ -243,7 +243,7 @@
                             <div class="row ">
                                 <div class="col-md pt-4">
                                     <p>Event Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control" name="event_date" type="date"
+                                    <input class="form-control" name="event_date" type="datetime-local"
                                         onkeydown="return false" id="example-datetime-local-input" id="my-date"
                                         onchange="validateDate()">
                                     <p id="date-error" style="color: red; font-size: 14px;"></p>

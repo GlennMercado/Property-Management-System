@@ -33,7 +33,7 @@
                     <h1 class="image-text font-weight-bold uppercase text-white text-uppercase"
                         style="letter-spacing: 0.1em; font-size: 3.5em">NVDC
                         CONVENTION CENTER</h1>
-                    <a href="{{ url('login') }}" class="btn btn-success" href="" title="" >INQUIRE NOW</a>
+                    <a href="{{ url('login') }}" class="btn btn-success" href="" title="">INQUIRE NOW</a>
                 </div>
             </div>
 
@@ -192,7 +192,11 @@
                     <p class="txt" style="font-weight:bold;">Suites</p>
                     <p class="card-text txt">P2,500.00 per night with breakfast
                         /P1,500.00 per additional pax with free breakfast.</p>
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                      </button> -->
+                    <div class="row d-flex justify-content-center">
+                        <a href="{{ url('rooms') }}">
+                            <button type="button" class="btn btn-success d-md-none">Book now</button>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -210,7 +214,11 @@
                     <p class="card-text txt">Venue for personal and corporate
                         celebrations,
                         training/learning sessions and sports activities.</p>
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                           </button> -->
+                    <div class="row d-flex justify-content-center">
+                        <a href="{{ url('convention_center') }}">
+                            <button type="button" class="btn btn-success d-md-none">Inquire now</button>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -229,7 +237,11 @@
                         Properties,
                         we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
                         month! </p>
-                    <!-- <button type="button" class="btn btn-success" style="border-radius: 20px;">                                                                                                                                   </button> -->
+                    <div class="row d-flex justify-content-center">
+                        <a href="{{ url('commercial_spaces') }}">
+                            <button type="button" class="btn btn-success d-md-none">Apply now</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

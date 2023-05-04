@@ -69,6 +69,10 @@ class GuestController extends Controller
     {
         return view('Guest.ContactUs');
     }
+    public function confirmation()
+    {
+        return view('Guest.Confirmation');
+    }
     public function map()
     {
         return view('Guest.Map');
@@ -306,7 +310,7 @@ class GuestController extends Controller
         ]);
         
         $submit = new complaints;
-        $submit->status = 'On-going';
+        $submit->status = 'Pending';
         $submit->email = Auth::user()->email;
         $submit->name = Auth::user()->name;
         $submit->profile_pic = Auth::user()->profile_pic;
@@ -379,8 +383,6 @@ class GuestController extends Controller
             $reserve->Room_No = $request->input('room_no');
             $reserve->Reference_No = $request->input('gcash_account');
 
-
-
             if($request->hasfile('images'))
             {
                 $file = $request->file('images');
@@ -397,8 +399,7 @@ class GuestController extends Controller
             if($reserve->save())
             {
                 $this->booked();
-                Alert::Success('Success', 'You have book a hotel reservation.');
-                return redirect('/rooms');
+                return redirect('/Confirmation');
             }
             else
             {
