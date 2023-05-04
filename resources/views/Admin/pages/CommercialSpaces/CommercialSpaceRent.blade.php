@@ -88,13 +88,13 @@
                                                                     <i class="bi bi-eye"></i>
                                                                 </button>
                                                                 @php $now = date('Y-m-d') @endphp
-                                                                @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)" || $lists->Due_Date == $now)
+                                                                {{-- @if($lists->Tenant_Status != "Pre-Termination" && $lists->Payment_Status == "Paid (Checking)" || $lists->Due_Date == $now)
                                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                         data-target="#update_payment_status{{ $lists->id }}"
                                                                         title="Update Payment Status">
                                                                         <i class="bi bi-arrow-clockwise"></i>
                                                                     </button>
-                                                                @endif
+                                                                @endif --}}
                                                             </td>
                                                             <td>
                                                                 <span class="tbltxt">Business Name: </span>
