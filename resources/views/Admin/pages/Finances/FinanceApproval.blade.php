@@ -766,14 +766,14 @@
                                                                                 @endif
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
-                                                                                        class="preview-btn btn btn-sm btn-primary"
+                                                                                        class="preview-btn2 btn btn-sm btn-primary"
                                                                                         data-reference-no="{{ $lists->Reference_No }}"
                                                                                         data-proof-image="{{ $lists->Proof_Image }}"
                                                                                         data-index="{{ $index }}">View
                                                                                         Payment</button>
 
                                                                                     <div
-                                                                                        class="preview-container preview-container-{{ $index }}">
+                                                                                        class="preview-container2 preview-container2-{{ $index }}">
                                                                                         <p>Reference Number : <span
                                                                                                 class="reference-no reference-no-{{ $index }}"></span>
                                                                                         </p>
@@ -858,14 +858,14 @@
 
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
-                                                                                        class="preview-btn btn btn-sm btn-primary"
+                                                                                        class="preview-btn2 btn btn-sm btn-primary"
                                                                                         data-reference-no="{{ $lists->Reference_No }}"
                                                                                         data-proof-image="{{ $lists->Proof_Image }}"
                                                                                         data-index="{{ $index }}">View
                                                                                         Payment</button>
 
                                                                                     <div
-                                                                                        class="preview-container preview-container-{{ $index }}">
+                                                                                        class="preview-container2 preview-container2-{{ $index }}">
                                                                                         <p>Reference Number : <span
                                                                                                 class="reference-no reference-no-{{ $index }}"></span>
                                                                                         </p>
@@ -1057,8 +1057,8 @@
             $('.prevent_submit').attr('disabled', 'true');
         });
 
-        //Preview Image
-        const previewBtns = document.querySelectorAll('.preview-btn');
+         //Preview Image
+         const previewBtns = document.querySelectorAll('.preview-btn');
         previewBtns.forEach(previewBtn => {
             const index = previewBtn.dataset.index;
             const previewContainer = document.querySelector(`.preview-container-${index}`);
@@ -1075,6 +1075,26 @@
                 previewContainer.style.display = 'none';
             });
         });
+
+        //Preview Image2
+        const previewBtns2 = document.querySelectorAll('.preview-btn2');
+        previewBtns2.forEach(previewBtn2 => {
+            const index = previewBtn2.dataset.index;
+            const previewContainer2 = document.querySelector(`.preview-container2-${index}`);
+            const referenceNo2 = document.querySelector(`.reference-no-${index}`);
+            const proofImage2 = document.querySelector(`.proof-image-${index}`);
+
+            previewBtn2.addEventListener('mouseenter', function() {
+                referenceNo2.textContent = previewBtn2.dataset.referenceNo2;
+                proofImage2.src = previewBtn2.dataset.proofImage2;
+                previewContainer2.style.display = 'block';
+            });
+
+            previewBtn2.addEventListener('mouseleave', function() {
+                previewContainer2.style.display = 'none';
+            });
+        });
+
     </script>
     <style>
         /* remove up and down button inside form */
@@ -1095,6 +1115,34 @@
         .preview-container {
             display: none;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            width: auto;
+            height: auto;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .preview-container p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .preview-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .preview-container2 {
+            display: none;
+            position: absolute;
             top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -1109,13 +1157,13 @@
             justify-content: center;
         }
 
-        .preview-container p {
+        .preview-container2 p {
             margin-bottom: 10px;
             font-size: 14px;
             font-weight: bold;
         }
 
-        .preview-container img {
+        .preview-container2 img {
             max-width: 100%;
             height: auto;
             max-height: 400px;
