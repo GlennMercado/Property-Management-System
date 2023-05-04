@@ -35,7 +35,7 @@
                             <p class="card-text text-dark">A convention center is a large facility specifically designed to
                                 host
                                 conventions, trade shows, and other events.</p>
-                            <button class="btn btn-success">Book Now</button>
+                            <button class="btn btn-success">Inquire Now</button>
                         </div>
                     </div>
                 </a>
