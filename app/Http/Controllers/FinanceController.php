@@ -205,6 +205,23 @@ class FinanceController extends Controller
         return view('Admin.pages.Finances.FinanceReport', compact('data', 'title'));
     }
 
+    public function dcpr_summary(Request $request){
+
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+
+            $data = finance_2_reports::where('Client_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Daily Cash Position Report";
+            
+
+        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'))->setOption('font_path', '')->setOption('font_data', []);
+        //  return $pdf->download('report.pdf');
+        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'));
+    }
+
     public function archives_summary(Request $request){
 
         $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');

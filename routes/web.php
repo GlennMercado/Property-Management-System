@@ -249,7 +249,8 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 Route::middleware(['auth', 'AdminorFinance'])->group(function(){
 	//Archives
 	Route::get('FinanceArchives', [App\Http\Controllers\FinanceController::class, 'finance_archives'])->name('FinanceArchives');
-			
+	Route::get('/dcpr_summary', 'App\Http\Controllers\FinanceController@dcpr_summary');
+				
 	//Finance Dashboards
 	Route::get('FinanceDashboard', [App\Http\Controllers\FinanceController::class, 'finance_dash'])->name('FinanceDashboard');
 
