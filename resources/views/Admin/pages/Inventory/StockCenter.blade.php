@@ -5,6 +5,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
+    <script>
+        $('.prevent_submit').on('submit', function() {
+            $('.prevent_submit').attr('disabled', 'true');
+        });
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+        });
+    </script>
+
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
