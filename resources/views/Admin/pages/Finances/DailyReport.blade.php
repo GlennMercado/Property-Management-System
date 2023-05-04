@@ -83,11 +83,11 @@
                             <div class="d-flex flex-row">
                                 <div class="p-2">
                                     <label for="start_date">Start Date:</label>
-                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="p-2">
                                     <label for="end_date">End Date:</label>
-                                    <input type="date" class="form-control" id="start_date" name="end_date">
+                                    <input type="date" class="form-control" id="start_date" name="end_date" required>
                                 </div>
                                 <div class="p-2">
                                     <label>Generate report:</label>
