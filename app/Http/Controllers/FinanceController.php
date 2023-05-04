@@ -103,6 +103,15 @@ class FinanceController extends Controller
             return view('Admin.pages.Finances.FinanceDashboard', ['list'=>$list], compact('basketball_sum', 'unearned_sum', 'otherincome_sum', 'parking_sum', 'managementfee_sum', 'event_sum', 'hotel_sum', 'commercialspace_sum'));
     }
 
+    public function finance_approve()
+    {
+        
+        //Finance Approval
+        $list = DB::select('SELECT * FROM hotel_reservations a LEFT JOIN novadeci_suites b ON a.Room_No = b.Room_No');
+		
+        return view('Admin.pages.Finances.FinanceApproval', ['list'=>$list],);
+    }
+
     public function finance_archives()
     {
       
@@ -197,9 +206,102 @@ class FinanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function finance_hotel_approval($id, $no, $check)
     {
-        //
+        $bookno = $id;
+        $roomno = $no;
+        $isarchived = $check;
+        $stats = "Paid";
+        $stats2 = "Reserved";
+
+        $user_type = Auth::user()->User_Type;
+
+        if($isarchived == false)
+        {
+            $check = DB::select("SELECT * FROM novadeci_suites WHERE Room_No = '$roomno'");
+
+            $stats3;
+
+            foreach($check as $checks)
+            {
+                $stats3 = $checks->Status;
+            }
+        
+          
+            $facility = "Hotel Room";
+
+            //For FinanceModule Variables
+            // $ornum = DB::table('hotel_reservations')->where('id')->get();
+            $particular = "Hotel";
+            $debit = "Cash";
+            $remark = "FULL";
+            $finance_amount = DB::table('hotel_reservations')->select('Payment')->first()->Payment;
+
+            $reservations = DB::table('hotel_reservations')->where('Booking_No', $bookno)->get();
+
+            foreach ($reservations as $reservation) {
+                $ornum = $reservation->id;
+                $finance_amount = $reservation->Payment;
+                $finance_eventdate = $reservation->Check_In_Date;
+                // other variables and insert query here
+            }
+
+            $outvat = .12;
+            $gross = 1.12;
+            $cash = $finance_amount / $gross;
+            $vat = $outvat * $cash;  
+
+            DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+            
+            if($stats3 != "Checked-In")
+            {
+                DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
+            }
+
+            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
+
+            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
+            values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
+           
+            if($user_type == "Operations Manager")
+            {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
+                Alert::Success('Success', 'Payment successfully updated!');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
+                Alert::Success('Success', 'Payment successfully updated!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
+        }
+        else
+        {
+            if($user_type == "Operations Manager")
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
+        }    
     }
 
     /**
