@@ -25,7 +25,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Reserved</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-book-fill f-left"></i><span></span>
+                            <i class="bi bi-book-fill f-left"></i><span>{{ $reserved_guests }}</span>
                         </h2>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Checked in</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-bookmark-check-fill f-left"></i><span></span>
+                            <i class="bi bi-bookmark-check-fill f-left"></i><span>{{ $checked_guests }}</span>
                         </h2>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Pending</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-clock-history f-left"></i><span></span>
+                            <i class="bi bi-clock-history f-left"></i><span>{{ $pending_guests }}</span>
                         </h2>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Arriving</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-box-arrow-in-up-left f-left"></i><span></span>
+                            <i class="bi bi-box-arrow-in-up-left f-left"></i><span>{{ $count_daily }}</span>
                         </h2>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 text-white">Departing</h4>
                         <h2 class="text-right text-white">
-                            <i class="bi bi-box-arrow-down-right f-left"></i><span></span>
+                            <i class="bi bi-box-arrow-down-right f-left"></i><span>{{ $count_daily1 }}</span>
                         </h2>
                     </div>
                 </div>
@@ -84,21 +84,41 @@
         <div class="row">
             <div class="card shadow mt--3 col-md-12">
                 <div class="card-header row d-flex">
-                    <div class="col-md-4">
-                        <select class="form-control" style="border:2px solid" id="optionselect">
-                            <option value="Pending" selected="true">Pending</option>
-                            <option value="Reserved">Reserved</option>
-                            <option value="Checked-In">Checked-In</option>
-                            <option value="Finished">Finished</option>
-                        </select>
-                    </div>
+                    <form action="{{ url('/hotel_reports') }}" target="blank" method="get">
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="p-2">
+                                <label for="optionselect">Sort:</label>
+                                <select class="form-control" style="border:2px solid" id="optionselect" name="sort">
+                                    <option value="Pending" selected="true">Pending</option>
+                                    <option value="Reserved">Reserved</option>
+                                    <option value="Checked-In">Checked-In</option>
+                                    <option value="Finished">Finished</option>
+                                    <option value="All">All</option>
+                                </select>
+                            </div>
+                            <div class="p-2">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="p-2">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="end_date" required>
+                            </div>
+                            <div class="p-2">
+                                <label>Generate report:</label>
+                                <button type="submit" class="btn btn-success w-75 h-50">Print
+                                    <i class="bi bi-printer-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="col text-right">
                         <a href="{{ route('FrontDesk') }}" class="btn bg-green text-white">
                             Book Now
-                        </a>    
-                    </div> 
+                        </a>
+                    </div>
                 </div>
-                
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- Pending -->
@@ -180,7 +200,7 @@
                                                                 <p class="text-left">Payment Status: </p>
                                                                 <input class="form-control" type="text"
                                                                     value="{{ $lists->Payment_Status }}" readonly>
-                                                            </div>                                                                                                                      
+                                                            </div>
                                                         </div>
 
                                                         <br>

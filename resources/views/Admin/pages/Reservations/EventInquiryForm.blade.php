@@ -114,7 +114,7 @@
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <h1 class="p-3">Event Inquiries</h1>
-                                    <form action="{{ url('/report') }}" target="blank" method="get">
+                                    <form action="{{ url('/inquiry_reports') }}" target="blank" method="get">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>
@@ -303,7 +303,7 @@
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <h1 class="p-3">Event List</h1>
-                                    <form action="{{ url('/report') }}" target="blank" method="get">
+                                    <form action="{{ url('/inquiry_reports') }}" target="blank" method="get">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>

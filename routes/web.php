@@ -238,8 +238,9 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 
 	Route::get('/CheckInQr/{id}', 'App\Http\Controllers\HotelController@qrview');
 	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
-
 	Route::get('/report', [App\Http\Controllers\ReportController::class, 'report'])->name('BookingReport');
+	Route::get('/inquiry_reports', [App\Http\Controllers\ReportController::class, 'inquiry_reports'])->name('InquiryReport');
+	Route::get('/hotel_reports', [App\Http\Controllers\ReportController::class, 'hotel_reports'])->name('HotelReport');
 });	
 
 //Admin and Finance

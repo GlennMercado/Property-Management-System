@@ -43,10 +43,15 @@ class HotelController extends Controller
     }
     public function guest_viewing()
     {
+        $pending_guests = hotel_reservations::where('Payment_Status','Pending')->count();
+        $count_daily = hotel_reservations::whereDate('Check_In_Date', DB::raw('CURDATE()'))->count();
+        $count_daily1 = hotel_reservations::whereDate('Check_Out_Date', DB::raw('CURDATE()'))->count();
+        $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
+        $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count(); 
         $list = DB::select('SELECT * FROM hotel_reservations');
         $room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  
-        return view('Admin.pages.OperationManagement.Guest_Reservation', ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
+        return view('Admin.pages.OperationManagement.Guest_Reservation', compact('pending_guests', 'count_daily', 'count_daily1', 'reserved_guests', 'checked_guests'), ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
     /**
      * Show the form for creating a new resource.

@@ -30,98 +30,34 @@
             <div class="col-xl">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col text-right">
-                                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
-                                    role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
-                                            data-toggle="tab" href="#tabs-icons-text-1" role="tab"
-                                            aria-controls="tabs-icons-text-1" aria-selected="true">Guest Requests</a>
-                                    </li>
-                                    {{-- <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                            aria-selected="false"> Complaints </a>
-                                    </li> --}}
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
-                                            href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                            aria-selected="false"> Checked-in</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <br>
+                        <h1>Guest Request Reports</h1>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div class="tab-content" id="myTabContent">
-                                {{-- Guest Requests --}}
-                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-1-tab">
-                                    <select class="form-control" style="width:20%;" id="date">
-                                        <option value="All">All Records</option>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weekly</option>
-                                        <option value="Monthly">Monthly</option>
-                                    </select>
-                                    <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" style="font-size:18px;">Request ID</th>
-                                                <th scope="col" style="font-size:18px;">Room Number</th>
-                                                <th scope="col" style="font-size:18px;">Booking Number</th>
-                                                <th scope="col" style="font-size:18px;">Guest Name</th>
-                                                <th scope="col" style="font-size:18px;">Type of Request</th>
-                                                <th scope="col" style="font-size:18px;">Request</th>
-                                                <th scope="col" style="font-size:18px;">Date Requested</th>
-                                                <th scope="col" style="font-size:18px;">Date Updated</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                            <select class="form-control" style="width:20%;" id="date">
+                                <option value="All">All Records</option>
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                            </select>
+                            <!-- Projects table -->
+                            <table class="table align-items-center table-flush" id="myTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" style="font-size:18px;">Request ID</th>
+                                        <th scope="col" style="font-size:18px;">Room Number</th>
+                                        <th scope="col" style="font-size:18px;">Booking Number</th>
+                                        <th scope="col" style="font-size:18px;">Guest Name</th>
+                                        <th scope="col" style="font-size:18px;">Type of Request</th>
+                                        <th scope="col" style="font-size:18px;">Request</th>
+                                        <th scope="col" style="font-size:18px;">Date Requested</th>
+                                        <th scope="col" style="font-size:18px;">Date Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                {{-- Complaints --}}
-                                {{-- <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-2-tab">
-                                    <select class="form-control" style="width:20%;" id="date2">
-                                        <option value="All">All Records</option>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weekly</option>
-                                        <option value="Monthly">Monthly</option>
-                                    </select>
-                                    <!-- Projects table -->
-                                    <table class="table align-items-center table-flush" id="myTable2">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" style="font-size:18px;">Concern</th>
-                                                <th scope="col" style="font-size:18px;">Complaint</th>
-                                                <th scope="col" style="font-size:18px;">Date Created</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div> --}}
-
-                                {{-- Maintenance --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-3-tab">
-
-                                </div>
-
-                                {{-- Linen Request --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
-                                    aria-labelledby="tabs-icons-text-4-tab">
-
-                                </div>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
