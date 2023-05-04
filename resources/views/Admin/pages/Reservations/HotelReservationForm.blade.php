@@ -193,7 +193,7 @@
                                                     @if ($lists->Payment_Status == 'Pending')
                                                         <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update{{ $lists->Booking_No }}"> <i
-                                                                class="bi bi-arrow-clockwise"></i></button>
+                                                                class="bi bi-pencil-square"></i></button>
                                                     @endif
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
@@ -428,7 +428,7 @@
                                                         @if ($lists->Check_In_Date <= $now)
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update_booking_status{{ $lists->Booking_No }}">
-                                                                <i class="bi bi-arrow-clockwise"></i>
+                                                                <i class="bi bi-pencil-square"></i>
                                                             </button>
                                                         @endif
                                                     @endif
@@ -609,7 +609,7 @@
                                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                                 data-target="#update_booking_status11{{ $lists->Booking_No }}"
                                                                 title="Update">
-                                                                <i class="bi bi-arrow-clockwise"></i>
+                                                                <i class="bi bi-pencil-square"></i>
                                                             </button>
                                                         @endif
                                                         <!--Guest Request Button-->
@@ -623,14 +623,14 @@
                                                         <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update_booking_status2{{ $lists->Booking_No }}"
                                                             title="Update">
-                                                            <i class="bi bi-arrow-clockwise"></i>
+                                                            <i class="bi bi-pencil-square"></i>
                                                         </button>
                                                         {{-- Invoice --}}
-                                                        <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
-                                                            target="blank" class="btn btn-sm btn-success"
+                                                        <button href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                            target="blank" class="btn btn-sm"
                                                             style="cursor:pointer;" title="Invoice">
                                                             <i class="bi bi-file-earmark-text"></i>
-                                                        </a>
+                                                        </button>
                                                     @endif
 
                                                 </td>
@@ -1050,7 +1050,7 @@
                                                 @if ($lists->Payment_Status == 'Pending')
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#update{{ $lists->Booking_No }}"> <i
-                                                            class="bi bi-arrow-clockwise"></i></button>
+                                                            class="bi bi-pencil-square"></i></button>
                                                 @endif
                                             </td>
                                             <td style="font-size:14px;">{{ $lists->Room_No }}</td>

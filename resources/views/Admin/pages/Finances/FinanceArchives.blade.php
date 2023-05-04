@@ -10,6 +10,7 @@
         jQuery(document).ready(function($) {
             $('#myTable').DataTable();
             $('#myTables').DataTable();
+            $('#myTabless').DataTable();
         });
     </script>
 
@@ -46,6 +47,11 @@
                                                 href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
                                                 aria-selected="false"> Revenue Archives</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
+                                                href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
+                                                aria-selected="false"> Daily Cash Position Report</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,23 +71,25 @@
                                         <div class="d-flex flex-row">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                                <input type="date" class="form-control" id="start_date" name="start_date"
+                                                    required>
                                             </div>
                                             <div class="p-2">
                                                 <label for="end_date">End Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="end_date" required>
+                                                <input type="date" class="form-control" id="start_date" name="end_date"
+                                                    required>
                                             </div>
                                             <div class="p-2">
                                                 <label>Generate report:</label>
                                                 <button type="submit" class="btn btn-success w-100">
-                                                    <i class="bi bi-printer-fill"></i>
+                                                    <label for="">Print</label><span class = "ml-2"><i class="bi bi-printer-fill"></i></span>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                
-                                
+
+
                                 <table class="table align-items-center table-flush" style="align-items:center"
                                     id="myTable">
                                     <thead class="thead-light">
@@ -103,14 +111,14 @@
                                                         data-target="#ModalView{{ $sqls->id }}"
                                                         class="btn btn-sm btn-primary" title="View Finance">
                                                         <i class="bi bi-eye"></i></button>
-                                                        <a href="{{ url('/finance_invoice', ['bn' => $sqls->Booking_No]) }}"
-                                                                target="blank" class="btn btn-sm btn-success"
-                                                                style="cursor:pointer;" title="Invoice">
-                                                                <i class="bi bi-file-earmark-text"></i>
-                                                            </a>
+                                                    <a href="{{ url('/finance_invoice', ['bn' => $sqls->Booking_No]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                    </a>
                                                 </td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
-                                                <td style="font-size:16px;">{{ $sqls->Payment }}</td>
+                                                <td style="font-size:16px;">{{ number_format($sqls->Payment, 2, '.', ',') }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Reference_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
@@ -204,27 +212,31 @@
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: The Report Page is in a Landscape Mode </h4>
-                                <div class="card-header" style="justify-content:center;align-items:censr;align-self:center">
-                                    <form action="{{ url('/archives_summary') }}" target="blank" method="get">
-                                        <div class="d-flex flex-row">
-                                            <div class="p-2">
-                                                <label for="start_date">Start Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: The Report
+                                        Page is in a Landscape Mode </h4>
+                                    <div class="card-header"
+                                        style="justify-content:center;align-items:censr;align-self:center">
+                                        <form action="{{ url('/archives_summary') }}" target="blank" method="get">
+                                            <div class="d-flex flex-row">
+                                                <div class="p-2">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="start_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="end_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Generate report:</label>
+                                                    <button type="submit" class="btn btn-success w-100">
+                                                        <i class="bi bi-printer-fill"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="p-2">
-                                                <label for="end_date">End Date:</label>
-                                                <input type="date" class="form-control" id="start_date" name="end_date" required>
-                                            </div>
-                                            <div class="p-2">
-                                                <label>Generate report:</label>
-                                                <button type="submit" class="btn btn-success w-100">
-                                                    <i class="bi bi-printer-fill"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
 
                                     <table class="table align-items-center table-flush" style="align-items:center"
                                         id="myTables">
@@ -251,12 +263,12 @@
                                                 <th scope="col" style="font-size:18px;">Hotel</th>
                                                 <th scope="col" style="font-size:18px;">Commercial Spaces</th>
                                                 <th scope="col" style="font-size:18px;">Output VAT</th>
-                                            
-                    </tr>
+
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($list2 as $lists2)
-                                            <tr>
+                                                <tr>
                                                     <td style="font-size:16px;">{{ $lists2->particular }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->cash }}</td>
                                                     <td style="font-size:16px;">{{ $lists2->unearned }}</td>
@@ -292,6 +304,76 @@
                                     </table>
                                 </div>
                             </div>
+
+                            {{-- Daily Cash Position Report --}}
+                            <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <div class="table-responsive">
+                                    <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: The Report
+                                        Page is in a Landscape Mode </h4>
+                                    <div class="card-header"
+                                        style="justify-content:center;align-items:censr;align-self:center">
+                                        <form action="{{ url('/dcpr_summary') }}" target="blank" method="get">
+                                            <div class="d-flex flex-row">
+                                                <div class="p-2">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="start_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="end_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Generate report:</label>
+                                                    <button type="submit" class="btn btn-success w-100">
+                                                        <i class="bi bi-printer-fill"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <table class="table align-items-center table-flush" style="align-items:center"
+                                        id="myTabless">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:18px;">Name of Guest/Payee</th>
+                                                <th scope="col" style="font-size:18px;">Particulars</th>
+                                                <th scope="col" style="font-size:18px;">Gross Charges</th>
+                                                <th scope="col" style="font-size:18px;">NET Amount</th>
+                                                <th scope="col" style="font-size:18px;">OR No.
+                                                </th>
+                                                <th scope="col" style="font-size:18px;">Remarks</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list2 as $lists3)
+                                                <tr>
+                                                    <td style="font-size:16px;">{{ $lists3->payee }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->particular }}</td>
+                                                    <td style="font-size:16px;">{{ number_format($lists3->amount, 2, '.', ',') }}</td>
+                                                    <td style="font-size:16px;">{{ number_format($lists3->outputvat, 2, '.', ',') }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->ornum }}</td>
+                                                    <td style="font-size:16px;">{{ $lists3->remark }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <td style="font-size:16px;">Total Collection Amount:</td>
+                                            <td style="font-size:16px;"></td>
+                                            <td style="font-size:16px;">{{ number_format($amount_sum, 2, '.', ',') }}</td>
+                                            <td style="font-size:16px;"></td>
+                                            <td style="font-size:16px;"></td>
+                                            <td style="font-size:16px;"></td>
+                                            </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

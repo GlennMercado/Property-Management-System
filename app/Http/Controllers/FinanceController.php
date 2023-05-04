@@ -176,8 +176,9 @@ class FinanceController extends Controller
         $list = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$booking_no'");    
         $list2 = DB::select("SELECT * FROM used_supplies WHERE Booking_No = '$booking_no'");
         $list3 = DB::select("SELECT * FROM hotel_other_charges WHERE Booking_No = '$booking_no'");
+        $list4 = DB::select("SELECT * FROM out_of_order_rooms WHERE Booking_No = '$booking_no'");
 
-        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3]);
+        return view('Admin.pages.Finances.FinanceInvoice', ['list'=>$list, 'list2' => $list2, 'list3' => $list3, 'list4'=>$list4]);
         
     }
 
@@ -202,6 +203,23 @@ class FinanceController extends Controller
         $pdf = PDF::loadView('Admin.pages.Finances.FinanceReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         //  return $pdf->download('report.pdf');
         return view('Admin.pages.Finances.FinanceReport', compact('data', 'title'));
+    }
+
+    public function dcpr_summary(Request $request){
+
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+
+            $data = finance_2_reports::where('Client_Status', 'Paid')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Daily Cash Position Report";
+            
+
+        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'))->setOption('font_path', '')->setOption('font_data', []);
+        //  return $pdf->download('report.pdf');
+        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'));
     }
 
     public function archives_summary(Request $request){
