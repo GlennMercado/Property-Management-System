@@ -107,7 +107,7 @@
                         <div class="d-flex justify-content-center">
                             <h2 class="p-2">~ Upcomming events ~</h2>
                         </div>
-                        <div style="overflow-y: scroll;">
+                        <div style="overflow-y: scroll; max-height: 170px">
                             @foreach ($list3 as $lists3)
                                 <div class="shadow mt--3">
                                     <div class="d-flex flex-row">
@@ -495,43 +495,52 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <h3 class="mt-2">Event Name</h3>
-                                                                        <input type="text" class="form-control"
-                                                                            name="event_name">
+                                                                        <input type="text"
+                                                                            placeholder="Enter event name"
+                                                                            class="form-control" name="event_name">
                                                                         <h3 class="mt-2">Facility</h3>
                                                                         <select id="mySelect" name="facility"
                                                                             class="form-control" required>
                                                                             <option value="">Select an option
                                                                             </option>
-                                                                            <option value="150000">Convention Center
+                                                                            <option value="Convention Center">
+                                                                                Convention
+                                                                                Center
                                                                                 (150,000/8hrs)
                                                                             </option>
-                                                                            <option value="130000">Up to lower box
+                                                                            <option value="Up to lower box bleachers only">
+                                                                                Up to lower box
                                                                                 bleachers only
                                                                                 (130,000/8hrs)</option>
-                                                                            <option value="80000">Courtside (80,000/8hrs)
+                                                                            <option value="Courtside">Courtside
+                                                                                (80,000/8hrs)
                                                                             </option>
-                                                                            <option value="1200">Basketball practice
+                                                                            <option
+                                                                                value="Basketball practice games (non-aircon)">
+                                                                                Basketball practice
                                                                                 games
                                                                                 (non-aircon) (1,200/1hr)</option>
-                                                                            <option value="2000">Basketball practice
+                                                                            <option
+                                                                                value="Basketball practice games (aircon)">
+                                                                                Basketball practice
                                                                                 games
                                                                                 (aircon) (2,000/1hr)</option>
-                                                                            <option value="13500">Function Room A
+                                                                            <option value="Function Room A">Function Room A
                                                                                 (13,500/4hrs)
                                                                             </option>
-                                                                            <option value="14500">Function Room B
+                                                                            <option value="Function Room B">Function Room B
                                                                                 (14,500/4hrs)
                                                                             </option>
-                                                                            <option value="14500">Function Room C
+                                                                            <option value="Function Room C">Function Room C
                                                                                 (14,500/4hrs)
                                                                             </option>
-                                                                            <option value="13500">Function Room D
+                                                                            <option value="Function Room D">Function Room D
                                                                                 (13,500/4hrs)
                                                                             </option>
-                                                                            <option value="10000">Function Room E
+                                                                            <option value="Function Room E">Function Room E
                                                                                 (10,000/4hrs)
                                                                             </option>
-                                                                            <option value="25000">Function Room F
+                                                                            <option value="Function Room F">Function Room F
                                                                                 (25,000/4hrs)
                                                                             </option>
                                                                         </select>
@@ -541,13 +550,13 @@
                                                                     <div class="col-md-6">
                                                                         <h3 class="mt-2">Start date</h3>
                                                                         <input type="date" name="start_date"
-                                                                            id="myStartDateInput" class="form-control"
+                                                                            id="myStartDateInput" class="form-control chck"
                                                                             required>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <h3 class="mt-2">End date</h3>
                                                                         <input type="date" name="end_date"
-                                                                            id="myEndDateInput" class="form-control"
+                                                                            id="myEndDateInput" class="form-control chck"
                                                                             required>
                                                                     </div>
                                                                 </div>
@@ -835,47 +844,57 @@
             let totals = document.getElementById('totalCost');
             // Calculate total cost based on selected option
             switch (selectValue) {
-                case '150000':
+                case 'Convention Center':
                     totalCost = 150000 * durationInHours / 8;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '130000':
+                case 'Up to lower box bleachers only':
                     totalCost = 130000 * durationInHours / 8;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '80000':
+                case 'Courtside':
                     totalCost = 80000 * durationInHours / 8;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '1200':
+                case 'Basketball practice games (non-aircon)':
                     totalCost = 1200 * durationInHours;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '2000':
+                case 'Basketball practice games (aircon)':
                     totalCost = 2000 * durationInHours;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '13500':
+                case 'Function Room A':
                     totalCost = 13500 * durationInHours / 4;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '14500':
+                case 'Function Room B':
                     totalCost = 14500 * durationInHours / 4;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '10000':
+                case 'Function Room C':
+                    totalCost = 14500 * durationInHours / 4;
+                    totals.innerHTML = totalCost.toLocaleString('en-US');
+                    $('#totalCosts').val(totalCost);
+                    break;
+                case 'Function Room D':
+                    totalCost = 13500 * durationInHours / 4;
+                    totals.innerHTML = totalCost.toLocaleString('en-US');
+                    $('#totalCosts').val(totalCost);
+                    break;
+                case 'Function Room E':
                     totalCost = 10000 * durationInHours / 4;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
                     break;
-                case '25000':
+                case 'Function Room F':
                     totalCost = 25000 * durationInHours / 4;
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
@@ -885,6 +904,19 @@
                     totals.innerHTML = totalCost.toLocaleString('en-US');
                     $('#totalCosts').val(totalCost);
             }
+        });
+
+        $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+            var dateToday = new Date();
+            var month = dateToday.getMonth() + 1;
+            var day = dateToday.getDate();
+            var year = dateToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+            var maxDate = year + '-' + month + '-' + day;
+            $('.chck').attr('min', maxDate);
         });
     </script>
 @endsection
