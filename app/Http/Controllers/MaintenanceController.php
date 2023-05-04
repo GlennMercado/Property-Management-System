@@ -82,7 +82,7 @@ class MaintenanceController extends Controller
         {
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(['Booking_Status' => "Room Checked"]);
             DB::table('housekeepings')->where(['Room_No' => $room_no, 'Booking_No' => $bookno])->update(['Housekeeping_Status' => "Out of Service", 'Front_Desk_Status' => "Room Checked"]);
-            B::table('novadeci_suites')->where('Room_No', $room_no)->update(['Status' => "Vacant for Cleaning"]);
+            DB::table('novadeci_suites')->where('Room_No', $room_no)->update(['Status' => "Vacant for Cleaning"]);
 
             Alert::Success('Success', 'Housekeeping Successfully Updated!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Saved');
