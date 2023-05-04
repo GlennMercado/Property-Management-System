@@ -213,7 +213,7 @@
                                                                             </div>
                                                                           </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
+                                                                    {{-- <div class="col-md-6">
                                                                         <label>Stock Out</label>
                                                                         <div class="input-group input-group-sm">
                                                                             
@@ -225,7 +225,7 @@
                                                                               <button class="btn btn-success" type="button" onclick="incrementValue2()">+</button>
                                                                             </div>
                                                                           </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                         </div>
                                         <div class="modal-footer">
