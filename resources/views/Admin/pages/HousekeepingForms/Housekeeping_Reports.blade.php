@@ -22,7 +22,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Housekeeping</li>
-                            <li class="breadcrumb-item active text-dark" aria-current="page">Housekeeping Dashboard</li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">Reports</li>
                         </ol>
                     </nav>
                 @elseif(Auth::user()->User_Type == "Housekeeping Supervisor")

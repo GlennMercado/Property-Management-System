@@ -85,7 +85,7 @@
                                                                             data-toggle="modal"
                                                                             data-target="#update_status{{ $lists->id }}"
                                                                             title="Update Status">
-                                                                            <i class="bi bi-arrow-clockwise"></i>
+                                                                            <i class="bi bi-pencil-square"></i>
                                                                         </button>
                                                                     @endif
 
@@ -95,7 +95,7 @@
                                                                             data-toggle="modal"
                                                                             data-target="#update_status2{{ $lists->id }}"
                                                                             title="Interview Result">
-                                                                            <i class="bi bi-arrow-clockwise"></i>
+                                                                            <i class="bi bi-pencil-square"></i>
                                                                         </button>
                                                                     @endif
 

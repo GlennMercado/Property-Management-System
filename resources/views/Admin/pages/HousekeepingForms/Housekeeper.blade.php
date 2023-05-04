@@ -10,7 +10,7 @@
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
-                <h6 class="h2 text-dark d-inline-block mb-0">Housekeeper</h6>
+                <h6 class="h2 text-dark d-inline-block mb-0">Housekeepers</h6>
                 @if(Auth::user()->User_Type == "Admin")
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -114,7 +114,7 @@
                                                 <td>
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                         data-target="#edit{{ $lists->id }}" title="Update Status">
-                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                        <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </td>
                                             </tr>
