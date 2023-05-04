@@ -278,6 +278,7 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'Hotel_Rooms'])->name('Dashboard');
 	Route::post('/edit_stock', 'App\Http\Controllers\InventoryController@edit_stock');
 	Route::post('/addstock', 'App\Http\Controllers\InventoryController@addstock');
+	Route::get('/stock_history_report', 'App\Http\Controllers\InventoryController@stock_history_report');
 
 	//Hotel Inventory
 	Route::get('StockCount', [App\Http\Controllers\InventoryController::class, 'StockHotel'])->name('StockCount');
