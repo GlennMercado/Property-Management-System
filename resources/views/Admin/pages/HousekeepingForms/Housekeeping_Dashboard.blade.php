@@ -34,7 +34,7 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <!-- Count Box -->
-                        <div class="row mt-3">
+                        {{-- <div class="row mt-3">
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body rounded" style="background-color:#2AD587;">
@@ -93,8 +93,65 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card bg-c-yellow order-card">
+                                    <div class="card-block">
+                                        <h4 class="m-b-20 text-white">Arrival</h4>
+                                        <h2 class="text-right text-white">
+                                            <i class="bi bi-box-arrow-in-up-left f-left"></i><span>
+                                                @foreach ($arrival as $count)
+                                                    {{ $count->cnt }}
+                                                @endforeach
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-c-green order-card">
+                                    <div class="card-block">
+                                        <h4 class="m-b-20 text-white">Supply Request</h4>
+                                        <h2 class="text-right text-white">
+                                            <i class="bi bi-box f-left"></i><span>
+                                                @foreach ($supply as $count)
+                                                    {{ $count->cnt }}
+                                                @endforeach
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-primary order-card">
+                                    <div class="card-block">
+                                        <h4 class="m-b-20 text-white">Linen Request</h4>
+                                        <h2 class="text-right text-white">
+                                            <i class="bi bi-question-circle-fill f-left"></i><span>
+                                                @foreach ($linen as $count)
+                                                    {{ $count->cnt }}
+                                                @endforeach
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-orange order-card">
+                                    <div class="card-block">
+                                        <h4 class="m-b-20 text-white">Maintenance</h4>
+                                        <h2 class="text-right text-white">
+                                            <i class="bi bi-gear-fill f-left"></i><span>
+                                                @foreach ($maintenance as $count)
+                                                    {{ $count->cnt }}
+                                                @endforeach
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
 
                         <br>
                         <div class="row align-items-center">
@@ -705,7 +762,8 @@
                                                                                 <div class="col">
                                                                                     <p class="text-left">Priority Level</p>
                                                                                     <select name="priority"
-                                                                                        class="form-control" id="prio_{{$index}}">
+                                                                                        class="form-control"
+                                                                                        id="prio_{{ $index }}">
                                                                                         <option selected="true"
                                                                                             disabled="disabled">
                                                                                             Select</option>
@@ -723,20 +781,23 @@
                                                                                     <p class="text-left">Description</p>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        name="description" id="desc_{{$index}}"/>
+                                                                                        name="description"
+                                                                                        id="desc_{{ $index }}" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col">
                                                                                     <p class="text-left">Cost</p>
                                                                                     <input type="number" name="cost"
-                                                                                        class="form-control" id="cost_{{$index}}">
+                                                                                        class="form-control"
+                                                                                        id="cost_{{ $index }}">
                                                                                 </div>
                                                                                 <div class="col">
                                                                                     <p class="text-left">Due Date</p>
                                                                                     <input type="date"
                                                                                         class="form-control"
-                                                                                        name="due_date" id="due_{{$index}}"/>
+                                                                                        name="due_date"
+                                                                                        id="due_{{ $index }}" />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -968,10 +1029,10 @@
                                                     </td>
                                                     <td>{{ $lists->Room_No }}</td>
                                                     <td>{{ $lists->Attendant }}</td>
-                                                    @if($lists->rstats == "Occupied")
-                                                        <td class="text-danger">{{$lists->rstats}}</td>
+                                                    @if ($lists->rstats == 'Occupied')
+                                                        <td class="text-danger">{{ $lists->rstats }}</td>
                                                     @else
-                                                        <td class="text-success">{{$lists->rstats}}</td>   
+                                                        <td class="text-success">{{ $lists->rstats }}</td>
                                                     @endif
 
                                                     <!--Assign Attendant-->
@@ -1301,24 +1362,24 @@
                             'display': 'block'
                         });
 
-                        $('#prio_'+listIndex).prop('required', true);
-                        $('#desc_'+listIndex).prop('required', true);
-                        $('#cost_'+listIndex).prop('required', true);
-                        $('#due_'+listIndex).prop('required', true);
+                        $('#prio_' + listIndex).prop('required', true);
+                        $('#desc_' + listIndex).prop('required', true);
+                        $('#cost_' + listIndex).prop('required', true);
+                        $('#due_' + listIndex).prop('required', true);
                     } else {
                         $('#cont_' + listIndex).css({
                             'display': 'none'
                         });
 
-                        $('#prio_'+listIndex).prop('required', false);
-                        $('#desc_'+listIndex).prop('required', false);
-                        $('#cost_'+listIndex).prop('required', false);
-                        $('#due_'+listIndex).prop('required', false);
+                        $('#prio_' + listIndex).prop('required', false);
+                        $('#desc_' + listIndex).prop('required', false);
+                        $('#cost_' + listIndex).prop('required', false);
+                        $('#due_' + listIndex).prop('required', false);
 
-                        $('#prio_'+listIndex).prop('selected', true);
-                        $('#desc_'+listIndex).val('');
-                        $('#cost_'+listIndex).val('');
-                        $('#due_'+listIndex).val('');
+                        $('#prio_' + listIndex).prop('selected', true);
+                        $('#desc_' + listIndex).val('');
+                        $('#cost_' + listIndex).val('');
+                        $('#due_' + listIndex).val('');
                     }
                 });
             });
@@ -1365,6 +1426,49 @@
 
             #row:nth-child(even) {
                 background-color: #f2f2f2;
+            }
+
+            .bg-c-blue {
+                background: linear-gradient(45deg, #3593ff, #61abff);
+            }
+
+            .bg-c-green {
+                background: linear-gradient(45deg, #2bcaaa, #4dd7bc);
+            }
+
+            .bg-c-yellow {
+                background: linear-gradient(45deg, #f7aa3e, #f8b960);
+            }
+
+            .bg-c-pink {
+                background: linear-gradient(45deg, #ff4564, #fe7189);
+            }
+
+
+            .card {
+                border-radius: 5px;
+                -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+                box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+                border: none;
+                margin-bottom: 30px;
+                -webkit-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .card .card-block {
+                padding: 25px;
+            }
+
+            .order-card i {
+                font-size: 26px;
+            }
+
+            .f-left {
+                float: left;
+            }
+
+            .f-right {
+                float: right;
             }
         </style>
 
