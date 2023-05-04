@@ -1,11 +1,15 @@
-Composer update
+type in terminal
 
+Composer update
+ 
 php artisan key:generate
 
 cp .env.example .env
+
+.\migrations.bat
 
 composer require yajra/laravel-datatables-oracle
 
 composer require laravel/socialite
 
-composer require 
+composer require barryvdh/laravel-dompdf

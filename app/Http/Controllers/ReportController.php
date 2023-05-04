@@ -51,9 +51,9 @@ class ReportController extends Controller
         if (empty($request->input('start_date')) || empty($request->input('end_date'))) {
             $total = 0;
         }else{
-            $total = hotel_reservations::where('Booking_Status','Finished')->whereBetween('created_at', [$start_date, $end_date])->count();
+            $total = hotel_reservations::where(['Booking_Status' => 'Checked-Out', 'IsArchived' => 1])->whereBetween('created_at', [$start_date, $end_date])->count();
         }
-        $data = hotel_reservations::where('Booking_Status', 'Finished')->whereBetween('created_at', [$start_date, $end_date])->get();
+        $data = hotel_reservations::where(['Booking_Status' => 'Checked-Out', 'IsArchived' => 1])->whereBetween('created_at', [$start_date, $end_date])->get();
         $title = "Finished Guest Report";
         break;
     case "All":

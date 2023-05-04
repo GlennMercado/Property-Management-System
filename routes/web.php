@@ -241,6 +241,8 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 	Route::get('/report', [App\Http\Controllers\ReportController::class, 'report'])->name('BookingReport');
 	Route::get('/inquiry_reports', [App\Http\Controllers\ReportController::class, 'inquiry_reports'])->name('InquiryReport');
 	Route::get('/hotel_reports', [App\Http\Controllers\ReportController::class, 'hotel_reports'])->name('HotelReport');
+	Route::post('/add_event', 'App\Http\Controllers\EventController@add_event');
+	
 });	
 
 //Admin and Finance

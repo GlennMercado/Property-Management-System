@@ -144,29 +144,16 @@ class HotelController extends Controller
             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
             values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
             
-            if($user_type == 'Operations Manager')
-            {
-                Alert::Success('Success', 'Reservation was successfully submitted!');
-                return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
-            }
-            else
-            {
-                Alert::Success('Success', 'Reservation was successfully submitted!');
-                return redirect('HotelReservationForm')->with('Success', 'Reservation Success');
-            }
+            Alert::Success('Success', 'Reservation was successfully submitted!');
+            return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
+            
         }
         else
         {
-            if($user_type == "Operations Manager")
-            {
-                Alert::Error('Error', 'Reservation Failed!');
-                return redirect('Guest_Reservation')->with('Error', 'Failed!');
-            }
-            else
-            {
-                Alert::Error('Error', 'Reservation Failed!');
-                return redirect('HotelReservationForm')->with('Error', 'Failed!');
-            }
+            
+            Alert::Error('Error', 'Reservation Failed!');
+            return redirect('Guest_Reservation')->with('Error', 'Failed!');
+            
         }
 
         
@@ -195,6 +182,24 @@ class HotelController extends Controller
         $stats2 = "Reserved";
 
         $user_type = Auth::user()->User_Type;
+
+        //NOTIFY
+            $email = null;
+            $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
+            foreach($select as $selects)
+            {
+                $email = $selects->Email;
+            }
+
+            if($email != null)
+            {
+                $client = User::where('email', $email)->first();
+            
+                $client->notify(new Booked($client));
+            }
+        
+        //HERE
 
         if($isarchived == false)
         {
@@ -234,7 +239,7 @@ class HotelController extends Controller
 
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
-            if($stats3 != "Checked-In")
+            if($stats3 != "Occupied")
             {
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
             }
