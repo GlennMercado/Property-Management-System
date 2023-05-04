@@ -138,7 +138,7 @@
                                                     data-target="#view{{ $lists->Room_No }}" title="View Room">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
-                                                @if ($lists->Status == 'Vacant for Accomodation')
+                                                @if ($lists->Status == 'Vacant for Accommodation')
                                                     <!--Edit Button-->
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                         data-target="#edit{{ $lists->Room_No }}" title="Edit Room"> <i
