@@ -16,12 +16,13 @@
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
-                <h6 class="h2 text-dark d-inline-block mb-0">Commercial Spaces</h6>
+                <h6 class="h2 text-dark d-inline-block mb-0">Application</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                     <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
                         <li class="breadcrumb-item">Sales & Marketing</li>
                         <li class="breadcrumb-item active text-dark" aria-current="page">Commercial Spaces</li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">Application</li>
                     </ol>
                 </nav>
             </div>
@@ -35,13 +36,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
                                         href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
-                                        aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>Applications</a>
+                                        aria-selected="true"><i class="bi bi-cloud-arrow-up mr-2"></i>Applications</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                                         href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
                                         aria-selected="false">
-                                        <i class="ni ni-fat-remove mr-2"></i>Disapproved/Failed Applications</a>
+                                        <i class="bi bi-bookmark-x mr-2"></i>Disapproved/Failed Applications</a>
                                 </li>
                             </ul>
                         </div>

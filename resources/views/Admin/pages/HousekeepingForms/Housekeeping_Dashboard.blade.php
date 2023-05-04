@@ -128,7 +128,7 @@
                                     <div class="card-block">
                                         <h4 class="m-b-20 text-white">Linen Request</h4>
                                         <h2 class="text-right text-white">
-                                            <i class="bi bi-question-circle-fill f-left"></i><span>
+                                            <i class="bi bi-basket f-left"></i><span>
                                                 @foreach ($linen as $count)
                                                     {{ $count->cnt }}
                                                 @endforeach

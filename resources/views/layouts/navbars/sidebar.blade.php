@@ -122,7 +122,7 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-cloud-arrow-up" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Application') }}
                                         </a>
                                     </li>
@@ -132,7 +132,7 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceTenants' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceTenants') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-people" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Tenants') }}
                                         </a>
                                     </li>
@@ -143,7 +143,7 @@
                                         class="nav-item {{ 'CommercialSpaceRentCollections' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light"
                                             href="{{ route('CommercialSpaceRentCollections') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-receipt" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Rent Collections') }}
                                         </a>
                                     </li>
@@ -154,7 +154,7 @@
                                         class="nav-item {{ 'CommercialSpaceUtilityBills' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light"
                                             href="{{ route('CommercialSpaceUtilityBills') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-cash" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Utility Bills Collection') }}
                                         </a>
                                     </li>
@@ -164,7 +164,7 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceUnits' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceUnits') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-shop" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Commercial Space Units') }}
                                         </a>
                                     </li>
@@ -340,7 +340,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#navbar-examples10" data-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="navbar-examples7">
-                                    <i class="bi bi-telephone-forward-fill" style="color:rgb(224, 223, 223)"></i>
+                                    <i class="bi bi-laptop" style="color:rgb(224, 223, 223)"></i>
                                     <span class="nav-link-text text-light">{{ __('Front Desk') }}</span>
                                 </a>
                             </li>
@@ -417,7 +417,7 @@
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
                         <i class="bi bi-wallet-fill" style="color:rgb(224, 223, 223)"></i>
-                        <span class="nav-link-text text-light">{{ __('Finances') }}</span>
+                        <span class="nav-link-text text-light">{{ __('Finance & Admin') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples13">
                     <ul class="nav nav-sm flex-column">
