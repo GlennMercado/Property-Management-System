@@ -791,7 +791,7 @@
         }
 
         .card-tal .card-tal-con {
-            background-color: #355599cb;
+            background-color: #339c79cb;
             height: 100%;
             color: white;
             padding-top: 20px;
