@@ -399,6 +399,7 @@ class GuestController extends Controller
             if($reserve->save())
             {
                 $this->booked();
+                Alert::Success('Success', 'You have booked a hotel reservation');
                 return redirect('/welcome')->with('Error', 'Failed!');
                 // return redirect('/Confirmation');
             }
