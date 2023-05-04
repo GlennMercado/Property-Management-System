@@ -240,9 +240,10 @@ Route::middleware(['auth', 'AdminorSalesorOperation'])->group(function(){
 	Route::post('/check_in', 'App\Http\Controllers\HotelController@check_in');
 	Route::get('/report', [App\Http\Controllers\ReportController::class, 'report'])->name('BookingReport');
 	Route::get('/inquiry_reports', [App\Http\Controllers\ReportController::class, 'inquiry_reports'])->name('InquiryReport');
+	Route::get('/event_reports', [App\Http\Controllers\ReportController::class, 'event_reports'])->name('EventReport');
 	Route::get('/hotel_reports', [App\Http\Controllers\ReportController::class, 'hotel_reports'])->name('HotelReport');
 	Route::post('/add_event', 'App\Http\Controllers\EventController@add_event');
-	
+	Route::get('/decline_hotel_payment/{id}/{no}/{check}', 'App\Http\Controllers\HotelController@decline_payment');
 });	
 
 //Admin and Finance

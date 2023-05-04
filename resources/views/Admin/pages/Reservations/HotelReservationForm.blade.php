@@ -380,9 +380,15 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
-                                                            class="btn btn-success">Approve</a>
+                                                    <div class="modal-footer row d-flex">
+                                                        <div class="p-2">
+                                                            <a href="{{ url('/decline_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                class="btn btn-danger">Decline</a>
+                                                        </div>
+                                                        <div class="ml-auto p-2">
+                                                            <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                class="btn btn-success">Approve</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
