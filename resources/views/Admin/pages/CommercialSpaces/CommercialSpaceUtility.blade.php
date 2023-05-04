@@ -236,7 +236,7 @@
                                                                                     {{ $lists->Payment_Status }}</td>
                                                                             @endif
                                                                             <td>
-                                                                                @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                                                {{-- @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
@@ -244,7 +244,7 @@
                                                                                         <i
                                                                                             class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
-                                                                                @endif
+                                                                                @endif --}}
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
                                                                                         class="preview-btn btn btn-sm btn-primary"
@@ -327,7 +327,7 @@
                                                                                     </div>
                                                                                 @endif --}}
 
-                                                                                @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
+                                                                                {{-- @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
                                                                                     <button class="btn btn-sm btn-warning"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_water_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
@@ -335,7 +335,7 @@
                                                                                         <i
                                                                                             class="bi bi-arrow-clockwise"></i>
                                                                                     </button>
-                                                                                @endif
+                                                                                @endif --}}
 
                                                                                 @if ($lists->Payment_Status == 'Paid')
                                                                                     <button
