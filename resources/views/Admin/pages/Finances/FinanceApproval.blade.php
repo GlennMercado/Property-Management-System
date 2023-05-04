@@ -781,10 +781,10 @@
                                                                                             <p>Proof Image:</p>
                                                                                             <img src="{{ $lists->Proof_Image }}"
                                                                                                 alt="Proof Image"
-                                                                                                class="proof-image proof-image-{{ $index }}">
+                                                                                                class="proof-image2 proof-image2-{{ $index }}">
                                                                                         @else
                                                                                             <i
-                                                                                                class="proof-image proof-image-{{ $index }}">No
+                                                                                                class="proof-image2 proof-image2-{{ $index }}">No
                                                                                                 proof image available</i>
                                                                                         @endif
                                                                                     </div>
@@ -873,10 +873,10 @@
                                                                                             <p>Proof Image:</p>
                                                                                             <img src="{{ $lists->Proof_Image }}"
                                                                                                 alt="Proof Image"
-                                                                                                class="proof-image proof-image-{{ $index }}">
+                                                                                                class="proof-image2 proof-image2-{{ $index }}">
                                                                                         @else
                                                                                             <i
-                                                                                                class="proof-image proof-image-{{ $index }}">No
+                                                                                                class="proof-image2 proof-image2-{{ $index }}">No
                                                                                                 proof image available</i>
                                                                                         @endif
                                                                                     </div>
@@ -1082,7 +1082,7 @@
             const index = previewBtn2.dataset.index;
             const previewContainer2 = document.querySelector(`.preview-container2-${index}`);
             const referenceNo2 = document.querySelector(`.reference-no-${index}`);
-            const proofImage2 = document.querySelector(`.proof-image-${index}`);
+            const proofImage2 = document.querySelector(`.proof-image2-${index}`);
 
             previewBtn2.addEventListener('mouseenter', function() {
                 referenceNo2.textContent = previewBtn2.dataset.referenceNo2;
