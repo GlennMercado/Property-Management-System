@@ -35,8 +35,7 @@ class RoomController extends Controller
     }
 
     public function add_rooms(Request $request)
-    {
-       
+    {  
         $this->validate($request,[
             'room_no' => 'required',
             'room_size' => 'required',

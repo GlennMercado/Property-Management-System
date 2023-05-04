@@ -12,6 +12,7 @@ use App\Models\hotel_room_supplies_reports;
 use App\Models\hotel_room_linens_reports;
 use App\Models\stockhistories;
 use Carbon\Carbon;
+use PDF;
 
 class InventoryController extends Controller
 {
@@ -77,6 +78,21 @@ class InventoryController extends Controller
 	if($sql){
         return view('Admin.pages.Inventory.StockRoomSupply', ['list'=>$list, 'list2'=>$list2]);
     }
+    }
+
+    public function Stock_history_report()
+    {
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+        $data = stockhistories::where('Stock', '1')->whereBetween('created_at', [$start_date, $end_date])->get();
+            $title = "Stock History Report";
+
+        $pdf = PDF::loadView('Admin.pages.Inventory.InventoryReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
+        // return $pdf->download('report.pdf');
+        return view('Admin.pages.Inventory.InventoryReport', compact('data', 'title'));
     }
 
     /**
@@ -194,6 +210,7 @@ class InventoryController extends Controller
         }
         
     }
+
     public function received_supply(Request $request)
     {
         //
@@ -301,6 +318,7 @@ class InventoryController extends Controller
             $in = $request->input('in');
             $out = $request->input('out');
             $category = $request->input('category');
+            $stock = '1';
 
             if($in > 0)
             {
@@ -322,8 +340,8 @@ class InventoryController extends Controller
                 'category' => $category
             ));
 
-            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, quantity) 
-            values (?, ?, ?, ?,?)', [$name, $category, $in, $out, $total]);
+            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, quantity, Stock, created_at) 
+            values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
             
     
            Alert::Success('Success', 'Successfully Updated!');

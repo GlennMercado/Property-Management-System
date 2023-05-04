@@ -251,7 +251,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
+                                                                    {{-- <div class="col-md-6">
                                                                         <label>Stock Out</label>
                                                                         <div class="input-group input-group-sm">
 
@@ -273,7 +273,7 @@
                                                                                     onclick="incrementValue2()">+</button>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
 
                                                                 {{-- <div class="row">
@@ -314,7 +314,7 @@
                                             <div class="modal-dialog modal-md" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h2 class="modal-title">{{ __('Add Details') }}</h2>
+                                                        <h2 class="modal-title">{{ __('Add Room Supply') }}</h2>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -541,6 +541,27 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+                <div class="card-header">
+                    <form action="{{ url('/stock_history_report') }}" target="blank" method="get">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="p-2">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" id="start_date" name="end_date" required>
+                            </div>
+                            <div class="p-2">
+                                <label>Generate report:</label>
+                                <button type="submit" class="btn btn-success w-75 h-50">
+                                    <label class="">Print</label><span class=""> <i
+                                            class="bi bi-printer-fill"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-body">
                     <!-- Add your table here -->

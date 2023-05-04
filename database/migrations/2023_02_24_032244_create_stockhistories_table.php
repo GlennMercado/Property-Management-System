@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('Stock_In');
             $table->integer('Stock_Out');
             $table->integer('Quantity');
+            $table->integer('Stock');
             $table->timestamps();
         });
     }
