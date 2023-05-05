@@ -209,6 +209,75 @@ class FinanceController extends Controller
 
         $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
         $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $cash_sum = finance_2_reports::whereBetween('created_at', [$start_date, $end_date])->sum('cash');
+        $bank_sum = finance_2_reports::whereBetween('created_at', [$start_date, $end_date])->sum('bank');
+        $cheque_sum = finance_2_reports::whereBetween('created_at', [$start_date, $end_date])->sum('cheque');
+        $total = $cash_sum + $bank_sum + $cheque_sum;
+
+        $amount = $total;
+
+        $thousands = 0;
+        $p1000 = 0;
+        $p500 = 0;
+        $p200 = 0;
+        $p100 = 0;
+        $p50 = 0;
+        $p20 = 0;
+        $p10 = 0;
+        $p5 = 0;
+        $p1 = 0;
+        $p = 0;
+        $fivehundred = 0;
+        $twohundred = 0;
+        $hundreds = 0;
+        $fifty = 0;
+        $twenty = 0;
+        $ten = 0;
+        $five = 0;
+        $one = 0;
+        $decimal = 0;
+        
+        if ($amount > 0) {
+            $thousands = floor($amount / 1000);
+            $amount -= $thousands * 1000;
+            $p1000 = $thousands * 1000;
+        
+            $fivehundred = floor($amount / 500);
+            $amount -= $fivehundred * 500;
+            $p500 = $fivehundred * 500;
+        
+            $twohundred = floor($amount / 200);
+            $amount -= $twohundred * 200;
+            $p200 = $twohundred * 200;
+        
+            $hundreds = floor($amount / 100);
+            $amount -= $hundreds * 100;
+            $p100 = $hundreds * 100;
+        
+            $fifty = floor($amount / 50);
+            $amount -= $fifty * 50;
+            $p50 = $fifty * 50;
+        
+            $twenty = floor($amount / 20);
+            $amount -= $twenty * 20;
+            $p20 = $twenty * 20;
+        
+            $ten = floor($amount / 10);
+            $amount -= $ten * 10;
+            $p10 = $ten * 10;
+
+            $five = floor($amount / 5);
+            $amount -= $five * 5;
+            $p50 = $five * 5;
+
+            $one = floor($amount / 1);
+            $amount -= $one * 1;
+            $p10 = $one * 1;
+
+            $decimal = floor($amount / .25);
+            $p = $decimal * .25;
+        }
+
         $data;
         $title;
 
@@ -217,9 +286,9 @@ class FinanceController extends Controller
             $title = "Daily Cash Position Report";
             
 
-        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'))->setOption('font_path', '')->setOption('font_data', []);
+        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1000', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'))->setOption('font_path', '')->setOption('font_data', []);
         //  return $pdf->download('report.pdf');
-        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date'));
+        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1000', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'));
     }
 
     public function archives_summary(Request $request){

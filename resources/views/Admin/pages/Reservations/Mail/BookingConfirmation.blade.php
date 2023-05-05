@@ -1,3 +1,4 @@
+@if($stats2 == "Reserved")
 <h3>
     Hello {{ $name->Guest_Name }},
 </h3>
@@ -16,8 +17,18 @@
 <h3>Please feel free to contact us if you have any queries or concerns. We are always available to assist you in any way
     possible.</h3>
 
+@else
+<h3>
+    Hello {{ $name->Guest_Name }},
+</h3>
+<h3>We regret to inform you that your recent booking request has been declined.</h3>
+<h3>We apologize for any inconvenience this may have caused. Please feel free to reach out to us if you have any further questions or would like to inquire about alternative options for your stay.</h3>
+<h3>Thank you for considering our services, and we hope to have the opportunity to serve you in the future.</h3>
+@endif
 <h3>
     Regards,
     <br>
     NVDC Properties.
 </h3>
+<br><br>
+<i>SYSTEM GENERATED EMAIL. DO NOT REPLY</i>

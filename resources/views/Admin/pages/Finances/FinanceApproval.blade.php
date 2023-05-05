@@ -11,7 +11,6 @@
             $('#myTable1').DataTable();
             $('#myTable2').DataTable();
             $('#myTable3').DataTable();
-            $('#myTable4').DataTable();
         });
     </script>
 
@@ -68,234 +67,242 @@
                             <!-- Pending -->
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
-                                <table class="table align-items-center table-flush" id="myTable1">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col" style="font-size:17px;">Action</th>
-                                            <th scope="col" style="font-size:17px;">Booking No.</th>
-                                            <th scope="col" style="font-size:17px;">Room No.</th>
-                                            <th scope="col" style="font-size:17px;">Guest Name</th>
-                                            <th scope="col" style="font-size:17px;">Arrival Date</th>
-                                            <th scope="col" style="font-size:17px;">Departure Date</th>
-                                            <th scope="col" style="font-size:17px;">Payment</th>
-                                            <th scope="col" style="font-size:17px;">Payment Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($list as $lists)
-                                            @if ($lists->IsArchived == false && $lists->Payment_Status == 'Pending')
-                                                <tr>
-                                                    <td>
-                                                        {{-- view button --}}
-                                                        <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                            data-target="#view{{ $lists->Booking_No }}"> <i
-                                                                class="bi bi-eye-fill"></i> </button>
-                                                        <!--update Button-->
-                                                        @if ($lists->Payment_Status == 'Pending')
-                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                data-target="#update{{ $lists->Booking_No }}"> <i
-                                                                    class="bi bi-pencil-square"></i></button>
-                                                        @endif
-                                                    </td>
-                                                    <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
-                                                    <td style="font-size:14px;">{{ $lists->Room_No }}</td>
-                                                    <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
-                                                    <td style="font-size:14px;">
-                                                        {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
-                                                    <td style="font-size:14px;">
-                                                        {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                    <td style="font-size:14px;">{{ $lists->Payment }}</td>
-                                                    <td>
-                                                        <span class="badge badge-info">
-                                                            {{ $lists->Payment_Status }}
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            @endif
-
-                                            <!--View-->
-                                            <div class="modal fade bd-example-modal-lg" id="view{{ $lists->Booking_No }}"
-                                                tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">
-                                                                Hotel Reservation
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="text-left">Reservation Number: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->Booking_No }}" readonly>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">Room Number: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->Room_No }}" readonly>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="text-left">Number of Pax: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->No_of_Pax }}" readonly>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">Payment Status: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->Payment_Status }}" readonly>
-                                                                </div>
-                                                            </div>
-
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="text-left">Guest Name: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->Guest_Name }}" readonly>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">Mobile Number: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ $lists->Mobile_Num }}" readonly>
-                                                                </div>
-                                                            </div>
-
-                                                            @if ($lists->Email != null)
-                                                                <br>
-                                                                <p class="text-left">Email Address: </p>
-                                                                <input class="form-control" type="text"
-                                                                    value="{{ $lists->Email }}" readonly>
+                                    <table class="table align-items-center table-flush" id="myTable1">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:17px;">Action</th>
+                                                <th scope="col" style="font-size:17px;">Room No.</th>
+                                                <th scope="col" style="font-size:17px;">Booking No.</th>
+                                                <th scope="col" style="font-size:17px;">Guest Name</th>
+                                                <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                                <th scope="col" style="font-size:17px;">Departure Date</th>
+                                                <th scope="col" style="font-size:17px;">Payment</th>
+                                                <th scope="col" style="font-size:17px;">Payment Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($list as $lists)
+                                                @if ($lists->IsArchived == false && $lists->Payment_Status == 'Pending')
+                                                    <tr>
+                                                        <td>
+                                                            {{-- view button --}}
+                                                            <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                                data-target="#view{{ $lists->Booking_No }}"> <i
+                                                                    class="bi bi-eye-fill"></i> </button>
+                                                            <!--update Button-->
+                                                            @if ($lists->Payment_Status == 'Pending')
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                    data-target="#update{{ $lists->Booking_No }}"> <i
+                                                                        class="bi bi-pencil-square"></i></button>
                                                             @endif
-
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="text-left">Check In Date: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
-                                                                        readonly>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="text-left">Check Out Date: </p>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
-                                                                        readonly>
-                                                                </div>
+                                                        </td>
+                                                        <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                        <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                        <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                        <td style="font-size:14px;">
+                                                            {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                        <td style="font-size:14px;">
+                                                            {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                        <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                        <td>
+                                                            <span class="badge badge-info">
+                                                                {{ $lists->Payment_Status }}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+        
+                                                <!--View-->
+                                                <div class="modal fade bd-example-modal-lg" id="view{{ $lists->Booking_No }}"
+                                                    tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-left display-4"
+                                                                    id="exampleModalLabel">
+                                                                    Hotel Reservation
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Reservation Number: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Booking_No }}" readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Room Number: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Room_No }}" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Number of Pax: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->No_of_Pax }}" readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Payment Status: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Payment_Status }}" readonly>
+                                                                    </div>
+                                                                </div>
+        
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Guest Name: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Guest_Name }}" readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Mobile Number: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ $lists->Mobile_Num }}" readonly>
+                                                                    </div>
+                                                                </div>
+        
+                                                                @if ($lists->Email != null)
+                                                                    <br>
+                                                                    <p class="text-left">Email Address: </p>
+                                                                    <input class="form-control" type="text"
+                                                                        value="{{ $lists->Email }}" readonly>
+                                                                @endif
+        
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p class="text-left">Check In Date: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                                            readonly>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="text-left">Check Out Date: </p>
+                                                                        <input class="form-control" type="text"
+                                                                            value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                                            readonly>
+                                                                    </div>
+                                                                </div>
+        
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <!--Update Status-->
-                                            <div class="modal fade" id="update{{ $lists->Booking_No }}" tabindex="-1"
-                                                role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title text-left display-4"
-                                                                id="exampleModalLabel">
-                                                                Proof of Payment
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body row">
-                                                            <div class="col-md-6 text-sm font-weight-bold">
-                                                                Room no:
+        
+                                                <!--Update Status-->
+                                                <div class="modal fade" id="update{{ $lists->Booking_No }}" tabindex="-1"
+                                                    role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h3 class="modal-title text-left" id="exampleModalLabel">
+                                                                    Proof of Payment
+                                                                </h3>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <div class="col-md-6 text-sm">
-                                                                {{ $lists->Room_No }}
-                                                            </div>
-                                                            <div class="col-md-6 text-sm font-weight-bold mt-2">
-                                                                Name:
-                                                            </div>
-
-                                                            <div class="col-md-6 text-sm mt-2">
-                                                                {{ $lists->Guest_Name }}
-                                                            </div>
-                                                            <div class="col-md-6 text-sm font-weight-bold mt-2">
-                                                                Email:
-                                                            </div>
-                                                            <div class="col-md-6 text-sm mt-2">
-                                                                {{ $lists->Email }}
-                                                            </div>
-                                                            <div class="col-md-6 text-sm font-weight-bold mt-2">
-                                                                Mobile no:
-                                                            </div>
-                                                            <div class="col-md-6 text-sm mt-2">
-                                                                {{ $lists->Mobile_Num }}
-                                                            </div>
-                                                            <div class="col-md-6 text-sm font-weight-bold mt-2">
-                                                                Check in date/time:
-                                                            </div>
-                                                            <div class="col-md-6 text-sm mt-2">
-                                                                {{ $lists->Check_In_Date }}
-                                                            </div>
-                                                            <div class="col-md-6 text-sm font-weight-bold mt-2">
-                                                                Check out date/time:
-                                                            </div>
-                                                            <div class="col-md-6 text-sm mt-2">
-                                                                {{ $lists->Check_Out_Date }}
-                                                            </div>
-                                                            {{-- <a href="{{ url($lists->Proof_Image) }}" data-lightbox="photos">
-                                                            <img src="{{ url($lists->Proof_Image) }}"
-                                                                class="card-img-top p-5" /> --}}
-                                                            </a>
-                                                            <div class="row p-3 mt-2">
-                                                                <div class="col-md-6 text-sm font-weight-bold">
-                                                                    <h3 class="p-2">Payment method:</h3>
+                                                            <div class="modal-body row">
+                                                                <div class="col-md-12">
+                                                                    <h1>Reference No: {{ $lists->Reference_No }}</h1>
                                                                 </div>
                                                                 <div class="col-md-6 text-sm font-weight-bold">
-                                                                    <img class="gcash"
-                                                                        src="{{ asset('nvdcpics') }}/Gcash.png"
-                                                                        style="width: 200px; height: 60px">
+                                                                    Room no:
                                                                 </div>
-                                                                <div class="col-md-12 text-sm font-weight-bold mt-4">
-                                                                    <h3 class="p-2">Total Payment:</h3>
-                                                                    <h2 class="display-2 mt--3 text-green p-2"
-                                                                        id="currency">
-                                                                        ₱{{ $lists->Payment }}
-                                                                    </h2>
+                                                                <div class="col-md-6 text-sm">
+                                                                    {{ $lists->Room_No }}
+                                                                </div>
+                                                                <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                                    Name:
+                                                                </div>
+        
+                                                                <div class="col-md-6 text-sm mt-2">
+                                                                    {{ $lists->Guest_Name }}
+                                                                </div>
+                                                                <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                                    Email:
+                                                                </div>
+                                                                <div class="col-md-6 text-sm mt-2">
+                                                                    {{ $lists->Email }}
+                                                                </div>
+                                                                <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                                    Mobile no:
+                                                                </div>
+                                                                <div class="col-md-6 text-sm mt-2">
+                                                                    {{ $lists->Mobile_Num }}
+                                                                </div>
+                                                                <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                                    Check in date/time:
+                                                                </div>
+                                                                <div class="col-md-6 text-sm mt-2">
+                                                                    {{ $lists->Check_In_Date }}
+                                                                </div>
+                                                                <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                                    Check out date/time:
+                                                                </div>
+                                                                <div class="col-md-6 text-sm mt-2">
+                                                                    {{ $lists->Check_Out_Date }}
+                                                                </div>
+                                                                @if ($lists->Proof_Image != null)
+                                                                    <a href="{{ url($lists->Proof_Image) }}"
+                                                                        data-lightbox="photos">
+                                                                        <img src="{{ url($lists->Proof_Image) }}"
+                                                                            class="card-img-top p-5" />
+                                                                    </a>
+                                                                @endif
+                                                                <div class="row p-3 mt-2">
+                                                                    <div class="col-md-6 text-sm font-weight-bold">
+                                                                        <h3 class="p-3">Payment method:</h3>
+                                                                    </div>
+                                                                    <div class="col-md-6 text-sm font-weight-bold">
+                                                                        <img class="gcash"
+                                                                            src="{{ asset('nvdcpics') }}/GCash.png"
+                                                                            style="width: 200px; height: 60px">
+                                                                    </div>
+                                                                    <div class="col-md-12 text-sm font-weight-bold mt-4">
+                                                                        <h3 class="p-2">Total Payment:</h3>
+                                                                        <h2 class="display-2 mt--3 text-green p-2" id="currency">
+                                                                            PHP {{ number_format($lists->Payment, 2, '.', ',') }}
+                                                                        </h2>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
-                                                            <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
-                                                                class="btn btn-success">Approve Payment</a>
+                                                            <div class="modal-footer row d-flex">
+                                                                <div class="p-2">
+                                                                    <a href="{{ url('/decline_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                        class="btn btn-danger">Decline</a>
+                                                                </div>
+                                                                <div class="ml-auto p-2">
+                                                                    <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                        class="btn btn-success">Approve</a>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                             </div>
 
                             {{-- Rent Payment --}}
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:17px;">Action</th>
@@ -322,7 +329,7 @@
                                                         @if (
                                                             ($lists->Tenant_Status != 'Pre-Termination' && $lists->Payment_Status == 'Paid (Checking)') ||
                                                                 $lists->Due_Date == $now)
-                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#update_payment_status{{ $lists->id }}"
                                                                 title="Update Payment Status">
                                                                 <i class="bi bi-pencil-square"></i>
@@ -618,7 +625,7 @@
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-3-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable3">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:17px;">Action</th>
@@ -756,7 +763,7 @@
                                                                             @endif
                                                                             <td>
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
-                                                                                    <button class="btn btn-sm btn-warning"
+                                                                                    <button class="btn btn-sm btn-success"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">

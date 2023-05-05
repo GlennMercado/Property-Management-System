@@ -58,9 +58,6 @@
                                 <a class="nav-link text-light" href="{{ route('HotelReservationForm') }}">
                                     <i class="bi bi-book-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Hotel Booking') }}
-                                    <span
-                                        class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                        id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -69,9 +66,6 @@
                                 <a class="nav-link text-light" href="{{ route('EventInquiryForm') }}">
                                     <i class="bi bi-calendar-event-fill" style="color:rgb(224, 223, 223)"></i>
                                     {{ __('Event Inquiry') }}
-                                    <span
-                                        class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                        id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -91,8 +85,8 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#navbar-examples9" data-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="navbar-examples9">
-                                    <i class="bi bi-telephone-forward-fill" style="color:rgb(224, 223, 223)"></i>
-                                    <span class="nav-link-text text-light">{{ __('Commercial Space') }}</span>
+                                    <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('Commercial Spaces') }}
                                 </a>
                             </li>
                             <div class="collapse" id="navbar-examples9">
@@ -101,11 +95,8 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceForm' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceForm') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-cloud-arrow-up" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Application') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -114,11 +105,8 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceTenants' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceTenants') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-people" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Tenants') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -128,11 +116,8 @@
                                         class="nav-item {{ 'CommercialSpaceRentCollections' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light"
                                             href="{{ route('CommercialSpaceRentCollections') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-receipt" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Rent Collections') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -142,11 +127,8 @@
                                         class="nav-item {{ 'CommercialSpaceUtilityBills' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light"
                                             href="{{ route('CommercialSpaceUtilityBills') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-cash" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Utility Bills Collection') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -155,11 +137,8 @@
                                     <li
                                         class="nav-item {{ 'CommercialSpaceUnits' == request()->path() ? 'act1' : '' }}">
                                         <a class="nav-link text-light" href="{{ route('CommercialSpaceUnits') }}">
-                                            <i class="bi bi-grid-3x3-gap-fill" style="color:rgb(224, 223, 223)"></i>
+                                            <i class="bi bi-shop" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Commercial Space Units') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>

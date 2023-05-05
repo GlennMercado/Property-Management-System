@@ -61,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#navbar-examples10" data-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="navbar-examples7">
-                                    <i class="bi bi-telephone-forward-fill" style="color:rgb(224, 223, 223)"></i>
+                                    <i class="bi bi-laptop" style="color:rgb(224, 223, 223)"></i>
                                     <span class="nav-link-text text-light">{{ __('Front Desk') }}</span>
                                 </a>
                             </li>
@@ -90,9 +90,6 @@
                                         <a class="nav-link text-light" href="{{ route('Complaints') }}">
                                             <i class="bi bi-patch-question-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Complaints') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -101,15 +98,12 @@
                                         <a class="nav-link text-light" href="{{ route('Requests') }}">
                                             <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
                                             {{ __('Guest Request') }}
-                                            <span
-                                                class="badge rounded-pill badge-notification bg-danger text-white ml-2 ml-auto"
-                                                id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </ul>
-                        <!-- <ul class="nav nav-sm flex-column">
+                        {{-- <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'GuestFolio' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('GuestFolio') }}">
                                     <i class="bi bi-person-lines-fill" style="color:rgb(224, 223, 223)"></i>
@@ -119,7 +113,7 @@
                                         id="ncount">{{ auth()->user()->notifications->count() }}</span>
                                 </a>
                             </li>
-                        </ul> -->
+                        </ul> --}}
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'OperationRooms' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('OperationRooms') }}">

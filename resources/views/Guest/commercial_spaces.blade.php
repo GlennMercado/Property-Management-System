@@ -148,7 +148,7 @@
                     <br>
                     <p>Tax Identification No. <span class="text-danger">*</span> </p>
                     <input type="number" name="tax_identification_no" class="form-control"
-                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==14) return false;"
+                        placeholder="Enter Tax Identification No." onKeyPress="if(this.value.length==12) return false;"
                         required>
                     <br>
                     <p>Upload TIN Image <span class="text-danger">*</span> </p>
@@ -158,7 +158,7 @@
                     <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID No. <span
                             class="text-danger">*</span> </p>
                     <input type="text" name="tax_cert_valid_gov_id" class="form-control"
-                        placeholder="Enter Certificate No." maxlength="128" required>
+                        placeholder="Enter Certificate No." onKeyPress="if(this.value.length==12) return false;" required>
                     <br>
                     <p>Upload Image <span class="text-danger">*</span> </p>
                     <input type="file" accept=".png, .jpeg, .jpg, .gif" maxlength="500000" name="other_images"

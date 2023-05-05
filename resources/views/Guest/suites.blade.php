@@ -261,7 +261,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h2>Article 1</h2>
+                                            <h2></h2>
                                             <p class="justify-center">Any accommodation agreements or other related
                                                 contracts entered
                                                 into between the NOVADECI and the guest, including the hotel
@@ -269,7 +269,7 @@
                                                 rental shall be governed by these Terms and Conditions. All
                                                 issues that are not expressly stated in the Terms and Conditions
                                                 shall be ruled by law.</p>
-                                            <h2>Article 2</h2>
+                                            <h2></h2>
                                             <p class="justify-center">
                                                 1. For guests who’s applying for an Hotel Reservation they shall provide the
                                                 NOVADECI the following information.
@@ -425,7 +425,7 @@
                                                             </div>
                                                             <div class="col-md-6 text-sm font-weight-bold">
                                                                 <img class="gcash"
-                                                                    src="{{ asset('nvdcpics') }}/Gcash.png">
+                                                                    src="{{ asset('nvdcpics') }}/GCash.png">
                                                             </div>
                                                             <div class="col-md-12 text-sm font-weight-bold">
                                                                 <h4 class="text-muted mt-2">Room price(2 pax): <span
@@ -453,9 +453,10 @@
                                                                     class="text-danger">*</span></p>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="gcash_acc"
+                                                            <input type="number" id="gcash_acc"
                                                                 onkeyup="enable_submit()" name="gcash_account"
-                                                                class="form-control" maxlength="13">
+                                                                class="form-control" maxlength="13"  
+                                                                onkeypress="if(this.value.length==13) return false;">
                                                         </div>
                                                         <div class="col-md-12 mt-1">
                                                             <p class="text-center">Upload your proof of payment here</p>

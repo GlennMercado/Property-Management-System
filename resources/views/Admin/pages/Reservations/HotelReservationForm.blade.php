@@ -369,7 +369,7 @@
                                                             </div>
                                                             <div class="col-md-6 text-sm font-weight-bold">
                                                                 <img class="gcash"
-                                                                    src="{{ asset('nvdcpics') }}/Gcash.png"
+                                                                    src="{{ asset('nvdcpics') }}/GCash.png"
                                                                     style="width: 200px; height: 60px">
                                                             </div>
                                                             <div class="col-md-12 text-sm font-weight-bold mt-4">
@@ -426,7 +426,7 @@
                                                     <!--Update Reservation/Room Status Button-->
                                                     @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Reserved')
                                                         @if ($lists->Check_In_Date <= $now)
-                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#update_booking_status{{ $lists->Booking_No }}">
                                                                 <i class="bi bi-pencil-square"></i>
                                                             </button>
@@ -606,7 +606,7 @@
                                                     <!--Update Reservation/Room Status Button-->
                                                     @if ($lists->Booking_Status == 'Checked-In')
                                                         @if ($lists->Check_Out_Date <= $now)
-                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#update_booking_status11{{ $lists->Booking_No }}"
                                                                 title="Update">
                                                                 <i class="bi bi-pencil-square"></i>
@@ -620,7 +620,7 @@
                                                         </button>
                                                     @endif
                                                     @if ($lists->Booking_Status == 'Room Checked')
-                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#update_booking_status2{{ $lists->Booking_No }}"
                                                             title="Update">
                                                             <i class="bi bi-pencil-square"></i>
@@ -1048,7 +1048,7 @@
                                                         class="bi bi-eye-fill"></i> </button>
                                                 <!--update Button-->
                                                 @if ($lists->Payment_Status == 'Pending')
-                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                         data-target="#update{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-pencil-square"></i></button>
                                                 @endif

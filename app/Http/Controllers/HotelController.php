@@ -239,6 +239,7 @@ class HotelController extends Controller
             $gross = 1.12;
             $cash = $finance_amount / $gross;
             $vat = $outvat * $cash;  
+            $client_stat = "Paid";  
 
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
@@ -247,11 +248,11 @@ class HotelController extends Controller
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
             }
 
-            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
+            // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+            // values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
 
-            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
-            values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
+            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat, Client_Status, created_at, updated_at) 
+            values (?, ?, ?, ?, ?, ?, ? , ? , ?, ?, ?, now(), now())', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat, $client_stat]);
            
             if($user_type == "Operations Manager")
             {
@@ -260,7 +261,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
@@ -272,10 +273,10 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }
         else
@@ -288,7 +289,7 @@ class HotelController extends Controller
             else
             {
                 Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }    
     }
@@ -570,7 +571,7 @@ class HotelController extends Controller
             }
         
         //HERE
-        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2, 'IsArchived' => 1));
         if($isarchived == false)
         {
             if($user_type == "Operations Manager")
@@ -580,7 +581,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Error('Declined', 'Declined Payment');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
@@ -592,7 +593,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Error('Declined', 'Declined Payment');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');

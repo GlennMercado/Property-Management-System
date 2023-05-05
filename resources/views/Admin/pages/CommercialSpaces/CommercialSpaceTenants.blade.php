@@ -116,7 +116,7 @@
                                                                 </button>
                                                                 @elseif($lists->Tenant_Status == "Pre-Termination")
                                                                     <!-- Terminate -->
-                                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                         data-target="#update_status24{{ $lists->id }}"
                                                                         title="Update Status">
                                                                         <i class="bi bi-pencil-square"></i>
@@ -485,13 +485,13 @@
                                                         <tr>
                                                             <td>
                                                                 @if($lists->Tenant_Status != "For Renewal" && $lists->End_Date <= $now)
-                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                         data-target="#update_status2{{ $lists->id }}"
                                                                         title="Update Status">
                                                                         <i class="bi bi-pencil-square"></i>
                                                                     </button>
                                                                 @else
-                                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                         data-target="#update_status3{{ $lists->id }}"
                                                                         title="Update Status (For Renewal)">
                                                                         <i class="bi bi-pencil-square"></i>

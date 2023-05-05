@@ -83,7 +83,7 @@
                                                 <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
                                                     data-target="#ModalView{{ $lists->productid }}"><i class="bi bi-eye"
                                                         title="View Stock"></i></button>
-                                                <button class="btn btn-sm btn-warning btn-sm" data-toggle="modal"
+                                                <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
                                                     data-target="#ModalUpdate{{ $lists->productid }}"><i
                                                         class="bi bi-pencil-square" title="Edit Stock"></i></button>
                                                 <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"

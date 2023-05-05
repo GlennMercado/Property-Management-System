@@ -182,7 +182,7 @@
                                                         @endif
                                                         @if ($lists->IsArchived == false)
                                                             <!--Edit Button-->
-                                                            <button class="btn btn-sm btn-primary btn-lg"
+                                                            <button class="btn btn-sm btn-success btn-lg"
                                                                 data-toggle="modal"
                                                                 data-target="#edit{{ $lists->id }}"> <i
                                                                     class="bi bi-pencil-square"></i>

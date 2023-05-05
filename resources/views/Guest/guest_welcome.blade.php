@@ -285,13 +285,13 @@
             </div>
         </div>
     </div>
-    <div class="notification--wrapper hide" id="openToast">
+    {{-- <div class="notification--wrapper hide" id="openToast">
         <div class="notification--reminder ptb--20 text-center col-12">
             <h3>Welcome to NVDC Properties! our services are open to the public - both members and non-members of NOVADECI"
                 <a class="exit--toast" href="javascript:void(0);">Got it.</a>
             </h3>
         </div>
-    </div>
+    </div> --}}
     <!-- scroll-top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
     <div class="container mt--5 pb-5"></div>

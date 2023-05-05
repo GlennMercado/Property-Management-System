@@ -112,7 +112,7 @@
                                                 <td>{{$lists->Housekeepers_Name}}</td>
                                                 <td>{{$lists->Status}}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                         data-target="#edit{{ $lists->id }}" title="Update Status">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
