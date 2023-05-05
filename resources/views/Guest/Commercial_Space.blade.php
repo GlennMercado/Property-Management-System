@@ -922,11 +922,11 @@
                                                                 @endif
                                                                 @if ($lists6->Paid_By == 'Novadeci')
                                                                     <td class="font-weight-bold tbltxt text-danger"
-                                                                        style="white-space: pre-wrap;">
+                                                                        >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @else
                                                                     <td class="font-weight-bold tbltxt text-success"
-                                                                        style="white-space: pre-wrap;">
+                                                                        >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @endif
                                                                 <td>
