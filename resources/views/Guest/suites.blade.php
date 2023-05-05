@@ -261,7 +261,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h2>Article 1</h2>
+                                            <h2></h2>
                                             <p class="justify-center">Any accommodation agreements or other related
                                                 contracts entered
                                                 into between the NOVADECI and the guest, including the hotel
@@ -269,7 +269,7 @@
                                                 rental shall be governed by these Terms and Conditions. All
                                                 issues that are not expressly stated in the Terms and Conditions
                                                 shall be ruled by law.</p>
-                                            <h2>Article 2</h2>
+                                            <h2></h2>
                                             <p class="justify-center">
                                                 1. For guests who’s applying for an Hotel Reservation they shall provide the
                                                 NOVADECI the following information.
