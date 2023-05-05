@@ -257,11 +257,8 @@
                                                                 {{ $lists->Check_Out_Date }}
                                                             </div>
                                                             @if ($lists->Proof_Image != null)
-                                                                <a href="{{ url($lists->Proof_Image) }}"
-                                                                    data-lightbox="photos">
-                                                                    <img src="{{ url($lists->Proof_Image) }}"
-                                                                        class="card-img-top p-5" />
-                                                                </a>
+                                                                <img src="{{ url($lists->Proof_Image) }}"
+                                                                    class="card-img-top p-5" />
                                                             @endif
                                                             <div class="row p-3 mt-2">
                                                                 <div class="col-md-6 text-sm font-weight-bold">

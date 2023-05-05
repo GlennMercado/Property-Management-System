@@ -364,6 +364,7 @@ class HotelController extends Controller
                         
                         if(!$checkHousekeeping)
                         {
+                            //Insert to housekeeping
                             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
                             values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
                         }
