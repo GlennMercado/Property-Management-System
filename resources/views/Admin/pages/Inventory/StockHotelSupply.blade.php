@@ -135,7 +135,7 @@
                                                             <div class="row" style="display:none;" id="qty_{{$index}}">
                                                                 <div class="col">
                                                                     <label for="Stockdetails">Quantity to Give: </label>
-                                                                    <input type="number" class="form-control qt2"
+                                                                    <input type="number" class="form-control" id="qt2_{{$index}}"
                                                                         name="quantity" placeholder="Enter number..."
                                                                         value="0">
                                                                 </div>
@@ -177,7 +177,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
-                $('select[name="type_of_request"]').change(function() {
+                $('select[name="status"]').change(function() {
                     var selected = $("option:selected", this).val();
                     var listIndex = $(this).data('list-index');
 
@@ -185,12 +185,12 @@
                         $('#qty_'+listIndex).css({
                             'display': 'block'
                         });
-                        $('.qt2').val(0);
+                        $('#qt2_'+listIndex).val(0);
                     } else if (selected == "Denied") {
                         $('#qty_'+listIndex).css({
                             'display': 'none'
                         });
-                        $('.qt2').val(0);
+                        $('#qt2_'+listIndex).val(0);
                     }
                 });
             });

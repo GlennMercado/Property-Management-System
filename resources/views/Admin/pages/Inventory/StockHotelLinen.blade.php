@@ -42,7 +42,7 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($list as $lists)
+                                @foreach ($list as $index => $lists)
                                     <tr>
                                         <td>
                                             <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
@@ -137,7 +137,7 @@
                                                             <div class="col-md pt-2">
                                                                 <label>Status </label>
                                                                 <select class="form-control" name="status"
-                                                                    id="stats" required>
+                                                                    id="stats" data-list-index="{{$index}}" required>
                                                                     <option value="" selected="true"
                                                                         disabled="disabled">
                                                                         Select</option>
@@ -146,10 +146,10 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="row" style="display:none;" id="qty">
+                                                        <div class="row" style="display:none;" id="qty_{{$index}}">
                                                             <div class="col">
                                                                 <label for="Stockdetails">Quantity to Give </label>
-                                                                <input type="number" class="form-control qt2"
+                                                                <input type="number" class="form-control" id="qt2_{{$index}}"
                                                                     name="quantity" placeholder="Enter number..."
                                                                     value="0">
                                                             </div>
@@ -324,19 +324,20 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-            $("#stats").change(function() {
+            $('select[name="status"]').change(function() {
                 var selected = $("option:selected", this).val();
+                var listIndex = $(this).data('list-index');
 
                 if (selected == "Approved") {
-                    $('#qty').css({
+                    $('#qty_'+listIndex).css({
                         'display': 'block'
                     });
-                    $('.qt2').val(0);
+                    $('#qt2_'+listIndex).val(0);
                 } else if (selected == "Denied") {
-                    $('#qty').css({
+                    $('#qty_'+listIndex).css({
                         'display': 'none'
                     });
-                    $('.qt2').val(0);
+                    $('#qt2_'+listIndex).val(0);
                 }
             });
         });
