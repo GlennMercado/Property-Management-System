@@ -87,8 +87,8 @@
                                         </option>
                                         <option value="Political Event">Political Event
                                         </option>
-                                        <option value="Charitable/Func Raising Events">
-                                            Charitable/Func Raising Events
+                                        <option value="Charitable/Fund Raising Events">
+                                            Charitable/Fund Raising Events
                                         </option>
                                     </select>
                                     <!-- <input type="text" name="event_type" class="form-control"
@@ -135,8 +135,8 @@
                             </div>
                             <div class="row ">
                                 <div class="col-md pt-4">
-                                    <p>Event Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control" name="event_date" type="datetime-local"
+                                    <p>Event Date <span class="text-danger">*</span></p>
+                                    <input class="form-control chck" name="event_date" type="date"
                                         onkeydown="return false" id="example-datetime-local-input" id="my-date"
                                         onchange="validateDate()" required>
                                     <p id="date-error" style="color: red; font-size: 14px;"></p>
