@@ -362,6 +362,7 @@ class HotelController extends Controller
         
                         $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
                         
+                        dd($checkHousekeeping);
                         if(!$checkHousekeeping)
                         {
                             //Insert to housekeeping
