@@ -340,6 +340,7 @@ class GuestController extends Controller
             return redirect('/complaints')->withStats(__('Sending failed.'));
         }
     }
+    
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;

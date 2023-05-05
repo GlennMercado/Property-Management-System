@@ -353,25 +353,6 @@
                                 </div>
                                 <div class="row ">
                                     <div class="col-md pt-4">
-                                        <p>Contact Person <span class="text-danger">*</span></p>
-                                        <input type="text" name="contact_person" class="form-control"
-                                            placeholder="Enter contact person" maxlength="64" id="contactperson"
-                                            onchange="validateContactPerson()" value="{{ $event1->contact_person }}"
-                                            readonly>
-                                        <p id="cp-error" style="color: red; font-size: 14px;"></p>
-                                    </div>
-                                    <div class="col-md pt-4">
-                                        <p>Contact Person Number <span class="text-danger">*</span></p>
-                                        <input type="number" onkeypress="if(this.value.length==10) return false;"
-                                            title="Please use a 10 digit mobile number with no dashes or dots"
-                                            name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
-                                            id="ContactPersonNum" onchange="validateContactPersonNum()"
-                                            value="{{ $event1->contact_person_no }}" readonly>
-                                        <p id="ContactPersonNum-error" style="color: red; font-size: 14px;"></p>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-md pt-4">
                                         <p>Billing Address <span class="text-danger">*</span></p>
                                         <input type="text" name="billing_address" maxlength="82" class="form-control"
                                             placeholder="Enter billing address" id="address"
@@ -424,21 +405,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <input type="text" name="inquiry_status" value="For Approval" hidden="">
-                                    <div class="col-md-12">
+                                    <div class="col-md pt-4">
                                         <span>
-                                            <br>
-                                            <br>
-                                            <p>Venue<span class="text-danger">*</span></p>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <input class="form-control-sm" type="text" name="venue"
-                                                        id="specify_venue_text" maxlength="32"
-                                                        value="{{ $event1->venue }}" readonly>
-                                                </div>
-                                            </div>
+                                            <p>Facility <span class="text-danger">*</span></p>
+                                            <input type="number" name="no_of_guest" class="form-control"
+                                                placeholder="Enter expected no. of guest" id="No"
+                                                onchange="validateNo()" value="{{ $event1->facility }}" readonly>
+                                            <p id="no-error" style="color: red; font-size: 14px;"></p>
                                         </span>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="inquiry_status" value="For Approval" hidden="">
                                     <div class="col-md-12">
                                         <span>
                                             <br>
