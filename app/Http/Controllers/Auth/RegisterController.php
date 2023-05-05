@@ -74,7 +74,7 @@ class RegisterController extends Controller
     //     return User::create([
     //         'name' => $data['name'],
     //         'email' => $data['email'],
-    //         'profile_pic' => 'nvdcpics\User2.png',
+    //         'profile_pic' => 'nvdcpics\user2.png',
     //         'password' => Hash::make($data['password']),
     //     ]);
     // }
@@ -95,9 +95,9 @@ class RegisterController extends Controller
     {
         // Validate the form data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:8|max:255',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'profile_pic' => 'nullable|image|max:2048'
         ]);
 

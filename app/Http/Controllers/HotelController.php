@@ -276,7 +276,7 @@ class HotelController extends Controller
                     Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }
         else
@@ -289,7 +289,7 @@ class HotelController extends Controller
             else
             {
                 Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+                return redirect('FinanceApproval')->with('Success', 'Data Saved');
             }
         }    
     }
