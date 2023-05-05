@@ -77,10 +77,6 @@ Route::middleware(['auth', 'Admin'])->group(function(){
 	Route::get('Key_Management', [App\Http\Controllers\RoomController::class, 'Key_Management'])->name('Key_Management');
 
 
-	Route::get('/notifications/count', function () {
-		$count = auth()->user()->notifications->count();
-		return response()->json(['count' => $count]);
-	});
 	// //Room Management
 	// Route::get('Hotel_Room_Management', [App\Http\Controllers\RoomController::class, 'Hotel_Rooms'])->name('Dashboard');
 
