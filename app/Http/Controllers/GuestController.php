@@ -34,6 +34,12 @@ class GuestController extends Controller
     //         return redirect('/welcome')->with('Error', 'Failed');
     //     }      
     // }
+    public function markasread($id){
+        if($id){
+            auth()->user()->unreadNotifications->where('id',$id)->markAsRead();
+        }
+        return back();
+    }
     public function booked()
     {
         if (auth()->user()) {
