@@ -103,8 +103,8 @@ class InventoryHotelSupplyController extends Controller
 
         $add->save();
 
-        DB::table('list_of_housekeepers')->where('Housekeepers_Name', $attendant)->update(['Status' => "Available"]);
-        DB::table('hotel_room_supplies')->where('id', $id)->update(['Attendant' => "Unassigned"]);
+        DB::table('list_of_housekeepers')->where('Housekeepers_Name', $attendant)->update(['Status' => "Available", 'updated_at' => DB::RAW('NOW()')]);
+        DB::table('hotel_room_supplies')->where('id', $id)->update(['Attendant' => "Unassigned", 'updated_at' => DB::RAW('NOW()')]);
                     
         Alert::Success('Success', 'Supply Request Successfully Approved!');
         return redirect('StockHotelSupply')->with('Success', 'Data Updated');

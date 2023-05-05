@@ -108,8 +108,8 @@ class InventoryHotelLinenController extends Controller
   
           $add->save();
 
-          DB::table('list_of_housekeepers')->where('Housekeepers_Name', $attendant)->update(['Status' => "Available"]);
-          DB::table('hotel_room_linens')->where('id', $id)->update(['Attendant' => "Unassigned"]);          
+          DB::table('list_of_housekeepers')->where('Housekeepers_Name', $attendant)->update(['Status' => "Available", 'updated_at' => DB::RAW('NOW()')]);
+          DB::table('hotel_room_linens')->where('id', $id)->update(['Attendant' => "Unassigned", 'updated_at' => DB::RAW('NOW()')]);          
 
           Alert::Success('Success', 'Linen Request Successfully Updated!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
