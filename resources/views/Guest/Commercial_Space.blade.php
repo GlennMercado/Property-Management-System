@@ -23,19 +23,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @forelse ($comm as $comm)
-                        <div class="table-responsive">
-                            <table class="table align-items-center">
-                                    <thead>
-                                        <tr>
-                                            <th>CONTROL NO.</th>
-                                            <th>APPLICATION STATUS</th>
-                                            <th>APPLICATION DATE</th>
-                                            <th>REMARKS</th>
-                                            <th>ACTION</th>
-                                        </tr>
-                                    </thead>
-                                <tbody>
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th>CONTROL NO.</th>
+                                    <th>APPLICATION STATUS</th>
+                                    <th>APPLICATION DATE</th>
+                                    <th>REMARKS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($comm as $comm)
                                     <tr>
                                         <td>
                                             {{ $comm->id }}
@@ -79,9 +79,11 @@
                                             @endif
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @foreach ($comm as $comm)
                         {{-- View Application --}}
                         <div class="modal fade bd-example-modal-lg" id="commprev{{ $comm->id }}" tabindex="-1"
                             role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -149,7 +151,7 @@
                                                 </div>
 
                                                 <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                                            <h4>For Single Proprietorship </h4> -->
+                                                                                                                                                                                                                                    <h4>For Single Proprietorship </h4> -->
                                                 <p class="pt-4">Name of owner <span class="text-danger">*</span>
                                                 </p>
                                                 <input type="text" name="name_of_owner" class="form-control"
@@ -288,7 +290,7 @@
                                                     </div>
 
                                                     <!-- <h4>Owner Details </h4>
-                                                                <h4>For Single Proprietorship </h4> -->
+                                                                        <h4>For Single Proprietorship </h4> -->
                                                     <p class="pt-4">Authorized Representative <span
                                                             class="text-danger">*</span> </p>
 
@@ -423,12 +425,7 @@
                                 </div>
                             </div>
                         @endif
-
-                    @empty
-                        <p class="text-center display-5">No application yet</p>
-                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
-                            style="width: 100%; height: 200px">
-                    @endforelse
+                    @endforeach
                 </div>
             </div>
 
@@ -443,25 +440,21 @@
                 </div>
                 <div class="card-body">
                     <h3>Rent Collection</h3>
-                    @php $Displayed = false; @endphp
-                    @forelse ($list as $lists)
-                        <div class="table-responsive">
-                            <table class="table align-items-center">
-                                @if (!$Displayed)
-                                    <thead>
-                                        <tr>
-                                            <th>SPACE/UNIT</th>
-                                            <th>Rental Fee</th>
-                                            <th>START DATE</th>
-                                            <th>END DATE</th>
-                                            <th>MONTHLY DUE DATE</th>
-                                            <th>STATUS</th>
-                                            <th>ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    @php $Displayed = true @endphp
-                                @endif
-                                <tbody>
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th>SPACE/UNIT</th>
+                                    <th>Rental Fee</th>
+                                    <th>START DATE</th>
+                                    <th>END DATE</th>
+                                    <th>MONTHLY DUE DATE</th>
+                                    <th>STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list as $lists)
                                     <tr>
                                         <td>{{ $lists->Space_Unit }}</td>
                                         <td class="cur1">{{ $lists->Rental_Fee }}</td>
@@ -490,10 +483,12 @@
                                             @endif
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
+                    @foreach ($list as $lists)
                         {{-- View Payment History --}}
                         <div class="modal fade" id="view_payment_history{{ $lists->Tenant_ID }}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -649,67 +644,52 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
-                        <p class="text-center display-5">No Tenant Information</p>
-                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
-                            style="width: 100%; height: 200px">
-                    @endforelse
+                    @endforeach
+
 
                     <br>
 
                     <h3>Security Deposits</h3>
-                    @php $Displayed2 = false @endphp
-                    @forelse ($list2 as $lists2)
-                        <div class="table-responsive">
-                            <table class="table align-items-center">
-                                @if (!$Displayed2)
-                                    <thead>
-                                        <tr>
-                                            <th>SPACE/UNIT</th>
-                                            <th>SECURITY DEPOSIT</th>
-                                            <th>PAID DATE</th>
-                                            <th>REMARKS</th>
-                                        </tr>
-                                    </thead>
-                                    @php $Displayed2 = true @endphp
-                                @endif
-                                <tbody>
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th>SPACE/UNIT</th>
+                                    <th>SECURITY DEPOSIT</th>
+                                    <th>PAID DATE</th>
+                                    <th>REMARKS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list2 as $lists2)
                                     <tr>
                                         <td>{{ $lists2->Space_Unit }}</td>
                                         <td class="cur1">{{ $lists2->Security_Deposit }}</td>
                                         <td>{{ date('F j, Y', strtotime($lists2->Paid_Date)) }}</td>
                                         <td>{{ $lists2->Remarks }}</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    @empty
-                        <p class="text-center display-5">No Tenant Information</p>
-                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
-                            style="width: 100%; height: 200px">
-                    @endforelse
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     <br>
 
                     <h3>Utility Bills</h3>
-                    @php $Displayed3 = false @endphp
-                    @forelse ($list3 as $lists3)
-                        <div class="table-responsive">
-                            <table class="table align-items-center">
-                                @if (!$Displayed3)
-                                    <thead>
-                                        <tr>
-                                            <th>SPACE/UNIT</th>
-                                            <th>TYPE OF BILL</th>
-                                            <th>AMOUNT</th>
-                                            <th>MONTHLY DUE DATE</th>
-                                            <th>PAYMENT STATUS</th>
-                                            <th>ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    @php $Displayed3 = true @endphp
-                                @endif
-                                <tbody>
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th>SPACE/UNIT</th>
+                                    <th>TYPE OF BILL</th>
+                                    <th>AMOUNT</th>
+                                    <th>MONTHLY DUE DATE</th>
+                                    <th>PAYMENT STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list3 as $lists3)
                                     <tr>
                                         <td>{{ $lists3->Space_Unit }}</td>
                                         <td>{{ $lists3->Type_of_Bill }}</td>
@@ -734,10 +714,12 @@
                                             @endif
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
+                    @foreach ($list3 as $lists3)
                         {{-- View Payment History --}}
                         <div class="modal fade"
                             id="view_utility_proof{{ $lists3->Tenant_ID . $lists3->Due_Date . $lists3->Type_of_Bill }}"
@@ -845,34 +827,26 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
-                        <p class="text-center display-5">No Utility Bills</p>
-                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
-                            style="width: 100%; height: 200px">
-                    @endforelse
+                    @endforeach
 
                     <br>
 
                     <h3>Space/s (Unit)</h3>
-                    @php $Displayed3 = false @endphp
-                    @forelse ($list5 as $lists5)
-                        <div class="table-responsive">
-                            <table class="table align-items-center">
-                                @if (!$Displayed3)
-                                    <thead>
-                                        <tr>
-                                            <th>SPACE/UNIT</th>
-                                            <th>Measurement Size</th>
-                                            <th>Maintenance Status <br> (Under Maintenance?)</th>
-                                            <th>DUE DATE</th>
-                                            <th>Rental Fee</th>
-                                            <th>Security Deposit</th>
-                                            <th>ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    @php $Displayed3 = true @endphp
-                                @endif
-                                <tbody>
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <thead>
+                                <tr>
+                                    <th>SPACE/UNIT</th>
+                                    <th>Measurement Size</th>
+                                    <th>Maintenance Status <br> (Under Maintenance?)</th>
+                                    <th>DUE DATE</th>
+                                    <th>Rental Fee</th>
+                                    <th>Security Deposit</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list5 as $lists5)
                                     <tr>
                                         <td>{{ $lists5->Space_Unit }}</td>
                                         <td>{{ $lists5->Measurement_Size }}</td>
@@ -899,9 +873,10 @@
                                             @endif
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @foreach ($list5 as $lists5)
                             {{-- View Payment History --}}
                             <div class="modal fade"
                                 id="view_maintenance_payment_history_{{ str_replace(' ', '_', $lists5->Space_Unit) . $lists5->Tenant_ID }}"
@@ -947,10 +922,12 @@
                                                                     <td></td>
                                                                 @endif
                                                                 @if ($lists6->Paid_By == 'Novadeci')
-                                                                    <td class="font-weight-bold tbltxt text-danger" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-danger"
+                                                                        style="white-space: pre-wrap;">
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @else
-                                                                    <td class="font-weight-bold tbltxt text-success" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-success"
+                                                                        style="white-space: pre-wrap;">
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @endif
                                                                 <td>
@@ -976,8 +953,6 @@
                                                                     @endif
                                                                 </td>
                                                             </tr>
-
-                                                            
                                                         @endif
                                                     @endforeach
                                                 </tbody>
@@ -991,19 +966,15 @@
                             </div>
 
                             @foreach ($list6 as $lists6)
-                                @if ($lists6->Tenant_ID == $lists->Tenant_ID)    
+                                @if ($lists6->Tenant_ID == $lists->Tenant_ID)
                                     <!-- Update Modal -->
                                     <div class="modal fade update_payment_status"
-                                        id="update_client_maintenance_payment{{ $lists6->id }}"
-                                        tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered"
-                                            role="document">
+                                        id="update_client_maintenance_payment{{ $lists6->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
-                                                <form
-                                                    action="{{ url('/update_client_maintenance_payment') }}"
-                                                    class="prevent_submit" method="POST"
-                                                    enctype="multipart/form-data">
+                                                <form action="{{ url('/update_client_maintenance_payment') }}"
+                                                    class="prevent_submit" method="POST" enctype="multipart/form-data">
 
                                                     {{ csrf_field() }}
 
@@ -1019,69 +990,56 @@
 
                                                         <div class="row shadow p-3 mt-2">
                                                             <div class="col-md-12">
-                                                                <p
-                                                                    class="font-weight-bold text-center">
+                                                                <p class="font-weight-bold text-center">
                                                                     NVDC Properties:
                                                                     09458923381
                                                                 </p>
                                                             </div>
-                                                            <div
-                                                                class="col-md-12 d-flex justify-content-center">
+                                                            <div class="col-md-12 d-flex justify-content-center">
                                                                 {!! QrCode::size(170)->generate('09458923381') !!}
                                                             </div>
                                                             <br><br>
                                                             <div class="col-md-12">
                                                                 <p class="text-center">Reference
-                                                                    Number <span
-                                                                        class="text-danger">*</span>
+                                                                    Number <span class="text-danger">*</span>
                                                                 </p>
                                                             </div>
                                                             <br>
                                                             <!-- <div class="col-md-12">
-                                                                <p class="text-left">Account name <span
-                                                                        class="text-danger">*</span></p>
-                                                            </div> -->
+                                                                        <p class="text-left">Account name <span
+                                                                                class="text-danger">*</span></p>
+                                                                    </div> -->
                                                             <div class="col-md-12">
-                                                                <input type="text"
-                                                                    id="gcash_acc3"
-                                                                    onkeyup="enable_submit3()"
-                                                                    name="Reference_No"
-                                                                    class="form-control"
-                                                                    maxlength="32" required>
+                                                                <input type="text" id="gcash_acc3"
+                                                                    onkeyup="enable_submit3()" name="Reference_No"
+                                                                    class="form-control" maxlength="32" required>
                                                             </div>
                                                             <div class="col-md-12 mt-1">
                                                                 <p class="text-left">Upload your
                                                                     proof of payment here </p>
                                                             </div>
-                                                            <div
-                                                                class="col-md-12 d-flex justify-content-center">
-                                                                <img id="output3"
-                                                                    class="img-fluid" />
+                                                            <div class="col-md-12 d-flex justify-content-center">
+                                                                <img id="output3" class="img-fluid" />
                                                             </div>
                                                             <div
                                                                 class="col-md-12 mt-1 mx-auto d-flex justify-content-center">
-                                                                <input type="file"
-                                                                    accept=".png, .jpeg, .jpg, .gif"
-                                                                    maxlength="500000"
-                                                                    onchange="enable_submit3(event)"
-                                                                    id="gcash_img3"
-                                                                    placeholder="Ex: John Doe"
-                                                                    name="images"
-                                                                    class="form-control">
+                                                                <input type="file" accept=".png, .jpeg, .jpg, .gif"
+                                                                    maxlength="500000" onchange="enable_submit3(event)"
+                                                                    id="gcash_img3" placeholder="Ex: John Doe"
+                                                                    name="images" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger"
                                                             data-dismiss="modal">Close</button>
-                                                        <input type="submit"
-                                                            class="btn btn-success prevent_submit">
+                                                        <input type="submit" class="btn btn-success prevent_submit">
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                @endif 
+                                @endif
                             @endforeach
 
                             <!-- Update Modal -->
@@ -1125,10 +1083,10 @@
                                                     </div>
                                                     <br>
                                                     <!-- <div class="col-md-12">
-                                                            <p class="text-center">Gcash Account <span
-                                                                    class="text-danger">*</span></p>
-                                                        </div>
-                                                        <br> -->
+                                                                    <p class="text-center">Gcash Account <span
+                                                                            class="text-danger">*</span></p>
+                                                                </div>
+                                                                <br> -->
                                                     <div class="col-md-12">
                                                         <p class="text-left">Reference Number <span
                                                                 class="text-danger">*</span></p>
@@ -1161,14 +1119,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                        </div>
-                    @empty
-                        <p class="text-center display-5">No Utility Bills</p>
-                        <img src="{{ asset('nvdcpics') }}/eventempty.svg" class="img-fluid"
-                            style="width: 100%; height: 200px">
-                    @endforelse
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
