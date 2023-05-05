@@ -15,6 +15,7 @@
                     @endif
                 </div>
             </a>
+            <a href="{{ route('markasread', $notif->id) }}" class="text-left" style="text-decoration: underline">Mark as read</a>
         @empty
             <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid" style="width: 100%; height: 150px">
             <p class="text-center display-4">There are no notifications.</p>
