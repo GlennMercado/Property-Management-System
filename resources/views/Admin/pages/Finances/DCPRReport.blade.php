@@ -41,36 +41,38 @@
                                         </tbody>
                                     </table><br><br><br>
 
-                                    <h3>Gross Collection:  </h3> 
-                                    <table class="table table-flush float-right" style="align-items:center" >
+                                    <div class="float-right">
+                                    <h4>Gross Collection:  </h4><br>
+                                    <table class="table table-flush" style="width: 60%; margin-left: 20px;" style="align-items:center" >
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" style="font-size:18px;">Cash/Gcash</th>
-                                            <th scope="col" style="font-size:18px;">Bank</th>
-                                            <th scope="col" style="font-size:18px;">Cheque</th>
+                                            <th scope="col" style="font-size:15px;">Cash/Gcash</th>
+                                            <th scope="col" style="font-size:15px;">Bank</th>
+                                            <th scope="col" style="font-size:15px;">Cheque</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $lists3)
                                             <tr>
-                                                <td style="font-size:16px;">{{ $cash_sum }}</td>
-                                                <td style="font-size:16px;">{{ $bank_sum }}</td>
-                                                <td style="font-size:16px;">{{ $cheque_sum }}</td>
+                                                <td style="font-size:14px;">{{ $cash_sum }}</td>
+                                                <td style="font-size:14px;">{{ $bank_sum }}</td>
+                                                <td style="font-size:14px;">{{ $cheque_sum }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td style="font-size:16px;">Total:</td>
-                                            <td style="font-size:16px;"></td>
-                                            <td style="font-size:16px;">{{ $total}}</td>
+                                            <td style="font-size:14px;">Total:</td>
+                                            <td style="font-size:14px;"></td>
+                                            <td style="font-size:14px;">{{ $total}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div><br>
                                     
                                     {{-- Denomination --}}
                                     <div class="float-left">
-                                    <h1>Cash Count</h1>
+                                        <h2>Cash Count</h2>
                                         <table class="table table-flush">
                                         <thead class="thead-light">
                                             <tr>
@@ -126,7 +128,7 @@
                                                     <td>{{ $p10 }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>.25 cents</td>
+                                                    <td>25 cents</td>
                                                     <td>{{ $decimal }}</td>
                                                     <td>{{ $p }}</td>
                                                 </tr>
@@ -157,7 +159,7 @@
 
 
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
         <h3>Checked By:__________________________________</h3>
     </div>
 @endsection

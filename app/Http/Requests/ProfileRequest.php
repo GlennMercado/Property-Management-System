@@ -25,9 +25,14 @@ class ProfileRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', Rule::unique((new User)->getTable())->ignore(auth()->id())],
-        ];
+        // return [
+        //     'name' => ['required', 'min:3'],
+        //     'email' => ['required', 'email', Rule::unique((new User)->getTable())->ignore(auth()->id())],
+        // ];
+    }
+
+    public function allowedMethods()
+    {
+        return ['PUT']; // Allow the PUT method for the form submission
     }
 }

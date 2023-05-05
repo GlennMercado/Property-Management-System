@@ -439,39 +439,49 @@ class HousekeepingController extends Controller
     public function assign_housekeeper(Request $request)
     {
         try{
-            $this->validate($request,[
-                'id' => '',
-                'room_no'=> '',
-                'check' => '',
-                'housekeeper' => 'required'
-                ]);
-
+            // $this->validate($request,[
+            //     'id' => '',
+            //     'room_no'=> '',
+            //     'check' => '',
+            //     'housekeeper' => 'required'
+            //     ]);
+            
             $check = $request->input('check');
             $room_no = $request->input('room_no');
 
-            if($check == "checkin")
-            {
-                $id = $request->input('id');
-                $housekeeper = $request->input('housekeeper');
+            // if($check == "checkin")
+            // {
+            //     $id = $request->input('id');
+            //     $housekeeper = $request->input('housekeeper');
     
-                DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
+            //     DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
-                DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+            //     DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
 
-                Alert::Success('Success', 'Attendant successfully assigned!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
-            }
-            if($check == "arrival")
-            {
-                $id = $request->input('id');
-                $housekeeper = $request->input('housekeeper');
-                $inspect = "Inspect";
+            //     Alert::Success('Success', 'Attendant successfully assigned!');
+            //     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            // }
+            // if($check == "arrival")
+            // {
+            //     $id = $request->input('id');
+            //     $housekeeper = $request->input('housekeeper');
+            //     $inspect = "Inspect";
     
-                DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
+            //     DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper, 'Housekeeping_Status' => $inspect));
     
-                Alert::Success('Success', 'Successfully Assigned an Attendant!');
-                return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
-            }
+            //     Alert::Success('Success', 'Successfully Assigned an Attendant!');
+            //     return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+            // }
+
+            $id = $request->input('id');
+            $housekeeper = $request->input('housekeeper');
+
+            DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
+
+            DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+
+            Alert::Success('Success', 'Attendant successfully assigned!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
         }
         catch(\Illuminate\Database\QueryException $e)

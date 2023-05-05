@@ -33,23 +33,47 @@
                     </div>
                     <div class="card-header text-center border-0">
                         <div class="d-flex justify-content-between">
+                            
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                data-target="#pictureModal">Edit</button>
                         </div>
                     </div>
                     <div class="card-body pt-8 pb-4">
-                        {{-- <div class="row">
-                            <div class="col">
-                                <div class="card-profile-stats d-flex justify-content-center p-6 mt--6">
-
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="text-center">
-                            <h3>
-                                {{ auth()->user()->name }}<span class="font-weight-light"></span>
-                            </h3>
-                            <h3>
-                                {{ auth()->user()->email }}
-                            </h3>
+                            <h3>{{ auth()->user()->name }}<span class="font-weight-light"></span></h3>
+                            <h3>{{ auth()->user()->email }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Picture Modal -->
+                <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('put')
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="pictureModalLabel">Upload Profile Picture</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        <input type="file" class="form-control-file" id="picture" name="picture"
+                                            accept="image/*" required>
+                                        <small id="pictureHelp" class="form-text text-muted">Please choose an image file
+                                            (JPG, PNG, GIF) to upload.</small>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -97,7 +121,8 @@
                                         @endif
 
                                         <div class="pl-lg-4">
-                                            <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
+                                            <div
+                                                class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label"
                                                     for="input-current-password">{{ __('Current Password') }}</label>
                                                 <input type="password" name="old_password" id="input-current-password"
