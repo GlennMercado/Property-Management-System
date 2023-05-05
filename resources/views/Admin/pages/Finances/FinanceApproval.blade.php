@@ -105,7 +105,7 @@
                                                         {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                     <td style="font-size:14px;">
                                                         {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                    <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                    <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
                                                     <td>
                                                         <span class="badge badge-info">
                                                             {{ $lists->Payment_Status }}

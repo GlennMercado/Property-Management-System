@@ -203,7 +203,7 @@
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
                                                         {{ $lists->Payment_Status }}
@@ -440,7 +440,7 @@
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
                                                         {{ $lists->Payment_Status }}
@@ -641,7 +641,7 @@
                                                     {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
                                                 <td style="font-size:14px;">
                                                     {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
-                                                <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
                                                         {{ $lists->Payment_Status }}
@@ -1023,9 +1023,10 @@
                                 </tbody>
                             </table>
                         </div>
+
                         {{-- ALL --}}
                         <div id="all" style="display:none;">
-                            <table class="table align-items-center table-flush" id="myTable">
+                            <table class="table align-items-center table-flush" id="myTable5">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
@@ -1425,10 +1426,21 @@
             });
             $.noConflict();
             jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-                $('#myTable2').DataTable();
-                $('#myTable3').DataTable();
-                $('#myTable4').DataTable();
+                $('#myTable').DataTable({
+                    "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+                });
+                $('#myTable2').DataTable({
+                    "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+                });
+                $('#myTable3').DataTable({
+                    "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+                });
+                $('#myTable4').DataTable({
+                    "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+                });
+                $('#myTable5').DataTable({
+                    "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+                });
             });
         </script>
     @endsection
