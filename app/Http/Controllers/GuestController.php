@@ -58,6 +58,24 @@ class GuestController extends Controller
             return redirect('/welcome')->with('Error', 'Failed');
         }      
     }
+    public function inquire_notif()
+    {
+        if (auth()->user()) {
+            $user = Auth::user();
+            auth()->user()->notify(new InquireEvent($user));
+            $mail = Auth::user()->email;
+            $name = Auth::user()->name;
+            $data=['name'=>$name, 'data'=>"Hello world"];
+            $user['to']=$mail;
+            Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
+                $messages->to($user['to']);
+                $messages->subject('Hello');
+            });
+        } else{
+            Alert::Error('Failed', 'sommething went wrong');
+            return redirect('/welcome')->with('Error', 'Failed');
+        }      
+    }
     public function services_view(){
         return view('Guest.Services');
     }
@@ -436,6 +454,7 @@ class GuestController extends Controller
             $submit->inquiry_status = $request->input('inquiry_status');
             if($submit->save())
             {
+                $this->inquire_notif();
                 Alert::Success('Success', 'Inquiry submitted successfully!');
                 return redirect('/convention_center');
             }

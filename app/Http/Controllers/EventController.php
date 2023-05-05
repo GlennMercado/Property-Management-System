@@ -83,13 +83,15 @@ class EventController extends Controller
     public function update_status(Request $request)
     {
         try{
-        $this->validate($request,[
-            'eventid' => 'required',
-            'update_status' => 'required',
-        ]);
         $update_status = $request->input('update_status');
         $eventid = $request->input('eventid');
+        $name = DB::table('convention_center_applications')
+        ->where('id', $eventid)
+        ->get();
 
+        foreach ($name as $names) {
+            Mail::to($names->Email)->send(new EventConfirmation($names));
+        }
         DB::table('convention_center_applications')->where('id', $eventid)->update(array
         (
             'inquiry_status' => $update_status,
