@@ -88,7 +88,7 @@ class InventoryHotelLinenController extends Controller
         }
   
   
-        if($update)
+        if($update || $status)
         {
           $add = new hotel_room_linens_reports;
   

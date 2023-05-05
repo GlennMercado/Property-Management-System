@@ -86,7 +86,7 @@ class InventoryHotelSupplyController extends Controller
       }
 
 
-      if($update)
+      if($update || $status)
       {
         $add = new hotel_room_supplies_reports;
 
