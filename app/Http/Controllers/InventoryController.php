@@ -90,9 +90,9 @@ class InventoryController extends Controller
         $data = stockhistories::where('Stock', '1')->whereBetween('created_at', [$start_date, $end_date])->get();
             $title = "Stock History Report";
 
-        $pdf = PDF::loadView('Admin.pages.Inventory.InventoryReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
+        $pdf = PDF::loadView('Admin.pages.Inventory.HistoryReport', compact('data', 'title'))->setOption('font_path', '')->setOption('font_data', []);
         // return $pdf->download('report.pdf');
-        return view('Admin.pages.Inventory.InventoryReport', compact('data', 'title'));
+        return view('Admin.pages.Inventory.HistoryReport', compact('data', 'title'));
     }
 
     /**
@@ -308,7 +308,6 @@ class InventoryController extends Controller
                 'name' => 'required',
                 'quantity' => 'required',
                 'in' => 'required',
-                'out' => 'required',
                 'category' => 'required'
             ]);
             
@@ -316,19 +315,12 @@ class InventoryController extends Controller
             $name = $request->input('name');
             $total = $request->input('quantity');
             $in = $request->input('in');
-            $out = $request->input('out');
             $category = $request->input('category');
-            $stock = '1';
 
             if($in > 0)
             {
                 $total = $total + $in;
 
-            }
-
-            if($out > 0)
-            {
-                $total = $total - $out;
             }
            
            
@@ -339,9 +331,6 @@ class InventoryController extends Controller
                 'total' => $total,
                 'category' => $category
             ));
-
-            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, quantity, Stock, created_at) 
-            values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
             
     
            Alert::Success('Success', 'Successfully Updated!');
