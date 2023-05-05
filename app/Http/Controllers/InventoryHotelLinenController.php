@@ -70,7 +70,8 @@ class InventoryHotelLinenController extends Controller
                         'Attendant' => "Unassigned",
                         'Status' => $status,
                         'Date_Received' => $datenow,
-                        'Quantity' => $total_quantity
+                        'Quantity' => $total_quantity,
+                        'updated_at' => DB::RAW('NOW()')
                     ));
                 }
             }        
@@ -83,7 +84,8 @@ class InventoryHotelLinenController extends Controller
                 'Quantity_Requested' => 0,
                 'Attendant' => "Unassigned",
                 'Status' => $status,
-                'Date_Received' => $datenow
+                'Date_Received' => $datenow,
+                'updated_at' => DB::RAW('NOW()')
             ));
         }
   
