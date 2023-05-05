@@ -556,6 +556,7 @@ class HousekeepingController extends Controller
                 }
                 else
                 {
+                    DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => "Vacant for Accommodation"));
                     DB::table('housekeepings')->where('ID', $hid)->update(array('IsArchived' => $archive, 'Housekeeping_Status' => $stats));
                     //DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $available));
                   

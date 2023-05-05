@@ -115,7 +115,8 @@
                             </td>
                             <td>
                                 <h2 class="display-5" id="pr{{ $index }}">
-                                    {{ number_format($lists2->Price, 2, '.', ',') }}</h2>
+                                    {{ number_format($lists2->Price, 2, '.', ',') }}
+                                  </h2>
                             </td>
                             <td>
                                 <h2 class="display-5 text-green cur1" id="total_amount{{ $index }}">{{ number_format($lists2->Price, 2, '.', ',') }}</h2>
@@ -217,12 +218,17 @@
         }
     </style>
     <script>
-        const allElem = document.getElementById('all');
-        const allValue = parseFloat(allElem.textContent);
-        const formattedValue = allValue.toLocaleString('en-US', {
-            minimumFractionDigits: 2
-        });
-        allElem.textContent = formattedValue;
+         const itemTotalElem = document.getElementById('item_total');
+  const itemTotalValue = parseFloat(itemTotalElem.textContent);
+  const formatter = new Intl.NumberFormat('en-US');
+  const formattedValue = formatter.format(itemTotalValue);
+  itemTotalElem.textContent = formattedValue;
+        // const allElem = document.getElementById('all');
+        // const allValue = parseFloat(allElem.textContent);
+        // const formattedValue = allValue.toLocaleString('en-US', {
+        //     minimumFractionDigits: 2
+        // });
+        // allElem.textContent = formattedValue;
 
         document.addEventListener("DOMContentLoaded", function(e) {
             let money = document.getElementById("money1").value;

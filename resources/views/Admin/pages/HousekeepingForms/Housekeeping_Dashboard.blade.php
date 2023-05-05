@@ -158,13 +158,13 @@
                             <div class="col text-right">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text"
                                     role="tablist">
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab"
                                             data-toggle="tab" href="#tabs-icons-text-1" role="tab"
                                             aria-controls="tabs-icons-text-1" aria-selected="true">Arrival / Departure</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
-                                        <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
+                                        <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-2-tab" data-toggle="tab"
                                             href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
                                             aria-selected="false"> Task Assignment </a>
                                     </li>
@@ -187,7 +187,7 @@
                         <div class="table-responsive">
                             <div class="tab-content" id="myTabContent">
                                 {{-- Arrival / Departure --}}
-                                <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                {{-- <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable">
@@ -458,10 +458,10 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> --}}
 
                                 {{-- Task Assignment --}}
-                                <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                <div class="tab-pane fade show active" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable2">
