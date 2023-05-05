@@ -11,7 +11,7 @@
         </div>
     </div>
     <p class="display-3 text-center">{{ $title }}</p>
-    <div class="row d-flex justify-content-center p-5">
+    <div class="row d-flex p-5">
         <div class="container-fluid">
             <table class="table align-items-center table-flush" id="myTable">
                 <table class="table align-items-center table-flush" style="align-items:center"
@@ -39,31 +39,125 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                    </table><br><br>
-                                    @foreach ($data as $lists3)
-                                    <div class="float-right">
-                                        <div class="col">
-                                            Cash/Gcash
-                                            <input type="text" value="{{ $lists3->cash }}">
+                                    </table><br><br><br>
 
-                                        </div><br>
-                                        <div class="col">
-                                            Bank
-                                            <input type="text" value="{{ $lists3->bank }}">
-                                        </div><br>
-                                        <div class="col">
-                                            Cheque
-                                            <input type="text" value="{{ $lists3->cheque }}">
-                                        </div><br>
-                                        <div class="col">
-                                            Total:
-                                            <input type="text" value="">
-                                        </div>
-                                    </div>
-                                    @endforeach
-
-
+                                    <h3>Gross Collection:  </h3> 
+                                    <table class="table table-flush float-right" style="align-items:center" >
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" style="font-size:18px;">Cash/Gcash</th>
+                                            <th scope="col" style="font-size:18px;">Bank</th>
+                                            <th scope="col" style="font-size:18px;">Cheque</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $lists3)
+                                            <tr>
+                                                <td style="font-size:16px;">{{ $cash_sum }}</td>
+                                                <td style="font-size:16px;">{{ $bank_sum }}</td>
+                                                <td style="font-size:16px;">{{ $cheque_sum }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td style="font-size:16px;">Total:</td>
+                                            <td style="font-size:16px;"></td>
+                                            <td style="font-size:16px;">{{ $total}}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                                     
+                                    {{-- Denomination --}}
+                                    <div class="float-left">
+                                    <h1>Cash Count</h1>
+                                        <table class="table table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="font-size:15px;">Denomination</th>
+                                                <th scope="col" style="font-size:15px;">Pieces</th>
+                                                <th scope="col" style="font-size:15px;">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    <td> 1,000 pesos</td>
+                                                    <td>{{ $thousands }}</td>
+                                                    <td>{{ $p1k }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>500 pesos</td>
+                                                    <td>{{ $fivehundred }}</td>
+                                                    <td>{{ $p500 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 200 pesos</td>
+                                                    <td>{{ $twohundred }}</td>
+                                                    <td>{{ $p200 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>100 pesos</td>
+                                                    <td>{{ $hundreds }}</td>
+                                                    <td>{{ $p100 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>50 pesos</td>
+                                                    <td>{{ $fifty }}</td>
+                                                    <td>{{ $p50 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>20 pesos</td>
+                                                    <td>{{ $twenty }}</td>
+                                                    <td>{{ $p20 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>10 pesos</td>
+                                                    <td>{{ $ten }}</td>
+                                                    <td>{{ $p10 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5 pesos</td>
+                                                    <td>{{ $five }}</td>
+                                                    <td>{{ $p50 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1 peso</td>
+                                                    <td>{{ $one }}</td>
+                                                    <td>{{ $p10 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>.25 cents</td>
+                                                    <td>{{ $decimal }}</td>
+                                                    <td>{{ $p }}</td>
+                                                </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <td>Ending Cash:</td>
+                                            <td></td>
+                                            <td>{{ $amount }}</td>
+                                        </tfoot>
+                                    </table>
+                                </div>                         
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br>
+        <h3>Checked By:__________________________________</h3>
     </div>
 @endsection
