@@ -438,7 +438,7 @@ class HousekeepingController extends Controller
     }
     public function assign_housekeeper(Request $request)
     {
-
+        try{
             // $this->validate($request,[
             //     'id' => '',
             //     'room_no'=> '',
@@ -478,11 +478,17 @@ class HousekeepingController extends Controller
 
             DB::table('housekeepings')->where('ID', $id)->update(array('Attendant' => $housekeeper));
 
-            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+            DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
 
             Alert::Success('Success', 'Attendant successfully assigned!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
             
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            Alert::Error('Error', 'Failed Assigning Attendant!');
+            return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
+        }
 
     }
 
