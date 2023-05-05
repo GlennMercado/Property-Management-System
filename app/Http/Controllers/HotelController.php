@@ -260,7 +260,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
@@ -272,7 +272,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -580,7 +580,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Error('Declined', 'Declined Payment');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
@@ -592,7 +592,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
                 Alert::Error('Declined', 'Declined Payment');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
