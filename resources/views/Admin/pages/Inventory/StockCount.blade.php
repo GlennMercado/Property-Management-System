@@ -33,11 +33,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card" data-toggle="modal" data-target="#stock-history-modal">
-                    <div class="card-body rounded" style="background-color:#34C99D;">
-                        <h2 class="text-secondary mx-auto d-flex justify-content-center text-sm mt-2 pe-auto">
-                            Stock Histories
-                        </h2>
-                    </div>
+
                 </div>
             </div>
             <div class="col-xl">
@@ -50,11 +46,23 @@
                                 <h4 class="mb-0" style="color:#e40808; font-size:14px;">Instructions: Distribute Linen and
                                     Guest Supply Before the Availability of the room.</h4>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                    data-target="#exampleModal" style="float:right">
-                                    Add Stock
-                                </button>
+                            <div class="row mr-2">
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                        data-target="#exampleModal" style="float:right">
+                                        Add Stock
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <div class="" data-toggle="modal" data-target="#stock-history-modal">
+                                        <button class="btn btn-success">Stock Histories</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +94,7 @@
                                                 <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
                                                     data-target="#ModalUpdate{{ $lists->productid }}"><i
                                                         class="bi bi-pencil-square" title="Edit Stock"></i></button>
-                                                <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
+                                                <button class="btn btn-sm btn-info btn-sm" data-toggle="modal"
                                                     data-target="#ModalAdd{{ $lists->productid }}"><i class="bi bi-plus"
                                                         title="Add Stock"></i></button>
                                             </td>
@@ -293,8 +301,8 @@
                                                             </div>
 
                                                             <!-- <div class="invalid-feedback">
-                                                                                            Stock Name empty
-                                                                                            </div>        -->
+                                                                                                Stock Name empty
+                                                                                                </div>        -->
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-outline-danger"
                                                                     data-dismiss="modal">Close</button>
@@ -563,7 +571,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-x: auto;">
                     <!-- Add your table here -->
                     <form method="get" action="">
                         <table class="table align-items-center table-flush datatable datatable-Stock" id="myTale">
