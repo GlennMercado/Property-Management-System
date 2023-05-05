@@ -66,7 +66,7 @@ class MaintenanceController extends Controller
             {
                 DB::table('housekeepings')->where('ID', $id)->update(array('Housekeeping_Status' => $status));
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => $status));
-                DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $discoveredby)->update(['Status' => "Available"]);
+                DB::table('list_of_housekeepers')->where('Housekeepers_Name', $discoveredby)->update(['Status' => "Available"]);
                 DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(['Booking_Status' => "Room Checked"]);
 
                 Alert::Success('Success', 'Out of Order Room Successfully Recorded!');
