@@ -177,7 +177,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
-                $("select[name="type_of_request"]").change(function() {
+                $('select[name="type_of_request"]').change(function() {
                     var selected = $("option:selected", this).val();
                     var listIndex = $(this).data('list-index');
 
