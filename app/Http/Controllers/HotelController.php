@@ -357,7 +357,7 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $facility = "Hotel Room";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In"));
                         DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
         
                         $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
@@ -366,7 +366,7 @@ class HotelController extends Controller
                         {
                             //Insert to housekeeping
                             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
                         }
 
                         if($user_type == "Operations Manager")
@@ -412,7 +412,7 @@ class HotelController extends Controller
                     {
                         $chckin;
                         $chckout;
-                        
+
                         $roomstats = "Occupied";
                         $facility = "Hotel Room";
 
@@ -425,7 +425,7 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $status2 = "Checked-In";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status2, 'updated_at' => DB::RAW('NOW()')));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In", 'updated_at' => DB::RAW('NOW()')));
                         DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats, 'updated_at' => DB::RAW('NOW()')));
         
                         $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
@@ -434,7 +434,7 @@ class HotelController extends Controller
                         {
                             //Insert to housekeeping
                             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
                         }
 
                         Alert::Success('Success', 'Reservation successfully updated!');
