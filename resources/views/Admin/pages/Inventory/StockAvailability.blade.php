@@ -81,7 +81,7 @@
                                                         <button class="btn btn-sm btn-primary btn-lg" data-toggle="modal"
                                                             data-target="#ModalView{{ $lists->productid }}"><i
                                                                 class="bi bi-eye"></i></button>
-                                                        <button class="btn btn-sm btn-warning btn-lg" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-success btn-lg" data-toggle="modal"
                                                             data-target="#ModalUpdate{{ $lists->productid }}"><i
                                                                 class="bi bi-pencil-square"></i></button>
                                                     </td>
@@ -505,7 +505,7 @@
                                                                 style="padding:2px;">View</i></button>
                                                         <button type="button" data-toggle="modal"
                                                             data-target="#ModalUpdate2{{ $lists2->productid }}"
-                                                            class="btn btn-primary"><i
+                                                            class="btn btn-success"><i
                                                                 class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
                                                     </td>
                                                     <td style="font-size:16px;">{{ $lists2->name }}</td>
@@ -780,7 +780,7 @@
                                                                 style="padding:2px;">View</i></button>
                                                         <button type="button" data-toggle="modal"
                                                             data-target="#ModalUpdate2{{ $lists2->productid }}"
-                                                            class="btn btn-primary"><i
+                                                            class="btn btn-success"><i
                                                                 class="bi bi-pencil-square"style="padding:2px;">Edit</i></button>
                                                     </td>
                                                     <td style="font-size:16px;">{{ $lists2->name }}</td>

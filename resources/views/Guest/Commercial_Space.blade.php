@@ -61,7 +61,7 @@
                                             {{ date('h:i A', strtotime($comm->created_at)) }}
                                         </td>
 
-                                        <td class="text-primary" style="white-space: pre-wrap;">
+                                        <td class="text-primary" >
                                             {{ $comm->Remarks }}
                                         </td>
                                         <td>
@@ -625,7 +625,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="text" id="gcash_acc" onkeyup="enable_submit()"
-                                                        name="Reference_No" class="form-control" maxlength="32" required>
+                                                        name="Reference_No" class="form-control" maxlength="13" required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
                                                     <p class="text-center">Upload your proof of payment here </p>
@@ -818,7 +818,7 @@
                                                     <input type="text"
                                                         id="gcash_acc2_{{ $lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date }}"
                                                         onkeyup="enable_submit2(event, {{ $lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date }})"
-                                                        name="Reference_No" class="form-control" maxlength="32" required>
+                                                        name="Reference_No" class="form-control" maxlength="13" required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
                                                     <p class="text-center">Upload your proof of payment here</p>
@@ -947,10 +947,10 @@
                                                                     <td></td>
                                                                 @endif
                                                                 @if ($lists6->Paid_By == 'Novadeci')
-                                                                    <td class="font-weight-bold tbltxt text-danger" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-danger" >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @else
-                                                                    <td class="font-weight-bold tbltxt text-success" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-success" >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @endif
                                                                 <td>
@@ -1047,7 +1047,7 @@
                                                                     onkeyup="enable_submit3()"
                                                                     name="Reference_No"
                                                                     class="form-control"
-                                                                    maxlength="32" required>
+                                                                    maxlength="13" required>
                                                             </div>
                                                             <div class="col-md-12 mt-1">
                                                                 <p class="text-left">Upload your
@@ -1135,7 +1135,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
-                                                            name="Reference_No" class="form-control" maxlength="32"
+                                                            name="Reference_No" class="form-control" maxlength="13"
                                                             required>
                                                     </div>
                                                     <div class="col-md-12 mt-1">

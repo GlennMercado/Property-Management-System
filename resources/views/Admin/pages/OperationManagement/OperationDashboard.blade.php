@@ -221,7 +221,7 @@
                                                                 @endif
 
                                                                 @if ($lists->Housekeeping_Status == 'Inspect')
-                                                                    <button class="btn btn-sm btn-warning"
+                                                                    <button class="btn btn-sm btn-success"
                                                                         data-toggle="modal"
                                                                         data-target="#update{{ $lists->ID }}">
                                                                         <i class="bi bi-pencil-square"></i>

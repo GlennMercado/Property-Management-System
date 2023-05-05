@@ -62,7 +62,7 @@
                                                         style="padding:2px;"></i></button>
                                                 <button type="button" data-toggle="modal"
                                                     data-target="#ModalUpdate{{ $lists->productid }}"
-                                                    class="btn-sm btn-warning btn-lg"><i
+                                                    class="btn-sm btn-success btn-lg"><i
                                                         class="bi bi-pencil-square"></i></button>
                                             </td>
                                             <td style="font-size:16px;">{{ $lists->name }}</td>

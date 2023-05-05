@@ -81,7 +81,7 @@
                                                                             <i class="bi bi-eye"></i>
                                                                     </button>
                                                                     @if ($lists->Status == 'For Approval' || $lists->Status == 'Revised')
-                                                                        <button class="btn btn-sm btn-warning"
+                                                                        <button class="btn btn-sm btn-success"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status{{ $lists->id }}"
                                                                             title="Update Status">
@@ -91,7 +91,7 @@
 
                                                                     @php $now = date('Y-m-d'); @endphp
                                                                     @if ($lists->Status == 'For Interview' && $lists->Interview_Date <= $now)
-                                                                        <button class="btn btn-sm btn-warning"
+                                                                        <button class="btn btn-sm btn-success"
                                                                             data-toggle="modal"
                                                                             data-target="#update_status2{{ $lists->id }}"
                                                                             title="Interview Result">

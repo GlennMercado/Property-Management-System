@@ -92,7 +92,7 @@
                                                                     class="bi bi-eye-fill"></i> </button>
                                                             <!--update Button-->
                                                             @if ($lists->Payment_Status == 'Pending')
-                                                                <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                     data-target="#update{{ $lists->Booking_No }}"> <i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             @endif
@@ -330,7 +330,7 @@
                                                         @if (
                                                             ($lists->Tenant_Status != 'Pre-Termination' && $lists->Payment_Status == 'Paid (Checking)') ||
                                                                 $lists->Due_Date == $now)
-                                                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#update_payment_status{{ $lists->id }}"
                                                                 title="Update Payment Status">
                                                                 <i class="bi bi-pencil-square"></i>
@@ -764,7 +764,7 @@
                                                                             @endif
                                                                             <td>
                                                                                 @if ($lists->Payment_Status == 'Paid (Checking)' || $lists->Payment_Status == null)
-                                                                                    <button class="btn btn-sm btn-warning"
+                                                                                    <button class="btn btn-sm btn-success"
                                                                                         data-toggle="modal"
                                                                                         data-target="#update_payment_electricity_status{{ $lists->Tenant_ID . $lists->Due_Date . $lists->Type_of_Bill }}"
                                                                                         title="Update Payment Status">

@@ -45,7 +45,7 @@
                                     <td>2.000.00</td>
                                     <td><a href = "{{ route('GuestFolio') }}">View</a></td>
                                     <td>
-                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#EditModal"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#EditModal"><i class="bi bi-pencil-square"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
