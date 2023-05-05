@@ -11,7 +11,6 @@
             $('#myTable1').DataTable();
             $('#myTable2').DataTable();
             $('#myTable3').DataTable();
-            $('#myTable4').DataTable();
         });
     </script>
 
@@ -68,7 +67,7 @@
                             <!-- Pending -->
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-1-tab">
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable1">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:17px;">Action</th>
@@ -303,7 +302,7 @@
                             <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-2-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:17px;">Action</th>
@@ -626,7 +625,7 @@
                             <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                                 aria-labelledby="tabs-icons-text-3-tab">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable3">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:17px;">Action</th>

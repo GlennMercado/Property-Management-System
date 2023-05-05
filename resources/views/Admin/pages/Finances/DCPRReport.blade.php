@@ -83,7 +83,7 @@
                                                 <tr>
                                                     <td> 1,000 pesos</td>
                                                     <td>{{ $thousands }}</td>
-                                                    <td>{{ $p1k }}</td>
+                                                    <td>{{ $p1000 }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>500 pesos</td>

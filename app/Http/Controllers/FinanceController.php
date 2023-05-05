@@ -217,6 +217,16 @@ class FinanceController extends Controller
         $amount = $total;
 
         $thousands = 0;
+        $p1000 = 0;
+        $p500 = 0;
+        $p200 = 0;
+        $p100 = 0;
+        $p50 = 0;
+        $p20 = 0;
+        $p10 = 0;
+        $p5 = 0;
+        $p1 = 0;
+        $p = 0;
         $fivehundred = 0;
         $twohundred = 0;
         $hundreds = 0;
@@ -230,7 +240,7 @@ class FinanceController extends Controller
         if ($amount > 0) {
             $thousands = floor($amount / 1000);
             $amount -= $thousands * 1000;
-            $p1k = $thousands * 1000;
+            $p1000 = $thousands * 1000;
         
             $fivehundred = floor($amount / 500);
             $amount -= $fivehundred * 500;
@@ -246,27 +256,28 @@ class FinanceController extends Controller
         
             $fifty = floor($amount / 50);
             $amount -= $fifty * 50;
-            $p50 = $fifty * 100;
+            $p50 = $fifty * 50;
         
             $twenty = floor($amount / 20);
             $amount -= $twenty * 20;
-            $p20 = $twenty * 100;
+            $p20 = $twenty * 20;
         
             $ten = floor($amount / 10);
             $amount -= $ten * 10;
-            $p10 = $ten * 100;
+            $p10 = $ten * 10;
 
             $five = floor($amount / 5);
             $amount -= $five * 5;
-            $p50 = $five * 100;
+            $p50 = $five * 5;
 
             $one = floor($amount / 1);
             $amount -= $one * 1;
-            $p10 = $one * 100;
+            $p10 = $one * 1;
 
             $decimal = floor($amount / .25);
-            $p = $decimal * 100;
+            $p = $decimal * .25;
         }
+
         $data;
         $title;
 
@@ -275,9 +286,9 @@ class FinanceController extends Controller
             $title = "Daily Cash Position Report";
             
 
-        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1k', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'))->setOption('font_path', '')->setOption('font_data', []);
+        $pdf = PDF::loadView('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1000', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'))->setOption('font_path', '')->setOption('font_data', []);
         //  return $pdf->download('report.pdf');
-        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1k', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'));
+        return view('Admin.pages.Finances.DCPRReport', compact('data', 'title', 'end_date', 'start_date', 'cash_sum', 'bank_sum', 'cheque_sum', 'total', 'amount', 'thousands', 'hundreds', 'fivehundred', 'twohundred', 'fifty', 'twenty', 'ten', 'five', 'one', 'decimal', 'p1000', 'p500', 'p200', 'p100', 'p50', 'p20', 'p10', 'p'));
     }
 
     public function archives_summary(Request $request){

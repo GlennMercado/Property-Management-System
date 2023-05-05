@@ -56,6 +56,10 @@
                                         <div class="pt-2 pt-md-1">
                                             <h3 class="text-white">Event type: {{ $lists->event_type }}</h3>
                                             <p>
+                                                <i class="bi bi-building"></i>
+                                                Facility: {{ $lists->facility }}
+                                            </p>
+                                            <p>
                                                 <i class="bi bi-people-fill"></i>
                                                 Expected guests: {{ $lists->num_of_guest }}
                                             </p>
@@ -230,10 +234,6 @@
                                                         {{ $lists->contact_no }}
                                                         <br>
                                                         <span class="font-weight-bold">
-                                                            Contact Person:</span>
-                                                        {{ $lists->contact_person }}
-                                                        <br>
-                                                        <span class="font-weight-bold">
                                                             Billing Address:</span>
                                                         {{ $lists->billing_address }}
                                                         <br>
@@ -248,6 +248,10 @@
                                                         {{ $lists->event_name }}
                                                         <br>
                                                         <span class="font-weight-bold">
+                                                            Facility:</span>
+                                                        {{ $lists->facility }}
+                                                        <br>
+                                                        <span class="font-weight-bold">
                                                             Event Type:</span>
                                                         {{ $lists->event_type }}
                                                         <br>
@@ -258,10 +262,6 @@
                                                         <span class="font-weight-bold">
                                                             No of Guest:</span>
                                                         {{ $lists->no_of_guest }}
-                                                        <br>
-                                                        <span class="font-weight-bold">
-                                                            Venue:</span>
-                                                        {{ $lists->venue }}
                                                         <br>
                                                         <span class="font-weight-bold">
                                                             Caterer:</span>
@@ -550,8 +550,8 @@
                                                                     <div class="col-md-6">
                                                                         <h3 class="mt-2">Start date</h3>
                                                                         <input type="date" name="start_date"
-                                                                            id="myStartDateInput" class="form-control chck"
-                                                                            required>
+                                                                            id="myStartDateInput"
+                                                                            class="form-control chck" required>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <h3 class="mt-2">End date</h3>
@@ -808,7 +808,7 @@
         }
     </style>
     <script>
-        const maxLength = 3; // set maximum length here
+        const maxLength = 4; // set maximum length here
         const myNumberInput = $('#myNumberInput');
 
         myNumberInput.on('input', function() {

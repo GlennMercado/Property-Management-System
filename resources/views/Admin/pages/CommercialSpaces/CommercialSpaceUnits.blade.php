@@ -122,8 +122,6 @@
                                                         <th scope="col" style="font-size:18px;">Maintenance Status <br>
                                                             (Under
                                                             Maintenance?)</th>
-                                                        <th scope="col" style="font-size:18px;">Due Date</th>
-                                                        <th scope="col" style="font-size:18px;">Maintenance Cost</th>
                                                         <th scope="col" style="font-size:18px;">Occupancy Status</th>
                                                         <th scope="col" style="font-size:18px;">Rental Fee</th>
                                                         <th scope="col" style="font-size:18px;">Security Deposit</th>
@@ -143,19 +141,6 @@
                                                             <td style="font-size:16px;">{{ $lists->Measurement_Size }}</td>
                                                             <td style="font-size:16px;">{{ $lists->Maintenance_Status }}
                                                             </td>
-                                                            @if ($lists->Maintenance_Due_Date != null)
-                                                                <td style="font-size:16px;">
-                                                                    {{ date('F j, Y', strtotime($lists->Maintenance_Due_Date)) }}
-                                                                </td>
-                                                            @else
-                                                                <td></td>
-                                                            @endif
-                                                            @if ($lists->Maintenance_Cost != null)
-                                                                <td style="font-size:16px;" class="cur1">
-                                                                    {{ $lists->Maintenance_Cost }}</td>
-                                                            @else
-                                                                <td></td>
-                                                            @endif
                                                             <td style="font-size:16px;">{{ $lists->Occupancy_Status }}
                                                             </td>
                                                             <td style="font-size:16px;" class="cur1">

@@ -411,38 +411,18 @@ class GuestController extends Controller
         
     }
     public function convention_center_application(Request $request)
-    {         
-            $this->validate($request,[
-                'client_name' => 'required',
-                'contact_no' => 'required',
-                'contact_person' => 'required',
-                'contact_person_no' => 'required',
-                'billing_address' => 'required',
-                'email_address' => 'required',
-                'event_name' => 'required',
-                'event_type' => 'required',
-                'event_date' => 'required',
-                'no_of_guest' => 'required',
-                'venue' => 'required',
-                'caterer' => 'required',
-                'audio_visual' => 'required',
-                'inquiry_status' => '',
-                'concept' => 'required'
-            ]);
-            
+    {                  
             $submit = new convention_center_application;
             $submit->email = Auth::user()->email;
             $submit->client_name = $request->input('client_name');
             $submit->contact_no = $request->input('contact_no');
-            $submit->contact_person = $request->input('contact_person');
-            $submit->contact_person_no = $request->input('contact_person_no');
             $submit->billing_address = $request->input('billing_address');
             $submit->email_address = $request->input('email_address');
+            $submit->facility = $request->input('facility');
             $submit->event_name = $request->input('event_name');
             $submit->event_type = $request->input('event_type');
             $submit->event_date = $request->input('event_date');
             $submit->no_of_guest = $request->input('no_of_guest');
-            $submit->venue = $request->input('venue');
             $submit->caterer = $request->input('caterer');
             $submit->audio_visual = $request->input('audio_visual');
             $submit->concept = $request->input('concept');

@@ -8,7 +8,237 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
-    <div id="carousel" class="carousel slide mt-6" data-ride="carousel">
+
+    <div class="card d-flex justify-content-center mt-6" style="width: 100%;" id="appli">
+        <div class="card-body">
+            <div class="container-fluid bg-white mt-1" id="conventionCenter">
+                <div class="row d-flex justify-content-center">
+                    <div class="card col-md-7 pt-4 shadow p-3 mb-5">
+
+                        <div class="row align-items-center pt-4">
+                            <div class="col">
+                                <h3><span><button class="btn btn-success" disabled>1</button></span> &nbsp Event
+                                    Application
+                                    Form</h3>
+                            </div>
+                        </div>
+                        <h4 style="color: #8898aa;">Tell us about you </h4>
+                        <form action="{{ url('/convention_center_submit') }}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="row ">
+                                <div class="col-md pt-4">
+                                    <p>Client Name <span class="text-danger">*</span></p>
+                                    <input type="text" id="name" name="client_name" class="form-control"
+                                        placeholder="Enter client name" maxlength="50" onchange="validateName()" required>
+                                    <p id="name-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                                <div class="col-md pt-4">
+                                    <p>Contact Number <span class="text-danger">*</span></p>
+                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
+                                        minlength="11" title="Please use a 11 digit mobile number with no dashes or dots"
+                                        name="contact_no" class="form-control" placeholder="09XXXXXXXX" id="contact"
+                                        onchange="validateContact()" required>
+                                    <p id="contact-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md pt-4">
+                                    <p>Billing Address <span class="text-danger">*</span></p>
+                                    <input type="text" name="billing_address" maxlength="82" class="form-control"
+                                        placeholder="Enter billing address" id="address" onchange="validateAddress()" required>
+                                    <p id="address-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                                <div class="col-md pt-4">
+                                    <p>Contact Email <span class="text-danger">*</span></p>
+                                    <input type="email" name="email_address" class="form-control"
+                                        placeholder="Enter email address" maxlength="32" id="email"
+                                        onchange="validateEmail()" required>
+                                    <p id="email-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                            </div>
+
+                            <p class="pt-4">&nbsp Event
+                                Information</p>
+                            <div class="row">
+                                <div class="col-md pt-4">
+                                    <p>Event Name <span class="text-danger">*</span></p>
+                                    <input type="text" name="event_name" class="form-control"
+                                        placeholder="Enter event name" maxlength="50" id="Event" required>
+                                    <p id="event-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                                <div class="col-md pt-4">
+                                    <p>Event Type <span class="text-danger">*</span></p>
+                                    <select name="event_type" class="form-control" id="EventType" required>
+                                        <option value="Entertainment Events">
+                                            Entertainment
+                                            Events</option>
+                                        <option value="Social/Lifecycle Events">
+                                            Social/Lifecycle Events</option>
+                                        <option value="Corporate Events">Corporate
+                                            Events
+                                        </option>
+                                        <option value="Sports Event">Sports Event
+                                        </option>
+                                        <option value="Religious Events">Religious
+                                            Events
+                                        </option>
+                                        <option value="Educational Events">Educational
+                                            Events
+                                        </option>
+                                        <option value="Political Event">Political Event
+                                        </option>
+                                        <option value="Charitable/Func Raising Events">
+                                            Charitable/Func Raising Events
+                                        </option>
+                                    </select>
+                                    <!-- <input type="text" name="event_type" class="form-control"
+                                                                                        placeholder="Enter event type" maxlength="32" id="EventType"
+                                                                                        onchange="validateEventType()"> -->
+                                    <p id="eventType-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Facility <span class="text-danger">*</span></p>
+                                    <select name="facility" class="form-control" id="EventType" required>
+                                        <option value="">Select an option
+                                        </option>
+                                        <option value="Convention Center">
+                                            Convention
+                                            Center
+                                        </option>
+                                        <option value="Up to lower box bleachers only">
+                                            Up to lower box
+                                            bleachers only</option>
+                                        <option value="Courtside">Courtside
+                                        </option>
+                                        <option value="Basketball practice games (non-aircon)">
+                                            Basketball practice
+                                            games
+                                            (non-aircon)</option>
+                                        <option value="Basketball practice games (aircon)">
+                                            Basketball practice
+                                            games
+                                            (aircon)</option>
+                                        <option value="Function Room A">Function Room A
+                                        </option>
+                                        <option value="Function Room B">Function Room B
+                                        </option>
+                                        <option value="Function Room C">Function Room C
+                                        </option>
+                                        <option value="Function Room D">Function Room D
+                                        </option>
+                                        <option value="Function Room E">Function Room E
+                                        </option>
+                                        <option value="Function Room F">Function Room F
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md pt-4">
+                                    <p>Event Date/Time <span class="text-danger">*</span></p>
+                                    <input class="form-control" name="event_date" type="datetime-local"
+                                        onkeydown="return false" id="example-datetime-local-input" id="my-date"
+                                        onchange="validateDate()" required>
+                                    <p id="date-error" style="color: red; font-size: 14px;"></p>
+                                </div>
+                                <div class="col-md pt-4">
+                                    <span>
+                                        <p>Expected No. of Guest <span class="text-danger">*</span></p>
+                                        <input type="number" name="no_of_guest" onKeyPress="if(this.value.length==4) return false;" class="form-control"
+                                            placeholder="Enter expected no. of guest" id="No"
+                                            onchange="validateNo()" required>
+                                        <p id="no-error" style="color: red; font-size: 14px;"></p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="text" name="inquiry_status" value="For Approval" hidden>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <p>Do you have Caterer? <span class="text-danger">*</span></p>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="radio" name="caterer" value="yes" required>
+                                                <label for="caterer">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="radio" name="caterer" value="no" required>
+                                                <label for="caterer">
+                                                    No (Accredited by NVDC)
+                                                </label>
+                                            </div>
+                                            <input type="hidden" id="specify_caterer_text">
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <p>Do you have Audio/Visual? <span class="text-danger">*</span></p>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="radio" name="audio_visual" value="yes" required>
+                                                <label for="audio_visual">Yes</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="radio" name="audio_visual" value="no" required>
+                                                <label for="audio_visual">No (Accredited by NVDC)</label>
+                                            </div>
+                                            <input type="hidden" id="specify_audio_visual_text">
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>
+                                        <br>
+                                        <br>
+                                        <p>Do you have Event Concept And Styling? <span class="text-danger">*</span></p>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="radio" name="concept" value="yes" required>
+                                                <label for="concept">Yes</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="radio" name="concept" value="no" required>
+                                                <label for="concept">No (Accredited by NVDC)</label>
+                                            </div>
+                                            <input type="hidden" id="specify_concept_text">
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <p class="text-red">Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
+                            <br>
+                            <br>
+                            <br>
+                            <p class="text-center font-weight-bold">
+                                This information requested in this profiling is voluntary and confidential and is not to
+                                be
+                                used for any purpose. The bearer understand its content and voluntarily give his/her
+                                consent
+                                for the collection use, processing, storage and retention of his/her personal data
+                                subject
+                                to RA 10173 - Data Privacy Act of 2021.
+                            </p>
+                            <input type="submit"
+                                class="btn btn-outline-success text-white bg-green mx-auto d-flex justify-content-center"
+                                style="width:40%;">
+                            <br>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
@@ -145,232 +375,6 @@
         </div>
     </div> --}}
 
-    <div class="card d-flex justify-content-center" style="width: 100%;" id="appli">
-        <div class="card-body">
-            <div class="container-fluid bg-white mt-1" id="conventionCenter">
-                <div class="row d-flex justify-content-center">
-                    <div class="card col-md-7 pt-4 shadow p-3 mb-5">
-
-                        <div class="row align-items-center pt-4">
-                            <div class="col">
-                                <h3><span><button class="btn btn-success" disabled>1</button></span> &nbsp Event
-                                    Application
-                                    Form</h3>
-                            </div>
-                        </div>
-                        <h4 style="color: #8898aa;">Tell us about you </h4>
-                        <form action="{{ url('/convention_center_submit') }}" method="POST"
-                            enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="row ">
-                                <div class="col-md pt-4">
-                                    <p>Client Name <span class="text-danger">*</span></p>
-                                    <input type="text" id="name" name="client_name" class="form-control"
-                                        placeholder="Enter client name" maxlength="64" onchange="validateName()">
-                                    <p id="name-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                                <div class="col-md pt-4">
-                                    <p>Contact Number <span class="text-danger">*</span></p>
-                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
-                                        minlength = "11"
-                                        title="Please use a 11 digit mobile number with no dashes or dots"
-                                        name="contact_no" class="form-control" placeholder="09XXXXXXXX" id="contact"
-                                        onchange="validateContact()">
-                                    <p id="contact-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md pt-4">
-                                    <p>Contact Person <span class="text-danger">*</span></p>
-                                    <input type="text" name="contact_person" class="form-control"
-                                        placeholder="Enter contact person" maxlength="64" id="contactperson"
-                                        onchange="validateContactPerson()">
-                                    <p id="cp-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                                <div class="col-md pt-4">
-                                    <p>Contact Person Number <span class="text-danger">*</span></p>
-                                    <input type="number" onKeyPress="if(this.value.length==11) return false;"
-                                        title="Please use a 10 digit mobile number with no dashes or dots"
-                                        name="contact_person_no" class="form-control" placeholder="09XXXXXXXX"
-                                        id="ContactPersonNum" onchange="validateContactPersonNum()">
-                                    <p id="ContactPersonNum-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md pt-4">
-                                    <p>Billing Address <span class="text-danger">*</span></p>
-                                    <input type="text" name="billing_address" maxlength="82" class="form-control"
-                                        placeholder="Enter billing address" id="address" onchange="validateAddress()">
-                                    <p id="address-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                                <div class="col-md pt-4">
-                                    <p>Contact Email <span class="text-danger">*</span></p>
-                                    <input type="email" name="email_address" class="form-control"
-                                        placeholder="Enter email address" maxlength="32" id="email"
-                                        onchange="validateEmail()">
-                                    <p id="email-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                            </div>
-
-                            <p class="pt-4">&nbsp Event
-                                Information</p>
-                            <div class="row">
-                                <div class="col-md pt-4">
-                                    <p>Event Name <span class="text-danger">*</span></p>
-                                    <input type="text" name="event_name" class="form-control"
-                                        placeholder="Enter event name" maxlength="64" id="Event"
-                                        onchange="validateEvent()">
-                                    <p id="event-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                                <div class="col-md pt-4">
-                                    <p>Event Type <span class="text-danger">*</span></p>
-                                    <select name="event_type" class="form-control" id="EventType"
-                                        onchange="validateEventType()">
-                                        <option value="Birthday">Birthday</option>
-                                        <option value="Wedding">Wedding</option>
-                                        <option value="Baptism">Baptism</option>
-                                        <option value="Corporate meetings">Corporate meetings</option>
-                                        <option value="Basketball practice game">Basketball practice game</option>
-                                        <option value="Graduation">Graduation</option>
-                                        <option value="">Others</option>
-                                    </select>
-                                    <!-- <input type="text" name="event_type" class="form-control"
-                                                                        placeholder="Enter event type" maxlength="32" id="EventType"
-                                                                        onchange="validateEventType()"> -->
-                                    <p id="eventType-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md pt-4">
-                                    <p>Event Date/Time <span class="text-danger">*</span></p>
-                                    <input class="form-control" name="event_date" type="datetime-local"
-                                        onkeydown="return false" id="example-datetime-local-input" id="my-date"
-                                        onchange="validateDate()">
-                                    <p id="date-error" style="color: red; font-size: 14px;"></p>
-                                </div>
-                                <div class="col-md pt-4">
-                                    <span>
-                                        <p>Expected No. of Guest <span class="text-danger">*</span></p>
-                                        <input type="number" name="no_of_guest" class="form-control"
-                                            placeholder="Enter expected no. of guest" id="No"
-                                            onchange="validateNo()">
-                                        <p id="no-error" style="color: red; font-size: 14px;"></p>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <input type="text" name="inquiry_status" value="For Approval" hidden>
-                                <div class="col-md-12">
-                                    <span>
-                                        <br>
-                                        <br>
-                                        <p>Venue<span class="text-danger">*</span></p>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="radio" name="venue" value="yes">
-                                                Yes
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="radio" name="venue" value="venue_value_no">
-                                                No (If no, please specify)
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input style="display:none" class="form-control-sm" type="text"
-                                                    name="venue" id="specify_venue_text" maxlength="32">
-                                            </div>
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="col-md-12">
-                                    <span>
-                                        <br>
-                                        <br>
-                                        <p>Caterer <span class="text-danger">*</span></p>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="radio" name="caterer" value="yes">
-                                                Yes
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="radio" name="caterer" value="caterer_value_no">
-                                                No (If no, please specify)
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="caterer" id="specify_caterer_text" maxlength="32">
-                                            </div>
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="col-md-12">
-                                    <span>
-                                        <br>
-                                        <br>
-                                        <p>Audio/Visual <span class="text-danger">*</span></p>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="radio" name="audio_visual" value="yes">
-                                                Yes
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="radio" name="audio_visual" value="audio_visual_value_no">
-                                                No (If no, please specify)
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="audio_visual" id="specify_audio_visual_text" maxlength="32">
-                                            </div>
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="col-md-12">
-                                    <span>
-                                        <br>
-                                        <br>
-                                        <p>Event Concept And Styling <span class="text-danger">*</span></p>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="radio" name="concept" value="yes">
-                                                Yes
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="radio" name="concept" value="concept_value_no">
-                                                No (If no, please specify)
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input style="display:none;" class="form-control-sm" type="text"
-                                                    name="concept" id="specify_concept_text" maxlength="32">
-                                            </div>
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <p class="text-red">Corkage fee of P50.00 per head will apply for non-accredited caterer.</p>
-                            <br>
-                            <br>
-                            <br>
-                            <p class="text-center font-weight-bold">
-                                This information requested in this profiling is voluntary and confidential and is not to
-                                be
-                                used for any purpose. The bearer understand its content and voluntarily give his/her
-                                consent
-                                for the collection use, processing, storage and retention of his/her personal data
-                                subject
-                                to RA 10173 - Data Privacy Act of 2021.
-                            </p>
-                            <input type="submit"
-                                class="btn btn-outline-success text-white bg-green mx-auto d-flex justify-content-center"
-                                style="width:40%;">
-                            <br>
-                            <br>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         function validateName() {
             const nameInput = document.getElementById("name");
@@ -505,7 +509,33 @@
                 document.getElementById("my-date").value = "";
             }
         }
-
+        $("input[name='caterer']").change(function() {
+            if ($(this).val() == "yes") {
+                $("#specify_caterer_text").empty();
+                $("#specify_caterer_text").val('yes');
+                $('#specify_caterer_text').removeAttr('required');
+            } else if ($(this).val() == "no") {
+                $("#specify_caterer_text").val('no');
+            }
+        })
+        $("input[name='audio_visual']").change(function() {
+            if ($(this).val() == "yes") {
+                $("#specify_audio_visual_text").empty();
+                $("#specify_audio_visual_text").val('yes');
+                $('#specify_audio_visual_text').removeAttr('required');
+            } else if ($(this).val() == "no") {
+                $("#specify_audio_visual_text").val('no');
+            }
+        })
+        $("input[name='concept']").change(function() {
+            if ($(this).val() == "yes") {
+                $("#specify_concept_text").empty();
+                $("#specify_concept_text").val('yes');
+                $('#specify_concept_text').removeAttr('required');
+            } else if ($(this).val() == "no") {
+                $("#specify_concept_text").val('no');
+            }
+        })
         // function validateNo() {
         //     const NoInput = document.getElementById("No");
         //     const No = NoInput.value.trim(); // remove leading/trailing whitespace
@@ -525,54 +555,6 @@
             event.preventDefault();
             $(this).ekkoLightbox();
         });
-        $("input[name='venue']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_venue_text").hide();
-                $("#specify_venue_text").empty();
-                $("#specify_venue_text").val('yes');
-                $('#specify_venue_text').removeAttr('required');
-            } else if ($(this).val() == "venue_value_no") {
-                $("#specify_venue_text").show();
-                $("#specify_venue_text").val('');
-                $('#specify_venue_text').attr('required', true);
-            }
-        })
-        $("input[name='caterer']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_caterer_text").hide();
-                $("#specify_caterer_text").empty();
-                $("#specify_caterer_text").val('yes');
-                $('#specify_caterer_text').removeAttr('required');
-            } else if ($(this).val() == "caterer_value_no") {
-                $("#specify_caterer_text").show();
-                $("#specify_caterer_text").val('');
-                $('#specify_caterer_text').attr('required', true);
-            }
-        })
-        $("input[name='audio_visual']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_audio_visual_text").hide();
-                $("#specify_audio_visual_text").empty();
-                $("#specify_audio_visual_text").val('yes');
-                $('#specify_audio_visual_text').removeAttr('required');
-            } else if ($(this).val() == "audio_visual_value_no") {
-                $("#specify_audio_visual_text").show();
-                $("#specify_audio_visual_text").val('');
-                $('#specify_audio_visual_text').attr('required', true);
-            }
-        })
-        $("input[name='concept']").change(function() {
-            if ($(this).val() == "yes") {
-                $("#specify_concept_text").hide();
-                $("#specify_concept_text").empty();
-                $("#specify_concept_text").val('yes');
-                $('#specify_concept_text').removeAttr('required');
-            } else if ($(this).val() == "concept_value_no") {
-                $("#specify_concept_text").show();
-                $("#specify_concept_text").val('');
-                $('#specify_concept_text').attr('required', true);
-            }
-        })
         $(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
             var dateToday = new Date();
             var month = dateToday.getMonth() + 1;
