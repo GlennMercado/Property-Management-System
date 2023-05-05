@@ -618,8 +618,10 @@
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" id="gcash_acc" onkeyup="enable_submit()"
-                                                        name="Reference_No" class="form-control" maxlength="13" required>
+                                                    <input type="number" id="gcash_acc" onkeyup="enable_submit()"
+                                                        name="Reference_No" class="form-control" maxlength="13" 
+                                                        onkeypress="if(this.value.length==13) return false;"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
                                                     <p class="text-center">Upload your proof of payment here </p>
@@ -796,10 +798,12 @@
                                                             class="text-danger">*</span></p>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text"
+                                                    <input type="number"
                                                         id="gcash_acc2_{{ $lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date }}"
                                                         onkeyup="enable_submit2(event, {{ $lists3->Type_of_Bill . $lists3->Tenant_ID . $lists3->Due_Date }})"
-                                                        name="Reference_No" class="form-control" maxlength="13" required>
+                                                        name="Reference_No" class="form-control" maxlength="13"
+                                                        onkeypress="if(this.value.length==13) return false;"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-12 mt-1">
                                                     <p class="text-center">Upload your proof of payment here</p>
@@ -1009,12 +1013,14 @@
                                                                                 class="text-danger">*</span></p>
                                                                     </div> -->
                                                             <div class="col-md-12">
-                                                                <input type="text"
+                                                                <input type="number"
                                                                     id="gcash_acc3"
                                                                     onkeyup="enable_submit3()"
                                                                     name="Reference_No"
                                                                     class="form-control"
-                                                                    maxlength="32" required>
+                                                                    maxlength="32" 
+                                                                    onkeypress="if(this.value.length==13) return false;"
+                                                                    required>
                                                             </div>
                                                             <div class="col-md-12 mt-1">
                                                                 <p class="text-left">Upload your
@@ -1094,8 +1100,9 @@
                                                                 class="text-danger">*</span></p>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" id="gcash_acc3" onkeyup="enable_submit3()"
+                                                        <input type="number" id="gcash_acc3" onkeyup="enable_submit3()"
                                                             name="Reference_No" class="form-control" maxlength="13"
+                                                            onkeypress="if(this.value.length==13) return false;"
                                                             required>
                                                     </div>
                                                     <div class="col-md-12 mt-1">

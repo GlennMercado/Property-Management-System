@@ -453,9 +453,10 @@
                                                                     class="text-danger">*</span></p>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="gcash_acc"
+                                                            <input type="number" id="gcash_acc"
                                                                 onkeyup="enable_submit()" name="gcash_account"
-                                                                class="form-control" maxlength="13">
+                                                                class="form-control" maxlength="13"  
+                                                                onkeypress="if(this.value.length==13) return false;">
                                                         </div>
                                                         <div class="col-md-12 mt-1">
                                                             <p class="text-center">Upload your proof of payment here</p>
