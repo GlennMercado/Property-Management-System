@@ -23,15 +23,13 @@ return new class extends Migration
             $table->string('inquiry_status');
             $table->string('client_name');
             $table->string('contact_no');
-            $table->string('contact_person');
-            $table->string('contact_person_no');
             $table->string('billing_address');
             $table->string('email_address');
             $table->string('event_name');
             $table->string('event_type');
             $table->string('event_date');
             $table->string('no_of_guest');
-            $table->string('venue');
+            $table->string('facility'); 
             $table->string('caterer');
             $table->string('audio_visual');
             $table->string('concept');
