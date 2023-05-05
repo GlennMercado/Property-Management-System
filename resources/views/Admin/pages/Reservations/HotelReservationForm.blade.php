@@ -626,11 +626,11 @@
                                                             <i class="bi bi-pencil-square"></i>
                                                         </button>
                                                         {{-- Invoice --}}
-                                                        <button href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
-                                                            target="blank" class="btn btn-sm"
+                                                        <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
                                                             style="cursor:pointer;" title="Invoice">
                                                             <i class="bi bi-file-earmark-text"></i>
-                                                        </button>
+                                                        </a>
                                                     @endif
 
                                                 </td>

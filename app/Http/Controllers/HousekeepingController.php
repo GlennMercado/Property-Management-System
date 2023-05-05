@@ -503,7 +503,7 @@ class HousekeepingController extends Controller
                 'Attendant' => $housekeeper
             ));
 
-            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+            DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
 
             Alert::Success('Success', 'Attendant Successfully Assigned!');
             return redirect('Housekeeping_Dashboard')->with('Success', 'Data Updated');
@@ -526,7 +526,7 @@ class HousekeepingController extends Controller
                 'Attendant' => $housekeeper
             ));
 
-            DB::table('List_of_Housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
+            DB::table('list_of_housekeepers')->where('Housekeepers_Name', $housekeeper)->update(['Status' => "Occupied"]);
 
 
             Alert::Success('Success', 'Attendant Successfully Assigned!');
