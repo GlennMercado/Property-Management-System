@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-header text-center border-0">
                         <div class="d-flex justify-content-between">
-                            <h2 class="align-middle">Profile Picture</h2>
+                            
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#pictureModal">Edit</button>
                         </div>
