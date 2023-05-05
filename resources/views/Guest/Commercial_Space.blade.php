@@ -79,353 +79,352 @@
                                             @endif
                                         </td>
                                     </tr>
+
+                                    {{-- View Application --}}
+                                    <div class="modal fade bd-example-modal-lg" id="commprev{{ $comm->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <div class="col-md-9">
+                                                            <div class="row align-items-center">
+                                                                <div class="col">
+                                                                    <h3 class=" mt-6"><span><button class="btn btn-success"
+                                                                                disabled="">1</button></span>
+                                                                        &nbsp;
+                                                                        Commercial Space Inquiry and Application Form
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+
+                                                            <p class="pt-4">Business Name <span class="text-danger">*</span></p>
+                                                            <input type="text" name="business_name" class="form-control mt-2"
+                                                                placeholder="Enter Business Name" maxlength="64" required=""
+                                                                value="{{ $comm->business_name }}" readonly>
+                                                            <p class="pt-4">Business Style/Trade Name (if different from company
+                                                                name) <span class="text-danger">*</span> </p>
+                                                            <input type="text" name="business_style" class="form-control"
+                                                                placeholder="Enter Business Style/Trade Name" maxlength="64"
+                                                                required="" value="{{ $comm->business_style }}" readonly>
+                                                            <p class="pt-4">Business Address <span class="text-danger">*</span>
+                                                            </p>
+                                                            <input type="text" name="business_address" class="form-control"
+                                                                placeholder="Enter Business Address" maxlength="64" required=""
+                                                                value="{{ $comm->business_address }}" readonly>
+                                                            <p class="pt-4">Email Address/Website/FB Page <span
+                                                                    class="text-danger">*</span>
+                                                            </p>
+                                                            <input type="text" name="email_website_fb" class="form-control"
+                                                                placeholder="Enter Email Address/Website/FB Page..." maxlength="64"
+                                                                required="" value="{{ $comm->email_website_fb }}" readonly>
+                                                            <div class="row">
+                                                                <div class="col-md">
+
+                                                                    <p class="pt-4">Landline No. <span class="text-danger">*</span>
+                                                                    </p>
+                                                                    <input type="number"
+                                                                        onkeypress="if(this.value.length==8) return false;"
+                                                                        name="business_landline_no" class="form-control"
+                                                                        placeholder="09XXXXXXXX" required=""
+                                                                        value="{{ $comm->business_landline_no }}" readonly>
+                                                                </div>
+                                                                <div class="col-md">
+                                                                    <p class="pt-4">Mobile No. <span class="text-danger">*</span>
+                                                                    </p>
+                                                                    <input type="number"
+                                                                        onkeypress="if(this.value.length==10) return false;"
+                                                                        name="business_mobile_no" class="form-control"
+                                                                        placeholder="09XXXXXXXX" required=""
+                                                                        value="{{ $comm->business_mobile_no }}" readonly>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- <h4>Owner Details </h4>
+                                                                                                                                                                                                                                                <h4>For Single Proprietorship </h4> -->
+                                                            <p class="pt-4">Name of owner <span class="text-danger">*</span>
+                                                            </p>
+                                                            <input type="text" name="name_of_owner" class="form-control"
+                                                                placeholder="Enter Name of Owner" maxlength="64" required=""
+                                                                value="{{ $comm->name_of_owner }}" readonly>
+
+                                                            <br>
+                                                            <p>Spouse <span class="text-danger">*</span> </p>
+                                                            <input type="text" name="spouse" class="form-control"
+                                                                placeholder="Enter Spouse" maxlength="64" required=""
+                                                                value="{{ $comm->spouse }}" readonly>
+                                                            <br>
+                                                            <p>Home Address <span class="text-danger">*</span> </p>
+                                                            <input type="text" name="home_address" class="form-control"
+                                                                placeholder="Enter Home Address" maxlength="128" required=""
+                                                                value="{{ $comm->home_address }}" readonly>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <br>
+                                                                    <p>Landline No <span class="text-danger">*</span> </p>
+                                                                    <input type="number"
+                                                                        onkeypress="if(this.value.length==8) return false;"
+                                                                        name="landline" class="form-control"
+                                                                        placeholder="Please use a 8 digit telephone number with no dashes or dots"
+                                                                        required="" value="{{ $comm->landline }}" readonly>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <br>
+                                                                    <p>Mobile no. <span class="text-danger">*</span> </p>
+                                                                    <input type="number"
+                                                                        onkeypress="if(this.value.length==10) return false;"
+                                                                        name="mobile_no" class="form-control"
+                                                                        placeholder="Please use a 10 digit mobile number with no dashes or dots"
+                                                                        required="" value="{{ $comm->mobile_no }}" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <p>Tax Identification No. <span class="text-danger">*</span> </p>
+                                                            <input type="number" name="tax_identification_no" class="form-control"
+                                                                placeholder="Enter Tax Identification No."
+                                                                onkeypress="if(this.value.length==14) return false;" required=""
+                                                                value="{{ $comm->tax_identification_no }}" readonly>
+                                                            <br>
+                                                            <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
+                                                                No.
+                                                                <span class="text-danger">*</span>
+                                                            </p>
+                                                            <input type="text" name="tax_cert_valid_gov_id" class="form-control"
+                                                                placeholder="Enter Home Address" maxlength="128" required=""
+                                                                value="{{ $comm->tax_cert_valid_gov_id }}" readonly>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- Edit Application --}}
+                                    <div class="modal fade bd-example-modal-lg" id="commedit{{ $comm->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ url('/edit_commercial_spaces_application') }}"
+                                                    class="prevent_submit" method="POST" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <div class="modal-body">
+                                                        <div class="row d-flex justify-content-center">
+                                                            <div class="col-md-9">
+                                                                <div class="row align-items-center">
+                                                                    <div class="col">
+                                                                        <h3 class=" mt-6"><span><button class="btn btn-success"
+                                                                                    disabled="">1</button></span>
+                                                                            &nbsp;
+                                                                            Commercial Space Inquiry and Application Form
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="id" value="{{ $comm->id }}" />
+
+                                                                <p class="pt-4">Business Name <span class="text-danger">*</span></p>
+                                                                <input type="text" name="business_name" class="form-control mt-2"
+                                                                    placeholder="Enter Business Name" maxlength="64"
+                                                                    value="{{ $comm->business_name }}" required>
+
+                                                                <p class="pt-4">Business Style/Trade Name (if different from company
+                                                                    name) <span class="text-danger">*</span> </p>
+                                                                <input type="text" name="business_style" class="form-control"
+                                                                    placeholder="Enter Business Style/Trade Name" maxlength="64"
+                                                                    value="{{ $comm->business_style }}" required>
+
+                                                                <p class="pt-4">Business Address <span class="text-danger">*</span>
+                                                                </p>
+                                                                <input type="text" name="business_address" class="form-control"
+                                                                    placeholder="Enter Business Address" maxlength="64"
+                                                                    value="{{ $comm->business_address }}" required>
+
+                                                                <p class="pt-4">Email Address/Website/FB Page <span
+                                                                        class="text-danger">*</span>
+                                                                </p>
+                                                                <input type="text" name="email_website_fb" class="form-control"
+                                                                    placeholder="Enter Email Address/Website/FB Page..."
+                                                                    maxlength="64" value="{{ $comm->email_website_fb }}" required>
+
+                                                                <div class="row">
+                                                                    <div class="col-md">
+                                                                        <p class="pt-4">Business Landline No.
+                                                                        </p>
+                                                                        <input type="number"
+                                                                            onkeypress="if(this.value.length==8) return false;"
+                                                                            name="business_landline_no" class="form-control"
+                                                                            placeholder="09XXXXXXXX"
+                                                                            value="{{ $comm->business_landline_no }}">
+                                                                    </div>
+
+                                                                    <div class="col-md">
+                                                                        <p class="pt-4">Mobile No. <span
+                                                                                class="text-danger">*</span>
+                                                                        </p>
+                                                                        <input type="number"
+                                                                            onkeypress="if(this.value.length==10) return false;"
+                                                                            name="business_mobile_no" class="form-control"
+                                                                            placeholder="09XXXXXXXX"
+                                                                            value="{{ $comm->business_mobile_no }}" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- <h4>Owner Details </h4>
+                                                                                    <h4>For Single Proprietorship </h4> -->
+                                                                <p class="pt-4">Authorized Representative <span
+                                                                        class="text-danger">*</span> </p>
+
+                                                                <p class="pt-4">Name of owner <span class="text-danger">*</span>
+                                                                </p>
+                                                                <input type="text" name="name_of_owner" class="form-control"
+                                                                    placeholder="Enter Name of Owner" maxlength="64"
+                                                                    value="{{ $comm->name_of_owner }}" required>
+
+                                                                <br>
+                                                                <p>Spouse </p>
+                                                                <input type="text" name="spouse" class="form-control"
+                                                                    placeholder="Enter Spouse" maxlength="64"
+                                                                    value="{{ $comm->spouse }}">
+                                                                <br>
+
+                                                                <p>Home Address <span class="text-danger">*</span> </p>
+                                                                <input type="text" name="home_address" class="form-control"
+                                                                    placeholder="Enter Home Address" maxlength="128"
+                                                                    value="{{ $comm->home_address }}" required>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <br>
+                                                                        <p>Landline No > </p>
+                                                                        <input type="number"
+                                                                            onkeypress="if(this.value.length==8) return false;"
+                                                                            name="landline" class="form-control"
+                                                                            placeholder="Please use a 8 digit telephone number with no dashes or dots"
+                                                                            value="{{ $comm->landline }}">
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <br>
+                                                                        <p>Mobile no. <span class="text-danger">*</span> </p>
+                                                                        <input type="number"
+                                                                            onkeypress="if(this.value.length==10) return false;"
+                                                                            name="mobile_no" class="form-control"
+                                                                            placeholder="Please use a 10 digit mobile number with no dashes or dots"
+                                                                            value="{{ $comm->mobile_no }}" required>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+
+                                                                <p>Tax Identification No. <span class="text-danger">*</span> </p>
+                                                                <input type="number" name="tax_identification_no"
+                                                                    class="form-control" placeholder="Enter Tax Identification No."
+                                                                    onKeyPress="if(this.value.length==14) return false;"
+                                                                    value="{{ $comm->tax_identification_no }}" required>
+                                                                <br>
+                                                                <p>Upload TIN Image</p>
+                                                                <input type="file" accept=".png, .jpeg, .jpg, .gif"
+                                                                    maxlength="500000" name="tin_images" class="form-control">
+                                                                <br>
+                                                                <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
+                                                                    No. <span class="text-danger">*</span> </p>
+                                                                <input type="text" name="tax_cert_valid_gov_id"
+                                                                    class="form-control" placeholder="Enter Certificate No."
+                                                                    maxlength="128" value="{{ $comm->tax_cert_valid_gov_id }}"
+                                                                    required>
+                                                                <br>
+                                                                <p>Upload Image </p>
+                                                                <input type="file" accept=".png, .jpeg, .jpg, .gif"
+                                                                    maxlength="500000" name="other_images" class="form-control">
+                                                                <br>
+                                                                <p class="mt-6">I certify that all of the information I have provided
+                                                                    above is
+                                                                    true
+                                                                    and
+                                                                    correct
+                                                                    to the best of my knowledge. I fully understand that all data
+                                                                    gathered
+                                                                    here are
+                                                                    required for
+                                                                    the evaluation of my application for commercial space lease/rent. I
+                                                                    am
+                                                                    aware
+                                                                    that
+                                                                    <span class="text-red">THIS IS
+                                                                        NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</span>
+                                                                </p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if ($comm->Status == 'Approved')
+                                        {{-- Set Interview --}}
+                                        <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Commercial space applications
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    @foreach ($data as $start_date)
+                                                        <input type="hidden" name="start_dates[]"
+                                                            value="{{ $start_date['date'] }}">
+                                                    @endforeach
+                                                    <form action="{{ url('/set_commercial_space_schedule') }}" class="prevent_submit"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="id" value="{{ $comm->id }}">
+
+                                                            <h3 class="text-left">Set Interview Schedule</h3>
+
+                                                            <input type="text" id="interview" class="datepicker"
+                                                                name="interview_date" onkeydown="return false" autocomplete="off"
+                                                                required>
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-center">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-success">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    @foreach ($comm as $comm)
-                        {{-- View Application --}}
-                        <div class="modal fade bd-example-modal-lg" id="commprev{{ $comm->id }}" tabindex="-1"
-                            role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row d-flex justify-content-center">
-                                            <div class="col-md-9">
-                                                <div class="row align-items-center">
-                                                    <div class="col">
-                                                        <h3 class=" mt-6"><span><button class="btn btn-success"
-                                                                    disabled="">1</button></span>
-                                                            &nbsp;
-                                                            Commercial Space Inquiry and Application Form
-                                                        </h3>
-                                                    </div>
-                                                </div>
-
-                                                <p class="pt-4">Business Name <span class="text-danger">*</span></p>
-                                                <input type="text" name="business_name" class="form-control mt-2"
-                                                    placeholder="Enter Business Name" maxlength="64" required=""
-                                                    value="{{ $comm->business_name }}" readonly>
-                                                <p class="pt-4">Business Style/Trade Name (if different from company
-                                                    name) <span class="text-danger">*</span> </p>
-                                                <input type="text" name="business_style" class="form-control"
-                                                    placeholder="Enter Business Style/Trade Name" maxlength="64"
-                                                    required="" value="{{ $comm->business_style }}" readonly>
-                                                <p class="pt-4">Business Address <span class="text-danger">*</span>
-                                                </p>
-                                                <input type="text" name="business_address" class="form-control"
-                                                    placeholder="Enter Business Address" maxlength="64" required=""
-                                                    value="{{ $comm->business_address }}" readonly>
-                                                <p class="pt-4">Email Address/Website/FB Page <span
-                                                        class="text-danger">*</span>
-                                                </p>
-                                                <input type="text" name="email_website_fb" class="form-control"
-                                                    placeholder="Enter Email Address/Website/FB Page..." maxlength="64"
-                                                    required="" value="{{ $comm->email_website_fb }}" readonly>
-                                                <div class="row">
-                                                    <div class="col-md">
-
-                                                        <p class="pt-4">Landline No. <span class="text-danger">*</span>
-                                                        </p>
-                                                        <input type="number"
-                                                            onkeypress="if(this.value.length==8) return false;"
-                                                            name="business_landline_no" class="form-control"
-                                                            placeholder="09XXXXXXXX" required=""
-                                                            value="{{ $comm->business_landline_no }}" readonly>
-                                                    </div>
-                                                    <div class="col-md">
-                                                        <p class="pt-4">Mobile No. <span class="text-danger">*</span>
-                                                        </p>
-                                                        <input type="number"
-                                                            onkeypress="if(this.value.length==10) return false;"
-                                                            name="business_mobile_no" class="form-control"
-                                                            placeholder="09XXXXXXXX" required=""
-                                                            value="{{ $comm->business_mobile_no }}" readonly>
-                                                    </div>
-                                                </div>
-
-                                                <!-- <h4>Owner Details </h4>
-                                                                                                                                                                                                                                    <h4>For Single Proprietorship </h4> -->
-                                                <p class="pt-4">Name of owner <span class="text-danger">*</span>
-                                                </p>
-                                                <input type="text" name="name_of_owner" class="form-control"
-                                                    placeholder="Enter Name of Owner" maxlength="64" required=""
-                                                    value="{{ $comm->name_of_owner }}" readonly>
-
-                                                <br>
-                                                <p>Spouse <span class="text-danger">*</span> </p>
-                                                <input type="text" name="spouse" class="form-control"
-                                                    placeholder="Enter Spouse" maxlength="64" required=""
-                                                    value="{{ $comm->spouse }}" readonly>
-                                                <br>
-                                                <p>Home Address <span class="text-danger">*</span> </p>
-                                                <input type="text" name="home_address" class="form-control"
-                                                    placeholder="Enter Home Address" maxlength="128" required=""
-                                                    value="{{ $comm->home_address }}" readonly>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <br>
-                                                        <p>Landline No <span class="text-danger">*</span> </p>
-                                                        <input type="number"
-                                                            onkeypress="if(this.value.length==8) return false;"
-                                                            name="landline" class="form-control"
-                                                            placeholder="Please use a 8 digit telephone number with no dashes or dots"
-                                                            required="" value="{{ $comm->landline }}" readonly>
-                                                    </div>
-                                                    <div class="col">
-                                                        <br>
-                                                        <p>Mobile no. <span class="text-danger">*</span> </p>
-                                                        <input type="number"
-                                                            onkeypress="if(this.value.length==10) return false;"
-                                                            name="mobile_no" class="form-control"
-                                                            placeholder="Please use a 10 digit mobile number with no dashes or dots"
-                                                            required="" value="{{ $comm->mobile_no }}" readonly>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <p>Tax Identification No. <span class="text-danger">*</span> </p>
-                                                <input type="number" name="tax_identification_no" class="form-control"
-                                                    placeholder="Enter Tax Identification No."
-                                                    onkeypress="if(this.value.length==14) return false;" required=""
-                                                    value="{{ $comm->tax_identification_no }}" readonly>
-                                                <br>
-                                                <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
-                                                    No.
-                                                    <span class="text-danger">*</span>
-                                                </p>
-                                                <input type="text" name="tax_cert_valid_gov_id" class="form-control"
-                                                    placeholder="Enter Home Address" maxlength="128" required=""
-                                                    value="{{ $comm->tax_cert_valid_gov_id }}" readonly>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Edit Application --}}
-                        <div class="modal fade bd-example-modal-lg" id="commedit{{ $comm->id }}" tabindex="-1"
-                            role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Commercial space applications</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="{{ url('/edit_commercial_spaces_application') }}"
-                                        class="prevent_submit" method="POST" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        <div class="modal-body">
-                                            <div class="row d-flex justify-content-center">
-                                                <div class="col-md-9">
-                                                    <div class="row align-items-center">
-                                                        <div class="col">
-                                                            <h3 class=" mt-6"><span><button class="btn btn-success"
-                                                                        disabled="">1</button></span>
-                                                                &nbsp;
-                                                                Commercial Space Inquiry and Application Form
-                                                            </h3>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" name="id" value="{{ $comm->id }}" />
-
-                                                    <p class="pt-4">Business Name <span class="text-danger">*</span></p>
-                                                    <input type="text" name="business_name" class="form-control mt-2"
-                                                        placeholder="Enter Business Name" maxlength="64"
-                                                        value="{{ $comm->business_name }}" required>
-
-                                                    <p class="pt-4">Business Style/Trade Name (if different from company
-                                                        name) <span class="text-danger">*</span> </p>
-                                                    <input type="text" name="business_style" class="form-control"
-                                                        placeholder="Enter Business Style/Trade Name" maxlength="64"
-                                                        value="{{ $comm->business_style }}" required>
-
-                                                    <p class="pt-4">Business Address <span class="text-danger">*</span>
-                                                    </p>
-                                                    <input type="text" name="business_address" class="form-control"
-                                                        placeholder="Enter Business Address" maxlength="64"
-                                                        value="{{ $comm->business_address }}" required>
-
-                                                    <p class="pt-4">Email Address/Website/FB Page <span
-                                                            class="text-danger">*</span>
-                                                    </p>
-                                                    <input type="text" name="email_website_fb" class="form-control"
-                                                        placeholder="Enter Email Address/Website/FB Page..."
-                                                        maxlength="64" value="{{ $comm->email_website_fb }}" required>
-
-                                                    <div class="row">
-                                                        <div class="col-md">
-                                                            <p class="pt-4">Business Landline No.
-                                                            </p>
-                                                            <input type="number"
-                                                                onkeypress="if(this.value.length==8) return false;"
-                                                                name="business_landline_no" class="form-control"
-                                                                placeholder="09XXXXXXXX"
-                                                                value="{{ $comm->business_landline_no }}">
-                                                        </div>
-
-                                                        <div class="col-md">
-                                                            <p class="pt-4">Mobile No. <span
-                                                                    class="text-danger">*</span>
-                                                            </p>
-                                                            <input type="number"
-                                                                onkeypress="if(this.value.length==10) return false;"
-                                                                name="business_mobile_no" class="form-control"
-                                                                placeholder="09XXXXXXXX"
-                                                                value="{{ $comm->business_mobile_no }}" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- <h4>Owner Details </h4>
-                                                                        <h4>For Single Proprietorship </h4> -->
-                                                    <p class="pt-4">Authorized Representative <span
-                                                            class="text-danger">*</span> </p>
-
-                                                    <p class="pt-4">Name of owner <span class="text-danger">*</span>
-                                                    </p>
-                                                    <input type="text" name="name_of_owner" class="form-control"
-                                                        placeholder="Enter Name of Owner" maxlength="64"
-                                                        value="{{ $comm->name_of_owner }}" required>
-
-                                                    <br>
-                                                    <p>Spouse </p>
-                                                    <input type="text" name="spouse" class="form-control"
-                                                        placeholder="Enter Spouse" maxlength="64"
-                                                        value="{{ $comm->spouse }}">
-                                                    <br>
-
-                                                    <p>Home Address <span class="text-danger">*</span> </p>
-                                                    <input type="text" name="home_address" class="form-control"
-                                                        placeholder="Enter Home Address" maxlength="128"
-                                                        value="{{ $comm->home_address }}" required>
-
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <br>
-                                                            <p>Landline No > </p>
-                                                            <input type="number"
-                                                                onkeypress="if(this.value.length==8) return false;"
-                                                                name="landline" class="form-control"
-                                                                placeholder="Please use a 8 digit telephone number with no dashes or dots"
-                                                                value="{{ $comm->landline }}">
-                                                        </div>
-                                                        <div class="col">
-                                                            <br>
-                                                            <p>Mobile no. <span class="text-danger">*</span> </p>
-                                                            <input type="number"
-                                                                onkeypress="if(this.value.length==10) return false;"
-                                                                name="mobile_no" class="form-control"
-                                                                placeholder="Please use a 10 digit mobile number with no dashes or dots"
-                                                                value="{{ $comm->mobile_no }}" required>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-
-                                                    <p>Tax Identification No. <span class="text-danger">*</span> </p>
-                                                    <input type="number" name="tax_identification_no"
-                                                        class="form-control" placeholder="Enter Tax Identification No."
-                                                        onKeyPress="if(this.value.length==14) return false;"
-                                                        value="{{ $comm->tax_identification_no }}" required>
-                                                    <br>
-                                                    <p>Upload TIN Image</p>
-                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif"
-                                                        maxlength="500000" name="tin_images" class="form-control">
-                                                    <br>
-                                                    <p>Community Tax Certificate No. (Individual) or Other Valid Govt. ID
-                                                        No. <span class="text-danger">*</span> </p>
-                                                    <input type="text" name="tax_cert_valid_gov_id"
-                                                        class="form-control" placeholder="Enter Certificate No."
-                                                        maxlength="128" value="{{ $comm->tax_cert_valid_gov_id }}"
-                                                        required>
-                                                    <br>
-                                                    <p>Upload Image </p>
-                                                    <input type="file" accept=".png, .jpeg, .jpg, .gif"
-                                                        maxlength="500000" name="other_images" class="form-control">
-                                                    <br>
-                                                    <p class="mt-6">I certify that all of the information I have provided
-                                                        above is
-                                                        true
-                                                        and
-                                                        correct
-                                                        to the best of my knowledge. I fully understand that all data
-                                                        gathered
-                                                        here are
-                                                        required for
-                                                        the evaluation of my application for commercial space lease/rent. I
-                                                        am
-                                                        aware
-                                                        that
-                                                        <span class="text-red">THIS IS
-                                                            NOT CONSIDERED AS A LEASE AGREEMENT/CONTRACT.</span>
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if ($comm->Status == 'Approved')
-                            {{-- Set Interview --}}
-                            <div class="modal fade interview_modal" id="comm_set_interview{{ $comm->id }}"
-                                tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Commercial space applications
-                                            </h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @foreach ($data as $start_date)
-                                            <input type="hidden" name="start_dates[]"
-                                                value="{{ $start_date['date'] }}">
-                                        @endforeach
-                                        <form action="{{ url('/set_commercial_space_schedule') }}" class="prevent_submit"
-                                            method="POST" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $comm->id }}">
-
-                                                <h3 class="text-left">Set Interview Schedule</h3>
-
-                                                <input type="text" id="interview" class="datepicker"
-                                                    name="interview_date" onkeydown="return false" autocomplete="off"
-                                                    required>
-                                            </div>
-                                            <div class="modal-footer d-flex justify-content-center">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
                 </div>
             </div>
 
@@ -922,10 +921,12 @@
                                                                     <td></td>
                                                                 @endif
                                                                 @if ($lists6->Paid_By == 'Novadeci')
-                                                                    <td class="font-weight-bold tbltxt text-danger" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-danger"
+                                                                        >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @else
-                                                                    <td class="font-weight-bold tbltxt text-success" style="white-space: pre-wrap;">
+                                                                    <td class="font-weight-bold tbltxt text-success"
+                                                                        >
                                                                         {{ $lists6->Paid_By }}</td>
                                                                 @endif
                                                                 <td>
