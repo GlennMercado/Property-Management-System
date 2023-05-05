@@ -7,7 +7,7 @@
         {{-- <h3>Suites</h3>
                 <h2><i class="bi bi-info-circle-fill text-success pr-2"></i>You have successfully booked a hotel</h2>
                 <p class="text-left text-muted pb-0 mb-0">5min ago</p> --}}
-        @forelse (auth()->user()->notifications as $notif)
+        @forelse (auth()->user()->unreadNotifications as $notif)
             <a href="{{ $notif->data['link'] }}">
                 <div class="shadow rounded card-hover p-4 m-2">
                     @if ($notif->data['link'])
@@ -15,6 +15,7 @@
                     @endif
                 </div>
             </a>
+            <a href="{{ route('markasread', $notif->id) }}" class="text-left" style="text-decoration: underline">Mark as read</a>
         @empty
             <img src="{{ asset('nvdcpics') }}/stargazing.svg" class="img-fluid" style="width: 100%; height: 150px">
             <p class="text-center display-4">There are no notifications.</p>
