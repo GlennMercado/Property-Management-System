@@ -39,9 +39,17 @@
                     <a class="nav-link active" href="#navbar-examples13" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="navbar-examples13">
                         <i class="bi bi-wallet-fill" style="color:rgb(224, 223, 223)"></i>
-                        <span class="nav-link-text text-light">{{ __('Finances') }}</span>
+                        <span class="nav-link-text text-light">{{ __('Finance & Admin') }}</span>
                     </a>
                     <div class="collapse" id="navbar-examples13">
+                    <ul class="nav nav-sm flex-column">
+                            <li class="nav-item {{ 'FinanceApproval' == request()->path() ? 'act1' : '' }}">
+                                <a class="nav-link text-light" href="{{ route('FinanceApproval') }}">
+                                    <i class="bi bi-calendar2-range-fill" style="color:rgb(224, 223, 223)"></i>
+                                    {{ __('FinanceApproval') }}
+                                </a>
+                            </li>
+                        </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item {{ 'DailyReport' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('DailyReport') }}">

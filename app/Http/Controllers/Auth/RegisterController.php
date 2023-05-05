@@ -101,7 +101,7 @@ class RegisterController extends Controller
             'profile_pic' => 'nullable|image|max:2048'
         ]);
 
-        //Generate Token
+        //---Generate Token
         $token = Str::random(60);
 
         // Create a new user
@@ -109,7 +109,7 @@ class RegisterController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
-            'profile_pic' => 'nvdcpics/User2.png',
+            'profile_pic' => 'nvdcpics/user2.png',
             'email_verification_token' => $token
         ]);
 
