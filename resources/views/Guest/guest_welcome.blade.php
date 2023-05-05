@@ -141,12 +141,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <p class="txt" style="font-weight:bold;">Suites</p>
-                    <p class="card-text txt">P2,500.00 per night with breakfast
-                        /P1,500.00 per additional pax with free breakfast.</p>
+                    <p class="card-title txt text-center" style="font-weight:bold;">Suites</p>
                     <div class="row d-flex justify-content-center">
                         <a href="{{ url('rooms') }}">
-                            <button type="button" class="btn btn-success d-md-none">Book now</button>
+                            <button type="button" class="btn btn-success">Book now</button>
                         </a>
                     </div>
                 </div>
@@ -162,13 +160,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <p class="card-title txt" style="font-weight:bold;">Convention Center</p>
-                    <p class="card-text txt">Venue for personal and corporate
-                        celebrations,
-                        training/learning sessions and sports activities.</p>
+                    <p class="card-title txt text-center" style="font-weight:bold;">Convention Center</p>
                     <div class="row d-flex justify-content-center">
                         <a href="{{ url('convention_center') }}">
-                            <button type="button" class="btn btn-success d-md-none">Inquire now</button>
+                            <button type="button" class="btn btn-success">Inquire now</button>
                         </a>
                     </div>
                 </div>
@@ -184,14 +179,10 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <p class="card-title txt" style="font-weight:bold;">Commercial Spaces</p>
-                    <p class="card-text txt">Looking for a place for your business to grow your market? Here at NVDC
-                        Properties,
-                        we are offering commercial spaces for lease with an introductory rate for as low as Php 3,500 per
-                        month! </p>
+                    <p class="card-title txt text-center" style="font-weight:bold;">Commercial Spaces</p>
                     <div class="row d-flex justify-content-center">
                         <a href="{{ url('commercial_spaces') }}">
-                            <button type="button" class="btn btn-success d-md-none">Apply now</button>
+                            <button type="button" class="btn btn-success">Apply now</button>
                         </a>
                     </div>
                 </div>
