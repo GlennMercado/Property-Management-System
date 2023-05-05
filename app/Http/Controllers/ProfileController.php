@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -23,17 +24,22 @@ class ProfileController extends Controller
      *
      * @param  \App\Http\Requests\ProfileRequest  $request
      * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(ProfileRequest $request)
-    {
-        // if (auth()->user()->id == 1) {
-        //     return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
-        // }
+        */
+        public function update(Request $request)
+        {
+            if ($request->hasFile('picture')) {
+                $file = $request->file('picture');
+                $filename = time() . '-' . auth()->user()->name . '.' . $file->getClientOriginalExtension();
+                $path = $file->move('profile_pics/', $filename);
+        
+                auth()->user()->profile_pic = $path;
+            }
+        
+            auth()->user()->save();
+        
+            return back()->withStatus(__('Profile successfully updated.'));
+        }
 
-        auth()->user()->update($request->all());
-
-        return back()->withStatus(__('Profile successfully updated.'));
-    }
 
     /**
      * Change the password

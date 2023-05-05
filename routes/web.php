@@ -331,6 +331,8 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	});
 	// notifications
 
+	
+
 	Route::get('/guest_profile', [App\Http\Controllers\GuestController::class, 'guest_profile'])->name('guest_profile');
 	Route::get('/my_bookings', [App\Http\Controllers\GuestController::class, 'my_bookings'])->name('my_bookings');
 	Route::get('Commercial_Space', [App\Http\Controllers\GuestController::class, 'Commercial_Space'])->name('Commercial_Space');
