@@ -439,13 +439,13 @@ class HousekeepingController extends Controller
     public function assign_housekeeper(Request $request)
     {
         try{
-            $this->validate($request,[
-                'id' => '',
-                'room_no'=> '',
-                'check' => '',
-                'housekeeper' => 'required'
-                ]);
-
+            // $this->validate($request,[
+            //     'id' => '',
+            //     'room_no'=> '',
+            //     'check' => '',
+            //     'housekeeper' => 'required'
+            //     ]);
+            
             $check = $request->input('check');
             $room_no = $request->input('room_no');
 
