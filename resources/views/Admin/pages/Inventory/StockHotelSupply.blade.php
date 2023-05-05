@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list as $index => $lists)
                                         <tr>
                                             <td>
                                                 <button class="btn btn-sm btn-success btn-lg" data-toggle="modal"
@@ -124,7 +124,7 @@
                                                                 </div>
                                                             </div>
                                                             <label>Status: </label>
-                                                            <select class="form-control" name="status" id="stats"
+                                                            <select class="form-control" name="status" id="stats" data-list-index="{{$index}}"
                                                                 required>
                                                                 <option value="" selected="true"
                                                                     disabled="disabled">Select</option>
@@ -132,7 +132,7 @@
                                                                 <option value="Denied">Denied</option>
                                                             </select>
 
-                                                            <div class="row" style="display:none;" id="qty">
+                                                            <div class="row" style="display:none;" id="qty_{{$index}}">
                                                                 <div class="col">
                                                                     <label for="Stockdetails">Quantity to Give: </label>
                                                                     <input type="number" class="form-control qt2"
@@ -177,16 +177,17 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
-                $("#stats").change(function() {
+                $("select[name="type_of_request"]").change(function() {
                     var selected = $("option:selected", this).val();
+                    var listIndex = $(this).data('list-index');
 
                     if (selected == "Approved") {
-                        $('#qty').css({
+                        $('#qty_'+listIndex).css({
                             'display': 'block'
                         });
                         $('.qt2').val(0);
                     } else if (selected == "Denied") {
-                        $('#qty').css({
+                        $('#qty_'+listIndex).css({
                             'display': 'none'
                         });
                         $('.qt2').val(0);
