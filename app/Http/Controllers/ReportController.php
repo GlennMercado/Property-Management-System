@@ -143,4 +143,13 @@ class ReportController extends Controller
         $pdf = PDF::loadView('Admin.pages.Reservations.InquiryReport', compact('start_date', 'end_date', 'total', 'data'))->setOption('font_path', '')->setOption('font_data', []);
         return view('Admin.pages.Reservations.InquiryReport', compact('start_date', 'end_date', 'total', 'data'));
     }
+    public function event_reports(){
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $total = DB::table('events')->count();
+        $data = DB::table('events')->get();
+
+        $pdf = PDF::loadView('Admin.pages.Reservations.EventReport', compact('start_date', 'end_date', 'total', 'data'))->setOption('font_path', '')->setOption('font_data', []);
+        return view('Admin.pages.Reservations.EventReport', compact('start_date', 'end_date', 'total', 'data'));
+    }
 }

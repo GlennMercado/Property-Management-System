@@ -118,7 +118,7 @@
                                                     </a>
                                                 </td>
                                                 <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
-                                                <td style="font-size:16px;">{{ $sqls->Payment }}</td>
+                                                <td style="font-size:16px;">{{ number_format($sqls->Payment, 2, '.', ',') }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Reference_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
                                                 <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
@@ -354,8 +354,8 @@
                                                 <tr>
                                                     <td style="font-size:16px;">{{ $lists3->payee }}</td>
                                                     <td style="font-size:16px;">{{ $lists3->particular }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->amount }}</td>
-                                                    <td style="font-size:16px;">{{ $lists3->outputvat }}</td>
+                                                    <td style="font-size:16px;">{{ number_format($lists3->amount, 2, '.', ',') }}</td>
+                                                    <td style="font-size:16px;">{{ number_format($lists3->outputvat, 2, '.', ',') }}</td>
                                                     <td style="font-size:16px;">{{ $lists3->ornum }}</td>
                                                     <td style="font-size:16px;">{{ $lists3->remark }}</td>
                                                 </tr>
@@ -364,7 +364,7 @@
                                         <tfoot>
                                             <td style="font-size:16px;">Total Collection Amount:</td>
                                             <td style="font-size:16px;"></td>
-                                            <td style="font-size:16px;">{{ $amount_sum }}</td>
+                                            <td style="font-size:16px;">{{ number_format($amount_sum, 2, '.', ',') }}</td>
                                             <td style="font-size:16px;"></td>
                                             <td style="font-size:16px;"></td>
                                             <td style="font-size:16px;"></td>

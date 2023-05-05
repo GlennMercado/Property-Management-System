@@ -13,6 +13,9 @@ use Carbon\Carbon;
 use App\Mail\BookingConfirmation;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\Booked;
+use App\Notifications\Checked;
+use App\Notifications\Declined;
+use App\Notifications\Approved;
 use App\Notifications\Success;
 use Mail;
 use App\Models\User;
@@ -196,7 +199,7 @@ class HotelController extends Controller
             {
                 $client = User::where('email', $email)->first();
             
-                $client->notify(new Booked($client));
+                $client->notify(new Approved($client));
             }
         
         //HERE
@@ -272,7 +275,7 @@ class HotelController extends Controller
                     Mail::to($names->Email)->send(new BookingConfirmation($names));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('FinanceApproval')->with('Success', 'Data Saved');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
         }
         else
@@ -285,7 +288,7 @@ class HotelController extends Controller
             else
             {
                 Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('FinanceApproval')->with('Success', 'Data Saved');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
         }    
     }
@@ -309,7 +312,7 @@ class HotelController extends Controller
                 {
                     $client = User::where('email', $email)->first();
                 
-                    $client->notify(new Booked($client));
+                    $client->notify(new Checked($client));
                 }
                 
             //HERE
@@ -540,6 +543,75 @@ class HotelController extends Controller
                 }
             }
     }  
+
+    public function decline_payment($id, $no, $check)
+    {
+        $bookno = $id;
+        $roomno = $no;
+        $isarchived = $check;
+        $stats = "Not Approved";
+        $stats2 = "Declined";
+        $user_type = Auth::user()->User_Type;
+
+        //NOTIFY
+            $email = null;
+            $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
+
+            foreach($select as $selects)
+            {
+                $email = $selects->Email;
+            }
+
+            if($email != null)
+            {
+                $client = User::where('email', $email)->first();
+            
+                $client->notify(new Declined($client));
+            }
+        
+        //HERE
+        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
+        if($isarchived == false)
+        {
+            if($user_type == "Operations Manager")
+            {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
+                Alert::Error('Declined', 'Declined Payment');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                $name = DB::table('hotel_reservations')
+                ->where('Booking_No', '=', $bookno)
+                ->get();
+
+                foreach ($name as $names) {
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
+                }
+                Alert::Error('Declined', 'Declined Payment');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
+        }
+        else
+        {
+            if($user_type == "Operations Manager")
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
+            }
+            else
+            {
+                Alert::Error('Failed', 'Payment Failed Updating!');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
+            }
+        }    
+    }
 
     public function front_desk_getdata($id)
     {

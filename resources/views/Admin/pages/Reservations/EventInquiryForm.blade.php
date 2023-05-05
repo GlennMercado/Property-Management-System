@@ -187,7 +187,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <table class="table align-items-center table-flush" id="myTable">
+                                    <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="font-size:16px;">Action</th>
@@ -292,7 +292,7 @@
                                                                 {{ $lists->inquiry_status }}
                                                             </span>
                                                         @endif
-                                                        @if ($lists->inquiry_status == 'Event Approved')
+                                                        @if ($lists->inquiry_status == 'For Interview')
                                                             <span class="badge-lg rounded badge-success font-weight-bold">
                                                                 {{ $lists->inquiry_status }}
                                                             </span>
@@ -326,7 +326,7 @@
                                                                                     <option selected disabled
                                                                                         value="">
                                                                                         Select</option>
-                                                                                    <option value="Event Approved">Event
+                                                                                    <option value="For Interview">Event
                                                                                         Approved
                                                                                     </option>
                                                                                     <option value="Approved">Approved
@@ -361,7 +361,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <form action="{{ url('/inquiry_reports') }}" target="blank" method="get">
+                                    <form action="{{ url('/event_reports') }}" target="blank" method="get">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="p-2">
                                                 <label for="start_date">Start Date:</label>

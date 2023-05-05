@@ -64,9 +64,10 @@ class EventController extends Controller
          $sql = DB::table('convention_center_applications')->where('id', $id)->update(array
          (
              'inquiry_status' => $stat
-         
          ));
-
+        //  switch($stat){
+        //     case "Approved":
+        //  }
         //Inserting into Database
         if($sql)
         {
