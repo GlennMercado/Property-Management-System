@@ -21,7 +21,8 @@
                 </div>
 
                 <div class="list-group list-group-flush scroll" id="myDiv">
-                    @forelse (auth()->user()->notifications as $notif)
+                    @forelse (auth()->user()->unreadNotifications as $notif)
+                        <a href="{{ route('markasread', $notif->id) }}" class="text-left" style="text-decoration: underline">Mark as read</a>
                         @if ($notif->data['link'])
                             <a href="{{ $notif->data['link'] }}" class="list-group-item list-group-item-action">
                                 <div class="row align-items-center">
@@ -42,7 +43,6 @@
                         <p class="text-center display-4">There are no notifications.</p>
                     @endforelse
                 </div>
-
                 <a href="{{ url('MyNotifications') }}"
                     class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>

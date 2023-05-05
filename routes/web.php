@@ -21,10 +21,11 @@ Route::get('/try', function(){
 	return view('Admin.pages.RoomManagement.try');
 });
 
+Route::get('/markasread/{id}', [App\Http\Controllers\GuestController::class, 'markasread'])->name('markasread');
+
 Route::get('/email/verify/resend-form', [App\Http\Controllers\Auth\VerificationController::class, 'resendVerificationLinkForm'])->name('verification.resend-form');
 
 Route::post('/email/verify/resend', [App\Http\Controllers\Auth\VerificationController::class, 'sendEmailVerificationNotification'])->name('verification.send');
-
 
 Route::get('/verify-email/{token}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
 
@@ -326,7 +327,7 @@ Route::middleware(['auth', 'Guest'])->group(function(){
 	Route::get('/MyNotifications', [App\Http\Controllers\GuestController::class, 'MyNotif'])->name('MyNotifications');
 
 	Route::get('/notifications/count', function () {
-		$count = auth()->user()->notifications->count();
+		$count = auth()->user()->unreadNotifications->count();
 		return response()->json(['count' => $count]);
 	});
 	// notifications

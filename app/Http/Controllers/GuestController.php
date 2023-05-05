@@ -34,6 +34,12 @@ class GuestController extends Controller
     //         return redirect('/welcome')->with('Error', 'Failed');
     //     }      
     // }
+    public function markasread($id){
+        if($id){
+            auth()->user()->unreadNotifications->where('id',$id)->markAsRead();
+        }
+        return back();
+    }
     public function booked()
     {
         if (auth()->user()) {
@@ -340,6 +346,7 @@ class GuestController extends Controller
             return redirect('/complaints')->withStats(__('Sending failed.'));
         }
     }
+    
     public function guest_reservation(Request $request)
     {
         $email = Auth::user()->email;
