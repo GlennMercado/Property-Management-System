@@ -1358,7 +1358,7 @@
                 /* adjust the z-index to be higher than the modal's z-index */
                 position: absolute;
                 top: 42% !important;
-                left: 4p3% !important;
+                left: 45% !important;
                 transform: translate(-50%, -50%);
             }
 
