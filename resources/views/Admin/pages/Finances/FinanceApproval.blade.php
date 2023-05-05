@@ -8,7 +8,9 @@
     <script>
         $.noConflict();
         jQuery(document).ready(function($) {
-            $('#myTable1').DataTable();
+            $('#myTable1').DataTable({
+                "order": [[ 1, "asc" ]] // sort by second column (Room No.) in ascending order
+            });
             $('#myTable2').DataTable();
             $('#myTables').DataTable();
         });
