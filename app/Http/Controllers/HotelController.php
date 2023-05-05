@@ -357,15 +357,16 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $facility = "Hotel Room";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In"));
                         DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
         
                         $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
                         
                         if(!$checkHousekeeping)
                         {
+                            //Insert to housekeeping
                             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
                         }
 
                         if($user_type == "Operations Manager")
@@ -412,6 +413,9 @@ class HotelController extends Controller
                         $chckin;
                         $chckout;
 
+                        $roomstats = "Occupied";
+                        $facility = "Hotel Room";
+
                         foreach($sql as $lists)
                         {
                             $chckin = $lists->Check_In_Date;
@@ -421,10 +425,17 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $status2 = "Checked-In";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status2));
-                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In", 'updated_at' => DB::RAW('NOW()')));
+                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats, 'updated_at' => DB::RAW('NOW()')));
         
-                        DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Facility_Status' => $roomstats, 'Front_Desk_Status' => $status2));
+                        $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
+                        
+                        if(!$checkHousekeeping)
+                        {
+                            //Insert to housekeeping
+                            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
+                        }
 
                         Alert::Success('Success', 'Reservation successfully updated!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -471,8 +482,8 @@ class HotelController extends Controller
                         Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
 
 
-                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
-                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
+                        // DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        // values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
 
                         Alert::Success('Success', 'Booking Successfully Checked Out!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -524,8 +535,8 @@ class HotelController extends Controller
                         Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
 
 
-                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
-                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
+                        // DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        // values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
 
                         Alert::Success('Success', 'Booking Successfully Checked Out!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
