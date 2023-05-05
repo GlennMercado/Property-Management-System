@@ -362,7 +362,6 @@ class HotelController extends Controller
         
                         $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
                         
-                        dd($checkHousekeeping);
                         if(!$checkHousekeeping)
                         {
                             //Insert to housekeeping
@@ -413,6 +412,9 @@ class HotelController extends Controller
                     {
                         $chckin;
                         $chckout;
+                        
+                        $roomstats = "Occupied";
+                        $facility = "Hotel Room";
 
                         foreach($sql as $lists)
                         {
@@ -423,10 +425,17 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $status2 = "Checked-In";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status2));
-                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status2, 'updated_at' => DB::RAW('NOW()')));
+                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats, 'updated_at' => DB::RAW('NOW()')));
         
-                        DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Facility_Status' => $roomstats, 'Front_Desk_Status' => $status2));
+                        $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
+                        
+                        if(!$checkHousekeeping)
+                        {
+                            //Insert to housekeeping
+                            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
+                        }
 
                         Alert::Success('Success', 'Reservation successfully updated!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
