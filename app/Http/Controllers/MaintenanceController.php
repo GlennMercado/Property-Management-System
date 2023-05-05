@@ -181,7 +181,7 @@ class MaintenanceController extends Controller
                 DB::table('out_of_order_rooms')->where('id', $maintenance_id)->update(array('Status' => $status, 'Date_Resolved' => $datenow, 'IsArchived' => true));
                
                 DB::table('novadeci_suites')->where('Room_No', $room_no)->update(array('Status' => "Vacant for Accommodation"));
-                DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
+                //DB::table('hotel_reservations')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
                 DB::table('housekeepings')->where('Booking_No', $booking_no)->update(array('IsArchived' => true));
 
                 Alert::Success('Success', 'Maintenance Successfully Updated!');
