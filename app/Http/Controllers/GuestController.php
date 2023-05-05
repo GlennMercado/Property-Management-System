@@ -17,6 +17,7 @@ use App\Notifications\InquiryApproved;
 use App\Notifications\Booked;
 use App\Notifications\Success;
 use Mail;
+use App\Mail\Application_Status;
 use App\Models\User;
 use App\Models\Notification;
 
@@ -583,6 +584,14 @@ class GuestController extends Controller
 
         if($submit->save())
         {
+            $tenants = DB::table('commercial_spaces_applications')
+            ->where('email', '=', $email)
+            ->get();
+
+            foreach ($tenants as $tenant) {
+                Mail::to($tenant->email)->send(new Application_Status($tenant));
+            }
+
             Alert::Success('Success', 'Application Successfully Submitted!');
             return redirect('Commercial_Space');
         }

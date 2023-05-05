@@ -37,6 +37,10 @@
         <p>We hae reviewed your submitted documents. Your commercial space application has been tagged as {{ $tenant->Status }}.</p>
         <p>We advised you to comply with your requirements.</p>
         <p>Regards,<br>NOVADECI PROPERTIES</p>
+    @elseif($tenant->Status == "For Approval")
+        <p>Hello {{ $tenant->name_of_owner }},</p>
+        <p>Your Commercial Space Application has been submitted successfully. Please wait for admin approval.</p>
+        <p>Regards,<br>NOVADECI PROPERTIES</p>
     @endif
     <br><br><br>
     <i>SYSTEM GENERATED EMAIL. DO NOT REPLY.</i>
