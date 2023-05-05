@@ -29,7 +29,6 @@ class InventoryHotelSupplyController extends Controller
     public function supply_request_approval(Request $request)
     {
         //$sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
-
       $id = $request->input('id');
       $roomno = $request->input('roomno');
       $productid = $request->input('productid');
@@ -68,7 +67,8 @@ class InventoryHotelSupplyController extends Controller
                     'Attendant' => "Unassigned",
                     'Status' => $status,
                     'Date_Received' => $datenow,
-                    'Quantity' => $total_quantity
+                    'Quantity' => $total_quantity,
+                    'updated_at' => DB::RAW('NOW()')
                 ));
             }
         }
@@ -81,10 +81,10 @@ class InventoryHotelSupplyController extends Controller
                 'Quantity_Requested' => 0,
                 'Attendant' => "Unassigned",
                 'Status' => $status,
-                'Date_Received' => $datenow
+                'Date_Received' => $datenow,
+                'updated_at' => DB::RAW('NOW()')
             ));
       }
-
 
       if($update)
       {
