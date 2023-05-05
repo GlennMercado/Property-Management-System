@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\convention_center_applications;
 use App\Models\events;
+use App\Notifications\InquireEvent;
+use App\Notifications\InquiryApproved;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use DateTime;

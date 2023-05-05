@@ -12,6 +12,8 @@ use App\Models\complaints;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Notifications\InquireEvent;
+use App\Notifications\InquiryApproved;
 use App\Notifications\Booked;
 use App\Notifications\Success;
 use Mail;

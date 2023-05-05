@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\User;
-use App\Models\hotel_reservations;
+use App\Models\convention_center_applications;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
