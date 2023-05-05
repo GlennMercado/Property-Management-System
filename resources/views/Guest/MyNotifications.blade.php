@@ -7,7 +7,7 @@
         {{-- <h3>Suites</h3>
                 <h2><i class="bi bi-info-circle-fill text-success pr-2"></i>You have successfully booked a hotel</h2>
                 <p class="text-left text-muted pb-0 mb-0">5min ago</p> --}}
-        @forelse (auth()->user()->notifications as $notif)
+        @forelse (auth()->user()->unreadNotifications as $notif)
             <a href="{{ $notif->data['link'] }}">
                 <div class="shadow rounded card-hover p-4 m-2">
                     @if ($notif->data['link'])
