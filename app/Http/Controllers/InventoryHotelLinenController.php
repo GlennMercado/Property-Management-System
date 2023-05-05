@@ -44,18 +44,17 @@ class InventoryHotelLinenController extends Controller
         $qty_owned = $request->input('qty_owned');
         $date_requested = $request->input('date_requested');
         $discrepancy = $request->input('discrepancy');
-  
+
         $datenow = Carbon::now();
-  
+
         $total_quantity;
-  
-        $update;
-  
+        $update = null; // Initialize the $update variable
+
         if($status == "Approved")
         {
-          $total_quantity = $qty_owned + $quantity_given;
+            $total_quantity = $qty_owned + $quantity_given;
 
-          $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$id'");
+            $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$id'");
 
             foreach($sql as $lists)
             {
@@ -78,14 +77,14 @@ class InventoryHotelLinenController extends Controller
         }
         else
         {
-          $total_quantity = $qty_owned;
-  
-          $update = DB::table('hotel_room_linens')->where('id', $id)->update(array(
-                  'Quantity_Requested' => 0,
-                  'Attendant' => "Unassigned",
-                  'Status' => $status,
-                  'Date_Received' => $datenow
-              ));
+            $total_quantity = $qty_owned;
+
+            $update = DB::table('hotel_room_linens')->where('id', $id)->update(array(
+                'Quantity_Requested' => 0,
+                'Attendant' => "Unassigned",
+                'Status' => $status,
+                'Date_Received' => $datenow
+            ));
         }
   
   

@@ -46,7 +46,7 @@ class InventoryHotelSupplyController extends Controller
 
       $total_quantity;
 
-      $update;
+      $update = null;
 
       if($status == "Approved")
       {
