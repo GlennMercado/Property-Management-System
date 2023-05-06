@@ -35,14 +35,6 @@
                                 {{ $lists->client_name }}
                                 <br>
                                 <span class="font-weight-bold">
-                                    Contact No.:</span>
-                                {{ $lists->contact_no }}
-                                <br>
-                                <span class="font-weight-bold">
-                                    Contact Person:</span>
-                                {{ $lists->contact_person }}
-                                <br>
-                                <span class="font-weight-bold">
                                     Billing Address:</span>
                                 {{ $lists->billing_address }}
                                 <br>
@@ -67,10 +59,6 @@
                                 <span class="font-weight-bold">
                                     No of Guest:</span>
                                 {{ $lists->no_of_guest }}
-                                <br>
-                                <span class="font-weight-bold">
-                                    Venue:</span>
-                                {{ $lists->venue }}
                                 <br>
                                 <span class="font-weight-bold">
                                     Caterer:</span>
