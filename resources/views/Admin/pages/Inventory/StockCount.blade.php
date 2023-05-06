@@ -85,7 +85,7 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list as $index => $lists)
                                         <tr>
                                             <td>
                                                 <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
@@ -243,19 +243,19 @@
                                                                             <div class="input-group-prepend">
                                                                                 <button class="btn btn-success"
                                                                                     type="button"
-                                                                                    onclick="decrementValue()">-</button>
+                                                                                    onclick="decrementValue({{$index}})">-</button>
                                                                             </div>
                                                                             <input type="number"
                                                                                 class="form-control text-center"
                                                                                 value="0" min="0"
                                                                                 max="99999"
                                                                                 oninput="validity.valid||(value='');"
-                                                                                id="numberInput" name="in"
+                                                                                id="numberInput_{{$index}}" name="in"
                                                                                 style="width: 50px;">
                                                                             <div class="input-group-append">
                                                                                 <button class="btn btn-success"
                                                                                     type="button"
-                                                                                    onclick="incrementValue()">+</button>
+                                                                                    onclick="incrementValue({{$index}})">+</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -611,19 +611,20 @@
     <script>
         // increment, decrement
         // Stock in
-        function incrementValue() {
-            var value = parseInt(document.getElementById('numberInput').value, 10);
+        function incrementValue(index) {
+            var value = parseInt(document.getElementById('numberInput_' + index).value, 10);
             value = isNaN(value) ? 0 : value;
             value++;
-            document.getElementById('numberInput').value = value > 99999 ? 99999 : value;
+            document.getElementById('numberInput_' + index).value = value > 99999 ? 99999 : value;
         }
 
-        function decrementValue() {
-            var value = parseInt(document.getElementById('numberInput').value, 10);
+        function decrementValue(index) {
+            var value = parseInt(document.getElementById('numberInput_' + index).value, 10);
             value = isNaN(value) ? 0 : value;
             value--;
-            document.getElementById('numberInput').value = value < 0 ? 0 : value;
+            document.getElementById('numberInput_' + index).value = value < 0 ? 0 : value;
         }
+
         // Stock out
         function incrementValue2() {
             var value = parseInt(document.getElementById('numberInput2').value, 10);
