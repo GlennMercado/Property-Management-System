@@ -5,6 +5,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('#myTable').DataTable();
+            $('#myTable2').DataTable();
+            $('#myTable3').DataTable();
+        });
+    </script>
+    
     <div class="container-fluid mt--8">
         <div class="row align-items-center py-4">
             <div class="col-lg-12 col-12">
@@ -577,12 +586,7 @@
             });
 
             // var x = document.getElementById("selectbox");
-            $.noConflict();
-            jQuery(document).ready(function($) {
-                $('#myTable').DataTable();
-                $('#myTable2').DataTable();
-                $('#myTable3').DataTable();
-            });
+            
             // Code that uses other library's $ can follow here.
 
 
