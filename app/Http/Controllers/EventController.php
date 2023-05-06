@@ -148,12 +148,12 @@ class EventController extends Controller
             
             if($add_event->save())
             {
-                Alert::Success('Success', 'Room Successfully Created!');
+                Alert::Success('Success', 'Event Successfully Created!');
                 return redirect('EventInquiryForm')->with('Success', 'Data Saved');
             }
             else
             {
-                Alert::Error('Error', 'Room Creation Failed');
+                Alert::Error('Error', 'Event Creation Failed');
                 return redirect('EventInquiryForm')->with('Error', 'Data Not Saved');
             }
     }
