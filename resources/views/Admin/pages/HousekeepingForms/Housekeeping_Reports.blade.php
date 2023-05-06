@@ -116,7 +116,7 @@
                                                 <th scope="col" style="font-size:18px;">Item Name</th>
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
                                                 <th scope="col" style="font-size:18px;">Quantity Requested</th>
-                                                <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <!-- <th scope="col" style="font-size:18px;">Attendant</th> -->
                                                 <th scope="col" style="font-size:18px;">Status</th>
                                                 <th scope="col" style="font-size:18px;">Date Requested</th>
                                                 <th scope="col" style="font-size:18px;">Date Received</th>
@@ -174,7 +174,7 @@
                                                 <th scope="col" style="font-size:18px;">Quantity</th>
                                                 <th scope="col" style="font-size:18px;">Quantity Requested</th>
                                                 <th scope="col" style="font-size:18px;">Discrepancy</th>
-                                                <th scope="col" style="font-size:18px;">Attendant</th>
+                                                <!-- <th scope="col" style="font-size:18px;">Attendant</th> -->
                                                 <th scope="col" style="font-size:18px;">Status</th>
                                                 <th scope="col" style="font-size:18px;">Date Requested</th>
                                                 <th scope="col" style="font-size:18px;">Date Received</th>
@@ -334,9 +334,9 @@
                         {
                             data: 'Quantity_Requested'
                         },
-                        {
-                            data: 'Attendant'
-                        },
+                        // {
+                        //     data: 'Attendant'
+                        // },
                         {
                             data: 'Status'
                         },
@@ -510,9 +510,9 @@
                         {
                             data: 'Discrepancy'
                         },
-                        {
-                            data: 'Attendant'
-                        },
+                        // {
+                        //     data: 'Attendant'
+                        // },
                         {
                             data: 'Status'
                         },
