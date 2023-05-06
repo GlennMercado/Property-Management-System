@@ -316,12 +316,16 @@ class InventoryController extends Controller
             $total = $request->input('quantity');
             $in = $request->input('in');
             $category = $request->input('category');
+            $out = 0;
+            $stock = '1'; 
 
             if($in > 0)
             {
                 $total = $total + $in;
 
             }
+
+           
            
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
@@ -331,6 +335,9 @@ class InventoryController extends Controller
                 'total' => $total,
                 'category' => $category
             ));
+
+            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, Quantity, Stock, created_at) 
+            values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
             
     
            Alert::Success('Success', 'Successfully Updated!');
@@ -340,7 +347,7 @@ class InventoryController extends Controller
         }
         catch(\Illuminate\Database\QueryException $e)
         {
-            Alert::Error('Failed', 'Edit Failed!');
+            Alert::Error('Failed', 'Editing of Stock Failed!');
             return redirect('StockCount')->with('Failed', 'Data not Updated');
         }
     }
