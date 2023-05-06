@@ -9,6 +9,8 @@ use App\Notifications\InquireEvent;
 use App\Notifications\InquiryApproved;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\Event_Confirmation;
 use DateTime;
 
 class EventController extends Controller
@@ -58,23 +60,29 @@ class EventController extends Controller
 
             ]);
 
-
          //Setting the Variables
          $stat = $request->input('event_status');
          $id = $request->input('id');
+         
 
          $sql = DB::table('convention_center_applications')->where('id', $id)->update(array
          (
-             'inquiry_status' => $stat
+             'inquiry_status' => $stat, 'updated_at' => DB::RAW('NOW()')
          ));
-        //  switch($stat){
-        //     case "Approved":
-        //  }
-        //Inserting into Database
+
+
         if($sql)
         {
+            $client = DB::table('convention_center_applications')->where('id', $id)->first();
+            
+            if ($client) {
+                $email = $client->email;
+                Mail::to($email)->send(new Event_Confirmation($client));
+            }
+            
+
             Alert::Success('Success', 'Successfully Updated!');
-           return redirect('EventInquiryForm')->with('Success', 'Data Updated');
+            return redirect('EventInquiryForm')->with('Success', 'Data Updated');
         }
         else
         {

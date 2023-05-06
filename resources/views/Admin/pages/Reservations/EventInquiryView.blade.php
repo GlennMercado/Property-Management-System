@@ -24,19 +24,7 @@
                             value="{{ $list->contact_no }}" class="form-control" placeholder="09XXXXXXXX" disabled>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-md pt-4">
-                        <p>Contact Person <span class="text-danger">*</span></p>
-                        <input type="text" name="contact_person" class="form-control" value="{{ $list->contact_person }}"
-                            placeholder="Enter contact person" maxlength="64" disabled>
-                    </div>
-                    <div class="col-md pt-4">
-                        <p>Contact Person Number <span class="text-danger">*</span></p>
-                        <input type="number" onKeyPress="if(this.value.length==11) return false;"
-                            title="Please use a 10 digit mobile number with no dashes or dots" name="contact_person_no"
-                            value="{{ $list->contact_person_no }}" class="form-control" placeholder="09XXXXXXXX" disabled>
-                    </div>
-                </div>
+                
                 <div class="row ">
                     <div class="col-md pt-4">
                         <p>Billing Address <span class="text-danger">*</span></p>
@@ -79,19 +67,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <span>
-                            <br>
-                            <br>
-                            <p>Venue<span class="text-danger">*</span></p>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input value="{{ $list->venue }}" class="form-control-sm" type="text"
-                                        name="venue" id="specify_venue_text" maxlength="32" disabled>
-                                </div>
-                            </div>
-                        </span>
-                    </div>
+                    
                     <div class="col-md-12">
                         <span>
                             <br>
