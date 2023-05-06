@@ -29,7 +29,6 @@ class InventoryHotelSupplyController extends Controller
     public function supply_request_approval(Request $request)
     {
         //$sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
-        dd($request->all());
       $id = $request->input('id');
       $roomno = $request->input('roomno');
       $productid = $request->input('productid');
