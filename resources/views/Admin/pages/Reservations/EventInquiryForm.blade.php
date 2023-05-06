@@ -205,13 +205,14 @@
                                             @foreach ($list as $lists)
                                                 <tr>
                                                     <td>
+                                                   
                                                         <a href="{{ url('/event_view', ['id' => $lists->id]) }}"
                                                             target="blank" class="btn btn-sm btn-success"
                                                             style="cursor:pointer;" data-toggle="tooltip"
                                                             data-placement="top" title="View">
                                                             <i class="bi bi-eye"></i>
                                                         </a>
-                                                        @if ($lists->inquiry_status != 'Declined')
+                                                        @if ($lists->inquiry_status == 'For Approval')
                                                             <button data-toggle="modal"
                                                                 data-target="#Modalstatus{{ $lists->id }}"
                                                                 class="btn btn-sm btn-primary" style="cursor:pointer;"
@@ -398,12 +399,14 @@
                                             @foreach ($list5 as $lists)
                                                 <tr>
                                                     <td>
+                                                        @if($lists->inquiry_status == "For Approval")
                                                         <button data-toggle="modal"
                                                             data-target="#Modalstatus{{ $lists->id }}"
                                                             class="btn btn-sm btn-primary" style="cursor:pointer;"
                                                             data-toggle="tooltip" data-placement="top" title="Status">
                                                             <i class="bi bi-pencil"></i>
                                                         </button>
+                                                        @endif
                                                     </td>
                                                     <td>{{ $lists->id }}</td>
                                                     <td>{{ $lists->event_name }}</td>
