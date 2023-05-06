@@ -18,6 +18,7 @@ use App\Notifications\Booked;
 use App\Notifications\Success;
 use Mail;
 use App\Mail\Application_Status;
+use App\Mail\Event_Inquiry;
 use App\Models\User;
 use App\Models\Notification;
 
@@ -68,12 +69,16 @@ class GuestController extends Controller
             auth()->user()->notify(new InquireEvent($user));
             $mail = Auth::user()->email;
             $name = Auth::user()->name;
-            $data=['name'=>$name, 'data'=>"Hello world"];
-            $user['to']=$mail;
-            Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
-                $messages->to($user['to']);
-                $messages->subject('Hello');
-            });
+            // $data=['name'=>$name, 'data'=>"Hello world"];
+            // $user['to']=$mail;
+            // Mail::send('Guest.BookingEmail',$data,function($messages) use ($user){
+            //     $messages->to($user['to']);
+            //     $messages->subject('Hello');
+            // });
+
+            Mail::to($mail)->send(new Event_Inquiry($mail, $name));
+        
+
         } else{
             Alert::Error('Failed', 'sommething went wrong');
             return redirect('/welcome')->with('Error', 'Failed');
