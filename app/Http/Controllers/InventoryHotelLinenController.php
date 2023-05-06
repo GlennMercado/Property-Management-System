@@ -54,7 +54,7 @@ class InventoryHotelLinenController extends Controller
         {
             $total_quantity = $qty_owned + $quantity_given;
 
-            $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$id'");
+            $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$productid'");
 
             foreach($sql as $lists)
             {
