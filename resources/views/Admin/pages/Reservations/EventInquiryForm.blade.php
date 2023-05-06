@@ -326,9 +326,6 @@
                                                                                     <option selected disabled
                                                                                         value="">
                                                                                         Select</option>
-                                                                                    <option value="For Interview">Event
-                                                                                        Approved
-                                                                                    </option>
                                                                                     <option value="Approved">Approved
                                                                                     </option>
                                                                                     <option value="Declined">Declined
