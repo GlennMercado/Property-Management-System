@@ -622,6 +622,16 @@ class CommercialSpacesSecondController extends Controller
 
                 if($deposit_money > $cost)
                 {
+                    $sql = DB::table('commercial_space_units')->where('Space_Unit', $space_unit)->update(
+                        [
+                            'Maintenance_Status' => "No",
+                            'Maintenance_Due_Date' => null,
+                            'Maintenance_Cost' => null,
+                            'Payment_Status' => null,
+                            'Reference_No' => null,
+                            'Proof_Image' => null
+                        ]);
+                        
                     $money = $deposit_money - $cost;
                     DB::table('commercial_spaces_tenant_deposits')->where('Tenant_ID', $tenant_id)->update(['Security_Deposit' => $money, 'Remarks' => "Deposit is used in unpaid due Maintenance"]);
 
