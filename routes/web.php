@@ -301,6 +301,8 @@ Route::middleware(['auth', 'AdminorInventory'])->group(function(){
 	Route::post('/supply_request_approval', 'App\Http\Controllers\InventoryHotelSupplyController@supply_request_approval');
 
 	//Inventory Reports
+	Route::get('/guest_supply_report', 'App\Http\Controllers\InventoryHotelSupplyController@guest_supply_report');
+	Route::get('/linen_request_report', 'App\Http\Controllers\InventoryHotelLinenController@linen_request_report');
 	Route::get('StockReports', [App\Http\Controllers\InventoryController::class, 'StockReport'])->name('StockReports');
 	
 	//Inventory Room Supply

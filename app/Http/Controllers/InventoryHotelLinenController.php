@@ -9,6 +9,7 @@ use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_linen;
 use App\Models\hotel_room_linens_reports;
 use Carbon\Carbon;
+use PDF;
 
 class InventoryHotelLinenController extends Controller
 {
@@ -119,6 +120,23 @@ class InventoryHotelLinenController extends Controller
           Alert::Error('Failed', 'Linen Request Failed!');
           return redirect('StockHotelLinen')->with('Success', 'Data Updated');
         }
+    }
+
+
+    public function linen_request_report()
+    {
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+        $total = hotel_room_linens_reports::count();
+        $data = hotel_room_linens_reports::whereBetween('created_at', [$start_date, $end_date])->get();
+        $title = "Linen Request Report(s)";
+
+        $pdf = PDF::loadView('Admin.pages.Inventory.LinenRequestReport', compact('data', 'title', 'total'))->setOption('font_path', '')->setOption('font_data', []);
+        // return $pdf->download('report.pdf');
+        return view('Admin.pages.Inventory.LinenRequestReport', compact('data', 'title', 'total'));
     }
 
     /**

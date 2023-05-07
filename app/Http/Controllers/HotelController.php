@@ -13,9 +13,6 @@ use Carbon\Carbon;
 use App\Mail\BookingConfirmation;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\Booked;
-use App\Notifications\Checked;
-use App\Notifications\Declined;
-use App\Notifications\Approved;
 use App\Notifications\Success;
 use Mail;
 use App\Models\User;
@@ -46,15 +43,10 @@ class HotelController extends Controller
     }
     public function guest_viewing()
     {
-        $pending_guests = hotel_reservations::where('Payment_Status','Pending')->count();
-        $count_daily = hotel_reservations::whereDate('Check_In_Date', DB::raw('CURDATE()'))->count();
-        $count_daily1 = hotel_reservations::whereDate('Check_Out_Date', DB::raw('CURDATE()'))->count();
-        $reserved_guests = hotel_reservations::where('Booking_Status','Reserved')->count(); 
-        $checked_guests = hotel_reservations::where('Booking_Status','Checked-In')->count(); 
         $list = DB::select('SELECT * FROM hotel_reservations');
         $room = DB::select('SELECT * FROM novadeci_suites');
         $supply = DB::select('SELECT * FROM hotelstocks');  
-        return view('Admin.pages.OperationManagement.Guest_Reservation', compact('pending_guests', 'count_daily', 'count_daily1', 'reserved_guests', 'checked_guests'), ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
+        return view('Admin.pages.OperationManagement.Guest_Reservation', ['list'=>$list, 'room'=>$room, 'supply'=>$supply,]);
     }
     /**
      * Show the form for creating a new resource.
@@ -147,16 +139,29 @@ class HotelController extends Controller
             DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
             values (?, ?, ?, ?, ?)', [$roomno, $randID, $facility, $status, $fstats]);
             
-            Alert::Success('Success', 'Reservation was successfully submitted!');
-            return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
-            
+            if($user_type == 'Operations Manager')
+            {
+                Alert::Success('Success', 'Reservation was successfully submitted!');
+                return redirect('Guest_Reservation')->with('Success', 'Reservation Success');
+            }
+            else
+            {
+                Alert::Success('Success', 'Reservation was successfully submitted!');
+                return redirect('HotelReservationForm')->with('Success', 'Reservation Success');
+            }
         }
         else
         {
-            
-            Alert::Error('Error', 'Reservation Failed!');
-            return redirect('Guest_Reservation')->with('Error', 'Failed!');
-            
+            if($user_type == "Operations Manager")
+            {
+                Alert::Error('Error', 'Reservation Failed!');
+                return redirect('Guest_Reservation')->with('Error', 'Failed!');
+            }
+            else
+            {
+                Alert::Error('Error', 'Reservation Failed!');
+                return redirect('HotelReservationForm')->with('Error', 'Failed!');
+            }
         }
 
         
@@ -185,24 +190,6 @@ class HotelController extends Controller
         $stats2 = "Reserved";
 
         $user_type = Auth::user()->User_Type;
-
-        //NOTIFY
-            $email = null;
-            $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
-
-            foreach($select as $selects)
-            {
-                $email = $selects->Email;
-            }
-
-            if($email != null)
-            {
-                $client = User::where('email', $email)->first();
-            
-                $client->notify(new Approved($client));
-            }
-        
-        //HERE
 
         if($isarchived == false)
         {
@@ -239,20 +226,19 @@ class HotelController extends Controller
             $gross = 1.12;
             $cash = $finance_amount / $gross;
             $vat = $outvat * $cash;  
-            $client_stat = "Paid";  
 
             DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2));
             
-            if($stats3 != "Occupied")
+            if($stats3 != "Checked-In")
             {
                 DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $stats2));
             }
 
-            // DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-            // values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
+            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $stats2, $stats2]);
 
-            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat, Client_Status, created_at, updated_at) 
-            values (?, ?, ?, ?, ?, ?, ? , ? , ?, ?, ?, now(), now())', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat, $client_stat]);
+            DB::insert('insert into finance_2_reports (ornum, payee, particular, debit, remark, amount , eventdate, cash, hotel, outputvat) 
+            values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?)', [$ornum, $finance_payee, $particular, $debit, $remark, $finance_amount, $finance_eventdate, $finance_amount, $cash, $vat]);
            
             if($user_type == "Operations Manager")
             {
@@ -261,7 +247,7 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
@@ -273,10 +259,10 @@ class HotelController extends Controller
                 ->get();
 
                 foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
+                    Mail::to($names->Email)->send(new BookingConfirmation($names));
                 }
                 Alert::Success('Success', 'Payment successfully updated!');
-                return redirect('FinanceApproval')->with('Success', 'Data Saved');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
         }
         else
@@ -289,7 +275,7 @@ class HotelController extends Controller
             else
             {
                 Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('FinanceApproval')->with('Success', 'Data Saved');
+                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
         }    
     }
@@ -313,7 +299,7 @@ class HotelController extends Controller
                 {
                     $client = User::where('email', $email)->first();
                 
-                    $client->notify(new Checked($client));
+                    $client->notify(new Booked($client));
                 }
                 
             //HERE
@@ -357,18 +343,12 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $facility = "Hotel Room";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In"));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status));
                         DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
         
-                        $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
+                        DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
+                        values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, $status]);
                         
-                        if(!$checkHousekeeping)
-                        {
-                            //Insert to housekeeping
-                            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
-                        }
-
                         if($user_type == "Operations Manager")
                         {
                             Alert::Success('Success', 'Reservation successfully updated!');
@@ -413,9 +393,6 @@ class HotelController extends Controller
                         $chckin;
                         $chckout;
 
-                        $roomstats = "Occupied";
-                        $facility = "Hotel Room";
-
                         foreach($sql as $lists)
                         {
                             $chckin = $lists->Check_In_Date;
@@ -425,17 +402,10 @@ class HotelController extends Controller
                         $roomstats = "Occupied";
                         $status2 = "Checked-In";
 
-                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => "Checked-In", 'updated_at' => DB::RAW('NOW()')));
-                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats, 'updated_at' => DB::RAW('NOW()')));
+                        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Booking_Status' => $status2));
+                        DB::table('novadeci_suites')->where('Room_No', $roomno)->update(array('Status' => $roomstats));
         
-                        $checkHousekeeping = DB::select("SELECT * FROM housekeepings WHERE Room_No = '$roomno' AND Booking_No = '$bookno'");
-                        
-                        if(!$checkHousekeeping)
-                        {
-                            //Insert to housekeeping
-                            DB::insert('insert into housekeepings (Room_No, Booking_No, Facility_Type, Facility_Status, Front_Desk_Status) 
-                            values (?, ?, ?, ?, ?)', [$roomno, $bookno, $facility, $roomstats, "Checked-In"]);
-                        }
+                        DB::table('housekeepings')->where('Booking_No', $bookno)->update(array('Facility_Status' => $roomstats, 'Front_Desk_Status' => $status2));
 
                         Alert::Success('Success', 'Reservation successfully updated!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -482,8 +452,8 @@ class HotelController extends Controller
                         Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
 
 
-                        // DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
-                        // values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
+                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
 
                         Alert::Success('Success', 'Booking Successfully Checked Out!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -535,8 +505,8 @@ class HotelController extends Controller
                         Carbon::createFromFormat('Y-m-d H:i:s', $issued_time);
 
 
-                        // DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
-                        // values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
+                        DB::insert('insert into Key_Management (Key_ID, Room_No, Booking_No, Attendant, Issued_Time, Due_Time) 
+                        values (?, ?, ?, ?, ?, ?)', [$keyid ,$roomno, $bookno, $attendant, $issued_time, $due_time]);
 
                         Alert::Success('Success', 'Booking Successfully Checked Out!');
                         return redirect('HotelReservationForm')->with('Success', 'Data Saved');
@@ -555,75 +525,6 @@ class HotelController extends Controller
                 }
             }
     }  
-
-    public function decline_payment($id, $no, $check)
-    {
-        $bookno = $id;
-        $roomno = $no;
-        $isarchived = $check;
-        $stats = "Not Approved";
-        $stats2 = "Declined";
-        $user_type = Auth::user()->User_Type;
-
-        //NOTIFY
-            $email = null;
-            $select = DB::select("SELECT * FROM hotel_reservations WHERE Booking_No = '$bookno'");
-
-            foreach($select as $selects)
-            {
-                $email = $selects->Email;
-            }
-
-            if($email != null)
-            {
-                $client = User::where('email', $email)->first();
-            
-                $client->notify(new Declined($client));
-            }
-        
-        //HERE
-        DB::table('hotel_reservations')->where('Booking_No', $bookno)->update(array('Payment_Status' => $stats, 'Booking_Status' => $stats2, 'IsArchived' => 1));
-        if($isarchived == false)
-        {
-            if($user_type == "Operations Manager")
-            {
-                $name = DB::table('hotel_reservations')
-                ->where('Booking_No', '=', $bookno)
-                ->get();
-
-                foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
-                }
-                Alert::Error('Declined', 'Declined Payment');
-                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                $name = DB::table('hotel_reservations')
-                ->where('Booking_No', '=', $bookno)
-                ->get();
-
-                foreach ($name as $names) {
-                    Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
-                }
-                Alert::Error('Declined', 'Declined Payment');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
-            }
-        }
-        else
-        {
-            if($user_type == "Operations Manager")
-            {
-                Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('Guest_Reservation')->with('Success', 'Data Saved');
-            }
-            else
-            {
-                Alert::Error('Failed', 'Payment Failed Updating!');
-                return redirect('HotelReservationForm')->with('Success', 'Data Saved');
-            }
-        }    
-    }
 
     public function front_desk_getdata($id)
     {

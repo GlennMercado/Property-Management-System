@@ -50,6 +50,27 @@
                                 {{-- Linen Request --}}
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-1-tab">
+                                    <div class="card-header">
+                                        <form action="{{ url('/linen_request_report') }}" target="blank" method="get">
+                                            <div class="d-flex flex-row">
+                                                <div class="p-2">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" class="form-control" id="start_date" name="end_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Generate report:</label>
+                                                    <button type="submit" class="btn btn-success w-75 h-50">
+                                                        <label class="">Print</label><span class=""> <i
+                                                                class="bi bi-printer-fill"></i></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form> 
+                                    </div>
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable">
                                         <thead class="thead-light">
@@ -78,6 +99,27 @@
                                 {{-- Supply Request --}}
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                                     aria-labelledby="tabs-icons-text-2-tab">
+                                    <div class="card-header">
+                                        <form action="{{ url('/guest_supply_report') }}" target="blank" method="get">
+                                            <div class="d-flex flex-row">
+                                                <div class="p-2">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" class="form-control" id="start_date" name="end_date" required>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label>Generate report:</label>
+                                                    <button type="submit" class="btn btn-success w-75 h-50">
+                                                        <label class="">Print</label><span class=""> <i
+                                                                class="bi bi-printer-fill"></i></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form> 
+                                    </div>
                                     <!-- Projects table -->
                                     <table class="table align-items-center table-flush" id="myTable2">
                                         <thead class="thead-light">
