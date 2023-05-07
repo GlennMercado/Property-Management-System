@@ -13,30 +13,30 @@
     <div class="row d-flex justify-content-center p-5">
         <div class="container-fluid">
             <table class="table align-items-center table-flush" id="myTable">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" style="font-size:18px;">Product ID</th>
-                        <th scope="col" style="font-size:18px;">Name</th>
-                        <th scope="col" style="font-size:18px;">Category</th>
-                        <th scope="col" style="font-size:18px;">Stock In</th>
-                        <th scope="col" style="font-size:18px;">Stock Out</th>
-                        <th scope="col" style="font-size:18px;">Quantity</th>
-                        <th scope="col" style="font-size:18px;">Date of Movement</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $sqls)
-                            <tr>
-                                <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Payment }}</td>
-                                <td style="font-size:16px;">{{ $sqls->gcash_account_name }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Mobile_Num }}</td>
-
-                            </tr>
-                    @endforeach
-                </tbody>
+            <thead class="thead-light">
+                                        <tr>
+                                    <th scope="col" style="font-size:16px;">Room Number</th>
+                                    <th scope="col" style="font-size:16px;">Item Name</th>
+                                    <th scope="col" style="font-size:16px;">Discrepancy</th>
+                                    <th scope="col" style="font-size:16px;">Quantity Requested</th>
+                                    <th scope="col" style="font-size:16px;">Status</th>
+                                    <th scope="col" style="font-size:16px;">DateRequested</th>
+                                    <th scope="col" style="font-size:16px;">DateReceived</th>
+                                     </tr>
+                                    </thead>
+                                        <tbody>
+                                        @foreach ($data as $lists)
+                                            <tr>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Discrepancy }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Quantity_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Date_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Date_Received }}</td>
+                                            </tr>
+                                         @endforeach
+                                        </tbody>
             </table>
         </div>
     </div>

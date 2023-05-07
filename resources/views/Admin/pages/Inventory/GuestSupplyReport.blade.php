@@ -13,19 +13,32 @@
     <div class="row d-flex justify-content-center p-5">
         <div class="container-fluid">
             <table class="table align-items-center table-flush" id="myTable">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" style="font-size:18px;">Product ID</th>
-                        <th scope="col" style="font-size:18px;">Name</th>
-                        <th scope="col" style="font-size:18px;">Category</th>
-                        <th scope="col" style="font-size:18px;">Stock In</th>
-                        <th scope="col" style="font-size:18px;">Stock Out</th>
-                        <th scope="col" style="font-size:18px;">Quantity</th>
-                        <th scope="col" style="font-size:18px;">Date of Movement</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                </tbody>
+            <thead class="thead-light">
+                                            <tr>
+                                            <th scope="col" style="font-size:16px;">Room No.</th>
+                                            <th scope="col" style="font-size:16px;">Item Name</th>
+                                            <th scope="col" style="font-size:16px;">Quantity</th>
+                                            <th scope="col" style="font-size:16px;">Attendant</th>
+                                            <th scope="col" style="font-size:16px;">Status</th>
+                                            <th scope="col" style="font-size:16px;">RequestedQuantity</th>
+                                            <th scope="col" style="font-size:16px;">DateRequested</th>
+                                            <th scope="col" style="font-size:16px;">DateReceived</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $lists2)
+                                            <tr>
+                                                <td style="font-size:14px;">{{ $lists2->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->name }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Quantity }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Attendant }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Quantity_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Date_Requested }}</td>
+                                                <td style="font-size:14px;">{{ $lists2->Date_Received }}</td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
             </table>
         </div>
     </div>
