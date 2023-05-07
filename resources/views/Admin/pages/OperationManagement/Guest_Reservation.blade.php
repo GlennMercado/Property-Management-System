@@ -121,18 +121,18 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                <div class="table-responsive">
                         <!-- Pending -->
                         <div id="pending">
                             <table class="table align-items-center table-flush" id="myTable">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
-                                        <th scope="col" style="font-size:17px;">Check in Date</th>
-                                        <th scope="col" style="font-size:17px;">Check out Date</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
                                         <th scope="col" style="font-size:17px;">Payment</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
@@ -146,13 +146,21 @@
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#view{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
+                                                    <!--update Button-->
+                                                    {{-- @if ($lists->Payment_Status == 'Pending')
+                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            data-target="#update{{ $lists->Booking_No }}"> <i
+                                                                class="bi bi-pencil-square"></i></button>
+                                                    @endif --}}
                                                 </td>
-                                                <td>{{ $lists->Booking_No }}</td>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Guest_Name }}</td>
-                                                <td>{{ $lists->Check_In_Date }}</td>
-                                                <td>{{ $lists->Check_Out_Date }}</td>
-                                                <td>{{ $lists->Payment }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
                                                 <td>
                                                     <span class="badge badge-info">
                                                         {{ $lists->Payment_Status }}
@@ -249,6 +257,99 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!--Update Status-->
+                                        <div class="modal fade" id="update{{ $lists->Booking_No }}" tabindex="-1"
+                                            role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title text-left" id="exampleModalLabel">
+                                                            Proof of Payment
+                                                        </h3>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body row">
+                                                        <div class="col-md-12">
+                                                            <h1>Reference No: {{ $lists->Reference_No }}</h1>
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold">
+                                                            Room no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm">
+                                                            {{ $lists->Room_No }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Name:
+                                                        </div>
+
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Guest_Name }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Email:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Email }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Mobile no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Mobile_Num }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check in date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_In_Date }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check out date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_Out_Date }}
+                                                        </div>
+                                                        @if ($lists->Proof_Image != null)
+                                                            <a href="{{ url($lists->Proof_Image) }}"
+                                                                data-lightbox="photos">
+                                                                <img src="{{ url($lists->Proof_Image) }}"
+                                                                    class="card-img-top p-5" />
+                                                            </a>
+                                                        @endif
+                                                        <div class="row p-3 mt-2">
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <h3 class="p-3">Payment method:</h3>
+                                                            </div>
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <img class="gcash"
+                                                                    src="{{ asset('nvdcpics') }}/GCash.png"
+                                                                    style="width: 200px; height: 60px">
+                                                            </div>
+                                                            <div class="col-md-12 text-sm font-weight-bold mt-4">
+                                                                <h3 class="p-2">Total Payment:</h3>
+                                                                <h2 class="display-2 mt--3 text-green p-2" id="currency">
+                                                                    PHP {{ number_format($lists->Payment, 2, '.', ',') }}
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer row d-flex">
+                                                        <div class="p-2">
+                                                            <a href="{{ url('/decline_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                class="btn btn-danger">Decline</a>
+                                                        </div>
+                                                        <div class="ml-auto p-2">
+                                                            <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                                class="btn btn-success">Approve</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -260,9 +361,12 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
+                                        <th scope="col" style="font-size:17px;">Payment</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
                                 </thead>
@@ -275,15 +379,65 @@
                                                     <!--View Button-->
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#views{{ $lists->Booking_No }}"> <i
-                                                            class="bi bi-eye-fill"></i>
-                                                    </button>
+                                                            class="bi bi-eye-fill"></i> </button>
+                                                    <!--Update Reservation/Room Status Button-->
+                                                    @if ($lists->Status == 'Vacant for Accommodation' || $lists->Status == 'Reserved')
+                                                        @if ($lists->Check_In_Date <= $now)
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#update_booking_status{{ $lists->Booking_No }}">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                        @endif
+                                                    @endif
                                                 </td>
-                                                <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
+                                                <td>
+                                                    <span class="badge badge-info">
+                                                        {{ $lists->Payment_Status }}
+                                                    </span>
+                                                </td>
                                             </tr>
                                         @endif
+
+                                        <!--Update Status-->
+                                        <div class="modal fade" id="update_booking_status{{ $lists->Booking_No }}"
+                                            tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">
+                                                            Hotel Reservation
+                                                        </h3>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4 class="text-center">Change <span
+                                                                style="color:green;">{{ $lists->Guest_Name }}</span>
+                                                            Booking
+                                                            Status From Reserved to Checked-In</h4>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                        <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-In2']) }}"
+                                                            class="btn btn-success">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!--View-->
                                         <div class="modal fade" id="views{{ $lists->Booking_No }}" tabindex="-1"
                                             role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -384,14 +538,17 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
                                         <th scope="col" style="font-size:17px;">Payment</th>
+                                        <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list as $lists)
+                                    @foreach ($list as $index => $lists)
                                         @if (
                                             $lists->Booking_Status == 'Checked-In' ||
                                                 $lists->Booking_Status == 'Checking(Before Check-Out)' ||
@@ -403,11 +560,50 @@
                                                         data-target="#views1{{ $lists->Booking_No }}" title="View">
                                                         <i class="bi bi-eye-fill"></i>
                                                     </button>
+                                                    <!--Update Reservation/Room Status Button-->
+                                                    @if ($lists->Booking_Status == 'Checked-In')
+                                                        @if ($lists->Check_Out_Date <= $now)
+                                                            <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#update_booking_status11{{ $lists->Booking_No }}"
+                                                                title="Update">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                        @endif
+                                                        <!--Guest Request Button-->
+                                                        <button class="btn btn-sm btn-primary" data-toggle="modal"
+                                                            data-target="#request{{ $lists->Booking_No }}"
+                                                            title="Request">
+                                                            <i class="bi bi-plus-square"></i>
+                                                        </button>
+                                                    @endif
+                                                    @if ($lists->Booking_Status == 'Room Checked')
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#update_booking_status2{{ $lists->Booking_No }}"
+                                                            title="Update">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                        {{-- Invoice --}}
+                                                        <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                            target="blank" class="btn btn-sm btn-success"
+                                                            style="cursor:pointer;" title="Invoice">
+                                                            <i class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    @endif
+
                                                 </td>
-                                                <td style="font-size:15px;">{{ $lists->Booking_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Room_No }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Guest_Name }}</td>
-                                                <td style="font-size:15px;">{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                                <td style="font-size:14px;">
+                                                    {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                                <td style="font-size:14px;">₱ {{ number_format($lists->Payment, 2, ',', '.') }}</td>
+                                                <td>
+                                                    <span class="badge badge-info">
+                                                        {{ $lists->Payment_Status }}
+                                                    </span>
+                                                </td>
                                             </tr>
 
 
@@ -500,6 +696,156 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!--Update Status-->
+                                            <div class="modal fade" id="update_booking_status2{{ $lists->Booking_No }}"
+                                                tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">
+                                                                Hotel Reservation
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Change <span
+                                                                    style="color:green;">{{ $lists->Guest_Name }}</span>
+                                                                Booking
+                                                                Status From Reserved to Checked-Out</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checked-Out']) }}"
+                                                                class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Update Status-->
+                                            <div class="modal fade" id="update_booking_status11{{ $lists->Booking_No }}"
+                                                tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">
+                                                                Hotel Reservation
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Check Room Before Check-Out?</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                            <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                            <a href="{{ url('/update_booking_status', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived, 'stats' => 'Checking(Before Check-Out)']) }}"
+                                                                class="btn btn-success">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Add Request-->
+                                            <div class="modal fade" id="request{{ $lists->Booking_No }}" tabindex="-1"
+                                                role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title text-left display-4"
+                                                                id="exampleModalLabel">
+                                                                Guest Request
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ url('/add_guest_request') }}"
+                                                            class="prevent_submit" method="POST"
+                                                            enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+
+                                                            <div class="modal-body">
+                                                                <p class="text-left">Room No.</p>
+                                                                <input type="hidden" name="roomno"
+                                                                    value="{{ $lists->Room_No }}">
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->Room_No }}" readonly>
+
+                                                                <p class="text-left">Booking No.</p>
+                                                                <input type="hidden" name="bookno"
+                                                                    value="{{ $lists->Booking_No }}">
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->Booking_No }}" readonly>
+
+                                                                <p class="text-left">Guest Name</p>
+                                                                <input type="hidden" name="guest_name"
+                                                                    value="{{ $lists->Guest_Name }}">
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $lists->Guest_Name }}" readonly>
+
+                                                                <p class="text-left">Type of Request </p>
+
+                                                                <select name="type_of_request" class="form-control"
+                                                                    id="category" data-list-index="{{ $index }}">
+                                                                    <option value="" selected="true"
+                                                                        disabled="disabled">Select</option>
+                                                                    <option value="Service Request">Service Request
+                                                                    </option>
+                                                                    <option value="Item Request">Item Request
+                                                                    </option>
+                                                                </select>
+
+                                                                <div id="r_items_{{ $index }}"
+                                                                    style="display:none;">
+                                                                    <p class="text-left">Item Request </p>
+                                                                    <select name="item_request" id="item"
+                                                                        class="form-control">
+                                                                        <option value="" selected="true"
+                                                                            disabled="disabled">Select</option>
+                                                                        @foreach ($supply as $supplies)
+                                                                            <option value="{{ $supplies->name }}">
+                                                                                {{ $supplies->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <p class="text-left">Quantity </p>
+                                                                    <input type="number" name="qty" id="qt"
+                                                                        class="form-control">
+                                                                </div>
+
+                                                                <div id="r_services_{{ $index }}"
+                                                                    style="display:none;">
+                                                                    <p class="text-left">Service Request </p>
+                                                                    <input type="text" name="service_request"
+                                                                        id="req2" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</a>
+                                                                <input type="submit"
+                                                                    class="btn btn-success prevent_submit"
+                                                                    value="Submit" />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
                                     @endforeach
                                 </tbody>
@@ -512,8 +858,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" style="font-size:17px;">Action</th>
-                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking Number</th>
                                         <th scope="col" style="font-size:17px;">Guest Name</th>
                                         <th scope="col" style="font-size:17px;">Payment Status</th>
                                     </tr>
@@ -527,11 +873,17 @@
                                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                         data-target="#view4{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
+
+                                                    <a href="{{ url('/invoice', ['id' => $lists->Room_No, 'bn' => $lists->Booking_No]) }}"
+                                                        target="blank" class="btn btn-sm btn-success"
+                                                        style="cursor:pointer;" title="Invoice">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                    </a>
                                                 </td>
-                                                <td>{{ $lists->Booking_No }}</td>
-                                                <td>{{ $lists->Room_No }}</td>
-                                                <td>{{ $lists->Guest_Name }}</td>
-                                                <td>{{ $lists->Payment_Status }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                                <td style="font-size:14px;">{{ $lists->Payment_Status }}</td>
                                             </tr>
                                         @endif
 
@@ -620,6 +972,233 @@
                                                     <div class="modal-footer">
                                                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                         <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {{-- ALL --}}
+                        <div id="all" style="display:none;">
+                            <table class="table align-items-center table-flush" id="myTable5">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" style="font-size:17px;">Action</th>
+                                        <th scope="col" style="font-size:17px;">Room No.</th>
+                                        <th scope="col" style="font-size:17px;">Booking No.</th>
+                                        <th scope="col" style="font-size:17px;">Guest Name</th>
+                                        <th scope="col" style="font-size:17px;">Arrival Date</th>
+                                        <th scope="col" style="font-size:17px;">Departure Date</th>
+                                        <th scope="col" style="font-size:17px;">Payment</th>
+                                        <th scope="col" style="font-size:17px;">Payment Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($list as $lists)
+                                        <tr>
+                                            <td>
+                                                {{-- view button --}}
+                                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                    data-target="#view{{ $lists->Booking_No }}"> <i
+                                                        class="bi bi-eye-fill"></i> </button>
+                                                <!--update Button-->
+                                                @if ($lists->Payment_Status == 'Pending')
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                        data-target="#update{{ $lists->Booking_No }}"> <i
+                                                            class="bi bi-pencil-square"></i></button>
+                                                @endif
+                                            </td>
+                                            <td style="font-size:14px;">{{ $lists->Room_No }}</td>
+                                            <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
+                                            <td style="font-size:14px;">{{ $lists->Guest_Name }}</td>
+                                            <td style="font-size:14px;">
+                                                {{ date('F j, Y', strtotime($lists->Check_In_Date)) }}</td>
+                                            <td style="font-size:14px;">
+                                                {{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}</td>
+                                            <td style="font-size:14px;">{{ $lists->Payment }}</td>
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    {{ $lists->Payment_Status }}
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <!--View-->
+                                        <div class="modal fade bd-example-modal-lg" id="view{{ $lists->Booking_No }}"
+                                            tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-left display-4"
+                                                            id="exampleModalLabel">
+                                                            Hotel Reservation
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p class="text-left">Reservation Number: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->Booking_No }}" readonly>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p class="text-left">Room Number: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->Room_No }}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p class="text-left">Number of Pax: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->No_of_Pax }}" readonly>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p class="text-left">Payment Status: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->Payment_Status }}" readonly>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p class="text-left">Guest Name: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->Guest_Name }}" readonly>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p class="text-left">Mobile Number: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ $lists->Mobile_Num }}" readonly>
+                                                            </div>
+                                                        </div>
+
+                                                        @if ($lists->Email != null)
+                                                            <br>
+                                                            <p class="text-left">Email Address: </p>
+                                                            <input class="form-control" type="text"
+                                                                value="{{ $lists->Email }}" readonly>
+                                                        @endif
+
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p class="text-left">Check In Date: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ date('F j, Y', strtotime($lists->Check_In_Date)) }}"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p class="text-left">Check Out Date: </p>
+                                                                <input class="form-control" type="text"
+                                                                    value="{{ date('F j, Y', strtotime($lists->Check_Out_Date)) }}"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Update Status-->
+                                        <div class="modal fade" id="update{{ $lists->Booking_No }}" tabindex="-1"
+                                            role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title text-left" id="exampleModalLabel">
+                                                            Proof of Payment
+                                                        </h3>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body row">
+                                                        <div class="col-md-12">
+                                                            <h1>Reference No: {{ $lists->Reference_No }}</h1>
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold">
+                                                            Room no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm">
+                                                            {{ $lists->Room_No }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Name:
+                                                        </div>
+
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Guest_Name }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Email:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Email }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Mobile no:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Mobile_Num }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check in date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_In_Date }}
+                                                        </div>
+                                                        <div class="col-md-6 text-sm font-weight-bold mt-2">
+                                                            Check out date/time:
+                                                        </div>
+                                                        <div class="col-md-6 text-sm mt-2">
+                                                            {{ $lists->Check_Out_Date }}
+                                                        </div>
+                                                        @if ($lists->Proof_Image != null)
+                                                            <a href="{{ url($lists->Proof_Image) }}"
+                                                                data-lightbox="photos">
+                                                                <img src="{{ url($lists->Proof_Image) }}"
+                                                                    class="card-img-top p-5" />
+                                                            </a>
+                                                        @endif
+                                                        <div class="row p-3 mt-2">
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <h3 class="p-3">Payment method:</h3>
+                                                            </div>
+                                                            <div class="col-md-6 text-sm font-weight-bold">
+                                                                <img class="gcash"
+                                                                    src="{{ asset('nvdcpics') }}/Gcash.png"
+                                                                    style="width: 200px; height: 60px">
+                                                            </div>
+                                                            <div class="col-md-12 text-sm font-weight-bold mt-4">
+                                                                <h3 class="p-2">Total Payment:</h3>
+                                                                <h2 class="display-2 mt--3 text-green p-2" id="currency">
+                                                                    PHP {{ number_format($lists->Payment, 2, '.', ',') }}
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        <!--<input type="submit" class="btn btn-success prevent_submit" value="Submit" />-->
+                                                        <a href="{{ url('/update_hotel_payment', ['id' => $lists->Booking_No, 'no' => $lists->Room_No, 'check' => $lists->IsArchived]) }}"
+                                                            class="btn btn-success">Approve Payment</a>
                                                     </div>
                                                 </div>
                                             </div>
