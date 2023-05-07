@@ -119,7 +119,7 @@
                         </a>
                     </div>
                 </div>
-
+                @php $now = date('Y-m-d'); @endphp
                 <div class="card-body">
                 <div class="table-responsive">
                         <!-- Pending -->
