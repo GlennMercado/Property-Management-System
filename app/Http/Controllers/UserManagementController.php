@@ -36,6 +36,14 @@ class UserManagementController extends Controller
             'User_Type' => 'required'
        ]);
 
+       $email = $request->input('email');
+       $check = DB::select("SELECT * FROM users WHERE email = '$email'");
+       if($check)
+       {
+            Alert::Error('Failed', 'Email Account already exist!');
+            return redirect('/UserManagement')->with('Success', 'Data Saved');
+       }
+
        $token = Str::random(60);
 
        $create = User::create([
