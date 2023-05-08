@@ -42,7 +42,7 @@
                                 <br>
                                 Check out date: {{ $list->Check_Out_Date }}
                             </p>
-                            @if ($list->Booking_Status == 'Checked-In')
+                            @if ($list->Booking_Status == 'Reserved')
                                 <button class="form-control bg-green">
                                     <h3 class="text-white">Check In</h3>
                                 </button>
