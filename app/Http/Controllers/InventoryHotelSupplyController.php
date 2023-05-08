@@ -11,6 +11,7 @@ use App\Models\hotel_room_supplies;
 use App\Models\hotel_room_linen;
 use App\Models\hotel_room_supplies_reports;
 use Carbon\Carbon;
+use PDF;
 
 class InventoryHotelSupplyController extends Controller
 {
@@ -165,6 +166,22 @@ class InventoryHotelSupplyController extends Controller
                         return redirect('StockHotelSupply')->with('Success', 'Data Updated');
                     }
     
+    }
+
+    public function guest_supply_report()
+    {
+        $start_date = Carbon::parse(request('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse(request('end_date'))->format('Y-m-d');
+        $data;
+        $title;
+
+        $total = hotel_room_supplies_reports::count();
+        $data = hotel_room_supplies_reports::whereBetween('created_at', [$start_date, $end_date])->get();
+        $title = "Guest Supply Report(s)";
+
+        $pdf = PDF::loadView('Admin.pages.Inventory.GuestSupplyReport', compact('data', 'title', 'total'))->setOption('font_path', '')->setOption('font_data', []);
+        // return $pdf->download('report.pdf');
+        return view('Admin.pages.Inventory.GuestSupplyReport', compact('data', 'title', 'total'));
     }
             
     

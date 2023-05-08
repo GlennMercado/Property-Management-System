@@ -105,19 +105,15 @@ class InventoryController extends Controller
         $roomno = $request->input('roomno');
         $prodid = $request->input('id');
         $category = $request->input('category');
+        $name = $request->input('name');
+        $quan = $request->input('quantity');
+        $stock = '1';
+        $in = '0';
         $sql = DB::select("SELECT * FROM hotelstocks WHERE productid = '$prodid'");
         $sql2 = DB::select("SELECT * FROM hotel_room_supplies WHERE Room_No = '$roomno' AND productid = '$prodid'");
         $sql3 = DB::select("SELECT * FROM hotel_room_linens WHERE Room_No = '$roomno' AND productid = '$prodid'");
         $quantity;
     
-        
-        // $productid = $request->input('productid');
-        // $name = $request->input('name');
-        // $total = $request->input('quantity');
-        // $in = $request->input('in');
-        // $category = $request->input('category');
-        // $out = 0;
-        // $stock = '1'; 
 
         if($category == "Linen")
         {
@@ -158,8 +154,15 @@ class InventoryController extends Controller
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
 
-                    // DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, Quantity, Stock, created_at) 
-                    //  values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
+                    DB::table('stockhistories')->insert(array(
+                        'name'=>$name,
+                        'category'=>$category,
+                        'Stock_In'=>$in,
+                        'Stock_Out'=>$quan,
+                        'Quantity'=>$quantity,
+                        'Stock'=>$stock,
+                        'created_at'=>now()
+                    ));
         
                     Alert::Success('Success', 'Successfully added to room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
@@ -210,8 +213,15 @@ class InventoryController extends Controller
                 {
                     DB::table('hotelstocks')->where('productid', $prodid)->update(['total' => $quantity]);
 
-                    // DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, Quantity, Stock, created_at) 
-                    //  values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
+                    DB::table('stockhistories')->insert(array(
+                        'name'=>$name,
+                        'category'=>$category,
+                        'Stock_In'=>$in,
+                        'Stock_Out'=>$quan,
+                        'Quantity'=>$quantity,
+                        'Stock'=>$stock,
+                        'created_at'=>now()
+                    ));
     
                     Alert::Success('Success', 'Successfully Added to Room!');
                     return redirect('StockCount')->with('Success', 'Data Updated');
@@ -341,7 +351,15 @@ class InventoryController extends Controller
             }
 
            
-           
+            DB::table('stockhistories')->insert(array(
+                'name'=>$name,
+                'category'=>$category,
+                'Stock_In'=>$in,
+                'Stock_Out'=>$out,
+                'Quantity'=>$total,
+                'Stock'=>$stock,
+                'created_at'=>now()
+            ));
            
            DB::table('hotelstocks')->where('productid', $productid)->update(array
             (
@@ -350,9 +368,7 @@ class InventoryController extends Controller
                 'total' => $total,
                 'category' => $category
             ));
-
-            DB::insert('insert into stockhistories (name, category, Stock_In, Stock_Out, Quantity, Stock, created_at) 
-            values (?, ?, ?, ?, ?, ?, now())', [$name, $category, $in, $out, $total, $stock]);
+           
             
     
            Alert::Success('Success', 'Successfully Updated!');

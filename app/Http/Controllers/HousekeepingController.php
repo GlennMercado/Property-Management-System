@@ -370,16 +370,19 @@ class HousekeepingController extends Controller
                             'Discrepancy' => $request->input('supply_deduction')[$i]
                     ]);
 
-                    $used = new used_supplies;
+                    if($request->input('supply_deduction')[$i] > 0)
+                    {
+                        $used = new used_supplies;
 
-                    $used->Room_No = $room_no;
-                    $used->Booking_No = $booking_no;
-                    $used->productid = $request->supply_prodid[$i];
-                    $used->name = $request->supply_name[$i];
-                    $used->Discrepancy = $request->input('supply_deduction')[$i];
-                    $used->Price = $request->supply_price[$i];
+                        $used->Room_No = $room_no;
+                        $used->Booking_No = $booking_no;
+                        $used->productid = $request->supply_prodid[$i];
+                        $used->name = $request->supply_name[$i];
+                        $used->Discrepancy = $request->input('supply_deduction')[$i];
+                        $used->Price = $request->supply_price[$i];
 
-                    $used->save();          
+                        $used->save();    
+                    }      
                 }
             }
 

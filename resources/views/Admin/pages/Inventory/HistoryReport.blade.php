@@ -27,12 +27,13 @@
                     <tbody>
                         @foreach ($data as $sqls)
                             <tr>
-                                <td style="font-size:16px;">{{ $sqls->Payment_Status }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Payment }}</td>
-                                <td style="font-size:16px;">{{ $sqls->gcash_account_name }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Booking_No }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Guest_Name }}</td>
-                                <td style="font-size:16px;">{{ $sqls->Mobile_Num }}</td>
+                                <td style="font-size:16px;">{{ $sqls->productid }}</td>
+                                <td style="font-size:16px;">{{ $sqls->name }}</td>
+                                <td style="font-size:16px;">{{ $sqls->category }}</td>
+                                <td style="font-size:16px;">{{ $sqls->Stock_In }}</td>
+                                <td style="font-size:16px;">{{ $sqls->Stock_Out }}</td>
+                                <td style="font-size:16px;">{{ $sqls->Quantity }}</td>
+                                <td style="font-size:16px;">{{ $sqls->created_at }}</td>
 
                             </tr>
                     @endforeach

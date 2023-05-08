@@ -351,6 +351,8 @@
                                                                             value="{{ $lists->category }}" readonly>
                                                                         <input type="hidden" name="category"
                                                                             value="{{ $lists->category }}">
+                                                                            <input type="hidden" name="total"
+                                                                            value="{{ $lists->total }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -551,7 +553,7 @@
                     </button>
                 </div>
                 <div class="card-header">
-                    {{-- <form action="{{ url('/stock_history_report') }}" target="blank" method="get">
+                     <form action="{{ url('/stock_history_report') }}" target="blank" method="get">
                         <div class="d-flex flex-row">
                             <div class="p-2">
                                 <label for="start_date">Start Date:</label>
@@ -569,7 +571,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form> --}}
+                    </form> 
                 </div>
                 <div class="modal-body" style="overflow-x: auto;">
                     <!-- Add your table here -->
