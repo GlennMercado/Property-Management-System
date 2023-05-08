@@ -190,11 +190,11 @@
                                                         data-target="#view{{ $lists->Booking_No }}"> <i
                                                             class="bi bi-eye-fill"></i> </button>
                                                     <!--update Button-->
-                                                    {{-- @if ($lists->Payment_Status == 'Pending')
+                                                    @if ($lists->Payment_Status == 'Pending')
                                                         <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#update{{ $lists->Booking_No }}"> <i
                                                                 class="bi bi-pencil-square"></i></button>
-                                                    @endif --}}
+                                                    @endif
                                                 </td>
                                                 <td style="font-size:14px;">{{ $lists->Room_No }}</td>
                                                 <td style="font-size:14px;">{{ $lists->Booking_No }}</td>
