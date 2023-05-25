@@ -572,7 +572,7 @@ class HotelController extends Controller
                 foreach ($name as $names) {
                     Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
-                Alert::Error('Declined', 'Declined Payment');
+                Alert::Success('Declined', 'Payment Successfully Declined');
                 return redirect('Guest_Reservation')->with('Success', 'Data Saved');
             }
             else
@@ -584,7 +584,8 @@ class HotelController extends Controller
                 foreach ($name as $names) {
                     Mail::to($names->Email)->send(new BookingConfirmation($names, $stats2));
                 }
-                Alert::Error('Declined', 'Declined Payment');
+                
+                Alert::Success('Declined', 'Payment Successfully Declined');
                 return redirect('HotelReservationForm')->with('Success', 'Data Saved');
             }
         }
