@@ -45,9 +45,9 @@
                                 @foreach ($list as $index => $lists)
                                     <tr>
                                         <td>
-                                            <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
+                                            <!-- <button class="btn btn-sm btn-primary btn-sm" data-toggle="modal"
                                                 data-target="#ModalView{{ $lists->productid }}"><i class="bi bi-eye"
-                                                    title="View Linen"></i></button>
+                                                    title="View Linen"></i></button> -->
                                             <button class="btn btn-sm btn-success btn-sm" data-toggle="modal"
                                                 data-target="#update{{ $lists->id }}"><i class="bi bi-pencil-square"
                                                     title="Update Linen"></i></button>

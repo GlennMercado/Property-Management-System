@@ -46,7 +46,7 @@
                             <li class="nav-item {{ 'FinanceApproval' == request()->path() ? 'act1' : '' }}">
                                 <a class="nav-link text-light" href="{{ route('FinanceApproval') }}">
                                     <i class="bi bi-calendar2-range-fill" style="color:rgb(224, 223, 223)"></i>
-                                    {{ __('FinanceApproval') }}
+                                    {{ __('Finance Approval') }}
                                 </a>
                             </li>
                         </ul>
