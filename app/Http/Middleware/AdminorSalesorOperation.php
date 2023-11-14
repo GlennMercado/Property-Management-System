@@ -16,7 +16,7 @@ class AdminorSalesorOperation
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Operations Manager' || auth()->user()->User_Type == 'Sales and Marketing'&& auth()->user()->IsDisabled == 0)
+        if(auth()->user()->User_Type == 'Admin' || auth()->user()->User_Type == 'Operations Manager' || auth()->user()->User_Type == 'Sales and Marketing' && auth()->user()->IsDisabled == 0)
         {
             return $next($request);
         }

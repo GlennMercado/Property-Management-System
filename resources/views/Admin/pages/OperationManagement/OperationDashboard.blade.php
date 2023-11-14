@@ -289,6 +289,10 @@
                                                                                 @endif
                                                                                 <h3 class="text-left">Booking Number:
                                                                                     <span
+                                                                                        style="font-weight:normal;">{{ $lists->Booking_No }}</span>
+                                                                                </h3>
+                                                                                <h3 class="text-left">Attendant:
+                                                                                    <span
                                                                                         style="font-weight:normal;">{{ $lists->Attendant }}</span>
                                                                                 </h3>
 
