@@ -11,7 +11,7 @@
                     <br>
                     <br>
                     <h2>
-                        The Novadeci Convention Centers
+                        The Novadeci Convention Center
                     </h2>
                     <p class="text-center">
                         "The NOVADECI Convention Center is the first coop-owned convention center in the Philippines. It is
